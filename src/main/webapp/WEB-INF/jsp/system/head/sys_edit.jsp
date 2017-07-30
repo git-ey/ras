@@ -7,9 +7,6 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	String weixinPath = request.getScheme() + "://"
-			+ request.getServerName()
-			+ path + "/";
 %>
 <!DOCTYPE html>
 <html lang="en">

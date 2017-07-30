@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ey.controller.base.BaseController;
 import com.ey.entity.system.Menu;
 import com.ey.entity.system.Role;
-import com.ey.service.system.log.LogManager;
+import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.menu.MenuManager;
 import com.ey.service.system.role.RoleManager;
 import com.ey.service.system.user.UserManager;
@@ -45,7 +45,7 @@ public class RoleController extends BaseController {
 	@Resource(name="userService")
 	private UserManager userService;
 	@Resource(name="logService")
-	private LogManager logManager;
+	private LogerManager logManager;
 	
 	/** 进入权限首页
 	 * @param 

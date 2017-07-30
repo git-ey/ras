@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ey.controller.base.BaseController;
-import com.ey.service.system.log.LogManager;
+import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.user.UserManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
@@ -37,7 +37,7 @@ public class SysUserController extends BaseController {
 	@Resource(name="userService")
 	private UserManager userService;
 	@Resource(name="logService")
-	private LogManager logManager;
+	private LogerManager logManager;
 	
 	/**系统用户注册接口
 	 * @return

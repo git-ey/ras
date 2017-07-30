@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import net.sf.json.JSONArray;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.system.Menu;
-import com.ey.service.system.log.LogManager;
+import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.menu.MenuManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
 import com.ey.util.Jurisdiction;
 import com.ey.util.PageData;
 import com.ey.util.RightsHelper;
+
+import net.sf.json.JSONArray;
 /** 
  *  菜单处理
  */
@@ -35,7 +35,7 @@ public class MenuController extends BaseController {
 	@Resource(name="menuService")
 	private MenuManager menuService;
 	@Resource(name="logService")
-	private LogManager logManager;
+	private LogerManager logManager;
 	
 	/**
 	 * 显示菜单列表

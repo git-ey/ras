@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
 import com.ey.entity.system.Role;
-import com.ey.service.system.log.LogManager;
+import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.menu.MenuManager;
 import com.ey.service.system.role.RoleManager;
 import com.ey.service.system.user.UserManager;
@@ -57,7 +57,7 @@ public class UserController extends BaseController {
 	@Resource(name="menuService")
 	private MenuManager menuService;
 	@Resource(name="logService")
-	private LogManager logManager;
+	private LogerManager logManager;
 	
 	/**显示用户列表
 	 * @param page
