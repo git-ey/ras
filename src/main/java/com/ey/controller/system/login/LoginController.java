@@ -27,7 +27,7 @@ import com.ey.entity.system.User;
 import com.ey.service.hr.datajur.DatajurManager;
 import com.ey.service.system.button.ButtonManager;
 import com.ey.service.system.buttonrights.ButtonrightsManager;
-import com.ey.service.system.log.LogManager;
+import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.menu.MenuManager;
 import com.ey.service.system.role.RoleManager;
 import com.ey.service.system.user.UserManager;
@@ -58,7 +58,7 @@ public class LoginController extends BaseController {
 	@Resource(name = "datajurService")
 	private DatajurManager datajurService;
 	@Resource(name = "logService")
-	private LogManager logManager;
+	private LogerManager logManager;
 
 	/**
 	 * 访问登录页

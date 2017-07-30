@@ -21,7 +21,7 @@ import com.ey.controller.base.BaseController;
 import com.ey.entity.system.Role;
 import com.ey.service.system.button.ButtonManager;
 import com.ey.service.system.buttonrights.ButtonrightsManager;
-import com.ey.service.system.log.LogManager;
+import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.role.RoleManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Jurisdiction;
@@ -43,7 +43,7 @@ public class ButtonrightsController extends BaseController {
 	@Resource(name="buttonService")
 	private ButtonManager buttonService;
 	@Resource(name="logService")
-	private LogManager fhManager;
+	private LogerManager fhManager;
 	
 	/**列表
 	 * @throws Exception

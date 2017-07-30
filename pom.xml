@@ -454,22 +454,6 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ueditor.jar</systemPath>
 		</dependency>
-		<!-- java_websocket -->
-		<dependency>
-			<groupId>java_websocket</groupId>
-			<artifactId>java_websocket</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/java_websocket.jar</systemPath>
-		</dependency>
-		<!-- weixinapi -->
-		<dependency>
-			<groupId>weixinapi</groupId>
-			<artifactId>weixinapi</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/weixinapi.jar</systemPath>
-		</dependency>
 		<!-- weaver-1.6.8.RELEASE.jar -->
 		<dependency>
 			<groupId>weaver-1.6.8</groupId>
