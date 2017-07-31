@@ -483,10 +483,6 @@
                 <source>${java.version}</source>  
                 <target>${java.version}</target>  
                 <encoding>${project.build.sourceEncoding}</encoding>  
-	            <compilerArguments>  
-	                <verbose />  
-	                <bootclasspath>${java.home}/jre/lib/rt.jar;${java.home}/jre/lib/jce.jar</bootclasspath>  
-	            </compilerArguments>  
 	        </configuration>  
 	    </plugin>
 		</plugins>
