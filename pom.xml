@@ -470,14 +470,6 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/json-1.5-20090211.jar</systemPath>
 		</dependency>
-		<!-- xbrl6.2 -->
-		<dependency>
-			<groupId>xbrlapi-6.2</groupId>
-			<artifactId>xbrlapi-6.2</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/xbrlapi-6.2.jar</systemPath>
-		</dependency>
 	</dependencies>
 	<build>
 		<finalName>ras</finalName>
