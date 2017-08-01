@@ -188,47 +188,6 @@
 			$("#name").focus();
 			return false;
 		}
-		var myreg = /^(((13[0-9]{1})|159)+\d{8})$/;
-		if($("#PHONE").val()==""){
-			
-			$("#PHONE").tips({
-				side:3,
-	            msg:'输入手机号',
-	            bg:'#AE81FF',
-	            time:3
-	        });
-			$("#PHONE").focus();
-			return false;
-		}else if($("#PHONE").val().length != 11 && !myreg.test($("#PHONE").val())){
-			$("#PHONE").tips({
-				side:3,
-	            msg:'手机号格式不正确',
-	            bg:'#AE81FF',
-	            time:3
-	        });
-			$("#PHONE").focus();
-			return false;
-		}
-		if($("#EMAIL").val()==""){
-			
-			$("#EMAIL").tips({
-				side:3,
-	            msg:'输入邮箱',
-	            bg:'#AE81FF',
-	            time:3
-	        });
-			$("#EMAIL").focus();
-			return false;
-		}else if(!ismail($("#EMAIL").val())){
-			$("#EMAIL").tips({
-				side:3,
-	            msg:'邮箱格式不正确',
-	            bg:'#AE81FF',
-	            time:3
-	        });
-			$("#EMAIL").focus();
-			return false;
-		}
 		if($("#user_id").val()==""){
 			hasU();
 		}else{
@@ -237,9 +196,6 @@
 			$("#zhongxin2").show();
 		}
 	}
-	function ismail(mail){
-		return(new RegExp(/^(?:[a-zA-Z0-9]+[_\-\+\.]?)*[a-zA-Z0-9]+@(?:([a-zA-Z0-9]+[_\-]?)*[a-zA-Z0-9]+\.)+([a-zA-Z]{2,})+$/).test(mail));
-		}
 	
 	//判断用户名是否存在
 	function hasU(){
