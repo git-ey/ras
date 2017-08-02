@@ -91,14 +91,14 @@
 											                            <div class="form-group draggable">
 											                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">下拉框：</label>
 																				<div class="col-sm-9" style="width:66%;" >
-																				<div class="selQ313596790Qsel"></div>
+																				<div class="sel"></div>
 																				<select class="chosen-select form-control" name="name" id="id" data-placeholder="请选择">
 																					<option value=""></option>
 																					<option value="">选项一</option>
 																					<option value="">选项二</option>
 																					<option value="">选项三</option>
 																			  	</select>
-																			  	<div class="selQ313596790Qsel"></div>
+																			  	<div class="sel"></div>
 																			</div>
 											                            </div>
 											                            <div class="form-group draggable">
@@ -110,9 +110,9 @@
 											                            <div class="form-group draggable">
 																			<label class="col-sm-3 control-label no-padding-right" for="form-field-1">文件域：</label>
 																			<div class="col-sm-9">
-																				<div class="fileQ313596790Qfile"></div>
+																				<div class="file"></div>
 																				<input type="file" id="tp" name="tp" />
-																				<div class="fileQ313596790Qfile"></div>
+																				<div class="file"></div>
 																			</div>
 											                            </div>
 											                            <div class="form-group draggable">
@@ -178,9 +178,9 @@
 											                            <div class="form-group draggable">
 																			<label class="col-sm-3 control-label no-padding-right" for="form-field-1">富文本：</label>
 											                                <div class="col-sm-9">
-											                                	<div class="ueQ313596790Que"></div>
+											                                	<div class="ue"></div>
 											                                   <script id="editor" type="text/plain" style="width:96%;height:50px;"></script>
-											                                    <div class="ueQ313596790Que"></div>
+											                                    <div class="ue"></div>
 											                                </div>
 											                            </div>
 											                            <div class="form-group draggable">
@@ -347,15 +347,15 @@
 	//过滤ueditor
 	var ueditorHtml = "";
 	function getUeditorFormHtml(html,msg,isgx){
-		var arryUe = html.split('<div class="ueQ313596790Que"></div>');
+		var arryUe = html.split('<div class="ue"></div>');
 		if(arryUe.length == 3){
 			var uejscode = "<script id=\"editor\" type=\"text/plain\" style=\"width:96%;height:200px;\"><\/script>";
 			if(msg == '1'){
 				if(isgx == '2'){
 					ueditorHtml = arryUe[1];
-					return arryUe[0] + '<div class="ueQ313596790Que"></div>' + uejscode + '<div class="ueQ313596790Que"></div>' + arryUe[2];
+					return arryUe[0] + '<div class="ue"></div>' + uejscode + '<div class="ue"></div>' + arryUe[2];
 				}else{
-					return arryUe[0] + '<div class="ueQ313596790Que"></div>' + ueditorHtml + '<div class="ueQ313596790Que"></div>' + arryUe[2];
+					return arryUe[0] + '<div class="ue"></div>' + ueditorHtml + '<div class="ue"></div>' + arryUe[2];
 				}
 			}else{
 				return arryUe[0] + uejscode + arryUe[2];
@@ -368,7 +368,7 @@
 	//过滤下拉框
 	var selectHtml = "";
 	function getSelectFormHtml(html,msg,isgx){
-		var arrySe = html.split('<div class="selQ313596790Qsel"></div>');
+		var arrySe = html.split('<div class="sel"></div>');
 		if(arrySe.length == 3){
 			var selectcode ='<select class="chosen-select form-control" name="name" id="id" data-placeholder="请选择">'+
 								'<option value=""></option>'+
@@ -379,7 +379,7 @@
 			selectcode = selectHtml == ''?selectcode:selectHtml;
 			if(msg == '1'){
 				if(isgx == '2'){
-					return arrySe[0] + '<div class="selQ313596790Qsel"></div>' + selectcode + '<div class="selQ313596790Qsel"></div>' + arrySe[2];
+					return arrySe[0] + '<div class="sel"></div>' + selectcode + '<div class="sel"></div>' + arrySe[2];
 				}else{
 					selectHtml = arrySe[1];
 					return html;
@@ -395,15 +395,15 @@
 	//过滤file上传控件
 	var fileHtml = "";
 	function getFileFormHtml(html,msg,isgx){
-		var arryFile = html.split('<div class="fileQ313596790Qfile"></div>');
+		var arryFile = html.split('<div class="file"></div>');
 		if(arryFile.length == 3){
 			var filecode = "<input type=\"file\" id=\"tp\" name=\"tp\" />";
 			if(msg == '1'){
 				if(isgx == '2'){
 					fileHtml = arryFile[1];
-					return arryFile[0] + '<div class="fileQ313596790Qfile"></div>' + filecode + '<div class="fileQ313596790Qfile"></div>' + arryFile[2];
+					return arryFile[0] + '<div class="file"></div>' + filecode + '<div class="file"></div>' + arryFile[2];
 				}else{
-					return arryFile[0] + '<div class="fileQ313596790Qfile"></div>' + fileHtml + '<div class="fileQ313596790Qfile"></div>' + arryFile[2];
+					return arryFile[0] + '<div class="file"></div>' + fileHtml + '<div class="file"></div>' + arryFile[2];
 				};
 			}else{
 				return arryFile[0] + filecode + arryFile[2];

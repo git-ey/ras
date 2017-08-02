@@ -162,10 +162,12 @@ public class LoginController extends BaseController {
 				} else {
 					user = userr;
 				}
+				String userId = user.getUSER_ID();
 				String USERNAME = user.getUSERNAME();
 				Role role = user.getRole(); // 获取用户角色
 				String roleRights = role != null ? role.getRIGHTS() : ""; // 角色权限(菜单权限)
 				session.setAttribute(USERNAME + Const.SESSION_ROLE_RIGHTS, roleRights); // 将角色权限存入session
+				session.setAttribute(Const.SESSION_USERID, userId); // 放入用户ID到session
 				session.setAttribute(Const.SESSION_USERNAME, USERNAME); // 放入用户名到session
 				this.setAttributeToAllDEPARTMENT_ID(session, USERNAME); // 把用户的组织机构权限放到session里面
 				List<Menu> allmenuList = new ArrayList<Menu>();
@@ -203,14 +205,14 @@ public class LoginController extends BaseController {
 	@SuppressWarnings("unchecked")
 	public List<Menu> getAttributeMenu(Session session, String USERNAME, String roleRights) throws Exception {
 		List<Menu> allmenuList = new ArrayList<Menu>();
-		if (null == session.getAttribute(USERNAME + Const.SESSION_allmenuList)) {
+		if (null == session.getAttribute(USERNAME + Const.SESSION_ALLMENULIST)) {
 			allmenuList = menuService.listAllMenuQx("0"); // 获取所有菜单
 			if (Tools.notEmpty(roleRights)) {
 				allmenuList = this.readMenu(allmenuList, roleRights); // 根据角色权限获取本权限的菜单列表
 			}
-			session.setAttribute(USERNAME + Const.SESSION_allmenuList, allmenuList);// 菜单权限放入session中
+			session.setAttribute(USERNAME + Const.SESSION_ALLMENULIST, allmenuList);// 菜单权限放入session中
 		} else {
-			allmenuList = (List<Menu>) session.getAttribute(USERNAME + Const.SESSION_allmenuList);
+			allmenuList = (List<Menu>) session.getAttribute(USERNAME + Const.SESSION_ALLMENULIST);
 		}
 		return allmenuList;
 	}
@@ -244,7 +246,7 @@ public class LoginController extends BaseController {
 	@SuppressWarnings("unchecked")
 	public List<Menu> changeMenuF(List<Menu> allmenuList, Session session, String USERNAME, String changeMenu) {
 		List<Menu> menuList = new ArrayList<Menu>();
-		if (null == session.getAttribute(USERNAME + Const.SESSION_menuList) || ("yes".equals(changeMenu))) {
+		if (null == session.getAttribute(USERNAME + Const.SESSION_MENULIST) || ("yes".equals(changeMenu))) {
 			List<Menu> menuList1 = new ArrayList<Menu>();
 			List<Menu> menuList2 = new ArrayList<Menu>();
 			for (int i = 0; i < allmenuList.size(); i++) {// 拆分菜单
@@ -255,20 +257,20 @@ public class LoginController extends BaseController {
 					menuList2.add(menu);
 				}
 			}
-			session.removeAttribute(USERNAME + Const.SESSION_menuList);
+			session.removeAttribute(USERNAME + Const.SESSION_MENULIST);
 			if ("2".equals(session.getAttribute("changeMenu"))) {
-				session.setAttribute(USERNAME + Const.SESSION_menuList, menuList1);
+				session.setAttribute(USERNAME + Const.SESSION_MENULIST, menuList1);
 				session.removeAttribute("changeMenu");
 				session.setAttribute("changeMenu", "1");
 				menuList = menuList1;
 			} else {
-				session.setAttribute(USERNAME + Const.SESSION_menuList, menuList2);
+				session.setAttribute(USERNAME + Const.SESSION_MENULIST, menuList2);
 				session.removeAttribute("changeMenu");
 				session.setAttribute("changeMenu", "2");
 				menuList = menuList2;
 			}
 		} else {
-			menuList = (List<Menu>) session.getAttribute(USERNAME + Const.SESSION_menuList);
+			menuList = (List<Menu>) session.getAttribute(USERNAME + Const.SESSION_MENULIST);
 		}
 		return menuList;
 	}
@@ -351,10 +353,10 @@ public class LoginController extends BaseController {
 		Session session = Jurisdiction.getSession(); // 以下清除session缓存
 		session.removeAttribute(Const.SESSION_USER);
 		session.removeAttribute(USERNAME + Const.SESSION_ROLE_RIGHTS);
-		session.removeAttribute(USERNAME + Const.SESSION_allmenuList);
-		session.removeAttribute(USERNAME + Const.SESSION_menuList);
+		session.removeAttribute(USERNAME + Const.SESSION_ALLMENULIST);
+		session.removeAttribute(USERNAME + Const.SESSION_MENULIST);
 		session.removeAttribute(USERNAME + Const.SESSION_QX);
-		session.removeAttribute(Const.SESSION_userpds);
+		session.removeAttribute(Const.SESSION_USERPDS);
 		session.removeAttribute(Const.SESSION_USERNAME);
 		session.removeAttribute(Const.SESSION_USERROL);
 		session.removeAttribute("changeMenu");
