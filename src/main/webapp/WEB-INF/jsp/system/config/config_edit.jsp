@@ -44,7 +44,7 @@
 								<td>
 								<div class="col-sm-9">
 									<label style="float:left;padding-left: 8px;padding-top:7px;">
-										<input name="ENABLED_FLAG" type="radio" class="ace" id="form-field-radio1" value="Y" <c:if test="${pd.ENABLED_FLAG == 'Y' }">checked="checked"</c:if>/>
+										<input name="ENABLED_FLAG" type="radio" class="ace" id="form-field-radio1" value="Y" <c:if test="${pd.ENABLED_FLAG == 'Y' or pd.ENABLED_FLAG == null }">checked="checked"</c:if>/>
 										<span class="lbl"> 是</span>
 									</label>
 									<label style="float:left;padding-left: 5px;padding-top:7px;">

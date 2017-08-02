@@ -59,8 +59,8 @@
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">配置代码</th>
 									<th class="center">配置值</th>
-									<th class="center">是否启用</th>
-									<th class="center">操作</th>
+									<th class="center" style="width: 120px;">是否启用</th>
+									<th class="center" style="width: 180px;">操作</th>
 								</tr>
 							</thead>
 													
