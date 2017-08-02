@@ -3,7 +3,7 @@ package com.ey.service.hr.department;
 import java.util.List;
 
 import com.ey.entity.Page;
-import com.ey.entity.system.Department;
+import com.ey.entity.hr.Department;
 import com.ey.util.PageData;
 
 /** 
