@@ -15,8 +15,6 @@
 
 <!-- jsp文件头和头部 -->
 <%@ include file="../index/top.jsp"%>
-<!-- 百度echarts -->
-<script src="plugins/echarts/echarts.min.js"></script>
 <script type="text/javascript">
 setTimeout("top.hangge()",500);
 </script>

@@ -314,7 +314,6 @@ public class LoginController extends BaseController {
 	public ModelAndView defaultPage() throws Exception {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
-		pd.put("userCount", Integer.parseInt(userService.getUserCount("").get("userCount").toString()) - 1); // 系统用户数
 		mv.addObject("pd", pd);
 		mv.setViewName("system/index/default");
 		return mv;

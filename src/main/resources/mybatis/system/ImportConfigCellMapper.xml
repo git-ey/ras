@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ImportConfigCellMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_IMPORTCONFIG_CELL
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		NUMBER,	
+		MAPKEY,	
+		CELLTYPE,	
+		NULLABLE,	
+		IMPORTCONFIGCELL_ID,
+		IMPORTCONFIG_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{NUMBER},	
+		#{MAPKEY},	
+		#{CELLTYPE},	
+		#{NULLABLE},	
+		#{IMPORTCONFIGCELL_ID},
+		#{IMPORTCONFIG_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			IMPORTCONFIGCELL_ID = #{IMPORTCONFIGCELL_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			NUMBER = #{NUMBER},
+			MAPKEY = #{MAPKEY},
+			CELLTYPE = #{CELLTYPE},
+			NULLABLE = #{NULLABLE},
+		IMPORTCONFIGCELL_ID = IMPORTCONFIGCELL_ID
+		where 
+		IMPORTCONFIGCELL_ID = #{IMPORTCONFIGCELL_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			IMPORTCONFIGCELL_ID = #{IMPORTCONFIGCELL_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+		IMPORTCONFIG_ID = #{pd.IMPORTCONFIG_ID}
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				    <!-- 根据需求自己加检索条件 -->
+					NUMBER LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					MAPKEY LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			IMPORTCONFIGCELL_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 查询明细总数 -->
+	<select id="findCount" parameterType="pd" resultType="pd">
+		select
+			count(*) zs
+		from 
+			<include refid="tableName"></include>
+		where
+			IMPORTCONFIG_ID = #{IMPORTCONFIG_ID}
+	</select>
+</mapper>
