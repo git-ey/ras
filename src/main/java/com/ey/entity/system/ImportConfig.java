@@ -6,7 +6,6 @@ import com.ey.util.excel.BaseModel;
 
 /**
  * 数据导入头配置
- * 
  * @author andyChen
  *
  */
@@ -16,6 +15,8 @@ public class ImportConfig extends BaseModel{
 	private String importTempName; // 导入模板名称
 	private Integer startRowNo; // 读取的起始行 起始为0
 	private ImportFileType importFileType; // 导入文件类型
+	private String tableName; // 导入目标表
+	private String fileNameFormat; // 文件名格式
 	private List<ImportConfigCell> importCells; // 导入行定义
 
 	public String getImportTempCode() {
@@ -50,6 +51,22 @@ public class ImportConfig extends BaseModel{
 		this.startRowNo = startRowNo;
 	}
 
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
+	public String getFileNameFormat() {
+		return fileNameFormat;
+	}
+
+	public void setFileNameFormat(String fileNameFormat) {
+		this.fileNameFormat = fileNameFormat;
+	}
+
 	public List<ImportConfigCell> getImportCells() {
 		return importCells;
 	}
@@ -58,11 +75,7 @@ public class ImportConfig extends BaseModel{
 		this.importCells = importCells;
 	}
 
-	public enum ParserType {
-		XML
-	}
-
 	public enum ImportFileType {
-		EXCEL
+		EXCEL,DBF
 	}
 }

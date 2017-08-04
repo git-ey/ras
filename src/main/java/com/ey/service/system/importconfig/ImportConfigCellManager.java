@@ -1,6 +1,9 @@
 package com.ey.service.system.importconfig;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.ey.entity.Page;
 import com.ey.util.PageData;
 
@@ -47,6 +50,12 @@ public interface ImportConfigCellManager{
 	 * @throws Exception
 	 */
 	public PageData findById(PageData pd)throws Exception;
+	
+	/**通过配置头id获取数据
+	 * @param pd
+	 * @throws Exception
+	 */
+	public List<PageData> findByConfigId(@Param("IMPORTCONFIG_ID") String importConfigId) throws Exception;
 	
 	/**批量删除
 	 * @param ArrayDATA_IDS

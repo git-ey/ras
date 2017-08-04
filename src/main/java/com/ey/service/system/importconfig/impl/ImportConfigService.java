@@ -1,12 +1,16 @@
 package com.ey.service.system.importconfig.impl;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.util.PageData;
 import com.ey.service.system.importconfig.ImportConfigManager;
+import com.ey.util.PageData;
 
 /** 
  * 说明： 数据导入设置
@@ -68,6 +72,22 @@ public class ImportConfigService implements ImportConfigManager{
 	 */
 	public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("ImportConfigMapper.findById", pd);
+	}
+	
+	/**通过Code获取数据
+	 * @param pd
+	 * @throws Exception
+	 */
+	public PageData findByCode(String importTempCode)throws Exception{
+		return (PageData)dao.findForObject("ImportConfigMapper.findByCode", importTempCode);
+	}
+	
+	/**通过导入文件类型获取数据
+	 * @param pd
+	 * @throws Exception
+	 */
+	public List<String> findByImportFileType(String importFileType) throws Exception {
+		return (List<String>) dao.findForList("ImportConfigMapper.findByImportFileType", importFileType);
 	}
 	
 	/**批量删除

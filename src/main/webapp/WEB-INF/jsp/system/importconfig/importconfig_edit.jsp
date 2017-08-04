@@ -34,7 +34,7 @@
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">模版代码:</td>
 								<td><input type="text" name="IMPORT_TEMP_CODE" id="IMPORT_TEMP_CODE" value="${pd.IMPORT_TEMP_CODE}" maxlength="60" placeholder="这里输入导入模版代码" title="导入模版代码" style="width:98%;"/></td>
-							<td style="width:100px;text-align: right;padding-top: 13px;">模板名称:</td>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">模板名称:</td>
 								<td><input type="text" name="IMPORT_TEMP_NAME" id="IMPORT_TEMP_NAME" value="${pd.IMPORT_TEMP_NAME}" maxlength="240" placeholder="这里输入导入模板名称" title="导入模板名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
@@ -43,11 +43,17 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">文件类型:</td>
 								<td>
 								    <div class="sel"></div>
-								    <select class="chosen-select form-control" name="IMPORT_FILE_TYPE" id="id" data-placeholder="请选择" style="width:49%;">
+								    <select class="chosen-select form-control" name="IMPORT_FILE_TYPE" id="IMPORT_FILE_TYPE" data-placeholder="请选择" style="width:49%;">
 								    <option value="EXCEL" <c:if test="${pd.IMPORT_FILE_TYPE == 'EXCEL'}">selected</c:if>>EXCEL</option>
 								    <option value="DBF" <c:if test="${pd.IMPORT_FILE_TYPE == 'DBF'}">selected</c:if>>DBF</option>
 								    <div class="sel"></div>
 								</td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">导入目标表:</td>
+								<td><input type="text" name="TABLE_NAME" id="TABLE_NAME" value="${pd.TABLE_NAME}" maxlength="60" placeholder="这里输入导入目标表" title="导入目标表" style="width:98%;"/></td>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">文件名格式:</td>
+							    <td><input type="text" name="FILENAME_FROMAT" id="FILENAME_FROMAT" value="${pd.FILENAME_FROMAT}" maxlength="60" placeholder="这里输入文件名格式" title="文件名格式" style="width:98%;"/></td>
 							</tr>
 						</table>
 						</div>
@@ -128,6 +134,26 @@
 		            time:2
 		        });
 				$("#IMPORT_FILE_TYPE").focus();
+			return false;
+			}
+			if($("#TABLE_NAME").val()==""){
+				$("#TABLE_NAME").tips({
+					side:3,
+		            msg:'请输入导入目标表',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#TABLE_NAME").focus();
+			return false;
+			}
+			if($("#FILENAME_FROMAT").val()=="" && $("#IMPORT_FILE_TYPE").val()=="EXCEL"){
+				$("#FILENAME_FROMAT").tips({
+					side:3,
+		            msg:'请输入导入目标表',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#FILENAME_FROMAT").focus();
 			return false;
 			}
 			$("#Form").submit();

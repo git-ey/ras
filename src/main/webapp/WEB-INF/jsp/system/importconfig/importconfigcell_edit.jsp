@@ -45,11 +45,11 @@
 								<td>
 								    <div class="sel"></div>
 								    <select class="chosen-select form-control" name="CELLTYPE" id="id" data-placeholder="请选择" style="width:60%;">
-								    <option value="0" <c:if test="${pd.CELLTYPE == 0}">selected</c:if>>int</option>
-								    <option value="1" <c:if test="${pd.IMPORT_FILE_TYPE == 1}">selected</c:if>>float</option>
-								    <option value="2" <c:if test="${pd.IMPORT_FILE_TYPE == 2}">selected</c:if>>string</option>
-								    <option value="3" <c:if test="${pd.IMPORT_FILE_TYPE == 3}">selected</c:if>>date</option>
-								    <option value="4" <c:if test="${pd.IMPORT_FILE_TYPE == 4}">selected</c:if>>bigDecimal</option>
+								    <option value="int" <c:if test="${pd.CELLTYPE == 'int'}">selected</c:if>>int</option>
+								    <option value="float" <c:if test="${pd.CELLTYPE == 'float'}">selected</c:if>>float</option>
+								    <option value="string" <c:if test="${pd.CELLTYPE == 'string'}">selected</c:if>>string</option>
+								    <option value="date" <c:if test="${pd.CELLTYPE == 'date'}">selected</c:if>>date</option>
+								    <option value="bigDecimal" <c:if test="${pd.CELLTYPE == 'bigDecimal'}">selected</c:if>>bigDecimal</option>
 								    <div class="sel"></div>
 								</td>
 							</tr>

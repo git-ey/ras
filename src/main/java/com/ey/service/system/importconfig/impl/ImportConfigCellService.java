@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -71,6 +72,14 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 */
 	public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("ImportConfigCellMapper.findById", pd);
+	}
+	
+	/**通过配置头id获取数据
+	 * @param pd
+	 * @throws Exception
+	 */
+	public List<PageData> findByConfigId(@Param("IMPORTCONFIG_ID") String importConfigId)throws Exception {
+		return (List<PageData>)dao.findForObject("ImportConfigCellMapper.findByConfigId", importConfigId);
 	}
 	
 	/**批量删除

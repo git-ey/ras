@@ -9,19 +9,23 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		IMPORT_TEMP_CODE,	
-		IMPORT_TEMP_NAME,	
-		START_ROW_NO,	
-		IMPORT_FILE_TYPE,	
+		IMPORT_TEMP_CODE,
+		IMPORT_TEMP_NAME,
+		START_ROW_NO,
+		TABLE_NAME,
+		IMPORT_FILE_TYPE,
+		FILENAME_FROMAT,
 		IMPORTCONFIG_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{IMPORT_TEMP_CODE},	
-		#{IMPORT_TEMP_NAME},	
-		#{START_ROW_NO},	
-		#{IMPORT_FILE_TYPE},	
+		#{IMPORT_TEMP_CODE},
+		#{IMPORT_TEMP_NAME},
+		#{START_ROW_NO},
+		#{TABLE_NAME},
+		#{IMPORT_FILE_TYPE},
+		#{FILENAME_FROMAT},
 		#{IMPORTCONFIG_ID}
 	</sql>
 	
@@ -52,8 +56,9 @@
 			IMPORT_TEMP_CODE = #{IMPORT_TEMP_CODE},
 			IMPORT_TEMP_NAME = #{IMPORT_TEMP_NAME},
 			START_ROW_NO = #{START_ROW_NO},
+			TABLE_NAME = #{TABLE_NAME},
 			IMPORT_FILE_TYPE = #{IMPORT_FILE_TYPE},
-		IMPORTCONFIG_ID = IMPORTCONFIG_ID
+			FILENAME_FROMAT = #{FILENAME_FROMAT}
 		where 
 		IMPORTCONFIG_ID = #{IMPORTCONFIG_ID}
 	</update>
@@ -68,6 +73,26 @@
 			IMPORTCONFIG_ID = #{IMPORTCONFIG_ID}
 	</select>
 	
+	<!-- 通过CODE获取数据 -->
+	<select id="findByCode" parameterType="java.lang.String" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from
+		<include refid="tableName"></include>
+		where
+			IMPORT_TEMP_CODE = #{importTempCode,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 通过导入类型获取数据 -->
+	<select id="findByImportFileType" parameterType="java.lang.String" resultType="java.lang.String">
+		select
+		   IMPORT_TEMP_CODE
+		from
+		<include refid="tableName"></include>
+		where 
+			IMPORT_FILE_TYPE = #{importFileType,jdbcType=VARCHAR}
+	</select>	
+	
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">
 		select
@@ -80,9 +105,10 @@
 				(
 				<!-- 根据需求自己加检索条件 -->
 					IMPORT_TEMP_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
-					 or 
-					IMPORT_TEMP_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				
+					 or
+					IMPORT_TEMP_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				     or
+				    TABLE_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 				)
 		</if>
 	</select>

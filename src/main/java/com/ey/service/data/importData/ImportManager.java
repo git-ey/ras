@@ -1,17 +1,16 @@
-package com.ey.service.system.importconfig;
+package com.ey.service.data.importData;
 
 import java.util.List;
-
 import com.ey.entity.Page;
 import com.ey.util.PageData;
 
 /** 
- * 说明： 数据导入设置接口
+ * 说明： 导入工作台接口
  * 创建人：andychen
- * 创建时间：2017-08-03
+ * 创建时间：2017-08-04
  * @version
  */
-public interface ImportConfigManager{
+public interface ImportManager{
 
 	/**新增
 	 * @param pd
@@ -48,18 +47,6 @@ public interface ImportConfigManager{
 	 * @throws Exception
 	 */
 	public PageData findById(PageData pd)throws Exception;
-	
-	/**通过Code获取数据
-	 * @param pd
-	 * @throws Exception
-	 */
-	public PageData findByCode(String importTempCode)throws Exception;
-	
-	/**通过导入文件类型获取数据
-	 * @param pd
-	 * @throws Exception
-	 */
-	public List<String> findByImportFileType(String importFileType) throws Exception;
 	
 	/**批量删除
 	 * @param ArrayDATA_IDS

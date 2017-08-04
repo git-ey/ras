@@ -79,15 +79,7 @@
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.NUMBER}</td>
 											<td class='center'>${var.MAPKEY}</td>
-											<td class='center'>
-											    <c:choose>
-											        <c:when test="${var.CELLTYPE == 0}">int</c:when>
-											        <c:when test="${var.CELLTYPE == 1}">float</c:when>
-											        <c:when test="${var.CELLTYPE == 2}">string</c:when>
-											        <c:when test="${var.CELLTYPE == 3}">date</c:when>
-											        <c:when test="${var.CELLTYPE == 4}">bigDecimal</c:when>
-											    </c:choose>
-											</td>
+											<td class='center'>${var.CELLTYPE}</td>
 											<td class='center'>
 											    <c:choose>
 											        <c:when test="${var.NULLABLE == 0}">允许</c:when>
