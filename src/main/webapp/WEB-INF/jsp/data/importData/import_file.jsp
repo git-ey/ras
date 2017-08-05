@@ -70,7 +70,7 @@
 											<td class='center'>${var.IMPORT_FILE_NAME}</td>
 											<td class='center'>${var.TABLE_NAME}</td>
 											<td class='center'>${var.CNT}</td>
-											<td class='center'>${var.MESSAGE}</td>
+											<td class='center'><font color="red">${var.MESSAGE}</font></td>
 											<td class="center">
 												<c:if test="${QX.del == 1 }">
 													 <a class="btn btn-xs btn-danger" onclick="del('${var.IMPORT_FILE_ID}','${var.TABLE_NAME}');">

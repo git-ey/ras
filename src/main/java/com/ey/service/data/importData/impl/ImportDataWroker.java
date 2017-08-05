@@ -31,6 +31,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * 导入文件ID标识
 	 */
 	private final String IMPORT_FILE_ID = "`import_file_id`";
+	private final String PARTY_SUCCESS_FLAG = "存在错误，请复查";
 	// 数据导入配置解析器
 	private ImportConfigParser importConfigParser;
 	// 数据导入配置服务
@@ -72,7 +73,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 			// 处理DBF数据
 		}
 		// 完成导入操作回写信息
-		if (StringUtils.isNotBlank(importMessage)) {
+		if (StringUtils.isNotBlank(importMessage) && !importMessage.equals(PARTY_SUCCESS_FLAG)) {
 			this.updateImportStatus("N", importMessage);
 		} else {
 			this.updateImportStatus("Y", importMessage);
@@ -98,46 +99,58 @@ public class ImportDataWroker implements Callable<Boolean> {
 			if (configuration == null || configuration.getStartRowNo() == null) {
 				throw new Exception("配置代码：" + importTempCode + ",数据导入信息维护不完整");
 			}
-			List<String> pathFiles = FileUtil.getPathFile(pd.getString("IMPORT_FILE_PATH"),
+			List<File> pathFiles = FileUtil.getPathFile(pd.getString("IMPORT_FILE_PATH"),
 					configuration.getFileNameFormat());
 			if (pathFiles == null || pathFiles.size() == 0) {
 				throw new Exception("未找到可处理的文件");
 			}
-			// 校验文件是否已导入
-			if(!cehckFileExsits(pathFiles)){
-				throw new Exception("存在已导入过的文件");
-			}
-			for (String pathFile : pathFiles) {
+			// 导入消息
+			String partyErrorFlag = "N";
+			// 遍历导入文件
+			for (File pathFile : pathFiles) {
+				// 导入消息
 				String importMessage = null;
 				// 获取导入文件记录ID
 				String importFileId = UuidUtil.get32UUID();// 导入数据文件ID
-				// 解析并导入Excel文件
+				// 初始化导入条数
 				int cnt = 1;
-				try {
-					cnt = this.importExcelFile(pathFile, configuration, importFileId);
-				} catch (Exception e) {
-					importMessage = e.getMessage();
+				// 校验文件是否已导入
+				if (cehckFileExsit(pathFile.getName())) {
+					// 解析并导入Excel文件
+					try {
+						cnt = this.insertExcelFile(pathFile, configuration, importFileId);
+					} catch (Exception e) {
+						importMessage = e.getMessage();
+					}
+				} else {
+					partyErrorFlag = "Y";
+					importMessage = "文件已存在,不能重复导入";
 				}
 				// 回写导入文件信息表
 				try {
-					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile,
+					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile.getName(),
 							configuration.getTableName(), importMessage, cnt);
 				} catch (Exception e) {
 					throw new Exception("回写导入文件信息表失败:" + e.getMessage());
 				}
 			}
+			// 部分成功，返回指定异常
+			if (partyErrorFlag.equals("Y")) {
+				throw new Exception(PARTY_SUCCESS_FLAG);
+			}
 		}
 	}
-	
+
 	/**
 	 * 检查导入文件是否已导入
+	 * 
 	 * @param pathFiles
 	 * @return
 	 * @throws Exception
 	 */
-	private Boolean cehckFileExsits(List<String> pathFiles) throws Exception{
-		Long filrCnt = importService.findFileCount(pathFiles);
-		if(filrCnt > 0){
+	private Boolean cehckFileExsit(String pathFile) throws Exception {
+		Long filrCnt = importService.findFileCount(pathFile);
+		if (filrCnt > 0) {
 			return Boolean.FALSE;
 		}
 		return Boolean.TRUE;
@@ -150,13 +163,16 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * @param configuration
 	 * @throws Exception
 	 */
-	private int importExcelFile(String pathFile, ImportConfig configuration, String importFileId) throws Exception {
-		File importFile = new File(pathFile);
+	private int insertExcelFile(File pathFile, ImportConfig configuration, String importFileId) throws Exception {
 		MapResult mapResult = null;
 		try {
-			mapResult = (MapResult) FileImportExecutor.importFile(configuration, importFile, importFile.getName());
+			mapResult = (MapResult) FileImportExecutor.importFile(configuration, pathFile, pathFile.getName());
 		} catch (FileImportException e) {
-			throw new Exception("导入Excel文件数据失败:" + importFile.getName() + "," + e.getMessage());
+			throw new Exception("导入Excel文件数据失败:" + pathFile.getName() + "," + e.getMessage());
+		}
+		// 判断是否存在错误，存在错误则整个文件不处理
+		if(StringUtils.isNotBlank(mapResult.getResMsg())){
+			throw new Exception(pathFile.getName()+"数据存在错误:" + mapResult.getResMsg());
 		}
 		List<Map> maps = mapResult.getResult();
 		int cnt = 1; // 数据插入处理计数器
@@ -187,8 +203,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 						this.saveImportFileData(configuration.getTableName(), sbf.toString(),
 								tableValue.substring(0, tableValue.length() - 1));
 					} catch (Exception e) {
-						throw new Exception(
-								"插入数据表失败:" + configuration.getTableName() + "," + e.getMessage());
+						throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + e.getMessage());
 					}
 				}
 				// 重新初始化

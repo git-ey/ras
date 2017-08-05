@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Future;
 
 import javax.annotation.Resource;
 
@@ -27,6 +26,7 @@ import com.ey.entity.Page;
 import com.ey.service.data.importData.ImportManager;
 import com.ey.service.data.importData.impl.ImportDataWroker;
 import com.ey.service.system.importconfig.ImportConfigManager;
+import com.ey.service.system.loger.LogerManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Jurisdiction;
 import com.ey.util.PageData;
@@ -54,6 +54,8 @@ public class ImportController extends BaseController {
 	@Autowired
 	@Qualifier("taskExecutor")
 	private ThreadPoolTaskExecutor taskExecutor;
+	@Resource(name = "logService")
+	private LogerManager logManager;
 	
 	/**保存
 	 * @param
@@ -73,13 +75,10 @@ public class ImportController extends BaseController {
 		pd.put("IMPORT_STATUS", "R");	//导入状态--导入中
 		// 执行处理导入的线程
 		if(StringUtils.isNotBlank(pd.getString("IMPORT_FILE_TYPE")) && StringUtils.isNotBlank(pd.getString("IMPORT_FILE_PATH"))){
-			Future<Boolean> future = taskExecutor.submit(new ImportDataWroker(importConfigParser,importConfigService,importService,pd));
-			if(future.get()){
-				importService.save(pd);
-			}else{
-				throw new Exception("启动导入处理线程失败");
-			}
+			taskExecutor.submit(new ImportDataWroker(importConfigParser,importConfigService,importService,pd));
+			importService.save(pd);
 		}
+		logManager.save(Jurisdiction.getUsername(), "发起了数据导入");
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;

@@ -122,8 +122,8 @@ public class ImportService implements ImportManager{
 	 * @param pathFiles
 	 * @return
 	 */
-	public Long findFileCount(List<String> pathFiles) throws Exception {
-		return (Long)dao.findForObject("ImportMapper.findFileCount", pathFiles);
+	public Long findFileCount(String pathFile) throws Exception {
+		return (Long)dao.findForObject("ImportMapper.findFileCount", pathFile);
 	}
 	
 }

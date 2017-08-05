@@ -82,8 +82,8 @@
 											<td class='center'>${var.CELLTYPE}</td>
 											<td class='center'>
 											    <c:choose>
-											        <c:when test="${var.NULLABLE == 0}">允许</c:when>
-											        <c:when test="${var.NULLABLE == 1}">不允许</c:when>
+											        <c:when test="${var.NULLABLE == 1}">允许</c:when>
+											        <c:when test="${var.NULLABLE == 0}">不允许</c:when>
 											    </c:choose>
 											</td>
 											<td class="center">

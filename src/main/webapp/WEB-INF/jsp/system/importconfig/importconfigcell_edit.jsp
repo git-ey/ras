@@ -61,11 +61,11 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">允许为空:</td>
 								<td>
 								    <label style="float:left;padding-left: 8px;padding-top:7px;">
-										<input name="NULLABLE" type="radio" class="ace" id="form-field-radio1" value="0" <c:if test="${pd.NULLABLE == 0 or pd.NULLABLE == null }">checked="checked"</c:if>/>
+										<input name="NULLABLE" type="radio" class="ace" id="form-field-radio1" value="1" <c:if test="${pd.NULLABLE == 1 or pd.NULLABLE == null }">checked="checked"</c:if>/>
 										<span class="lbl">允许</span>
 									</label>
 									<label style="float:left;padding-left: 5px;padding-top:7px;">
-										<input name="NULLABLE" type="radio" class="ace" id="form-field-radio2" value="1" <c:if test="${pd.NULLABLE == 1 }">checked="checked"</c:if>/>
+										<input name="NULLABLE" type="radio" class="ace" id="form-field-radio2" value="0" <c:if test="${pd.NULLABLE == 0 }">checked="checked"</c:if>/>
 										<span class="lbl">不允许</span>
 									</label>
 								</td>

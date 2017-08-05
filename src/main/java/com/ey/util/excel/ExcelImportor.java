@@ -124,7 +124,7 @@ public class ExcelImportor extends FileImportor {
             if (nullable == ImportConfigCell.NullAble.NULL_ALLOWED) {
                 maps.put(key, Optional.absent());
             } else {
-                errMsg = String.format("line:%d,column:%d is null,but null is not allowed by setting \n", showLine, showColumn);
+                errMsg = String.format("line:%d,column:%d is null \n", showLine, showColumn);
                 setErrMsg(errMsg, maps, sb);
             }
         } else {

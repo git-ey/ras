@@ -139,9 +139,10 @@
 				(
 				<!-- 根据需求自己加检索条件 -->
 					IMPORT_FILE_PATH LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
-					 or 
-					OPERATOR_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
+		</if>
+		<if test="pd.IMPORT_FILE_NAME!= null and pd.IMPORT_FILE_NAME != ''">
+		    and IMPORT_ID IN (select IMPORT_ID from ds_import_file where IMPORT_FILE_NAME LIKE CONCAT(CONCAT('%', #{pd.IMPORT_FILE_NAME}),'%'))
 		</if>
 		<if test="pd.IMPORT_STATUS!= null and pd.IMPORT_STATUS != ''">
 		    and IMPORT_STATUS = #{pd.IMPORT_STATUS}
@@ -193,10 +194,7 @@
 		from 
 		<include refid="fileTableName"></include>
 		where
-		  IMPORT_FILE_NAME in
-        <foreach item="item" collection="list" separator="," open="(" close=")" index="">
-          #{item, jdbcType=VARCHAR}
-        </foreach>
+		  IMPORT_FILE_NAME = #{pathFile, jdbcType=VARCHAR}
           and MESSAGE IS NULL
 	</select>
 	

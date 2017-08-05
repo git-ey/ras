@@ -33,15 +33,14 @@
 						<form action="importData/list.do" method="post" name="Form" id="Form">
 						<table style="margin-top:5px;">
 							<tr>
-								<td>
+								<td style="vertical-align:top;padding-left:2px;width:10%;">
 									<div class="nav-search">
 										<span class="input-icon">
 											<input type="text" placeholder="这里输入关键词" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }" placeholder="这里输入关键词"/>
-											<i class="ace-icon fa fa-search nav-search-icon"></i>
-										</span>
 									</div>
 								</td>
-								<td style="vertical-align:top;padding-left:2px;">
+								<td style="padding-left:2px;text-align:right;width:10%;">导入状态:</td>
+								<td style="vertical-align:top;padding-left:2px;width:10%;">
 								 	<select class="chosen-select form-control" name="IMPORT_STATUS" id="id" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
 									<option value=""></option>
 									<option value="Y" <c:if test="${pd.IMPORT_STATUS == 'Y'}">selected</c:if>>成功</option>
@@ -49,11 +48,14 @@
 									<option value="R" <c:if test="${pd.IMPORT_STATUS == 'R'}">selected</c:if>>导入中...</option>
 								  	</select>
 								</td>
+								<td style="padding-left:2px;text-align: right;width:10%;">导入文件:</td>
+								<td style="vertical-align:top;padding-left:2px;width:10%;">
+										<input type="text" placeholder="这里输入文件名" class="nav-search-input" name="IMPORT_FILE_NAME" value="${pd.IMPORT_FILE_NAME }" placeholder="这里输入文件名"/>
+								</td>
 								<c:if test="${QX.cha == 1 }">
-								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
+								<td style="vertical-align:top;text-align:left;padding-left:2px;width:5%;"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
-								<td style="vertical-align:top;padding-left:2px"></td>
-								<td style="vertical-align:top;padding-left:2px">
+								<td style="vertical-align:top;text-align:center;padding-left:2px;width:40%;">
 								<c:if test="${QX.add == 1 }">
 									<a class="btn btn-mini btn-success" onclick="add();">新增导入</a>
 								</c:if>
@@ -103,7 +105,7 @@
 											    <c:when test="${var.IMPORT_STATUS == 'R'}">导入中...</c:when>
 											</c:choose>
 											</td>
-											<td class='center'>${var.MESSAGE}</td>
+											<td class='center'><font color="red">${var.MESSAGE}</font></td>
 											<td class="center">
 												<div class="hidden-sm hidden-xs btn-group">
 													<a class="btn btn-xs btn-success" title="查看导入文件" onclick="viewImportFile('${var.IMPORT_ID}');">

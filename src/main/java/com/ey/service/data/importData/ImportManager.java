@@ -1,6 +1,7 @@
 package com.ey.service.data.importData;
 
 import java.util.List;
+
 import com.ey.entity.Page;
 import com.ey.util.PageData;
 
@@ -84,7 +85,7 @@ public interface ImportManager{
 	 * @param pathFiles
 	 * @return
 	 */
-	public Long findFileCount(List<String> pathFiles) throws Exception;
+	public Long findFileCount(String pathFile) throws Exception;
 	
 }
 

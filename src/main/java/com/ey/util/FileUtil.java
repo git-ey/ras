@@ -216,17 +216,17 @@ public class FileUtil {
 	 * @param filePath
 	 * @return
 	 */
-	public static List<String> getPathFile(String filePath) {
-		List<String> files = Lists.newArrayList();
+	public static List<File> getPathFile(String filePath) {
+		List<File> files = Lists.newArrayList();
 		File file = new File(filePath);
 		if (!file.isDirectory()) {
-			files.add(file.getPath());
+			files.add(file);
 		} else if (file.isDirectory()) {
 			String[] filelist = file.list();
 			for (int i = 0; i < filelist.length; i++) {
 				File readfile = new File(filePath + File.separator + filelist[i]);
 				if (!readfile.isDirectory()) {
-					files.add(readfile.getPath());
+					files.add(readfile);
 				} else if (readfile.isDirectory()) {
 					getPathFile(filePath + File.separator + filelist[i]);
 				}
@@ -241,11 +241,11 @@ public class FileUtil {
 	 * @param regex
 	 * @return
 	 */
-	public static List<String> getPathFile(String filePath, String regex) {
-		List<String> list = FileUtil.getPathFile(filePath);
-		Iterator<String> itFiles = list.iterator();
+	public static List<File> getPathFile(String filePath, String regex) {
+		List<File> list = FileUtil.getPathFile(filePath);
+		Iterator<File> itFiles = list.iterator();
 		while(itFiles.hasNext()){
-			boolean result = Pattern.compile(regex).matcher(itFiles.next()).find();
+			boolean result = Pattern.compile(regex).matcher(itFiles.next().getName()).find();
 			if (!result) {
 				itFiles.remove();
 			}
@@ -254,9 +254,9 @@ public class FileUtil {
 	}
 
 	public static void main(String[] args) {
-		List<String> files = FileUtil.getPathFile("D:\\importdata","testImport");
-		for (String fileName : files) {
-			System.out.println(fileName);
+		List<File> files = FileUtil.getPathFile("D:\\importdata","testImport");
+		for (File file : files) {
+			System.out.println(file.getName());
 		}
 	}
 
