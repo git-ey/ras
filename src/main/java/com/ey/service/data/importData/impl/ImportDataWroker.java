@@ -92,7 +92,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 			try {
 				configuration = importConfigParser.getConfig(importTempCode);
 			} catch (Exception e) {
-				throw new Exception("获取数据导入配置失败:" + importTempCode + "," + e.getMessage().substring(0, 240));
+				throw new Exception("获取数据导入配置失败:" + importTempCode + "," + e.getMessage());
 			}
 			// 配置文件没有设置则跳出处理（通过起始行是否为空来鉴别）
 			if (configuration == null || configuration.getStartRowNo() == null) {
@@ -123,7 +123,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile,
 							configuration.getTableName(), importMessage, cnt);
 				} catch (Exception e) {
-					throw new Exception("回写导入文件信息表失败:" + e.getMessage().substring(0, 240));
+					throw new Exception("回写导入文件信息表失败:" + e.getMessage());
 				}
 			}
 		}
@@ -156,7 +156,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 		try {
 			mapResult = (MapResult) FileImportExecutor.importFile(configuration, importFile, importFile.getName());
 		} catch (FileImportException e) {
-			throw new Exception("导入Excel文件数据失败:" + importFile.getName() + "," + e.getMessage().substring(0, 240));
+			throw new Exception("导入Excel文件数据失败:" + importFile.getName() + "," + e.getMessage());
 		}
 		List<Map> maps = mapResult.getResult();
 		int cnt = 1; // 数据插入处理计数器
@@ -188,7 +188,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 								tableValue.substring(0, tableValue.length() - 1));
 					} catch (Exception e) {
 						throw new Exception(
-								"插入数据表失败:" + configuration.getTableName() + "," + e.getMessage().substring(0, 240));
+								"插入数据表失败:" + configuration.getTableName() + "," + e.getMessage());
 					}
 				}
 				// 重新初始化
@@ -203,7 +203,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 				this.saveImportFileData(configuration.getTableName(), sbf.toString(),
 						tableValue.substring(0, tableValue.length() - 1));
 			} catch (Exception e) {
-				throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + e.getMessage().substring(0, 240));
+				throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + e.getMessage());
 			}
 		}
 		return cnt;
