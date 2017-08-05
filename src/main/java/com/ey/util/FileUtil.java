@@ -224,11 +224,11 @@ public class FileUtil {
 		} else if (file.isDirectory()) {
 			String[] filelist = file.list();
 			for (int i = 0; i < filelist.length; i++) {
-				File readfile = new File(filePath + "\\" + filelist[i]);
+				File readfile = new File(filePath + File.separator + filelist[i]);
 				if (!readfile.isDirectory()) {
 					files.add(readfile.getPath());
 				} else if (readfile.isDirectory()) {
-					getPathFile(filePath + "\\" + filelist[i]);
+					getPathFile(filePath + File.separator + filelist[i]);
 				}
 			}
 		}

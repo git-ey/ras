@@ -197,6 +197,7 @@
         <foreach item="item" collection="list" separator="," open="(" close=")" index="">
           #{item, jdbcType=VARCHAR}
         </foreach>
+          and MESSAGE IS NULL
 	</select>
 	
 	<!-- 解析Excel中的数据插入数据库-->
