@@ -52,6 +52,12 @@
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
+								<td style="vertical-align:top;padding-left:2px"></td>
+								<td style="vertical-align:top;padding-left:2px">
+								<c:if test="${QX.add == 1 }">
+									<a class="btn btn-mini btn-success" onclick="add();">新增导入</a>
+								</c:if>
+								</td>
 							</tr>
 						</table>
 						<!-- 检索  -->
@@ -126,9 +132,6 @@
 						<table style="width:100%;">
 							<tr>
 								<td style="vertical-align:top;">
-									<c:if test="${QX.add == 1 }">
-									<a class="btn btn-mini btn-success" onclick="add();">新增导入</a>
-									</c:if>
 								</td>
 								<td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
 							</tr>
