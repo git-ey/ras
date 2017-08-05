@@ -35,25 +35,27 @@ public class ImportConfigParser {
     		// 查询数据导入配置行
         	List<PageData> importConfigCellPds = importConfigCellService.findByConfigId(importConfigPd.getString("IMPORTCONFIG_ID"));
     	    if(importConfigCellPds != null && !importConfigCellPds.isEmpty()){
-    	    	ImportConfigCell importConfigCell = new ImportConfigCell();
     	    	for(PageData pd : importConfigCellPds){
-    	    		importConfigCell.setNumber(Integer.parseInt(pd.getString("NUMBER")));
+    	    		ImportConfigCell importConfigCell = new ImportConfigCell();
+    	    		importConfigCell.setNumber(Integer.parseInt(pd.get("NUMBER").toString()));
     	    		importConfigCell.setKey(pd.getString("MAPKEY"));
     	    		importConfigCell.setCellType(ImportConfigCell.CellType.getCellType(pd.getString("CELLTYPE")));
-    	    		importConfigCell.setNullAble(ImportConfigCell.NullAble.getNullble(Integer.parseInt(pd.getString("NULLABLE"))));
+    	    		importConfigCell.setNullAble(ImportConfigCell.NullAble.getNullble(Integer.parseInt(pd.get("NULLABLE").toString())));
     	    		importCells.add(importConfigCell);
     	    	}
     	    }
     	    if(importCells.size() > 0){
         		importConfig.setImportTempCode(importTempCode);
         		importConfig.setImportTempName(importConfigPd.getString("IMPORT_TEMP_NAME"));
-        		importConfig.setStartRowNo(Integer.parseInt(importConfigPd.getString("START_ROW_NO")));
+        		importConfig.setStartRowNo(Integer.parseInt(importConfigPd.get("START_ROW_NO").toString()));
         		if(importConfigPd.getString("IMPORT_FILE_TYPE").equals("DBF")){
         			importConfig.setImportFileType(ImportConfig.ImportFileType.DBF);
         		}else{
         			importConfig.setImportFileType(ImportConfig.ImportFileType.EXCEL);
         		}
-        		importConfig.setFileNameFormat(importConfigPd.getString("FILENAME_FROMAT"));    	    	
+        		importConfig.setTableName(importConfigPd.getString("TABLE_NAME"));
+        		importConfig.setFileNameFormat(importConfigPd.getString("FILENAME_FROMAT"));
+        		importConfig.setImportCells(importCells);
     	    }
     	    // 返回数据导入配置
     	    return importConfig;

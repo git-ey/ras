@@ -44,8 +44,8 @@
 								<td style="vertical-align:top;padding-left:2px;">
 								 	<select class="chosen-select form-control" name="IMPORT_STATUS" id="id" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
 									<option value=""></option>
-									<option value="Y" <c:if test="${pd.IMPORT_STATUS == 'Y'}">selected</c:if>>导入成功</option>
-									<option value="N" <c:if test="${pd.IMPORT_STATUS == 'N'}">selected</c:if>>导入失败</option>
+									<option value="Y" <c:if test="${pd.IMPORT_STATUS == 'Y'}">selected</c:if>>成功</option>
+									<option value="N" <c:if test="${pd.IMPORT_STATUS == 'N'}">selected</c:if>>失败</option>
 									<option value="R" <c:if test="${pd.IMPORT_STATUS == 'R'}">selected</c:if>>导入中...</option>
 								  	</select>
 								</td>
@@ -63,12 +63,14 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
-									<th class="center">文件类型</th>
-									<th class="center">文件路径</th>
-									<th class="center">开始时间</th>
-									<th class="center">结束时间</th>
-									<th class="center">操作人</th>
-									<th class="center">导入状态</th>
+									<th class="center" style="width:7%;">文件类型</th>
+									<th class="center" style="width:25%;">文件路径</th>
+									<th class="center" style="width:14%;">开始时间</th>
+									<th class="center" style="width:14%;">结束时间</th>
+									<th class="center" style="width:9%;">操作人</th>
+									<th class="center" style="width:7%;">导入状态</th>
+									<th class="center" style="width:10%;">导入消息</th>
+									<th class="center">操作</th>
 								</tr>
 							</thead>
 													
@@ -90,10 +92,18 @@
 											<td class='center'>${var.OPERATOR_NAME}</td>
 											<td class='center'>
 											<c:choose>
-											    <c:when test="${var.IMPORT_STATUS == 'Y'}">导入成功</c:when>
-											    <c:when test="${var.IMPORT_STATUS == 'N'}">导入失败</c:when>
+											    <c:when test="${var.IMPORT_STATUS == 'Y'}">成功</c:when>
+											    <c:when test="${var.IMPORT_STATUS == 'N'}">失败</c:when>
 											    <c:when test="${var.IMPORT_STATUS == 'R'}">导入中...</c:when>
 											</c:choose>
+											</td>
+											<td class='center'>${var.MESSAGE}</td>
+											<td class="center">
+												<div class="hidden-sm hidden-xs btn-group">
+													<a class="btn btn-xs btn-success" title="查看导入文件" onclick="viewImportFile('${var.IMPORT_ID}');">
+														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="查看导入文件"></i>
+													</a>
+												</div>
 											</td>
 										</tr>
 									</c:forEach>
@@ -221,7 +231,32 @@
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
+			 diag.ShowMaxButton = true;	//最大化按钮
+		     diag.ShowMinButton = true;		//最小化按钮
+			 diag.CancelEvent = function(){ //关闭事件
+				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+					 if('${page.currentPage}' == '0'){
+						 tosearch();
+					 }else{
+						 tosearch();
+					 }
+				}
+				diag.close();
+			 };
+			 diag.show();
+		}
+		
+		//查看导入文件
+		function viewImportFile(Id){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="查看导入文件";
+			 diag.URL = '<%=basePath%>importData/listImportFile.do?IMPORT_ID='+Id;
+			 diag.Width = 800;
+			 diag.Height = 500;
+			 diag.Modal = true;				//有无遮罩窗口
+			 diag.ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
 			 diag.CancelEvent = function(){ //关闭事件
 				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){

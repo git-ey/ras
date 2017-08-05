@@ -175,6 +175,17 @@ public class DateUtil {
         return dateStr;
     }
     
+    /**
+     * 获取时间默认格式字符串
+     * @param datetime
+     * @return
+     */
+    public static String getDateTimeStr(Date datetime) {
+        SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateStr = sdfd.format(datetime);
+        return dateStr;
+    }
+    
     public static void main(String[] args) {
     	System.out.println(getDays());
     	System.out.println(getAfterDayWeek("3"));

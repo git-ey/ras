@@ -3,7 +3,9 @@ package com.ey.controller.data.importData;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Future;
 
 import javax.annotation.Resource;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
@@ -24,6 +27,7 @@ import com.ey.entity.Page;
 import com.ey.service.data.importData.ImportManager;
 import com.ey.service.data.importData.impl.ImportDataWroker;
 import com.ey.service.system.importconfig.ImportConfigManager;
+import com.ey.util.AppUtil;
 import com.ey.util.Jurisdiction;
 import com.ey.util.PageData;
 import com.ey.util.Tools;
@@ -69,7 +73,7 @@ public class ImportController extends BaseController {
 		pd.put("IMPORT_STATUS", "R");	//导入状态--导入中
 		// 执行处理导入的线程
 		if(StringUtils.isNotBlank(pd.getString("IMPORT_FILE_TYPE")) && StringUtils.isNotBlank(pd.getString("IMPORT_FILE_PATH"))){
-			Future<Boolean> future = taskExecutor.submit(new ImportDataWroker(importConfigParser,importConfigService,pd.getString("IMPORT_FILE_TYPE"),pd.getString("IMPORT_FILE_PATH")));
+			Future<Boolean> future = taskExecutor.submit(new ImportDataWroker(importConfigParser,importConfigService,importService,pd));
 			if(future.get()){
 				importService.save(pd);
 			}else{
@@ -119,6 +123,43 @@ public class ImportController extends BaseController {
 		mv.addObject("pd", pd);
 		return mv;
 	}	
+	
+	/**去查看导入文件页面
+	 * @param
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/listImportFile")
+	public ModelAndView listImportFile(Page page) throws Exception{
+		logBefore(logger, Jurisdiction.getUsername()+"列表Import File");
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		String keywords = pd.getString("keywords");				//关键词检索条件
+		if(null != keywords && !"".equals(keywords)){
+			pd.put("keywords", keywords.trim());
+		}
+		page.setPd(pd);
+		List<PageData>	varList = importService.listImportFile(page);	//列出Import列表
+		mv.setViewName("data/importData/import_file");
+		mv.addObject("varList", varList);
+		mv.addObject("pd", pd);
+		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
+		return mv;
+	}
+	
+	@RequestMapping(value="/deleteImportFile")
+	@ResponseBody
+	public Object deleteImportFile() throws Exception{
+		logBefore(logger, Jurisdiction.getUsername()+"删除 Import File");
+		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return null ;} //校验权限
+		Map<String,String> map = new HashMap<String,String>();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		String errInfo = "success";
+		importService.deleteImportFile(pd);
+		map.put("result", errInfo);
+		return AppUtil.returnObject(new PageData(), map);
+	}
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder){

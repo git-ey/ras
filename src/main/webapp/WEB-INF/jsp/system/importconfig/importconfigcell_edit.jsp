@@ -33,8 +33,12 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">序列号:</td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">对应列号:</td>
 								<td><input type="number" name="NUMBER" id="NUMBER" value="${pd.NUMBER}" maxlength="32" placeholder="这里输入对应的序列" title="对应的序列" style="width:60%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">列说明:</td>
+								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="32" placeholder="这里输入列说明" title="列说明" style="width:60%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">存储KEY:</td>
@@ -45,11 +49,11 @@
 								<td>
 								    <div class="sel"></div>
 								    <select class="chosen-select form-control" name="CELLTYPE" id="id" data-placeholder="请选择" style="width:60%;">
-								    <option value="int" <c:if test="${pd.CELLTYPE == 'int'}">selected</c:if>>int</option>
-								    <option value="float" <c:if test="${pd.CELLTYPE == 'float'}">selected</c:if>>float</option>
-								    <option value="string" <c:if test="${pd.CELLTYPE == 'string'}">selected</c:if>>string</option>
-								    <option value="date" <c:if test="${pd.CELLTYPE == 'date'}">selected</c:if>>date</option>
-								    <option value="bigDecimal" <c:if test="${pd.CELLTYPE == 'bigDecimal'}">selected</c:if>>bigDecimal</option>
+								    <option value="Int" <c:if test="${pd.CELLTYPE == 'Int'}">selected</c:if>>Int</option>
+								    <option value="Float" <c:if test="${pd.CELLTYPE == 'Float'}">selected</c:if>>Float</option>
+								    <option value="String" <c:if test="${pd.CELLTYPE == 'String'}">selected</c:if>>String</option>
+								    <option value="Date" <c:if test="${pd.CELLTYPE == 'Date'}">selected</c:if>>Date</option>
+								    <option value="BigDecimal" <c:if test="${pd.CELLTYPE == 'BigDecimal'}">selected</c:if>>BigDecimal</option>
 								    <div class="sel"></div>
 								</td>
 							</tr>

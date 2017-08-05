@@ -174,7 +174,7 @@ public class ExcelImportor extends FileImportor {
                 case DATE:
                     if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
                         Date date = DateUtil.getJavaDate(cell.getNumericCellValue());
-                        maps.put(key, date);
+                        maps.put(key, com.ey.util.DateUtil.getDateTimeStr(date)); // 转换成字符串便于数据库存储
                     } else {
                         errMsg = String.format("line:%d,column:%d is not date\n", showLine, showColumn);
                         setErrMsg(errMsg, maps, sb);

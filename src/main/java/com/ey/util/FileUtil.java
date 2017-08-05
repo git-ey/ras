@@ -11,37 +11,46 @@ import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileChannel.MapMode;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Pattern;
 
-/**	
+import com.google.common.collect.Lists;
+
+/**
  * 文件处理类
  */
 public class FileUtil {
 
-	
-	/**获取文件大小 返回 KB 保留3位小数  没有文件时返回0
-	 * @param filepath 文件完整路径，包括文件名
+	/**
+	 * 获取文件大小 返回 KB 保留3位小数 没有文件时返回0
+	 * 
+	 * @param filepath
+	 *            文件完整路径，包括文件名
 	 * @return
 	 */
-	public static Double getFilesize(String filepath){
+	public static Double getFilesize(String filepath) {
 		File backupath = new File(filepath);
-		return Double.valueOf(backupath.length())/1000.000;
+		return Double.valueOf(backupath.length()) / 1000.000;
 	}
-	
+
 	/**
 	 * 创建目录
+	 * 
 	 * @param destDirName目标目录名
-	 * @return 
+	 * @return
 	 */
 	public static Boolean createDir(String destDirName) {
 		File dir = new File(destDirName);
-		if(!dir.getParentFile().exists()){				//判断有没有父路径，就是判断文件整个路径是否存在
-			return dir.getParentFile().mkdirs();		//不存在就全部创建
+		if (!dir.getParentFile().exists()) { // 判断有没有父路径，就是判断文件整个路径是否存在
+			return dir.getParentFile().mkdirs(); // 不存在就全部创建
 		}
 		return false;
 	}
 
 	/**
 	 * 删除文件
+	 * 
 	 * @param filePathAndName
 	 *            String 文件路径及名称 如c:/fqf.txt
 	 * @param fileContent
@@ -62,7 +71,9 @@ public class FileUtil {
 
 	/**
 	 * 读取到字节数组0
-	 * @param filePath //路径
+	 * 
+	 * @param filePath
+	 *            //路径
 	 * @throws IOException
 	 */
 	public static byte[] getContent(String filePath) throws IOException {
@@ -76,8 +87,7 @@ public class FileUtil {
 		byte[] buffer = new byte[(int) fileSize];
 		int offset = 0;
 		int numRead = 0;
-		while (offset < buffer.length
-				&& (numRead = fi.read(buffer, offset, buffer.length - offset)) >= 0) {
+		while (offset < buffer.length && (numRead = fi.read(buffer, offset, buffer.length - offset)) >= 0) {
 			offset += numRead;
 		}
 		// 确保所有数据均被读取
@@ -179,9 +189,8 @@ public class FileUtil {
 		try {
 			rf = new RandomAccessFile(filePath, "r");
 			fc = rf.getChannel();
-			MappedByteBuffer byteBuffer = fc.map(MapMode.READ_ONLY, 0,
-					fc.size()).load();
-			//System.out.println(byteBuffer.isLoaded());
+			MappedByteBuffer byteBuffer = fc.map(MapMode.READ_ONLY, 0, fc.size()).load();
+			// System.out.println(byteBuffer.isLoaded());
 			byte[] result = new byte[(int) fc.size()];
 			if (byteBuffer.remaining() > 0) {
 				// System.out.println("remain");
@@ -198,6 +207,56 @@ public class FileUtil {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	/**
+	 * 获取指定目录下的所有文件
+	 * 
+	 * @param filePath
+	 * @return
+	 */
+	public static List<String> getPathFile(String filePath) {
+		List<String> files = Lists.newArrayList();
+		File file = new File(filePath);
+		if (!file.isDirectory()) {
+			files.add(file.getPath());
+		} else if (file.isDirectory()) {
+			String[] filelist = file.list();
+			for (int i = 0; i < filelist.length; i++) {
+				File readfile = new File(filePath + "\\" + filelist[i]);
+				if (!readfile.isDirectory()) {
+					files.add(readfile.getPath());
+				} else if (readfile.isDirectory()) {
+					getPathFile(filePath + "\\" + filelist[i]);
+				}
+			}
+		}
+		return files;
+	}
+
+	/**
+	 * 根据正则表达式过滤文件名称
+	 * @param filePath
+	 * @param regex
+	 * @return
+	 */
+	public static List<String> getPathFile(String filePath, String regex) {
+		List<String> list = FileUtil.getPathFile(filePath);
+		Iterator<String> itFiles = list.iterator();
+		while(itFiles.hasNext()){
+			boolean result = Pattern.compile(regex).matcher(itFiles.next()).find();
+			if (!result) {
+				itFiles.remove();
+			}
+		}
+		return list;
+	}
+
+	public static void main(String[] args) {
+		List<String> files = FileUtil.getPathFile("D:\\importdata","testImport");
+		for (String fileName : files) {
+			System.out.println(fileName);
 		}
 	}
 

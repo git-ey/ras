@@ -78,8 +78,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public List<PageData> findByConfigId(@Param("IMPORTCONFIG_ID") String importConfigId)throws Exception {
-		return (List<PageData>)dao.findForObject("ImportConfigCellMapper.findByConfigId", importConfigId);
+	public List<PageData> findByConfigId(String importConfigId)throws Exception {
+		return (List<PageData>)dao.findForList("ImportConfigCellMapper.findByConfigId", importConfigId);
 	}
 	
 	/**批量删除
