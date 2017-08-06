@@ -37,7 +37,6 @@
 							        <div class="sel"></div>
 								    <select class="chosen-select form-control" name="IMPORT_FILE_TYPE" id="id" data-placeholder="请选择" style="width:49%;">
 								    <option value="EXCEL" <c:if test="${pd.IMPORT_FILE_TYPE == 'EXCEL'}">selected</c:if>>EXCEL</option>
-								    <option value="DBF" <c:if test="${pd.IMPORT_FILE_TYPE == 'DBF'}">selected</c:if>>DBF</option>
 								    <div class="sel"></div>
 								</td>
 							</tr>

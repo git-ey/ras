@@ -52,14 +52,16 @@
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:50px;">序号</th>
-									<th class="center" style="width:150px;">模版代码</th>
-									<th class="center">模板名称</th>
-									<th class="center" style="width:100px;">读取起始行</th>
-									<th class="center" style="width:120px;">导入文件类型</th>
-									<th class="center">导入目标表</th>
-									<th class="center">文件名格式</th>
-									<th class="center" style="width:150px;">操作</th>
+									<th class="center" style="width:5%;">序号</th>
+									<th class="center" style="width:8%;">模版代码</th>
+									<th class="center" style="width:15%;">模板名称</th>
+									<th class="center" style="width:6%;">起始行</th>
+									<th class="center" style="width:8%;">导入类型</th>
+									<th class="center" style="width:12%;">导入目标表</th>
+									<th class="center" style="width:15%;">文件名格式</th>
+									<th class="center" style="width:14%;">行过滤规则</th>
+									<th class="center" style="width:8%;">名称解析段</th>
+									<th class="center" style="width:10%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -77,6 +79,8 @@
 											<td class='center'>${var.IMPORT_FILE_TYPE}</td>
 											<td class='center'>${var.TABLE_NAME}</td>
 											<td class='center'>${var.FILENAME_FROMAT}</td>
+											<td class='center'>${var.IGNORE_RULE}</td>
+											<td class='center'>${var.NAME_SECTION}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>

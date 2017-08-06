@@ -48,7 +48,7 @@
 									<option value="R" <c:if test="${pd.IMPORT_STATUS == 'R'}">selected</c:if>>导入中...</option>
 								  	</select>
 								</td>
-								<td style="padding-left:2px;text-align: right;width:10%;">导入文件:</td>
+								<td style="padding-left:2px;text-align: right;width:10%;">已导入文件:</td>
 								<td style="vertical-align:top;padding-left:2px;width:10%;">
 										<input type="text" placeholder="这里输入文件名" class="nav-search-input" name="IMPORT_FILE_NAME" value="${pd.IMPORT_FILE_NAME }" placeholder="这里输入文件名"/>
 								</td>

@@ -142,7 +142,7 @@
 				)
 		</if>
 		<if test="pd.IMPORT_FILE_NAME!= null and pd.IMPORT_FILE_NAME != ''">
-		    and IMPORT_ID IN (select IMPORT_ID from ds_import_file where IMPORT_FILE_NAME LIKE CONCAT(CONCAT('%', #{pd.IMPORT_FILE_NAME}),'%'))
+		    and IMPORT_ID IN (select IMPORT_ID from ds_import_file where MESSAGE IS NULL AND IMPORT_FILE_NAME LIKE CONCAT(CONCAT('%', #{pd.IMPORT_FILE_NAME}),'%'))
 		</if>
 		<if test="pd.IMPORT_STATUS!= null and pd.IMPORT_STATUS != ''">
 		    and IMPORT_STATUS = #{pd.IMPORT_STATUS}

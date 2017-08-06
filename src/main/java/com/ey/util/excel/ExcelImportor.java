@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -19,7 +20,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.ey.entity.system.ImportConfig;
 import com.ey.entity.system.ImportConfigCell;
-import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -76,6 +76,10 @@ public class ExcelImportor extends FileImportor {
             if (isCellEmpty(row.getCell(0)) && isCellEmpty(row.getCell(1)) && isCellEmpty(row.getCell(2))) {
                 continue;
             }
+            // 过滤行判断
+            if(configuration.getIgnoreRule() != null && isIgnoreRow(configuration.getIgnoreRule(),row)){
+            	continue;
+            }
             Map<String, Object> maps = Maps.newLinkedHashMap();
             maps.put(MapResult.IS_LINE_LEGAL_KEY, true);
             for (ImportConfigCell importCell : lists) {
@@ -84,6 +88,32 @@ public class ExcelImportor extends FileImportor {
             results.add(maps);
         }
         return results;
+    }
+    
+    private boolean isIgnoreRow(String[] ignoreRole,Row row){
+    	for(String irs : ignoreRole){
+    		String[] ir = irs.split(":");
+    		int cellKey = Integer.parseInt(ir[0]);
+    		String ignoreValue = ir[1];
+    		if(ignoreValue.equals("null") && !isCellEmpty(row.getCell(cellKey))){
+    			return false;
+    		}
+    		if(!ignoreValue.equals("null") && isCellEmpty(row.getCell(cellKey))){
+    			return false;
+    		}
+    		if(ignoreValue.equals("null") && isCellEmpty(row.getCell(cellKey))){
+    			continue;
+    		}
+    		try {
+				if (row.getCell(cellKey).getStringCellValue().indexOf(ignoreValue) == -1) {
+					return false;
+				} 
+			} catch (Exception e) {
+				// 如果不是指向的字符串类型字段，则不处理
+				return false;
+			}
+    	}
+    	return true;
     }
 
     private boolean isCellEmpty(Cell cell) {
@@ -122,7 +152,7 @@ public class ExcelImportor extends FileImportor {
                 cell == null ||
                 rawCellType == Cell.CELL_TYPE_STRING && StringUtils.isEmpty(cell.getStringCellValue())) {
             if (nullable == ImportConfigCell.NullAble.NULL_ALLOWED) {
-                maps.put(key, Optional.absent());
+                maps.put(key, Optional.empty());
             } else {
                 errMsg = String.format("line:%d,column:%d is null \n", showLine, showColumn);
                 setErrMsg(errMsg, maps, sb);

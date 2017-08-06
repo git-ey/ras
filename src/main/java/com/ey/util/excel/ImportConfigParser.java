@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.entity.system.ImportConfig;
@@ -26,7 +27,8 @@ public class ImportConfigParser {
 	@Resource(name="importConfigCellService")
 	private ImportConfigCellManager importConfigCellService;
 	
-    public ImportConfig getConfig(String importTempCode) throws Exception{
+	@SuppressWarnings("unchecked")
+	public ImportConfig getConfig(String importTempCode) throws Exception{
     	ImportConfig importConfig = new ImportConfig();
     	// 查询数据导入配置头
     	PageData importConfigPd = importconfigService.findByCode(importTempCode);
@@ -45,16 +47,27 @@ public class ImportConfigParser {
     	    	}
     	    }
     	    if(importCells.size() > 0){
-        		importConfig.setImportTempCode(importTempCode);
-        		importConfig.setImportTempName(importConfigPd.getString("IMPORT_TEMP_NAME"));
-        		importConfig.setStartRowNo(Integer.parseInt(importConfigPd.get("START_ROW_NO").toString()));
-        		if(importConfigPd.getString("IMPORT_FILE_TYPE").equals("DBF")){
-        			importConfig.setImportFileType(ImportConfig.ImportFileType.DBF);
-        		}else{
+        		// 导入模板代码
+    	    	importConfig.setImportTempCode(importTempCode);
+        		// 导入模板名称
+    	    	importConfig.setImportTempName(importConfigPd.getString("IMPORT_TEMP_NAME"));
+        		// 读取起始行
+    	    	importConfig.setStartRowNo(Integer.parseInt(importConfigPd.get("START_ROW_NO").toString()));
+        		// 导入文件类型
+    	    	if(importConfigPd.getString("IMPORT_FILE_TYPE").equals("EXCEL")){
         			importConfig.setImportFileType(ImportConfig.ImportFileType.EXCEL);
         		}
+    	    	// 导入目标表名称
         		importConfig.setTableName(importConfigPd.getString("TABLE_NAME"));
+        		// 导入文件名筛选格式
         		importConfig.setFileNameFormat(importConfigPd.getString("FILENAME_FROMAT"));
+        		// 导入行过滤规则
+        		if(StringUtils.isNotBlank(importConfigPd.getString("IGNORE_RULE"))){
+            		importConfig.setIgnoreRule(importConfigPd.getString("IGNORE_RULE").split(","));
+        		}
+        		// 导入文件名解析段
+        		importConfig.setNameSection(importConfigPd.getString("NAME_SECTION").split(","));
+        		// 导入文件列字段
         		importConfig.setImportCells(importCells);
     	    }
     	    // 返回数据导入配置

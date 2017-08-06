@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
@@ -68,9 +69,6 @@ public class ImportDataWroker implements Callable<Boolean> {
 			} catch (Exception e) {
 				importMessage = e.getMessage();
 			}
-		}
-		if (importFileType.equals("DBF")) {
-			// 处理DBF数据
 		}
 		// 完成导入操作回写信息
 		if (StringUtils.isNotBlank(importMessage) && !importMessage.equals(PARTY_SUCCESS_FLAG)) {
@@ -187,7 +185,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 					if (cnt == 1) {
 						sbf.append("`" + et.getKey() + "`,");
 					}
-					sbv.append("'" + et.getValue() + "',");
+					sbv.append("'" + (et.getValue()==Optional.empty() ? "'" : et.getValue()+"'") + ",");
 				}
 			}
 			if (cnt == 1) {

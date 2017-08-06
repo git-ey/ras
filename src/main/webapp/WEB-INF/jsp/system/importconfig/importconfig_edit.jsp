@@ -45,7 +45,6 @@
 								    <div class="sel"></div>
 								    <select class="chosen-select form-control" name="IMPORT_FILE_TYPE" id="IMPORT_FILE_TYPE" data-placeholder="请选择" style="width:49%;">
 								    <option value="EXCEL" <c:if test="${pd.IMPORT_FILE_TYPE == 'EXCEL'}">selected</c:if>>EXCEL</option>
-								    <option value="DBF" <c:if test="${pd.IMPORT_FILE_TYPE == 'DBF'}">selected</c:if>>DBF</option>
 								    <div class="sel"></div>
 								</td>
 							</tr>
@@ -54,6 +53,12 @@
 								<td><input type="text" name="TABLE_NAME" id="TABLE_NAME" value="${pd.TABLE_NAME}" maxlength="60" placeholder="这里输入导入目标表" title="导入目标表" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">文件名格式:</td>
 							    <td><input type="text" name="FILENAME_FROMAT" id="FILENAME_FROMAT" value="${pd.FILENAME_FROMAT}" maxlength="60" placeholder="这里输入文件名格式" title="文件名格式" style="width:98%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">行过滤规则:</td>
+								<td><input type="text" name="IGNORE_RULE" id="IGNORE_RULE" value="${pd.IGNORE_RULE}" maxlength="60" placeholder="{字符字段列号1:文本1,字符字段列号2:文本2}" title="行过滤规则" style="width:98%;"/></td>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">名称解析段:</td>
+								<td><input type="text" name="NAME_SECTION" id="NAME_SECTION" value="${pd.NAME_SECTION}" maxlength="240" placeholder="段1,段2" title="文件名解析段" style="width:98%;"/></td>
 							</tr>
 						</table>
 						</div>
@@ -70,20 +75,17 @@
 	<!-- /.main-content -->
 </div>
 <!-- /.main-container -->
-
-<c:if test="${'edit' == msg }">
-	<div>
-		<iframe name="treeFrame" id="treeFrame" frameborder="0" src="<%=basePath%>/importconfigcell/list.do?IMPORTCONFIG_ID=${pd.IMPORTCONFIG_ID}" style="margin:0 auto;width:805px;height:368px;;"></iframe>
-	</div>
-</c:if>
-
 <footer>
 <div style="width: 100%;padding-bottom: 2px;" class="center">
 	<a class="btn btn-mini btn-primary" onclick="save();">保存</a>
 	<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>
 </div>
 </footer>
-
+<c:if test="${'edit' == msg }">
+	<div>
+		<iframe name="treeFrame" id="treeFrame" frameborder="0" src="<%=basePath%>/importconfigcell/list.do?IMPORTCONFIG_ID=${pd.IMPORTCONFIG_ID}" style="margin:0 auto;width:805px;height:368px;;"></iframe>
+	</div>
+</c:if>
 	<!-- 页面底部js¨ -->
 	<%@ include file="../../system/index/foot.jsp"%>
 	<!-- 下拉框 -->

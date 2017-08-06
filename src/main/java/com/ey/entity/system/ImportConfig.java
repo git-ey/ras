@@ -17,6 +17,8 @@ public class ImportConfig extends BaseModel{
 	private ImportFileType importFileType; // 导入文件类型
 	private String tableName; // 导入目标表
 	private String fileNameFormat; // 文件名格式
+	private String[] ignoreRule; // 行过滤规则
+	private String[] nameSection; // 文件名解析段
 	private List<ImportConfigCell> importCells; // 导入行定义
 
 	public String getImportTempCode() {
@@ -67,6 +69,22 @@ public class ImportConfig extends BaseModel{
 		this.fileNameFormat = fileNameFormat;
 	}
 
+	public String[] getIgnoreRule() {
+		return ignoreRule;
+	}
+
+	public void setIgnoreRule(String[] ignoreRule) {
+		this.ignoreRule = ignoreRule;
+	}
+
+	public String[] getNameSection() {
+		return nameSection;
+	}
+
+	public void setNameSection(String[] strings) {
+		this.nameSection = strings;
+	}
+
 	public List<ImportConfigCell> getImportCells() {
 		return importCells;
 	}
@@ -76,6 +94,6 @@ public class ImportConfig extends BaseModel{
 	}
 
 	public enum ImportFileType {
-		EXCEL,DBF
+		EXCEL
 	}
 }
