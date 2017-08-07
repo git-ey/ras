@@ -15,6 +15,7 @@ import com.ey.entity.system.ImportConfig;
 import com.ey.service.data.importData.ImportManager;
 import com.ey.service.system.importconfig.ImportConfigManager;
 import com.ey.util.FileUtil;
+import com.ey.util.Logger;
 import com.ey.util.PageData;
 import com.ey.util.Tools;
 import com.ey.util.UuidUtil;
@@ -24,10 +25,12 @@ import com.ey.util.excel.ImportConfigParser;
 import com.ey.util.excel.MapResult;
 
 public class ImportDataWroker implements Callable<Boolean> {
+	
+	protected Logger logger = Logger.getLogger(ImportDataWroker.class);
 	/**
 	 * 插入数据的阀值数
 	 */
-	private final int INSERT_COUNT = 2;
+	private final int INSERT_COUNT = 500;
 	/**
 	 * 导入文件ID标识
 	 */
@@ -127,7 +130,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 				// 回写导入文件信息表
 				try {
 					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile.getName(),
-							configuration.getTableName(), importMessage, cnt);
+							configuration.getNameSection(), configuration.getTableName(), importMessage, cnt);
 				} catch (Exception e) {
 					throw new Exception("回写导入文件信息表失败:" + e.getMessage());
 				}
@@ -169,8 +172,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 			throw new Exception("导入Excel文件数据失败:" + pathFile.getName() + "," + e.getMessage());
 		}
 		// 判断是否存在错误，存在错误则整个文件不处理
-		if(StringUtils.isNotBlank(mapResult.getResMsg())){
-			throw new Exception(pathFile.getName()+"数据存在错误:" + mapResult.getResMsg());
+		if (StringUtils.isNotBlank(mapResult.getResMsg())) {
+			throw new Exception(pathFile.getName() + "数据存在错误:" + mapResult.getResMsg());
 		}
 		List<Map> maps = mapResult.getResult();
 		int cnt = 1; // 数据插入处理计数器
@@ -185,7 +188,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 					if (cnt == 1) {
 						sbf.append("`" + et.getKey() + "`,");
 					}
-					sbv.append("'" + (et.getValue()==Optional.empty() ? "'" : et.getValue()+"'") + ",");
+					sbv.append("'" + (et.getValue() == Optional.empty() ? "'" : et.getValue() + "'") + ",");
 				}
 			}
 			if (cnt == 1) {
@@ -206,6 +209,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 				}
 				// 重新初始化
 				sbv = new StringBuilder();
+				logger.debug(cnt+"条数据插入");
 			}
 			cnt++;
 		}
@@ -248,16 +252,34 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * @param cnt
 	 * @throws Exception
 	 */
-	private void saveImportFile(String importFileId, String importId, String pathFile, String tableName, String message,
-			Integer cnt) throws Exception {
+	private void saveImportFile(String importFileId, String importId, String pathFileName, String[] nameSection,
+			String tableName, String message, Integer cnt) throws Exception {
 		PageData importFilePd = new PageData();
 		importFilePd.put("IMPORT_FILE_ID", importFileId);
 		importFilePd.put("IMPORT_ID", importId);
-		importFilePd.put("IMPORT_FILE_NAME", pathFile);
+		importFilePd.put("IMPORT_FILE_NAME", pathFileName);
+		// 文件名解析
+		this.fileNameParser(importFilePd,pathFileName,nameSection);
 		importFilePd.put("TABLE_NAME", tableName);
 		importFilePd.put("MESSAGE", message);
 		importFilePd.put("CNT", (cnt - 1));
 		importService.saveImportFile(importFilePd);
+	}
+	
+	/**
+	 * 文件名分析器
+	 * @param importFilePd
+	 * @param pathFileName
+	 * @param nameSection
+	 */
+	private void fileNameParser(PageData importFilePd,String pathFileName,String[] nameSection) {
+		String[] fileNames = pathFileName.substring(0,pathFileName.lastIndexOf(".")).split("_");
+		for(String ns : nameSection){
+			int ni = Integer.parseInt(ns);
+			if(ni <= fileNames.length){
+				importFilePd.put("NAME_SEG_"+ni,fileNames[ni-1]);
+			}
+		}
 	}
 
 	/**

@@ -151,12 +151,37 @@
 			if($("#FILENAME_FROMAT").val()=="" && $("#IMPORT_FILE_TYPE").val()=="EXCEL"){
 				$("#FILENAME_FROMAT").tips({
 					side:3,
-		            msg:'请输入导入目标表',
+		            msg:'请输入导入文件格式',
 		            bg:'#AE81FF',
 		            time:2
 		        });
 				$("#FILENAME_FROMAT").focus();
 			return false;
+			}
+			if($("#NAME_SECTION").val() != ""){
+				// 验证格式
+				var reg = /^[0-9,]+$/;
+				if(!reg.test($("#NAME_SECTION").val())){
+					$("#NAME_SECTION").tips({
+						side:3,
+			            msg:'维护的格式只允许数字和英文逗号',
+			            bg:'#AE81FF',
+			            time:2
+			        });
+					$("#NAME_SECTION").focus();
+					return false;
+				}
+				var segs = $("#NAME_SECTION").val().split(',');
+				if(segs.length > 6){
+					$("#NAME_SECTION").tips({
+						side:3,
+			            msg:'文件名解析段不能超过6段',
+			            bg:'#AE81FF',
+			            time:2
+			        });
+					$("#NAME_SECTION").focus();
+					return false;
+				}
 			}
 			$("#Form").submit();
 			$("#zhongxin").hide();
