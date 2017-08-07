@@ -67,5 +67,13 @@ public interface ImportConfigManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception;
 	
+	/**
+	 * 获取创建数据库表SQL
+	 * @param importConfigId
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTableSql(String importConfigId) throws Exception;
+	
 }
 

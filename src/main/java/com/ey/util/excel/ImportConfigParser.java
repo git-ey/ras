@@ -27,7 +27,6 @@ public class ImportConfigParser {
 	@Resource(name="importConfigCellService")
 	private ImportConfigCellManager importConfigCellService;
 	
-	@SuppressWarnings("unchecked")
 	public ImportConfig getConfig(String importTempCode) throws Exception{
     	ImportConfig importConfig = new ImportConfig();
     	// 查询数据导入配置头
@@ -65,8 +64,11 @@ public class ImportConfigParser {
         		if(StringUtils.isNotBlank(importConfigPd.getString("IGNORE_RULE"))){
             		importConfig.setIgnoreRule(importConfigPd.getString("IGNORE_RULE").split(","));
         		}
-        		// 导入文件名解析段
-        		importConfig.setNameSection(importConfigPd.getString("NAME_SECTION").split(","));
+        		// 导入文件名段分割符及解析段
+        		if(StringUtils.isNoneBlank(importConfigPd.getString("NAME_SECTION"))){
+            		importConfig.setFileNameDelimiter(this.getStringDelimiter(importConfigPd.getString("NAME_SECTION")));
+            		importConfig.setNameSection(importConfigPd.getString("NAME_SECTION").split(importConfig.getFileNameDelimiter()));
+        		}
         		// 导入文件列字段
         		importConfig.setImportCells(importCells);
     	    }
@@ -75,4 +77,20 @@ public class ImportConfigParser {
     	}
     	return importConfig;
     }
+	
+	/**
+	 * 获取字符串分隔符
+	 * @param nameSection
+	 * @return
+	 */
+	private String getStringDelimiter(String nameSection){
+		String delimiter = ",";
+		for(String str : nameSection.split("[^\\D]")){
+			if(StringUtils.isNotBlank(str)){
+				delimiter = str;
+				break;
+			}
+		}
+		return delimiter;
+	}
 }

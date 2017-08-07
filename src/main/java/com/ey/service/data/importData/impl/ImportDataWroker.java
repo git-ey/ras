@@ -25,7 +25,7 @@ import com.ey.util.excel.ImportConfigParser;
 import com.ey.util.excel.MapResult;
 
 public class ImportDataWroker implements Callable<Boolean> {
-	
+
 	protected Logger logger = Logger.getLogger(ImportDataWroker.class);
 	/**
 	 * 插入数据的阀值数
@@ -36,6 +36,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 */
 	private final String IMPORT_FILE_ID = "`import_file_id`";
 	private final String PARTY_SUCCESS_FLAG = "存在错误，请复查";
+	private final int NAME_SEG_CNT = 6;
 	// 数据导入配置解析器
 	private ImportConfigParser importConfigParser;
 	// 数据导入配置服务
@@ -114,9 +115,12 @@ public class ImportDataWroker implements Callable<Boolean> {
 				// 获取导入文件记录ID
 				String importFileId = UuidUtil.get32UUID();// 导入数据文件ID
 				// 初始化导入条数
-				int cnt = 1;
+				Long cnt = 1L;
+				int[] nameSection = null;
 				// 校验文件是否已导入
 				if (cehckFileExsit(pathFile.getName())) {
+					// 获取文件名解析段
+					nameSection = this.getFileNameSeg(configuration.getNameSection());
 					// 解析并导入Excel文件
 					try {
 						cnt = this.insertExcelFile(pathFile, configuration, importFileId);
@@ -129,8 +133,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 				}
 				// 回写导入文件信息表
 				try {
-					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile.getName(),
-							configuration.getNameSection(), configuration.getTableName(), importMessage, cnt);
+					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile.getName(), nameSection,
+							configuration.getFileNameDelimiter(), configuration.getTableName(), importMessage, cnt);
 				} catch (Exception e) {
 					throw new Exception("回写导入文件信息表失败:" + e.getMessage());
 				}
@@ -164,7 +168,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * @param configuration
 	 * @throws Exception
 	 */
-	private int insertExcelFile(File pathFile, ImportConfig configuration, String importFileId) throws Exception {
+	private Long insertExcelFile(File pathFile, ImportConfig configuration, String importFileId) throws Exception {
 		MapResult mapResult = null;
 		try {
 			mapResult = (MapResult) FileImportExecutor.importFile(configuration, pathFile, pathFile.getName());
@@ -176,7 +180,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 			throw new Exception(pathFile.getName() + "数据存在错误:" + mapResult.getResMsg());
 		}
 		List<Map> maps = mapResult.getResult();
-		int cnt = 1; // 数据插入处理计数器
+		Long cnt = 1L; // 数据插入处理计数器
 		StringBuilder sbf = new StringBuilder();
 		StringBuilder sbv = new StringBuilder();
 		for (Map<String, Object> map : maps) {
@@ -209,7 +213,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 				}
 				// 重新初始化
 				sbv = new StringBuilder();
-				logger.debug(cnt+"条数据插入");
+				logger.debug(cnt + "条数据插入");
 			}
 			cnt++;
 		}
@@ -252,34 +256,59 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * @param cnt
 	 * @throws Exception
 	 */
-	private void saveImportFile(String importFileId, String importId, String pathFileName, String[] nameSection,
-			String tableName, String message, Integer cnt) throws Exception {
+	private void saveImportFile(String importFileId, String importId, String pathFileName, int[] nameSection,
+			String fileNameDelimiter, String tableName, String message, Long cnt) throws Exception {
 		PageData importFilePd = new PageData();
 		importFilePd.put("IMPORT_FILE_ID", importFileId);
 		importFilePd.put("IMPORT_ID", importId);
 		importFilePd.put("IMPORT_FILE_NAME", pathFileName);
-		// 文件名解析
-		this.fileNameParser(importFilePd,pathFileName,nameSection);
+		// 文件名解析,配置解析规则的才处理
+		if (nameSection != null && nameSection.length > 0) {
+			this.fileNameParser(importFilePd, pathFileName, nameSection, fileNameDelimiter);
+		}
 		importFilePd.put("TABLE_NAME", tableName);
 		importFilePd.put("MESSAGE", message);
 		importFilePd.put("CNT", (cnt - 1));
 		importService.saveImportFile(importFilePd);
 	}
-	
+
 	/**
 	 * 文件名分析器
+	 * 
 	 * @param importFilePd
 	 * @param pathFileName
 	 * @param nameSection
 	 */
-	private void fileNameParser(PageData importFilePd,String pathFileName,String[] nameSection) {
-		String[] fileNames = pathFileName.substring(0,pathFileName.lastIndexOf(".")).split("_");
-		for(String ns : nameSection){
-			int ni = Integer.parseInt(ns);
-			if(ni <= fileNames.length){
-				importFilePd.put("NAME_SEG_"+ni,fileNames[ni-1]);
+	private void fileNameParser(PageData importFilePd, String pathFileName, int[] nameSection,
+			String fileNameDelimiter) {
+		String[] fileNames = pathFileName.substring(0, pathFileName.lastIndexOf(".")).split(fileNameDelimiter);
+		int idx = 1;
+		for (int ni : nameSection) {
+			// 最大支持的段数
+			if (idx == NAME_SEG_CNT) {
+				break;
 			}
+			if (ni <= fileNames.length) {
+				importFilePd.put("NAME_SEG_" + ni, fileNames[ni - 1]);
+			}
+			idx++;
 		}
+	}
+
+	/**
+	 * 获取继续文件名段索引
+	 * 
+	 * @param nameSection
+	 * @return
+	 */
+	private int[] getFileNameSeg(String[] nameSection) {
+		int[] segIdx = new int[nameSection.length];
+		int i = 0;
+		for (String ns : nameSection) {
+			segIdx[i] = Integer.parseInt(ns);
+			i++;
+		}
+		return segIdx;
 	}
 
 	/**

@@ -137,6 +137,21 @@ public class ImportConfigController extends BaseController {
 		return mv;
 	}	
 	
+	/**去SQL查询界面
+	 * @param
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/goSqlView")
+	public ModelAndView goSqlView()throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		mv.setViewName("system/importconfig/importconfig_sql");
+		pd.put("SQL", importconfigService.getTableSql(pd.getString("IMPORTCONFIG_ID")));
+		mv.addObject("pd", pd);
+		return mv;
+	}	
+	
 	 /**去修改页面
 	 * @param
 	 * @throws Exception

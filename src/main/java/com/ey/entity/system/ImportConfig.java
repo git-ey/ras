@@ -19,6 +19,7 @@ public class ImportConfig extends BaseModel{
 	private String fileNameFormat; // 文件名格式
 	private String[] ignoreRule; // 行过滤规则
 	private String[] nameSection; // 文件名解析段
+	private String fileNameDelimiter; // 文件名分隔符
 	private List<ImportConfigCell> importCells; // 导入行定义
 
 	public String getImportTempCode() {
@@ -83,6 +84,14 @@ public class ImportConfig extends BaseModel{
 
 	public void setNameSection(String[] strings) {
 		this.nameSection = strings;
+	}
+
+	public String getFileNameDelimiter() {
+		return fileNameDelimiter;
+	}
+
+	public void setFileNameDelimiter(String fileNameDelimiter) {
+		this.fileNameDelimiter = fileNameDelimiter;
 	}
 
 	public List<ImportConfigCell> getImportCells() {

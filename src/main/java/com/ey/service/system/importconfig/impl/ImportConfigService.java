@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -96,6 +95,35 @@ public class ImportConfigService implements ImportConfigManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("ImportConfigMapper.deleteAll", ArrayDATA_IDS);
+	}
+	
+	/**
+	 * 获取创建数据库表SQL
+	 * @param importConfigId
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTableSql(String importConfigId) throws Exception {
+		PageData configPd = new PageData();
+		configPd.put("IMPORTCONFIG_ID", importConfigId);
+		// 获取头行数据
+		PageData head = (PageData)dao.findForObject("ImportConfigMapper.findById", configPd);
+		List<PageData> lines = (List<PageData>)dao.findForList("ImportConfigCellMapper.findByConfigId", importConfigId);
+		// 组装建表脚本
+		StringBuffer sb = new StringBuffer();
+		sb.append("CREATE TABLE `"+ head.getString("TABLE_NAME") +"` ( \n");
+		for(PageData line : lines){
+			if(line.getString("CELLTYPE").toLowerCase().equals("string")){
+				sb.append("`"+line.getString("MAPKEY")+"` varchar(240) NULL COMMENT '"+line.getString("DESCRIPTION")+"'");
+			}else if(line.getString("CELLTYPE").toLowerCase().equals("bigdecimal")){
+				sb.append("`"+line.getString("MAPKEY")+"` decimal(10,3) NULL COMMENT '"+line.getString("DESCRIPTION")+"'");
+			}else{
+				sb.append("`"+line.getString("MAPKEY")+"`"+ line.getString("CELLTYPE").toLowerCase() +" NULL COMMENT '"+line.getString("DESCRIPTION")+"'");
+			}
+			sb.append(", \n");
+		}
+		sb.append(" IMPORT_FILE_ID varchar(60) NULL COMMENT '导入文件ID' ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+		return sb.toString();
 	}
 	
 }

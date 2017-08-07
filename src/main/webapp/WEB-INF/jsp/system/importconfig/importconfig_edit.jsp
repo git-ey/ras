@@ -78,6 +78,9 @@
 <footer>
 <div style="width: 100%;padding-bottom: 2px;" class="center">
 	<a class="btn btn-mini btn-primary" onclick="save();">保存</a>
+	<c:if test="${'edit' == msg }">
+	    <a class="btn btn-mini btn-success" onclick="sqlView('${pd.IMPORTCONFIG_ID}');">查看表脚本</a>
+	</c:if>
 	<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>
 </div>
 </footer>
@@ -158,34 +161,28 @@
 				$("#FILENAME_FROMAT").focus();
 			return false;
 			}
-			if($("#NAME_SECTION").val() != ""){
-				// 验证格式
-				var reg = /^[0-9,]+$/;
-				if(!reg.test($("#NAME_SECTION").val())){
-					$("#NAME_SECTION").tips({
-						side:3,
-			            msg:'维护的格式只允许数字和英文逗号',
-			            bg:'#AE81FF',
-			            time:2
-			        });
-					$("#NAME_SECTION").focus();
-					return false;
-				}
-				var segs = $("#NAME_SECTION").val().split(',');
-				if(segs.length > 6){
-					$("#NAME_SECTION").tips({
-						side:3,
-			            msg:'文件名解析段不能超过6段',
-			            bg:'#AE81FF',
-			            time:2
-			        });
-					$("#NAME_SECTION").focus();
-					return false;
-				}
-			}
 			$("#Form").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();
+		}
+		
+		//修改
+		function sqlView(Id){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="表创建SQL";
+			 diag.URL = '<%=basePath%>importconfig/goSqlView.do?IMPORTCONFIG_ID='+Id;
+			 diag.Width = 500;
+			 diag.Height = 300;
+			 diag.Modal = true;				//有无遮罩窗口
+			 diag.CancelEvent = function(){ //关闭事件
+				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+					 tosearch();
+				}
+				diag.close();
+			 };
+			 diag.show();
 		}
 		
 		$(function() {
