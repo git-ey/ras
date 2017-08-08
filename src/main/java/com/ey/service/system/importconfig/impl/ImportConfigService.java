@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -85,8 +86,8 @@ public class ImportConfigService implements ImportConfigManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public List<String> findByImportFileType(String importFileType) throws Exception {
-		return (List<String>) dao.findForList("ImportConfigMapper.findByImportFileType", importFileType);
+	public List<String> findByImportTempCode(String importTempCode) throws Exception {
+		return (List<String>) dao.findForList("ImportConfigMapper.findByImportTempCode", importTempCode);
 	}
 	
 	/**批量删除
@@ -122,7 +123,7 @@ public class ImportConfigService implements ImportConfigManager{
 			}
 			sb.append(", \n");
 		}
-		sb.append(" IMPORT_FILE_ID varchar(60) NULL COMMENT '导入文件ID' ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+		sb.append(" IMPORT_FILE_ID varchar(60) NULL COMMENT '导入文件ID' , \n KEY `"+head.getString("TABLE_NAME")+"_n1` (`IMPORT_FILE_ID`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 		return sb.toString();
 	}
 	

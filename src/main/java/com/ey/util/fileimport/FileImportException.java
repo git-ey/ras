@@ -1,4 +1,4 @@
-package com.ey.util.excel;
+package com.ey.util.fileimport;
 
 public class FileImportException extends Exception {
 

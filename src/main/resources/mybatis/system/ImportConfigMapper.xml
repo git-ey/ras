@@ -17,6 +17,7 @@
 		FILENAME_FROMAT,
 		IGNORE_RULE,
 		NAME_SECTION,
+		ENABLED_FLAG,
 		IMPORTCONFIG_ID
 	</sql>
 	
@@ -30,6 +31,7 @@
 		#{FILENAME_FROMAT},
 		#{IGNORE_RULE},
 		#{NAME_SECTION},
+		#{ENABLED_FLAG},
 		#{IMPORTCONFIG_ID}
 	</sql>
 	
@@ -64,7 +66,8 @@
 			IMPORT_FILE_TYPE = #{IMPORT_FILE_TYPE},
 			FILENAME_FROMAT = #{FILENAME_FROMAT},
 			IGNORE_RULE = #{IGNORE_RULE},
-			NAME_SECTION = #{NAME_SECTION}
+			NAME_SECTION = #{NAME_SECTION},
+			ENABLED_FLAG = #{ENABLED_FLAG}
 		where 
 		IMPORTCONFIG_ID = #{IMPORTCONFIG_ID}
 	</update>
@@ -90,13 +93,16 @@
 	</select>
 
 	<!-- 通过导入类型获取数据 -->
-	<select id="findByImportFileType" parameterType="java.lang.String" resultType="java.lang.String">
+	<select id="findByImportTempCode" parameterType="java.lang.String" resultType="java.lang.String">
 		select
 		   IMPORT_TEMP_CODE
 		from
 		<include refid="tableName"></include>
 		where 
-			IMPORT_FILE_TYPE = #{importFileType,jdbcType=VARCHAR}
+		   ENABLED_FLAG = 'Y'
+		<if test="importTempCode != null and importTempCode != ''">
+		   and IMPORT_TEMP_CODE = #{importTempCode,jdbcType=VARCHAR}
+		</if>
 	</select>	
 	
 	<!-- 列表 -->

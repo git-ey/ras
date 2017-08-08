@@ -71,13 +71,12 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
-									<th class="center" style="width:7%;">文件类型</th>
 									<th class="center" style="width:25%;">文件路径</th>
-									<th class="center" style="width:14%;">开始时间</th>
-									<th class="center" style="width:14%;">结束时间</th>
+									<th class="center" style="width:15%;">开始时间</th>
+									<th class="center" style="width:15%;">结束时间</th>
 									<th class="center" style="width:9%;">操作人</th>
 									<th class="center" style="width:7%;">导入状态</th>
-									<th class="center" style="width:10%;">导入消息</th>
+									<th class="center" style="width:15%;">导入消息</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -93,7 +92,6 @@
 												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.IMPORT_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
-											<td class='center'>${var.IMPORT_FILE_TYPE}</td>
 											<td class='center'>${var.IMPORT_FILE_PATH}</td>
 											<td class='center'>${var.START_DATETIME}</td>
 											<td class='center'>${var.END_DATETIME}</td>

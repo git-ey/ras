@@ -1,4 +1,4 @@
-package com.ey.service.data.importData.impl;
+package com.ey.service.data.fileimport.impl;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.service.data.importData.ImportManager;
+import com.ey.service.data.fileimport.ImportManager;
 import com.ey.util.PageData;
 
 /** 

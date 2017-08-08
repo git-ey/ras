@@ -1,4 +1,4 @@
-package com.ey.util.excel;
+package com.ey.util.fileimport;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;

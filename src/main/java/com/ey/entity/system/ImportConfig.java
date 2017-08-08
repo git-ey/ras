@@ -2,7 +2,7 @@ package com.ey.entity.system;
 
 import java.util.List;
 
-import com.ey.util.excel.BaseModel;
+import com.ey.util.fileimport.BaseModel;
 
 /**
  * 数据导入头配置
@@ -103,6 +103,6 @@ public class ImportConfig extends BaseModel{
 	}
 
 	public enum ImportFileType {
-		EXCEL
+		EXCEL,CSV
 	}
 }

@@ -33,12 +33,7 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">文件类型:</td>
-								<td>
-							        <div class="sel"></div>
-								    <select class="chosen-select form-control" name="IMPORT_FILE_TYPE" id="id" data-placeholder="请选择" style="width:49%;">
-								    <option value="EXCEL" <c:if test="${pd.IMPORT_FILE_TYPE == 'EXCEL'}">selected</c:if>>EXCEL</option>
-								    <div class="sel"></div>
-								</td>
+								<td><input type="text" name="IMPORT_TEMP_CODE" id="IMPORT_TEMP_CODE" value="${pd.IMPORT_TEMP_CODE}" maxlength="60" placeholder="这里输入模板代码" title="模板代码" style="width:49%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">文件路径:</td>
@@ -79,16 +74,6 @@
 		$(top.hangge());
 		//保存
 		function save(){
-			if($("#IMPORT_FILE_TYPE").val()==""){
-				$("#IMPORT_FILE_TYPE").tips({
-					side:3,
-		            msg:'请输入文件类型',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#IMPORT_FILE_TYPE").focus();
-			return false;
-			}
 			if($("#IMPORT_FILE_PATH").val()==""){
 				$("#IMPORT_FILE_PATH").tips({
 					side:3,

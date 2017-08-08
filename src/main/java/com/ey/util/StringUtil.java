@@ -26,6 +26,19 @@ public class StringUtil {
 	    return returnStr;
 	}
 	
+	/**
+	 * 获取指定长度的字符串
+	 * @param str
+	 * @param len
+	 * @return
+	 */
+	public static String getStringByLength(String str,int len){
+		if(len < str.length()){
+			return str.substring(0,len);
+		}
+		return str;
+	}
+	
 	/**获取字符串编码
 	 * @param str
 	 * @return

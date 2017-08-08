@@ -9,7 +9,6 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		IMPORT_FILE_TYPE,	
 		IMPORT_FILE_PATH,	
 		START_DATETIME,	
 		END_DATETIME,	
@@ -22,7 +21,6 @@
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{IMPORT_FILE_TYPE},	
 		#{IMPORT_FILE_PATH},	
 		#{START_DATETIME},	
 		#{END_DATETIME},	

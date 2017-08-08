@@ -1,28 +1,29 @@
-package com.ey.service.data.importData.impl;
+package com.ey.service.data.fileimport.impl;
 
 import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.ey.entity.system.ImportConfig;
-import com.ey.service.data.importData.ImportManager;
+import com.ey.service.data.fileimport.ImportManager;
 import com.ey.service.system.importconfig.ImportConfigManager;
 import com.ey.util.FileUtil;
 import com.ey.util.Logger;
 import com.ey.util.PageData;
 import com.ey.util.Tools;
 import com.ey.util.UuidUtil;
-import com.ey.util.excel.FileImportException;
-import com.ey.util.excel.FileImportExecutor;
-import com.ey.util.excel.ImportConfigParser;
-import com.ey.util.excel.MapResult;
+import com.ey.util.fileimport.FileImportException;
+import com.ey.util.fileimport.FileImportExecutor;
+import com.ey.util.fileimport.ImportConfigParser;
+import com.ey.util.fileimport.MapResult;
+import com.ey.util.fileimport.XlsToCsv;
+import com.ey.util.fileimport.XlsxToCsv;
 
 public class ImportDataWroker implements Callable<Boolean> {
 
@@ -35,7 +36,6 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * 导入文件ID标识
 	 */
 	private final String IMPORT_FILE_ID = "`import_file_id`";
-	private final String PARTY_SUCCESS_FLAG = "存在错误，请复查";
 	private final int NAME_SEG_CNT = 6;
 	// 数据导入配置解析器
 	private ImportConfigParser importConfigParser;
@@ -58,24 +58,23 @@ public class ImportDataWroker implements Callable<Boolean> {
 	public Boolean call() throws Exception {
 		Boolean result = Boolean.TRUE;
 		String importMessage = null;
-		// 导入数据文件类型
-		String importFileType = pd.getString("IMPORT_FILE_TYPE");
+		// 导入数据文件配置代码
+		String importTempCode = StringUtils.isBlank(pd.getString("IMPORT_TEMP_CODE")) ? null
+				: pd.getString("IMPORT_TEMP_CODE");
 		// 获取数据导入配置
-		List<String> importConfigs = importConfigService.findByImportFileType(importFileType);
+		List<String> importConfigs = importConfigService.findByImportTempCode(importTempCode);
 		if (importConfigs == null || importConfigs.size() == 0) {
 			this.updateImportStatus("N", "未找到有效的导入设置");
 			return result;
 		}
 		// 处理Excel过程
-		if (importFileType.equals("EXCEL")) {
-			try {
-				this.saveExcelData(importConfigs);
-			} catch (Exception e) {
-				importMessage = e.getMessage();
-			}
+		try {
+			this.saveFileData(importConfigs);
+		} catch (Exception e) {
+			importMessage = e.getMessage();
 		}
 		// 完成导入操作回写信息
-		if (StringUtils.isNotBlank(importMessage) && !importMessage.equals(PARTY_SUCCESS_FLAG)) {
+		if (StringUtils.isNotBlank(importMessage)) {
 			this.updateImportStatus("N", importMessage);
 		} else {
 			this.updateImportStatus("Y", importMessage);
@@ -84,12 +83,12 @@ public class ImportDataWroker implements Callable<Boolean> {
 	}
 
 	/**
-	 * 导入Excel数据
+	 * 导入文件数据
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	private void saveExcelData(List<String> importConfigs) throws Exception {
+	private void saveFileData(List<String> importConfigs) throws Exception {
 		for (String importTempCode : importConfigs) {
 			ImportConfig configuration = null;
 			try {
@@ -103,11 +102,6 @@ public class ImportDataWroker implements Callable<Boolean> {
 			}
 			List<File> pathFiles = FileUtil.getPathFile(pd.getString("IMPORT_FILE_PATH"),
 					configuration.getFileNameFormat());
-			if (pathFiles == null || pathFiles.size() == 0) {
-				throw new Exception("未找到可处理的文件");
-			}
-			// 导入消息
-			String partyErrorFlag = "N";
 			// 遍历导入文件
 			for (File pathFile : pathFiles) {
 				// 导入消息
@@ -118,17 +112,25 @@ public class ImportDataWroker implements Callable<Boolean> {
 				Long cnt = 1L;
 				int[] nameSection = null;
 				// 校验文件是否已导入
-				if (cehckFileExsit(pathFile.getName())) {
+				if (!checkFileExsit(pathFile.getName())) {
 					// 获取文件名解析段
 					nameSection = this.getFileNameSeg(configuration.getNameSection());
-					// 解析并导入Excel文件
-					try {
-						cnt = this.insertExcelFile(pathFile, configuration, importFileId);
-					} catch (Exception e) {
-						importMessage = e.getMessage();
+					if (configuration.getImportFileType() == ImportConfig.ImportFileType.EXCEL) {
+						// 解析并导入Excel文件
+						try {
+							cnt = this.insertExcelFile(pathFile, configuration, importFileId);
+						} catch (Exception e) {
+							importMessage = e.getMessage();
+						}
+					} else if (configuration.getImportFileType() == ImportConfig.ImportFileType.CSV) {
+						// 解析并导入CSV文件
+						try {
+							cnt = this.insertCsvFile(pathFile, configuration, importFileId);
+						} catch (Exception e) {
+							importMessage = e.getMessage();
+						}
 					}
 				} else {
-					partyErrorFlag = "Y";
 					importMessage = "文件已存在,不能重复导入";
 				}
 				// 回写导入文件信息表
@@ -136,12 +138,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile.getName(), nameSection,
 							configuration.getFileNameDelimiter(), configuration.getTableName(), importMessage, cnt);
 				} catch (Exception e) {
-					throw new Exception("回写导入文件信息表失败:" + e.getMessage());
+					throw new Exception("回写导入文件信息表失败:" + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
 				}
-			}
-			// 部分成功，返回指定异常
-			if (partyErrorFlag.equals("Y")) {
-				throw new Exception(PARTY_SUCCESS_FLAG);
 			}
 		}
 	}
@@ -153,12 +151,59 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * @return
 	 * @throws Exception
 	 */
-	private Boolean cehckFileExsit(String pathFile) throws Exception {
+	private Boolean checkFileExsit(String pathFile) throws Exception {
 		Long filrCnt = importService.findFileCount(pathFile);
 		if (filrCnt > 0) {
-			return Boolean.FALSE;
+			return Boolean.TRUE;
 		}
-		return Boolean.TRUE;
+		return Boolean.FALSE;
+	}
+
+	/**
+	 * 导入CSV数据文件
+	 * 
+	 * @param pathFile
+	 * @param configuration
+	 * @throws Exception
+	 */
+	private Long insertCsvFile(File pathFile, ImportConfig configuration, String importFileId) throws Exception {
+		String fileName = pathFile.getName();
+		String extension = fileName.lastIndexOf(".") == -1 ? "" : fileName.substring(fileName.lastIndexOf(".") + 1);
+		String csvFilePath = pathFile.getParent() + File.separator + UuidUtil.get32UUID() + ".csv";
+		String excelFilePath = pathFile.getPath();
+		switch (extension) {
+		case "xls":
+			// 先执行Excel转换成CSV
+			XlsToCsv xlsTocsv = new XlsToCsv(excelFilePath, csvFilePath);
+			xlsTocsv.process();
+			break;
+		case "xlsx":
+			// 先执行Excel转换成CSV
+			XlsxToCsv xlsxTocsv = new XlsxToCsv(excelFilePath, csvFilePath);
+			xlsxTocsv.process();
+			break;
+		case "csv":
+			csvFilePath = excelFilePath;
+			break;
+		}
+		MapResult mapResult = null;
+		File csvFile = new File(csvFilePath);
+		if(!csvFile.exists()){
+			throw new Exception(excelFilePath+" 未生成临时的CSV文件");
+		}
+		try {
+			mapResult = (MapResult) FileImportExecutor.importFile(configuration, csvFile, csvFile.getName());
+		} catch (FileImportException e) {
+			throw new Exception("导入CSV文件数据失败:" + csvFile.getName() + "," + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
+		}
+		Long cnt = this.insertData(mapResult, configuration, excelFilePath, importFileId);
+		// 删除CSV临时过渡文件，删除不了，强制回收
+		boolean result = csvFile.delete();
+		if(!result){
+			System.gc();//系统进行资源强制回收
+			csvFile.delete();
+		}
+		return cnt;
 	}
 
 	/**
@@ -173,11 +218,25 @@ public class ImportDataWroker implements Callable<Boolean> {
 		try {
 			mapResult = (MapResult) FileImportExecutor.importFile(configuration, pathFile, pathFile.getName());
 		} catch (FileImportException e) {
-			throw new Exception("导入Excel文件数据失败:" + pathFile.getName() + "," + e.getMessage());
+			throw new Exception("导入Excel文件数据失败:" + pathFile.getName() + "," + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
 		}
+		return this.insertData(mapResult, configuration, pathFile.getPath(), importFileId);
+	}
+
+	/**
+	 * 拼接SQL插入脚本并插入数据库
+	 * 
+	 * @param mapResult
+	 * @param configuration
+	 * @param fileName
+	 * @param importFileId
+	 * @throws Exception
+	 */
+	private Long insertData(MapResult mapResult, ImportConfig configuration, String fileName, String importFileId)
+			throws Exception {
 		// 判断是否存在错误，存在错误则整个文件不处理
 		if (StringUtils.isNotBlank(mapResult.getResMsg())) {
-			throw new Exception(pathFile.getName() + "数据存在错误:" + mapResult.getResMsg());
+			throw new Exception(fileName + "数据存在错误:" + mapResult.getResMsg());
 		}
 		List<Map> maps = mapResult.getResult();
 		Long cnt = 1L; // 数据插入处理计数器
@@ -192,7 +251,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 					if (cnt == 1) {
 						sbf.append("`" + et.getKey() + "`,");
 					}
-					sbv.append("'" + (et.getValue() == Optional.empty() ? "'" : et.getValue() + "'") + ",");
+					sbv.append(et.getValue() + ",");
 				}
 			}
 			if (cnt == 1) {
@@ -201,15 +260,13 @@ public class ImportDataWroker implements Callable<Boolean> {
 			sbv.append("'" + importFileId + "'),"); // 绑定导入文件ID
 			// 100次保存一次
 			if (cnt % INSERT_COUNT == 0) {
-				String tableValue = sbv.toString().replace(",)", ")");
+				String tableValue = sbv.toString().replace(",)", ")").replace("\"", "'");
 				// 插入数据
-				if (StringUtils.isNotBlank(configuration.getTableName())) {
-					try {
-						this.saveImportFileData(configuration.getTableName(), sbf.toString(),
-								tableValue.substring(0, tableValue.length() - 1));
-					} catch (Exception e) {
-						throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + e.getMessage());
-					}
+				try {
+					this.saveImportFileData(configuration.getTableName(), sbf.toString(),
+							tableValue.substring(0, tableValue.length() - 1));
+				} catch (Exception e) {
+					throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
 				}
 				// 重新初始化
 				sbv = new StringBuilder();
@@ -217,14 +274,14 @@ public class ImportDataWroker implements Callable<Boolean> {
 			}
 			cnt++;
 		}
-		String tableValue = sbv.toString().replace(",)", ")");
+		String tableValue = sbv.toString().replace(",)", ")").replace("\"", "'");
 		// 插入数据库对应表
-		if (StringUtils.isNotBlank(configuration.getTableName()) && StringUtils.isNotBlank(tableValue)) {
+		if (StringUtils.isNotBlank(tableValue)) {
 			try {
 				this.saveImportFileData(configuration.getTableName(), sbf.toString(),
 						tableValue.substring(0, tableValue.length() - 1));
 			} catch (Exception e) {
-				throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + e.getMessage());
+				throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
 			}
 		}
 		return cnt;

@@ -12,7 +12,8 @@
 		NUMBER,
 		DESCRIPTION,
 		MAPKEY,	
-		CELLTYPE,	
+		CELLTYPE,
+		DATE_FORMAT,
 		NULLABLE,	
 		IMPORTCONFIGCELL_ID,
 		IMPORTCONFIG_ID
@@ -23,7 +24,8 @@
 		#{NUMBER},
 		#{DESCRIPTION},
 		#{MAPKEY},	
-		#{CELLTYPE},	
+		#{CELLTYPE},
+		#{DATE_FORMAT},	
 		#{NULLABLE},	
 		#{IMPORTCONFIGCELL_ID},
 		#{IMPORTCONFIG_ID}
@@ -57,8 +59,8 @@
 			DESCRIPTION = #{DESCRIPTION},
 			MAPKEY = #{MAPKEY},
 			CELLTYPE = #{CELLTYPE},
-			NULLABLE = #{NULLABLE},
-		IMPORTCONFIGCELL_ID = IMPORTCONFIGCELL_ID
+			DATE_FORMAT = #{DATE_FORMAT},
+			NULLABLE = #{NULLABLE}
 		where 
 		IMPORTCONFIGCELL_ID = #{IMPORTCONFIGCELL_ID}
 	</update>
@@ -81,6 +83,7 @@
 		<include refid="tableName"></include>
 		where 
 			IMPORTCONFIG_ID = #{importConfigId,jdbcType=VARCHAR}
+		order by NUMBER ASC
 	</select>
 	
 	<!-- 列表 -->

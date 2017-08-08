@@ -59,13 +59,10 @@ public class FileUtil {
 	 */
 	public static void delFile(String filePathAndName) {
 		try {
-			String filePath = filePathAndName;
-			filePath = filePath.toString();
-			java.io.File myDelFile = new java.io.File(filePath);
+			java.io.File myDelFile = new java.io.File(filePathAndName);
 			myDelFile.delete();
 		} catch (Exception e) {
 			System.out.println("删除文件操作出错");
-			e.printStackTrace();
 		}
 	}
 

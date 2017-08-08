@@ -59,7 +59,7 @@ public interface ImportConfigManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public List<String> findByImportFileType(String importFileType) throws Exception;
+	public List<String> findByImportTempCode(String importTempCode) throws Exception;
 	
 	/**批量删除
 	 * @param ArrayDATA_IDS

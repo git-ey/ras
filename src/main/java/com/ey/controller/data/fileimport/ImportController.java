@@ -1,4 +1,4 @@
-package com.ey.controller.data.importData;
+package com.ey.controller.data.fileimport;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,15 +23,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
-import com.ey.service.data.importData.ImportManager;
-import com.ey.service.data.importData.impl.ImportDataWroker;
+import com.ey.service.data.fileimport.impl.ImportDataWroker;
+import com.ey.service.data.fileimport.ImportManager;
 import com.ey.service.system.importconfig.ImportConfigManager;
 import com.ey.service.system.loger.LogerManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Jurisdiction;
 import com.ey.util.PageData;
 import com.ey.util.Tools;
-import com.ey.util.excel.ImportConfigParser;
+import com.ey.util.fileimport.ImportConfigParser;
 
 /** 
  * 说明：导入工作台
@@ -74,7 +74,7 @@ public class ImportController extends BaseController {
 		pd.put("OPERATOR_NAME", Jurisdiction.getUsername());	//操作人
 		pd.put("IMPORT_STATUS", "R");	//导入状态--导入中
 		// 执行处理导入的线程
-		if(StringUtils.isNotBlank(pd.getString("IMPORT_FILE_TYPE")) && StringUtils.isNotBlank(pd.getString("IMPORT_FILE_PATH"))){
+		if(StringUtils.isNotBlank(pd.getString("IMPORT_FILE_PATH"))){
 			taskExecutor.submit(new ImportDataWroker(importConfigParser,importConfigService,importService,pd));
 			importService.save(pd);
 		}

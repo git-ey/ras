@@ -57,12 +57,13 @@
 									<th class="center" style="width:35px;">
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
-									<th class="center" style="width:10%;">对应列号</th>
+									<th class="center" style="width:7%;">列号</th>
 									<th class="center" style="width:15%;">列描述</th>
-									<th class="center" style="width:25%;">存储KEY</th>
+									<th class="center" style="width:20%;">存储KEY</th>
 									<th class="center" style="width:20%;">单元格类型</th>
-									<th class="center" style="width:15%;">允许为空</th>
-									<th class="center" style="width:15%;">操作</th>
+									<th class="center" style="width:15%;">时间格式</th>
+									<th class="center" style="width:12%;">允许为空</th>
+									<th class="center" style="width:10%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -80,6 +81,7 @@
 											<td class='center'>${var.DESCRIPTION}</td>
 											<td class='center'>${var.MAPKEY}</td>
 											<td class='center'>${var.CELLTYPE}</td>
+											<td class='center'>${var.DATE_FORMAT}</td>
 											<td class='center'>
 											    <c:choose>
 											        <c:when test="${var.NULLABLE == 0}">允许</c:when>

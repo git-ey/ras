@@ -1,9 +1,9 @@
 package com.ey.entity.system;
 
-import com.ey.util.excel.BaseModel;
+import com.ey.util.fileimport.BaseModel;
 
 /**
- * 数据导行头配置
+ * 数据导行配置
  * 
  * @author andyChen
  *
@@ -13,6 +13,7 @@ public class ImportConfigCell extends BaseModel {
 	private Integer number;// excel对应的序列，起始0
 	private String key;// 存储的map对应的key
 	private CellType cellType;// 0:int,1:float,2:string,3:date,4:bigDecimal
+	private String dateFormat;// 时间格式掩码
 	private NullAble nullAble;// 是否允许为空 0:允许 ,1:不允许
 
 	public Integer getNumber() {
@@ -37,6 +38,14 @@ public class ImportConfigCell extends BaseModel {
 
 	public void setCellType(CellType cellType) {
 		this.cellType = cellType;
+	}
+
+	public String getDateFormat() {
+		return dateFormat;
+	}
+
+	public void setDateFormat(String dateFormat) {
+		this.dateFormat = dateFormat;
 	}
 
 	public NullAble getNullAble() {

@@ -1,4 +1,4 @@
-package com.ey.util.excel;
+package com.ey.util.fileimport;
 
 import java.util.List;
 
@@ -41,6 +41,7 @@ public class ImportConfigParser {
     	    		importConfigCell.setNumber(Integer.parseInt(pd.get("NUMBER").toString()));
     	    		importConfigCell.setKey(pd.getString("MAPKEY"));
     	    		importConfigCell.setCellType(ImportConfigCell.CellType.getCellType(pd.getString("CELLTYPE")));
+    	    		importConfigCell.setDateFormat(pd.getString("DATE_FORMAT"));
     	    		importConfigCell.setNullAble(ImportConfigCell.NullAble.getNullble(Integer.parseInt(pd.get("NULLABLE").toString())));
     	    		importCells.add(importConfigCell);
     	    	}
@@ -55,6 +56,8 @@ public class ImportConfigParser {
         		// 导入文件类型
     	    	if(importConfigPd.getString("IMPORT_FILE_TYPE").equals("EXCEL")){
         			importConfig.setImportFileType(ImportConfig.ImportFileType.EXCEL);
+        		}else if(importConfigPd.getString("IMPORT_FILE_TYPE").equals("CSV")){
+        			importConfig.setImportFileType(ImportConfig.ImportFileType.CSV);
         		}
     	    	// 导入目标表名称
         		importConfig.setTableName(importConfigPd.getString("TABLE_NAME"));
