@@ -163,7 +163,7 @@ public class ExcelImportor extends FileImportor {
                 cell == null ||
                 rawCellType == Cell.CELL_TYPE_STRING && StringUtils.isEmpty(cell.getStringCellValue())) {
             if (nullable == ImportConfigCell.NullAble.NULL_ALLOWED) {
-                maps.put(key, Optional.empty());
+                maps.put(key, null);
             } else {
                 errMsg = String.format("line:%d,column:%d is null \n", showLine, showColumn);
                 setErrMsg(errMsg, maps, sb);

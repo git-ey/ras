@@ -50,7 +50,7 @@
 								</td>
 								<td style="padding-left:2px;text-align: right;width:10%;">已导入文件:</td>
 								<td style="vertical-align:top;padding-left:2px;width:10%;">
-										<input type="text" placeholder="这里输入文件名" class="nav-search-input" name="IMPORT_FILE_NAME" value="${pd.IMPORT_FILE_NAME }" placeholder="这里输入文件名"/>
+										<input type="text" class="nav-search-input" name="IMPORT_FILE_NAME" value="${pd.IMPORT_FILE_NAME }" placeholder="这里输入文件名"/>
 								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;text-align:left;padding-left:2px;width:5%;"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>

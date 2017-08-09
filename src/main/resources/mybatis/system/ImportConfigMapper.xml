@@ -100,6 +100,7 @@
 		<include refid="tableName"></include>
 		where 
 		   ENABLED_FLAG = 'Y'
+		   and TABLE_NAME IS NOT NULL
 		<if test="importTempCode != null and importTempCode != ''">
 		   and IMPORT_TEMP_CODE = #{importTempCode,jdbcType=VARCHAR}
 		</if>

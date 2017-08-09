@@ -42,11 +42,10 @@
 								<td><input type="number" name="START_ROW_NO" id="START_ROW_NO" value="${pd.START_ROW_NO}" maxlength="32" placeholder="这里输入读取的起始行" title="读取的起始行" style="width:49%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">文件类型:</td>
 								<td>
-								    <div class="sel"></div>
 								    <select class="chosen-select form-control" name="IMPORT_FILE_TYPE" id="IMPORT_FILE_TYPE" data-placeholder="请选择" style="width:49%;">
 								    <option value="EXCEL" <c:if test="${pd.IMPORT_FILE_TYPE == 'EXCEL'}">selected</c:if>>EXCEL</option>
 								    <option value="CSV" <c:if test="${pd.IMPORT_FILE_TYPE == 'CSV'}">selected</c:if>>CSV</option>
-								    <div class="sel"></div>
+								    </select>
 								</td>
 							</tr>
 							<tr>
@@ -57,9 +56,20 @@
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">行过滤规则:</td>
-								<td><input type="text" name="IGNORE_RULE" id="IGNORE_RULE" value="${pd.IGNORE_RULE}" maxlength="60" placeholder="{字符字段列号1:文本1,字符字段列号2:文本2}" title="行过滤规则" style="width:98%;"/></td>
+								<td><input type="text" name="IGNORE_RULE" id="IGNORE_RULE" value="${pd.IGNORE_RULE}" maxlength="60" placeholder="列号1:null,列号2:文本2}" title="行过滤规则" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">名称解析段:</td>
 								<td><input type="text" name="NAME_SECTION" id="NAME_SECTION" value="${pd.NAME_SECTION}" maxlength="240" placeholder="段1,段2" title="文件名解析段" style="width:98%;"/></td>
+							</tr>
+							<tr>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>
+								<td>
+								    <select class="chosen-select form-control" name="ENABLED_FLAG" id="ENABLED_FLAG" data-placeholder="请选择" style="width:49%;">
+								    <option value="Y" <c:if test="${pd.ENABLED_FLAG == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.ENABLED_FLAG == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+							    <td style="width:100px;text-align: right;padding-top: 13px;"></td>
+								<td></td>
 							</tr>
 						</table>
 						</div>
