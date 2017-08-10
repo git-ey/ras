@@ -72,6 +72,8 @@ public class ImportConfigParser {
             		importConfig.setFileNameDelimiter(this.getStringDelimiter(importConfigPd.getString("NAME_SECTION")));
             		importConfig.setNameSection(importConfigPd.getString("NAME_SECTION").split(importConfig.getFileNameDelimiter()));
         		}
+        		// 执行存储过程
+        		importConfig.setCallable(importConfigPd.getString("CALLABLE"));
         		// 导入文件列字段
         		importConfig.setImportCells(importCells);
     	    }

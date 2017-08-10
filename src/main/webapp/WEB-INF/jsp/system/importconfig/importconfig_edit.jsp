@@ -56,7 +56,7 @@
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">行过滤规则:</td>
-								<td><input type="text" name="IGNORE_RULE" id="IGNORE_RULE" value="${pd.IGNORE_RULE}" maxlength="60" placeholder="列号1:null,列号2:文本2}" title="行过滤规则" style="width:98%;"/></td>
+								<td><input type="text" name="IGNORE_RULE" id="IGNORE_RULE" value="${pd.IGNORE_RULE}" maxlength="60" placeholder="列号1:^$,列号2:[\u4e00-\u9fa5]}" title="行过滤规则" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">名称解析段:</td>
 								<td><input type="text" name="NAME_SECTION" id="NAME_SECTION" value="${pd.NAME_SECTION}" maxlength="240" placeholder="段1,段2" title="文件名解析段" style="width:98%;"/></td>
 							</tr>
@@ -68,8 +68,8 @@
 								    <option value="N" <c:if test="${pd.ENABLED_FLAG == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-							    <td style="width:100px;text-align: right;padding-top: 13px;"></td>
-								<td></td>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">执行存储过程:</td>
+							    <td><input type="text" name="CALLABLE" id="CALLABLE" value="${pd.CALLABLE}" maxlength="240" placeholder="MySQL存储过程" title="存储过程" style="width:98%;"/></td>
 							</tr>
 						</table>
 						</div>

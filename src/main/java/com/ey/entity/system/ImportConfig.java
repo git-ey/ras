@@ -20,6 +20,7 @@ public class ImportConfig extends BaseModel{
 	private String[] ignoreRule; // 行过滤规则
 	private String[] nameSection; // 文件名解析段
 	private String fileNameDelimiter; // 文件名分隔符
+	private String callable; // 执行存储过程
 	private List<ImportConfigCell> importCells; // 导入行定义
 
 	public String getImportTempCode() {
@@ -92,6 +93,14 @@ public class ImportConfig extends BaseModel{
 
 	public void setFileNameDelimiter(String fileNameDelimiter) {
 		this.fileNameDelimiter = fileNameDelimiter;
+	}
+
+	public String getCallable() {
+		return callable;
+	}
+
+	public void setCallable(String callable) {
+		this.callable = callable;
 	}
 
 	public List<ImportConfigCell> getImportCells() {

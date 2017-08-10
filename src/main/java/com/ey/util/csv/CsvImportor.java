@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -187,30 +189,19 @@ public class CsvImportor extends FileImportor {
 	 * @return
 	 */
 	private boolean isIgnoreRow(String[] ignoreRole, String[] readLine) {
-		int llen = readLine.length;
 		for (String irs : ignoreRole) {
-			String[] ir = irs.split(":");
-			int cellKey = Integer.parseInt(ir[0]);
-			String ignoreValue = ir[1];
-			// 不合规的规则，忽略，不做过滤
-			if (cellKey >= llen) {
-				return false;
-			}
-			if (ignoreValue.equals("null") && !StringUtils.isBlank(readLine[cellKey])) {
-				return false;
-			}
-			if (!ignoreValue.equals("null") && StringUtils.isBlank(readLine[cellKey])) {
-				return false;
-			}
-			if (ignoreValue.equals("null") && StringUtils.isBlank(readLine[cellKey])) {
-				continue;
-			}
 			try {
-				if (readLine[cellKey].indexOf(ignoreValue) == -1) {
+				String[] ir = irs.split(":");
+				int cellKey = Integer.parseInt(ir[0]);
+				String ignoreValue = ir[1];
+				Pattern p = Pattern.compile(ignoreValue);
+				Matcher m = p.matcher(StringUtils.isBlank(readLine[cellKey]) ? "" : readLine[cellKey]);
+				if (m.find()) {
+					continue;
+				} else {
 					return false;
 				}
-			} catch (Exception e) {
-				// 如果不是指向的字符串类型字段，则不处理
+			} catch (Exception ex) {
 				return false;
 			}
 		}

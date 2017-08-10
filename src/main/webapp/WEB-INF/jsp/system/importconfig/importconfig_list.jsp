@@ -251,7 +251,7 @@
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>importconfig/goAdd.do';
 			 diag.Width = 800;
-			 diag.Height = 300;
+			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮

@@ -120,18 +120,22 @@ public class ImportDataWroker implements Callable<Boolean> {
 						try {
 							cnt = this.insertExcelFile(pathFile, configuration, importFileId);
 						} catch (Exception e) {
-							importMessage = e.getMessage();
+							importMessage = com.ey.util.StringUtil.getStringByLength(e.getMessage(),480);
 						}
 					} else if (configuration.getImportFileType() == ImportConfig.ImportFileType.CSV) {
 						// 解析并导入CSV文件
 						try {
 							cnt = this.insertCsvFile(pathFile, configuration, importFileId);
 						} catch (Exception e) {
-							importMessage = e.getMessage();
+							importMessage = com.ey.util.StringUtil.getStringByLength(e.getMessage(),480);
 						}
 					}
 				} else {
 					importMessage = "文件已存在,不能重复导入";
+				}
+				// 文件正常导入后，执行存储过程
+				if(StringUtils.isBlank(importMessage) && StringUtils.isNotBlank(configuration.getCallable())){
+					this.callProcedure(configuration.getCallable(), importFileId);
 				}
 				// 回写导入文件信息表
 				try {
@@ -194,7 +198,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 		try {
 			mapResult = (MapResult) FileImportExecutor.importFile(configuration, csvFile, csvFile.getName());
 		} catch (FileImportException e) {
-			throw new Exception("导入CSV文件数据失败:" + csvFile.getName() + "," + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
+			throw new Exception("导入CSV文件数据失败:" + csvFile.getName() + "," + e.getMessage());
 		}
 		Long cnt = this.insertData(mapResult, configuration, excelFilePath, importFileId);
 		// 删除CSV临时过渡文件，删除不了，强制回收
@@ -218,7 +222,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 		try {
 			mapResult = (MapResult) FileImportExecutor.importFile(configuration, pathFile, pathFile.getName());
 		} catch (FileImportException e) {
-			throw new Exception("导入Excel文件数据失败:" + pathFile.getName() + "," + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
+			throw new Exception("导入Excel文件数据失败:" + pathFile.getName() + "," + e.getMessage());
 		}
 		return this.insertData(mapResult, configuration, pathFile.getPath(), importFileId);
 	}
@@ -285,6 +289,20 @@ public class ImportDataWroker implements Callable<Boolean> {
 			}
 		}
 		return cnt;
+	}
+	
+	/**
+	 * 执行存储过程
+	 * @param callable
+	 * @return
+	 * @throws Exception 
+	 */
+	private String callProcedure(String callable,String importFileId) throws Exception{
+		PageData procedurePd = new PageData();
+		procedurePd.put("PROCEDURE_NAME", callable);
+		procedurePd.put("IMPORTFILEID", importFileId);
+		procedurePd.put("RETSTR", "");
+		return importService.callableProcedure(procedurePd);
 	}
 
 	/**

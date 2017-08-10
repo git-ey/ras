@@ -87,5 +87,13 @@ public interface ImportManager{
 	 */
 	public Long findFileCount(String pathFile) throws Exception;
 	
+	/**
+	 * 执行存储过程
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 */
+	public String callableProcedure(PageData pd) throws Exception;
+	
 }
 

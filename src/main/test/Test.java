@@ -1,4 +1,5 @@
-import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 用于小测试
@@ -8,8 +9,12 @@ import java.io.File;
 public class Test {
 	
 	public static void main(String[] args) {
-		File file = new File("D:\\importdata\\019090261d1d49aaa1ffbfb47d865528.csv");
-		file.deleteOnExit();
+		
+		String str = "";
+		Pattern p = Pattern.compile("[\u4e00-\u9fa5]|^$");
+		Matcher m = p.matcher(str);
+		System.out.println(m.find());
+		
 	}
 
 }

@@ -18,6 +18,7 @@
 		IGNORE_RULE,
 		NAME_SECTION,
 		ENABLED_FLAG,
+		CALLABLE,
 		IMPORTCONFIG_ID
 	</sql>
 	
@@ -32,6 +33,7 @@
 		#{IGNORE_RULE},
 		#{NAME_SECTION},
 		#{ENABLED_FLAG},
+		#{CALLABLE},
 		#{IMPORTCONFIG_ID}
 	</sql>
 	
@@ -67,7 +69,8 @@
 			FILENAME_FROMAT = #{FILENAME_FROMAT},
 			IGNORE_RULE = #{IGNORE_RULE},
 			NAME_SECTION = #{NAME_SECTION},
-			ENABLED_FLAG = #{ENABLED_FLAG}
+			ENABLED_FLAG = #{ENABLED_FLAG},
+			CALLABLE = #{CALLABLE}
 		where 
 		IMPORTCONFIG_ID = #{IMPORTCONFIG_ID}
 	</update>
@@ -104,6 +107,7 @@
 		<if test="importTempCode != null and importTempCode != ''">
 		   and IMPORT_TEMP_CODE = #{importTempCode,jdbcType=VARCHAR}
 		</if>
+		order by IMPORT_TEMP_CODE ASC
 	</select>	
 	
 	<!-- 列表 -->
@@ -124,6 +128,7 @@
 				    TABLE_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 				)
 		</if>
+		order by IMPORT_TEMP_CODE ASC
 	</select>
 	
 	<!-- 列表(全部) -->

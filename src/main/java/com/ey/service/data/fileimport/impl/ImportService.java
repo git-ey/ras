@@ -126,5 +126,15 @@ public class ImportService implements ImportManager{
 		return (Long)dao.findForObject("ImportMapper.findFileCount", pathFile);
 	}
 	
+	/**
+	 * 执行存储过程
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 */
+	public String callableProcedure(PageData pd) throws Exception {
+		return (String) dao.callProcedure("ImportMapper.callableProcedure", pd);
+	}
+	
 }
 
