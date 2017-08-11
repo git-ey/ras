@@ -133,7 +133,8 @@ public class ImportService implements ImportManager{
 	 * @throws Exception
 	 */
 	public String callableProcedure(PageData pd) throws Exception {
-		return (String) dao.callProcedure("ImportMapper.callableProcedure", pd);
+		dao.callProcedure("ImportMapper.callableProcedure", pd);
+		return pd.getString("RESULT");
 	}
 	
 }

@@ -135,7 +135,11 @@ public class ImportDataWroker implements Callable<Boolean> {
 				}
 				// 文件正常导入后，执行存储过程
 				if(StringUtils.isBlank(importMessage) && StringUtils.isNotBlank(configuration.getCallable())){
-					this.callProcedure(configuration.getCallable(), importFileId);
+					try {
+						this.callProcedure(configuration.getCallable(), importFileId);
+					} catch (Exception ex) {
+						importMessage = "执行存储过程失败:"+com.ey.util.StringUtil.getStringByLength(ex.getMessage(),240);
+					}
 				}
 				// 回写导入文件信息表
 				try {
@@ -301,7 +305,6 @@ public class ImportDataWroker implements Callable<Boolean> {
 		PageData procedurePd = new PageData();
 		procedurePd.put("PROCEDURE_NAME", callable);
 		procedurePd.put("IMPORTFILEID", importFileId);
-		procedurePd.put("RETSTR", "");
 		return importService.callableProcedure(procedurePd);
 	}
 
