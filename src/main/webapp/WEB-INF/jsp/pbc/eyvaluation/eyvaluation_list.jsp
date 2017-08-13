@@ -31,7 +31,7 @@
 						<div class="col-xs-12">
 							
 						<!-- 检索  -->
-						<form action="jeline/list.do" method="post" name="Form" id="Form">
+						<form action="eyvaluation/list.do" method="post" name="Form" id="Form">
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -61,23 +61,22 @@
 									<th class="center">序号</th>
 									<th class="center">基金ID</th>
 									<th class="center">期间</th>
-									<th class="center">凭证序号</th>
-									<th class="center">唯一凭证号</th>
-									<th class="center">入账日期</th>
-									<th class="center">行号</th>
-									<th class="center">科目代码</th>
-									<th class="center">科目说明</th>
+									<th class="center">估值日期</th>
+									<th class="center">EY科目代码</th>
+									<th class="center">应收应付</th>
 									<th class="center">币种</th>
 									<th class="center">汇率</th>
-									<th class="center">借方_原币</th>
-									<th class="center">贷方_原币</th>
-									<th class="center">借方_本位币</th>
-									<th class="center">贷方_本位币</th>
 									<th class="center">数量</th>
-									<th class="center">摘要</th>
-									<th class="center">制单人</th>
-									<th class="center">审核人</th>
-									<th class="center">凭证类别</th>
+									<th class="center">单位成本</th>
+									<th class="center">成本_原币</th>
+									<th class="center">成本_本位币</th>
+									<th class="center">行情收市价</th>
+									<th class="center">市值_原币</th>
+									<th class="center">市值_本位币</th>
+									<th class="center">估值增值_原币</th>
+									<th class="center">估值增值_本位币</th>
+									<th class="center">停牌信息</th>
+									<th class="center">备注</th>
 									<th class="center">启用</th>
 									<th class="center">状态</th>
 									<th class="center">操作</th>
@@ -92,28 +91,27 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.JELINE_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.VALUATION_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.FUND_ID}</td>
 											<td class='center'>${var.PERIOD}</td>
-											<td class='center'>${var.SEQUENCE_NUM}</td>
-											<td class='center'>${var.UNIQUE_JE_NUM}</td>
-											<td class='center'>${var.EFFECTIVE_DATE}</td>
-											<td class='center'>${var.LINE_NUM}</td>
-											<td class='center'>${var.ACCOUNT_NUM}</td>
-											<td class='center'>${var.ACCOUNT_DESCRIPTION}</td>
+											<td class='center'>${var.VDATE}</td>
+											<td class='center'>${var.EY_ACCOUNT_NUM}</td>
+											<td class='center'>${var.APAR}</td>
 											<td class='center'>${var.CURRENCY}</td>
 											<td class='center'>${var.EXCHANGE_RATE}</td>
-											<td class='center'>${var.ENTERED_DR}</td>
-											<td class='center'>${var.ENTERED_CR}</td>
-											<td class='center'>${var.DR_AMOUNT}</td>
-											<td class='center'>${var.CR_AMOUNT}</td>
 											<td class='center'>${var.QUANTITY}</td>
+											<td class='center'>${var.UNIT_COST}</td>
+											<td class='center'>${var.TOTAL_COST_ENTERED}</td>
+											<td class='center'>${var.TOTAL_COST_CNY}</td>
+											<td class='center'>${var.UNIT_PRICE}</td>
+											<td class='center'>${var.MKT_VALUE_ENTERED}</td>
+											<td class='center'>${var.MKT_VALUE_CNY}</td>
+											<td class='center'>${var.APPRECIATION_ENTERED}</td>
+											<td class='center'>${var.APPRECIATION_CNY}</td>
+											<td class='center'>${var.SUSPENSION_INFO}</td>
 											<td class='center'>${var.DESCRIPTION}</td>
-											<td class='center'>${var.MAKER}</td>
-											<td class='center'>${var.CHECKER}</td>
-											<td class='center'>${var.CATEGORY}</td>
 											<td class='center'>${var.ACTIVE}</td>
 											<td class='center'>${var.STATUS}</td>
 											<td class="center">
@@ -122,12 +120,12 @@
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.JELINE_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.VALUATION_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.JELINE_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.VALUATION_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -141,7 +139,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.JELINE_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.VALUATION_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -150,7 +148,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.JELINE_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.VALUATION_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -287,9 +285,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>jeline/goAdd.do';
-			 diag.Width = 800;
-			 diag.Height = 450;
+			 diag.URL = '<%=basePath%>eyvaluation/goAdd.do';
+			 diag.Width = 450;
+			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -311,7 +309,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>jeline/delete.do?JELINE_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>eyvaluation/delete.do?VALUATION_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -325,9 +323,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>jeline/goEdit.do?JELINE_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 450;
+			 diag.URL = '<%=basePath%>eyvaluation/goEdit.do?VALUATION_ID='+Id;
+			 diag.Width = 450;
+			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 
@@ -369,7 +367,7 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>jeline/deleteAll.do?tm='+new Date().getTime(),
+								url: '<%=basePath%>eyvaluation/deleteAll.do?tm='+new Date().getTime(),
 						    	data: {DATA_IDS:str},
 								dataType:'json',
 								//beforeSend: validateData,
@@ -388,7 +386,7 @@
 		
 		//导出excel
 		function toExcel(){
-			window.location.href='<%=basePath%>jeline/excel.do';
+			window.location.href='<%=basePath%>eyvaluation/excel.do';
 		}
 	</script>
 

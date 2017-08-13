@@ -58,7 +58,7 @@
 									<th class="center" style="width:35px;">
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
-									<th class="center" style="width:50px;">序号</th>
+									<th class="center">序号</th>
 									<th class="center">基金ID</th>
 									<th class="center">期间</th>
 									<th class="center">日期</th>
