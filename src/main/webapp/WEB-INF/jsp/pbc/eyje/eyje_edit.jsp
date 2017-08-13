@@ -27,51 +27,45 @@
 				<div class="row">
 					<div class="col-xs-12">
 					
-					<form action="jeline/${msg }.do" name="Form" id="Form" method="post">
-						<input type="hidden" name="JELINE_ID" id="JELINE_ID" value="${pd.JELINE_ID}"/>
+					<form action="eyje/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="EYJE_ID" id="EYJE_ID" value="${pd.EYJE_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="120" placeholder="唯一性标识,如F600001#01" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="120" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="10" placeholder="余额表期间，4位年" title="期间" style="width:98%;"/></td>
+								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="10" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">凭证序号:</td>
-								<td><input type="text" name="SEQUENCE_NUM" id="SEQUENCE_NUM" value="${pd.SEQUENCE_NUM}" maxlength="60" placeholder="凭证序号" title="凭证序号" style="width:98%;"/></td>
+								<td><input type="text" name="SEQUENCE_NUM" id="SEQUENCE_NUM" value="${pd.SEQUENCE_NUM}" maxlength="60" placeholder="这里输入凭证序号" title="凭证序号" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">唯一凭证号:</td>
-								<td><input type="text" name="UNIQUE_JE_NUM" id="UNIQUE_JE_NUM" value="${pd.UNIQUE_JE_NUM}" maxlength="120" placeholder="编码规则：#+8位入账日期+#+凭证编号+#" title="唯一凭证号" style="width:98%;"/></td>
+								<td><input type="text" name="UNIQUE_JE_NUM" id="UNIQUE_JE_NUM" value="${pd.UNIQUE_JE_NUM}" maxlength="120" placeholder="这里输入唯一凭证号" title="唯一凭证号" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">入账日期:</td>
 								<td><input class="span10 date-picker" name="EFFECTIVE_DATE" id="EFFECTIVE_DATE" value="${pd.EFFECTIVE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="入账日期" title="入账日期" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">行号:</td>
-								<td><input type="text" name="LINE_NUM" id="LINE_NUM" value="${pd.LINE_NUM}" maxlength="10" placeholder="凭证行号" title="行号" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">科目代码:</td>
-								<td><input type="text" name="ACCOUNT_NUM" id="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM}" maxlength="120" placeholder="客户的科目代码" title="科目代码" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">科目说明:</td>
-								<td><input type="text" name="ACCOUNT_DESCRIPTION" id="ACCOUNT_DESCRIPTION" value="${pd.ACCOUNT_DESCRIPTION}" maxlength="255" placeholder="客户的科目说明" title="科目说明" style="width:98%;"/></td>
+								<td><input type="text" name="ACCOUNT_NUM" id="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM}" maxlength="120" placeholder="这里输入科目代码" title="科目代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">币种:</td>
-								<td><input type="text" name="CURRENCY" id="CURRENCY" value="${pd.CURRENCY}" maxlength="20" placeholder="代码，原币字段默认为CNY" title="币种" style="width:98%;"/></td>
+								<td><input type="text" name="CURRENCY" id="CURRENCY" value="${pd.CURRENCY}" maxlength="20" placeholder="这里输入币种" title="币种" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">汇率:</td>
 								<td><input type="number" name="EXCHANGE_RATE" id="EXCHANGE_RATE" value="${pd.EXCHANGE_RATE}" maxlength="32" placeholder="这里输入汇率" title="汇率" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">借方_原币:</td>
-								<td><input type="number" name="ENTERED_DR" id="ENTERED_DR" value="${pd.ENTERED_DR}" maxlength="32" placeholder="原币借方" title="借方_原币" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">贷方_原币:</td>
-								<td><input type="number" name="ENTERED_CR" id="ENTERED_CR" value="${pd.ENTERED_CR}" maxlength="32" placeholder="原币贷方" title="贷方_原币" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">借贷方向:</td>
+								<td><input type="text" name="DRCR" id="DRCR" value="${pd.DRCR}" maxlength="30" placeholder="这里输入借贷方向" title="借贷方向" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">原币金额:</td>
+								<td><input type="number" name="AMOUNT_ENTERED" id="AMOUNT_ENTERED" value="${pd.AMOUNT_ENTERED}" maxlength="32" placeholder="这里输入原币金额" title="原币金额" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">借方_本位币:</td>
-								<td><input type="number" name="DR_AMOUNT" id="DR_AMOUNT" value="${pd.DR_AMOUNT}" maxlength="32" placeholder="本位币借方" title="借方_本位币" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">贷方_本位币:</td>
-								<td><input type="number" name="CR_AMOUNT" id="CR_AMOUNT" value="${pd.CR_AMOUNT}" maxlength="32" placeholder="本位币贷方" title="贷方_本位币" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">本位币金额:</td>
+								<td><input type="number" name="AMOUNT_CNY" id="AMOUNT_CNY" value="${pd.AMOUNT_CNY}" maxlength="32" placeholder="这里输入本位币金额" title="本位币金额" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">借正贷负金额:</td>
+								<td><input type="number" name="AMOUNT_CNY_DRCR" id="AMOUNT_CNY_DRCR" value="${pd.AMOUNT_CNY_DRCR}" maxlength="32" placeholder="这里输入借正贷负金额" title="借正贷负金额" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
@@ -86,17 +80,19 @@
 								<td><input type="text" name="CHECKER" id="CHECKER" value="${pd.CHECKER}" maxlength="255" placeholder="这里输入审核人" title="审核人" style="width:98%;"/></td>
 							</tr>
 							<tr>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">记账人:</td>
+								<td><input type="text" name="POSTER" id="POSTER" value="${pd.POSTER}" maxlength="60" placeholder="这里输入记账人" title="记账人" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">凭证类别:</td>
 								<td><input type="text" name="CATEGORY" id="CATEGORY" value="${pd.CATEGORY}" maxlength="255" placeholder="这里输入凭证类别" title="凭证类别" style="width:98%;"/></td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
-									<select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
+							        <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
 								    <option value="Y" <c:if test="${pd.ACTIVE == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">状态:</td>
 								<td>
 									<select class="chosen-select form-control" name="STATUS" id="STATUS" data-placeholder="请选择" style="width:49%;">
@@ -189,16 +185,6 @@
 				$("#EFFECTIVE_DATE").focus();
 			return false;
 			}
-			if($("#LINE_NUM").val()==""){
-				$("#LINE_NUM").tips({
-					side:3,
-		            msg:'请输入行号',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#LINE_NUM").focus();
-			return false;
-			}
 			if($("#ACCOUNT_NUM").val()==""){
 				$("#ACCOUNT_NUM").tips({
 					side:3,
@@ -229,44 +215,34 @@
 				$("#EXCHANGE_RATE").focus();
 			return false;
 			}
-			if($("#ENTERED_DR").val()==""){
-				$("#ENTERED_DR").tips({
+			if($("#DRCR").val()==""){
+				$("#DRCR").tips({
 					side:3,
-		            msg:'请输入借方_原币',
+		            msg:'请输入借贷方向',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#ENTERED_DR").focus();
+				$("#DRCR").focus();
 			return false;
 			}
-			if($("#ENTERED_CR").val()==""){
-				$("#ENTERED_CR").tips({
+			if($("#AMOUNT_CNY").val()==""){
+				$("#AMOUNT_CNY").tips({
 					side:3,
-		            msg:'请输入贷方_原币',
+		            msg:'请输入本位币金额',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#ENTERED_CR").focus();
+				$("#AMOUNT_CNY").focus();
 			return false;
 			}
-			if($("#DR_AMOUNT").val()==""){
-				$("#DR_AMOUNT").tips({
+			if($("#AMOUNT_CNY_DRCR").val()==""){
+				$("#AMOUNT_CNY_DRCR").tips({
 					side:3,
-		            msg:'请输入借方_本位币',
+		            msg:'请输入借正贷负金额',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#DR_AMOUNT").focus();
-			return false;
-			}
-			if($("#CR_AMOUNT").val()==""){
-				$("#CR_AMOUNT").tips({
-					side:3,
-		            msg:'请输入贷方_本位币',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#CR_AMOUNT").focus();
+				$("#AMOUNT_CNY_DRCR").focus();
 			return false;
 			}
 			if($("#DESCRIPTION").val()==""){

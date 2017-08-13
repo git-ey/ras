@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="JelineMapper">
+<mapper namespace="EyJeMapper">
 	
 	<!--表名 -->
 	<sql id="tableName">
-		PBC_JELINE
+		EY_JE
 	</sql>
 	
 	<!-- 字段 -->
@@ -14,15 +14,13 @@
 		SEQUENCE_NUM,	
 		UNIQUE_JE_NUM,	
 		EFFECTIVE_DATE,	
-		LINE_NUM,	
 		ACCOUNT_NUM,	
-		ACCOUNT_DESCRIPTION,	
 		CURRENCY,	
 		EXCHANGE_RATE,	
-		ENTERED_DR,	
-		ENTERED_CR,	
-		DR_AMOUNT,	
-		CR_AMOUNT,	
+		DRCR,	
+		AMOUNT_ENTERED,	
+		AMOUNT_CNY,	
+		AMOUNT_CNY_DRCR,	
 		QUANTITY,	
 		DESCRIPTION,	
 		MAKER,	
@@ -30,7 +28,8 @@
 		CATEGORY,	
 		ACTIVE,	
 		STATUS,	
-		JELINE_ID
+		POSTER,	
+		JE_ID
 	</sql>
 	
 	<!-- 字段值 -->
@@ -40,15 +39,13 @@
 		#{SEQUENCE_NUM},	
 		#{UNIQUE_JE_NUM},	
 		#{EFFECTIVE_DATE},	
-		#{LINE_NUM},	
 		#{ACCOUNT_NUM},	
-		#{ACCOUNT_DESCRIPTION},	
 		#{CURRENCY},	
 		#{EXCHANGE_RATE},	
-		#{ENTERED_DR},	
-		#{ENTERED_CR},	
-		#{DR_AMOUNT},	
-		#{CR_AMOUNT},	
+		#{DRCR},	
+		#{AMOUNT_ENTERED},	
+		#{AMOUNT_CNY},	
+		#{AMOUNT_CNY_DRCR},	
 		#{QUANTITY},	
 		#{DESCRIPTION},	
 		#{MAKER},	
@@ -56,7 +53,8 @@
 		#{CATEGORY},	
 		#{ACTIVE},	
 		#{STATUS},	
-		#{JELINE_ID}
+		#{POSTER},	
+		#{JE_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -75,7 +73,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			JELINE_ID = #{JELINE_ID}
+			JE_ID = #{JE_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -88,15 +86,13 @@
 			SEQUENCE_NUM = #{SEQUENCE_NUM},
 			UNIQUE_JE_NUM = #{UNIQUE_JE_NUM},
 			EFFECTIVE_DATE = #{EFFECTIVE_DATE},
-			LINE_NUM = #{LINE_NUM},
 			ACCOUNT_NUM = #{ACCOUNT_NUM},
-			ACCOUNT_DESCRIPTION = #{ACCOUNT_DESCRIPTION},
 			CURRENCY = #{CURRENCY},
 			EXCHANGE_RATE = #{EXCHANGE_RATE},
-			ENTERED_DR = #{ENTERED_DR},
-			ENTERED_CR = #{ENTERED_CR},
-			DR_AMOUNT = #{DR_AMOUNT},
-			CR_AMOUNT = #{CR_AMOUNT},
+			DRCR = #{DRCR},
+			AMOUNT_ENTERED = #{AMOUNT_ENTERED},
+			AMOUNT_CNY = #{AMOUNT_CNY},
+			AMOUNT_CNY_DRCR = #{AMOUNT_CNY_DRCR},
 			QUANTITY = #{QUANTITY},
 			DESCRIPTION = #{DESCRIPTION},
 			MAKER = #{MAKER},
@@ -104,9 +100,10 @@
 			CATEGORY = #{CATEGORY},
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS},
-		JELINE_ID = JELINE_ID
+			POSTER = #{POSTER},
+		JE_ID = JE_ID
 		where 
-		JELINE_ID = #{JELINE_ID}
+		JE_ID = #{JE_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -116,7 +113,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			JELINE_ID = #{JELINE_ID}
+			JE_ID = #{JE_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -132,7 +129,7 @@
 				<!-- 根据需求自己加检索条件 -->
 					ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
-					ACCOUNT_DESCRIPTION LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				
 				)
 		</if>
@@ -158,7 +155,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			JELINE_ID in
+			JE_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>

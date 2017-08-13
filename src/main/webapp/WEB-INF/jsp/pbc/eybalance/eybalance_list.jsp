@@ -103,7 +103,7 @@
 											<td class='center'>${var.DR_AMOUNT_CNY}</td>
 											<td class='center'>${var.CR_AMOUNT_CNY}</td>
 											<td class='center'>${var.END_DRCR}</td>
-											<td class='center'>${var.END_BALANCE_CR_CNY}</td>
+											<td class='center'>${var.END_BALANCE_CNY}</td>
 											<td class='center'>${var.BEGIN_BALANCE_ENTERED}</td>
 											<td class='center'>${var.DR_AMOUNT_ENTERED}</td>
 											<td class='center'>${var.CR_AMOUNT_ENTERED}</td>

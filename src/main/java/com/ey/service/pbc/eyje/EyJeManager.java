@@ -1,4 +1,4 @@
-package com.ey.service.pbc.jeline;
+package com.ey.service.pbc.eyje;
 
 import java.util.List;
 import com.ey.entity.Page;
@@ -10,7 +10,7 @@ import com.ey.util.PageData;
  * 创建时间：2017-08-13
  * @version
  */
-public interface JelineManager{
+public interface EyJeManager{
 
 	/**新增
 	 * @param pd

@@ -222,7 +222,7 @@ public class EyBalanceController extends BaseController {
 			vpd.put("var9", varOList.get(i).get("DR_AMOUNT_CNY").toString());	//9
 			vpd.put("var10", varOList.get(i).get("CR_AMOUNT_CNY").toString());	//10
 			vpd.put("var11", varOList.get(i).getString("END_DRCR"));	    //11
-			vpd.put("var12", varOList.get(i).get("END_BALANCE_CR_CNY").toString());	//12
+			vpd.put("var12", varOList.get(i).get("END_BALANCE_CNY").toString());	//12
 			vpd.put("var13", varOList.get(i).get("BEGIN_BALANCE_ENTERED").toString());	//13
 			vpd.put("var14", varOList.get(i).get("DR_AMOUNT_ENTERED").toString());	//14
 			vpd.put("var15", varOList.get(i).get("CR_AMOUNT_ENTERED").toString());	//15

@@ -69,7 +69,7 @@
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">年末本位币贷方:</td>
-								<td><input type="number" name="END_BALANCE_CR_CNY" id="END_BALANCE_CR_CNY" value="${pd.END_BALANCE_CR_CNY}" maxlength="32" placeholder="余额表期末余额" title="年末本位币贷方" style="width:98%;"/></td>
+								<td><input type="number" name="END_BALANCE_CNY" id="END_BALANCE_CNY" value="${pd.END_BALANCE_CNY}" maxlength="32" placeholder="余额表期末余额" title="年末本位币贷方" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">年初外币:</td>
 								<td><input type="number" name="BEGIN_BALANCE_ENTERED" id="BEGIN_BALANCE_ENTERED" value="${pd.BEGIN_BALANCE_ENTERED}" maxlength="32" placeholder="这里输入年初外币" title="年初外币" style="width:98%;"/></td>
 							</tr>
@@ -251,14 +251,14 @@
 				$("#END_DRCR").focus();
 			return false;
 			}
-			if($("#END_BALANCE_CR_CNY").val()==""){
-				$("#END_BALANCE_CR_CNY").tips({
+			if($("#END_BALANCE_CNY").val()==""){
+				$("#END_BALANCE_CNY").tips({
 					side:3,
 		            msg:'请输入年末本位币贷方',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#END_BALANCE_CR_CNY").focus();
+				$("#END_BALANCE_CNY").focus();
 			return false;
 			}
 			if($("#BEGIN_BALANCE_ENTERED").val()==""){
