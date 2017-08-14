@@ -66,7 +66,7 @@ public class CsvImportor extends FileImportor {
 		List<ImportConfigCell> lists = configuration.getImportCells();
 		List<Map> results = Lists.newLinkedList();
 		// 引号，处理MySQL插入数据返回的Map用到
-		String quotes = null;
+		String quotes = "";
 		if (StringUtils.isNotBlank(configuration.getTableName())) {
 			quotes = "'";
 		}
@@ -78,7 +78,7 @@ public class CsvImportor extends FileImportor {
 			while ((readline = br.readLine()) != null) // 读取到的内容给line变量
 			{
 				if (idx >= startRow) {
-					line = readline;
+					line = readline.replace("\"", quotes);
 					Map<String, Object> maps = Maps.newLinkedHashMap();
 					maps.put(MapResult.IS_LINE_LEGAL_KEY, true);
 					String[] rowLine = line.split("`");// 按照`符号分割处理

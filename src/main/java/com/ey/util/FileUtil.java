@@ -251,7 +251,7 @@ public class FileUtil {
 	}
 
 	public static void main(String[] args) {
-		List<File> files = FileUtil.getPathFile("D:\\importdata","testImport");
+		List<File> files = FileUtil.getPathFile("D:\\importdata",".*JE.xlsx$");
 		for (File file : files) {
 			System.out.println(file.getName());
 		}

@@ -152,26 +152,6 @@
 				$("#IMPORT_FILE_TYPE").focus();
 			return false;
 			}
-			if($("#TABLE_NAME").val()==""){
-				$("#TABLE_NAME").tips({
-					side:3,
-		            msg:'请输入导入目标表',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#TABLE_NAME").focus();
-			return false;
-			}
-			if($("#FILENAME_FROMAT").val()=="" && $("#IMPORT_FILE_TYPE").val()=="EXCEL"){
-				$("#FILENAME_FROMAT").tips({
-					side:3,
-		            msg:'请输入导入文件格式',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#FILENAME_FROMAT").focus();
-			return false;
-			}
 			$("#Form").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();

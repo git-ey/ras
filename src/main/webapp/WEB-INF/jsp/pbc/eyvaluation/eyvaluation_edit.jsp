@@ -44,48 +44,44 @@
 								<td><input type="text" name="EY_ACCOUNT_NUM" id="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM}" maxlength="255" placeholder="根据映射表映射" title="EY科目代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">应收应付:</td>
-								<td><input type="text" name="APAR" id="APAR" value="${pd.APAR}" maxlength="30" placeholder="AR/AP" title="应收应付" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">币种:</td>
 								<td><input type="text" name="CURRENCY" id="CURRENCY" value="${pd.CURRENCY}" maxlength="30" placeholder="这里输入币种" title="币种" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">汇率:</td>
 								<td><input type="number" name="EXCHANGE_RATE" id="EXCHANGE_RATE" value="${pd.EXCHANGE_RATE}" maxlength="32" placeholder="这里输入汇率" title="汇率" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
 								<td><input type="number" name="QUANTITY" id="QUANTITY" value="${pd.QUANTITY}" maxlength="32" placeholder="这里输入数量" title="数量" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">单位成本:</td>
 								<td><input type="number" name="UNIT_COST" id="UNIT_COST" value="${pd.UNIT_COST}" maxlength="32" placeholder="这里输入单位成本" title="单位成本" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">成本_原币:</td>
 								<td><input type="number" name="TOTAL_COST_ENTERED" id="TOTAL_COST_ENTERED" value="${pd.TOTAL_COST_ENTERED}" maxlength="32" placeholder="这里输入成本_原币" title="成本_原币" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">成本_本位币:</td>
 								<td><input type="number" name="TOTAL_COST_CNY" id="TOTAL_COST_CNY" value="${pd.TOTAL_COST_CNY}" maxlength="32" placeholder="这里输入成本_本位币" title="成本_本位币" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">行情收市价:</td>
 								<td><input type="number" name="UNIT_PRICE" id="UNIT_PRICE" value="${pd.UNIT_PRICE}" maxlength="32" placeholder="这里输入行情收市价" title="行情收市价" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">市值_原币:</td>
 								<td><input type="number" name="MKT_VALUE_ENTERED" id="MKT_VALUE_ENTERED" value="${pd.MKT_VALUE_ENTERED}" maxlength="32" placeholder="这里输入市值_原币" title="市值_原币" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">市值_本位币:</td>
 								<td><input type="number" name="MKT_VALUE_CNY" id="MKT_VALUE_CNY" value="${pd.MKT_VALUE_CNY}" maxlength="32" placeholder="这里输入市值_本位币" title="市值_本位币" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值增值_原币:</td>
 								<td><input type="number" name="APPRECIATION_ENTERED" id="APPRECIATION_ENTERED" value="${pd.APPRECIATION_ENTERED}" maxlength="32" placeholder="这里输入估值增值_原币" title="估值增值_原币" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值增值_本位币:</td>
 								<td><input type="number" name="APPRECIATION_CNY" id="APPRECIATION_CNY" value="${pd.APPRECIATION_CNY}" maxlength="32" placeholder="这里输入估值增值_本位币" title="估值增值_本位币" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">停牌信息:</td>
 								<td><input type="text" name="SUSPENSION_INFO" id="SUSPENSION_INFO" value="${pd.SUSPENSION_INFO}" maxlength="1200" placeholder="这里输入停牌信息" title="停牌信息" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">备注:</td>
 								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" placeholder="这里输入备注" title="备注" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
 									<select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
@@ -93,28 +89,30 @@
 								    <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">状态:</td>
 								<td>
 									<select class="chosen-select form-control" name="STATUS" id="STATUS" data-placeholder="请选择" style="width:49%;">
 								    <option value="INITIAL" <c:if test="${pd.STATUS == 'INITIAL'}">selected</c:if>>INITIAL</option>
 								    </select>
 								</td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">属性1:</td>
 								<td><input type="text" name="ATTR1" id="ATTR1" value="${pd.ATTR1}" maxlength="255" placeholder="这里输入属性1" title="属性1" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">属性2:</td>
 								<td><input type="text" name="ATTR2" id="ATTR2" value="${pd.ATTR2}" maxlength="255" placeholder="这里输入属性2" title="属性2" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">属性3:</td>
 								<td><input type="text" name="ATTR3" id="ATTR3" value="${pd.ATTR3}" maxlength="255" placeholder="这里输入属性3" title="属性3" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">属性4:</td>
 								<td><input type="text" name="ATTR4" id="ATTR4" value="${pd.ATTR4}" maxlength="255" placeholder="这里输入属性4" title="属性4" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">属性5:</td>
 								<td><input type="text" name="ATTR5" id="ATTR5" value="${pd.ATTR5}" maxlength="255" placeholder="这里输入属性5" title="属性5" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">属性6:</td>
 								<td><input type="text" name="ATTR6" id="ATTR6" value="${pd.ATTR6}" maxlength="255" placeholder="这里输入属性6" title="属性6" style="width:98%;"/></td>
 							</tr>

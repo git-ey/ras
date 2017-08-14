@@ -75,7 +75,7 @@ public class ExcelImportor extends FileImportor {
 		int phyRow = sheet.getPhysicalNumberOfRows();
 		List<Map> results = Lists.newLinkedList();
 		// 引号，处理MySQL插入数据返回的Map用到
-		String quotes = null;
+		String quotes = "";
 		if (StringUtils.isNotBlank(configuration.getTableName())) {
 			quotes = "'";
 		}

@@ -1,5 +1,4 @@
 package com.ey.util.fileimport;
-import java.io.File;
 /* ====================================================================
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
@@ -379,11 +378,8 @@ public class XlsxToCsv {
 	}
 
 	public static void main(String[] args) throws Exception {
-		XlsxToCsv xlsx2csv = new XlsxToCsv("D:\\importdata\\富国_F100066#01_富国纯债债券发起_20161231_05#JE.xlsx",
-				"D:\\importdata\\富国_F100066#01_富国纯债债券发起_20161231_05#JE.csv");
+		XlsxToCsv xlsx2csv = new XlsxToCsv("D:\\JavaDev\\workspace_ssm\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ras\\uploadFiles\\file\\8637a07158c74d9eac50366677d2062e.xlsx",
+				"D:\\JavaDev\\workspace_ssm\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ras\\uploadFiles\\file\\8637a07158c74d9eac50366677d2062e.csv");
 		xlsx2csv.process();
-		System.out.println("============");
-		File file = new File("D:\\importdata\\富国_F100066#01_富国纯债债券发起_20161231_05#JE.csv");
-		file.deleteOnExit();
 	}
 }
