@@ -47,14 +47,13 @@
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">单元格类型:</td>
 								<td>
-								    <div class="sel"></div>
 								    <select class="chosen-select form-control" name="CELLTYPE" id="id" data-placeholder="请选择" style="width:60%;">
 								    <option value="Int" <c:if test="${pd.CELLTYPE == 'Int'}">selected</c:if>>Int</option>
 								    <option value="Float" <c:if test="${pd.CELLTYPE == 'Float'}">selected</c:if>>Float</option>
 								    <option value="String" <c:if test="${pd.CELLTYPE == 'String'}">selected</c:if>>String</option>
 								    <option value="Date" <c:if test="${pd.CELLTYPE == 'Date'}">selected</c:if>>Date</option>
 								    <option value="BigDecimal" <c:if test="${pd.CELLTYPE == 'BigDecimal'}">selected</c:if>>BigDecimal</option>
-								    <div class="sel"></div>
+									</select>
 								</td>
 							</tr>
 							<tr>
