@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
 import com.ey.util.PageData;
-import com.ey.service.pbc.eyvaluation.EyvaluationManager;
+import com.ey.service.pbc.eyvaluation.EyValuationManager;
 
 /** 
  * 说明： EY估值表
@@ -15,7 +15,7 @@ import com.ey.service.pbc.eyvaluation.EyvaluationManager;
  * @version
  */
 @Service("eyvaluationService")
-public class EyvaluationService implements EyvaluationManager{
+public class EyValuationService implements EyValuationManager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;

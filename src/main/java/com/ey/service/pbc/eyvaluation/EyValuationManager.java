@@ -10,7 +10,7 @@ import com.ey.util.PageData;
  * 创建时间：2017-08-13
  * @version
  */
-public interface EyvaluationManager{
+public interface EyValuationManager{
 
 	/**新增
 	 * @param pd

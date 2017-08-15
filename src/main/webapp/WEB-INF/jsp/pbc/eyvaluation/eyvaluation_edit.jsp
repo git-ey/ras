@@ -191,16 +191,6 @@
 				$("#EY_ACCOUNT_NUM").focus();
 			return false;
 			}
-			if($("#APAR").val()==""){
-				$("#APAR").tips({
-					side:3,
-		            msg:'请输入应收应付',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#APAR").focus();
-			return false;
-			}
 			if($("#CURRENCY").val()==""){
 				$("#CURRENCY").tips({
 					side:3,

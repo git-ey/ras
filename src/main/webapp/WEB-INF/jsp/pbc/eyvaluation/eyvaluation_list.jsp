@@ -63,7 +63,6 @@
 									<th class="center">期间</th>
 									<th class="center">估值日期</th>
 									<th class="center">EY科目代码</th>
-									<th class="center">应收应付</th>
 									<th class="center">币种</th>
 									<th class="center">汇率</th>
 									<th class="center">数量</th>
@@ -98,7 +97,6 @@
 											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.VDATE}</td>
 											<td class='center'>${var.EY_ACCOUNT_NUM}</td>
-											<td class='center'>${var.APAR}</td>
 											<td class='center'>${var.CURRENCY}</td>
 											<td class='center'>${var.EXCHANGE_RATE}</td>
 											<td class='center'>${var.QUANTITY}</td>

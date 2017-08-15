@@ -23,7 +23,7 @@ import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
 import com.ey.util.Jurisdiction;
 import com.ey.util.Tools;
-import com.ey.service.pbc.eyvaluation.EyvaluationManager;
+import com.ey.service.pbc.eyvaluation.EyValuationManager;
 
 /** 
  * 说明：EY估值表
@@ -32,11 +32,11 @@ import com.ey.service.pbc.eyvaluation.EyvaluationManager;
  */
 @Controller
 @RequestMapping(value="/eyvaluation")
-public class EyvaluationController extends BaseController {
+public class EyValuationController extends BaseController {
 	
 	String menuUrl = "eyvaluation/list.do"; //菜单地址(权限用)
 	@Resource(name="eyvaluationService")
-	private EyvaluationManager eyvaluationService;
+	private EyValuationManager eyvaluationService;
 	
 	/**保存
 	 * @param
