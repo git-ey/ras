@@ -1,4 +1,4 @@
-package com.ey.controller.system.concparam;
+package com.ey.controller.system.concruning;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -21,23 +21,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
-import com.ey.service.system.concparam.ConcParamManager;
+import com.ey.service.system.concruning.ConcRuningManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Jurisdiction;
 import com.ey.util.PageData;
+import com.ey.util.Tools;
 
 /** 
- * 说明：并发程序管理(明细)
+ * 说明：并发工作台
  * 创建人：andychen
  * 创建时间：2017-08-15
  */
 @Controller
-@RequestMapping(value="/concparam")
-public class ConcParamController extends BaseController {
+@RequestMapping(value="/concruning")
+public class ConcRuningController extends BaseController {
 	
-	String menuUrl = "concparam/list.do"; //菜单地址(权限用)
-	@Resource(name="concParamService")
-	private ConcParamManager concParamService;
+	String menuUrl = "concruning/list.do"; //菜单地址(权限用)
+	@Resource(name="concruningService")
+	private ConcRuningManager concruningService;
 	
 	/**保存
 	 * @param
@@ -45,13 +46,18 @@ public class ConcParamController extends BaseController {
 	 */
 	@RequestMapping(value="/save")
 	public ModelAndView save() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"新增ConcParam");
+		logBefore(logger, Jurisdiction.getUsername()+"新增ConcRuning");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("CONC_PARAM_ID", this.get32UUID());	//主键
-		concParamService.save(pd);
+		pd.put("CONCRUNING_ID", this.get32UUID());	//主键
+		pd.put("START_DATETIME", Tools.date2Str(new Date()));	//开始时间
+		pd.put("END_DATETIME", Tools.date2Str(new Date()));	//结束时间
+		pd.put("STATUS", "");	//运行状态
+		pd.put("MESSAGE", "");	//运行消息
+		pd.put("OPERATOR", "");	//运行人
+		concruningService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -63,11 +69,11 @@ public class ConcParamController extends BaseController {
 	 */
 	@RequestMapping(value="/delete")
 	public void delete(PrintWriter out) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"删除ConcParam");
+		logBefore(logger, Jurisdiction.getUsername()+"删除ConcRuning");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		concParamService.delete(pd);
+		concruningService.delete(pd);
 		out.write("success");
 		out.close();
 	}
@@ -78,12 +84,12 @@ public class ConcParamController extends BaseController {
 	 */
 	@RequestMapping(value="/edit")
 	public ModelAndView edit() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"修改ConcParam");
+		logBefore(logger, Jurisdiction.getUsername()+"修改ConcRuning");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		concParamService.edit(pd);
+		concruningService.edit(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -95,7 +101,7 @@ public class ConcParamController extends BaseController {
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView list(Page page) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"列表ConcParam");
+		logBefore(logger, Jurisdiction.getUsername()+"列表ConcRuning");
 		//if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限(无权查看时页面会有提示,如果不注释掉这句代码就无法进入列表页面,所以根据情况是否加入本句代码)
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
@@ -105,8 +111,8 @@ public class ConcParamController extends BaseController {
 			pd.put("keywords", keywords.trim());
 		}
 		page.setPd(pd);
-		List<PageData>	varList = concParamService.list(page);	//列出ConcParam列表
-		mv.setViewName("system/concparam/concparam_list");
+		List<PageData>	varList = concruningService.list(page);	//列出ConcRuning列表
+		mv.setViewName("system/concruning/concruning_list");
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
@@ -122,7 +128,7 @@ public class ConcParamController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		mv.setViewName("system/concparam/concparam_edit");
+		mv.setViewName("system/concruning/concruning_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -137,8 +143,8 @@ public class ConcParamController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd = concParamService.findById(pd);	//根据ID读取
-		mv.setViewName("system/concparam/concparam_edit");
+		pd = concruningService.findById(pd);	//根据ID读取
+		mv.setViewName("system/concruning/concruning_edit");
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;
@@ -151,7 +157,7 @@ public class ConcParamController extends BaseController {
 	@RequestMapping(value="/deleteAll")
 	@ResponseBody
 	public Object deleteAll() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"批量删除ConcParam");
+		logBefore(logger, Jurisdiction.getUsername()+"批量删除ConcRuning");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return null;} //校验权限
 		PageData pd = new PageData();		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -160,7 +166,7 @@ public class ConcParamController extends BaseController {
 		String DATA_IDS = pd.getString("DATA_IDS");
 		if(null != DATA_IDS && !"".equals(DATA_IDS)){
 			String ArrayDATA_IDS[] = DATA_IDS.split(",");
-			concParamService.deleteAll(ArrayDATA_IDS);
+			concruningService.deleteAll(ArrayDATA_IDS);
 			pd.put("msg", "ok");
 		}else{
 			pd.put("msg", "no");

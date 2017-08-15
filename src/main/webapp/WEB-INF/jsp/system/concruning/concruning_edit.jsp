@@ -27,35 +27,17 @@
 				<div class="row">
 					<div class="col-xs-12">
 					
-					<form action="concparam/${msg}.do" name="Form" id="Form" method="post">
-						<input type="hidden" name="CONC_PARAM_ID" id="CONC_PARAM_ID" value="${pd.CONC_PARAM_ID}"/>
-						<input type="hidden" name="CONC_ID" id="CONC_ID" value="${pd.CONC_ID}"/>
+					<form action="concruning/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="CONCRUNING_ID" id="CONCRUNING_ID" value="${pd.CONCRUNING_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">序号:</td>
-								<td><input type="number" name="SEQ" id="SEQ" value="${pd.SEQ}" maxlength="60" title="序号" style="width:49%;"/></td>
+								<td style="width:75px;text-align: right;padding-top: 13px;">程序代码:</td>
+								<td><input type="text" name="CONC_CODE" id="CONC_CODE" value="${pd.CONC_CODE}" maxlength="60" placeholder="这里输入程序代码" title="程序代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">参数代码:</td>
-								<td><input type="text" name="PARAM_CODE" id="PARAM_CODE" value="${pd.PARAM_CODE}" maxlength="60" title="参数代码" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">参数名称:</td>
-								<td><input type="text" name="PARAM_NAME" id="PARAM_NAME" value="${pd.PARAM_NAME}" maxlength="120"  title="参数名称" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">参数类型:</td>
-								<td>
-								    <select class="chosen-select form-control" name="PARAM_TYPE" id="PARAM_TYPE" data-placeholder="请选择" style="width:60%;">
-								    <option value="String" <c:if test="${pd.PARAM_TYPE == 'String'}">selected</c:if>>String</option>
-								    <option value="Date" <c:if test="${pd.PARAM_TYPE == 'Date'}">selected</c:if>>Date</option>
-								    </select>
-								</td>
-							</tr>
-							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">参数值:</td>
-								<td><input type="text" name="CONC_VALUE" id="CONC_VALUE" value="${pd.CONC_VALUE}" maxlength="255"  title="参数值" style="width:98%;"/></td>
+								<td style="width:75px;text-align: right;padding-top: 13px;">程序名称:</td>
+								<td><input type="text" name="CONC_NAME" id="CONC_NAME" value="${pd.CONC_NAME}" maxlength="240" placeholder="这里输入程序名称" title="程序名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">
@@ -92,44 +74,24 @@
 		$(top.hangge());
 		//保存
 		function save(){
-			if($("#SEQ").val()==""){
-				$("#SEQ").tips({
+			if($("#CONC_CODE").val()==""){
+				$("#CONC_CODE").tips({
 					side:3,
-		            msg:'请输入参数序号',
+		            msg:'请输入程序代码',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#SEQ").focus();
+				$("#CONC_CODE").focus();
 			return false;
 			}
-			if($("#PARAM_CODE").val()==""){
-				$("#PARAM_CODE").tips({
+			if($("#CONC_NAME").val()==""){
+				$("#CONC_NAME").tips({
 					side:3,
-		            msg:'请输入参数代码',
+		            msg:'请输入程序名称',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#PARAM_CODE").focus();
-			return false;
-			}
-			if($("#PARAM_NAME").val()==""){
-				$("#PARAM_NAME").tips({
-					side:3,
-		            msg:'请输入参数名称',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#PARAM_NAME").focus();
-			return false;
-			}
-			if($("#PARAM_TYPE").val()==""){
-				$("#PARAM_TYPE").tips({
-					side:3,
-		            msg:'请输入参数类型',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#PARAM_TYPE").focus();
+				$("#CONC_NAME").focus();
 			return false;
 			}
 			$("#Form").submit();

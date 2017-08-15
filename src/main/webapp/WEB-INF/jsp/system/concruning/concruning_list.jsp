@@ -29,9 +29,36 @@
 				<div class="page-content">
 					<div class="row">
 						<div class="col-xs-12">
-						<form action="concparam/list.do" method="post" name="Form" id="Form">
-						<input type="hidden" name="CONC_ID" id="CONC_ID" value="${pd.CONC_ID}"/>
-						<div style="overflow-x: scroll; scrolling: auto;width: 100%;">
+							
+						<!-- 检索  -->
+						<form action="concruning/list.do" method="post" name="Form" id="Form">
+						<table style="margin-top:5px;">
+							<tr>
+								<td>
+									<div class="nav-search">
+										<span class="input-icon">
+											<input type="text" placeholder="这里输入关键词" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }" placeholder="这里输入关键词"/>
+											<i class="ace-icon fa fa-search nav-search-icon"></i>
+										</span>
+									</div>
+								</td>
+								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
+								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
+								<td style="vertical-align:top;padding-left:2px;">
+								 	<select class="chosen-select form-control" name="STATUS" id="id" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
+									<option value=""></option>
+									<option value="S" <c:if test="${pd.STATUS == 'S'}">selected</c:if>>成功</option>
+									<option value="W" <c:if test="${pd.STATUS == 'W'}">selected</c:if>>警告</option>
+									<option value="E" <c:if test="${pd.STATUS == 'E'}">selected</c:if>>失败</option>
+								  	</select>
+								</td>
+								<c:if test="${QX.cha == 1 }">
+								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
+								</c:if>
+							</tr>
+						</table>
+						<!-- 检索  -->
+					
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
@@ -39,10 +66,13 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
-									<th class="center">参数代码</th>
-									<th class="center">参数名称</th>
-									<th class="center">参数类型</th>
-									<th class="center">参数值</th>
+									<th class="center">程序代码</th>
+									<th class="center">程序名称</th>
+									<th class="center">开始时间</th>
+									<th class="center">结束时间</th>
+									<th class="center">运行人</th>
+									<th class="center">运行状态</th>
+									<th class="center">运行消息</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -55,25 +85,28 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.CONC_PARAM_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.CONCRUNING_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
-											<td class='center' style="width: 30px;">${var.SEQ}</td>
-											<td class='center'>${var.PARAM_CODE}</td>
-											<td class='center'>${var.PARAM_NAME}</td>
-											<td class='center'>${var.PARAM_TYPE}</td>
-											<td class='center'>${var.CONC_VALUE}</td>
+											<td class='center' style="width: 30px;">${vs.index+1}</td>
+											<td class='center'>${var.CONC_CODE}</td>
+											<td class='center'>${var.CONC_NAME}</td>
+											<td class='center'>${var.START_DATETIME}</td>
+											<td class='center'>${var.END_DATETIME}</td>
+											<td class='center'>${var.OPERATOR}</td>
+											<td class='center'>${var.STATUS}</td>
+											<td class='center'>${var.MESSAGE}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.CONC_PARAM_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.CONCRUNING_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.CONC_PARAM_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.CONCRUNING_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -87,7 +120,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.CONC_PARAM_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.CONCRUNING_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -96,7 +129,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.CONC_PARAM_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.CONCRUNING_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -125,8 +158,6 @@
 							</c:choose>
 							</tbody>
 						</table>
-						</div>
-						
 						<div class="page-header position-relative">
 						<table style="width:100%;">
 							<tr>
@@ -235,7 +266,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>concparam/goAdd.do?CONC_ID=${pd.CONC_ID}';
+			 diag.URL = '<%=basePath%>concruning/goAdd.do';
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -243,7 +274,11 @@
 		     diag.ShowMinButton = true;		//最小化按钮
 			 diag.CancelEvent = function(){ //关闭事件
 				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					tosearch();
+					 if('${page.currentPage}' == '0'){
+						 tosearch();
+					 }else{
+						 tosearch();
+					 }
 				}
 				diag.close();
 			 };
@@ -255,7 +290,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>concparam/delete.do?CONC_PARAM_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>concruning/delete.do?CONCRUNING_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -269,12 +304,12 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>concparam/goEdit.do?CONC_PARAM_ID='+Id;
+			 diag.URL = '<%=basePath%>concruning/goEdit.do?CONCRUNING_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮
+		     diag.ShowMinButton = true;		//最小化按钮 
 			 diag.CancelEvent = function(){ //关闭事件
 				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
 					 tosearch();
@@ -313,7 +348,7 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>concparam/deleteAll.do?tm='+new Date().getTime(),
+								url: '<%=basePath%>concruning/deleteAll.do?tm='+new Date().getTime(),
 						    	data: {DATA_IDS:str},
 								dataType:'json',
 								//beforeSend: validateData,
@@ -329,7 +364,7 @@
 				}
 			});
 		};
-
+		
 	</script>
 
 

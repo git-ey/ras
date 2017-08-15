@@ -1,32 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ConcParamMapper">
+<mapper namespace="ConcRuningMapper">
 	
 	<!--表名 -->
 	<sql id="tableName">
-		SYS_CONC_PARAM
+		SYS_CONCRUNING
 	</sql>
 	
 	<!-- 字段 -->
 	<sql id="Field">
-	    SEQ,
-		PARAM_CODE,	
-		PARAM_NAME,	
-		PARAM_TYPE,	
-		CONC_VALUE,	
-		CONC_PARAM_ID,
-		CONC_ID
+		CONC_CODE,	
+		START_DATETIME,	
+		END_DATETIME,	
+		STATUS,	
+		MESSAGE,	
+		OPERATOR,	
+		CONC_NAME,	
+		CONCRUNING_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-	    #{SEQ},
-		#{PARAM_CODE},	
-		#{PARAM_NAME},	
-		#{PARAM_TYPE},	
-		#{CONC_VALUE},	
-		#{CONC_PARAM_ID},
-		#{CONC_ID}
+		#{CONC_CODE},	
+		#{START_DATETIME},	
+		#{END_DATETIME},	
+		#{STATUS},	
+		#{MESSAGE},	
+		#{OPERATOR},	
+		#{CONC_NAME},	
+		#{CONCRUNING_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -45,7 +47,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			CONC_PARAM_ID = #{CONC_PARAM_ID}
+			CONCRUNING_ID = #{CONCRUNING_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -53,13 +55,11 @@
 		update
 		<include refid="tableName"></include>
 		set 
-		    SEQ = #{SEQ},
-			PARAM_CODE = #{PARAM_CODE},
-			PARAM_NAME = #{PARAM_NAME},
-			PARAM_TYPE = #{PARAM_TYPE},
-			CONC_VALUE = #{CONC_VALUE}
+			CONC_CODE = #{CONC_CODE},
+			CONC_NAME = #{CONC_NAME},
+		CONCRUNING_ID = CONCRUNING_ID
 		where 
-		CONC_PARAM_ID = #{CONC_PARAM_ID}
+		CONCRUNING_ID = #{CONCRUNING_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -69,7 +69,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			CONC_PARAM_ID = #{CONC_PARAM_ID}
+			CONCRUNING_ID = #{CONCRUNING_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -78,8 +78,17 @@
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include>
-		where 
-		CONC_ID = #{pd.CONC_ID}
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!--	根据需求自己加检索条件
+					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				-->
+				)
+		</if>
 	</select>
 	
 	<!-- 列表(全部) -->
@@ -95,19 +104,9 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			CONC_PARAM_ID in
+			CONCRUNING_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>
 	</delete>
-	
-	<!-- 查询明细总数 -->
-	<select id="findCount" parameterType="pd" resultType="pd">
-		select
-			count(*) zs
-		from 
-			<include refid="tableName"></include>
-		where
-			CONC_ID = #{CONC_ID}
-	</select>
 </mapper>
