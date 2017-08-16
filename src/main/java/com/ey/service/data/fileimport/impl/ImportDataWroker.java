@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.ey.entity.system.ImportConfig;
 import com.ey.service.data.fileimport.ImportManager;
 import com.ey.service.system.importconfig.ImportConfigManager;
+import com.ey.util.AppUtil;
 import com.ey.util.FileUtil;
 import com.ey.util.Logger;
 import com.ey.util.PageData;
@@ -28,14 +29,11 @@ import com.ey.util.fileimport.XlsxToCsv;
 public class ImportDataWroker implements Callable<Boolean> {
 
 	protected Logger logger = Logger.getLogger(ImportDataWroker.class);
+
 	/**
-	 * 插入数据的阀值数
+	 * 附加字段，导入文件ID及序号
 	 */
-	private final int INSERT_COUNT = 500;
-	/**
-	 * 导入文件ID标识
-	 */
-	private final String IMPORT_FILE_ID = "`import_file_id`";
+	private final String ADDITIONAL_FIELDS = "`import_file_id`,`SEQ`";
 	private final int NAME_SEG_CNT = 6;
 	// 数据导入配置解析器
 	private ImportConfigParser importConfigParser;
@@ -263,11 +261,11 @@ public class ImportDataWroker implements Callable<Boolean> {
 				}
 			}
 			if (cnt == 1) {
-				sbf.append(IMPORT_FILE_ID);
+				sbf.append(ADDITIONAL_FIELDS);
 			}
-			sbv.append("'" + importFileId + "'),"); // 绑定导入文件ID
+			sbv.append("'" + importFileId + "',"+ cnt +"),"); // 绑定导入文件ID
 			// 100次保存一次
-			if (cnt % INSERT_COUNT == 0) {
+			if (cnt % AppUtil.BATCH_INSERT_COUNT == 0) {
 				String tableValue = sbv.toString().replace(",)", ")").replace("\"", "'");
 				// 插入数据
 				try {

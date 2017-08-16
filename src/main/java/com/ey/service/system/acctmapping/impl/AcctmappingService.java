@@ -28,6 +28,14 @@ public class AcctmappingService implements AcctmappingManager{
 		dao.save("AcctmappingMapper.save", pd);
 	}
 	
+	/**批量新增
+	 * @param pds
+	 * @throws Exception
+	 */
+	public void saveBatch(List<PageData> pds) throws Exception {
+		dao.save("AcctmappingMapper.saveBatch", pds);
+	}
+	
 	/**删除
 	 * @param pd
 	 * @throws Exception

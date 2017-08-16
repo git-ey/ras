@@ -101,11 +101,11 @@
 		   IMPORT_TEMP_CODE
 		from
 		<include refid="tableName"></include>
-		where 
-		   ENABLED_FLAG = 'Y'
-		   and TABLE_NAME IS NOT NULL
+		where ENABLED_FLAG = 'Y'
+		  and TABLE_NAME != ''
+          and FILENAME_FROMAT != ''
 		<if test="importTempCode != null and importTempCode != ''">
-		   and IMPORT_TEMP_CODE = #{importTempCode,jdbcType=VARCHAR}
+		  and IMPORT_TEMP_CODE = #{importTempCode,jdbcType=VARCHAR}
 		</if>
 		order by IMPORT_TEMP_CODE ASC
 	</select>	

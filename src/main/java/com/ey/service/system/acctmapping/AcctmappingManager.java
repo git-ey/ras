@@ -18,6 +18,12 @@ public interface AcctmappingManager{
 	 */
 	public void save(PageData pd)throws Exception;
 	
+	/**批量新增
+	 * @param pds
+	 * @throws Exception
+	 */
+	public void saveBatch(List<PageData> pds) throws Exception;
+	
 	/**删除
 	 * @param pd
 	 * @throws Exception

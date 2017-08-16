@@ -228,7 +228,7 @@ public class AcctmappingController extends BaseController {
 			) throws Exception{
 		logManager.save(Jurisdiction.getUsername(), "从EXCEL导入到数据库");
 		ModelAndView mv = this.getModelAndView();
-		PageData pd = new PageData();
+		List<PageData> pds = new ArrayList<PageData>();
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;}
 		if (null != file && !file.isEmpty()) {
 			String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE;
@@ -271,7 +271,9 @@ public class AcctmappingController extends BaseController {
 			}
 			/*存入数据库操作======================================*/
 			List<Map> maps = mapResult.getResult();
+			int idx = 1;
 			for (Map<String, Object> map : maps) {
+				PageData pd = new PageData();
 				pd.put("ACCTMAPPING_ID", UuidUtil.get32UUID());
 				pd.put("FUND_ID", map.get("FUND_ID"));
 				pd.put("ACCOUNT_NUM", map.get("ACCOUNT_NUM"));
@@ -289,7 +291,19 @@ public class AcctmappingController extends BaseController {
 				pd.put("ATTR6", map.get("ATTR6"));
 				pd.put("ACTIVE", map.get("ACTIVE"));
 				pd.put("STATUS", "");
-				acctmappingService.save(pd);
+				pds.add(pd);
+				if(idx%AppUtil.BATCH_INSERT_COUNT == 0){
+					// 批量插入
+					acctmappingService.saveBatch(pds);
+					// 清空集合
+					pds.clear();
+				}
+				idx++;
+			}
+			// 处理最后剩余数量
+			if(pds.size() > 0){
+				// 批量插入
+				acctmappingService.saveBatch(pds);
 			}
 			mv.addObject("msg","success");
 		}
