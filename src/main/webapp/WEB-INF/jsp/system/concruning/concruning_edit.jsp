@@ -28,20 +28,30 @@
 					<div class="col-xs-12">
 					
 					<form action="concruning/${msg }.do" name="Form" id="Form" method="post">
-						<input type="hidden" name="CONCRUNING_ID" id="CONCRUNING_ID" value="${pd.CONCRUNING_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">程序代码:</td>
-								<td><input type="text" name="CONC_CODE" id="CONC_CODE" value="${pd.CONC_CODE}" maxlength="60" placeholder="这里输入程序代码" title="程序代码" style="width:98%;"/></td>
+								<td style="width:120px;text-align: center;padding-top: 13px;">程序代码</td>
+								<td>
+								<select class="chosen-select form-control" name="CONC_CODE" id="CONC_CODE"  onchange="initParam(this.options[this.options.selectedIndex].value)" data-placeholder="请选择并发程序" style="vertical-align:top;" style="width:98%;" >
+								<option value="请选择并发程序"></option>
+								<c:forEach items="${concList}" var="var" varStatus="vs">
+									<option value="${var.CONC_CODE }" <c:if test="${var.CONC_CODE == pd.CONC_CODE }">selected</c:if>>${var.CONC_DESCRIPTION }</option>
+								</c:forEach>
+								</select>
+								</td>
 							</tr>
+						</table>
+						<table id="table_param" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">程序名称:</td>
-								<td><input type="text" name="CONC_NAME" id="CONC_NAME" value="${pd.CONC_NAME}" maxlength="240" placeholder="这里输入程序名称" title="程序名称" style="width:98%;"/></td>
+								<th style="width:120px;text-align: center;padding-top: 13px;">参数名称</th>
+								<th style="text-align: center;padding-top: 13px;">参数值</th>
 							</tr>
+						</table>
+						<table id="table_submit" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="text-align: center;" colspan="10">
-									<a class="btn btn-mini btn-primary" onclick="save();">保存</a>
+									<a class="btn btn-mini btn-primary" onclick="save();">提交</a>
 									<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>
 								</td>
 							</tr>
@@ -72,6 +82,38 @@
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
 		<script type="text/javascript">
 		$(top.hangge());
+		$(document).ready(function(){
+			$('#CONC_CODE').change(function(){
+				var concCode = $(this).children('option:selected').val();//这就是selected的值
+				if(concCode != null){
+					$.ajax({
+						type: "POST",
+						url: '<%=basePath%>concruning/getConcParam.do?CONC_CODE='+concCode,
+						dataType:'json',
+						cache: false,
+						success: function(data){
+							delTr('table_param');
+							 $.each(data.list, function(i, list){
+								 if(list.PARAM_CODE != null){
+									 var trHtml="<tr align='center' id='param'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input type='text' style='width:98%;' name="+list.PARAM_CODE+" id="+list.PARAM_CODE+" value="+list.CONC_VALUE+"></input></td></tr>";
+									 addTr(trHtml,'table_param', 0)
+								 }
+							 });
+						}
+					});
+				}
+				});
+			});
+		function addTr(trHtml,tab, row){
+		    var $tr=$("#"+tab+" tr").eq(row);
+		     if($tr.size()==0){
+		        return;
+		     }
+		     $tr.after(trHtml);
+		  }
+		 function delTr(tab){
+			 $("#"+tab+" tr").eq(0).nextAll().remove();
+		 }
 		//保存
 		function save(){
 			if($("#CONC_CODE").val()==""){
@@ -84,16 +126,6 @@
 				$("#CONC_CODE").focus();
 			return false;
 			}
-			if($("#CONC_NAME").val()==""){
-				$("#CONC_NAME").tips({
-					side:3,
-		            msg:'请输入程序名称',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#CONC_NAME").focus();
-			return false;
-			}
 			$("#Form").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();
@@ -103,6 +135,7 @@
 			//日期框
 			$('.date-picker').datepicker({autoclose: true,todayHighlight: true});
 		});
+		
 		</script>
 </body>
 </html>

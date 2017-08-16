@@ -53,6 +53,15 @@ public class ConcParamService implements ConcParamManager{
 		return (List<PageData>)dao.findForList("ConcParamMapper.datalistPage", page);
 	}
 	
+	/**参数列表
+	 * @param page
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public List<PageData> listParam(Page page) throws Exception {
+		return (List<PageData>)dao.findForList("ConcParamMapper.listParam", page);
+	}
+	
 	/**列表(全部)
 	 * @param pd
 	 * @throws Exception

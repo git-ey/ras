@@ -1,9 +1,7 @@
 package com.ey.controller.system.concruning;
 
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
+import com.ey.service.system.conc.ConcManager;
+import com.ey.service.system.concparam.ConcParamManager;
 import com.ey.service.system.concruning.ConcRuningManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Jurisdiction;
@@ -39,7 +39,10 @@ public class ConcRuningController extends BaseController {
 	String menuUrl = "concruning/list.do"; //菜单地址(权限用)
 	@Resource(name="concruningService")
 	private ConcRuningManager concruningService;
-	
+	@Resource(name="concService")
+	private ConcManager concService;
+	@Resource(name="concParamService")
+	private ConcParamManager concParamService;
 	/**保存
 	 * @param
 	 * @throws Exception
@@ -54,42 +57,10 @@ public class ConcRuningController extends BaseController {
 		pd.put("CONCRUNING_ID", this.get32UUID());	//主键
 		pd.put("START_DATETIME", Tools.date2Str(new Date()));	//开始时间
 		pd.put("END_DATETIME", Tools.date2Str(new Date()));	//结束时间
-		pd.put("STATUS", "");	//运行状态
+		pd.put("STATUS", "R");	//运行状态
 		pd.put("MESSAGE", "");	//运行消息
-		pd.put("OPERATOR", "");	//运行人
+		pd.put("OPERATOR", Jurisdiction.getUsername());	//运行人
 		concruningService.save(pd);
-		mv.addObject("msg","success");
-		mv.setViewName("save_result");
-		return mv;
-	}
-	
-	/**删除
-	 * @param out
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/delete")
-	public void delete(PrintWriter out) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"删除ConcRuning");
-		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
-		PageData pd = new PageData();
-		pd = this.getPageData();
-		concruningService.delete(pd);
-		out.write("success");
-		out.close();
-	}
-	
-	/**修改
-	 * @param
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/edit")
-	public ModelAndView edit() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"修改ConcRuning");
-		if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;} //校验权限
-		ModelAndView mv = this.getModelAndView();
-		PageData pd = new PageData();
-		pd = this.getPageData();
-		concruningService.edit(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -128,49 +99,28 @@ public class ConcRuningController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
+		pd.put("ENABLED_FLAG", "Y");
+		// 查询可用并发程序
+		Page page = new Page();
+		page.setPd(pd);
+		List<PageData> coucList = concService.list(page);
 		mv.setViewName("system/concruning/concruning_edit");
 		mv.addObject("msg", "save");
+		mv.addObject("concList", coucList);
 		mv.addObject("pd", pd);
 		return mv;
-	}	
+	}
 	
-	 /**去修改页面
-	 * @param
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/goEdit")
-	public ModelAndView goEdit()throws Exception{
-		ModelAndView mv = this.getModelAndView();
-		PageData pd = new PageData();
-		pd = this.getPageData();
-		pd = concruningService.findById(pd);	//根据ID读取
-		mv.setViewName("system/concruning/concruning_edit");
-		mv.addObject("msg", "edit");
-		mv.addObject("pd", pd);
-		return mv;
-	}	
-	
-	 /**批量删除
-	 * @param
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/deleteAll")
+	@RequestMapping(value="/getConcParam")
 	@ResponseBody
-	public Object deleteAll() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"批量删除ConcRuning");
-		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return null;} //校验权限
+	public Object getConcParam() throws Exception{
 		PageData pd = new PageData();		
 		Map<String,Object> map = new HashMap<String,Object>();
 		pd = this.getPageData();
-		List<PageData> pdList = new ArrayList<PageData>();
-		String DATA_IDS = pd.getString("DATA_IDS");
-		if(null != DATA_IDS && !"".equals(DATA_IDS)){
-			String ArrayDATA_IDS[] = DATA_IDS.split(",");
-			concruningService.deleteAll(ArrayDATA_IDS);
-			pd.put("msg", "ok");
-		}else{
-			pd.put("msg", "no");
-		}
+		// 初始化参数
+		Page page = new Page();
+		page.setPd(pd);
+		List<PageData> pdList = concParamService.listParam(page);
 		pdList.add(pd);
 		map.put("list", pdList);
 		return AppUtil.returnObject(pd, map);

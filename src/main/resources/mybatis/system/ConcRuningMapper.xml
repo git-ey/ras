@@ -15,7 +15,6 @@
 		STATUS,	
 		MESSAGE,	
 		OPERATOR,	
-		CONC_NAME,	
 		CONCRUNING_ID
 	</sql>
 	
@@ -27,7 +26,6 @@
 		#{STATUS},	
 		#{MESSAGE},	
 		#{OPERATOR},	
-		#{CONC_NAME},	
 		#{CONCRUNING_ID}
 	</sql>
 	
@@ -55,9 +53,7 @@
 		update
 		<include refid="tableName"></include>
 		set 
-			CONC_CODE = #{CONC_CODE},
-			CONC_NAME = #{CONC_NAME},
-		CONCRUNING_ID = CONCRUNING_ID
+			CONC_CODE = #{CONC_CODE}
 		where 
 		CONCRUNING_ID = #{CONCRUNING_ID}
 	</update>
@@ -74,20 +70,37 @@
 	
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">
-		select
-		<include refid="Field"></include>
-		from 
-		<include refid="tableName"></include>
-		where 1=1
-		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+	   select sr.CONC_CODE,
+		      sc.CONC_DESCRIPTION CONC_NAME,
+		      sr.START_DATETIME,	
+		      sr.END_DATETIME,	
+		      sr.STATUS,	
+		      sr.MESSAGE,	
+		      sr.OPERATOR,	
+		      sr.CONCRUNING_ID
+		 from sys_concruning sr,
+		      sys_conc sc
+		where sr.CONC_CODE = sc.CONC_CODE
+		<!-- 关键词检索 -->
+		<if test="pd.keywords!= null and pd.keywords != ''">
 			and
 				(
-				<!--	根据需求自己加检索条件
-					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				<!-- 根据需求自己加检索条件 -->
+					sr.CONC_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
-					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				-->
+					sc.CONC_DESCRIPTION LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				
 				)
+		</if>
+		<if test="pd.lastStart!= null and pd.lastStart != ''">
+		    and START_DATETIME &gt;= #{pd.lastStart}
+		</if>
+		
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
+		    and START_DATETIME &lt;= #{pd.lastEnd}
+		</if>
+		<if test="pd.STATUS!= null and pd.STATUS != ''">
+		    and sr.STATUS = #{pd.STATUS}
 		</if>
 	</select>
 	

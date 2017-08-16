@@ -24,7 +24,7 @@
 	<!-- 字段值 -->
 	<sql id="FieldValue">
 		#{CONC_CODE},	
-		#{CONC_DESCRIPTION},	
+		#{CONC_DESCRIPTION},
 		#{CONC_TYPE},	
 		#{CONC_PROGRAM},	
 		#{ENABLED_FLAG},	
@@ -98,6 +98,9 @@
 					CONC_PROGRAM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 				
 				)
+		</if>
+		<if test="pd.ENABLED_FLAG != null and pd.ENABLED_FLAG != ''">
+		    and ENABLED_FLAG = #{pd.ENABLED_FLAG}
 		</if>
 	</select>
 	

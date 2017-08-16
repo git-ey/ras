@@ -80,6 +80,23 @@
 		<include refid="tableName"></include>
 		where 
 		CONC_ID = #{pd.CONC_ID}
+		order by SEQ ASC
+	</select>
+	
+	<!-- 参数列表 -->
+	<select id="listParam" parameterType="page" resultType="pd">
+		select
+		  scp.SEQ,
+		  scp.PARAM_CODE,	
+		  scp.PARAM_NAME,	
+		  scp.PARAM_TYPE,	
+		  scp.CONC_VALUE
+		from 
+		  SYS_CONC_PARAM scp,
+		  SYS_CONC sc
+		where scp.CONC_ID = sc.CONC_ID
+		  and sc.CONC_CODE = #{pd.CONC_CODE}
+		order by scp.SEQ DESC
 	</select>
 	
 	<!-- 列表(全部) -->

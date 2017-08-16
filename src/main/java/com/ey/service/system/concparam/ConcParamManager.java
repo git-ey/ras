@@ -36,6 +36,12 @@ public interface ConcParamManager{
 	 */
 	public List<PageData> list(Page page)throws Exception;
 	
+	/**参数列表
+	 * @param page
+	 * @throws Exception
+	 */
+	public List<PageData> listParam(Page page) throws Exception;
+	
 	/**列表(全部)
 	 * @param pd
 	 * @throws Exception

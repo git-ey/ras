@@ -45,8 +45,9 @@
 								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
 								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
 								<td style="vertical-align:top;padding-left:2px;">
-								 	<select class="chosen-select form-control" name="STATUS" id="id" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
+								 	<select class="chosen-select form-control" name="STATUS" id="STATUS" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
 									<option value=""></option>
+									<option value="R" <c:if test="${pd.STATUS == 'R'}">selected</c:if>>运行中</option>
 									<option value="S" <c:if test="${pd.STATUS == 'S'}">selected</c:if>>成功</option>
 									<option value="W" <c:if test="${pd.STATUS == 'W'}">selected</c:if>>警告</option>
 									<option value="E" <c:if test="${pd.STATUS == 'E'}">selected</c:if>>失败</option>
@@ -65,15 +66,15 @@
 									<th class="center" style="width:35px;">
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
-									<th class="center" style="width:50px;">序号</th>
-									<th class="center">程序代码</th>
-									<th class="center">程序名称</th>
-									<th class="center">开始时间</th>
-									<th class="center">结束时间</th>
-									<th class="center">运行人</th>
-									<th class="center">运行状态</th>
-									<th class="center">运行消息</th>
-									<th class="center">操作</th>
+									<th class="center" style="width:4%;">序号</th>
+									<th class="center" style="width:9%;">程序代码</th>
+									<th class="center" style="width:13%;">程序名称</th>
+									<th class="center" style="width:14%;">开始时间</th>
+									<th class="center" style="width:14%;">结束时间</th>
+									<th class="center" style="width:8%;">运行状态</th>
+									<th class="center" style="width:20%;">运行消息</th>
+									<th class="center" style="width:10%;">运行人</th>
+									<th class="center" style="width:8%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -92,54 +93,25 @@
 											<td class='center'>${var.CONC_NAME}</td>
 											<td class='center'>${var.START_DATETIME}</td>
 											<td class='center'>${var.END_DATETIME}</td>
-											<td class='center'>${var.OPERATOR}</td>
-											<td class='center'>${var.STATUS}</td>
-											<td class='center'>${var.MESSAGE}</td>
-											<td class="center">
-												<c:if test="${QX.edit != 1 && QX.del != 1 }">
-												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
-												</c:if>
-												<div class="hidden-sm hidden-xs btn-group">
-													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.CONCRUNING_ID}');">
-														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
-													</a>
-													</c:if>
-													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.CONCRUNING_ID}');">
-														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
-													</a>
-													</c:if>
-												</div>
-												<div class="hidden-md hidden-lg">
-													<div class="inline pos-rel">
-														<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-															<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-														</button>
-			
-														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-															<c:if test="${QX.edit == 1 }">
-															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.CONCRUNING_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
-																	<span class="green">
-																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																	</span>
-																</a>
-															</li>
-															</c:if>
-															<c:if test="${QX.del == 1 }">
-															<li>
-																<a style="cursor:pointer;" onclick="del('${var.CONCRUNING_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
-																	<span class="red">
-																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																	</span>
-																</a>
-															</li>
-															</c:if>
-														</ul>
-													</div>
-												</div>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.STATUS == 'R' }">
+                                                                                                    运行中
+                                               </c:when>  
+                                               <c:when test="${var.STATUS == 'S' }">
+                                                                                                    成功
+                                               </c:when> 
+                                               <c:when test="${var.STATUS == 'W' }">
+                                                                                                    警告
+                                               </c:when> 
+                                               <c:when test="${var.STATUS == 'E' }">
+                                                                                                    错误
+                                               </c:when>
+                                            </c:choose>
 											</td>
+											<td class='center'>${var.MESSAGE}</td>
+											<td class='center'>${var.OPERATOR}</td>
+											<td class='center'><a>查看日志</a></td>
 										</tr>
 									
 									</c:forEach>
@@ -163,10 +135,7 @@
 							<tr>
 								<td style="vertical-align:top;">
 									<c:if test="${QX.add == 1 }">
-									<a class="btn btn-mini btn-success" onclick="add();">新增</a>
-									</c:if>
-									<c:if test="${QX.del == 1 }">
-									<a class="btn btn-mini btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
+									<a class="btn btn-mini btn-success" onclick="add();">提交新请求</a>
 									</c:if>
 								</td>
 								<td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
@@ -265,7 +234,7 @@
 			 top.jzts();
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
-			 diag.Title ="新增";
+			 diag.Title ="运行请求";
 			 diag.URL = '<%=basePath%>concruning/goAdd.do';
 			 diag.Width = 450;
 			 diag.Height = 355;
@@ -284,86 +253,6 @@
 			 };
 			 diag.show();
 		}
-		
-		//删除
-		function del(Id){
-			bootbox.confirm("确定要删除吗?", function(result) {
-				if(result) {
-					top.jzts();
-					var url = "<%=basePath%>concruning/delete.do?CONCRUNING_ID="+Id+"&tm="+new Date().getTime();
-					$.get(url,function(data){
-						tosearch();
-					});
-				}
-			});
-		}
-		
-		//修改
-		function edit(Id){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>concruning/goEdit.do?CONCRUNING_ID='+Id;
-			 diag.Width = 450;
-			 diag.Height = 355;
-			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮 
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 tosearch();
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-		
-		//批量操作
-		function makeAll(msg){
-			bootbox.confirm(msg, function(result) {
-				if(result) {
-					var str = '';
-					for(var i=0;i < document.getElementsByName('ids').length;i++){
-					  if(document.getElementsByName('ids')[i].checked){
-					  	if(str=='') str += document.getElementsByName('ids')[i].value;
-					  	else str += ',' + document.getElementsByName('ids')[i].value;
-					  }
-					}
-					if(str==''){
-						bootbox.dialog({
-							message: "<span class='bigger-110'>您没有选择任何内容!</span>",
-							buttons: 			
-							{ "button":{ "label":"确定", "className":"btn-sm btn-success"}}
-						});
-						$("#zcheckbox").tips({
-							side:1,
-				            msg:'点这里全选',
-				            bg:'#AE81FF',
-				            time:8
-				        });
-						return;
-					}else{
-						if(msg == '确定要删除选中的数据吗?'){
-							top.jzts();
-							$.ajax({
-								type: "POST",
-								url: '<%=basePath%>concruning/deleteAll.do?tm='+new Date().getTime(),
-						    	data: {DATA_IDS:str},
-								dataType:'json',
-								//beforeSend: validateData,
-								cache: false,
-								success: function(data){
-									 $.each(data.list, function(i, list){
-											tosearch();
-									 });
-								}
-							});
-						}
-					}
-				}
-			});
-		};
 		
 	</script>
 
