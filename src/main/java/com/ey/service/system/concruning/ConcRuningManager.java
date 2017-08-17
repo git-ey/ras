@@ -52,7 +52,14 @@ public interface ConcRuningManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception;
+	public void deleteAll(String[] ArrayDATA_IDS) throws Exception;
+	
+	/**
+	 * 执行存储过程
+	 * @param pd
+	 * @throws Exception
+	 */
+	public void runProcedure(PageData pd) throws Exception;
 	
 }
 

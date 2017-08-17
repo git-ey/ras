@@ -12,7 +12,7 @@
 		CONC_CODE,	
 		START_DATETIME,	
 		END_DATETIME,	
-		STATUS,	
+		RESULT,	
 		MESSAGE,	
 		OPERATOR,	
 		CONCRUNING_ID
@@ -23,7 +23,7 @@
 		#{CONC_CODE},	
 		#{START_DATETIME},	
 		#{END_DATETIME},	
-		#{STATUS},	
+		#{RESULT},	
 		#{MESSAGE},	
 		#{OPERATOR},	
 		#{CONCRUNING_ID}
@@ -53,7 +53,10 @@
 		update
 		<include refid="tableName"></include>
 		set 
-			CONC_CODE = #{CONC_CODE}
+			CONC_CODE = #{CONC_CODE},
+		    END_DATETIME = #{END_DATETIME},	
+		    RESULT = #{RESULT},	
+		    MESSAGE = #{MESSAGE}
 		where 
 		CONCRUNING_ID = #{CONCRUNING_ID}
 	</update>
@@ -74,7 +77,7 @@
 		      sc.CONC_DESCRIPTION CONC_NAME,
 		      sr.START_DATETIME,	
 		      sr.END_DATETIME,	
-		      sr.STATUS,	
+		      sr.RESULT,	
 		      sr.MESSAGE,	
 		      sr.OPERATOR,	
 		      sr.CONCRUNING_ID
@@ -99,8 +102,8 @@
 		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
 		    and START_DATETIME &lt;= #{pd.lastEnd}
 		</if>
-		<if test="pd.STATUS!= null and pd.STATUS != ''">
-		    and sr.STATUS = #{pd.STATUS}
+		<if test="pd.RESULT!= null and pd.RESULT != ''">
+		    and sr.RESULT = #{pd.RESULT}
 		</if>
 	</select>
 	
@@ -122,4 +125,14 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 执行存储过程 -->
+	<select id="runProcedure" statementType="CALLABLE" parameterType="pd">
+      <![CDATA[call ${CONC_PROGRAM}(]]>
+      <foreach item="item" index="index" collection="CONC_PARAM" separator=",">
+          #{item}
+      </foreach>
+      <![CDATA[,#{RESULT,mode=OUT,jdbcType=VARCHAR},#{MESSAGE,mode=OUT,jdbcType=VARCHAR});]]>
+	</select>
+	
 </mapper>

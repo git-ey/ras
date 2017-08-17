@@ -45,12 +45,12 @@
 								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
 								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
 								<td style="vertical-align:top;padding-left:2px;">
-								 	<select class="chosen-select form-control" name="STATUS" id="STATUS" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
+								 	<select class="chosen-select form-control" name="RESULT" id="RESULT" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
 									<option value=""></option>
-									<option value="R" <c:if test="${pd.STATUS == 'R'}">selected</c:if>>运行中</option>
-									<option value="S" <c:if test="${pd.STATUS == 'S'}">selected</c:if>>成功</option>
-									<option value="W" <c:if test="${pd.STATUS == 'W'}">selected</c:if>>警告</option>
-									<option value="E" <c:if test="${pd.STATUS == 'E'}">selected</c:if>>失败</option>
+									<option value="R" <c:if test="${pd.RESULT == 'R'}">selected</c:if>>运行中</option>
+									<option value="S" <c:if test="${pd.RESULT == 'S'}">selected</c:if>>成功</option>
+									<option value="W" <c:if test="${pd.RESULT == 'W'}">selected</c:if>>警告</option>
+									<option value="E" <c:if test="${pd.RESULT == 'E'}">selected</c:if>>失败</option>
 								  	</select>
 								</td>
 								<c:if test="${QX.cha == 1 }">
@@ -95,16 +95,16 @@
 											<td class='center'>${var.END_DATETIME}</td>
 											<td class='center'>
 											<c:choose>  
-                                               <c:when test="${var.STATUS == 'R' }">
+                                               <c:when test="${var.RESULT == 'R' }">
                                                                                                     运行中
                                                </c:when>  
-                                               <c:when test="${var.STATUS == 'S' }">
+                                               <c:when test="${var.RESULT == 'S' }">
                                                                                                     成功
                                                </c:when> 
-                                               <c:when test="${var.STATUS == 'W' }">
+                                               <c:when test="${var.RESULT == 'W' }">
                                                                                                     警告
                                                </c:when> 
-                                               <c:when test="${var.STATUS == 'E' }">
+                                               <c:when test="${var.RESULT == 'E' }">
                                                                                                     错误
                                                </c:when>
                                             </c:choose>

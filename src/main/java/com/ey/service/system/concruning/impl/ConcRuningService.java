@@ -78,5 +78,14 @@ public class ConcRuningService implements ConcRuningManager{
 		dao.delete("ConcRuningMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
+	/**
+	 * 执行存储过程
+	 * @param pd
+	 * @throws Exception
+	 */
+	public void runProcedure(PageData pd) throws Exception {
+		dao.callProcedure("ConcRuningMapper.runProcedure", pd);
+	}
+	
 }
 

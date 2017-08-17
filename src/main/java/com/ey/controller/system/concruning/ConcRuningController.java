@@ -4,12 +4,18 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -43,6 +49,9 @@ public class ConcRuningController extends BaseController {
 	private ConcManager concService;
 	@Resource(name="concParamService")
 	private ConcParamManager concParamService;
+	@Autowired
+	@Qualifier("taskExecutor")
+	private ThreadPoolTaskExecutor taskExecutor;
 	/**保存
 	 * @param
 	 * @throws Exception
@@ -54,13 +63,34 @@ public class ConcRuningController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("CONCRUNING_ID", this.get32UUID());	//主键
+		// 获取运行ID
+		String concRuningId = this.get32UUID();
+		// 获取并发程序定义
+		PageData concPd = concService.findByCode(pd);
+		// 构建并发程序参数
+		StringBuilder concParam = new StringBuilder();
+		Set<Entry<String, Object>> pdSet = pd.entrySet();
+		Iterator<Entry<String, Object>> pds = pdSet.iterator();
+		int i = 0;
+		while(pds.hasNext()){
+			Entry<String, Object> et = pds.next();
+			if(i>0){
+				concParam.append(et.getValue()+",");
+			}
+			i++;
+		}
+		concParam.append(concRuningId);
+		pd.put("CONC_PROGRAM", concPd.getString("CONC_PROGRAM"));
+		pd.put("CONC_PARAM", concParam.toString().split(","));
+		// 记录日志
+		pd.put("CONCRUNING_ID", concRuningId);	//主键
 		pd.put("START_DATETIME", Tools.date2Str(new Date()));	//开始时间
-		pd.put("END_DATETIME", Tools.date2Str(new Date()));	//结束时间
-		pd.put("STATUS", "R");	//运行状态
-		pd.put("MESSAGE", "");	//运行消息
+		pd.put("RESULT", "R");	//运行状态
 		pd.put("OPERATOR", Jurisdiction.getUsername());	//运行人
 		concruningService.save(pd);
+		// 执行并发程序
+		taskExecutor.submit(new ConcRunWorker(concruningService, pd));
+		concruningService.runProcedure(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;

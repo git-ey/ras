@@ -70,6 +70,14 @@ public class ConcService implements ConcManager{
 		return (PageData)dao.findForObject("ConcMapper.findById", pd);
 	}
 	
+	/**通过code获取数据
+	 * @param pd
+	 * @throws Exception
+	 */
+	public PageData findByCode(PageData pd) throws Exception {
+		return (PageData)dao.findForObject("ConcMapper.findByCode", pd);
+	}
+	
 	/**批量删除
 	 * @param ArrayDATA_IDS
 	 * @throws Exception

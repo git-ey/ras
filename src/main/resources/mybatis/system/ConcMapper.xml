@@ -64,8 +64,8 @@
 			CONC_TYPE = #{CONC_TYPE},
 			CONC_PROGRAM = #{CONC_PROGRAM},
 			ENABLED_FLAG = #{ENABLED_FLAG},
-			CREATION_DATE = #{CREATION_DATE},
-		CONC_ID = CONC_ID
+			LAST_UPDATED_BY = #{LAST_UPDATED_BY},
+			LAST_UPDATE_DATE = #{LAST_UPDATE_DATE}
 		where 
 		CONC_ID = #{CONC_ID}
 	</update>
@@ -78,6 +78,16 @@
 		<include refid="tableName"></include>
 		where 
 			CONC_ID = #{CONC_ID}
+	</select>
+	
+	<!-- 通过CODE获取数据 -->
+	<select id="findByCode" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			CONC_CODE = #{CONC_CODE}
 	</select>
 	
 	<!-- 列表 -->

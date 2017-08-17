@@ -36,7 +36,7 @@
 								<select class="chosen-select form-control" name="CONC_CODE" id="CONC_CODE"  onchange="initParam(this.options[this.options.selectedIndex].value)" data-placeholder="请选择并发程序" style="vertical-align:top;" style="width:98%;" >
 								<option value="请选择并发程序"></option>
 								<c:forEach items="${concList}" var="var" varStatus="vs">
-									<option value="${var.CONC_CODE }" <c:if test="${var.CONC_CODE == pd.CONC_CODE }">selected</c:if>>${var.CONC_DESCRIPTION }</option>
+									<option value="${var.CONC_CODE }">${var.CONC_DESCRIPTION }</option>
 								</c:forEach>
 								</select>
 								</td>
@@ -95,7 +95,7 @@
 							delTr('table_param');
 							 $.each(data.list, function(i, list){
 								 if(list.PARAM_CODE != null){
-									 var trHtml="<tr align='center' id='param'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input type='text' style='width:98%;' name="+list.PARAM_CODE+" id="+list.PARAM_CODE+" value="+list.CONC_VALUE+"></input></td></tr>";
+									 var trHtml="<tr align='center'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input type='text' style='width:98%;' name="+list.PARAM_CODE+" id="+list.PARAM_CODE+" value="+list.CONC_VALUE+"></input></td></tr>";
 									 addTr(trHtml,'table_param', 0)
 								 }
 							 });
