@@ -86,6 +86,15 @@ public class ConcRuningService implements ConcRuningManager{
 	public void runProcedure(PageData pd) throws Exception {
 		dao.callProcedure("ConcRuningMapper.runProcedure", pd);
 	}
+
+	/**列表日志
+	 * @param pd
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public List<PageData> listLog(PageData pd)  throws Exception {
+		return (List<PageData>)dao.findForList("ConcRuningMapper.listLog", pd);
+	}
 	
 }
 

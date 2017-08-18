@@ -42,8 +42,8 @@
 										</span>
 									</div>
 								</td>
-								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
-								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
+								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="${pd.lastStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
+								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="${pd.lastEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
 								<td style="vertical-align:top;padding-left:2px;">
 								 	<select class="chosen-select form-control" name="RESULT" id="RESULT" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
 									<option value=""></option>
@@ -73,8 +73,8 @@
 									<th class="center" style="width:14%;">结束时间</th>
 									<th class="center" style="width:8%;">运行状态</th>
 									<th class="center" style="width:20%;">运行消息</th>
-									<th class="center" style="width:10%;">运行人</th>
-									<th class="center" style="width:8%;">操作</th>
+									<th class="center" style="width:8%;">运行人</th>
+									<th class="center" style="width:10%;">查看日志</th>
 								</tr>
 							</thead>
 													
@@ -111,7 +111,7 @@
 											</td>
 											<td class='center'>${var.MESSAGE}</td>
 											<td class='center'>${var.OPERATOR}</td>
-											<td class='center'><a>查看日志</a></td>
+											<td class='center'><a class="btn btn-light btn-xs" onclick="toExcel('${var.CONCRUNING_ID}');" title="导出日志"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td>
 										</tr>
 									
 									</c:forEach>
@@ -236,8 +236,8 @@
 			 diag.Drag=true;
 			 diag.Title ="运行请求";
 			 diag.URL = '<%=basePath%>concruning/goAdd.do';
-			 diag.Width = 450;
-			 diag.Height = 355;
+			 diag.Width = 600;
+			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -252,6 +252,11 @@
 				diag.close();
 			 };
 			 diag.show();
+		}
+		
+		//导出excel日志
+		function toExcel(Id){
+			window.location.href='<%=basePath%>concruning/excel.do?CONCRUNING_ID='+Id;
 		}
 		
 	</script>

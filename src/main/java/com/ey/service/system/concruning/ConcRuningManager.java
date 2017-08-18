@@ -60,6 +60,12 @@ public interface ConcRuningManager{
 	 * @throws Exception
 	 */
 	public void runProcedure(PageData pd) throws Exception;
+
+	/**列表日志
+	 * @param pd
+	 * @throws Exception
+	 */
+	public List<PageData> listLog(PageData pd)  throws Exception;
 	
 }
 

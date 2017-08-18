@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 
 import com.ey.service.system.concruning.ConcRuningManager;
 import com.ey.util.PageData;
+import com.ey.util.StringUtil;
 import com.ey.util.Tools;
 
 public class ConcRunWorker implements Callable<Boolean> {
@@ -19,7 +20,12 @@ public class ConcRunWorker implements Callable<Boolean> {
 
 	@Override
 	public Boolean call() throws Exception {
-		concruningService.runProcedure(pd);
+		try {
+			concruningService.runProcedure(pd);
+		} catch (Exception ex) {
+			pd.put("RESULT", "E");
+			pd.put("MESSAGE", StringUtil.getStringByLength(ex.getMessage(),240));
+		}
 		// 更新状态
 		pd.put("END_DATETIME", Tools.date2Str(new Date()));
 		concruningService.edit(pd);

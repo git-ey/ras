@@ -105,6 +105,7 @@
 		<if test="pd.RESULT!= null and pd.RESULT != ''">
 		    and sr.RESULT = #{pd.RESULT}
 		</if>
+		order by START_DATETIME desc
 	</select>
 	
 	<!-- 列表(全部) -->
@@ -114,6 +115,18 @@
 		from 
 		<include refid="tableName"></include>
 	</select>
+	
+	<!-- 列表日志 -->
+	<select id="listLog" parameterType="pd" resultType="pd">
+		select
+		  LOG_MSG_1,
+		  LOG_MSG_2,
+		  LOG_MSG_3,
+		  LOG_MSG_4,
+		  LOG_MSG_5
+		from sys_concrun_log
+	   where CONCRUNING_ID = #{CONCRUNING_ID}
+	</select>	
 	
 	<!-- 批量删除 -->
 	<delete id="deleteAll" parameterType="String">
