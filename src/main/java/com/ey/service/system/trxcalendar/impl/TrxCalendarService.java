@@ -1,4 +1,4 @@
-package com.ey.service.system.acctmapping.impl;
+package com.ey.service.system.trxcalendar.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +10,19 @@ import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.service.system.acctmapping.AcctmappingManager;
+import com.ey.service.system.trxcalendar.TrxCalendarManager;
 import com.ey.util.AppUtil;
 import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
 
 /** 
- * 说明： 科目映射
+ * 说明： 交易日日历
  * 创建人：andychen
- * 创建时间：2017-08-09
+ * 创建时间：2017-08-21
  * @version
  */
-@Service("acctmappingService")
-public class AcctmappingService implements AcctmappingManager{
+@Service("trxcalendarService")
+public class TrxCalendarService implements TrxCalendarManager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
@@ -32,7 +32,7 @@ public class AcctmappingService implements AcctmappingManager{
 	 * @throws Exception
 	 */
 	public void save(PageData pd)throws Exception{
-		dao.save("AcctmappingMapper.save", pd);
+		dao.save("TrxCalendarMapper.save", pd);
 	}
 	
 	/**批量新增
@@ -44,27 +44,14 @@ public class AcctmappingService implements AcctmappingManager{
 		List<PageData> pds = new ArrayList<PageData>();
 		for (Map<String, Object> map : maps) {
 			PageData pd = new PageData();
-			pd.put("ACCTMAPPING_ID", UuidUtil.get32UUID());
-			pd.put("FUND_ID", map.get("FUND_ID"));
-			pd.put("ACCOUNT_NUM", map.get("ACCOUNT_NUM"));
-			pd.put("ACCOUNT_DESCRIPTION", map.get("ACCOUNT_DESCRIPTION"));
-			pd.put("LEVEL", map.get("LEVEL"));
-			pd.put("CURRENCY", map.get("CURRENCY"));
-			pd.put("TYPE", map.get("TYPE"));
-			pd.put("ENTERABLE", map.get("ENTERABLE"));
-			pd.put("EY_ACCOUNT_NUM", map.get("EY_ACCOUNT_NUM"));
-			pd.put("ATTR1", map.get("ATTR1"));
-			pd.put("ATTR2", map.get("ATTR2"));
-			pd.put("ATTR3", map.get("ATTR3"));
-			pd.put("ATTR4", map.get("ATTR4"));
-			pd.put("ATTR5", map.get("ATTR5"));
-			pd.put("ATTR6", map.get("ATTR6"));
-			pd.put("ACTIVE", map.get("ACTIVE"));
-			pd.put("STATUS", "");
+			pd.put("TRXCALENDAR_ID", UuidUtil.get32UUID());
+			pd.put("TRX_DATE", map.get("TRX_DATE"));
+			pd.put("TRX_SYMBOL", map.get("TRX_SYMBOL"));
+			pd.put("COMMENTS", map.get("COMMENTS"));
 			pds.add(pd);
 			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
 				// 批量插入
-				dao.save("AcctmappingMapper.saveBatch", pds);
+				dao.save("TrxCalendarMapper.saveBatch", pds);
 				// 清空集合
 				pds.clear();
 			}
@@ -73,7 +60,7 @@ public class AcctmappingService implements AcctmappingManager{
 		// 处理最后剩余数量
 		if (pds.size() > 0) {
 			// 批量插入
-			dao.save("AcctmappingMapper.saveBatch", pds);
+			dao.save("TrxCalendarMapper.saveBatch", pds);
 		}
 	}
 	
@@ -82,7 +69,7 @@ public class AcctmappingService implements AcctmappingManager{
 	 * @throws Exception
 	 */
 	public void delete(PageData pd)throws Exception{
-		dao.delete("AcctmappingMapper.delete", pd);
+		dao.delete("TrxCalendarMapper.delete", pd);
 	}
 	
 	/**修改
@@ -90,7 +77,7 @@ public class AcctmappingService implements AcctmappingManager{
 	 * @throws Exception
 	 */
 	public void edit(PageData pd)throws Exception{
-		dao.update("AcctmappingMapper.edit", pd);
+		dao.update("TrxCalendarMapper.edit", pd);
 	}
 	
 	/**列表
@@ -99,7 +86,7 @@ public class AcctmappingService implements AcctmappingManager{
 	 */
 	@SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
-		return (List<PageData>)dao.findForList("AcctmappingMapper.datalistPage", page);
+		return (List<PageData>)dao.findForList("TrxCalendarMapper.datalistPage", page);
 	}
 	
 	/**列表(全部)
@@ -108,7 +95,7 @@ public class AcctmappingService implements AcctmappingManager{
 	 */
 	@SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
-		return (List<PageData>)dao.findForList("AcctmappingMapper.listAll", pd);
+		return (List<PageData>)dao.findForList("TrxCalendarMapper.listAll", pd);
 	}
 	
 	/**通过id获取数据
@@ -116,7 +103,7 @@ public class AcctmappingService implements AcctmappingManager{
 	 * @throws Exception
 	 */
 	public PageData findById(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("AcctmappingMapper.findById", pd);
+		return (PageData)dao.findForObject("TrxCalendarMapper.findById", pd);
 	}
 	
 	/**批量删除
@@ -124,7 +111,7 @@ public class AcctmappingService implements AcctmappingManager{
 	 * @throws Exception
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
-		dao.delete("AcctmappingMapper.deleteAll", ArrayDATA_IDS);
+		dao.delete("TrxCalendarMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
 }
