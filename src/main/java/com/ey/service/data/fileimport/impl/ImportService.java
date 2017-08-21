@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -37,6 +38,10 @@ public class ImportService implements ImportManager{
 	 */
 	public void saveImportFile(PageData pd) throws Exception {
 		dao.save("ImportMapper.saveImportFile", pd);
+		// 如果存在错误，则删除已导入数据
+		if(StringUtils.isNotBlank(pd.getString("MESSAGE"))){
+			this.deleteImportData(pd);
+		}
 	}
 	
 	/**删除
@@ -53,9 +58,19 @@ public class ImportService implements ImportManager{
 	 */
 	public void deleteImportFile(PageData pd) throws Exception {
 		// 删除导入数据
-		dao.delete("ImportMapper.deleteImportData", pd);
+		this.deleteImportData(pd);
 		// 删除导入文件信息
 		dao.delete("ImportMapper.deleteImportFile", pd);
+	}
+	
+	/**
+	 * 删除导入数据
+	 * @param pd
+	 * @throws Exception
+	 */
+	private void deleteImportData(PageData pd) throws Exception {
+		// 删除导入数据
+		dao.delete("ImportMapper.deleteImportData", pd);
 	}
 	
 	/**修改
