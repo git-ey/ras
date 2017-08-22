@@ -50,6 +50,11 @@ public class BaseController {
 	 * 交易日历导入模版代码
 	 */
 	protected final static String TC_IMPORT_TEMPLATE_CODE = "TC";
+	
+	/**
+	 * 基金信息导入模版代码
+	 */
+	protected final static String FI_IMPORT_TEMPLATE_CODE = "FI";
 
 	/**
 	 * new PageData对象

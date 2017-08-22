@@ -185,12 +185,12 @@ public class ExcelImportor extends FileImportor {
 				String temp = null;
 				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
 					temp = String.valueOf(cell.getNumericCellValue());
-					maps.put(key, quotes + temp + quotes);
+					maps.put(key, StringUtils.isBlank(temp) ? "''" : quotes + temp + quotes);
 					break;
 				}
 				if (rawCellType == Cell.CELL_TYPE_STRING) {
 					temp = cell.getStringCellValue();
-					maps.put(key, quotes + temp + quotes);
+					maps.put(key, StringUtils.isBlank(temp) ? "''" : quotes + temp + quotes);
 					break;
 				}
 

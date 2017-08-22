@@ -1,3 +1,7 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +19,15 @@ public class Test {
 		Matcher m = p.matcher(str);
 		System.out.println(m.find());
 		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("1", "1");
+		map.put("2", 1000);
+		map.put("3", null);
+		
+		Set<Entry<String, Object>> ms = map.entrySet();
+		for(Entry<String, Object> it : ms){
+			System.out.println(it.getKey()+":"+it.getValue());
+		}
 	}
 
 }

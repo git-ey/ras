@@ -58,7 +58,7 @@
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">日期格式:</td>
-								<td><input type="text" name="DATE_FORMAT" id="DATE_FORMAT" value="${pd.DATE_FORMAT}" maxlength="60" placeholder="如YYYY-MM-DD" title="时间格式" style="width:60%;"/></td>
+								<td><input type="text" name="DATE_FORMAT" id="DATE_FORMAT" value="${pd.DATE_FORMAT}" maxlength="60" placeholder="如yyyy-MM-dd" title="时间格式" style="width:60%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">允许为空:</td>

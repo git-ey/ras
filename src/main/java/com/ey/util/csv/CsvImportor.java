@@ -149,7 +149,7 @@ public class CsvImportor extends FileImportor {
 				maps.put(key,
 						StringUtils.isBlank(rowLine[importCell.getNumber()]) ? "''" : rowLine[importCell.getNumber()]);
 			} else {
-				maps.put(key, quotes + quotes);
+				maps.put(key, null);
 			}
 			break;
 		case FLOAT:
@@ -170,10 +170,10 @@ public class CsvImportor extends FileImportor {
 			break;
 		case DATE:
 			if (rows > importCell.getNumber()) {
-				maps.put(key, quotes + com.ey.util.DateUtil.getDateTimeStr(rowLine[importCell.getNumber()],
-						importCell.getDateFormat()) + quotes);
+				String dateStr = com.ey.util.DateUtil.getDateTimeStr(rowLine[importCell.getNumber()],importCell.getDateFormat());
+				maps.put(key,quotes + dateStr + quotes);
 			} else {
-				maps.put(key, quotes + quotes);
+				maps.put(key, null);
 			}
 			break;
 		default:

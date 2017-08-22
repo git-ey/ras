@@ -197,6 +197,9 @@ public class DateUtil {
      * @return
      */
     public static String getDateTimeStr(String datetime,String fmt) {
+    	if(StringUtils.isBlank(datetime)){
+    		return null;
+    	}
     	return DateUtil.getDateTimeStr(DateUtil.fomatDate(datetime, fmt));
     }
     
