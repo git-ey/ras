@@ -87,6 +87,7 @@
 		<if test="pd.TRX_SYMBOL != null and pd.TRX_SYMBOL != ''">
 		    and TRX_SYMBOL = #{pd.TRX_SYMBOL}
 		</if>
+		ORDER BY TRX_DATE DESC
 	</select>
 	
 	<!-- 列表(全部) -->
