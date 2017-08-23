@@ -8,7 +8,7 @@
                sfi.SHORT_NAME,
                smc.SHORT_NAME MGR_COMPANY
           FROM sys_fund_info sfi
-     LEFT JOIN sys_mgr_company smc
+     LEFT JOIN sys_mgrcompany smc
             ON sfi.FIRM_CODE = smc.COMPANY_CODE
          WHERE 1 = 1
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
