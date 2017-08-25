@@ -74,7 +74,7 @@ public class MgrcompanyService implements MgrcompanyManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	public void deleteAll(String[] ArrayDATA_IDS) throws Exception {
 		dao.delete("MgrcompanyMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

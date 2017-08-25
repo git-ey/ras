@@ -32,5 +32,14 @@ public class DataexportService implements DataexportManager{
 		return (List<PageData>)dao.findForList("DataexportMapper.datalistPage", page);
 	}
 	
+	/**
+	 * 获取期间
+	 * @param pd
+	 * @return
+	 */
+	public List<PageData> listPeriod(PageData pd) throws Exception {
+		return (List<PageData>)dao.findForList("DataexportMapper.listPeriod", pd);
+	}
+	
 }
 
