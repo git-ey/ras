@@ -52,16 +52,17 @@
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:5%;">序号</th>
+									<th class="center" style="width:4%;">序号</th>
 									<th class="center" style="width:8%;">模版代码</th>
 									<th class="center" style="width:15%;">模板名称</th>
+									<th class="center" style="width:7%;">模版类型</th>
 									<th class="center" style="width:6%;">起始行</th>
-									<th class="center" style="width:8%;">导入类型</th>
+									<th class="center" style="width:7%;">导入类型</th>
 									<th class="center" style="width:12%;">导入目标表</th>
-									<th class="center" style="width:15%;">文件名格式</th>
-									<th class="center" style="width:14%;">行过滤规则</th>
+									<th class="center" style="width:12%;">文件名格式</th>
+									<th class="center" style="width:13%;">行过滤规则</th>
 									<th class="center" style="width:8%;">名称解析段</th>
-									<th class="center" style="width:10%;">操作</th>
+									<th class="center" style="width:9%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -75,6 +76,13 @@
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.IMPORT_TEMP_CODE}</td>
 											<td class='center'>${var.IMPORT_TEMP_NAME}</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.TEMP_TYPE == 'HS' }"> 恒生 </c:when>
+                                               <c:when test="${var.TEMP_TYPE == 'JSZ' }"> 金手指 </c:when>  
+                                               <c:when test="${var.TEMP_TYPE == 'JM' }"> 界面 </c:when>  
+                                            </c:choose>
+											</td>
 											<td class='center'>${var.START_ROW_NO}</td>
 											<td class='center'>${var.IMPORT_FILE_TYPE}</td>
 											<td class='center'>${var.TABLE_NAME}</td>
@@ -250,7 +258,7 @@
 			 diag.Drag=true;
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>importconfig/goAdd.do';
-			 diag.Width = 800;
+			 diag.Width = 1000;
 			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -303,7 +311,7 @@
 			 diag.Drag=true;
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>importconfig/goEdit.do?IMPORTCONFIG_ID='+Id;
-			 diag.Width = 800;
+			 diag.Width = 1000;
 			 diag.Height = 600;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
