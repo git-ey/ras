@@ -1,4 +1,4 @@
-package com.ey.controller.pbc.test;
+package com.ey.controller.pbc.output;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,7 +25,7 @@ import com.ey.service.pbc.output.CExportManager;
  */
 @Controller
 @RequestMapping(value="/export")
-public class ExportTestController extends BaseController {
+public class CExportController extends BaseController {
 	@Resource(name="cExportService")
     private CExportManager cExportService;
 	
