@@ -39,10 +39,14 @@ public class CExportController extends BaseController {
      * @param
      * @throws Exception
      */
-    @RequestMapping(value="/test",method=RequestMethod.GET, produces="application/x-www-form-urlencoded;charset=UTF-8")
-    public void test(HttpServletRequest request, HttpServletResponse response){
+    @RequestMapping(value="/c",method=RequestMethod.GET, produces="application/x-www-form-urlencoded;charset=UTF-8")
+    public void output(HttpServletRequest request, HttpServletResponse response){
         try {
-            this.cExportService.doExport(request, response, "-1", 2017L);
+        	// 基金ID
+        	String fundId =  request.getParameter("FUND_ID");
+        	// 期间
+        	String peroid =  request.getParameter("PEROID");
+            this.cExportService.doExport(request, response, fundId, Long.parseLong(peroid));
         } catch (Exception e) {
             this.logger.error("", e);
         }
