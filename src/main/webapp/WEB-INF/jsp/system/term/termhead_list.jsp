@@ -31,7 +31,7 @@
 						<div class="col-xs-12">
 							
 						<!-- 检索  -->
-						<form action="concruning/list.do" method="post" name="Form" id="Form">
+						<form action="termhead/list.do" method="post" name="Form" id="Form">
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -42,44 +42,23 @@
 										</span>
 									</div>
 								</td>
-								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="${pd.lastStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
-								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="${pd.lastEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
-								<td style="vertical-align:top;padding-left:2px;">
-								 	<select class="chosen-select form-control" name="RESULT" id="RESULT" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
-									<option value=""></option>
-									<option value="R" <c:if test="${pd.RESULT == 'R'}">selected</c:if>>运行中</option>
-									<option value="S" <c:if test="${pd.RESULT == 'S'}">selected</c:if>>成功</option>
-									<option value="W" <c:if test="${pd.RESULT == 'W'}">selected</c:if>>警告</option>
-									<option value="E" <c:if test="${pd.RESULT == 'E'}">selected</c:if>>失败</option>
-								  	</select>
-								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
-								<td style="padding-left:2px;width:20%;"></td>
-								<td style="vertical-align:top;">
-									<c:if test="${QX.add == 1 }">
-									<a class="btn btn-mini btn-success" onclick="add();">提交新请求</a>
-									</c:if>
-								</td>
 							</tr>
 						</table>
 						<!-- 检索  -->
+					
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
-									</th>
-									<th class="center" style="width:4%;">序号</th>
-									<th class="center" style="width:9%;">程序代码</th>
-									<th class="center" style="width:13%;">程序名称</th>
-									<th class="center" style="width:14%;">开始时间</th>
-									<th class="center" style="width:14%;">结束时间</th>
-									<th class="center" style="width:8%;">运行状态</th>
-									<th class="center" style="width:20%;">运行消息</th>
-									<th class="center" style="width:8%;">运行人</th>
-									<th class="center" style="width:10%;">查看日志</th>
+									<th class="center" style="width:5%">序号</th>
+									<th class="center" style="width:15%;">账龄代码</th>
+									<th class="center" style="width:15%;">账龄类型</th>
+									<th class="center" style="width:20%;">账龄名称</th>
+									<th class="center" style="width:20%;">说明</th>
+									<th class="center" style="width:10%;">是否启用</th>
+									<th class="center" style="width:15%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -90,33 +69,62 @@
 									<c:if test="${QX.cha == 1 }">
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
-											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.CONCRUNING_ID}" class="ace" /><span class="lbl"></span></label>
-											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
-											<td class='center'>${var.CONC_CODE}</td>
-											<td class='center'>${var.CONC_NAME}</td>
-											<td class='center'>${var.START_DATETIME}</td>
-											<td class='center'>${var.END_DATETIME}</td>
+											<td class='center'>${var.TERMHEAD_ID}</td>
+											<td class='center'>${var.TERM_TYPE}</td>
+											<td class='center'>${var.NAME}</td>
+											<td class='center'>${var.DESCRIPTION}</td>
 											<td class='center'>
 											<c:choose>  
-                                               <c:when test="${var.RESULT == 'R' }">
-                                                                                                    运行中
-                                               </c:when>  
-                                               <c:when test="${var.RESULT == 'S' }">
-                                                                                                    成功
-                                               </c:when> 
-                                               <c:when test="${var.RESULT == 'W' }">
-                                                                                                    警告
-                                               </c:when> 
-                                               <c:when test="${var.RESULT == 'E' }">
-                                                                                                    错误
-                                               </c:when>
+                                               <c:when test="${var.ACTIVE == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.ACTIVE == 'N' }"> 否 </c:when>  
                                             </c:choose>
 											</td>
-											<td class='center'>${var.MESSAGE}</td>
-											<td class='center'>${var.OPERATOR}</td>
-											<td class='center'><a class="btn btn-light btn-xs" onclick="toExcel('${var.CONCRUNING_ID}');" title="导出日志"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td>
+											<td class="center">
+												<c:if test="${QX.edit != 1 && QX.del != 1 }">
+												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
+												</c:if>
+												<div class="hidden-sm hidden-xs btn-group">
+													<c:if test="${QX.edit == 1 }">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.TERMHEAD_ID}');">
+														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
+													</a>
+													</c:if>
+													<c:if test="${QX.del == 1 }">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.TERMHEAD_ID}');">
+														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
+													</a>
+													</c:if>
+												</div>
+												<div class="hidden-md hidden-lg">
+													<div class="inline pos-rel">
+														<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+															<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+														</button>
+			
+														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+															<c:if test="${QX.edit == 1 }">
+															<li>
+																<a style="cursor:pointer;" onclick="edit('${var.TERMHEAD_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																	<span class="green">
+																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																	</span>
+																</a>
+															</li>
+															</c:if>
+															<c:if test="${QX.del == 1 }">
+															<li>
+																<a style="cursor:pointer;" onclick="del('${var.TERMHEAD_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																	<span class="red">
+																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																	</span>
+																</a>
+															</li>
+															</c:if>
+														</ul>
+													</div>
+												</div>
+											</td>
 										</tr>
 									
 									</c:forEach>
@@ -138,6 +146,11 @@
 						<div class="page-header position-relative">
 						<table style="width:100%;">
 							<tr>
+								<td style="vertical-align:top;">
+									<c:if test="${QX.add == 1 }">
+									<a class="btn btn-mini btn-success" onclick="add();">新增</a>
+									</c:if>
+								</td>
 								<td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
 							</tr>
 						</table>
@@ -234,10 +247,10 @@
 			 top.jzts();
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
-			 diag.Title ="运行请求";
-			 diag.URL = '<%=basePath%>concruning/goAdd.do';
+			 diag.Title ="新增";
+			 diag.URL = '<%=basePath%>termhead/goAdd.do';
 			 diag.Width = 600;
-			 diag.Height = 550;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -254,9 +267,53 @@
 			 diag.show();
 		}
 		
-		//导出excel日志
-		function toExcel(Id){
-			window.location.href='<%=basePath%>concruning/excel.do?CONCRUNING_ID='+Id;
+		//删除
+		function del(Id){
+			bootbox.confirm("确定要删除吗?", function(result) {
+				if(result) {
+					top.jzts();
+					var url = "<%=basePath%>termhead/delete.do?TERMHEAD_ID="+Id+"&tm="+new Date().getTime();
+					$.get(url,function(data){
+						if("success" == data.result){
+							tosearch();
+						}else if("false" == data.result){
+							top.hangge();
+							bootbox.dialog({
+								message: "<span class='bigger-110'>删除失败,请先删除明细数据!</span>",
+								buttons: 			
+								{
+									"button" :
+									{
+										"label" : "确定",
+										"className" : "btn-sm btn-success"
+									}
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+		
+		//修改
+		function edit(Id){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="编辑";
+			 diag.URL = '<%=basePath%>termhead/goEdit.do?TERMHEAD_ID='+Id;
+			 diag.Width = 800;
+			 diag.Height = 600;
+			 diag.Modal = true;				//有无遮罩窗口
+			 diag. ShowMaxButton = true;	//最大化按钮
+		     diag.ShowMinButton = true;		//最小化按钮
+			 diag.CancelEvent = function(){ //关闭事件
+				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+					 tosearch();
+				}
+				diag.close();
+			 };
+			 diag.show();
 		}
 		
 	</script>

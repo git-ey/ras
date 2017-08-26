@@ -3,8 +3,6 @@ package com.ey.controller.system.concruning;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -75,18 +73,17 @@ public class ConcRuningController extends BaseController {
 		Set<Entry<String, Object>> pdSet = pd.entrySet();
 		Iterator<Entry<String, Object>> pds = pdSet.iterator();
 		int i = 0;
-		concParam.append(concRuningId);
 		while(pds.hasNext()){
 			Entry<String, Object> et = pds.next();
 			if(i>0){
-				concParam.append(","+et.getValue());
+				concParam.append(et.getValue()+",");
 			}
 			i++;
 		}
 		pd.put("CONC_PROGRAM", concPd.getString("CONC_PROGRAM"));
 		// 参数排序
-		String[] paramArray = concParam.toString().split(",");
-		Collections.reverse(Arrays.asList(paramArray));
+		concParam.append(concRuningId);
+		String[] paramArray = concParam.toString().split(",", -1);//分割后保留空字符
 		pd.put("CONC_PARAM",paramArray);
 		// 记录日志
 		pd.put("CONCRUNING_ID", concRuningId);	//主键

@@ -95,10 +95,10 @@
 							delTr('table_param');
 							 $.each(data.list, function(i, list){
 								 if(list.PARAM_CODE != null && list.PARAM_TYPE == 'String'){
-									 var trHtml="<tr align='center'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input type='text' style='width:98%;' name="+list.PARAM_CODE+" id="+list.PARAM_CODE+" value="+list.CONC_VALUE+"></input></td></tr>";
+									 var trHtml="<tr align='center'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input type='text' style='width:98%;' name="+list.SEQ+":"+list.PARAM_CODE+" id="+list.SEQ+":"+list.PARAM_CODE+" value="+list.CONC_VALUE+"></input></td></tr>";
 									 addTr(trHtml,'table_param', 0);
 								 }else if(list.PARAM_CODE != null && list.PARAM_TYPE == 'Date'){
-									 var trHtml="<tr align='center'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input class='span10 date-picker' type='text' data-date-format='yyyy-mm-dd' readonly='readonly' style='width:98%;' name="+list.PARAM_CODE+" id="+list.PARAM_CODE+" value="+list.CONC_VALUE+"></input></td></tr>";
+									 var trHtml="<tr align='center'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input class='span10 date-picker' type='text' data-date-format='yyyy-mm-dd' readonly='readonly' style='width:98%;' name="+list.SEQ+":"+list.PARAM_CODE+" id="+list.SEQ+":"+list.PARAM_CODE+" value="+list.CONC_VALUE+"></input></td></tr>";
 									 addTr(trHtml,'table_param', 0);
 									//日期框
 									$('.date-picker').datepicker({
