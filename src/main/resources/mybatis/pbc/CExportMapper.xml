@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CExportMapper">
+    <select id="selectCData" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    C.EY_ACCOUNT_NUM as accountNum,
+		    C.AMOUNT_CURRENT as amountCurrent,
+		    C.AMOUNT_ADJ_CR as crAmountAdj,
+		    C.AMOUNT_ADJ_DR as drAmountAdj,
+		    #C.AMOUNT_AUDIT_CURRENT as amountAutidCurrent,
+		    C.`AMOUNT_AUDIT_LAST`as amountAuditLast
+		FROM
+		    pbc_c C
+		where 
+		    1 = 1
+		and C.FUND_ID = #{fundId}
+		and C.PERIOD = #{period}
+    </select>
+</mapper>
