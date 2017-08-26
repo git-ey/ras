@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
 import com.ey.service.system.dataexport.DataexportManager;
+import com.ey.service.system.mgrcompany.MgrcompanyManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Jurisdiction;
 import com.ey.util.PageData;
@@ -37,6 +38,8 @@ public class DataexportController extends BaseController {
 	String menuUrl = "dataexport/list.do"; //菜单地址(权限用)
 	@Resource(name="dataexportService")
 	private DataexportManager dataexportService;
+	@Resource(name="mgrcompanyService")
+	private MgrcompanyManager mgrcompanyService;
 	
 	/**列表
 	 * @param page
@@ -55,8 +58,12 @@ public class DataexportController extends BaseController {
 		}
 		page.setPd(pd);
 		List<PageData>	varList = dataexportService.list(page);	//列出Dataexport列表
+		List<PageData> companyList = mgrcompanyService.listAll(pd);
+		List<PageData> periodList = dataexportService.listPeriod(pd);
 		mv.setViewName("system/dataexport/dataexport_list");
 		mv.addObject("varList", varList);
+		mv.addObject("companyList", companyList);
+		mv.addObject("periodList", periodList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
 		return mv;

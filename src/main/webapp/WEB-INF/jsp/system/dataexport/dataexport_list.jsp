@@ -42,21 +42,43 @@
 										</span>
 									</div>
 								</td>
+								<td style="padding-left:2px;text-align:right;width:10%;">期间:</td>
+								<td style="vertical-align:top;padding-left:2px;width:5%;">
+								 	<select class="chosen-select form-control" name="PERIOD" id="PERIOD" data-placeholder="请选择期间" style="vertical-align:top;width: 120px;">
+									    <c:forEach items="${periodList}" var="var" varStatus="vs">
+									        <option value="${var.PERIOD}" <c:if test="${pd.PERIOD == var.PERIOD}">selected</c:if>>${var.PERIOD_NAME}</option>
+									    </c:forEach>
+								  	</select>
+								</td>
+								<td style="padding-left:2px;text-align:right;width:10%;">管理公司:</td>
+								<td style="vertical-align:top;padding-left:2px;width:5%;">
+								 	<select class="chosen-select form-control" name="FIRM_CODE" id="FIRM_CODE" data-placeholder="请选择公司" style="vertical-align:top;width: 120px;">
+									    <option value=""></option>
+									    <c:forEach items="${companyList}" var="var" varStatus="vs">
+									        <option value="${var.COMPANY_CODE}" <c:if test="${pd.FIRM_CODE == var.COMPANY_CODE}">selected</c:if>>${var.SHORT_NAME}</option>
+									    </c:forEach>
+								  	</select>
+								</td>
+								<td style="padding-left:2px;text-align:right;width:10%;">基金代码:</td>
+								<td style="vertical-align:top;padding-left:2px;width:10%;">
+								    <input type="text" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }" placeholder="这里输入基金代码"/>
+								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
 								<td style="vertical-align:top;">
 									<c:if test="${QX.toExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="exportAll('确定要导出选中的数据吗?');" title="批量导出"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td></c:if>
 								</td>
+								<td style="padding-left:2px;text-align:right;width:20%;"></td>
 							</tr>
 						</table>
 						<!-- 检索  -->
-					
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">基金ID</th>
+									<th class="center">期间</th>
 									<th class="center">基金简称</th>
 									<th class="center">管理公司</th>
 									<th class="center" colspan="11">底稿导出</th>
@@ -74,6 +96,7 @@
 										<tr>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.FUND_ID}</td>
+											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
 											<td class='center'>${var.MGR_COMPANY}</td>
 											<td class="center"><a>C</a></td>

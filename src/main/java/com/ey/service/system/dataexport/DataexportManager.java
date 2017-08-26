@@ -19,5 +19,13 @@ public interface DataexportManager{
 	 */
 	public List<PageData> list(Page page)throws Exception;
 	
+	/**
+	 * 获取期间
+	 * @param pd
+	 * @return
+	 */
+	public List<PageData> listPeriod(PageData pd) throws Exception;
+
+	
 }
 

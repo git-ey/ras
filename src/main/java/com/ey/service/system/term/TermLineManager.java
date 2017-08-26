@@ -1,4 +1,4 @@
-package com.ey.service.system.importconfig;
+package com.ey.service.system.term;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import com.ey.entity.Page;
 import com.ey.util.PageData;
 
 /** 
- * 说明： 数据导入设置接口
+ * 说明： 期限账龄信息(明细)接口
  * 创建人：andychen
- * 创建时间：2017-08-03
+ * 创建时间：2017-08-26
  * @version
  */
-public interface ImportConfigManager{
+public interface TermLineManager{
 
 	/**新增
 	 * @param pd
@@ -49,31 +49,17 @@ public interface ImportConfigManager{
 	 */
 	public PageData findById(PageData pd)throws Exception;
 	
-	/**通过Code获取数据
-	 * @param pd
-	 * @throws Exception
-	 */
-	public PageData findByCode(String importTempCode)throws Exception;
-	
-	/**通过导入文件类型获取数据
-	 * @param pd
-	 * @throws Exception
-	 */
-	public List<String> findByImportTempCode(PageData pd) throws Exception;
-	
 	/**批量删除
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception;
 	
-	/**
-	 * 获取创建数据库表SQL
-	 * @param importConfigId
-	 * @return
+	/**查询明细总数
+	 * @param pd
 	 * @throws Exception
 	 */
-	public String getTableSql(String importConfigId) throws Exception;
+	public PageData findCount(PageData pd)throws Exception;
 	
 }
 

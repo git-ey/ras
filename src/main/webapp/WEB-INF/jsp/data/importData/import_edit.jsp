@@ -31,8 +31,17 @@
 						<input type="hidden" name="IMPORT_ID" id="IMPORT_ID" value="${pd.IMPORT_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
+						    <tr>
+								<td style="width:75px;text-align: right;padding-top: 13px;">模板类型:</td>
+								<td>
+								    <select class="chosen-select form-control" name="TEMP_TYPE" id="TEMP_TYPE" data-placeholder="请选择类型" style="width:49%;">
+								    <option value="HS" <c:if test="${pd.TEMP_TYPE == 'HS'}">selected</c:if>>恒生</option>
+								    <option value="JSZ" <c:if test="${pd.TEMP_TYPE == 'JSZ'}">selected</c:if>>金手指</option>
+								    </select>
+								</td>
+							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">文件类型:</td>
+								<td style="width:75px;text-align: right;padding-top: 13px;">模板代码:</td>
 								<td><input type="text" name="IMPORT_TEMP_CODE" id="IMPORT_TEMP_CODE" value="${pd.IMPORT_TEMP_CODE}" maxlength="60" placeholder="这里输入模板代码" title="模板代码" style="width:49%;"/></td>
 							</tr>
 							<tr>

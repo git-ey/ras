@@ -56,11 +56,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 	public Boolean call() throws Exception {
 		Boolean result = Boolean.TRUE;
 		String importMessage = null;
-		// 导入数据文件配置代码
-		String importTempCode = StringUtils.isBlank(pd.getString("IMPORT_TEMP_CODE")) ? null
-				: pd.getString("IMPORT_TEMP_CODE");
 		// 获取数据导入配置
-		List<String> importConfigs = importConfigService.findByImportTempCode(importTempCode);
+		List<String> importConfigs = importConfigService.findByImportTempCode(pd);
 		if (importConfigs == null || importConfigs.size() == 0) {
 			this.updateImportStatus("N", "未找到有效的导入设置");
 			return result;

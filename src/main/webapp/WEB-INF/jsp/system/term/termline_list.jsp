@@ -31,38 +31,22 @@
 						<div class="col-xs-12">
 							
 						<!-- 检索  -->
-						<form action="importconfig/list.do" method="post" name="Form" id="Form">
-						<table style="margin-top:5px;">
-							<tr>
-								<td>
-									<div class="nav-search">
-										<span class="input-icon">
-											<input type="text" placeholder="这里输入关键词" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }" placeholder="这里输入关键词"/>
-											<i class="ace-icon fa fa-search nav-search-icon"></i>
-										</span>
-									</div>
-								</td>
-								<c:if test="${QX.cha == 1 }">
-								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
-								</c:if>
-							</tr>
-						</table>
-						<!-- 检索  -->
-					
+						<form action="termline/list.do" method="post" name="Form" id="Form">
+						<input type="hidden" name="TERMHEAD_ID" id="TERMHEAD_ID" value="${pd.TERMHEAD_ID}"/>
+						<div style="overflow-x: scroll; scrolling: auto;width: 100%;">
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:4%;">序号</th>
-									<th class="center" style="width:8%;">模版代码</th>
-									<th class="center" style="width:15%;">模板名称</th>
-									<th class="center" style="width:7%;">模版类型</th>
-									<th class="center" style="width:6%;">起始行</th>
-									<th class="center" style="width:7%;">导入类型</th>
-									<th class="center" style="width:12%;">导入目标表</th>
-									<th class="center" style="width:12%;">文件名格式</th>
-									<th class="center" style="width:13%;">行过滤规则</th>
-									<th class="center" style="width:8%;">名称解析段</th>
-									<th class="center" style="width:9%;">操作</th>
+									<th class="center" style="width:35px;">
+									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									</th>
+									<th class="center">排序号</th>
+									<th class="center">账龄期限名称</th>
+									<th class="center">披露名称</th>
+									<th class="center">天数从</th>
+									<th class="center">天数至</th>
+									<th class="center">说明</th>
+									<th class="center">操作</th>
 								</tr>
 							</thead>
 													
@@ -73,34 +57,27 @@
 									<c:if test="${QX.cha == 1 }">
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
-											<td class='center' style="width: 30px;">${vs.index+1}</td>
-											<td class='center'>${var.IMPORT_TEMP_CODE}</td>
-											<td class='center'>${var.IMPORT_TEMP_NAME}</td>
 											<td class='center'>
-											<c:choose>  
-                                               <c:when test="${var.TEMP_TYPE == 'HS' }"> 恒生 </c:when>
-                                               <c:when test="${var.TEMP_TYPE == 'JSZ' }"> 金手指 </c:when>  
-                                               <c:when test="${var.TEMP_TYPE == 'JM' }"> 界面 </c:when>  
-                                            </c:choose>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.TERMLINE_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
-											<td class='center'>${var.START_ROW_NO}</td>
-											<td class='center'>${var.IMPORT_FILE_TYPE}</td>
-											<td class='center'>${var.TABLE_NAME}</td>
-											<td class='center'>${var.FILENAME_FROMAT}</td>
-											<td class='center'>${var.IGNORE_RULE}</td>
-											<td class='center'>${var.NAME_SECTION}</td>
+											<td class='center'>${var.SORT}</td>
+											<td class='center'>${var.PERIOD_NAME}</td>
+											<td class='center'>${var.REVEAL_NAME}</td>
+											<td class='center'>${var.DAYS_FROM}</td>
+											<td class='center'>${var.DAYS_TO}</td>
+											<td class='center'>${var.DESCRIPTION}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.IMPORTCONFIG_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.TERMLINE_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.IMPORTCONFIG_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.TERMLINE_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -114,7 +91,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.IMPORTCONFIG_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.TERMLINE_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -123,7 +100,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.IMPORTCONFIG_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.TERMLINE_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -152,12 +129,17 @@
 							</c:choose>
 							</tbody>
 						</table>
+						</div>
+						
 						<div class="page-header position-relative">
 						<table style="width:100%;">
 							<tr>
 								<td style="vertical-align:top;">
 									<c:if test="${QX.add == 1 }">
 									<a class="btn btn-mini btn-success" onclick="add();">新增</a>
+									</c:if>
+									<c:if test="${QX.del == 1 }">
+									<a class="btn btn-mini btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
 									</c:if>
 								</td>
 								<td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
@@ -257,19 +239,15 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>importconfig/goAdd.do';
-			 diag.Width = 1000;
-			 diag.Height = 350;
+			 diag.URL = '<%=basePath%>termline/goAdd.do?TERMHEAD_ID=${pd.TERMHEAD_ID}';
+			 diag.Width = 500;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
 			 diag.CancelEvent = function(){ //关闭事件
 				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 if('${page.currentPage}' == '0'){
-						 tosearch();
-					 }else{
-						 tosearch();
-					 }
+					tosearch();
 				}
 				diag.close();
 			 };
@@ -281,24 +259,9 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>importconfig/delete.do?IMPORTCONFIG_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>termline/delete.do?TERMLINE_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
-						if("success" == data.result){
-							tosearch();
-						}else if("false" == data.result){
-							top.hangge();
-							bootbox.dialog({
-								message: "<span class='bigger-110'>删除失败,请先删除明细数据!</span>",
-								buttons: 			
-								{
-									"button" :
-									{
-										"label" : "确定",
-										"className" : "btn-sm btn-success"
-									}
-								}
-							});
-						}
+						tosearch();
 					});
 				}
 			});
@@ -310,9 +273,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>importconfig/goEdit.do?IMPORTCONFIG_ID='+Id;
-			 diag.Width = 1000;
-			 diag.Height = 600;
+			 diag.URL = '<%=basePath%>termline/goEdit.do?TERMLINE_ID='+Id;
+			 diag.Width = 500;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -324,6 +287,54 @@
 			 };
 			 diag.show();
 		}
+		
+		//批量操作
+		function makeAll(msg){
+			bootbox.confirm(msg, function(result) {
+				if(result) {
+					var str = '';
+					for(var i=0;i < document.getElementsByName('ids').length;i++){
+					  if(document.getElementsByName('ids')[i].checked){
+					  	if(str=='') str += document.getElementsByName('ids')[i].value;
+					  	else str += ',' + document.getElementsByName('ids')[i].value;
+					  }
+					}
+					if(str==''){
+						bootbox.dialog({
+							message: "<span class='bigger-110'>您没有选择任何内容!</span>",
+							buttons: 			
+							{ "button":{ "label":"确定", "className":"btn-sm btn-success"}}
+						});
+						$("#zcheckbox").tips({
+							side:1,
+				            msg:'点这里全选',
+				            bg:'#AE81FF',
+				            time:8
+				        });
+						return;
+					}else{
+						if(msg == '确定要删除选中的数据吗?'){
+							top.jzts();
+							$.ajax({
+								type: "POST",
+								url: '<%=basePath%>termline/deleteAll.do?tm='+new Date().getTime(),
+						    	data: {DATA_IDS:str},
+								dataType:'json',
+								//beforeSend: validateData,
+								cache: false,
+								success: function(data){
+									 $.each(data.list, function(i, list){
+											tosearch();
+									 });
+								}
+							});
+						}
+					}
+				}
+			});
+		};
+		
 	</script>
+
 </body>
 </html>

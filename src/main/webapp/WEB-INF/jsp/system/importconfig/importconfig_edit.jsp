@@ -36,6 +36,14 @@
 								<td><input type="text" name="IMPORT_TEMP_CODE" id="IMPORT_TEMP_CODE" value="${pd.IMPORT_TEMP_CODE}" maxlength="60" placeholder="这里输入导入模版代码" title="导入模版代码" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">模板名称:</td>
 								<td><input type="text" name="IMPORT_TEMP_NAME" id="IMPORT_TEMP_NAME" value="${pd.IMPORT_TEMP_NAME}" maxlength="240" placeholder="这里输入导入模板名称" title="导入模板名称" style="width:98%;"/></td>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">模板类型:</td>
+								<td>
+								    <select class="chosen-select form-control" name="TEMP_TYPE" id="TEMP_TYPE" data-placeholder="请选择" style="width:49%;">
+								    <option value="HS" <c:if test="${pd.TEMP_TYPE == 'HS'}">selected</c:if>>恒生</option>
+								    <option value="JSZ" <c:if test="${pd.TEMP_TYPE == 'JSZ'}">selected</c:if>>金手指</option>
+								    <option value="JM" <c:if test="${pd.TEMP_TYPE == 'JM'}">selected</c:if>>界面</option>
+								    </select>
+								</td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">读取起始行:</td>
@@ -47,14 +55,12 @@
 								    <option value="CSV" <c:if test="${pd.IMPORT_FILE_TYPE == 'CSV'}">selected</c:if>>CSV</option>
 								    </select>
 								</td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">导入目标表:</td>
 								<td><input type="text" name="TABLE_NAME" id="TABLE_NAME" value="${pd.TABLE_NAME}" maxlength="60" placeholder="这里输入导入目标表" title="导入目标表" style="width:98%;"/></td>
+						   </tr>
+							<tr>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">文件名格式:</td>
 							    <td><input type="text" name="FILENAME_FROMAT" id="FILENAME_FROMAT" value="${pd.FILENAME_FROMAT}" maxlength="60" placeholder="这里输入文件名格式" title="文件名格式" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">行过滤规则:</td>
 								<td><input type="text" name="IGNORE_RULE" id="IGNORE_RULE" value="${pd.IGNORE_RULE}" maxlength="60" placeholder="列号1:^$,列号2:[\u4e00-\u9fa5]" title="行过滤规则" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">名称解析段:</td>
@@ -97,7 +103,7 @@
 </footer>
 <c:if test="${'edit' == msg }">
 	<div>
-		<iframe name="treeFrame" id="treeFrame" frameborder="0" src="<%=basePath%>/importconfigcell/list.do?IMPORTCONFIG_ID=${pd.IMPORTCONFIG_ID}" style="margin:0 auto;width:805px;height:368px;;"></iframe>
+		<iframe name="treeFrame" id="treeFrame" frameborder="0" src="<%=basePath%>/importconfigcell/list.do?IMPORTCONFIG_ID=${pd.IMPORTCONFIG_ID}" style="margin:0 auto;width:1005px;height:368px;;"></iframe>
 	</div>
 </c:if>
 	<!-- 页面底部js¨ -->

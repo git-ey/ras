@@ -1,21 +1,24 @@
-package com.ey.service.system.mgrcompany.impl;
+package com.ey.service.system.term.impl;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.service.system.term.TermHeadManager;
 import com.ey.util.PageData;
-import com.ey.service.system.mgrcompany.MgrcompanyManager;
 
 /** 
- * 说明： 管理公司信息
+ * 说明： 期限账龄信息
  * 创建人：andychen
- * 创建时间：2017-08-23
+ * 创建时间：2017-08-26
  * @version
  */
-@Service("mgrcompanyService")
-public class MgrcompanyService implements MgrcompanyManager{
+@Service("termheadService")
+public class TermHeadService implements TermHeadManager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
@@ -25,7 +28,7 @@ public class MgrcompanyService implements MgrcompanyManager{
 	 * @throws Exception
 	 */
 	public void save(PageData pd)throws Exception{
-		dao.save("MgrcompanyMapper.save", pd);
+		dao.save("TermHeadMapper.save", pd);
 	}
 	
 	/**删除
@@ -33,7 +36,7 @@ public class MgrcompanyService implements MgrcompanyManager{
 	 * @throws Exception
 	 */
 	public void delete(PageData pd)throws Exception{
-		dao.delete("MgrcompanyMapper.delete", pd);
+		dao.delete("TermHeadMapper.delete", pd);
 	}
 	
 	/**修改
@@ -41,7 +44,7 @@ public class MgrcompanyService implements MgrcompanyManager{
 	 * @throws Exception
 	 */
 	public void edit(PageData pd)throws Exception{
-		dao.update("MgrcompanyMapper.edit", pd);
+		dao.update("TermHeadMapper.edit", pd);
 	}
 	
 	/**列表
@@ -50,7 +53,7 @@ public class MgrcompanyService implements MgrcompanyManager{
 	 */
 	@SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
-		return (List<PageData>)dao.findForList("MgrcompanyMapper.datalistPage", page);
+		return (List<PageData>)dao.findForList("TermHeadMapper.datalistPage", page);
 	}
 	
 	/**列表(全部)
@@ -59,7 +62,7 @@ public class MgrcompanyService implements MgrcompanyManager{
 	 */
 	@SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
-		return (List<PageData>)dao.findForList("MgrcompanyMapper.listAll", pd);
+		return (List<PageData>)dao.findForList("TermHeadMapper.listAll", pd);
 	}
 	
 	/**通过id获取数据
@@ -67,15 +70,15 @@ public class MgrcompanyService implements MgrcompanyManager{
 	 * @throws Exception
 	 */
 	public PageData findById(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("MgrcompanyMapper.findById", pd);
+		return (PageData)dao.findForObject("TermHeadMapper.findById", pd);
 	}
 	
 	/**批量删除
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS) throws Exception {
-		dao.delete("MgrcompanyMapper.deleteAll", ArrayDATA_IDS);
+	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+		dao.delete("TermHeadMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
 }

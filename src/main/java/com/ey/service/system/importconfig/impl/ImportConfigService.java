@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -86,8 +85,8 @@ public class ImportConfigService implements ImportConfigManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public List<String> findByImportTempCode(String importTempCode) throws Exception {
-		return (List<String>) dao.findForList("ImportConfigMapper.findByImportTempCode", importTempCode);
+	public List<String> findByImportTempCode(PageData pd) throws Exception {
+		return (List<String>) dao.findForList("ImportConfigMapper.findByImportTempCode", pd);
 	}
 	
 	/**批量删除

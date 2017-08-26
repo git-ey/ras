@@ -11,6 +11,7 @@
 	<sql id="Field">
 		IMPORT_TEMP_CODE,
 		IMPORT_TEMP_NAME,
+		TEMP_TYPE,
 		START_ROW_NO,
 		TABLE_NAME,
 		IMPORT_FILE_TYPE,
@@ -26,6 +27,7 @@
 	<sql id="FieldValue">
 		#{IMPORT_TEMP_CODE},
 		#{IMPORT_TEMP_NAME},
+		#{TEMP_TYPE},
 		#{START_ROW_NO},
 		#{TABLE_NAME},
 		#{IMPORT_FILE_TYPE},
@@ -63,6 +65,7 @@
 		set 
 			IMPORT_TEMP_CODE = #{IMPORT_TEMP_CODE},
 			IMPORT_TEMP_NAME = #{IMPORT_TEMP_NAME},
+			TEMP_TYPE = #{TEMP_TYPE},
 			START_ROW_NO = #{START_ROW_NO},
 			TABLE_NAME = #{TABLE_NAME},
 			IMPORT_FILE_TYPE = #{IMPORT_FILE_TYPE},
@@ -96,7 +99,7 @@
 	</select>
 
 	<!-- 通过导入类型获取数据 -->
-	<select id="findByImportTempCode" parameterType="java.lang.String" resultType="java.lang.String">
+	<select id="findByImportTempCode" parameterType="pd" resultType="java.lang.String">
 		select
 		   IMPORT_TEMP_CODE
 		from
@@ -104,8 +107,12 @@
 		where ENABLED_FLAG = 'Y'
 		  and TABLE_NAME != ''
           and FILENAME_FROMAT != ''
-		<if test="importTempCode != null and importTempCode != ''">
-		  and IMPORT_TEMP_CODE = #{importTempCode,jdbcType=VARCHAR}
+          and TEMP_TYPE != 'JM'
+        <if test="TEMP_TYPE != null and TEMP_TYPE != ''">
+		  and TEMP_TYPE = #{TEMP_TYPE,jdbcType=VARCHAR}
+		</if>
+		<if test="IMPORT_TEMP_CODE != null and IMPORT_TEMP_CODE != ''">
+		  and IMPORT_TEMP_CODE = #{IMPORT_TEMP_CODE,jdbcType=VARCHAR}
 		</if>
 		order by IMPORT_TEMP_CODE ASC
 	</select>	
@@ -127,6 +134,9 @@
 				     or
 				    TABLE_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 				)
+		</if>
+		<if test="pd.TEMP_TYPE != null and pd.TEMP_TYPE != ''">
+		    and TEMP_TYPE != #{pd.TEMP_TYPE}
 		</if>
 		order by IMPORT_TEMP_CODE ASC
 	</select>

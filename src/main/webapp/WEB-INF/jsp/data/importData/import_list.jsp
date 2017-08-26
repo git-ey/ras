@@ -37,6 +37,7 @@
 									<div class="nav-search">
 										<span class="input-icon">
 											<input type="text" placeholder="这里输入关键词" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }" placeholder="这里输入关键词"/>
+										</span>
 									</div>
 								</td>
 								<td style="padding-left:2px;text-align:right;width:10%;">导入状态:</td>
