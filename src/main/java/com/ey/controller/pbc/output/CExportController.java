@@ -22,7 +22,7 @@ import com.ey.util.PageData;
  * 说明： 底稿输出测试Controller 创建人：Dai Zong 创建时间：2017-08-25
  */
 @Controller
-@RequestMapping(value = "/export")
+@RequestMapping(value = "/pdcExport")
 public class CExportController extends BaseController {
 	@Resource(name = "cExportService")
 	private CExportManager cExportService;
@@ -39,7 +39,7 @@ public class CExportController extends BaseController {
 	 * @param
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/c")
+	@RequestMapping(value = "/C")
 	public void output(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		PageData pd = this.getPageData();
 		this.cExportService.doExport(request, response, pd.getString("FUND_ID"),
