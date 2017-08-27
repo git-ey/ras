@@ -125,5 +125,13 @@ public class FundService implements FundManager{
 		dao.delete("FundMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
+	/**查询明细总数
+	 * @param pd
+	 * @throws Exception
+	 */
+	public PageData findCount(PageData pd) throws Exception {
+		return (PageData)dao.findForObject("FundMapper.findCount", pd);
+	}
+	
 }
 

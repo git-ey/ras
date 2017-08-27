@@ -1,30 +1,22 @@
 package com.ey.service.system.fund;
 
 import java.util.List;
-import java.util.Map;
-
 import com.ey.entity.Page;
 import com.ey.util.PageData;
 
 /** 
- * 说明： 基金信息接口
+ * 说明： 基金关联方接口
  * 创建人：andychen
- * 创建时间：2017-08-22
+ * 创建时间：2017-08-27
  * @version
  */
-public interface FundManager{
+public interface RelatedPartyManager{
 
 	/**新增
 	 * @param pd
 	 * @throws Exception
 	 */
 	public void save(PageData pd)throws Exception;
-	
-	/**批量新增
-	 * @param pds
-	 * @throws Exception
-	 */
-	public void saveBatch(List<Map> maps) throws Exception;
 	
 	/**删除
 	 * @param pd
@@ -55,18 +47,6 @@ public interface FundManager{
 	 * @throws Exception
 	 */
 	public PageData findById(PageData pd)throws Exception;
-	
-	/**批量删除
-	 * @param ArrayDATA_IDS
-	 * @throws Exception
-	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception;
-	
-	/**查询明细总数
-	 * @param pd
-	 * @throws Exception
-	 */
-	public PageData findCount(PageData pd) throws Exception;
-	
+
 }
 
