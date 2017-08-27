@@ -19,11 +19,12 @@ import com.ey.service.pbc.output.CExportManager;
 import com.ey.util.PageData;
 
 /**
- * 说明： 底稿输出测试Controller 创建人：Dai Zong 创建时间：2017-08-25
+ * 说明： 底稿输出Controller
  */
 @Controller
 @RequestMapping(value = "/pdcExport")
-public class CExportController extends BaseController {
+public class ExportController extends BaseController {
+	// 底稿C
 	@Resource(name = "cExportService")
 	private CExportManager cExportService;
 
@@ -40,7 +41,7 @@ public class CExportController extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/C")
-	public void output(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void outputC(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		PageData pd = this.getPageData();
 		this.cExportService.doExport(request, response, pd.getString("FUND_ID"),
 				Long.parseLong(pd.getString("PEROID")));
