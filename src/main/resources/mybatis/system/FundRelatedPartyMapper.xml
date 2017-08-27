@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FundRelatedPartyMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_FUND_RELATED_PARTY
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		PARTY_ID,	
+		FUND_ID,	
+		PARTY_FULL_NAME,	
+		PARTY_SHORT_NAME_1,	
+		PARTY_SHORT_NAME_2,	
+		PARTY_SHORT_NAME_3,	
+		RELATIONSHIP
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{PARTY_ID},	
+		#{FUND_ID},	
+		#{PARTY_FULL_NAME},	
+		#{PARTY_SHORT_NAME_1},	
+		#{PARTY_SHORT_NAME_2},	
+		#{PARTY_SHORT_NAME_3},	
+		#{RELATIONSHIP}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where PARTY_ID = #{PARTY_ID}
+		  and FUND_ID = #{FUND_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			PARTY_FULL_NAME = #{PARTY_FULL_NAME},
+			PARTY_SHORT_NAME_1 = #{PARTY_SHORT_NAME_1},
+			PARTY_SHORT_NAME_2 = #{PARTY_SHORT_NAME_2},
+			PARTY_SHORT_NAME_3 = #{PARTY_SHORT_NAME_3},
+			RELATIONSHIP = #{RELATIONSHIP}
+		where PARTY_ID = #{PARTY_ID}
+		  and FUND_ID = #{FUND_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where PARTY_ID = #{PARTY_ID}
+		  and FUND_ID = #{FUND_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where FUND_ID = #{pd.FUND_ID}
+		order by PARTY_ID asc
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+
+</mapper>

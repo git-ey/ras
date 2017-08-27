@@ -1,6 +1,5 @@
 package com.ey.controller.system.fund;
 
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,14 +75,21 @@ public class FundController extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/delete")
-	public void delete(PrintWriter out) throws Exception{
+	@ResponseBody
+	public Object delete() throws Exception{
 		logBefore(logger, Jurisdiction.getUsername()+"删除Fund");
-		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
+		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return null;} //校验权限
+		Map<String,String> map = new HashMap<String,String>();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		fundService.delete(pd);
-		out.write("success");
-		out.close();
+		String errInfo = "success";
+		if(Integer.parseInt(fundService.findCount(pd).get("zs").toString()) > 0){
+			errInfo = "false";
+		}else{
+			fundService.delete(pd);
+		}
+		map.put("result", errInfo);
+		return AppUtil.returnObject(new PageData(), map);
 	}
 	
 	/**修改
