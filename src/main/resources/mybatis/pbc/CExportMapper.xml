@@ -7,13 +7,53 @@
 		    C.AMOUNT_CURRENT as amountCurrent,
 		    C.AMOUNT_ADJ_CR as crAmountAdj,
 		    C.AMOUNT_ADJ_DR as drAmountAdj,
-		    #C.AMOUNT_AUDIT_CURRENT as amountAutidCurrent,
-		    C.`AMOUNT_AUDIT_LAST`as amountAuditLast
+		    C.AMOUNT_AUDIT_LAST as amountAuditLast
 		FROM
 		    pbc_c C
 		where 
 		    1 = 1
 		and C.FUND_ID = #{fundId}
 		and C.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC300MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    C300.EY_ACCOUNT_NUM as accountNum,
+		    C300.ATTR1 as type,
+		    C300.ATTR2 as calculateInterest,
+		    C300.ATTR5 as storageOrganization,
+		    C300.ATTR6 as related,
+		    C300.BEGIN_BALANCE_CNY as beginBalance,
+		    C300.END_BALANCE_CNY as endBalance
+		FROM
+		    pbc_c300 C300
+		where
+		    1 = 1
+		and C300.FUND_ID = #{fundId}
+		and C300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC300IntRiskPeriods" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT DISTINCT
+            C300IR.INT_RISK_PERIOD as intRiskPeriod
+		FROM
+		    pbc_c300_interest_risk C300IR
+		where 
+		    1 = 1
+		and C300IR.FUND_ID = #{fundId}
+		and C300IR.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC300IntRiskTimeDepositsData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    C300IR.INT_RISK_PERIOD as intRiskPeriod,
+		    C300IR.AMOUNT as amount
+		FROM
+		    pbc_c300_interest_risk C300IR
+		where 
+		    1 = 1
+		and C300IR.FUND_ID = #{fundId}
+		and C300IR.PERIOD = #{period}
+		and C300IR.DEPOSIT_TYPE = '定期存款'
     </select>
 </mapper>

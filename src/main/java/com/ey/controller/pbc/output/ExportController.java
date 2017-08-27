@@ -43,7 +43,11 @@ public class ExportController extends BaseController {
 	@RequestMapping(value = "/C")
 	public void outputC(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		PageData pd = this.getPageData();
-		this.cExportService.doExport(request, response, pd.getString("FUND_ID"),
-				Long.parseLong(pd.getString("PEROID")));
+		String fundId = pd.getString("FUND_ID");
+		String periodStr = pd.getString("PEROID");
+		if(fundId == null || periodStr == null) {
+		    throw new IllegalArgumentException("fundId and period is required");
+		}
+		this.cExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
 	}
 }
