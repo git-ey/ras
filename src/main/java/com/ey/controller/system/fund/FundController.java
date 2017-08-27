@@ -26,6 +26,7 @@ import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
 import com.ey.service.system.fund.FundManager;
 import com.ey.service.system.loger.LogerManager;
+import com.ey.service.system.mgrcompany.MgrcompanyManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
 import com.ey.util.FileDownload;
@@ -47,6 +48,8 @@ public class FundController extends BaseController {
 	String menuUrl = "fund/list.do"; //菜单地址(权限用)
 	@Resource(name="fundService")
 	private FundManager fundService;
+	@Resource(name="mgrcompanyService")
+	private MgrcompanyManager mgrcompanyService;
 	@Resource(name = "logService")
 	private LogerManager logManager;
 	
@@ -149,7 +152,9 @@ public class FundController extends BaseController {
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		pd = fundService.findById(pd);	//根据ID读取
+		List<PageData> companyList = mgrcompanyService.listAll(pd);
 		mv.setViewName("system/fund/fund_edit");
+		mv.addObject("companyList", companyList);
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;

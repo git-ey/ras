@@ -76,14 +76,13 @@
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:50px;">序号</th>
 									<th class="center">基金ID</th>
 									<th class="center">期间</th>
 									<th class="center">基金简称</th>
 									<th class="center">管理公司</th>
-									<th class="center" colspan="11">底稿导出</th>
-									<th class="center">报告导出</th>
-									<th class="center">整体导出</th>
+									<th class="center" colspan="11">底稿</th>
+									<th class="center">报告</th>
+									<th class="center">下载</th>
 								</tr>
 							</thead>
 													
@@ -94,23 +93,22 @@
 									<c:if test="${QX.cha == 1 }">
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
-											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.FUND_ID}</td>
 											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
 											<td class='center'>${var.MGR_COMPANY}</td>
 											<td class="center"><a class="btn btn-mini btn-success" onclick="pbcExport('C','${var.FUND_ID}','${var.PERIOD}');">C</a></td>
-									        <td class="center"><a>E</a></td>
-									        <td class="center"><a>G</a></td>
-									        <td class="center"><a>H</a></td>
-									        <td class="center"><a>H-旗下基金总表</a></td>
-									        <td class="center"><a>I</a></td>
-									        <td class="center"><a>N</a></td>
-									        <td class="center"><a>P</a></td>
-									        <td class="center"><a>T</a></td>
-									        <td class="center"><a>U</a></td>
-								 	        <td class="center"><a>V</a></td>
-											<td class='center'><a>底稿报告</a></td>
+									        <td class="center"><a class="btn btn-mini">E</a></td>
+									        <td class="center"><a class="btn btn-mini">G</a></td>
+									        <td class="center"><a class="btn btn-mini">H</a></td>
+									        <td class="center"><a class="btn btn-mini">H-旗下基金总表</a></td>
+									        <td class="center"><a class="btn btn-mini">I</a></td>
+									        <td class="center"><a class="btn btn-mini">N</a></td>
+									        <td class="center"><a class="btn btn-mini">P</a></td>
+									        <td class="center"><a class="btn btn-mini">T</a></td>
+									        <td class="center"><a class="btn btn-mini">U</a></td>
+								 	        <td class="center"><a class="btn btn-mini">V</a></td>
+											<td class='center'><a class="btn btn-mini">报告</a></td>
 											<td class='center'><a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td>
 										</tr>
 									

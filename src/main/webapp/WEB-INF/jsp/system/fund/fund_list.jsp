@@ -61,20 +61,14 @@
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
-									</th>
-									<th class="center" style="width:50px;">序号</th>
-									<th class="center">基金代码</th>
-									<th class="center">管理公司代码</th>
-									<th class="center">基金简称</th>
-									<th class="center">基金全称</th>
-									<th class="center">分级</th>
-									<th class="center">QD</th>
-									<th class="center">货基</th>
-									<th class="center">启用</th>
-									<th class="center">状态</th>
-									<th class="center">操作</th>
+									<th class="center" style="width:9%;">基金</th>
+									<th class="center" style="width:8%;">基金代码</th>
+									<th class="center" style="width:9%;">管理公司</th>
+									<th class="center" style="width:22%;">基金简称</th>
+									<th class="center" style="width:30%;" colspan="4">附属信息</th>
+									<th class="center" style="width:8%;">分级</th>
+									<th class="center" style="width:7%;">启用</th>
+									<th class="center" style="width:7%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -85,19 +79,27 @@
 									<c:if test="${QX.cha == 1 }">
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
-											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.FUND_ID}" class="ace" /><span class="lbl"></span></label>
-											</td>
-											<td class='center' style="width: 30px;">${vs.index+1}</td>
+											<td class='center'>${var.FUND_ID}</td>
 											<td class='center'>${var.FUND_CODE}</td>
-											<td class='center'>${var.FIRM_CODE}</td>
+											<td class='center'>${var.COMPANY_SHORT_NAME}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
-											<td class='center'>${var.FULL_NAME}</td>
-											<td class='center'>${var.STRUCTURED}</td>
-											<td class='center'>${var.QD}</td>
-											<td class='center'>${var.MF}</td>
-											<td class='center'>${var.ACTIVE}</td>
-											<td class='center'>${var.STATUS}</td>
+											<td class='center'><a class="btn btn-mini btn-success" onclick="related(''${var.FUND_ID}');">关联方</a></td>
+											<td class='center'><a class="btn btn-mini btn-success" onclick="signoff(''${var.FUND_ID}');">签字人</a></td>
+											<td class='center'><a class="btn btn-mini btn-success" onclick="structured(''${var.FUND_ID}');">分级信息</a></td>
+											<td class='center'><a class="btn btn-mini btn-success" onclick="trxRole(''${var.FUND_ID}');">申赎规则</a></td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.STRUCTURED == 'T' }">T-真分级</c:when> 
+                                               <c:when test="${var.STRUCTURED == 'F' }">F-假分级</c:when>
+                                               <c:when test="${var.STRUCTURED == 'N' }">N-不分级</c:when>
+                                            </c:choose>
+											</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.ACTIVE == 'Y' }">是</c:when>  
+                                               <c:when test="${var.ACTIVE == 'N' }">否</c:when>  
+                                            </c:choose>
+											</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
@@ -167,9 +169,6 @@
 								<td style="vertical-align:top;">
 									<c:if test="${QX.add == 1 }">
 									<a class="btn btn-mini btn-success" onclick="add();">新增</a>
-									</c:if>
-									<c:if test="${QX.del == 1 }">
-									<a class="btn btn-mini btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
 									</c:if>
 								</td>
 								<td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
@@ -270,8 +269,8 @@
 			 diag.Drag=true;
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>fund/goAdd.do';
-			 diag.Width = 850;
-			 diag.Height = 500;
+			 diag.Width = 1000;
+			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -308,8 +307,8 @@
 			 diag.Drag=true;
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>fund/goEdit.do?FUND_ID='+Id;
-			 diag.Width = 850;
-			 diag.Height = 500;
+			 diag.Width = 1000;
+			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 
@@ -321,52 +320,6 @@
 			 };
 			 diag.show();
 		}
-		
-		//批量操作
-		function makeAll(msg){
-			bootbox.confirm(msg, function(result) {
-				if(result) {
-					var str = '';
-					for(var i=0;i < document.getElementsByName('ids').length;i++){
-					  if(document.getElementsByName('ids')[i].checked){
-					  	if(str=='') str += document.getElementsByName('ids')[i].value;
-					  	else str += ',' + document.getElementsByName('ids')[i].value;
-					  }
-					}
-					if(str==''){
-						bootbox.dialog({
-							message: "<span class='bigger-110'>您没有选择任何内容!</span>",
-							buttons: 			
-							{ "button":{ "label":"确定", "className":"btn-sm btn-success"}}
-						});
-						$("#zcheckbox").tips({
-							side:1,
-				            msg:'点这里全选',
-				            bg:'#AE81FF',
-				            time:8
-				        });
-						return;
-					}else{
-						if(msg == '确定要删除选中的数据吗?'){
-							top.jzts();
-							$.ajax({
-								type: "POST",
-								url: '<%=basePath%>fund/deleteAll.do?tm='+new Date().getTime(),
-						    	data: {DATA_IDS:str},
-								dataType:'json',
-								//beforeSend: validateData,
-								cache: false,
-								success: function(data){
-									 $.each(data.list, function(i, list){
-											tosearch();
-									 });
-								}
-							});
-						}
-					}
-				}
-			});
-		};
 		
 		//打开上传excel页面
 		function fromExcel(){
