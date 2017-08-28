@@ -86,7 +86,7 @@
 											<td class='center'><a class="btn btn-mini btn-success" onclick="related('${var.FUND_ID}');">关联方</a></td>
 											<td class='center'><a class="btn btn-mini btn-success" onclick="signoff('${var.FUND_ID}');">签字人</a></td>
 											<td class='center'><a class="btn btn-mini btn-success" onclick="structured('${var.FUND_ID}');">分级信息</a></td>
-											<td class='center'><a class="btn btn-mini btn-success" onclick="trxRole('${var.FUND_ID}');">申赎规则</a></td>
+											<td class='center'><a class="btn btn-mini btn-success" onclick="trxrule('${var.FUND_ID}');">申赎规则</a></td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.STRUCTURED == 'T' }">T-真分级</c:when> 
@@ -262,13 +262,76 @@
 			});
 		});
 		
-		//修改
+		//关联方
 		function related(Id){
 			 top.jzts();
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
-			 diag.Title ="编辑";
+			 diag.Title ="关联方";
 			 diag.URL = '<%=basePath%>fund/relatedparty/list.do?FUND_ID='+Id;
+			 diag.Width = 800;
+			 diag.Height = 500;
+			 diag.Modal = true;				//有无遮罩窗口
+			 diag. ShowMaxButton = true;	//最大化按钮
+		     diag.ShowMinButton = true;		//最小化按钮 
+			 diag.CancelEvent = function(){ //关闭事件
+				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+					 tosearch();
+				}
+				diag.close();
+			 };
+			 diag.show();
+		}
+		
+		//签字人
+		function signoff(Id){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="签字人";
+			 diag.URL = '<%=basePath%>fund/signoff/list.do?FUND_ID='+Id;
+			 diag.Width = 800;
+			 diag.Height = 500;
+			 diag.Modal = true;				//有无遮罩窗口
+			 diag. ShowMaxButton = true;	//最大化按钮
+		     diag.ShowMinButton = true;		//最小化按钮 
+			 diag.CancelEvent = function(){ //关闭事件
+				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+					 tosearch();
+				}
+				diag.close();
+			 };
+			 diag.show();
+		}
+
+		//分级
+		function structured(Id){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="分级";
+			 diag.URL = '<%=basePath%>fund/structured/list.do?FUND_ID='+Id;
+			 diag.Width = 800;
+			 diag.Height = 500;
+			 diag.Modal = true;				//有无遮罩窗口
+			 diag. ShowMaxButton = true;	//最大化按钮
+		     diag.ShowMinButton = true;		//最小化按钮 
+			 diag.CancelEvent = function(){ //关闭事件
+				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+					 tosearch();
+				}
+				diag.close();
+			 };
+			 diag.show();
+		}
+		
+		// 申赎款划款规则
+		function trxrule(Id){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="申赎款划款规则";
+			 diag.URL = '<%=basePath%>fund/trxrule/list.do?FUND_ID='+Id;
 			 diag.Width = 800;
 			 diag.Height = 500;
 			 diag.Modal = true;				//有无遮罩窗口
