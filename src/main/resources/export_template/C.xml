@@ -1783,7 +1783,7 @@
     <Cell ss:StyleID="s206"><Data ss:Type="String">关联方（Y/N）</Data></Cell>
     <Cell><Data ss:Type="String">是否计息</Data></Cell>
     <Cell ss:StyleID="s71"><Data ss:Type="String">${(period-1)?string('0')}-12-31</Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s71"><<Data ss:Type="String">${period?string('0')}-12-31</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s71"><Data ss:Type="String">${period?string('0')}-12-31</Data></Cell>
    </Row>
    <Row ss:StyleID="s113">
     <Cell ss:Index="2" ss:StyleID="s114"/>
