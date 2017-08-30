@@ -41,6 +41,7 @@
 								    <select class="chosen-select form-control" name="TEMP_TYPE" id="TEMP_TYPE" data-placeholder="请选择" style="width:49%;">
 								    <option value="HS" <c:if test="${pd.TEMP_TYPE == 'HS'}">selected</c:if>>恒生</option>
 								    <option value="JSZ" <c:if test="${pd.TEMP_TYPE == 'JSZ'}">selected</c:if>>金手指</option>
+								    <option value="SG" <c:if test="${pd.TEMP_TYPE == 'SG'}">selected</c:if>>手工</option>
 								    <option value="JM" <c:if test="${pd.TEMP_TYPE == 'JM'}">selected</c:if>>界面</option>
 								    </select>
 								</td>
