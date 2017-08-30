@@ -56,4 +56,17 @@
 		and C300IR.PERIOD = #{period}
 		and C300IR.DEPOSIT_TYPE = '定期存款'
     </select>
+    
+    <select id="selectC300RelatedData" parameterType="java.util.Map" resultType="java.util.Map">
+	SELECT
+	    C300R.DEPOSIT_TYPE as depositType,
+	    C300R.RELEATED_PARTY as relatedParty,
+	    C300R.BALANCE as balance
+	FROM
+	    pbc_c300_related C300R
+	where 
+        1 = 1
+    and C300R.FUND_ID = #{fundId}
+    and C300R.PERIOD = #{period}
+    </select>
 </mapper>

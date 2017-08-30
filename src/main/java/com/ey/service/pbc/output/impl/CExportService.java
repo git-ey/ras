@@ -87,7 +87,7 @@ public class CExportService implements CExportManager{
         Map<String, Object> mainMap = new HashMap<String,Object>();
         Map<String, Object> intRiskPeriodMap = new HashMap<String,Object>();
         
-        //==process dataMap for main view begin==
+        //========process dataMap for main view begin========
         List<Map<String,Object>> demandDepositsList = new ArrayList<>();//one part of KM1002
         List<Map<String,Object>> timeDepositsList = new ArrayList<>();// another part of KM1002
         List<Map<String,Object>> KM1021List = new ArrayList<>();
@@ -138,9 +138,42 @@ public class CExportService implements CExportManager{
         mainMap.put("KM1002", KM1002Map);
         mainMap.put("KM1021", KM1021Map);
         mainMap.put("KM1031", KM1031Map);
-        //==process dataMap for main view end==
+        //========process dataMap for main view end========
         
-        //==process main dataMap for intRistPeriod view begin==
+        //========process dataMap for related view begin========
+        Map<String,Object> RelatedData = new HashMap<>();
+        List<Map<String,Object>> RelatedMetaData = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC300RelatedData", queryMap);
+        List<Map<String,Object>> RdemandDepositsList = new ArrayList<>();
+        List<Map<String,Object>> RTimeDepositsList = new ArrayList<>();
+        List<Map<String,Object>> RKM1021List = new ArrayList<>();
+        List<Map<String,Object>> RKM1031List = new ArrayList<>();
+        for(Map<String,Object> map : RelatedMetaData) {
+            if("活期".equals(map.get("depositType"))) {
+                RdemandDepositsList.add(map);
+            }else if("定期".equals(map.get("depositType"))) {
+                RTimeDepositsList.add(map);
+            }else if("清算备付金".equals(map.get("depositType"))) {
+                RKM1021List.add(map);
+            }else if("存出保证金".equals(map.get("depositType"))) {
+                RKM1031List.add(map);
+            }
+        }
+        int RdemandDepositsCount = RdemandDepositsList.size();
+        int RTimeDepositsCount = RTimeDepositsList.size();
+        int RKM1021Count = RKM1021List.size();
+        int RKM1031Count = RKM1031List.size();
+        
+        RelatedData.put("demandDepositsList", RdemandDepositsList);
+        RelatedData.put("demandDepositsCount", RdemandDepositsCount);
+        RelatedData.put("timeDepositsList", RTimeDepositsList);
+        RelatedData.put("timeDepositsCount", RTimeDepositsCount);
+        RelatedData.put("KM1021", RKM1021List);
+        RelatedData.put("KM1021Count", RKM1021Count);
+        RelatedData.put("KM1031", RKM1031List);
+        RelatedData.put("KM1031Count", RKM1031Count);
+        //========process dataMap for related view end========
+        
+        //========process dataMap for intRistPeriod view begin========
         List<String> intRistPeriods = (List<String>)dao.findForList("CExportMapper.selectC300IntRiskPeriods", queryMap);
         List<Map<String,Object>> timeDepositsDataList = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC300IntRiskTimeDepositsData", queryMap);
         List<Double> timeDepositsData = new ArrayList<>();
@@ -168,9 +201,12 @@ public class CExportService implements CExportManager{
         intRiskPeriodMap.put("intRistPeriods", intRistPeriods);
         intRiskPeriodMap.put("noInterestColIndex", noInterestColIndex);
         intRiskPeriodMap.put("timeDepositsData", timeDepositsData);
-        //==process main dataMap for intRistPeriod view end==
+        intRiskPeriodMap.put("intRistPeriodsCount", intRistPeriods.size());
+        intRiskPeriodMap.put("timeDepositsCount", timeDepositsData.size());
+        //========process dataMap for intRistPeriod view end========
         
         result.put("main", mainMap);
+        result.put("related", RelatedData);
         result.put("intRiskPeriod", intRiskPeriodMap);
         return result;
     }
