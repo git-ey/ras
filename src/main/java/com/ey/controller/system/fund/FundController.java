@@ -298,10 +298,10 @@ public class FundController extends BaseController {
 			vpd.put("var16", varOList.get(i).getString("LOF"));	    //16
 			vpd.put("var17", varOList.get(i).getString("ETF"));	    //17
 			vpd.put("var18", varOList.get(i).getString("FOF"));	    //18
-			vpd.put("var19", varOList.get(i).get("UNIT").toString());	//19
-			vpd.put("var20", varOList.get(i).getString("DATE_FROM"));	    //20
-			vpd.put("var21", varOList.get(i).getString("DATE_TO"));	    //21
-			vpd.put("var22", varOList.get(i).getString("DATE_TRANSFORM"));	    //22
+			vpd.put("var19", varOList.get(i).get("UNIT"));	//19
+			vpd.put("var20", varOList.get(i).get("DATE_FROM"));	    //20
+			vpd.put("var21", varOList.get(i).get("DATE_TO"));	    //21
+			vpd.put("var22", varOList.get(i).get("DATE_TRANSFORM"));	    //22
 			vpd.put("var23", varOList.get(i).getString("INTEREST_RATE_PERIOD"));	    //23
 			vpd.put("var24", varOList.get(i).getString("OTHER_LIABILITIES"));	    //24
 			vpd.put("var25", varOList.get(i).getString("ACTIVE"));	    //25

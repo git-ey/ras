@@ -79,8 +79,9 @@
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.TEMP_TYPE == 'HS' }"> 恒生 </c:when>
-                                               <c:when test="${var.TEMP_TYPE == 'JSZ' }"> 金手指 </c:when>  
-                                               <c:when test="${var.TEMP_TYPE == 'JM' }"> 界面 </c:when>  
+                                               <c:when test="${var.TEMP_TYPE == 'JSZ' }"> 金手指 </c:when>
+                                               <c:when test="${var.TEMP_TYPE == 'SG' }"> 手工 </c:when>
+                                               <c:when test="${var.TEMP_TYPE == 'JM' }"> 界面 </c:when>
                                             </c:choose>
 											</td>
 											<td class='center'>${var.START_ROW_NO}</td>

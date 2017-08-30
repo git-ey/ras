@@ -111,7 +111,7 @@ public class ImportConfigService implements ImportConfigManager{
 		List<PageData> lines = (List<PageData>)dao.findForList("ImportConfigCellMapper.findByConfigId", importConfigId);
 		// 组装建表脚本
 		StringBuffer sb = new StringBuffer();
-		sb.append("CREATE TABLE `"+ head.getString("TABLE_NAME") +"` ( \n");
+		sb.append("CREATE TABLE `"+ head.getString("TABLE_NAME") +"` ( `SEQ` int NULL COMMENT '序号', \n");
 		for(PageData line : lines){
 			if(line.getString("CELLTYPE").toLowerCase().equals("string")){
 				sb.append("`"+line.getString("MAPKEY")+"` varchar(240) NULL COMMENT '"+line.getString("DESCRIPTION")+"'");
