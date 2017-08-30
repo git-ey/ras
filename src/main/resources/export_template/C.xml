@@ -2812,76 +2812,38 @@
     <Cell ss:StyleID="s89"/>
     <Cell ss:StyleID="s89"/>
    </Row>
+   <#if C400.main.count != 0>
+   <#list C400.main.list as item>
    <Row>
-    <Cell ss:StyleID="s110"><Data ss:Type="String">CXX / CCxxx</Data></Cell>
-    <Cell ss:StyleID="s124"><Data ss:Type="String">XX银行</Data></Cell>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s93"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s95"/>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s125"><Data ss:Type="String">3个月-1年</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">1-5年</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String"><#if item_index == 0>CXX / CCxxx</#if></Data></Cell>
+    <Cell ss:StyleID="s124"><Data ss:Type="String">${item.bankName!}</Data></Cell>
+    <Cell ss:StyleID="s124"><Data ss:Type="String">${item.related!}</Data></Cell>
+    <Cell ss:StyleID="s124"><Data ss:Type="Number">${(item.amount)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s93"><Data ss:Type="Number">${(item.interestRate)?string('0.####')}</Data></Cell>
+    <Cell ss:StyleID="s95"><Data ss:Type="DateTime">${item.dateFrom!}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="DateTime">${item.dateFrom!}</Data></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="String">${item.termPeriod!}</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">${item.leftPeriod!}</Data></Cell>
     <Cell ss:StyleID="s92"/>
-    <Cell ss:StyleID="s123"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s88"/>
+    <Cell ss:StyleID="s123"><Data ss:Type="DateTime">${item.dateFromCurrent!}</Data></Cell>
+    <Cell ss:StyleID="s94"><Data ss:Type="Number">${(item.dateCount)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s88" ss:Formula="=RC[-9]*RC[-8]*RC[-1]/360"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s196"/>
-    <Cell ss:StyleID="s197"/>
+    <Cell ss:StyleID="s197" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s117"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s110"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s95"/>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s125"/>
-    <Cell ss:StyleID="s92"/>
-    <Cell ss:StyleID="s92"/>
-    <Cell ss:StyleID="s123"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s88"/>
-    <Cell ss:StyleID="s198"/>
-    <Cell ss:StyleID="s198"/>
-    <Cell ss:StyleID="s117"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s95"/>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s125"/>
-    <Cell ss:StyleID="s92"/>
-    <Cell ss:StyleID="s92"/>
-    <Cell ss:StyleID="s123"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s88"/>
-    <Cell ss:StyleID="s198"/>
-    <Cell ss:StyleID="s198"/>
-    <Cell ss:StyleID="s117"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="14" ss:StyleID="s198"/>
-    <Cell ss:StyleID="s198"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="14" ss:StyleID="s190"><Data ss:Type="String">E300</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s140" ss:Formula="=SUM(R[-5]C:R[-2]C)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s140" ss:Formula="=SUM(R[${(-(1+C400.main.count))?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;C300&gt;</Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s140" ss:Formula="=SUM(R[-5]C:R[-2]C)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="13" ss:StyleID="s140" ss:Formula="=SUM(R[${(-(1+C400.main.count))?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s140"/>
-    <Cell ss:StyleID="s140" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s248"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row>
@@ -2908,45 +2870,28 @@
     <Cell ss:StyleID="s191"/>
     <Cell ss:StyleID="s221"/>
    </Row>
+   <#if C400.groupByBank.count != 0>
+   <#list C400.groupByBank.list as item>
    <Row>
-    <Cell ss:StyleID="s211"><Data ss:Type="String">XX银行</Data></Cell>
-    <Cell ss:StyleID="s211"/>
-    <Cell ss:StyleID="s210"/>
-    <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;C300&gt;</Data></Cell>
+    <Cell ss:StyleID="s211"><Data ss:Type="String">${item.bankName!}</Data></Cell>
+    <Cell ss:StyleID="s211"><Data ss:Type="String">${item.related!}</Data></Cell>
+    <Cell ss:StyleID="s210"><Data ss:Type="Number">${(item.endBalance)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String"><#if item_index == 0>&lt;C300&gt;</#if></Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s191"/>
     <Cell ss:StyleID="s191"/>
     <Cell ss:StyleID="s191"/>
     <Cell ss:StyleID="s221"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s211"><Data ss:Type="String">XX银行</Data></Cell>
-    <Cell ss:StyleID="s211"/>
-    <Cell ss:StyleID="s210"/>
-    <Cell ss:Index="13" ss:StyleID="s191"/>
-    <Cell ss:StyleID="s191"/>
-    <Cell ss:StyleID="s191"/>
-    <Cell ss:StyleID="s221"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s211"><Data ss:Type="String">XX银行</Data></Cell>
-    <Cell ss:StyleID="s211"/>
-    <Cell ss:StyleID="s210"/>
-    <Cell ss:Index="16" ss:StyleID="s74"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s211"><Data ss:Type="String">XX银行</Data></Cell>
-    <Cell ss:StyleID="s211"/>
-    <Cell ss:StyleID="s210"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s211"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s211"/>
-    <Cell ss:StyleID="s212" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s212" ss:Formula="=SUM(R[${(-C400.groupByBank.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s118" ss:Formula="=R[-1]C-R[-9]C[1]"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s118" ss:Formula="=R[-1]C-R[${(-(5+C400.groupByBank.count))?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s118"/>
@@ -2956,7 +2901,7 @@
    </Row>
    <Row ss:Index="31">
     <Cell ss:StyleID="s209"><Data ss:Type="String">按原存期分类</Data></Cell>
-    <Cell ss:StyleID="s214"><Data ss:Type="String">2017年12月31日</Data></Cell>
+    <Cell ss:StyleID="s214"><Data ss:Type="String">${(period)?string('0')}年12月31日</Data></Cell>
    </Row>
    <Row ss:StyleID="s74">
     <Cell ss:StyleID="s209"/>
@@ -2970,35 +2915,22 @@
     <Cell ss:StyleID="s75"/>
     <Cell ss:StyleID="s75"/>
    </Row>
+   <#if C400.groupByTerm.count != 0>
+   <#list C400.groupByTerm.list as item>
    <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s77"><Data ss:Type="String">1个月以内</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C8:R15C8,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="String">&lt;C10000&gt;</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="String">${item!}</Data></Cell>
+    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C8:R${(11+C400.main.count)?string('0')}C8,RC[-1],R12C4:R${(11+C400.main.count)?string('0')}C4)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s222"><Data ss:Type="String"><#if item_index == 0>&lt;C10000&gt;</#if></Data></Cell>
    </Row>
-   <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s77"><Data ss:Type="String">1-3个月</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C8:R15C8,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s77"><Data ss:Type="String">3个月-1年</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C8:R15C8,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s77"><Data ss:Type="String">1年以上</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C8:R15C8,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s74">
     <Cell ss:StyleID="s82"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s83" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s83" ss:Formula="=SUM(R[${(-(C400.groupByTerm.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s74">
     <Cell ss:StyleID="s75"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s217" ss:Formula="=SUM(R[-1]C)-R[-21]C[2]"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s217" ss:Formula="=SUM(R[-1]C)-R[${(-(13+C400.groupByBank.count+C400.groupByTerm.count))?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s74">
     <Cell ss:StyleID="s75"/>
@@ -3013,44 +2945,18 @@
     <Cell ss:StyleID="s228"/>
     <Cell ss:StyleID="s222"><Data ss:Type="String">&lt;C300&gt;</Data></Cell>
    </Row>
+   <#if C300.intRiskPeriod.intRistPeriodsCount != 0>
+   <#list C300.intRiskPeriod.intRistPeriods as item>
    <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s228"><Data ss:Type="String">1个月以内</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C9:R15C9,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s228"><Data ss:Type="String">${item!}</Data></Cell>
+    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C9:R${(11+C400.main.count)?string('0')}C9,RC[-1],R12C4:R${(11+C400.main.count)?string('0')}C4)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s224"/>
    </Row>
-   <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s228"><Data ss:Type="String">1-3个月</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C9:R15C9,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s224"/>
-   </Row>
-   <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s228"><Data ss:Type="String">3-6个月</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C9:R15C9,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s224"/>
-   </Row>
-   <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s228"><Data ss:Type="String">6个月-1年</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C9:R15C9,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s224"/>
-   </Row>
-   <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s228"><Data ss:Type="String">1-5年</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C9:R15C9,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s224"/>
-   </Row>
-   <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s228"><Data ss:Type="String">5年以上</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUMIF(R12C9:R15C9,RC[-1],R12C4:R15C4)"><Data
-      ss:Type="Number">0</Data></Cell>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s228"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s229" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s229" ss:Formula="=SUM(R[${(-(C300.intRiskPeriod.intRistPeriodsCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s74"/>
@@ -3062,7 +2968,7 @@
    </Row>
    <Row>
     <Cell><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s225" ss:Formula="=SUM(R[-1]C)-R[-32]C[2]"><Data
+    <Cell ss:StyleID="s225" ss:Formula="=SUM(R[-1]C)-R[${(-(18+C400.groupByBank.count+C400.groupByTerm.count+C300.intRiskPeriod.intRistPeriodsCount))?string('0')}]C[2]"><Data
       ss:Type="Number">0</Data></Cell>
    </Row>
   </Table>
