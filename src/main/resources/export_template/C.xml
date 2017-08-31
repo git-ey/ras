@@ -9,8 +9,8 @@
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Jeremy Lv</Author>
   <LastAuthor>戴宗</LastAuthor>
-  <Created>2017-04-06T10:13:25Z</Created>
-  <LastSaved>2017-08-26T12:47:03Z</LastSaved>
+  <Created>${period?string('0')}-04-06T10:13:25Z</Created>
+  <LastSaved>${period?string('0')}-08-26T12:47:03Z</LastSaved>
   <Version>16.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
@@ -1392,7 +1392,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s108">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2017-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s65"/>
     <Cell ss:Index="6" ss:StyleID="s174"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s175"><Data ss:Type="String">XX</Data></Cell>
@@ -1412,9 +1412,9 @@
    <Row ss:Index="7" ss:StyleID="s108">
     <Cell ss:MergeDown="1" ss:StyleID="s107"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s107"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s251"><Data ss:Type="DateTime">2017-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s251"><Data ss:Type="DateTime">${period?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s126"/>
-    <Cell ss:StyleID="s177"><Data ss:Type="DateTime">2016-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s177"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s126"/>
     <Cell ss:StyleID="s126"><Data ss:Type="String">波动</Data></Cell>
    </Row>
@@ -1469,14 +1469,11 @@
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1002.amountCurrent?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1002.drAmountAdj?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1002.crAmountAdj?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Error">#VALUE!</Data><NamedCell
-      ss:Name="_银行存款审定"/></Cell>
+    <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data><NamedCell ss:Name="_银行存款审定"/></Cell>
     <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1002.amountAuditLast?string('0.##')}</Data><NamedCell
-      ss:Name="_银行存款期初"/></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1002.amountAuditLast?string('0.##')}</Data><NamedCell ss:Name="_银行存款期初"/></Cell>
     <Cell ss:StyleID="s127"/>
-    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data
-      ss:Type="Error">#VALUE!</Data></Cell>
+    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s108">
     <Cell ss:StyleID="s146"/>
@@ -1495,12 +1492,11 @@
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1021.amountCurrent?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1021.drAmountAdj?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1021.crAmountAdj?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Error">#VALUE!</Data></Cell>
+    <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s72"/>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1021.amountAuditLast?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s127"/>
-    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data
-      ss:Type="Error">#VALUE!</Data></Cell>
+    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s108">
     <Cell ss:StyleID="s147"/>
@@ -1519,12 +1515,11 @@
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1031.amountCurrent?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1031.drAmountAdj?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1031.crAmountAdj?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Error">#VALUE!</Data></Cell>
+    <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s72"/>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1031.amountAuditLast?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s127"/>
-    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data
-      ss:Type="Error">#VALUE!</Data></Cell>
+    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s108">
     <Cell ss:StyleID="s146"/>
@@ -1543,7 +1538,7 @@
     <Cell ss:StyleID="s142" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s73"/>
     <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s142" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Error">#VALUE!</Data></Cell>
+    <Cell ss:StyleID="s142" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s72"/>
     <Cell ss:StyleID="s142" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s73"/>
@@ -1741,7 +1736,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2017-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s108"/>
     <Cell ss:StyleID="s108"/>
     <Cell ss:StyleID="s108"/>
@@ -2694,7 +2689,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2017-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s65"/>
@@ -2740,7 +2735,7 @@
     <Cell ss:Index="5" ss:StyleID="s108"/>
    </Row>
    <Row>
-    <Cell ss:Index="4" ss:StyleID="s194"><Data ss:Type="DateTime">2017-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:Index="8" ss:MergeAcross="1" ss:StyleID="s254"><Data ss:Type="String">按报告披露要求</Data></Cell>
     <Cell ss:Index="11" ss:MergeAcross="4" ss:StyleID="s253"><Data ss:Type="String">计息测试</Data></Cell>
    </Row>
@@ -2855,7 +2850,7 @@
    <Row>
     <Cell ss:StyleID="s215"><Data ss:Type="String">按银行分类汇总</Data></Cell>
     <Cell ss:StyleID="s247"><Data ss:Type="String">关联方（Y/N）</Data></Cell>
-    <Cell ss:StyleID="s214"><Data ss:Type="String">2017年12月31日</Data></Cell>
+    <Cell ss:StyleID="s214"><Data ss:Type="String">${period?string('0')}年12月31日</Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s191"/>
     <Cell ss:StyleID="s191"/>
     <Cell ss:StyleID="s191"/>
@@ -3034,7 +3029,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s68"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2017-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s102"/>
     <Cell ss:StyleID="s102"/>
     <Cell ss:StyleID="s102"/>
@@ -3137,7 +3132,7 @@
    <Row>
     <Cell ss:StyleID="s101"><Data ss:Type="String">工作步骤：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">1、获得<Font html:Color="#000000">2017</Font><Font>年</Font><Font
+      xmlns="http://www.w3.org/TR/REC-html40">1、获得<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
        html:Color="#000000">12</Font><Font>月</Font><Font html:Color="#000000">31</Font><Font>日所有银行账户的头寸表</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
@@ -3156,7 +3151,7 @@
    <Row>
     <Cell ss:StyleID="s101"/>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">2、查看<Font html:Color="#000000">2017</Font><Font>年</Font><Font
+      xmlns="http://www.w3.org/TR/REC-html40">2、查看<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
        html:Color="#000000">12</Font><Font>月</Font><Font html:Color="#000000">31</Font><Font>日是否存在银行账户之间的转账，如有，查看相应凭证</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
@@ -3209,8 +3204,8 @@
    <Row>
     <Cell ss:StyleID="s101"><Data ss:Type="String">结果：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">我们查看了基金2017年12月31日的头寸表，未发现<Font
-       html:Color="#000000">2017</Font><Font>年</Font><Font html:Color="#000000">12</Font><Font>月</Font><Font
+      xmlns="http://www.w3.org/TR/REC-html40">我们查看了基金${period?string('0')}年12月31日的头寸表，未发现<Font
+       html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font html:Color="#000000">12</Font><Font>月</Font><Font
        html:Color="#000000">31</Font><Font>日银行账户之间发生转账，未发现在途资金。</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
@@ -3246,7 +3241,7 @@
    <Row>
     <Cell ss:StyleID="s101"><Data ss:Type="String">结论：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">该基金于<Font html:Color="#000000">2017</Font><Font>年</Font><Font
+      xmlns="http://www.w3.org/TR/REC-html40">该基金于<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
        html:Color="#000000">12</Font><Font>月</Font><Font html:Color="#000000">31</Font><Font>日不存在通过利用银行账户之间转账时间差虚增资产的情况</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
@@ -3335,7 +3330,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="DateTime">2017-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="DateTime">${period?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s174"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s219"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -3380,72 +3375,40 @@
    <Row>
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s188"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="String">2017年12月31日</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="String">2016年12月31日</Data></Cell>
+    <Cell ss:StyleID="s220"><Data ss:Type="String">${period?string('0')}年12月31日</Data></Cell>
+    <Cell ss:StyleID="s220"><Data ss:Type="String">${(period-1)?string('0')}年12月31日</Data></Cell>
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s74"/>
    </Row>
+   <#if C10000.headListCount != 0>
+   <#list C10000.headList as item>
    <Row>
     <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">活期存款</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String"><#if item_index == 0>&lt;审定财务报表&gt;</#if></Data></Cell>
     <Cell ss:StyleID="s74"/>
    </Row>
+   <#if item.item == '定期存款'>
+   <#list C10000.detailList as detail>
    <Row>
     <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s77"><Data ss:Type="String">定期存款</Data></Cell>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s208"><Data ss:Type="String">${detail.item!}</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number">${detail.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number">${detail.endBalance?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s74"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s208"><Data ss:Type="String">其中：存款期限1个月以内</Data></Cell>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s74"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s208"><Data ss:Type="String">      存款期限1-3个月</Data></Cell>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s74"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s208"><Data ss:Type="String">      存款期限3个月-1年</Data></Cell>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s74"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s208"><Data ss:Type="String">      存款期限1年以上</Data></Cell>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s74"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s77"><Data ss:Type="String">其他存款</Data></Cell>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s81"/>
-    <Cell ss:StyleID="s74"/>
-   </Row>
+   </#list>
+   </#if>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s82"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
+    <Cell ss:StyleID="s83" ss:Formula="=SUM(R[${(-(C10000.headListCount+C10000.detailListCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s83" ss:Formula="=SUM(R[${(-(C10000.headListCount+C10000.detailListCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s81"/>
     <Cell ss:StyleID="s74"/>
    </Row>
@@ -3460,10 +3423,8 @@
    <Row>
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s85"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s161" ss:Formula="=R[-2]C-'C'!R[-2]C[3]"><Data
-      ss:Type="Error">#VALUE!</Data></Cell>
-    <Cell ss:StyleID="s161" ss:Formula="=R[-2]C-'C'!R[-2]C[4]"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s161" ss:Formula="=R[-2]C-'C'!R18C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161" ss:Formula="=R[-2]C-'C'!R18C8"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s74"/>
    </Row>

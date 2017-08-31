@@ -38,6 +38,7 @@ public class CExportService implements CExportManager{
         dataMap.put("C", this.getCData(fundId, period));
         dataMap.put("C300", this.getC300Data(fundId, period));
         dataMap.put("C400", this.getC400Data(fundId, period));
+        dataMap.put("C10000", this.getC10000Data(fundId, period));
         
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_C);
         FileExportUtils.writeFileToHttpResponse(request, response, "C.xls", xmlStr);
@@ -257,6 +258,39 @@ public class CExportService implements CExportManager{
         result.put("main", mainData);
         result.put("groupByBank", bankData);
         result.put("groupByTerm", termData);
+        return result;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Map<String,Object> getC10000Data(String fundId, Long period) throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("fundId", fundId);
+        queryMap.put("period", period);
+        List<Map<String, Object>> headList = new ArrayList<>();
+        List<Map<String, Object>> detailList = new ArrayList<>();
+        //========process dataMap for main view begin========
+        List<Map<String,Object>> metaData = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC10000MainData", queryMap);
+        if(metaData == null) {metaData = new ArrayList<>();}
+        boolean firstDetailFlag = true;
+        for(Map<String,Object> map : metaData) {
+            if("Y".equals(map.get("detailFlag"))) {
+                if(firstDetailFlag) {
+                    map.put("item", "其中：存款期限"+String.valueOf(map.get("item")));
+                    firstDetailFlag = false;
+                }else {
+                    map.put("item", "      存款期限"+String.valueOf(map.get("item")));
+                }
+                detailList.add(map);
+            }else {
+                headList.add(map);
+            }
+        }
+        result.put("headList", headList);
+        result.put("headListCount", headList.size());
+        result.put("detailList", detailList);
+        result.put("detailListCount", detailList.size());
+        //========process dataMap for main view end========
         return result;
     }
 }

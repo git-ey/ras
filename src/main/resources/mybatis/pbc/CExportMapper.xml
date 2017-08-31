@@ -109,4 +109,18 @@
 		    C400T.FUND_ID = #{fundId}
 		and C400T.PERIOD = #{period}
     </select>
+    
+    <select id="selectC10000MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    C10000.ITEM as item,
+		    C10000.DETAIL_FLAG as detailFlag,
+		    IFNULL(C10000.BEGIN_BALANCE, 0) as beginBalance,
+		    IFNULL(C10000.END_BALANCE, 0) as endBalance
+		from 
+		    pbc_c10000 C10000
+		where
+		    C10000.FUND_ID = #{fundId}
+		and C10000.PERIOD = #{period}
+		ORDER BY C10000.SORT
+    </select>
 </mapper>
