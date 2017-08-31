@@ -101,16 +101,16 @@
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.RESULT == 'R' }">
-                                                                                                    运行中
+                                                 <font color="#7B7B7B"><b>运行中</b></font>
                                                </c:when>  
                                                <c:when test="${var.RESULT == 'S' }">
-                                                                                                    成功
+                                                 <font color="#00A600"><b>成功</b></font>
                                                </c:when> 
                                                <c:when test="${var.RESULT == 'W' }">
-                                                                                                    警告
+                                                  <font color="#C6A300"><b>警告</b></font>
                                                </c:when> 
                                                <c:when test="${var.RESULT == 'E' }">
-                                                                                                    错误
+                                                  <font color="#FF0000"><b>错误</b></font>
                                                </c:when>
                                             </c:choose>
 											</td>
