@@ -58,15 +58,55 @@
     </select>
     
     <select id="selectC300RelatedData" parameterType="java.util.Map" resultType="java.util.Map">
-	SELECT
-	    C300R.DEPOSIT_TYPE as depositType,
-	    C300R.RELEATED_PARTY as relatedParty,
-	    C300R.BALANCE as balance
-	FROM
-	    pbc_c300_related C300R
-	where 
-        1 = 1
-    and C300R.FUND_ID = #{fundId}
-    and C300R.PERIOD = #{period}
+		SELECT
+		    C300R.DEPOSIT_TYPE as depositType,
+		    C300R.RELEATED_PARTY as relatedParty,
+		    C300R.BALANCE as balance
+		FROM
+		    pbc_c300_related C300R
+		where 
+	        1 = 1
+	    and C300R.FUND_ID = #{fundId}
+	    and C300R.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC400MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		select
+		    C400.BANK_NAME as bankName,
+		    C400.RELATED as related,
+		    C400.AMT as amount,
+		    C400.INTEREST_RATE as interestRate,
+		    CONCAT(C400.DATE_FROM,'T00:00:00.000') as dateFrom,
+		    CONCAT(C400.DATE_TO,'T00:00:00.000') as dateTo,
+		    C400.TERM_PERIOD as termPeriod,
+		    C400.PERIOD_LEFT as leftPeriod,
+		    CONCAT(C400.DATE_FROM_CURRENT,'T00:00:00.000') as dateFromCurrent,
+		    C400.DATE_COUNTS as dateCount
+		from
+		    pbc_c400 C400
+		where C400.FUND_ID = #{fundId}
+		and C400.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC400BankData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    C400B.BANK_NAME as bankName,
+		    C400B.RELATED as related,
+		    C400B.END_BALANCE as endBalance
+		FROM
+		    pbc_c400_bank C400B
+		where
+		    C400B.FUND_ID = #{fundId}
+		and C400B.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC400TermData" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT
+		    C400T.TERM_PERIOD as termPeriod
+		FROM
+		    pbc_c400_term C400T
+		where
+		    C400T.FUND_ID = #{fundId}
+		and C400T.PERIOD = #{period}
     </select>
 </mapper>

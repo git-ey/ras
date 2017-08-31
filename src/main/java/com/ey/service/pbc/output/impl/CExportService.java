@@ -37,6 +37,7 @@ public class CExportService implements CExportManager{
         dataMap.put("period", period);
         dataMap.put("C", this.getCData(fundId, period));
         dataMap.put("C300", this.getC300Data(fundId, period));
+        dataMap.put("C400", this.getC400Data(fundId, period));
         
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_C);
         FileExportUtils.writeFileToHttpResponse(request, response, "C.xls", xmlStr);
@@ -83,6 +84,8 @@ public class CExportService implements CExportManager{
     @SuppressWarnings("unchecked")
     private Map<String,Object> getC300Data(String fundId, Long period) throws Exception{
         Map<String, Object> queryMap = new HashMap<String,Object>();
+        queryMap.put("fundId", fundId);
+        queryMap.put("period", period);
         Map<String, Object> result = new HashMap<String,Object>();
         Map<String, Object> mainMap = new HashMap<String,Object>();
         Map<String, Object> intRiskPeriodMap = new HashMap<String,Object>();
@@ -96,9 +99,6 @@ public class CExportService implements CExportManager{
         int timeDepositsListCount = 0;
         int KM1021ListCount = 0;
         int KM1031ListCount = 0;
-        
-        queryMap.put("fundId", fundId);
-        queryMap.put("period", period);
         List<Map<String,Object>> mainData = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC300MainData", queryMap);
         if(CollectionUtils.isEmpty(mainData)) {
             mainData = new ArrayList<Map<String,Object>>();
@@ -208,6 +208,55 @@ public class CExportService implements CExportManager{
         result.put("main", mainMap);
         result.put("related", RelatedData);
         result.put("intRiskPeriod", intRiskPeriodMap);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页C400的数据
+     * @author Dai Zong 2017年8月30日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    @SuppressWarnings("unchecked")
+    private Map<String,Object> getC400Data(String fundId, Long period) throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        Map<String, Object> queryMap = new HashMap<String,Object>();
+        queryMap.put("fundId", fundId);
+        queryMap.put("period", period);
+        Map<String,Object> mainData = new HashMap<>();
+        Map<String,Object> bankData = new HashMap<>();
+        Map<String,Object> termData = new HashMap<>();
+        //========process dataMap for main view begin========
+        List<Map<String,Object>> mainMetaData = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC400MainData", queryMap);
+        if(mainMetaData == null) {
+            mainMetaData = new ArrayList<Map<String,Object>>();
+        }
+        int mainListCount = mainMetaData.size();
+        mainData.put("list", mainMetaData);
+        mainData.put("count", mainListCount);
+        //========process dataMap for main view end========
+        //========process dataMap for bank view begin========
+        List<Map<String,Object>> bankList = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC400BankData", queryMap);
+        if(bankList == null) {
+            bankList = new ArrayList<Map<String,Object>>();
+        }
+        bankData.put("list", bankList);
+        bankData.put("count", bankList.size());
+        //========process dataMap for bank view end========
+        //========process dataMap for term view begin========
+        List<String> termList = (List<String>)dao.findForList("CExportMapper.selectC400TermData", queryMap);
+        if(termList == null) {
+            termList = new ArrayList<String>();
+        }
+        termData.put("list", termList);
+        termData.put("count", termList.size());
+        //========process dataMap for term view end========
+        result.put("main", mainData);
+        result.put("groupByBank", bankData);
+        result.put("groupByTerm", termData);
         return result;
     }
 }
