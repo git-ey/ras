@@ -1,4 +1,4 @@
-package com.ey.service.pbc.output.impl;
+package com.ey.service.wp.output.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
-import com.ey.service.pbc.output.CExportManager;
+import com.ey.service.wp.output.CExportManager;
 import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
 import com.ey.util.fileexport.FreeMarkerUtils;

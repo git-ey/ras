@@ -1,4 +1,4 @@
-package com.ey.service.pbc.output;
+package com.ey.service.wp.output;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
