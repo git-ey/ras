@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ey.controller.base.BaseController;
-import com.ey.service.pbc.output.CExportManager;
+import com.ey.service.wp.output.CExportManager;
 import com.ey.util.PageData;
 
 /**
@@ -44,7 +44,7 @@ public class ExportController extends BaseController {
 	public void outputC(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		PageData pd = this.getPageData();
 		String fundId = pd.getString("FUND_ID");
-		String periodStr = pd.getString("PEROID");
+		String periodStr = pd.getString("PEROID");//"2017";
 		if(fundId == null || periodStr == null) {
 		    throw new IllegalArgumentException("fundId and period is required");
 		}
