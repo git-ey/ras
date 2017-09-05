@@ -1816,10 +1816,10 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.storageOrganization!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s110"/>
     <Cell ss:StyleID="s207"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -1872,10 +1872,10 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.storageOrganization!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s110"/>
     <Cell ss:StyleID="s207"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -1965,10 +1965,10 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s230"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s231"/>
     <Cell ss:StyleID="s236"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s231"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
    <#if C300.main.KM1021.count != 0>
@@ -1979,10 +1979,10 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.storageOrganization!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
-    <Cell ss:StyleID="s230"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s231"/>
     <Cell ss:StyleID="s236"><Data ss:Type="String">NNxxx</Data></Cell>
-    <Cell ss:StyleID="s231"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -2055,10 +2055,10 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.storageOrganization!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
-    <Cell ss:StyleID="s230"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s231"/>
     <Cell ss:StyleID="s236"><Data ss:Type="String">NNxxx</Data></Cell>
-    <Cell ss:StyleID="s231"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -2815,8 +2815,8 @@
     <Cell ss:StyleID="s124"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s124"><Data ss:Type="Number">${(item.amount)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s93"><Data ss:Type="Number">${(item.interestRate)?string('0.####')}</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="DateTime">${item.dateFrom!}</Data></Cell>
     <Cell ss:StyleID="s122"><Data ss:Type="DateTime">${item.dateFrom!}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="DateTime">${item.dateTo!}</Data></Cell>
     <Cell ss:StyleID="s125"><Data ss:Type="String">${item.termPeriod!}</Data></Cell>
     <Cell ss:StyleID="s92"><Data ss:Type="String">${item.leftPeriod!}</Data></Cell>
     <Cell ss:StyleID="s92"/>
@@ -2870,7 +2870,7 @@
    <Row>
     <Cell ss:StyleID="s211"><Data ss:Type="String">${item.bankName!}</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">${item.related!}</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="Number">${(item.endBalance)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s211"><Data ss:Type="Number">${(item.endBalance)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String"><#if item_index == 0>&lt;C300&gt;</#if></Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s191"/>
     <Cell ss:StyleID="s191"/>
