@@ -4,7 +4,7 @@
 	
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">
-		SELECT sfi.FUND_ID,
+		SELECT replace(sfi.FUND_ID,'#','_') FUND_ID,
 		       prd.PERIOD,
                sfi.SHORT_NAME,
                smc.SHORT_NAME MGR_COMPANY
