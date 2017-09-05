@@ -2870,7 +2870,7 @@
    <Row>
     <Cell ss:StyleID="s211"><Data ss:Type="String">${item.bankName!}</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">${item.related!}</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="Number">${(item.endBalance)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s212"><Data ss:Type="Number">${(item.endBalance)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String"><#if item_index == 0>&lt;C300&gt;</#if></Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s191"/>
     <Cell ss:StyleID="s191"/>

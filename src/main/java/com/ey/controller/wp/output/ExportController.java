@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -43,7 +44,7 @@ public class ExportController extends BaseController {
 	@RequestMapping(value = "/C")
 	public void outputC(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		PageData pd = this.getPageData();
-		String fundId = pd.getString("FUND_ID").replace("_", "#");
+		String fundId = (pd.getString("FUND_ID")==null?StringUtils.EMPTY:pd.getString("FUND_ID")).replace("_", "#");
 		String periodStr = pd.getString("PEROID");//"2017";
 		if(fundId == null || periodStr == null) {
 		    throw new IllegalArgumentException("基金ID和期间不能为空");
