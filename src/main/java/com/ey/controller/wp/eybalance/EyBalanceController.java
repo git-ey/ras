@@ -1,4 +1,4 @@
-package com.ey.controller.pbc.eybalance;
+package com.ey.controller.wp.eybalance;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
+import com.ey.service.wp.eybalance.EyBalanceManager;
 import com.ey.util.AppUtil;
 import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
 import com.ey.util.Jurisdiction;
 import com.ey.util.Tools;
-import com.ey.service.pbc.eybalance.EyBalanceManager;
 
 /** 
  * 说明：EY余额表
@@ -105,7 +105,7 @@ public class EyBalanceController extends BaseController {
 		}
 		page.setPd(pd);
 		List<PageData>	varList = eybalanceService.list(page);	//列出EyBalance列表
-		mv.setViewName("pbc/eybalance/eybalance_list");
+		mv.setViewName("wp/eybalance/eybalance_list");
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
@@ -121,7 +121,7 @@ public class EyBalanceController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		mv.setViewName("pbc/eybalance/eybalance_edit");
+		mv.setViewName("wp/eybalance/eybalance_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -137,7 +137,7 @@ public class EyBalanceController extends BaseController {
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		pd = eybalanceService.findById(pd);	//根据ID读取
-		mv.setViewName("pbc/eybalance/eybalance_edit");
+		mv.setViewName("wp/eybalance/eybalance_edit");
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;

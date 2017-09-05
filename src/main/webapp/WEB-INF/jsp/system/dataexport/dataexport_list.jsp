@@ -97,7 +97,7 @@
 											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
 											<td class='center'>${var.MGR_COMPANY}</td>
-											<td class="center"><a class="btn btn-mini btn-success" onclick="pbcExport('C','${var.FUND_ID}','${var.PERIOD}');">C</a></td>
+											<td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('C','${var.FUND_ID}','${var.PERIOD}');">C</a></td>
 									        <td class="center"><a class="btn btn-mini">E</a></td>
 									        <td class="center"><a class="btn btn-mini">G</a></td>
 									        <td class="center"><a class="btn btn-mini">H</a></td>
@@ -222,8 +222,8 @@
 		});
 		
 		//导出
-		function pbcExport(type,fundId,peroid){
-			window.location.href="<%=basePath%>pdcExport/"+type+".do?FUND_ID="+fundId+"&PEROID="+peroid;
+		function wpExport(type,fundId,peroid){
+			window.location.href="<%=basePath%>wpExport/"+type+".do?FUND_ID="+fundId+"&PEROID="+peroid;
 		}
 		
 		//批量导出

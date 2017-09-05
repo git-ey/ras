@@ -1,4 +1,4 @@
-package com.ey.controller.pbc.output;
+package com.ey.controller.wp.output;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,7 +22,7 @@ import com.ey.util.PageData;
  * 说明： 底稿输出Controller
  */
 @Controller
-@RequestMapping(value = "/pdcExport")
+@RequestMapping(value = "/wpExport")
 public class ExportController extends BaseController {
 	// 底稿C
 	@Resource(name = "cExportService")

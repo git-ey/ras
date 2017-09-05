@@ -1,4 +1,4 @@
-package com.ey.controller.pbc.eyvaluation;
+package com.ey.controller.wp.eyvaluation;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
+import com.ey.service.wp.eyvaluation.EyValuationManager;
 import com.ey.util.AppUtil;
 import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
 import com.ey.util.Jurisdiction;
 import com.ey.util.Tools;
-import com.ey.service.pbc.eyvaluation.EyValuationManager;
 
 /** 
  * 说明：EY估值表
@@ -105,7 +105,7 @@ public class EyValuationController extends BaseController {
 		}
 		page.setPd(pd);
 		List<PageData>	varList = eyvaluationService.list(page);	//列出Eyvaluation列表
-		mv.setViewName("pbc/eyvaluation/eyvaluation_list");
+		mv.setViewName("wp/eyvaluation/eyvaluation_list");
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
@@ -121,7 +121,7 @@ public class EyValuationController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		mv.setViewName("pbc/eyvaluation/eyvaluation_edit");
+		mv.setViewName("wp/eyvaluation/eyvaluation_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -137,7 +137,7 @@ public class EyValuationController extends BaseController {
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		pd = eyvaluationService.findById(pd);	//根据ID读取
-		mv.setViewName("pbc/eyvaluation/eyvaluation_edit");
+		mv.setViewName("wp/eyvaluation/eyvaluation_edit");
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;

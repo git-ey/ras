@@ -1,4 +1,4 @@
-package com.ey.controller.pbc.eyje;
+package com.ey.controller.wp.eyje;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
+import com.ey.service.wp.eyje.EyJeManager;
 import com.ey.util.AppUtil;
 import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
 import com.ey.util.Jurisdiction;
 import com.ey.util.Tools;
-import com.ey.service.pbc.eyje.EyJeManager;
 
 /** 
  * 说明：日记账凭证
@@ -105,7 +105,7 @@ public class EyJeController extends BaseController {
 		}
 		page.setPd(pd);
 		List<PageData>	varList = eyjeService.list(page);	//列出EyJe列表
-		mv.setViewName("pbc/eyje/eyje_list");
+		mv.setViewName("wp/eyje/eyje_list");
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
@@ -121,7 +121,7 @@ public class EyJeController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		mv.setViewName("pbc/eyje/eyje_edit");
+		mv.setViewName("wp/eyje/eyje_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -137,7 +137,7 @@ public class EyJeController extends BaseController {
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		pd = eyjeService.findById(pd);	//根据ID读取
-		mv.setViewName("pbc/eyje/eyje_edit");
+		mv.setViewName("wp/eyje/eyje_edit");
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;

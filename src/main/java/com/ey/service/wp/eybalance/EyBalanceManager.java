@@ -1,4 +1,4 @@
-package com.ey.service.pbc.eybalance;
+package com.ey.service.wp.eybalance;
 
 import java.util.List;
 import com.ey.entity.Page;

@@ -1,16 +1,16 @@
-package com.ey.service.pbc.eyvaluation;
+package com.ey.service.wp.eyje;
 
 import java.util.List;
 import com.ey.entity.Page;
 import com.ey.util.PageData;
 
 /** 
- * 说明： EY估值表接口
+ * 说明： 日记账凭证接口
  * 创建人：andychen
  * 创建时间：2017-08-13
  * @version
  */
-public interface EyValuationManager{
+public interface EyJeManager{
 
 	/**新增
 	 * @param pd
