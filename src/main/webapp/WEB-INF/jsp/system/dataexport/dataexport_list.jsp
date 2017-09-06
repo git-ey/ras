@@ -93,7 +93,7 @@
 									<c:if test="${QX.cha == 1 }">
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
-											<td class='center'>${var.FUND_ID_DESC}</td>
+											<td class='center'>${var.FUND_ID}</td>
 											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
 											<td class='center'>${var.MGR_COMPANY}</td>
