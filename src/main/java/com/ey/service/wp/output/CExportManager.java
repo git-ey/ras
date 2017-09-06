@@ -1,15 +1,11 @@
 package com.ey.service.wp.output;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-/** 
- * 说明： EY余额表接口
- * 创建人：andychen
- * 创建时间：2017-08-12
- * @version
+/**
+ * @name CExportManager
+ * @description 底稿C导出服务类
+ * @author Dai Zong 2017年8月26日
  */
-public interface CExportManager{
+public interface CExportManager extends BaseExportManager{
     
     /**
      * 导出底稿C
@@ -22,6 +18,6 @@ public interface CExportManager{
      * @return
      * @throws Exception
      */
-    boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception;
+//    boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception;
 }
 

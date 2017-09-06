@@ -1305,8 +1305,7 @@
   <NamedRange ss:Name="银行存款取数表" ss:RefersTo="=#REF!"/>
  </Names>
  <Worksheet ss:Name="目录">
-  <Table ss:ExpandedColumnCount="3" ss:ExpandedRowCount="15" x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="78.75"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="321.75"/>
    <Row>
@@ -1368,9 +1367,7 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="C">
-  <Table ss:ExpandedColumnCount="10" ss:ExpandedRowCount="31" x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s128" ss:DefaultColumnWidth="47.25"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s128" ss:DefaultColumnWidth="47.25" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s128" ss:AutoFitWidth="0" ss:Width="107.25"/>
    <Column ss:StyleID="s128" ss:AutoFitWidth="0" ss:Width="92.25"/>
    <Column ss:StyleID="s128" ss:AutoFitWidth="0" ss:Width="118.5"/>
@@ -1688,8 +1685,7 @@
    <NamedRange ss:Name="计息测试生成" ss:RefersTo="=#REF!"/>
    <NamedRange ss:Name="性质分类" ss:RefersTo="=#REF!"/>
   </Names>
-  <Table ss:ExpandedColumnCount="21" ss:ExpandedRowCount="96" x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="115.5"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="83.25"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="95.25"/>
@@ -2294,7 +2290,15 @@
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
    </Row>
-   <Row ss:Index="74" ss:Height="14.25">
+   <Row>
+   </Row>
+   <Row>
+   </Row>
+   <Row>
+   </Row>
+   <Row>
+   </Row>
+   <Row ss:Height="14.25">
     <Cell ss:StyleID="s106"/>
     <Cell ss:StyleID="s106"/>
     <Cell ss:StyleID="s106"/>
@@ -2635,8 +2639,7 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="C400">
-  <Table ss:ExpandedColumnCount="19" ss:ExpandedRowCount="49" x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="145.5"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="123.75"/>
    <Column ss:StyleID="s75" ss:Width="99.75"/>
@@ -2894,7 +2897,11 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">For Disclosure</Data></Cell>
    </Row>
-   <Row ss:Index="31">
+   <Row>
+   </Row>
+   <Row>
+   </Row>
+   <Row>
     <Cell ss:StyleID="s209"><Data ss:Type="String">按原存期分类</Data></Cell>
     <Cell ss:StyleID="s214"><Data ss:Type="String">${(period)?string('0')}年12月31日</Data></Cell>
    </Row>
@@ -2992,8 +2999,7 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="C500">
-  <Table ss:ExpandedColumnCount="15" ss:ExpandedRowCount="17" x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:Width="120"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="79.5"/>
    <Column ss:Index="6" ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="70.5"/>
@@ -3311,8 +3317,7 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="C10000">
-  <Table ss:ExpandedColumnCount="12" ss:ExpandedRowCount="20" x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:Width="76.5"/>
    <Column ss:StyleID="s75" ss:Width="152.25"/>
    <Column ss:StyleID="s75" ss:Width="149.25"/>

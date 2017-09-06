@@ -18,11 +18,10 @@ import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
 import com.ey.util.fileexport.FreeMarkerUtils;
 
-/** 
- * 说明： 底稿输出服务--C
- * 创建人：daizong
- * 创建时间：2017-08-26
- * @version
+/**
+ * @name CExportService
+ * @description 底稿输出服务--C
+ * @author Dai Zong	2017年8月26日
  */
 @Service("cExportService")
 public class CExportService implements CExportManager{
@@ -35,6 +34,8 @@ public class CExportService implements CExportManager{
         Map<String, Object> dataMap = new HashMap<String, Object>();
         
         dataMap.put("period", period);
+        dataMap.put("fundId", fundId);
+        
         dataMap.put("C", this.getCData(fundId, period));
         dataMap.put("C300", this.getC300Data(fundId, period));
         dataMap.put("C400", this.getC400Data(fundId, period));

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ey.controller.base.BaseController;
 import com.ey.service.wp.output.CExportManager;
+import com.ey.service.wp.output.GExportManager;
 import com.ey.util.PageData;
 
 /**
@@ -27,6 +28,9 @@ public class ExportController extends BaseController {
 	// 底稿C
 	@Resource(name = "cExportService")
 	private CExportManager cExportService;
+	// 底稿G
+    @Resource(name = "gExportService")
+    private GExportManager gExportService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -41,13 +45,30 @@ public class ExportController extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/C")
-	public void outputC(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void exportC(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		PageData pd = this.getPageData();
 		String fundId = pd.getString("FUND_ID");
-		String periodStr = pd.getString("PEROID");//"2017";
+		String periodStr = pd.getString("PEROID");
 		if(fundId == null || periodStr == null) {
 		    throw new IllegalArgumentException("基金ID和期间不能为空");
 		}
 		this.cExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
 	}
+	
+	/**
+     * 导出到excel
+     * 
+     * @param
+     * @throws Exception
+     */
+    @RequestMapping(value = "/G")
+    public void exportG(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PageData pd = this.getPageData();
+        String fundId = pd.getString("FUND_ID");
+        String periodStr = pd.getString("PEROID");
+        if(fundId == null || periodStr == null) {
+            throw new IllegalArgumentException("基金ID和期间不能为空");
+        }
+        this.gExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+    }
 }
