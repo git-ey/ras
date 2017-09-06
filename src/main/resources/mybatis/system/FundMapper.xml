@@ -30,7 +30,8 @@
 		UNIT,	
 		DATE_FROM,	
 		DATE_TO,	
-		DATE_TRANSFORM,	
+		DATE_TRANSFORM,
+		DEPOSIT_TERM_PERIOD,
 		INTEREST_RATE_PERIOD,	
 		OTHER_LIABILITIES,	
 		ACTIVE,	
@@ -61,7 +62,8 @@
 		#{UNIT},	
 		#{DATE_FROM},	
 		#{DATE_TO},	
-		#{DATE_TRANSFORM},	
+		#{DATE_TRANSFORM},
+		#{DEPOSIT_TERM_PERIOD},
 		#{INTEREST_RATE_PERIOD},	
 		#{OTHER_LIABILITIES},	
 		#{ACTIVE},	
@@ -112,9 +114,16 @@
 			ETF = #{ETF},
 			FOF = #{FOF},
 			UNIT = #{UNIT},
+			<if test="DATE_FROM != null and DATE_FROM != ''">
 			DATE_FROM = #{DATE_FROM},
+			</if>
+			<if test="DATE_TO != null and DATE_TO != ''">
 			DATE_TO = #{DATE_TO},
+			</if>
+			<if test="DATE_TRANSFORM != null and DATE_TRANSFORM != ''">
 			DATE_TRANSFORM = #{DATE_TRANSFORM},
+			</if>
+			DEPOSIT_TERM_PERIOD = #{DEPOSIT_TERM_PERIOD},
 			INTEREST_RATE_PERIOD = #{INTEREST_RATE_PERIOD},
 			OTHER_LIABILITIES = #{OTHER_LIABILITIES},
 			ACTIVE = #{ACTIVE},
@@ -157,7 +166,8 @@
 		       sf.UNIT,	
 		       sf.DATE_FROM,	
 		       sf.DATE_TO,	
-		       sf.DATE_TRANSFORM,	
+		       sf.DATE_TRANSFORM,
+		       sf.DEPOSIT_TERM_PERIOD,
 		       sf.INTEREST_RATE_PERIOD,	
 		       sf.OTHER_LIABILITIES,	
 		       sf.ACTIVE,	

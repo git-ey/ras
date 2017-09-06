@@ -152,12 +152,28 @@
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金转型日:</td>
 								<td><input class="span10 date-picker" name="DATE_TRANSFORM" id="DATE_TRANSFORM" value="${pd.DATE_TRANSFORM}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="基金转型日" title="基金转型日" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">存款期限账龄:</td>
+								<td>
+								    <select class="chosen-select form-control" name="DEPOSIT_TERM_PERIOD" id="DEPOSIT_TERM_PERIOD" data-placeholder="请选择账龄" style="vertical-align:top;width: 98%;">
+									    <option value=""></option>
+									    <c:forEach items="${termList}" var="var" varStatus="vs">
+									        <option value="${var.TERMHEAD_ID}" <c:if test="${pd.DEPOSIT_TERM_PERIOD == var.TERMHEAD_ID}">selected</c:if>>${var.NAME}</option>
+									    </c:forEach>
+								  	</select>
+								</td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">利率风险敞口账龄:</td>
-								<td><input type="text" name="INTEREST_RATE_PERIOD" id="INTEREST_RATE_PERIOD" value="${pd.INTEREST_RATE_PERIOD}" maxlength="120" placeholder="这里输入利率风险敞口账龄" title="利率风险敞口账龄" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">其他负债披露类型:</td>
-								<td><input type="text" name="OTHER_LIABILITIES" id="OTHER_LIABILITIES" value="${pd.OTHER_LIABILITIES}" maxlength="120" placeholder="这里输入其他负债披露类型" title="其他负债披露类型" style="width:98%;"/></td>
+								<td>
+								    <select class="chosen-select form-control" name="INTEREST_RATE_PERIOD" id="INTEREST_RATE_PERIOD" data-placeholder="请选择账龄" style="vertical-align:top;width: 98%;">
+									    <option value=""></option>
+									    <c:forEach items="${termList}" var="var" varStatus="vs">
+									        <option value="${var.TERMHEAD_ID}" <c:if test="${pd.INTEREST_RATE_PERIOD == var.TERMHEAD_ID}">selected</c:if>>${var.NAME}</option>
+									    </c:forEach>
+								  	</select>
+								</td>
 							</tr>
 							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">其他负债披露类型:</td>
+								<td><input type="text" name="OTHER_LIABILITIES" id="OTHER_LIABILITIES" value="${pd.OTHER_LIABILITIES}" maxlength="120" placeholder="这里输入其他负债披露类型" title="其他负债披露类型" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
