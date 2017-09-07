@@ -8,13 +8,17 @@ public interface Constants {
     /**
      * 导出模板位置
      */
-    static String EXPORT_TEMPLATE_FOLDER_PATH = "/export_template";
+    static final String EXPORT_TEMPLATE_FOLDER_PATH = "/export_template";
+    /**
+     * 模板名称--Report
+     */
+    static final String EXPORT_TEMPLATE_FILE_NAME_REPORT = "Report.ftl";
     /**
      * 模板名称--C
      */
-    static String EXPORT_TEMPLATE_FILE_NAME_C = "C.xml";
+    static final String EXPORT_TEMPLATE_FILE_NAME_C = "C.xml";
     /**
      * 模板名称--G
      */
-    static String EXPORT_TEMPLATE_FILE_NAME_G = "G.xml"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_G = "G.xml"; 
 }

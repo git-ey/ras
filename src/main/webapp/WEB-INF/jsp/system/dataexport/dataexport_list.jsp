@@ -99,7 +99,7 @@
 											<td class='center'>${var.MGR_COMPANY}</td>
 											<td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('C','${var.FUND_ID}','${var.PERIOD}');">C</a></td>
 									        <td class="center"><a class="btn btn-mini">E</a></td>
-									        <td class="center"><a class="btn btn-mini">G</a></td>
+									        <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('G','${var.FUND_ID}','${var.PERIOD}');">G</a></td>
 									        <td class="center"><a class="btn btn-mini">H</a></td>
 									        <td class="center"><a class="btn btn-mini">H-旗下基金总表</a></td>
 									        <td class="center"><a class="btn btn-mini">I</a></td>
@@ -108,7 +108,7 @@
 									        <td class="center"><a class="btn btn-mini">T</a></td>
 									        <td class="center"><a class="btn btn-mini">U</a></td>
 								 	        <td class="center"><a class="btn btn-mini">V</a></td>
-											<td class='center'><a class="btn btn-mini">报告</a></td>
+											<td class='center'><a class="btn btn-mini btn-success" onclick="wpExport('Report','${var.FUND_ID}','${var.PERIOD}');">报告</a></td>
 											<td class='center'><a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td>
 										</tr>
 									

@@ -75,6 +75,8 @@ public class AcctmappingService implements AcctmappingManager{
 			// 批量插入
 			dao.save("AcctmappingMapper.saveBatch", pds);
 		}
+		// 批量更新
+		dao.update("AcctmappingMapper.updateBatch", null);
 	}
 	
 	/**删除

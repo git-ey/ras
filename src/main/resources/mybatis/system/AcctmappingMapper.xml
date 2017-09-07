@@ -167,4 +167,21 @@
          </foreach >
 	</insert>
 	
+	<!-- 批量更新-->
+	<update id="updateBatch" parameterType="pd">
+	    update sys_acctmapping t  
+        set t.CURRENCY = REPLACE(t.CURRENCY,'''',''),
+            t.TYPE = REPLACE(t.TYPE,'''',''),
+            t.ENTERABLE = REPLACE(t.ENTERABLE,'''',''),
+            t.EY_ACCOUNT_NUM = REPLACE(t.EY_ACCOUNT_NUM,'''',''),
+            t.ATTR1 = REPLACE(t.ATTR1,'''',''),
+            t.ATTR2 = REPLACE(t.ATTR2,'''',''),
+            t.ATTR3 = REPLACE(t.ATTR3,'''',''),
+            t.ATTR4 = REPLACE(t.ATTR4,'''',''),
+            t.ATTR5 = REPLACE(t.ATTR5,'''',''),
+            t.ATTR6 = REPLACE(t.ATTR6,'''',''),
+            t.ACTIVE = REPLACE(t.ACTIVE,'''',''),
+            t.STATUS = REPLACE(t.STATUS,'''','')
+	</update>
+	
 </mapper>
