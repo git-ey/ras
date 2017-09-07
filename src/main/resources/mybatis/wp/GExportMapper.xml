@@ -16,4 +16,19 @@
         and G.PERIOD = #{period}
     </select>
     
+    <select id="selectG300Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    G300.EY_ACCOUNT_NUM as accountNum,
+		    G300.ATTR1 as detail,
+		    G300.DR_AMOUNT_CNY as drAmount,
+		    G300.CR_AMOUNT_CNY as crAmount,
+		    G300.BEGIN_BALANCE_CNY as beginBalance
+		FROM
+		    wp_g300 G300
+        where 
+            1 = 1
+        and G300.STATUS = 'Y'
+        and G300.FUND_ID = #{fundId}
+        and G300.PERIOD = #{period}
+    </select>
 </mapper>

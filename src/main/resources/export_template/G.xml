@@ -831,9 +831,6 @@
     <Cell ss:StyleID="s76"/>
     <Cell ss:StyleID="s76"/>
    </Row>
-   <Row ss:Index="26">
-    <Cell ss:StyleID="Default"/>
-   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -917,21 +914,20 @@
    <Row ss:StyleID="s86">
     <Cell ss:StyleID="s88"><Data ss:Type="String">其他应收款</Data></Cell>
    </Row>
+   <#if G300.KM1221Count != 0>
+   <#list G300.KM1221 as item>
    <Row ss:StyleID="s86">
     <Cell ss:StyleID="s88"/>
-    <Cell><Data ss:Type="String">XXXX</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s86">
-    <Cell ss:StyleID="s88"/>
-    <Cell><Data ss:Type="String">XXXX</Data></Cell>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">1212</Data></Cell>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">1212</Data></Cell>
+    <Cell><Data ss:Type="String">${item.detail!}</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.beginBalance)??>${(item.beginBalance)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s119"/>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">1212</Data></Cell>
-    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data
-      ss:Type="Number">1212</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.drAmount)??>${(item.drAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s87"/>
    </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s86">
     <Cell ss:StyleID="s88"/>
     <Cell ss:Index="3" ss:StyleID="s119"/>
@@ -945,12 +941,11 @@
    <Row ss:StyleID="s86">
     <Cell ss:StyleID="s88"/>
     <Cell><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">1212</Data></Cell>
-    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">1212</Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1221Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1221Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">v</Data></Cell>
-    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">1212</Data></Cell>
-    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data
-      ss:Type="Number">1212</Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1221Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;</Data></Cell>
     <Cell ss:StyleID="s121"><Data ss:Type="String">Note 1</Data></Cell>
    </Row>
@@ -974,30 +969,21 @@
     <Cell ss:StyleID="s87"/>
     <Cell ss:StyleID="s121"/>
    </Row>
+   <#if G300.KM1501Count != 0>
+   <#list G300.KM1501 as item>
    <Row ss:StyleID="s86">
     <Cell ss:StyleID="s88"/>
-    <Cell><Data ss:Type="String">xxxxx</Data></Cell>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">12</Data></Cell>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">12</Data></Cell>
+    <Cell><Data ss:Type="String">${item.detail!}</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.beginBalance)??>${(item.beginBalance)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s119"/>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">12</Data></Cell>
-    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data
-      ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.drAmount)??>${(item.drAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s87"/>
     <Cell ss:StyleID="s121"/>
    </Row>
-   <Row ss:StyleID="s86">
-    <Cell ss:StyleID="s88"/>
-    <Cell><Data ss:Type="String">xxxxx</Data></Cell>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">1212</Data></Cell>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">12</Data></Cell>
-    <Cell ss:StyleID="s119"/>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">1212</Data></Cell>
-    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data
-      ss:Type="Number">12</Data></Cell>
-    <Cell ss:StyleID="s87"/>
-    <Cell ss:StyleID="s121"/>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s86">
     <Cell ss:StyleID="s88"/>
     <Cell ss:Index="3" ss:StyleID="s119"/>
@@ -1010,12 +996,11 @@
    </Row>
    <Row ss:StyleID="s86">
     <Cell ss:Index="2"><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">1224</Data></Cell>
-    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1501Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1501Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">v</Data></Cell>
-    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">1224</Data></Cell>
-    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data
-      ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1501Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;</Data></Cell>
     <Cell ss:StyleID="s121"/>
    </Row>
@@ -1026,11 +1011,10 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s86">
     <Cell ss:Index="2"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s120" ss:Formula="=R[-8]C+R[-2]C"><Data ss:Type="Number">2436</Data></Cell>
-    <Cell ss:StyleID="s120" ss:Formula="=R[-8]C+R[-2]C"><Data ss:Type="Number">1236</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s120" ss:Formula="=R[-8]C+R[-2]C"><Data
-      ss:Type="Number">2436</Data></Cell>
-    <Cell ss:StyleID="s124" ss:Formula="=R[-8]C+R[-2]C"><Data ss:Type="Number">1236</Data></Cell>
+    <Cell ss:StyleID="s120" ss:Formula="=R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s120" ss:Formula="=R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s120" ss:Formula="=R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s124" ss:Formula="=R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number">1236</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s86">
     <Cell ss:Index="3" ss:StyleID="s125"><Data ss:Type="String">^</Data></Cell>
