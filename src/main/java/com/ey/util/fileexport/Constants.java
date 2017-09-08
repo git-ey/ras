@@ -18,7 +18,15 @@ public interface Constants {
      */
     static final String EXPORT_TEMPLATE_FILE_NAME_C = "C.xml";
     /**
+     * 底稿名称--C
+     */
+    static final String EXPORT_AIM_FILE_NAME_C = "C.xls";
+    /**
      * 模板名称--G
      */
     static final String EXPORT_TEMPLATE_FILE_NAME_G = "G.xml"; 
+    /**
+     * 底稿名称--G
+     */
+    static final String EXPORT_AIM_FILE_NAME_G = "G.xls";
 }

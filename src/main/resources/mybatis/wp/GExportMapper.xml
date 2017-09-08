@@ -31,4 +31,19 @@
         and G300.FUND_ID = #{fundId}
         and G300.PERIOD = #{period}
     </select>
+    
+    <select id="selectG10000Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    G10000.ITEM as item,
+		    G10000.BEGIN_BALANCE as beginBalance,
+		    G10000.END_BALANCE as endBalance
+		FROM
+		    wp_g10000 G10000
+		WHERE
+		    1 = 1
+        and G10000.STATUS = 'Y'
+        and G10000.FUND_ID = #{fundId}
+        and G10000.PERIOD = #{period}
+        ORDER BY G10000.SORT
+    </select>
 </mapper>

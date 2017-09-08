@@ -38,13 +38,23 @@ public class GExportService implements GExportManager{
         
         dataMap.put("G", this.getGData(fundId, period));
         dataMap.put("G300", this.getG300Data(fundId, period));
+        dataMap.put("G10000", this.getG10000Data(fundId, period));
         
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_G);
-        FileExportUtils.writeFileToHttpResponse(request, response, "G.xls", xmlStr);
+        FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_G, xmlStr);
         
         return true;
     }
     
+	/**
+	 * 处理sheet页G的数据
+	 * @author Dai Zong 2017年9月8日
+	 * 
+	 * @param fundId
+	 * @param period
+	 * @return
+	 * @throws Exception
+	 */
     private Map<String,Object> getGData(String fundId, Long period) throws Exception{
         Map<String, Object> queryMap = new HashMap<String,Object>();
         Map<String, Object> result = new HashMap<String,Object>();
@@ -72,6 +82,15 @@ public class GExportService implements GExportManager{
         return result;
     }
     
+    /**
+     * 处理sheet页G300的数据
+     * @author Dai Zong 2017年9月8日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
     private Map<String,Object> getG300Data(String fundId, Long period) throws Exception{
         Map<String, Object> queryMap = new HashMap<String,Object>();
         Map<String, Object> result = new HashMap<String,Object>();
@@ -98,6 +117,31 @@ public class GExportService implements GExportManager{
         result.put("KM1221Count", KM1221.size());
         result.put("KM1501", KM1501);
         result.put("KM1501Count", KM1501.size());
+        
+        return result;
+    }
+    
+    /**
+     * 处理sheet页G10000的数据
+     * @author Dai Zong 2017年9月8日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getG10000Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        queryMap.put("fundId", fundId);
+        queryMap.put("period", period);
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)dao.findForList("GExportMapper.selectG10000Data", queryMap);
+        if(CollectionUtils.isEmpty(metaDataList)) {return result;}
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
         
         return result;
     }

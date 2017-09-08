@@ -42,7 +42,7 @@ public class CExportService implements CExportManager{
         dataMap.put("C10000", this.getC10000Data(fundId, period));
         
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_C);
-        FileExportUtils.writeFileToHttpResponse(request, response, "C.xls", xmlStr);
+        FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_C, xmlStr);
         
         return true;
     }
