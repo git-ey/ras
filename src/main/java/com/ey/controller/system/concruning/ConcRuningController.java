@@ -3,13 +3,12 @@ package com.ey.controller.system.concruning;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -70,13 +69,17 @@ public class ConcRuningController extends BaseController {
 		PageData concPd = concService.findByCode(pd);
 		// 构建并发程序参数
 		StringBuilder concParam = new StringBuilder();
-		Set<Entry<String, Object>> pdSet = pd.entrySet();
-		Iterator<Entry<String, Object>> pds = pdSet.iterator();
-		int i = 0;
-		while(pds.hasNext()){
-			Entry<String, Object> et = pds.next();
-			if(i>0){
-				concParam.append(et.getValue()+",");
+		List<Map.Entry<String, Object>> pds = new ArrayList<Map.Entry<String, Object>>(pd.entrySet());
+		// 排序
+		Collections.sort(pds, new Comparator<Map.Entry<String, Object>>() {   
+		    public int compare(Map.Entry<String, Object> o1, Map.Entry<String, Object> o2) {      
+		        return (o1.getKey()).toString().compareTo(o2.getKey());
+		    }
+		});
+		int i = 1;
+		for (Map.Entry<String, Object> et : pds) {
+			if (i < pds.size()) {
+				concParam.append(et.getValue() + ",");
 			}
 			i++;
 		}
@@ -127,7 +130,7 @@ public class ConcRuningController extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/goAdd")
-	public ModelAndView goAdd()throws Exception{
+	public ModelAndView goAdd() throws Exception{
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();

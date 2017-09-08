@@ -13,7 +13,8 @@
 		PARAM_CODE,	
 		PARAM_NAME,	
 		PARAM_TYPE,	
-		CONC_VALUE,	
+		CONC_VALUE,
+		NULL_FLAG,
 		CONC_PARAM_ID,
 		CONC_ID
 	</sql>
@@ -24,7 +25,8 @@
 		#{PARAM_CODE},	
 		#{PARAM_NAME},	
 		#{PARAM_TYPE},	
-		#{CONC_VALUE},	
+		#{CONC_VALUE},
+		#{NULL_FLAG},	
 		#{CONC_PARAM_ID},
 		#{CONC_ID}
 	</sql>
@@ -57,7 +59,8 @@
 			PARAM_CODE = #{PARAM_CODE},
 			PARAM_NAME = #{PARAM_NAME},
 			PARAM_TYPE = #{PARAM_TYPE},
-			CONC_VALUE = #{CONC_VALUE}
+			CONC_VALUE = #{CONC_VALUE},
+			NULL_FLAG  = #{NULL_FLAG}
 		where 
 		CONC_PARAM_ID = #{CONC_PARAM_ID}
 	</update>
@@ -90,7 +93,8 @@
 		  scp.PARAM_CODE,	
 		  scp.PARAM_NAME,	
 		  scp.PARAM_TYPE,	
-		  scp.CONC_VALUE
+		  scp.CONC_VALUE,
+		  scp.NULL_FLAG
 		from 
 		  SYS_CONC_PARAM scp,
 		  SYS_CONC sc

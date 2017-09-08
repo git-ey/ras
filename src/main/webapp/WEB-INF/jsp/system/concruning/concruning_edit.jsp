@@ -95,10 +95,10 @@
 							delTr('table_param');
 							 $.each(data.list, function(i, list){
 								 if(list.PARAM_CODE != null && list.PARAM_TYPE == 'String'){
-									 var trHtml="<tr align='center'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input type='text' style='width:98%;' name="+list.SEQ+":"+list.PARAM_CODE+" id="+list.SEQ+":"+list.PARAM_CODE+" value="+list.CONC_VALUE+"></input></td></tr>";
+									 var trHtml="<tr align='center'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input type='text' style='width:98%;' name="+list.SEQ+":"+list.NULL_FLAG+list.PARAM_NAME+" id="+list.PARAM_NAME+" value="+list.CONC_VALUE+"></input></td></tr>";
 									 addTr(trHtml,'table_param', 0);
 								 }else if(list.PARAM_CODE != null && list.PARAM_TYPE == 'Date'){
-									 var trHtml="<tr align='center'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input class='span10 date-picker' type='text' data-date-format='yyyy-mm-dd' readonly='readonly' style='width:98%;' name="+list.SEQ+":"+list.PARAM_CODE+" id="+list.SEQ+":"+list.PARAM_CODE+" value="+list.CONC_VALUE+"></input></td></tr>";
+									 var trHtml="<tr align='center'><td style='padding-top:13px;'>"+list.PARAM_NAME+"</td><td><input class='span10 date-picker' type='text' data-date-format='yyyy-mm-dd' readonly='readonly' style='width:98%;' name="+list.SEQ+":"+list.NULL_FLAG+list.PARAM_NAME+" id="+list.PARAM_NAME+" value="+list.CONC_VALUE+"></input></td></tr>";
 									 addTr(trHtml,'table_param', 0);
 									//日期框
 									$('.date-picker').datepicker({
@@ -124,16 +124,28 @@
 		 }
 		//保存
 		function save(){
-			if($("#CONC_CODE").val()==""){
-				$("#CONC_CODE").tips({
-					side:3,
-		            msg:'请输入程序代码',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#CONC_CODE").focus();
-			return false;
-			}
+			for(var f=0;f<document.forms.length;f++){  
+			    var form=document.forms[f];  
+			    if(form.name=="Form"){  
+			        //遍历指定form表单所有元素  
+			        for(var i=0;i<form.length;i++){  
+			            var element=form[i];  
+			            if(element.type=="text"){  
+			            	if(element.name.indexOf(":N") > 0 && element.value == ""){
+			            		$("#table_param").tips({
+			    					side:3,
+			    		            msg:'请输入参数:'+element.id,
+			    		            bg:'#AE81FF',
+			    		            time:2
+			    		        });
+			            		//alert(element.name+"不能为空!");
+			            		return false;
+			            	}
+			            }  
+			        }  
+			        break;  
+			    }  
+			}  
 			$("#Form").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();

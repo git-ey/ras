@@ -58,6 +58,15 @@
 								<td><input type="text" name="CONC_VALUE" id="CONC_VALUE" value="${pd.CONC_VALUE}" maxlength="255"  title="参数值" style="width:98%;"/></td>
 							</tr>
 							<tr>
+							    <td style="width:75px;text-align: right;padding-top: 13px;">允许为空:</td>
+								<td>
+								    <select class="chosen-select form-control" name="NULL_FLAG" id="NULL_FLAG" data-placeholder="请选择" style="width:49%;">
+								    <option value="Y" <c:if test="${pd.NULL_FLAG == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.NULL_FLAG == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+							</tr>
+							<tr>
 								<td style="text-align: center;" colspan="10">
 									<a class="btn btn-mini btn-primary" onclick="save();">保存</a>
 									<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>
