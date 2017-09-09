@@ -73,6 +73,8 @@ public class FundService implements FundManager{
 			// 批量插入
 			dao.save("FundMapper.saveBatch", pds);
 		}
+		// 批量更新
+		dao.update("FundMapper.updateBatch", null);
 	}
 	
 	/**删除

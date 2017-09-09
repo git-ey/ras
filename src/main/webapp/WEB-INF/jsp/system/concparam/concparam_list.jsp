@@ -43,6 +43,7 @@
 									<th class="center">参数名称</th>
 									<th class="center">参数类型</th>
 									<th class="center">参数值</th>
+									<th class="center">允许为空</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -62,6 +63,16 @@
 											<td class='center'>${var.PARAM_NAME}</td>
 											<td class='center'>${var.PARAM_TYPE}</td>
 											<td class='center'>${var.CONC_VALUE}</td>
+											<td class='center'>
+                                            <c:choose>  
+                                               <c:when test="${var.NULL_FLAG == 'Y' }">
+                                                                                                     是 
+                                               </c:when>  
+                                               <c:otherwise>
+                                                                                                     否
+                                              </c:otherwise>  
+                                            </c:choose>
+                                            </td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
@@ -236,8 +247,8 @@
 			 diag.Drag=true;
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>concparam/goAdd.do?CONC_ID=${pd.CONC_ID}';
-			 diag.Width = 450;
-			 diag.Height = 355;
+			 diag.Width = 500;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -270,8 +281,8 @@
 			 diag.Drag=true;
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>concparam/goEdit.do?CONC_PARAM_ID='+Id;
-			 diag.Width = 450;
-			 diag.Height = 355;
+			 diag.Width = 500;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮

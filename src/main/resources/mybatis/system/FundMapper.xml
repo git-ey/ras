@@ -267,4 +267,32 @@
        (select count(*) from sys_fund_trx_rule where FUND_ID = #{FUND_ID}) zs;
 	</select>
 	
+	<!-- 批量更新-->
+	<update id="updateBatch" parameterType="pd">
+	    update sys_fund_info fi
+           set fi.FULL_NAME_ORIGINAL = REPLACE(fi.FULL_NAME_ORIGINAL,'''',null),
+               fi.LEDGER_NUM = REPLACE(fi.LEDGER_NUM,'''',null),
+		       fi.TA_NAME = REPLACE(fi.TA_NAME,'''',null),
+		       fi.FIN_SYSTEM = REPLACE(fi.FIN_SYSTEM,'''',null),
+		       fi.STRUCTURED = REPLACE(fi.STRUCTURED,'''',null),
+		       fi.GUARANTEED = REPLACE(fi.GUARANTEED,'''',null),
+		       fi.CLOSED = REPLACE(fi.CLOSED,'''',null),
+		       fi.SHHK = REPLACE(fi.SHHK,'''',null),
+		       fi.QD = REPLACE(fi.QD,'''',null),
+		       fi.MF = REPLACE(fi.MF,'''',null),
+		       fi.IDX = REPLACE(fi.IDX,'''',null),
+		       fi.LOF = REPLACE(fi.LOF,'''',null),
+		       fi.ETF = REPLACE(fi.ETF,'''',null),
+		       fi.FOF = REPLACE(fi.FOF,'''',null),
+		       fi.UNIT = REPLACE(fi.UNIT,'''',null),
+		       fi.DATE_FROM = REPLACE(fi.DATE_FROM,'''',null),
+		       fi.DATE_TO = REPLACE(fi.DATE_TO,'''',null),
+		       fi.DATE_TRANSFORM = REPLACE(fi.DATE_TRANSFORM,'''',null),
+		       fi.DEPOSIT_TERM_PERIOD = REPLACE(fi.DEPOSIT_TERM_PERIOD,'''',null),
+		       fi.INTEREST_RATE_PERIOD = REPLACE(fi.INTEREST_RATE_PERIOD,'''',null),
+		       fi.OTHER_LIABILITIES = REPLACE(fi.OTHER_LIABILITIES,'''',null),
+		       fi.ACTIVE = REPLACE(fi.ACTIVE,'''',null),
+		       fi.`STATUS` = REPLACE(fi.`STATUS`,'''',null)
+	</update>
+	
 </mapper>
