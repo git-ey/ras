@@ -273,15 +273,15 @@ public class CExportService implements CExportManager{
         //========process dataMap for main view begin========
         List<Map<String,Object>> metaData = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC10000MainData", queryMap);
         if(metaData == null) {metaData = new ArrayList<>();}
-        boolean firstDetailFlag = true;
+//        boolean firstDetailFlag = true;
         for(Map<String,Object> map : metaData) {
             if("Y".equals(map.get("detailFlag"))) {
-                if(firstDetailFlag) {
-                    map.put("item", "其中：存款期限"+String.valueOf(map.get("item")));
-                    firstDetailFlag = false;
-                }else {
-                    map.put("item", "      存款期限"+String.valueOf(map.get("item")));
-                }
+//                if(firstDetailFlag) {
+//                    map.put("item", "其中：存款期限"+String.valueOf(map.get("item")));
+//                    firstDetailFlag = false;
+//                }else {
+//                    map.put("item", "      存款期限"+String.valueOf(map.get("item")));
+//                }
                 detailList.add(map);
             }else {
                 headList.add(map);

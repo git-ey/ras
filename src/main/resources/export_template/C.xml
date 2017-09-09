@@ -1463,12 +1463,12 @@
    <Row>
     <Cell ss:StyleID="s146"><Data ss:Type="String">银行存款</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">C300</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1002.amountCurrent?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1002.drAmountAdj?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1002.crAmountAdj?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1002.amountCurrent??>${C.KM1002.amountCurrent?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1002.drAmountAdj??>${C.KM1002.drAmountAdj?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1002.crAmountAdj??>${C.KM1002.crAmountAdj?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data><NamedCell ss:Name="_银行存款审定"/></Cell>
     <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1002.amountAuditLast?string('0.##')}</Data><NamedCell ss:Name="_银行存款期初"/></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1002.amountAuditLast??>${C.KM1002.amountAuditLast?string('0.##')}</#if></Data><NamedCell ss:Name="_银行存款期初"/></Cell>
     <Cell ss:StyleID="s127"/>
     <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
@@ -1486,12 +1486,12 @@
    <Row>
     <Cell ss:StyleID="s146"><Data ss:Type="String">清算备付金</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">C300</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1021.amountCurrent?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1021.drAmountAdj?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1021.crAmountAdj?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1021.amountCurrent??>${C.KM1021.amountCurrent?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1021.drAmountAdj??>${C.KM1021.drAmountAdj?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1021.crAmountAdj??>${C.KM1021.crAmountAdj?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1021.amountAuditLast?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1021.amountAuditLast??>${C.KM1021.amountAuditLast?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s127"/>
     <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
@@ -1509,12 +1509,12 @@
    <Row>
     <Cell ss:StyleID="s146"><Data ss:Type="String">存出保证金</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">C300</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1031.amountCurrent?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1031.drAmountAdj?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1031.crAmountAdj?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1031.amountCurrent??>${C.KM1031.amountCurrent?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1031.drAmountAdj??>${C.KM1031.drAmountAdj?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1031.crAmountAdj??>${C.KM1031.crAmountAdj?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${C.KM1031.amountAuditLast?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1031.amountAuditLast??>${C.KM1031.amountAuditLast?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s127"/>
     <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
@@ -1868,10 +1868,10 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.storageOrganization!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"><#if item.beginBalance??>${item.beginBalance?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s110"/>
     <Cell ss:StyleID="s207"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"><#if item.endBalance??>${item.endBalance?string('0.##')}</#if></Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -2152,7 +2152,7 @@
    </#if>
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s161" ss:Formula="=SUM(R[${(-(C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161" ss:Formula="=SUM(R[${(-(1+C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
    </Row>
    <Row>
@@ -2932,7 +2932,7 @@
    </Row>
    <Row ss:StyleID="s74">
     <Cell ss:StyleID="s75"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s217" ss:Formula="=SUM(R[-1]C)-R[${(-(13+C400.groupByBank.count+C400.groupByTerm.count))?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s217" ss:Formula="=R[-1]C-R[${(-(13+C400.groupByBank.count+C400.groupByTerm.count))?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s74">
     <Cell ss:StyleID="s75"/>
@@ -2970,7 +2970,7 @@
    </Row>
    <Row>
     <Cell><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s225" ss:Formula="=SUM(R[-1]C)-R[${(-(18+C400.groupByBank.count+C400.groupByTerm.count+C300.intRiskPeriod.intRistPeriodsCount))?string('0')}]C[2]"><Data
+    <Cell ss:StyleID="s225" ss:Formula="=R[-1]C-R[${(-(18+C400.groupByBank.count+C400.groupByTerm.count+C300.intRiskPeriod.intRistPeriodsCount))?string('0')}]C[2]"><Data
       ss:Type="Number">0</Data></Cell>
    </Row>
   </Table>
@@ -3401,7 +3401,7 @@
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s208"><Data ss:Type="String">${detail.item!}</Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="Number">${detail.endBalance?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s78"><Data ss:Type="Number">${detail.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number">${detail.beginBalance?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s74"/>
    </Row>
