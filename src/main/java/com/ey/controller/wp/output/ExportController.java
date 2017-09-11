@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ey.controller.base.BaseController;
 import com.ey.service.wp.output.CExportManager;
 import com.ey.service.wp.output.GExportManager;
+import com.ey.service.wp.output.NExportManager;
 import com.ey.service.wp.output.ReportExportManager;
 import com.ey.util.PageData;
 
@@ -35,6 +36,9 @@ public class ExportController extends BaseController {
 	// 底稿G
     @Resource(name = "gExportService")
     private GExportManager gExportService;
+    // 底稿G
+    @Resource(name = "nExportService")
+    private NExportManager nExportService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -60,7 +64,7 @@ public class ExportController extends BaseController {
     }
 
 	/**
-	 * 导出到excel
+	 * 底稿导出--C
 	 * 
 	 * @param
 	 * @throws Exception
@@ -77,7 +81,7 @@ public class ExportController extends BaseController {
 	}
 	
 	/**
-     * 导出到excel
+     * 底稿导出--G
      * 
      * @param
      * @throws Exception
@@ -93,4 +97,14 @@ public class ExportController extends BaseController {
         this.gExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
     }
     
+    @RequestMapping(value = "/N")
+    public void exportN(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PageData pd = this.getPageData();
+        String fundId = pd.getString("FUND_ID");
+        String periodStr = pd.getString("PEROID");
+        if(fundId == null || periodStr == null) {
+            throw new IllegalArgumentException("基金ID和期间不能为空");
+        }
+        this.nExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+    }
 }
