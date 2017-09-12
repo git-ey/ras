@@ -5,14 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
-import com.ey.dao.DaoSupport;
 import com.ey.service.wp.output.CExportManager;
 import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
@@ -24,10 +22,7 @@ import com.ey.util.fileexport.FreeMarkerUtils;
  * @author Dai Zong	2017年8月26日
  */
 @Service("cExportService")
-public class CExportService implements CExportManager{
-
-	@Resource(name = "daoSupport")
-	private DaoSupport dao;
+public class CExportService extends BaseExportService implements CExportManager{
 
     @Override
     public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
@@ -57,13 +52,11 @@ public class CExportService implements CExportManager{
      * @throws Exception
      */
     private Map<String,Object> getCData(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = new HashMap<String,Object>();
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
         Map<String, Object> result = new HashMap<String,Object>();
         
-        queryMap.put("fundId", fundId);
-        queryMap.put("period", period);
         @SuppressWarnings("unchecked")
-        List<Map<String,Object>> resMapList = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectCData", queryMap);
+        List<Map<String,Object>> resMapList = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectCData", queryMap);
         if(CollectionUtils.isEmpty(resMapList)) {return result;}
         
         for(Map<String, Object> resMap : resMapList) {
@@ -85,10 +78,9 @@ public class CExportService implements CExportManager{
      */
     @SuppressWarnings("unchecked")
     private Map<String,Object> getC300Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = new HashMap<String,Object>();
-        queryMap.put("fundId", fundId);
-        queryMap.put("period", period);
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
         Map<String, Object> result = new HashMap<String,Object>();
+        
         Map<String, Object> mainMap = new HashMap<String,Object>();
         Map<String, Object> intRiskPeriodMap = new HashMap<String,Object>();
         
@@ -101,7 +93,7 @@ public class CExportService implements CExportManager{
         int timeDepositsListCount = 0;
         int KM1021ListCount = 0;
         int KM1031ListCount = 0;
-        List<Map<String,Object>> mainData = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC300MainData", queryMap);
+        List<Map<String,Object>> mainData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC300MainData", queryMap);
         if(CollectionUtils.isEmpty(mainData)) {
             mainData = new ArrayList<Map<String,Object>>();
         }
@@ -144,7 +136,7 @@ public class CExportService implements CExportManager{
         
         //========process dataMap for related view begin========
         Map<String,Object> RelatedData = new HashMap<>();
-        List<Map<String,Object>> RelatedMetaData = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC300RelatedData", queryMap);
+        List<Map<String,Object>> RelatedMetaData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC300RelatedData", queryMap);
         List<Map<String,Object>> RdemandDepositsList = new ArrayList<>();
         List<Map<String,Object>> RTimeDepositsList = new ArrayList<>();
         List<Map<String,Object>> RKM1021List = new ArrayList<>();
@@ -176,8 +168,8 @@ public class CExportService implements CExportManager{
         //========process dataMap for related view end========
         
         //========process dataMap for intRistPeriod view begin========
-        List<String> intRistPeriods = (List<String>)dao.findForList("CExportMapper.selectC300IntRiskPeriods", queryMap);
-        List<Map<String,Object>> timeDepositsDataList = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC300IntRiskTimeDepositsData", queryMap);
+        List<String> intRistPeriods = (List<String>)this.dao.findForList("CExportMapper.selectC300IntRiskPeriods", queryMap);
+        List<Map<String,Object>> timeDepositsDataList = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC300IntRiskTimeDepositsData", queryMap);
         List<Double> timeDepositsData = new ArrayList<>();
         intRistPeriods = intRistPeriods==null?new ArrayList<String>():intRistPeriods;
         timeDepositsDataList = timeDepositsDataList==null?new ArrayList<Map<String,Object>>():timeDepositsDataList;
@@ -224,15 +216,14 @@ public class CExportService implements CExportManager{
      */
     @SuppressWarnings("unchecked")
     private Map<String,Object> getC400Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
         Map<String,Object> result = new HashMap<>();
-        Map<String, Object> queryMap = new HashMap<String,Object>();
-        queryMap.put("fundId", fundId);
-        queryMap.put("period", period);
+        
         Map<String,Object> mainData = new HashMap<>();
         Map<String,Object> bankData = new HashMap<>();
         Map<String,Object> termData = new HashMap<>();
         //========process dataMap for main view begin========
-        List<Map<String,Object>> mainMetaData = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC400MainData", queryMap);
+        List<Map<String,Object>> mainMetaData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC400MainData", queryMap);
         if(mainMetaData == null) {
             mainMetaData = new ArrayList<Map<String,Object>>();
         }
@@ -241,7 +232,7 @@ public class CExportService implements CExportManager{
         mainData.put("count", mainListCount);
         //========process dataMap for main view end========
         //========process dataMap for bank view begin========
-        List<Map<String,Object>> bankList = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC400BankData", queryMap);
+        List<Map<String,Object>> bankList = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC400BankData", queryMap);
         if(bankList == null) {
             bankList = new ArrayList<Map<String,Object>>();
         }
@@ -249,7 +240,7 @@ public class CExportService implements CExportManager{
         bankData.put("count", bankList.size());
         //========process dataMap for bank view end========
         //========process dataMap for term view begin========
-        List<String> termList = (List<String>)dao.findForList("CExportMapper.selectC400TermData", queryMap);
+        List<String> termList = (List<String>)this.dao.findForList("CExportMapper.selectC400TermData", queryMap);
         if(termList == null) {
             termList = new ArrayList<String>();
         }
@@ -264,24 +255,16 @@ public class CExportService implements CExportManager{
     
     @SuppressWarnings("unchecked")
     private Map<String,Object> getC10000Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
         Map<String,Object> result = new HashMap<>();
-        Map<String, Object> queryMap = new HashMap<>();
-        queryMap.put("fundId", fundId);
-        queryMap.put("period", period);
+        
         List<Map<String, Object>> headList = new ArrayList<>();
         List<Map<String, Object>> detailList = new ArrayList<>();
         //========process dataMap for main view begin========
-        List<Map<String,Object>> metaData = (List<Map<String,Object>>)dao.findForList("CExportMapper.selectC10000MainData", queryMap);
+        List<Map<String,Object>> metaData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC10000MainData", queryMap);
         if(metaData == null) {metaData = new ArrayList<>();}
-//        boolean firstDetailFlag = true;
         for(Map<String,Object> map : metaData) {
             if("Y".equals(map.get("detailFlag"))) {
-//                if(firstDetailFlag) {
-//                    map.put("item", "其中：存款期限"+String.valueOf(map.get("item")));
-//                    firstDetailFlag = false;
-//                }else {
-//                    map.put("item", "      存款期限"+String.valueOf(map.get("item")));
-//                }
                 detailList.add(map);
             }else {
                 headList.add(map);
