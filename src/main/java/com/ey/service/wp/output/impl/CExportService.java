@@ -173,6 +173,13 @@ public class CExportService extends BaseExportService implements CExportManager{
         List<Double> timeDepositsData = new ArrayList<>();
         intRistPeriods = intRistPeriods==null?new ArrayList<String>():intRistPeriods;
         timeDepositsDataList = timeDepositsDataList==null?new ArrayList<Map<String,Object>>():timeDepositsDataList;
+        Map<String,Object> temp = new HashMap<>();
+        
+        //对于定期存款取C400数据，按【FUND_ID】【PERIOD】【PERIOD_LEFT】字段汇总【AMOUNT】写入对应的利率风险敞口，不计息类型默认为0
+        temp.put("intRiskPeriod", "不计息");
+        temp.put("amount", 0D);
+        
+        timeDepositsDataList.add(temp);
         int noInterestColIndex = intRistPeriods.size() - 1;
         //find no-interest col's index
         for(int i=0;i<intRistPeriods.size();i++) {
