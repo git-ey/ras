@@ -16,4 +16,19 @@
         and N.FUND_ID = #{fundId}
         and N.PERIOD = #{period}
     </select>
+    
+    <select id="selectN300Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+            N300.ATTR1 as detailName,
+	        N300.BEGIN_BALANCE_CNY as beginBalance,
+	        N300.DR_AMOUNT_CNY as drAmount,
+	        N300.CR_AMOUNT_CNY as crAmount
+		FROM
+	        wp_n300 N300
+		where 
+	        1 = 1
+		and N300.STATUS = 'Y'
+		and N300.FUND_ID = #{fundId}
+		and N300.PERIOD = #{period}
+    </select>
 </mapper>
