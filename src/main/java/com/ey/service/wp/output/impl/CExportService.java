@@ -142,9 +142,9 @@ public class CExportService extends BaseExportService implements CExportManager{
         List<Map<String,Object>> RKM1021List = new ArrayList<>();
         List<Map<String,Object>> RKM1031List = new ArrayList<>();
         for(Map<String,Object> map : RelatedMetaData) {
-            if("活期".equals(map.get("depositType"))) {
+            if("活期存款".equals(map.get("depositType"))) {
                 RdemandDepositsList.add(map);
-            }else if("定期".equals(map.get("depositType"))) {
+            }else if("定期存款".equals(map.get("depositType"))) {
                 RTimeDepositsList.add(map);
             }else if("清算备付金".equals(map.get("depositType"))) {
                 RKM1021List.add(map);
