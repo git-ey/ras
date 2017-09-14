@@ -142,9 +142,9 @@
 			and
 				(
 				<!-- 根据需求自己加检索条件 -->
-					EY_ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
-					APARLIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					EY_ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				
 				)
 		</if>
