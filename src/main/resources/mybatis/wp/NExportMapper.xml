@@ -119,4 +119,33 @@
         and N510R.PERIOD = #{period}
         order by N510R.SEQ
     </select>
+    
+    <select id="selectN600Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N600.ATTR1 as `name`,
+		    N600.BEGIN_BALANCE_CNY as beginBalance,
+		    N600.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_n600 N600
+        where 
+            1 = 1
+        and N600.STATUS = 'Y'
+        and N600.FUND_ID = #{fundId}
+        and N600.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN700Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N700.ATTR1 as `name`,
+		    N700.BEGIN_BALANCE_CNY as beginBalance,
+		    N700.CR_AMOUNT_CNY as crAmount,
+		    N700.DR_AMOUNT_CNY as drAmount
+		FROM
+		    wp_n700 N700
+        where 
+            1 = 1
+        and N700.STATUS = 'Y'
+        and N700.FUND_ID = #{fundId}
+        and N700.PERIOD = #{period}
+    </select>
 </mapper>

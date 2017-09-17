@@ -19970,34 +19970,20 @@
     <Cell ss:Index="3" ss:StyleID="s122"/>
     <Cell ss:Index="5" ss:StyleID="s122"/>
    </Row>
+   <#if N600.count != 0>
+   <#list N600.list as item>
    <Row ss:StyleID="s150">
-    <Cell ss:StyleID="s294"><Data ss:Type="String">上交所</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s122"/>
-    <Cell ss:Index="5" ss:StyleID="s122"/>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">${item.name!}</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s122"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s122"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">S/S</Data></Cell>
     <Cell ss:Index="10" ss:StyleID="s142"/>
     <Cell ss:StyleID="s142"/>
     <Cell ss:StyleID="s142"/>
     <Cell ss:StyleID="s142"/>
    </Row>
-   <Row ss:StyleID="s150">
-    <Cell ss:StyleID="s294"><Data ss:Type="String">深交所</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s122"/>
-    <Cell ss:Index="5" ss:StyleID="s122"/>
-    <Cell ss:StyleID="s143"><Data ss:Type="String">S/S</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s150">
-    <Cell ss:StyleID="s294"><Data ss:Type="String">银行间</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s122"/>
-    <Cell ss:Index="5" ss:StyleID="s122"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
-   <Row ss:StyleID="s142">
-    <Cell ss:StyleID="s294"><Data ss:Type="String">ETF现金差额</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s122"/>
-    <Cell ss:Index="5" ss:StyleID="s122"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:Height="15.75">
     <Cell ss:StyleID="s146"/>
     <Cell ss:Index="3" ss:StyleID="s145"/>
@@ -20006,10 +19992,9 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s144"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s132" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s132" ss:Formula="=SUM(R[${(-(1+N600.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s139"/>
-    <Cell ss:StyleID="s132" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s132" ss:Formula="=SUM(R[${(-(1+N600.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143"/>
    </Row>
    <Row ss:Height="14.25">
@@ -20119,16 +20104,19 @@
     <Cell ss:StyleID="s113"/>
     <Cell ss:StyleID="s118"/>
    </Row>
+   <#if N700.count != 0>
+   <#list N700.list as item>
    <Row ss:StyleID="s150">
-    <Cell><Data ss:Type="String">应交债券利息税</Data></Cell>
+    <Cell><Data ss:Type="String">${item.name!}</Data></Cell>
     <Cell ss:StyleID="s146"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s280" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s280" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s295"><Data ss:Type="String">Note 1</Data></Cell>
    </Row>
+   </#list>
+   </#if>
    <Row ss:Height="15.75" ss:StyleID="s150">
     <Cell ss:Index="2" ss:StyleID="s146"/>
     <Cell ss:StyleID="s128"/>
@@ -20138,11 +20126,10 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s150">
     <Cell ss:StyleID="s144"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s281" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s281" ss:Formula="=SUM(R[${(-(1+N700.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[${(-(1+N700.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[${(-(1+N700.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[${(-(1+N700.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;N&gt;</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s150">
