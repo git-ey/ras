@@ -38,6 +38,7 @@ public class NExportService extends BaseExportService implements NExportManager{
         dataMap.put("N600", this.getN600Data(fundId, period));
         dataMap.put("N700", this.getN700Data(fundId, period));
         dataMap.put("N800", this.getN800Data(fundId, period));
+        dataMap.put("N10000", this.getN10000Data(fundId, period));
         
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_N);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_N, xmlStr);
@@ -401,6 +402,31 @@ public class NExportService extends BaseExportService implements NExportManager{
         
         result.put("note", note);
         //========process dataMap for note view end========
+        return result;
+    }
+    
+    /**
+     * 处理sheet页N10000的数据
+     * @author Dai Zong 2017年9月17日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getN10000Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> N10000MetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN10000Data", queryMap);
+        if(N10000MetaDataList == null) {
+            N10000MetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        result.put("list", N10000MetaDataList);
+        result.put("count", N10000MetaDataList.size());
+        
         return result;
     }
 }

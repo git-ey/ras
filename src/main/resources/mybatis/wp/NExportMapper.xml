@@ -193,4 +193,19 @@
         and N800N.FUND_ID = #{fundId}
         and N800N.PERIOD = #{period}
     </select>
+    
+    <select id="selectN10000Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N10000.ITEM as item,
+		    N10000.BEGIN_BALANCE as beginBalance,
+		    N10000.END_BALANCE as endBalance
+		FROM
+		    wp_n10000 AS N10000
+        where 
+            1 = 1
+        and N10000.STATUS = 'Y'
+        and N10000.FUND_ID = #{fundId}
+        and N10000.PERIOD = #{period}
+        ORDER BY N10000.SORT
+    </select>
 </mapper>

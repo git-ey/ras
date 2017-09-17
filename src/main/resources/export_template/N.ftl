@@ -20741,24 +20741,21 @@
     <Cell ss:StyleID="s120"/>
     <Cell ss:StyleID="s120"/>
    </Row>
+   <#if N10000.count != 0>
+   <#list N10000.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s158"><Data ss:Type="String">交易所市场应付交易费用</Data></Cell>
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s143"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s158"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s157"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s157"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="String"><#if item_index == 0>&lt;审定财务报表&gt;</#if></Data></Cell>
     <Cell ss:StyleID="s120"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s158"><Data ss:Type="String">银行间市场应付交易费用</Data></Cell>
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s120"/>
-    <Cell ss:StyleID="s120"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s156"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s157" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s157" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s157" ss:Formula="=SUM(R[${(-N10000.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s157" ss:Formula="=SUM(R[${(-N10000.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s120"/>
     <Cell ss:StyleID="s120"/>
    </Row>
