@@ -31,4 +31,121 @@
 		and N300.FUND_ID = #{fundId}
 		and N300.PERIOD = #{period}
     </select>
+    
+    <select id="selectN400Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            N400.EY_ACCOUNT_NUM as accountNum,
+            N400.BEGIN_BALANCE_CNY as beginBalance,
+            N400.DR_AMOUNT_CNY as drAmount,
+            N400.CR_AMOUNT_CNY as crAmount
+        FROM
+            wp_n400 N400
+        where 
+            1 = 1
+        and N400.STATUS = 'Y'
+        and N400.FUND_ID = #{fundId}
+        and N400.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN500MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N500.ATTR1 as type,
+		    N500.ATTR2 as tradeDetailName,
+		    N500.ATTR5 as commissionDetailName,
+		    N500.ATTR6 as related,
+		    N500.BEGIN_BALANCE_CNY as beginBalance,
+		    N500.DR_AMOUNT_CNY as drAmount,
+		    N500.CR_AMOUNT_CNY as crAmount
+		FROM
+		    wp_n500 N500
+        where 
+            1 = 1
+        and N500.STATUS = 'Y'
+        and N500.FUND_ID = #{fundId}
+        and N500.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN500RelatedData" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    N500R.RELEATED_PARTY as `name`,
+		    N500R.COMMISSION as commission,
+		    N500R.PROPORTION_TOTAL as proportionTotal,
+		    N500R.END_BALANCE as endBalance,
+		    N500R.PROPORTION_BALANCE as proportionBalance
+		FROM
+		    wp_n500_related N500R
+        where 
+            1 = 1
+        and N500R.STATUS = 'Y'
+        and N500R.FUND_ID = #{fundId}
+        and N500R.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN510Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            N510.AGENCY_NAME as `name`,
+		    N510.RELEATED as related,
+		    N510.AMOUNT_BOND as bond,
+		    N510.AMOUNT_FUND as fund,
+		    N510.AMOUNT_REPO as repo,
+		    N510.AMOUNT_STOCK as stock,
+		    N510.AMOUNT_WARRANT as warrant,
+		    N510.ACTUAL_COMMISSION_EY as  perEY,
+		    N510.ACTUAL_COMMISSION_CLIENT as perClient
+		FROM
+		    wp_n510 N510
+        where 
+            1 = 1
+        and N510.STATUS = 'Y'
+        and N510.FUND_ID = #{fundId}
+        and N510.PERIOD = #{period}
+        order by N510.SEQ
+    </select>
+    
+    <select id="selectN510RelatedData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N510R.AGENCY_NAME as `name`,
+		    N510R.AMOUNT_BOND as bond,
+		    N510R.AMOUNT_FUND AS fund,
+		    N510R.AMOUNT_REPO as repo,
+		    N510R.AMOUNT_STOCK as stock,
+		    N510R.AMOUNT_WARRANT as warrant
+		FROM
+		    wp_n510_related N510R
+        where 
+            1 = 1
+        and N510R.STATUS = 'Y'
+        and N510R.FUND_ID = #{fundId}
+        and N510R.PERIOD = #{period}
+        order by N510R.SEQ
+    </select>
+    
+    <select id="selectN600Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N600.ATTR1 as `name`,
+		    N600.BEGIN_BALANCE_CNY as beginBalance,
+		    N600.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_n600 N600
+        where 
+            1 = 1
+        and N600.STATUS = 'Y'
+        and N600.FUND_ID = #{fundId}
+        and N600.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN700Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N700.ATTR1 as `name`,
+		    N700.BEGIN_BALANCE_CNY as beginBalance,
+		    N700.CR_AMOUNT_CNY as crAmount,
+		    N700.DR_AMOUNT_CNY as drAmount
+		FROM
+		    wp_n700 N700
+        where 
+            1 = 1
+        and N700.STATUS = 'Y'
+        and N700.FUND_ID = #{fundId}
+        and N700.PERIOD = #{period}
+    </select>
 </mapper>

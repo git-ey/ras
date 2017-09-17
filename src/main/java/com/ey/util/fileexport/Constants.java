@@ -16,7 +16,7 @@ public interface Constants {
     /**
      * 模板名称--C
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_C = "C.xml";
+    static final String EXPORT_TEMPLATE_FILE_NAME_C = "C.ftl";
     /**
      * 底稿名称--C
      */
@@ -24,7 +24,7 @@ public interface Constants {
     /**
      * 模板名称--G
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_G = "G.xml"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_G = "G.ftl"; 
     /**
      * 底稿名称--G
      */
@@ -32,7 +32,7 @@ public interface Constants {
     /**
      * 模板名称--N
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_N = "N.xml"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_N = "N.ftl"; 
     /**
      * 底稿名称--N
      */
