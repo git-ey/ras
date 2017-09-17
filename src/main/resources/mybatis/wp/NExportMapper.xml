@@ -148,4 +148,64 @@
         and N700.FUND_ID = #{fundId}
         and N700.PERIOD = #{period}
     </select>
+    
+    <select id="selectN800MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    CONCAT(N800.ATTR1,N800.ATTR4,N800.ATTR3) as  detailName,
+		    N800.BEGIN_BALANCE_CNY as beginBalance,
+		    N800.DR_AMOUNT_CNY as drAmount,
+		    N800.CR_AMOUNT_CNY as crAmount
+		FROM
+		    wp_n800 N800
+        where 
+            1 = 1
+        and N800.STATUS = 'Y'
+        and N800.FUND_ID = #{fundId}
+        and N800.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN800NoteLevels" parameterType="java.util.Map" resultType="java.lang.String"> 
+        SELECT DISTINCT
+		    IFNULL(N800N.`LEVEL`,'发生额') as levels
+		FROM
+		    wp_n800_note N800N
+        where 
+            1 = 1
+        and N800N.STATUS = 'Y'
+        and N800N.FUND_ID = #{fundId}
+        and N800N.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN800NoteData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    IFNULL(N800N.`LEVEL`,'发生额') as `level`,
+		    IFNULL(N800N.ITEM1,0) as item1,
+		    IFNULL(N800N.ITEM2,0) as item2,
+		    IFNULL(N800N.ITEM3,0) as item3,
+		    IFNULL(N800N.ITEM4,0) as item4,
+		    IFNULL(N800N.ITEM5,0) as item5,
+		    IFNULL(N800N.ITEM6,0) as item6
+		FROM
+		    wp_n800_note N800N
+        where 
+            1 = 1
+        and N800N.STATUS = 'Y'
+        and N800N.FUND_ID = #{fundId}
+        and N800N.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN10000Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N10000.ITEM as item,
+		    N10000.BEGIN_BALANCE as beginBalance,
+		    N10000.END_BALANCE as endBalance
+		FROM
+		    wp_n10000 AS N10000
+        where 
+            1 = 1
+        and N10000.STATUS = 'Y'
+        and N10000.FUND_ID = #{fundId}
+        and N10000.PERIOD = #{period}
+        ORDER BY N10000.SORT
+    </select>
 </mapper>

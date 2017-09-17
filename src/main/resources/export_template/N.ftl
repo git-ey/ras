@@ -20262,64 +20262,36 @@
     <Cell ss:StyleID="s197"/>
     <Cell ss:Index="11" ss:StyleID="s250"/>
    </Row>
+   <#if N800.main.count != 0>
+   <#list N800.main.list as item>
    <Row ss:StyleID="s194">
-    <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">应付利润A级100025</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">2929948.9</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">28993412.789999999</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">26791578.350000001</Data></Cell>
-    <Cell ss:StyleID="s201" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data
-      ss:Type="Number">728114.46000000089</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">${item.detailName!}</Data></Cell>
+    <Cell ss:StyleID="s201"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s201"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s201"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s201" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"/>
     <Cell ss:Index="11" ss:StyleID="s250"/>
    </Row>
-   <Row ss:StyleID="s194">
-    <Cell ss:Index="2" ss:StyleID="s202"><Data ss:Type="String">应付利润B级100028</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">24193839.469999999</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">599172034.04999995</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">602320136.42999995</Data></Cell>
-    <Cell ss:StyleID="s201" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data
-      ss:Type="Number">27341941.850000024</Data></Cell>
-    <Cell ss:StyleID="s197"/>
-    <Cell ss:Index="11" ss:StyleID="s250"/>
-   </Row>
-   <Row ss:StyleID="s194">
-    <Cell ss:Index="2" ss:StyleID="s202"><Data ss:Type="String">应付利润C级000862</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">1574.97</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">415564.42</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">414401.77</Data></Cell>
-    <Cell ss:StyleID="s201" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data
-      ss:Type="Number">412.32000000000698</Data></Cell>
-    <Cell ss:StyleID="s197"/>
-    <Cell ss:Index="11" ss:StyleID="s250"/>
-   </Row>
-   <Row ss:StyleID="s194">
-    <Cell ss:Index="2" ss:StyleID="s202"><Data ss:Type="String">应付利润D级000863</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">1347.67</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">369119.54</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="Number">369071.79</Data></Cell>
-    <Cell ss:StyleID="s201" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data
-      ss:Type="Number">1299.9199999999837</Data></Cell>
-    <Cell ss:StyleID="s197"/>
-    <Cell ss:Index="11" ss:StyleID="s250"/>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s194">
     <Cell ss:StyleID="s203"/>
     <Cell ss:StyleID="s198"/>
     <Cell ss:StyleID="s204"/>
     <Cell ss:StyleID="s204"/>
     <Cell ss:StyleID="s204"/>
-    <Cell ss:StyleID="s201" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s201"/>
     <Cell ss:StyleID="s197"/>
     <Cell ss:Index="11" ss:StyleID="s250"/>
    </Row>
    <Row ss:StyleID="s194">
     <Cell ss:StyleID="s181"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s198"/>
-    <Cell ss:StyleID="s205" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">27126711.009999998</Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">628950130.79999983</Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">629895188.33999991</Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">28071768.550000027</Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=SUM(R[${(-(1+N800.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=SUM(R[${(-(1+N800.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=SUM(R[${(-(1+N800.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=SUM(R[${(-(1+N800.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">&lt;N&gt;</Data></Cell>
     <Cell ss:Index="11" ss:StyleID="s250"/>
    </Row>
@@ -20381,10 +20353,11 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">本期分配：</Data></Cell>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s254"><Data ss:Type="String">A级</Data></Cell>
-    <Cell ss:StyleID="s254"><Data ss:Type="String">B级</Data></Cell>
-    <Cell ss:StyleID="s255"><Data ss:Type="String">C级</Data></Cell>
-    <Cell ss:StyleID="s255"><Data ss:Type="String">D级</Data></Cell>
+    <#if N800.note.levels.count != 0>
+    <#list N800.note.levels.list as item>
+    <Cell ss:StyleID="s254"><Data ss:Type="String">${item!}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s319"><Data ss:Type="String">合计</Data></Cell>
    </Row>
    <Row>
@@ -20399,12 +20372,12 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">本期收益转份额</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">a</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="Number">26113451.989999969</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="Number">520673437.52999997</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">415564.42</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">369119.54</Data></Cell>
-    <Cell ss:StyleID="s258" ss:Formula="=RC[-4]+RC[-3]+RC[-2]+RC[-1]"><Data
-      ss:Type="Number">547571573.4799999</Data></Cell>
+    <#if N800.note.levels.count != 0>
+    <#list N800.note.item1 as item>
+    <Cell ss:StyleID="s257"><Data ss:Type="Number">${(item!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s258" ss:Formula="=SUM(RC[${(-N800.note.levels.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">&lt;T300&gt;</Data></Cell>
     <Cell ss:Index="10" ss:StyleID="s197"/>
     <Cell ss:StyleID="s250"/>
@@ -20413,12 +20386,12 @@
    <Row ss:StyleID="s230">
     <Cell ss:StyleID="s109"><Data ss:Type="String">本年赎回款中包含的收益</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">b</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="Number">2187161.4199999995</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="Number">68344175.179999992</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s258" ss:Formula="=RC[-4]+RC[-3]+RC[-2]+RC[-1]"><Data
-      ss:Type="Number">70531336.599999994</Data></Cell>
+    <#if N800.note.levels.count != 0>
+    <#list N800.note.item2 as item>
+    <Cell ss:StyleID="s257"><Data ss:Type="Number">${(item!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s258" ss:Formula="=SUM(RC[${(-N800.note.levels.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">&lt;T300&gt;</Data></Cell>
     <Cell ss:Index="10" ss:StyleID="s208"/>
     <Cell ss:StyleID="s250"/>
@@ -20427,12 +20400,12 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">本年转出款中包含的收益</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">c</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="Number">147334.18000000002</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="Number">280147.69</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s258" ss:Formula="=RC[-4]+RC[-3]+RC[-2]+RC[-1]"><Data
-      ss:Type="Number">427481.87</Data></Cell>
+    <#if N800.note.levels.count != 0>
+    <#list N800.note.item3 as item>
+    <Cell ss:StyleID="s257"><Data ss:Type="Number">${(item!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s258" ss:Formula="=SUM(RC[${(-N800.note.levels.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">&lt;T300&gt;</Data></Cell>
     <Cell ss:Index="10" ss:StyleID="s197"/>
     <Cell ss:StyleID="s250"/>
@@ -20441,12 +20414,12 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">分级份额调整_调减</Data></Cell>
     <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s259"><Data ss:Type="Number">545465.20000000007</Data></Cell>
-    <Cell ss:StyleID="s259"><Data ss:Type="Number">9874273.6499999948</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s258" ss:Formula="=RC[-4]+RC[-3]+RC[-2]+RC[-1]"><Data
-      ss:Type="Number">10419738.849999994</Data></Cell>
+    <#if N800.note.levels.count != 0>
+    <#list N800.note.item4 as item>
+    <Cell ss:StyleID="s257"><Data ss:Type="Number">${(item!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s258" ss:Formula="=SUM(RC[${(-N800.note.levels.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:Index="10" ss:StyleID="s197"/>
     <Cell ss:StyleID="s250"/>
@@ -20468,11 +20441,11 @@
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s197"/>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">28993412.789999966</Data></Cell>
-    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">599172034.04999995</Data></Cell>
-    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">415564.42</Data></Cell>
-    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">369119.54</Data></Cell>
-    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">628950130.79999995</Data></Cell>
+    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s260" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s262"/>
     <Cell ss:Index="10" ss:StyleID="s263"/>
    </Row>
@@ -20512,10 +20485,11 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">本期贷方发生额</Data></Cell>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s254"><Data ss:Type="String">A级</Data></Cell>
-    <Cell ss:StyleID="s254"><Data ss:Type="String">B级</Data></Cell>
-    <Cell ss:StyleID="s255"><Data ss:Type="String">C级</Data></Cell>
-    <Cell ss:StyleID="s255"><Data ss:Type="String">D级</Data></Cell>
+    <#if N800.note.levels.count != 0>
+    <#list N800.note.levels.list as item>
+    <Cell ss:StyleID="s254"><Data ss:Type="String">${item!}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s319"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s256"/>
     <Cell ss:Index="10" ss:StyleID="s197"/>
@@ -20534,12 +20508,12 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">利润分配</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">d</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="Number">16917304.699999996</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="Number">601774671.2299999</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">414401.77</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">369071.79000000033</Data></Cell>
-    <Cell ss:StyleID="s258" ss:Formula="=RC[-4]+RC[-3]+RC[-2]+RC[-1]"><Data
-      ss:Type="Number">619475449.48999989</Data></Cell>
+    <#if N800.note.levels.count != 0>
+    <#list N800.note.item5 as item>
+    <Cell ss:StyleID="s257"><Data ss:Type="Number">${(item!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s258" ss:Formula="=SUM(RC[${(-N800.note.levels.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">&lt;T400&gt;</Data></Cell>
     <Cell ss:Index="10" ss:StyleID="s197"/>
     <Cell ss:StyleID="s184"/>
@@ -20547,11 +20521,12 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">分级份额调整_调增</Data></Cell>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s259"><Data ss:Type="Number">9874273.6499999948</Data></Cell>
-    <Cell ss:StyleID="s259"><Data ss:Type="Number">545465.20000000007</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s258"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s258" ss:Formula="=RC[-4]+RC[-3]"><Data ss:Type="Number">10419738.849999994</Data></Cell>
+    <#if N800.note.levels.count != 0>
+    <#list N800.note.item6 as item>
+    <Cell ss:StyleID="s257"><Data ss:Type="Number">${(item!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s258" ss:Formula="=SUM(RC[${(-N800.note.levels.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="10" ss:StyleID="s197"/>
     <Cell ss:StyleID="s250"/>
    </Row>
@@ -20569,11 +20544,11 @@
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s197"/>
     <Cell ss:StyleID="s197"/>
-    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">26791578.34999999</Data></Cell>
-    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">602320136.42999995</Data></Cell>
-    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">414401.77</Data></Cell>
-    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">369071.79000000033</Data></Cell>
-    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">629895188.33999991</Data></Cell>
+    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s261" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"/>
     <Cell ss:Index="10" ss:StyleID="s264"/>
    </Row>
@@ -20625,57 +20600,26 @@
     <Cell ss:Index="7" ss:StyleID="s109"/>
     <Cell ss:StyleID="s197"/>
    </Row>
+   <#if N800.note.levels.count != 0>
+   <#list N800.note.levels.list as item>
    <Row ss:StyleID="s231">
-    <Cell ss:StyleID="s214"><Data ss:Type="String">A级</Data></Cell>
-    <Cell ss:StyleID="s215" ss:Formula="=R[-20]C[1]"><Data ss:Type="Number">26113451.989999969</Data></Cell>
-    <Cell ss:StyleID="s216" ss:Formula="=R[-19]C+R[-18]C"><Data ss:Type="Number">2334495.5999999996</Data></Cell>
-    <Cell ss:StyleID="s216" ss:Formula="=R[-9]C[-1]-SUM(R[-20]C[-1]:R[-18]C[-1])"><Data
-      ss:Type="Number">-11530642.889999971</Data></Cell>
-    <Cell ss:StyleID="s217" ss:Formula="=SUM(RC[-3]:RC[-1])"><Data ss:Type="Number">16917304.699999996</Data></Cell>
-    <Cell ss:StyleID="s323"><Data ss:Type="String">&lt;T11000&gt;</Data></Cell>
+    <Cell ss:StyleID="s214"><Data ss:Type="String">${item!}</Data></Cell>
+    <Cell ss:StyleID="s215" ss:Formula="=R[${(-20-item_index)?string('0')}]C[${(1+item_index)?string('0')}]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s216" ss:Formula="=R[${(-19-item_index)?string('0')}]C[${(item_index)?string('0')}]+R[${(-18-item_index)?string('0')}]C[${(item_index)?string('0')}]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s216" ss:Formula="=R[${(-9-item_index)?string('0')}]C[${(-1+item_index)?string('0')}]-SUM(R[${(-20-item_index)?string('0')}]C[${(-1+item_index)?string('0')}]:R[${(-18-item_index)?string('0')}]C[${(-1+item_index)?string('0')}])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s217" ss:Formula="=SUM(RC[-3]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s323"><Data ss:Type="String"><#if item_index == 0>&lt;T11000&gt;</#if></Data></Cell>
     <Cell ss:StyleID="s197"/>
     <Cell ss:StyleID="s197"/>
    </Row>
-   <Row ss:StyleID="s231">
-    <Cell ss:StyleID="s214"><Data ss:Type="String">B级</Data></Cell>
-    <Cell ss:StyleID="s215" ss:Formula="=R[-21]C[2]"><Data ss:Type="Number">520673437.52999997</Data></Cell>
-    <Cell ss:StyleID="s216" ss:Formula="=R[-20]C[1]+R[-19]C[1]"><Data
-      ss:Type="Number">68624322.86999999</Data></Cell>
-    <Cell ss:StyleID="s216" ss:Formula="=R[-10]C-SUM(R[-21]C:R[-19]C)"><Data
-      ss:Type="Number">12476910.829999924</Data></Cell>
-    <Cell ss:StyleID="s217" ss:Formula="=SUM(RC[-3]:RC[-1])"><Data ss:Type="Number">601774671.2299999</Data></Cell>
-    <Cell ss:StyleID="s197"/>
-    <Cell ss:StyleID="s197"/>
-    <Cell ss:StyleID="s197"/>
-   </Row>
-   <Row ss:StyleID="s231">
-    <Cell ss:StyleID="s214"><Data ss:Type="String">C级</Data></Cell>
-    <Cell ss:StyleID="s216" ss:Formula="=R[-22]C[3]"><Data ss:Type="Number">415564.42</Data></Cell>
-    <Cell ss:StyleID="s216"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s216" ss:Formula="=R[-11]C[1]-SUM(R[-22]C[1]:R[-20]C[1])"><Data
-      ss:Type="Number">-1162.6499999999651</Data></Cell>
-    <Cell ss:StyleID="s218" ss:Formula="=SUM(RC[-3]:RC[-1])"><Data ss:Type="Number">414401.77</Data></Cell>
-    <Cell ss:StyleID="s197"/>
-    <Cell ss:StyleID="s197"/>
-    <Cell ss:StyleID="s197"/>
-   </Row>
-   <Row ss:StyleID="s231">
-    <Cell ss:StyleID="s214"><Data ss:Type="String">D级</Data></Cell>
-    <Cell ss:StyleID="s216" ss:Formula="=R[-23]C[4]"><Data ss:Type="Number">369119.54</Data></Cell>
-    <Cell ss:StyleID="s216"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s216" ss:Formula="=R[-12]C[2]-SUM(R[-23]C[2]:R[-21]C[2])"><Data
-      ss:Type="Number">-47.749999999650754</Data></Cell>
-    <Cell ss:StyleID="s218" ss:Formula="=SUM(RC[-3]:RC[-1])"><Data ss:Type="Number">369071.79000000033</Data></Cell>
-    <Cell ss:StyleID="s197"/>
-    <Cell ss:StyleID="s197"/>
-    <Cell ss:StyleID="s197"/>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s231">
     <Cell ss:StyleID="s219"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s220" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">547571573.4799999</Data></Cell>
-    <Cell ss:StyleID="s220" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">70958818.469999984</Data></Cell>
-    <Cell ss:StyleID="s220" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">945057.53999995335</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">619475449.48999989</Data></Cell>
+    <Cell ss:StyleID="s220" ss:Formula="=SUM(R[${(-N800.note.levels.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s220" ss:Formula="=SUM(R[${(-N800.note.levels.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s220" ss:Formula="=SUM(R[${(-N800.note.levels.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s221" ss:Formula="=SUM(R[${(-N800.note.levels.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"/>
     <Cell ss:StyleID="s197"/>
     <Cell ss:StyleID="s197"/>
@@ -20797,24 +20741,21 @@
     <Cell ss:StyleID="s120"/>
     <Cell ss:StyleID="s120"/>
    </Row>
+   <#if N10000.count != 0>
+   <#list N10000.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s158"><Data ss:Type="String">交易所市场应付交易费用</Data></Cell>
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s143"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s158"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s157"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s157"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="String"><#if item_index == 0>&lt;审定财务报表&gt;</#if></Data></Cell>
     <Cell ss:StyleID="s120"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s158"><Data ss:Type="String">银行间市场应付交易费用</Data></Cell>
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s120"/>
-    <Cell ss:StyleID="s120"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s156"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s157" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s157" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s157" ss:Formula="=SUM(R[${(-N10000.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s157" ss:Formula="=SUM(R[${(-N10000.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s120"/>
     <Cell ss:StyleID="s120"/>
    </Row>
