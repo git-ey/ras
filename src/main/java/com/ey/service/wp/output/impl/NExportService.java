@@ -34,6 +34,7 @@ public class NExportService extends BaseExportService implements NExportManager{
         dataMap.put("N300", this.getN300Data(fundId, period));
         dataMap.put("N400", this.getN400Data(fundId, period));
         dataMap.put("N500", this.getN500Data(fundId, period));
+        dataMap.put("N510", this.getN510Data(fundId, period));
         
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_N);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_N, xmlStr);
@@ -220,6 +221,50 @@ public class NExportService extends BaseExportService implements NExportManager{
         
         result.put("related", related);
         //========process dataMap for related view begin========
+        return result;
+    }
+    
+    /**
+     * 处理sheet页N400的数据
+     * @author Dai Zong 2017年9月14日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getN510Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String, Object> main = new HashMap<String,Object>();
+        Map<String, Object> related = new HashMap<String,Object>();
+        
+        //========process dataMap for main view begin========
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> N510MetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN510Data", queryMap);
+        if(N510MetaDataList == null) {
+            N510MetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        main.put("list", N510MetaDataList);
+        main.put("count", N510MetaDataList.size());
+        //========process dataMap for main view end========
+        
+        //========process dataMap for related view begin========
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> N510RelatedMetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN510RelatedData", queryMap);
+        if(N510RelatedMetaDataList == null) {
+            N510RelatedMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        related.put("list", N510RelatedMetaDataList);
+        related.put("count", N510RelatedMetaDataList.size());
+        //========process dataMap for related view end========
+        
+        result.put("main", main);
+        result.put("related", related);
+        
         return result;
     }
 }

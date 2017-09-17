@@ -80,4 +80,43 @@
         and N500R.FUND_ID = #{fundId}
         and N500R.PERIOD = #{period}
     </select>
+    
+    <select id="selectN510Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            N510.AGENCY_NAME as `name`,
+		    N510.RELEATED as related,
+		    N510.AMOUNT_BOND as bond,
+		    N510.AMOUNT_FUND as fund,
+		    N510.AMOUNT_REPO as repo,
+		    N510.AMOUNT_STOCK as stock,
+		    N510.AMOUNT_WARRANT as warrant,
+		    N510.ACTUAL_COMMISSION_EY as  perEY,
+		    N510.ACTUAL_COMMISSION_CLIENT as perClient
+		FROM
+		    wp_n510 N510
+        where 
+            1 = 1
+        and N510.STATUS = 'Y'
+        and N510.FUND_ID = #{fundId}
+        and N510.PERIOD = #{period}
+        order by N510.SEQ
+    </select>
+    
+    <select id="selectN510RelatedData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N510R.AGENCY_NAME as `name`,
+		    N510R.AMOUNT_BOND as bond,
+		    N510R.AMOUNT_FUND AS fund,
+		    N510R.AMOUNT_REPO as repo,
+		    N510R.AMOUNT_STOCK as stock,
+		    N510R.AMOUNT_WARRANT as warrant
+		FROM
+		    wp_n510_related N510R
+        where 
+            1 = 1
+        and N510R.STATUS = 'Y'
+        and N510R.FUND_ID = #{fundId}
+        and N510R.PERIOD = #{period}
+        order by N510R.SEQ
+    </select>
 </mapper>

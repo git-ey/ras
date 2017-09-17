@@ -19796,85 +19796,36 @@
    </Row>
    <Row>
    </Row>
+   <#if N510.main.count != 0>
+   <#list N510.main.list as item>
    <Row>
-    <Cell><Data ss:Type="String">XX证券</Data></Cell>
-    <Cell ss:StyleID="s317"><Data ss:Type="String">Y</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:Index="6"><Data ss:Type="Number">2</Data></Cell>
-    <Cell><Data ss:Type="Number">3</Data></Cell>
-    <Cell ss:Index="9"><Data ss:Type="Number">12</Data></Cell>
-    <Cell><Data ss:Type="Number">15</Data></Cell>
-    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">-3</Data></Cell>
+    <Cell><Data ss:Type="String">${item.name!}</Data></Cell>
+    <Cell ss:StyleID="s317"><Data ss:Type="String">${item.related!}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.repo!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.stock!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.bond!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.warrant!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.fund!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="Number">${(item.perEY!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.perClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row>
-    <Cell><Data ss:Type="String">XX证券</Data></Cell>
-    <Cell ss:StyleID="s317"><Data ss:Type="String">Y</Data></Cell>
-    <Cell><Data ss:Type="Number">3</Data></Cell>
-    <Cell><Data ss:Type="Number">4</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
-    <Cell><Data ss:Type="Number">6</Data></Cell>
-    <Cell><Data ss:Type="Number">7</Data></Cell>
-    <Cell ss:Index="9"><Data ss:Type="Number">13</Data></Cell>
-    <Cell><Data ss:Type="Number">12</Data></Cell>
-    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">1</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">XX证券</Data></Cell>
-    <Cell ss:StyleID="s317"><Data ss:Type="String">Y</Data></Cell>
-    <Cell><Data ss:Type="Number">4</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
-    <Cell ss:Index="11" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">XB证券</Data></Cell>
-    <Cell ss:StyleID="s317"><Data ss:Type="String">Y</Data></Cell>
-    <Cell><Data ss:Type="Number">4</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
-    <Cell ss:Index="11" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">XX证券</Data></Cell>
-    <Cell ss:StyleID="s317"><Data ss:Type="String">N</Data></Cell>
-    <Cell ss:Index="11" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">XX证券</Data></Cell>
-    <Cell ss:StyleID="s317"><Data ss:Type="String">N</Data></Cell>
-    <Cell ss:Index="11" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">XX证券</Data></Cell>
-    <Cell ss:StyleID="s317"><Data ss:Type="String">N</Data></Cell>
-    <Cell ss:Index="11" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">XX证券</Data></Cell>
-    <Cell ss:StyleID="s317"><Data ss:Type="String">N</Data></Cell>
-    <Cell ss:Index="11" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
+   </#list>
+   </#if>
    <Row>
    </Row>
    <Row>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s286">
     <Cell ss:Index="2"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data
-      ss:Type="Number">12</Data></Cell>
-    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data
-      ss:Type="Number">15</Data></Cell>
-    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data
-      ss:Type="Number">5</Data></Cell>
-    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data
-      ss:Type="Number">8</Data></Cell>
-    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data
-      ss:Type="Number">10</Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s288" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data
-      ss:Type="Number">25</Data></Cell>
-    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data
-      ss:Type="Number">27</Data></Cell>
-    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data
-      ss:Type="Number">-2</Data></Cell>
+    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(3+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(3+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(3+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(3+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(3+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s288" ss:Formula="=SUM(R[${(-(3+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(3+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(3+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s292"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
@@ -19907,24 +19858,28 @@
    <Row>
     <Cell><Data ss:Type="String">其中：</Data></Cell>
    </Row>
+   <#if N510.related.count != 0>
+   <#list N510.related.list as item>
    <Row ss:Height="40.5">
-    <Cell><Data ss:Type="String">XB证券</Data></Cell>
+    <Cell><Data ss:Type="String">${item.name!}</Data></Cell>
     <Cell ss:StyleID="s318"><Data ss:Type="String">通过该关联方席位进行的成交金额</Data></Cell>
-    <Cell><Data ss:Type="Number">3</Data></Cell>
-    <Cell><Data ss:Type="Number">4</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
-    <Cell><Data ss:Type="Number">6</Data></Cell>
-    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.repo!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.stock!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.bond!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.warrant!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.fund!0)?string('0.##')}</Data></Cell>>
     <Cell ss:StyleID="s324"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="28.5">
     <Cell ss:Index="2" ss:StyleID="s318"><Data ss:Type="String">占该类别成交总额比例</Data></Cell>
-    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[-6]C"><Data ss:Type="Number">0.25</Data></Cell>
-    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[-6]C"><Data ss:Type="Number">0.26666666666666666</Data></Cell>
-    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[-6]C"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[-6]C"><Data ss:Type="Number">0.75</Data></Cell>
-    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[-6]C"><Data ss:Type="Number">0.7</Data></Cell>
+    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[${(-6-2*item_index)?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[${(-6-2*item_index)?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[${(-6-2*item_index)?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[${(-6-2*item_index)?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s335" ss:Formula="=R[-1]C/R[${(-6-2*item_index)?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="5" ss:StyleID="s290"/>
     <Cell ss:StyleID="s290"/>
