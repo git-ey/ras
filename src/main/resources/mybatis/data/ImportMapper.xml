@@ -89,6 +89,14 @@
 	<include refid="fileFieldValue"></include>
 		)
 	</insert>
+
+	<!-- 更新导入文件信息-->
+	<update id="updateImportFile" parameterType="pd">
+		update DS_IMPORT_FILE
+		   set CNT = #{CNT},
+		       MESSAGE = #{MESSAGE}
+		 where IMPORT_FILE_ID = #{IMPORT_FILE_ID} 
+	</update>	
 	
 	<!-- 删除导入文件-->
 	<delete id="deleteImportFile" parameterType="pd">

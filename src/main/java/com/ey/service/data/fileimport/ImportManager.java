@@ -25,6 +25,12 @@ public interface ImportManager{
 	 */
 	public void saveImportFile(PageData pd) throws Exception;
 	
+	/**更新导入文件信息
+	 * @param pd
+	 * @throws Exception
+	 */
+	public void updateImportFile(PageData importFilePd) throws Exception;
+	
 	/**删除
 	 * @param pd
 	 * @throws Exception

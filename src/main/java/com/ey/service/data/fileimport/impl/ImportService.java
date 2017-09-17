@@ -44,6 +44,16 @@ public class ImportService implements ImportManager{
 		}
 	}
 	
+	/**更新导入文件信息
+	 * @param pd
+	 * @throws Exception
+	 */
+	public void updateImportFile(PageData importFilePd) throws Exception {
+		dao.update("ImportMapper.updateImportFile", importFilePd);
+		// 删除已导入数据
+	    this.deleteImportData(importFilePd);
+	}
+	
 	/**删除
 	 * @param pd
 	 * @throws Exception

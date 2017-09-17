@@ -128,20 +128,30 @@ public class ImportDataWroker implements Callable<Boolean> {
 				} else {
 					importMessage = "文件已存在,不能重复导入";
 				}
-				// 文件正常导入后，执行存储过程
-				if(StringUtils.isBlank(importMessage) && StringUtils.isNotBlank(configuration.getCallable())){
-					try {
-						this.callProcedure(configuration.getCallable(), importFileId);
-					} catch (Exception ex) {
-						importMessage = "执行存储过程失败:"+com.ey.util.StringUtil.getStringByLength(ex.getMessage(),240);
-					}
-				}
 				// 回写导入文件信息表
 				try {
 					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile.getName(), nameSection,
 							configuration.getFileNameDelimiter(), configuration.getTableName(), importMessage, cnt);
 				} catch (Exception e) {
 					throw new Exception("回写导入文件信息表失败:" + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
+				}
+				// 文件正常导入后，执行存储过程
+				if(StringUtils.isBlank(importMessage) && StringUtils.isNotBlank(configuration.getCallable())){
+					String rsult = "S";
+					try {
+						rsult = this.callProcedure(configuration.getCallable(), importFileId);
+					} catch (Exception ex) {
+						importMessage = "执行存储过程失败:"+com.ey.util.StringUtil.getStringByLength(ex.getMessage(),240);
+					}
+					if(!rsult.equals("S") || StringUtils.isNotBlank(importMessage)){
+						PageData pd = new PageData();
+						pd.put("IMPORT_FILE_ID", importFileId);
+						pd.put("TABLE_NAME", configuration.getTableName());
+						pd.put("CNT", 0);
+						pd.put("MESSAGE", StringUtils.isBlank(importMessage) ? "执行存储过程失败" : importMessage);
+						pd.put("tm", new Date().getTime());
+						this.updateImportFile(pd);
+					}
 				}
 			}
 		}
@@ -343,6 +353,16 @@ public class ImportDataWroker implements Callable<Boolean> {
 		importFilePd.put("MESSAGE", message);
 		importFilePd.put("CNT", (cnt - 1));
 		importService.saveImportFile(importFilePd);
+	}
+	
+	/**
+	 * 更新导入文件信息
+	 * @param importFileId
+	 * @param message
+	 * @throws Exception
+	 */
+	private void updateImportFile(PageData importFilePd) throws Exception {
+		importService.updateImportFile(importFilePd);
 	}
 
 	/**
