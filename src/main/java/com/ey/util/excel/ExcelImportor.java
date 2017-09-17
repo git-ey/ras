@@ -21,6 +21,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.ey.entity.system.ImportConfig;
 import com.ey.entity.system.ImportConfigCell;
+import com.ey.util.Logger;
 import com.ey.util.fileimport.FileImportException;
 import com.ey.util.fileimport.FileImportor;
 import com.ey.util.fileimport.ImportResult;
@@ -33,6 +34,8 @@ import com.google.common.collect.Maps;
  *
  */
 public class ExcelImportor extends FileImportor {
+	
+	protected Logger logger = Logger.getLogger(ExcelImportor.class);
 
 	private ImportConfig configuration;
 
@@ -111,16 +114,21 @@ public class ExcelImportor extends FileImportor {
 				String ignoreValue = ir[1];
 				Pattern p = Pattern.compile(ignoreValue);
 				Matcher m = p.matcher(isCellEmpty(row.getCell(cellKey)) ? "" : row.getCell(cellKey).getStringCellValue());
+				// 任意一个条件满足则过滤
 				if (m.find()) {
+					return true;
+				}
+				/*if (m.find()) {
 					continue;
 				} else {
 					return false;
-				}
+				}*/
 			} catch (Exception ex) {
+				logger.error("过滤条件解析异常:"+ex.getMessage());
 				return false;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	private boolean isCellEmpty(Cell cell) {

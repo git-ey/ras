@@ -12,21 +12,25 @@ import java.util.regex.Pattern;
  */
 public class Test {
 	
+	public static boolean matchStr(Object str){
+		Pattern p = Pattern.compile("^$|.*[：|:].*");
+		Matcher m = p.matcher(str.toString());
+		return m.find();
+	}
+	
 	public static void main(String[] args) {
 		
-		String str = "";
-		Pattern p = Pattern.compile("[\u4e00-\u9fa5]|^$");
-		Matcher m = p.matcher(str);
-		System.out.println(m.find());
-		
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("1", "1");
-		map.put("2", 1000);
-		map.put("3", null);
+		map.put("1", "天风证券");
+		map.put("2", "上海合计：");
+		map.put("3", "");
+		map.put("4", "制  表：audit");
 		
 		Set<Entry<String, Object>> ms = map.entrySet();
 		for(Entry<String, Object> it : ms){
-			System.out.println(it.getKey()+":"+it.getValue());
+			if(Test.matchStr(it.getValue())){
+				System.out.println(it.getKey()+":"+it.getValue());
+			}
 		}
 	}
 
