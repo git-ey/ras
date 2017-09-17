@@ -37,6 +37,7 @@ public class NExportService extends BaseExportService implements NExportManager{
         dataMap.put("N510", this.getN510Data(fundId, period));
         dataMap.put("N600", this.getN600Data(fundId, period));
         dataMap.put("N700", this.getN700Data(fundId, period));
+        dataMap.put("N800", this.getN800Data(fundId, period));
         
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_N);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_N, xmlStr);
@@ -317,6 +318,89 @@ public class NExportService extends BaseExportService implements NExportManager{
         result.put("list", N700MetaDataList);
         result.put("count", N700MetaDataList.size());
         
+        return result;
+    }
+    
+    /**
+     * 处理sheet页N800的数据
+     * @author Dai Zong 2017年9月17日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getN800Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        //========process dataMap for main view begin========
+        Map<String, Object> main = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> N800MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN800MainData", queryMap);
+        if(N800MainMetaDataList == null) {
+            N800MainMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        main.put("list", N800MainMetaDataList);
+        main.put("count", N800MainMetaDataList.size());
+        
+        result.put("main", main);
+        //========process dataMap for main view end========
+        
+        //========process dataMap for note view begin========
+        Map<String, Object> note = new HashMap<String,Object>();
+        
+        Map<String, Object> levels = new HashMap<String,Object>();
+        
+        List<Object> item1 = new ArrayList<Object>();
+        List<Object> item2 = new ArrayList<Object>();
+        List<Object> item3 = new ArrayList<Object>();
+        List<Object> item4 = new ArrayList<Object>();
+        List<Object> item5 = new ArrayList<Object>();
+        List<Object> item6 = new ArrayList<Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<String> N800NoteLevels = (List<String>)this.dao.findForList("NExportMapper.selectN800NoteLevels", queryMap);
+        if(N800NoteLevels == null) {
+            N800NoteLevels = new ArrayList<String>(); 
+        }
+        
+        levels.put("list", N800NoteLevels);
+        levels.put("count", N800NoteLevels.size());
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> N800NoteMetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN800NoteData", queryMap);
+        if(N800NoteMetaDataList == null) {
+            N800NoteMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        Map<String, Map<String, Object>> temp = new HashMap<>();
+        for(Map<String,Object> map : N800NoteMetaDataList) {
+            temp.put(String.valueOf(map.get("level")), map);
+        }
+        
+        for(String level : N800NoteLevels) {
+            Map<String, Object> map = temp.get(level);
+            item1.add(map.get("item1"));
+            item2.add(map.get("item2"));
+            item3.add(map.get("item3"));
+            item4.add(map.get("item4"));
+            item5.add(map.get("item5"));
+            item6.add(map.get("item6"));
+        }
+        
+        note.put("levels", levels);
+        note.put("item1", item1);
+        note.put("item2", item2);
+        note.put("item3", item3);
+        note.put("item4", item4);
+        note.put("item5", item5);
+        note.put("item6", item6);
+        
+        result.put("note", note);
+        //========process dataMap for note view end========
         return result;
     }
 }
