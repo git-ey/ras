@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PExportMapper">
+    <select id="selectPData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P.EY_ACCOUNT_NUM AS accountNum,
+		    p.REVEAL_ITEM as revealItem,
+		    P.AMOUNT_CURRENT AS amountCurrent,
+		    P.AMOUNT_ADJ_CR AS crAmountAdj,
+		    P.AMOUNT_ADJ_DR AS drAmountAdj,
+		    P.AMOUNT_AUDIT_LAST AS amountAuditLast
+		FROM
+		    wp_p P
+        where 
+            1 = 1
+        and P.STATUS = 'Y'
+        and P.FUND_ID = #{fundId}
+        and P.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP300Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P300.ATTR1 AS detailName,
+		    IFNULL(P300.BEGIN_BALANCE_CNY,0) AS beginBalance,
+		    IFNULL(P300.DR_AMOUNT_CNY,0) AS drAmount,
+		    IFNULL(P300.CR_AMOUNT_CNY,0) AS crAmount,
+		    P300.ATTR5 as disc
+		FROM
+		    wp_p300 P300
+        where 
+            1 = 1
+        and P300.STATUS = 'Y'
+        and P300.FUND_ID = #{fundId}
+        and P300.PERIOD = #{period}
+    </select>
+</mapper>

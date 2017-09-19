@@ -18,6 +18,7 @@ import com.ey.controller.base.BaseController;
 import com.ey.service.wp.output.CExportManager;
 import com.ey.service.wp.output.GExportManager;
 import com.ey.service.wp.output.NExportManager;
+import com.ey.service.wp.output.PExportManager;
 import com.ey.service.wp.output.ReportExportManager;
 import com.ey.util.PageData;
 
@@ -39,6 +40,9 @@ public class ExportController extends BaseController {
     // 底稿G
     @Resource(name = "nExportService")
     private NExportManager nExportService;
+    // 底稿P
+    @Resource(name = "pExportService")
+    private PExportManager pExportService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -97,6 +101,12 @@ public class ExportController extends BaseController {
         this.gExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
     }
     
+    /**
+     * 底稿导出--N
+     * 
+     * @param
+     * @throws Exception
+     */
     @RequestMapping(value = "/N")
     public void exportN(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();
@@ -106,5 +116,22 @@ public class ExportController extends BaseController {
             throw new IllegalArgumentException("基金ID和期间不能为空");
         }
         this.nExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+    }
+    
+    /**
+     * 底稿导出--P
+     * 
+     * @param
+     * @throws Exception
+     */
+    @RequestMapping(value = "/P")
+    public void exportP(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PageData pd = this.getPageData();
+        String fundId = pd.getString("FUND_ID");
+        String periodStr = pd.getString("PEROID");
+        if(fundId == null || periodStr == null) {
+            throw new IllegalArgumentException("基金ID和期间不能为空");
+        }
+        this.pExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
     }
 }
