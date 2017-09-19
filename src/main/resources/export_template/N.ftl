@@ -19676,9 +19676,9 @@
    <Row ss:StyleID="s88">
     <Cell ss:StyleID="s327"><Data ss:Type="String">${item.name!}</Data></Cell>
     <Cell ss:StyleID="s313"><Data ss:Type="Number">${(item.commission!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="Number">${(item.proportionTotal!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s328" ss:Formula="=RC[-1]/R[${(-(23+item_index))?string('0')}]C[3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s313"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="Number">${(item.proportionBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s328" ss:Formula="=RC[-1]/R[${(-(23+item_index))?string('0')}]C[3]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
