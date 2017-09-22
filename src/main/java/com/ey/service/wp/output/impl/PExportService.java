@@ -32,6 +32,7 @@ public class PExportService extends BaseExportService implements PExportManager{
         
         dataMap.put("P", this.getPData(fundId, period));
         dataMap.put("P300", this.getP300Data(fundId, period));
+        dataMap.put("P400", this.getP400Data(fundId, period));
         
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_P);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_P, xmlStr);
@@ -82,7 +83,7 @@ public class PExportService extends BaseExportService implements PExportManager{
     }
     
     /**
-     * 处理sheet页P的数据
+     * 处理sheet页P300的数据
      * @author Dai Zong 2017年9月19日
      * 
      * @param fundId
@@ -111,6 +112,86 @@ public class PExportService extends BaseExportService implements PExportManager{
         
         result.put("list", P300MetaDataList);
         result.put("count", P300MetaDataList.size());
+        
+        return result;
+    }
+    
+    /**
+     * 处理sheet页P400的数据
+     * @author Dai Zong 2017年9月21日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getP400Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        //========process dataMap for main view begin========
+        Map<String, Object> main = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P400MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP400MainData", queryMap);
+        if(P400MainMetaDataList == null) {
+            P400MainMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        for(Map<String, Object> map : P400MainMetaDataList) {
+            if("审计费".equals(map.get("detailName")) || "信息披露费".equals(map.get("detailName"))) {
+                map.put("hasV", "Y");
+            }else {
+                map.put("hasV", "N");
+            }
+        }
+        
+        main.put("list", P400MainMetaDataList);
+        main.put("count", P400MainMetaDataList.size());
+        
+        result.put("main", main);
+        //========process dataMap for main view end========
+        
+        //========process dataMap for summary view begin========
+        Map<String, Object> summary = new HashMap<String,Object>();
+        
+        Map<String, Object> annualFee4Listing = new HashMap<String,Object>();
+        Map<String, Object> auditFee = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P400SummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP400SummaryData", queryMap);
+        if(P400SummaryMetaDataList == null) {
+            P400SummaryMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        for(Map<String, Object> map : P400SummaryMetaDataList) {
+            if("上市年费".equals(map.get("item"))) {
+                annualFee4Listing = map;
+            }else if("审计费".equals(map.get("item"))) {
+                auditFee = map;
+            }
+        }
+        
+        summary.put("annualFee4Listing", annualFee4Listing);
+        summary.put("auditFee", auditFee);
+        
+        result.put("summary", summary);
+        //========process dataMap for summary view end========
+        //========process dataMap for detail view end========
+        Map<String, Object> detail = new HashMap<String,Object>();
+        
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P400DetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP400DetailData", queryMap);
+        if(P400DetailMetaDataList == null) {
+            P400DetailMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        detail.put("list", P400DetailMetaDataList);
+        detail.put("count", P400DetailMetaDataList.size());
+        
+        result.put("detail", detail);
+        //========process dataMap for detail view end========
         
         return result;
     }
