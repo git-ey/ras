@@ -87,5 +87,54 @@
         and P400D.STATUS = 'Y'
         and P400D.FUND_ID = #{fundId}
         and P400D.PERIOD = #{period}
+        order by
+            P400D.SEQ
+    </select>
+    
+    <select id="selectP500Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            P500.ATTR1 AS detailName,
+            IFNULL(P500.BEGIN_BALANCE_CNY,0) AS beginBalance,
+            IFNULL(P500.DR_AMOUNT_CNY,0) AS drAmount,
+            IFNULL(P500.CR_AMOUNT_CNY,0) AS crAmount,
+            P500.ATTR5 as disc
+        FROM
+            wp_p500 P500
+        where 
+            1 = 1
+        and P500.STATUS = 'Y'
+        and P500.FUND_ID = #{fundId}
+        and P500.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP800Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            P800.ATTR1 AS detailName,
+            IFNULL(P800.BEGIN_BALANCE_CNY,0) AS beginBalance,
+            IFNULL(P800.DR_AMOUNT_CNY,0) AS drAmount,
+            IFNULL(P800.CR_AMOUNT_CNY,0) AS crAmount,
+            P800.ATTR5 as disc
+        FROM
+            wp_p800 P800
+        where 
+            1 = 1
+        and P800.STATUS = 'Y'
+        and P800.FUND_ID = #{fundId}
+        and P800.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP10000Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            P10000.ITEM as item,
+            P10000.BEGIN_BALANCE as beginBalance,
+            P10000.END_BALANCE as endBalance
+        FROM
+            wp_p10000 AS P10000
+        where 
+            1 = 1
+        and P10000.STATUS = 'Y'
+        and P10000.FUND_ID = #{fundId}
+        and P10000.PERIOD = #{period}
+        ORDER BY P10000.SORT
     </select>
 </mapper>
