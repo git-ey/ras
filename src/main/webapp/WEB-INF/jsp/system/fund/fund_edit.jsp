@@ -173,7 +173,14 @@
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">其他负债披露类型:</td>
-								<td><input type="text" name="OTHER_LIABILITIES" id="OTHER_LIABILITIES" value="${pd.OTHER_LIABILITIES}" maxlength="120" placeholder="这里输入其他负债披露类型" title="其他负债披露类型" style="width:98%;"/></td>
+								<td>
+								    <select class="chosen-select form-control" name="OTHER_LIABILITIES" id="OTHER_LIABILITIES" data-placeholder="请选择披露口径" style="vertical-align:top;width: 98%;">
+									    <option value=""></option>
+									    <c:forEach items="${othdisList}" var="var" varStatus="vs">
+									        <option value="${var.OTHDISHEAD_ID}" <c:if test="${pd.OTHER_LIABILITIES == var.OTHDISHEAD_ID}">selected</c:if>>${var.DISCLOSURE_NAME}</option>
+									    </c:forEach>
+								  	</select>
+								</td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">

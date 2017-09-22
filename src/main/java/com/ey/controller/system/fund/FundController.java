@@ -26,6 +26,7 @@ import com.ey.entity.Page;
 import com.ey.service.system.fund.FundManager;
 import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.mgrcompany.MgrcompanyManager;
+import com.ey.service.system.othdis.OthdisHeadManager;
 import com.ey.service.system.term.TermHeadManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
@@ -54,6 +55,8 @@ public class FundController extends BaseController {
 	private LogerManager logManager;
 	@Resource(name="termheadService")
 	private TermHeadManager termheadService;
+	@Resource(name="othdisheadService")
+	private OthdisHeadManager othdisheadService;
 	
 	/**保存
 	 * @param
@@ -163,8 +166,12 @@ public class FundController extends BaseController {
 		pd = fundService.findById(pd);	//根据ID读取
 		List<PageData> companyList = mgrcompanyService.listAll(pd);
 		mv.setViewName("system/fund/fund_edit");
+		// 期间账龄信息
 		List<PageData>	termList = termheadService.listAll(pd);
+		// 其他负债批量口径
+		List<PageData>	othdisList = othdisheadService.listAll(pd);
 		mv.addObject("companyList", companyList);
+		mv.addObject("othdisList", othdisList);
 		mv.addObject("termList",termList);
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
