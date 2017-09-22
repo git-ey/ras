@@ -116,7 +116,7 @@ public class ImportConfigService implements ImportConfigManager{
 			if(line.getString("CELLTYPE").toLowerCase().equals("string")){
 				sb.append("`"+line.getString("MAPKEY")+"` varchar(240) NULL COMMENT '"+line.getString("DESCRIPTION")+"'");
 			}else if(line.getString("CELLTYPE").toLowerCase().equals("bigdecimal")){
-				sb.append("`"+line.getString("MAPKEY")+"` decimal(15,5) NULL COMMENT '"+line.getString("DESCRIPTION")+"'");
+				sb.append("`"+line.getString("MAPKEY")+"` decimal(18,5) NULL COMMENT '"+line.getString("DESCRIPTION")+"'");
 			}else{
 				sb.append("`"+line.getString("MAPKEY")+"`"+ line.getString("CELLTYPE").toLowerCase() +" NULL COMMENT '"+line.getString("DESCRIPTION")+"'");
 			}
