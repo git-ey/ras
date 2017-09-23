@@ -54,10 +54,7 @@
 		SELECT
 		    P400S.ITEM as item,
 		    P400S.CONTRACT_AMOUNT as contractAmount,
-		    DATE_FORMAT(P400S.CONTRACT_FROM_DATE,'%Y-%m-%dT00:00:00.000') as contractBeginDate,
-            DATE_FORMAT(P400S.CONTRACT_TO_DATE,'%Y-%m-%dT00:00:00.000') as contractEndDate,
-		    P400S.TOTAL_DATE as contractTotalDays,
-		    P400S.PERIOD_DATE as daysOfThisPeriod,
+		    P400S.PERIOD_EXPENSE as thisPeriodFee,
 		    P400S.EXPENSE_ENTERED as incomeFee,
 		    P400S.ACCURED_EXPENSE as quota,
 		    P400S.DEFERRED_EXPENSE as amortization,
@@ -84,6 +81,7 @@
 		    wp_p400_detail P400D
         where 
             1 = 1
+        and P400D.ITEM = '信息披露费'
         and P400D.STATUS = 'Y'
         and P400D.FUND_ID = #{fundId}
         and P400D.PERIOD = #{period}
@@ -105,6 +103,23 @@
         and P500.STATUS = 'Y'
         and P500.FUND_ID = #{fundId}
         and P500.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP600Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P600.ACCOUNT_NUM as accountNum,
+		    P600.ATTR4 as shortName,
+		    P600.ATTR5 as tradeMarket,
+		    P600.ATTR2 as subType,
+		    P600.BEGIN_BALANCE_CNY as beginBalance,
+		    P600.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_p600 P600
+        where 
+            1 = 1
+        and P600.STATUS = 'Y'
+        and P600.FUND_ID = #{fundId}
+        and P600.PERIOD = #{period}
     </select>
     
     <select id="selectP800Data" parameterType="java.util.Map" resultType="java.util.Map">

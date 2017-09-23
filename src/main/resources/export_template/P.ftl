@@ -18725,11 +18725,11 @@
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String">PXXX</Data></Cell>
     <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.contractAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${P400.summary.annualFee4Listing.contractBeginDate!}</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${P400.summary.annualFee4Listing.contractEndDate!}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.contractTotalDays!0)?string('0')}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.daysOfThisPeriod!0)?string('0')}</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=RC[-5]/RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s243"></Cell>
+    <Cell ss:StyleID="s243"></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.thisPeriodFee!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.incomeFee!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s53" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s53"/>
@@ -18750,11 +18750,11 @@
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String">PXXX</Data></Cell>
     <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.contractAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${P400.summary.auditFee.contractBeginDate!}</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${P400.summary.auditFee.contractEndDate!}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.contractTotalDays!0)?string('0')}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.daysOfThisPeriod!0)?string('0')}</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=RC[-5]/RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s243"></Cell>
+    <Cell ss:StyleID="s243"></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.thisPeriodFee!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.incomeFee!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s53" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s53"/>
@@ -18836,11 +18836,12 @@
     <Cell ss:StyleID="s242"/>
     <Cell ss:StyleID="s242"/>
     <Cell ss:Formula="=SUM(R[${(-(1+P400.detail.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.subtotal.incomeFee!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s53" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
+    <Cell></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.subtotal.quota!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.subtotal.amortization!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.subtotal.directFee!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=RC[-3]+RC[-2]+RC[-1]-RC[-6]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
@@ -19132,35 +19133,20 @@
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
    </Row>
+   <#if P600.count != 0>
+   <#list P600.list as item>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
-    <Cell ss:StyleID="s227"><Data ss:Type="String">GC001</Data></Cell>
-    <Cell><Data ss:Type="String">上交所</Data></Cell>
-    <Cell><Data ss:Type="String">质押式</Data></Cell>
+    <Cell ss:StyleID="s174"><Data ss:Type="String">${item.accountNum!}</Data></Cell>
+    <Cell ss:StyleID="s227"><Data ss:Type="String">${item.shortName!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.tradeMarket!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.subType!}</Data></Cell>
     <Cell ss:StyleID="s173"/>
-   </Row>
-   <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
-    <Cell ss:StyleID="s227"><Data ss:Type="String">GC002</Data></Cell>
-    <Cell><Data ss:Type="String">上交所</Data></Cell>
-    <Cell><Data ss:Type="String">质押式</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
-    <Cell ss:Index="3"><Data ss:Type="String">深交所</Data></Cell>
-    <Cell><Data ss:Type="String">质押式</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
-    <Cell ss:Index="3"><Data ss:Type="String">银行间</Data></Cell>
-    <Cell><Data ss:Type="String">买断式</Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
    </Row>
-   <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
-    <Cell ss:Index="3"><Data ss:Type="String">银行间</Data></Cell>
-    <Cell><Data ss:Type="String">质押式</Data></Cell>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
    </Row>
@@ -19169,10 +19155,8 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
-    <Cell ss:Index="6" ss:StyleID="s172" ss:Formula="=SUM(R[-8]C:R[-1]C)"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s172" ss:Formula="=SUM(R[-8]C:R[-1]C)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s172" ss:Formula="=SUM(R[${(-(3+P600.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s172" ss:Formula="=SUM(R[${(-(3+P600.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
@@ -19182,14 +19166,12 @@
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
     <Cell ss:Index="5" ss:StyleID="s190"><Data ss:Type="String">其中：交易所</Data></Cell>
-    <Cell ss:StyleID="s234" ss:Formula="=SUMIF(R12C3:R18C3,&quot;&lt;&gt;银行间&quot;,R12C6:R18C6)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=SUMIF(R[${(-(4+P600.count))?string('0')}]C3:R[-3]C3,&quot;&lt;&gt;银行间&quot;,R[${(-(4+P600.count))?string('0')}]C6:R[-3]C6)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
     <Cell ss:Index="5" ss:StyleID="s190"><Data ss:Type="String">银行间</Data></Cell>
-    <Cell ss:StyleID="s234" ss:Formula="=SUMIF(R12C3:R18C3,&quot;银行间&quot;,R12C6:R18C6)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=SUMIF(R[${(-(5+P600.count))?string('0')}]C3:R[-4]C3,&quot;银行间&quot;,R[${(-(5+P600.count))?string('0')}]C6:R[-4]C6)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s231"><Data ss:Type="String">卖出回购证券应付利息测试：</Data></Cell>

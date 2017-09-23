@@ -34,6 +34,7 @@ public class PExportService extends BaseExportService implements PExportManager{
         dataMap.put("P300", this.getP300Data(fundId, period));
         dataMap.put("P400", this.getP400Data(fundId, period));
         dataMap.put("P500", this.getP500Data(fundId, period));
+        dataMap.put("P600", this.getP600Data(fundId, period));
         dataMap.put("P800", this.getP800Data(fundId, period));
         dataMap.put("P10000", this.getP10000Data(fundId, period));
         
@@ -160,6 +161,7 @@ public class PExportService extends BaseExportService implements PExportManager{
         
         Map<String, Object> annualFee4Listing = new HashMap<String,Object>();
         Map<String, Object> auditFee = new HashMap<String,Object>();
+        Map<String, Object> subtotal = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P400SummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP400SummaryData", queryMap);
@@ -172,11 +174,14 @@ public class PExportService extends BaseExportService implements PExportManager{
                 annualFee4Listing = map;
             }else if("审计费".equals(map.get("item"))) {
                 auditFee = map;
+            }else if ("小计".equals(map.get("item"))) {
+                subtotal = map;
             }
         }
         
         summary.put("annualFee4Listing", annualFee4Listing);
         summary.put("auditFee", auditFee);
+        summary.put("subtotal", subtotal);
         
         result.put("summary", summary);
         //========process dataMap for summary view end========
@@ -220,6 +225,31 @@ public class PExportService extends BaseExportService implements PExportManager{
         
         result.put("list", P500MetaDataList);
         result.put("count", P500MetaDataList.size());
+        
+        return result;
+    }
+    
+    /**
+     * 处理sheet页P600的数据
+     * @author Dai Zong 2017年9月19日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getP600Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P600MetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600Data", queryMap);
+        if(P600MetaDataList == null) {
+            P600MetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        result.put("list", P600MetaDataList);
+        result.put("count", P600MetaDataList.size());
         
         return result;
     }
