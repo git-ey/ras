@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ey.controller.base.BaseController;
 import com.ey.service.wp.output.CExportManager;
+import com.ey.service.wp.output.EExportManager;
 import com.ey.service.wp.output.GExportManager;
 import com.ey.service.wp.output.NExportManager;
 import com.ey.service.wp.output.PExportManager;
@@ -43,6 +44,9 @@ public class ExportController extends BaseController {
     // 底稿P
     @Resource(name = "pExportService")
     private PExportManager pExportService;
+    // 底稿P
+    @Resource(name = "eExportService")
+    private EExportManager eExportService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -133,5 +137,22 @@ public class ExportController extends BaseController {
             throw new IllegalArgumentException("基金ID和期间不能为空");
         }
         this.pExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+    }
+    
+    /**
+     * 底稿导出--E
+     * 
+     * @param
+     * @throws Exception
+     */
+    @RequestMapping(value = "/E")
+    public void exportE(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PageData pd = this.getPageData();
+        String fundId = pd.getString("FUND_ID");
+        String periodStr = pd.getString("PEROID");
+        if(fundId == null || periodStr == null) {
+            throw new IllegalArgumentException("基金ID和期间不能为空");
+        }
+        this.eExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
     }
 }
