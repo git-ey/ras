@@ -181,6 +181,17 @@
 									    </c:forEach>
 								  	</select>
 								</td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">直销销售商名称:</td>
+								<td><input type="text" name="DIRECT_DEALER_NAME" id="DIRECT_DEALER_NAME" value="${pd.DIRECT_DEALER_NAME}" maxlength="60"  title="直销销售商名称" style="width:98%;"/></td>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">直销代销分离:</td>
+								<td>
+								    <select class="chosen-select form-control" name="DEALER_SEPERATE" id="DEALER_SEPERATE" data-placeholder="请选择" style="width:49%;">
+								    <option value="Y" <c:if test="${pd.DEALER_SEPERATE == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.DEALER_SEPERATE == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
