@@ -42,16 +42,6 @@
 										</span>
 									</div>
 								</td>
-								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
-								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
-								<td style="vertical-align:top;padding-left:2px;">
-								 	<select class="chosen-select form-control" name="name" id="id" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
-									<option value=""></option>
-									<option value="">全部</option>
-									<option value="">1</option>
-									<option value="">2</option>
-								  	</select>
-								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
@@ -66,7 +56,6 @@
 									<th class="center" style="width:35px;">
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
-									<th class="center" style="width:50px;">序号</th>
 									<th class="center">顺序编码</th>
 									<th class="center">基金ID</th>
 									<th class="center">期间</th>
@@ -78,7 +67,6 @@
 									<th class="center">交易费用</th>
 									<th class="center">后收费</th>
 									<th class="center">确认金额</th>
-									<th class="center">状态</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -93,7 +81,6 @@
 											<td class='center'>
 												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.DAILYSETTLEMENT_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
-											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.SEQ}</td>
 											<td class='center'>${var.FUND_ID}</td>
 											<td class='center'>${var.PERIOD}</td>
@@ -105,7 +92,6 @@
 											<td class='center'>${var.TRX_FEE}</td>
 											<td class='center'>${var.BACKEND_FEE}</td>
 											<td class='center'>${var.CONFIRMED_AMOUNT}</td>
-											<td class='center'>${var.STATUS}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
@@ -278,8 +264,8 @@
 			 diag.Drag=true;
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>dailysettlement/goAdd.do';
-			 diag.Width = 450;
-			 diag.Height = 355;
+			 diag.Width = 700;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -316,8 +302,8 @@
 			 diag.Drag=true;
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>dailysettlement/goEdit.do?DAILYSETTLEMENT_ID='+Id;
-			 diag.Width = 450;
-			 diag.Height = 355;
+			 diag.Width = 700;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 
