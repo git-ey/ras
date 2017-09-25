@@ -219,25 +219,25 @@
 		}
 		
 		//备份单表
-		function backupTable(fhtable){
-			bootbox.confirm("确定要备份这表[ "+fhtable+" ]吗?", function(result) {
+		function backupTable(stable){
+			bootbox.confirm("确定要备份这表[ "+stable+" ]吗?", function(result) {
 				if(result) {
-					backupAjax(fhtable,"backupts");
+					backupAjax(stable,"backupts");
 				}
 			});
 		}
 		
 		/**请求备份
-		* fhtable：表名
+		* stable：表名
 		* id ：提示对象的ID
 		*/
-		function backupAjax(fhtable,id){
+		function backupAjax(stable,id){
 			$("#backuping1").show();
 			$("#backuping2").show();
 				 $.ajax({
 						type: "POST",
 						url: '<%=basePath%>brdb/backupTable.do?tm='+new Date().getTime(),
-				    	data: {fhtable:fhtable},
+				    	data: {stable:stable},
 						dataType:'json',
 						//beforeSend: validateData,
 						cache: false,

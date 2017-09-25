@@ -15,8 +15,6 @@
 
 <!-- jsp文件头和头部 -->
 <%@ include file="../index/top.jsp"%>
-<!-- 百度echarts -->
-<script src="plugins/echarts/echarts.min.js"></script>
 <script type="text/javascript">
 setTimeout("top.hangge()",500);
 </script>
@@ -38,7 +36,7 @@ setTimeout("top.hangge()",500);
 								</button>
 								<i class="ace-icon fa fa-check green"></i>
 								欢迎使用 &nbsp;&nbsp;
-								<strong class="green"> &nbsp;EY底稿报告自动化系统</strong>
+								<strong class="green"> &nbsp;EY底稿报告辅助系统</strong>
 							</div>	
 						</div>
 						<!-- /.col -->

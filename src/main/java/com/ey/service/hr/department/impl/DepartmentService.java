@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.entity.system.Department;
+import com.ey.entity.hr.Department;
 import com.ey.service.hr.department.DepartmentManager;
 import com.ey.util.PageData;
 import com.ey.util.Tools;

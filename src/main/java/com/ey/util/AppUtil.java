@@ -11,6 +11,11 @@ public class AppUtil  {
 	
 	protected static Logger logger = Logger.getLogger(AppUtil.class);
 	
+	/**
+	 * 批量导入的默认条数
+	 */
+	public static int BATCH_INSERT_COUNT = 500;
+	
 	/**检查参数是否完整
 	 * @param method
 	 * @param pd

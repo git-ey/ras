@@ -44,7 +44,6 @@ function getHeadMsg(){
 					 $("#systemset").hide();	//隐藏系统设置
 				 }
 			 });
-			 updateUserPhoto(data.userPhoto);			//用户头像
 		}
 	});
 }

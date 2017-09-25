@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GExportMapper">
+    <select id="selectGData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            G.EY_ACCOUNT_NUM as accountNum,
+            G.AMOUNT_ADJ_CR as crAmountAdj,
+            G.AMOUNT_ADJ_DR as drAmountAdj,
+            G.AMOUNT_AUDIT_LAST as amountAuditLast
+        FROM
+            wp_g G
+        where 
+            1 = 1
+        and G.STATUS = 'Y'
+        and G.FUND_ID = #{fundId}
+        and G.PERIOD = #{period}
+    </select>
+    
+    <select id="selectG300Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    G300.EY_ACCOUNT_NUM as accountNum,
+		    G300.ATTR1 as detail,
+		    G300.DR_AMOUNT_CNY as drAmount,
+		    G300.CR_AMOUNT_CNY as crAmount,
+		    G300.BEGIN_BALANCE_CNY as beginBalance
+		FROM
+		    wp_g300 G300
+        where 
+            1 = 1
+        and G300.STATUS = 'Y'
+        and G300.FUND_ID = #{fundId}
+        and G300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectG10000Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    G10000.ITEM as item,
+		    G10000.BEGIN_BALANCE as beginBalance,
+		    G10000.END_BALANCE as endBalance
+		FROM
+		    wp_g10000 G10000
+		WHERE
+		    1 = 1
+        and G10000.STATUS = 'Y'
+        and G10000.FUND_ID = #{fundId}
+        and G10000.PERIOD = #{period}
+        ORDER BY G10000.SORT
+    </select>
+</mapper>

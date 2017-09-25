@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ImportMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		DS_IMPORT
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		IMPORT_FILE_PATH,	
+		START_DATETIME,	
+		END_DATETIME,	
+		OPERATOR_ID,	
+		OPERATOR_NAME,	
+		IMPORT_STATUS,
+		MESSAGE,
+		IMPORT_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{IMPORT_FILE_PATH},	
+		#{START_DATETIME},	
+		#{END_DATETIME},	
+		#{OPERATOR_ID},	
+		#{OPERATOR_NAME},	
+		#{IMPORT_STATUS},
+		#{MESSAGE},
+		#{IMPORT_ID}
+	</sql>
+	
+	<!--导入文件表名 -->
+	<sql id="fileTableName">
+		DS_IMPORT_FILE
+	</sql>
+	
+	<!-- 导入文件字段 -->
+	<sql id="fileField">
+	    IMPORT_FILE_ID,	
+		IMPORT_ID,
+		IMPORT_FILE_NAME,
+		NAME_SEG_1,
+		NAME_SEG_2,
+		NAME_SEG_3,
+		NAME_SEG_4,
+		NAME_SEG_5,
+		NAME_SEG_6,
+		TABLE_NAME,
+		CNT,
+		MESSAGE
+	</sql>
+	
+	<!-- 导入文件字段值 -->
+	<sql id="fileFieldValue">
+		#{IMPORT_FILE_ID},
+		#{IMPORT_ID},
+		#{IMPORT_FILE_NAME},
+	    #{NAME_SEG_1},
+		#{NAME_SEG_2},
+		#{NAME_SEG_3},
+		#{NAME_SEG_4},
+		#{NAME_SEG_5},
+		#{NAME_SEG_6},
+		#{TABLE_NAME},
+		#{CNT},
+		#{MESSAGE}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+
+	<!-- 新增导入文件信息-->
+	<insert id="saveImportFile" parameterType="pd">
+		insert into 
+	<include refid="fileTableName"></include>
+		(
+	<include refid="fileField"></include>
+		) values (
+	<include refid="fileFieldValue"></include>
+		)
+	</insert>
+
+	<!-- 更新导入文件信息-->
+	<update id="updateImportFile" parameterType="pd">
+		update DS_IMPORT_FILE
+		   set CNT = #{CNT},
+		       MESSAGE = #{MESSAGE}
+		 where IMPORT_FILE_ID = #{IMPORT_FILE_ID} 
+	</update>	
+	
+	<!-- 删除导入文件-->
+	<delete id="deleteImportFile" parameterType="pd">
+		delete from
+		<include refid="fileTableName"></include>
+		where 
+			IMPORT_FILE_ID = #{IMPORT_FILE_ID}
+	</delete>
+	
+	<!-- 删除导入文件-->
+	<delete id="deleteImportData" parameterType="pd">
+		delete from
+		    ${TABLE_NAME}
+		where 
+			IMPORT_FILE_ID = #{IMPORT_FILE_ID}
+	</delete>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			IMPORT_ID = #{IMPORT_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+            END_DATETIME = #{END_DATETIME},
+			IMPORT_STATUS = #{IMPORT_STATUS},
+		    MESSAGE = #{MESSAGE}
+		where 
+		IMPORT_ID = #{IMPORT_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			IMPORT_ID = #{IMPORT_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					IMPORT_FILE_PATH LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+		<if test="pd.IMPORT_FILE_NAME!= null and pd.IMPORT_FILE_NAME != ''">
+		    and IMPORT_ID IN (select IMPORT_ID from ds_import_file where MESSAGE IS NULL AND IMPORT_FILE_NAME LIKE CONCAT(CONCAT('%', #{pd.IMPORT_FILE_NAME}),'%'))
+		</if>
+		<if test="pd.IMPORT_STATUS!= null and pd.IMPORT_STATUS != ''">
+		    and IMPORT_STATUS = #{pd.IMPORT_STATUS}
+		</if>
+		ORDER BY START_DATETIME DESC
+	</select>
+	
+	<!-- 列表导入文件 -->
+	<select id="datalistImportFilePage" parameterType="page" resultType="pd">
+		select
+		<include refid="fileField"></include>
+		from 
+		<include refid="fileTableName"></include>
+		where IMPORT_ID = #{pd.IMPORT_ID}
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					IMPORT_FILE_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					or
+					TABLE_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			IMPORT_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 查询文件名存在条数 -->
+	<select id="findFileCount" parameterType="list" resultType="Long">
+		select
+		  count(*)
+		from 
+		<include refid="fileTableName"></include>
+		where
+		  IMPORT_FILE_NAME = #{pathFile, jdbcType=VARCHAR}
+          and MESSAGE IS NULL
+	</select>
+	
+	<!-- 解析Excel中的数据插入数据库-->
+	<insert id="saveImportData" parameterType="pd">
+		insert into 
+	      ${TABLE_NAME}
+		(
+	      ${TABLE_FILED}
+		) values
+	      ${TABLE_VALUE} 
+	</insert>
+	
+	<!-- 执行导入后的存储过程 -->
+	<select id="callableProcedure" statementType="CALLABLE" parameterType="pd">
+      <![CDATA[call ${PROCEDURE_NAME}(#{IMPORTFILEID,mode=IN,jdbcType=VARCHAR},#{RESULT,mode=OUT,jdbcType=VARCHAR},#{MESSAGE,mode=OUT,jdbcType=VARCHAR});]]>
+	</select>
+	
+</mapper>

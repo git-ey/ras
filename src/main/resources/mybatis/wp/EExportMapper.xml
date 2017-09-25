@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="EExportMapper">
+    <select id="selectEData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            E.EY_ACCOUNT_NUM AS accountNum,
+            E.AMOUNT_CURRENT AS amountCurrent,
+            E.AMOUNT_ADJ_CR AS crAmountAdj,
+            E.AMOUNT_ADJ_DR AS drAmountAdj,
+            E.AMOUNT_AUDIT_LAST AS amountAuditLast
+        FROM
+            wp_e E
+        where 
+            1 = 1
+        and E.STATUS = 'Y'
+        and E.FUND_ID = #{fundId}
+        and E.PERIOD = #{period}
+    </select>
+    
+    <select id="selectE300MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    E300.ATTR1 as item, 
+		    E300.ATTR5 as discType,
+		    IF(
+		        E300.ATTR1 = '应收债券利息' OR E300.ATTR1 = '应收资产支持证券利息',
+		        E300.ATTR4,
+		        E300.ATTR2
+		    ) as detailName,
+		    E300.BEGIN_BALANCE_CNY as beginBalance,
+		    E300.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_e300 E300
+        where 
+            1 = 1
+        and E300.STATUS = 'Y'
+        and E300.FUND_ID = #{fundId}
+        and E300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectE300DiscData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    E300D.ITEM as item,
+		    E300D.END_BALANCE as endBalance,
+		    E300D.BEGIN_BALANCE as beginBalance
+		FROM
+		    wp_e300_dis E300D
+        where 
+            1 = 1
+        and E300D.STATUS = 'Y'
+        and E300D.FUND_ID = #{fundId}
+        and E300D.PERIOD = #{period}
+        ORDER BY
+            E300D.SORT
+    </select>
+</mapper>

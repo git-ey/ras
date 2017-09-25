@@ -13,14 +13,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <link rel="stylesheet" href="static/login/bootstrap.min.css" />
-<link rel="stylesheet" href="static/login/css/camera.css" />
 <link rel="stylesheet" href="static/login/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="static/login/matrix-login.css" />
 <link href="static/login/font-awesome.css" rel="stylesheet" />
 <script type="text/javascript" src="static/login/js/jquery-1.5.1.min.js"></script>
-<!-- 软键盘控件start -->
-<link href="static/login/keypad/css/framework/form.css" rel="stylesheet" type="text/css"/>
-<!-- 软键盘控件end -->
  <style type="text/css">
       .cavs{
     	z-index:1;
@@ -29,40 +25,12 @@
     	margin-left: 20px;
     	margin-right: 20px;
     }
+    .form-actions {
+  border-top: 0px solid #E5E5E5;
+}
   </style>
-  <script>
-  		//window.setTimeout(showfh,3000); 
-  		var timer;
-		function showfh(){
-			fhi = 1;
-			//关闭提示晃动屏幕，注释掉这句话即可
-			timer = setInterval(xzfh2, 10); 
-		};
-		var current = 0;
-		function xzfh(){
-			current = (current)%360;
-			document.body.style.transform = 'rotate('+current+'deg)';
-			current ++;
-			if(current>360){current = 0;}
-		};
-		var fhi = 1;
-		var current2 = 1;
-		function xzfh2(){
-			if(fhi>50){
-				document.body.style.transform = 'rotate(0deg)';
-				clearInterval(timer);
-				return;
-			}
-			current = (current2)%360;
-			document.body.style.transform = 'rotate('+current+'deg)';
-			current ++;
-			if(current2 == 1){current2 = -1;}else{current2 = 1;}
-			fhi++;
-		};
-	</script>
 </head>
 <body>
-	<canvas class="cavs"></canvas>
 	<div style="width:100%;text-align: center;margin: 0 auto;position: absolute;">
 		<!-- 登录 -->
 		<div id="windows">
@@ -70,7 +38,7 @@
 			<form action="" method="post" name="loginForm" id="loginForm">
 				<div class="control-group normal_text">
 					<h3>
-						EY底稿报告自动化系统
+						EY底稿报告辅助系统
 					</h3>
 				</div>
 				<div class="control-group">
@@ -87,7 +55,7 @@
 						<div class="main_input_box">
 							<span class="add-on bg_ly">
 							<i><img height="37" src="static/login/suo.png" /></i>
-							</span><input type="password" name="password" id="password" placeholder="请输入密码" class="keypad" keypadMode="full" allowKeyboard="true" value=""/>
+							</span><input type="password" name="password" id="password" placeholder="请输入密码" value=""/>
 						</div>
 					</div>
 				</div>
@@ -108,24 +76,12 @@
 			</form>
 			<div class="controls">
 				<div class="main_input_box">
-					<font color="white"><span id="nameerr">Copyright © EY 2017</span></font>
+					<b><span id="nameerr">Copyright © EY 2017</span></b>
 				</div>
 			</div>
 		</div>
 		</div>
 	</div>
-	<div id="templatemo_banner_slide" class="container_wapper">
-		<div class="camera_wrap camera_emboss" id="camera_slide">
-			<!-- 背景图片 -->
-			<div data-src="static/login/images/banner_slide_01.jpg"></div>
-			<div data-src="static/login/images/banner_slide_02.jpg"></div>
-			<div data-src="static/login/images/banner_slide_03.jpg"></div>
-			<div data-src="static/login/images/banner_slide_04.jpg"></div>
-			<div data-src="static/login/images/banner_slide_05.jpg"></div>
-		</div>
-		<!-- #camera_wrap_3 -->
-	</div>
-
 	<script type="text/javascript">
 		//服务器校验
 		function severCheck(){
@@ -286,17 +242,12 @@
 	<script src="static/js/jquery-1.7.2.js"></script>
 	<script src="static/login/js/jquery.easing.1.3.js"></script>
 	<script src="static/login/js/jquery.mobile.customized.min.js"></script>
-	<script src="static/login/js/camera.min.js"></script>
 	<script src="static/login/js/templatemo_script.js"></script>
 	<script src="static/login/js/ban.js"></script>
 	<script type="text/javascript" src="static/js/jQuery.md5.js"></script>
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
 	<script type="text/javascript" src="static/js/jquery.cookie.js"></script>
 	
-	<!-- 软键盘控件start -->
-	<script type="text/javascript" src="static/login/keypad/js/form/keypad.js"></script>
-	<script type="text/javascript" src="static/login/keypad/js/framework.js"></script>
-	<!-- 软键盘控件end -->
 </body>
 
 </html>

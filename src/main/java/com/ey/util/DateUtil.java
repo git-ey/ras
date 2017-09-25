@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+
 /** 
  * 说明：日期处理
  */
@@ -82,6 +84,19 @@ public class DateUtil {
 			return fmt.parse(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * 格式化日期
+	 * @return
+	 */
+	public static Date fomatDate(String date,String fmtStr) {
+		DateFormat fmt = new SimpleDateFormat(StringUtils.isBlank(fmtStr) ? "YYYY-MM-DD" : fmtStr);
+		try {
+			return fmt.parse(date);
+		} catch (ParseException e) {
 			return null;
 		}
 	}
@@ -172,6 +187,33 @@ public class DateUtil {
         Date date = canlendar.getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("E");
         String dateStr = sdf.format(date);
+        return dateStr;
+    }
+    
+    /**
+     * 获取指定时间字符
+     * @param datetime
+     * @param fmt
+     * @return
+     */
+    public static String getDateTimeStr(String datetime,String fmt) {
+    	if(StringUtils.isBlank(datetime)){
+    		return null;
+    	}
+    	return DateUtil.getDateTimeStr(DateUtil.fomatDate(datetime, fmt));
+    }
+    
+    /**
+     * 获取时间默认格式字符串
+     * @param datetime
+     * @return
+     */
+    public static String getDateTimeStr(Date datetime) {
+    	if(datetime == null){
+    		return null;
+    	}
+        SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateStr = sdfd.format(datetime);
         return dateStr;
     }
     

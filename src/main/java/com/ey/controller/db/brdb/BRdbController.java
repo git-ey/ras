@@ -121,16 +121,16 @@ public class BRdbController extends BaseController {
 		PageData pd = new PageData();		
 		Map<String,Object> map = new HashMap<String,Object>();
 		pd = this.getPageData();
-		String TABLENAME = pd.getString("fhtable");					//页面ajax传过来的表名
+		String tableName = pd.getString("stable");					//页面ajax传过来的表名
 		List<PageData> pdList = new ArrayList<PageData>();
 		String kackupPath;
 		try {
-			kackupPath = DbTools.getDbFH().backup(TABLENAME).toString();	//调用数据库备份
+			kackupPath = DbTools.getDbFH().backup(tableName).toString();	//调用数据库备份
 			if(Tools.notEmpty(kackupPath) && !"errer".equals(kackupPath)){
 				pd.put("DB_ID", this.get32UUID());				//主键
 				pd.put("USERNAME", username);						//操作用户
 				pd.put("BACKUP_TIME", Tools.date2Str(new Date()));	//备份时间
-				pd.put("TABLENAME", TABLENAME);						//表名
+				pd.put("TABLENAME", tableName);						//表名
 				pd.put("SQLPATH", kackupPath);						//存储位置
 				pd.put("DBSIZE", FileUtil.getFilesize(kackupPath));	//文件大小
 				pd.put("TYPE", 2);									//1: 备份整库，2：备份某表

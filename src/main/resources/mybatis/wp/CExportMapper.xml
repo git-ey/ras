@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CExportMapper">
+    <select id="selectCData" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    C.EY_ACCOUNT_NUM as accountNum,
+		    C.AMOUNT_CURRENT as amountCurrent,
+		    C.AMOUNT_ADJ_CR as crAmountAdj,
+		    C.AMOUNT_ADJ_DR as drAmountAdj,
+		    C.AMOUNT_AUDIT_LAST as amountAuditLast
+		FROM
+		    wp_c C
+		where 
+		    1 = 1
+		and C.STATUS = 'Y'
+		and C.FUND_ID = #{fundId}
+		and C.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC300MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    C300.EY_ACCOUNT_NUM as accountNum,
+		    C300.ATTR1 as type,
+		    C300.ATTR2 as calculateInterest,
+		    C300.ATTR5 as storageOrganization,
+		    C300.ATTR6 as related,
+		    C300.BEGIN_BALANCE_CNY as beginBalance,
+		    C300.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_c300 C300
+		where
+		    1 = 1
+	    and C300.STATUS = 'Y'
+		and C300.FUND_ID = #{fundId}
+		and C300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC300IntRiskPeriods" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT DISTINCT
+            C300IR.INT_RISK_PERIOD as intRiskPeriod
+		FROM
+		    wp_c300_interest_risk C300IR
+		where 
+		    1 = 1
+	    and C300IR.STATUS = 'Y'
+		and C300IR.FUND_ID = #{fundId}
+		and C300IR.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC300IntRiskTimeDepositsData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    C300IR.INT_RISK_PERIOD as intRiskPeriod,
+		    C300IR.AMOUNT as amount
+		FROM
+		    wp_c300_interest_risk C300IR
+		where 
+		    1 = 1
+		and C300IR.STATUS = 'Y'
+		and C300IR.FUND_ID = #{fundId}
+		and C300IR.PERIOD = #{period}
+		and C300IR.DEPOSIT_TYPE = '定期存款'
+    </select>
+    
+    <select id="selectC300RelatedData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    C300R.DEPOSIT_TYPE as depositType,
+		    C300R.RELEATED_PARTY as relatedParty,
+		    C300R.BALANCE as balance
+		FROM
+		    wp_c300_related C300R
+		where 
+	        1 = 1
+	    and C300R.STATUS = 'Y'
+	    and C300R.FUND_ID = #{fundId}
+	    and C300R.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC400MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		select
+		    C400.BANK_NAME as bankName,
+		    C400.RELATED as related,
+		    C400.AMT as amount,
+		    C400.INTEREST_RATE as interestRate,
+		    CONCAT(C400.DATE_FROM,'T00:00:00.000') as dateFrom,
+		    CONCAT(C400.DATE_TO,'T00:00:00.000') as dateTo,
+		    C400.TERM_PERIOD as termPeriod,
+		    C400.PERIOD_LEFT as leftPeriod,
+		    CONCAT(C400.DATE_FROM_CURRENT,'T00:00:00.000') as dateFromCurrent,
+		    C400.DATE_COUNTS as dateCount
+		from
+		    wp_c400 C400
+		where
+		    1 = 1
+		and C400.STATUS = 'Y'
+        and C400.FUND_ID = #{fundId}
+		and C400.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC400BankData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    C400B.BANK_NAME as bankName,
+		    C400B.RELATED as related,
+		    C400B.END_BALANCE as endBalance
+		FROM
+		    wp_c400_bank C400B
+		where
+		    1 = 1
+		and C400B.STATUS = 'Y'
+		and C400B.FUND_ID = #{fundId}
+		and C400B.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC400TermData" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT
+		    C400T.TERM_PERIOD as termPeriod
+		FROM
+		    wp_c400_term C400T
+		where
+		    1 = 1
+        and C400T.STATUS = 'Y'
+		and C400T.FUND_ID = #{fundId}
+		and C400T.PERIOD = #{period}
+    </select>
+    
+    <select id="selectC10000MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    C10000.ITEM as item,
+		    C10000.DETAIL_FLAG as detailFlag,
+		    IFNULL(C10000.BEGIN_BALANCE, 0) as beginBalance,
+		    IFNULL(C10000.END_BALANCE, 0) as endBalance
+		from 
+		    wp_c10000 C10000
+		where
+		    1 = 1
+	    and C10000.STATUS = 'Y'
+		and C10000.FUND_ID = #{fundId}
+		and C10000.PERIOD = #{period}
+		ORDER BY C10000.SORT
+    </select>
+</mapper>

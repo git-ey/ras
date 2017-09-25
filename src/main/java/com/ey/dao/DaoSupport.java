@@ -126,6 +126,16 @@ public class DaoSupport implements Dao {
 		return sqlSessionTemplate.selectMap(str, obj, key);
 	}
 	
+	/**
+	 * 执行存储过程
+	 * @param str
+	 * @param obj
+	 * @return
+	 */
+	public Object callProcedure(String str,Object obj){
+		return sqlSessionTemplate.selectOne(str, obj);
+	}
+	
 }
 
 

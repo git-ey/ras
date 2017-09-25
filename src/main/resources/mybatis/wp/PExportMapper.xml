@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PExportMapper">
+    <select id="selectPData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P.EY_ACCOUNT_NUM AS accountNum,
+		    p.REVEAL_ITEM as revealItem,
+		    P.AMOUNT_CURRENT AS amountCurrent,
+		    P.AMOUNT_ADJ_CR AS crAmountAdj,
+		    P.AMOUNT_ADJ_DR AS drAmountAdj,
+		    P.AMOUNT_AUDIT_LAST AS amountAuditLast
+		FROM
+		    wp_p P
+        where 
+            1 = 1
+        and P.STATUS = 'Y'
+        and P.FUND_ID = #{fundId}
+        and P.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP300Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P300.ATTR1 AS detailName,
+		    IFNULL(P300.BEGIN_BALANCE_CNY,0) AS beginBalance,
+		    IFNULL(P300.DR_AMOUNT_CNY,0) AS drAmount,
+		    IFNULL(P300.CR_AMOUNT_CNY,0) AS crAmount,
+		    P300.ATTR5 as disc
+		FROM
+		    wp_p300 P300
+        where 
+            1 = 1
+        and P300.STATUS = 'Y'
+        and P300.FUND_ID = #{fundId}
+        and P300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP400MainData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            P400.ATTR1 AS detailName,
+            IFNULL(P400.BEGIN_BALANCE_CNY,0) AS beginBalance,
+            IFNULL(P400.DR_AMOUNT_CNY,0) AS drAmount,
+            IFNULL(P400.CR_AMOUNT_CNY,0) AS crAmount,
+            P400.ATTR5 as disc
+        FROM
+            wp_p400 P400
+        where 
+            1 = 1
+        and P400.STATUS = 'Y'
+        and P400.FUND_ID = #{fundId}
+        and P400.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP400SummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P400S.ITEM as item,
+		    P400S.CONTRACT_AMOUNT as contractAmount,
+		    P400S.PERIOD_EXPENSE as thisPeriodFee,
+		    P400S.EXPENSE_ENTERED as incomeFee,
+		    P400S.ACCURED_EXPENSE as quota,
+		    P400S.DEFERRED_EXPENSE as amortization,
+		    P400S.EXPENSE_DIRECT_ENTERED as directFee
+		FROM
+		    wp_p400_summary P400S
+        where 
+            1 = 1
+        and P400S.STATUS = 'Y'
+        and P400S.FUND_ID = #{fundId}
+        and P400S.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP400DetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P400D.PAPER as detailName,
+		    P400D.CONFIRMATION_NUM as confirmationNum,
+		    P400D.CONTRACT_AMOUNT as contractAmount,
+		    DATE_FORMAT(P400D.CONTRACT_FROM_DATE,'%Y-%m-%dT00:00:00.000') as contractBeginDate,
+		    DATE_FORMAT(P400D.CONTRACT_TO_DATE,'%Y-%m-%dT00:00:00.000') as contractEndDate,
+		    P400D.TOTAL_DATE as contractTotalDays,
+		    P400D.PERIOD_DATE as daysOfThisPeriod
+		FROM
+		    wp_p400_detail P400D
+        where 
+            1 = 1
+        and P400D.ITEM = '信息披露费'
+        and P400D.STATUS = 'Y'
+        and P400D.FUND_ID = #{fundId}
+        and P400D.PERIOD = #{period}
+        order by
+            P400D.SEQ
+    </select>
+    
+    <select id="selectP500Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            P500.ATTR1 AS detailName,
+            IFNULL(P500.BEGIN_BALANCE_CNY,0) AS beginBalance,
+            IFNULL(P500.DR_AMOUNT_CNY,0) AS drAmount,
+            IFNULL(P500.CR_AMOUNT_CNY,0) AS crAmount,
+            P500.ATTR5 as disc
+        FROM
+            wp_p500 P500
+        where 
+            1 = 1
+        and P500.STATUS = 'Y'
+        and P500.FUND_ID = #{fundId}
+        and P500.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP600Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P600.ACCOUNT_NUM as accountNum,
+		    P600.ATTR4 as shortName,
+		    P600.ATTR5 as tradeMarket,
+		    P600.ATTR2 as subType,
+		    P600.BEGIN_BALANCE_CNY as beginBalance,
+		    P600.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_p600 P600
+        where 
+            1 = 1
+        and P600.STATUS = 'Y'
+        and P600.FUND_ID = #{fundId}
+        and P600.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP800Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            P800.ATTR1 AS detailName,
+            IFNULL(P800.BEGIN_BALANCE_CNY,0) AS beginBalance,
+            IFNULL(P800.DR_AMOUNT_CNY,0) AS drAmount,
+            IFNULL(P800.CR_AMOUNT_CNY,0) AS crAmount,
+            P800.ATTR5 as disc
+        FROM
+            wp_p800 P800
+        where 
+            1 = 1
+        and P800.STATUS = 'Y'
+        and P800.FUND_ID = #{fundId}
+        and P800.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP10000Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            P10000.ITEM as item,
+            P10000.BEGIN_BALANCE as beginBalance,
+            P10000.END_BALANCE as endBalance
+        FROM
+            wp_p10000 AS P10000
+        where 
+            1 = 1
+        and P10000.STATUS = 'Y'
+        and P10000.FUND_ID = #{fundId}
+        and P10000.PERIOD = #{period}
+        ORDER BY P10000.SORT
+    </select>
+</mapper>

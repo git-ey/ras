@@ -77,7 +77,7 @@ $(function(){if('createCode'== locat[3]){locat =  locat[0]+'//'+locat[2];}else{l
 		}
 		var strArField = '';
 		for(var i=0;i<arField.length;i++){
-			strArField = strArField + arField[i];
+			strArField = strArField + arField[i] + "scp";
 		}
 		$("#FIELDLIST").val(strArField); 	//属性集合
 		$("#Form").submit();				//提交

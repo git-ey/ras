@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FundMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_FUND_INFO
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		FUND_CODE,	
+		FIRM_CODE,	
+		SHORT_NAME,	
+		FULL_NAME,	
+		FULL_NAME_ORIGINAL,	
+		LEDGER_NUM,	
+		TA_NAME,	
+		FIN_SYSTEM,	
+		STRUCTURED,	
+		GUARANTEED,	
+		CLOSED,	
+		SHHK,	
+		QD,	
+		MF,	
+		IDX,	
+		LOF,	
+		ETF,	
+		FOF,	
+		UNIT,	
+		DATE_FROM,	
+		DATE_TO,	
+		DATE_TRANSFORM,
+		DEPOSIT_TERM_PERIOD,
+		INTEREST_RATE_PERIOD,	
+		OTHER_LIABILITIES,	
+		ACTIVE,	
+		STATUS,	
+		FUND_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{FUND_CODE},	
+		#{FIRM_CODE},	
+		#{SHORT_NAME},	
+		#{FULL_NAME},	
+		#{FULL_NAME_ORIGINAL},	
+		#{LEDGER_NUM},	
+		#{TA_NAME},	
+		#{FIN_SYSTEM},	
+		#{STRUCTURED},	
+		#{GUARANTEED},	
+		#{CLOSED},	
+		#{SHHK},	
+		#{QD},	
+		#{MF},	
+		#{IDX},	
+		#{LOF},	
+		#{ETF},	
+		#{FOF},	
+		#{UNIT},	
+		#{DATE_FROM},	
+		#{DATE_TO},	
+		#{DATE_TRANSFORM},
+		#{DEPOSIT_TERM_PERIOD},
+		#{INTEREST_RATE_PERIOD},	
+		#{OTHER_LIABILITIES},	
+		#{ACTIVE},	
+		#{STATUS},	
+		#{FUND_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			FUND_ID = #{FUND_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			FUND_CODE = #{FUND_CODE},
+			FIRM_CODE = #{FIRM_CODE},
+			SHORT_NAME = #{SHORT_NAME},
+			FULL_NAME = #{FULL_NAME},
+			FULL_NAME_ORIGINAL = #{FULL_NAME_ORIGINAL},
+			LEDGER_NUM = #{LEDGER_NUM},
+			TA_NAME = #{TA_NAME},
+			FIN_SYSTEM = #{FIN_SYSTEM},
+			STRUCTURED = #{STRUCTURED},
+			GUARANTEED = #{GUARANTEED},
+			CLOSED = #{CLOSED},
+			SHHK = #{SHHK},
+			QD = #{QD},
+			MF = #{MF},
+			IDX = #{IDX},
+			LOF = #{LOF},
+			ETF = #{ETF},
+			FOF = #{FOF},
+			UNIT = #{UNIT},
+			<if test="DATE_FROM != null and DATE_FROM != ''">
+			DATE_FROM = #{DATE_FROM},
+			</if>
+			<if test="DATE_TO != null and DATE_TO != ''">
+			DATE_TO = #{DATE_TO},
+			</if>
+			<if test="DATE_TRANSFORM != null and DATE_TRANSFORM != ''">
+			DATE_TRANSFORM = #{DATE_TRANSFORM},
+			</if>
+			DEPOSIT_TERM_PERIOD = #{DEPOSIT_TERM_PERIOD},
+			INTEREST_RATE_PERIOD = #{INTEREST_RATE_PERIOD},
+			OTHER_LIABILITIES = #{OTHER_LIABILITIES},
+			ACTIVE = #{ACTIVE},
+			STATUS = #{STATUS},
+		FUND_ID = FUND_ID
+		where 
+		FUND_ID = #{FUND_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			FUND_ID = #{FUND_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select sf.FUND_CODE,	
+		       sf.FIRM_CODE,	
+		       sf.SHORT_NAME,	
+		       sf.FULL_NAME,	
+		       sf.FULL_NAME_ORIGINAL,	
+		       sf.LEDGER_NUM,	
+		       sf.TA_NAME,	
+		       sf.FIN_SYSTEM,	
+		       sf.STRUCTURED,	
+		       sf.GUARANTEED,	
+		       sf.CLOSED,	
+		       sf.SHHK,	
+		       sf.QD,	
+		       sf.MF,	
+		       sf.IDX,	
+		       sf.LOF,	
+		       sf.ETF,	
+		       sf.FOF,	
+		       sf.UNIT,	
+		       sf.DATE_FROM,	
+		       sf.DATE_TO,	
+		       sf.DATE_TRANSFORM,
+		       sf.DEPOSIT_TERM_PERIOD,
+		       sf.INTEREST_RATE_PERIOD,	
+		       sf.OTHER_LIABILITIES,	
+		       sf.ACTIVE,	
+		       sf.STATUS,	
+		       sf.FUND_ID,
+		       sm.SHORT_NAME COMPANY_SHORT_NAME 
+		from sys_fund_info sf,sys_mgrcompany sm
+		where 1=1
+		  and sf.firm_code = sm.company_code
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					sf.FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					sf.FUND_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					 or 
+					sf.FIRM_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					 or 
+					sf.SHORT_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				
+				)
+		</if>
+		<if test="pd.ACTIVE!= null and pd.ACTIVE != ''">
+		    and sf.ACTIVE = #{pd.ACTIVE}
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			FUND_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	    <include refid="tableName"></include>
+		(
+	     FUND_ID,
+		 FUND_CODE,	
+		 FIRM_CODE,	
+		 SHORT_NAME,	
+		 FULL_NAME,	
+		 FULL_NAME_ORIGINAL,	
+		 TA_NAME,	
+		 FIN_SYSTEM,	
+		 STRUCTURED,	
+		 SHHK,	
+		 QD,	
+		 MF,	
+		 DATE_FROM,	
+		 DATE_TO,	
+		 ACTIVE,	
+		 STATUS
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+         #{pd.FUND_ID},
+		 #{pd.FUND_CODE},	
+		 #{pd.FIRM_CODE},	
+		 #{pd.SHORT_NAME},	
+		 #{pd.FULL_NAME},	
+		 #{pd.FULL_NAME_ORIGINAL},	
+		 #{pd.TA_NAME},	
+		 #{pd.FIN_SYSTEM},	
+		 #{pd.STRUCTURED},	
+		 #{pd.SHHK},	
+		 #{pd.QD},	
+		 #{pd.MF},	
+		 #{pd.DATE_FROM},	
+		 ${pd.DATE_TO},	
+		 #{pd.ACTIVE},	
+		 #{pd.STATUS}
+         )
+         </foreach >
+	</insert>
+	
+	<!-- 查询明细总数 -->
+	<select id="findCount" parameterType="pd" resultType="pd">
+	   select (select count(*) from sys_fund_related_party where FUND_ID = #{FUND_ID}) + 
+       (select count(*) from sys_fund_signoff where FUND_ID = #{FUND_ID}) +
+       (select count(*) from sys_fund_structured where FUND_ID = #{FUND_ID}) +
+       (select count(*) from sys_fund_trx_rule where FUND_ID = #{FUND_ID}) zs;
+	</select>
+	
+	<!-- 批量更新-->
+	<update id="updateBatch" parameterType="pd">
+	    update sys_fund_info fi
+           set fi.FULL_NAME_ORIGINAL = REPLACE(fi.FULL_NAME_ORIGINAL,'''',null),
+               fi.LEDGER_NUM = REPLACE(fi.LEDGER_NUM,'''',null),
+		       fi.TA_NAME = REPLACE(fi.TA_NAME,'''',null),
+		       fi.FIN_SYSTEM = REPLACE(fi.FIN_SYSTEM,'''',null),
+		       fi.STRUCTURED = REPLACE(fi.STRUCTURED,'''',null),
+		       fi.GUARANTEED = REPLACE(fi.GUARANTEED,'''',null),
+		       fi.CLOSED = REPLACE(fi.CLOSED,'''',null),
+		       fi.SHHK = REPLACE(fi.SHHK,'''',null),
+		       fi.QD = REPLACE(fi.QD,'''',null),
+		       fi.MF = REPLACE(fi.MF,'''',null),
+		       fi.IDX = REPLACE(fi.IDX,'''',null),
+		       fi.LOF = REPLACE(fi.LOF,'''',null),
+		       fi.ETF = REPLACE(fi.ETF,'''',null),
+		       fi.FOF = REPLACE(fi.FOF,'''',null),
+		       fi.UNIT = REPLACE(fi.UNIT,'''',null),
+		       fi.DATE_FROM = REPLACE(fi.DATE_FROM,'''',null),
+		       fi.DATE_TO = REPLACE(fi.DATE_TO,'''',null),
+		       fi.DATE_TRANSFORM = REPLACE(fi.DATE_TRANSFORM,'''',null),
+		       fi.DEPOSIT_TERM_PERIOD = REPLACE(fi.DEPOSIT_TERM_PERIOD,'''',null),
+		       fi.INTEREST_RATE_PERIOD = REPLACE(fi.INTEREST_RATE_PERIOD,'''',null),
+		       fi.OTHER_LIABILITIES = REPLACE(fi.OTHER_LIABILITIES,'''',null),
+		       fi.ACTIVE = REPLACE(fi.ACTIVE,'''',null),
+		       fi.`STATUS` = REPLACE(fi.`STATUS`,'''',null)
+	</update>
+	
+</mapper>

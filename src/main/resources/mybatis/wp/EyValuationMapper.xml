@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="EyvaluationMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		EY_VALUATION
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		FUND_ID,	
+		PERIOD,	
+		VDATE,	
+		EY_ACCOUNT_NUM,	
+		CURRENCY,	
+		EXCHANGE_RATE,	
+		QUANTITY,	
+		UNIT_COST,	
+		TOTAL_COST_ENTERED,	
+		TOTAL_COST_CNY,	
+		UNIT_PRICE,	
+		MKT_VALUE_ENTERED,	
+		MKT_VALUE_CNY,	
+		APPRECIATION_ENTERED,	
+		APPRECIATION_CNY,	
+		SUSPENSION_INFO,	
+		DESCRIPTION,	
+		ACTIVE,	
+		STATUS,	
+		ATTR1,	
+		ATTR2,	
+		ATTR3,	
+		ATTR4,	
+		ATTR5,	
+		ATTR6,	
+		VALUATION_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{FUND_ID},	
+		#{PERIOD},	
+		#{VDATE},	
+		#{EY_ACCOUNT_NUM},	
+		#{CURRENCY},	
+		#{EXCHANGE_RATE},	
+		#{QUANTITY},	
+		#{UNIT_COST},	
+		#{TOTAL_COST_ENTERED},	
+		#{TOTAL_COST_CNY},	
+		#{UNIT_PRICE},	
+		#{MKT_VALUE_ENTERED},	
+		#{MKT_VALUE_CNY},	
+		#{APPRECIATION_ENTERED},	
+		#{APPRECIATION_CNY},	
+		#{SUSPENSION_INFO},	
+		#{DESCRIPTION},	
+		#{ACTIVE},	
+		#{STATUS},	
+		#{ATTR1},	
+		#{ATTR2},	
+		#{ATTR3},	
+		#{ATTR4},	
+		#{ATTR5},	
+		#{ATTR6},	
+		#{VALUATION_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			VALUATION_ID = #{VALUATION_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			FUND_ID = #{FUND_ID},
+			PERIOD = #{PERIOD},
+			VDATE = #{VDATE},
+			EY_ACCOUNT_NUM = #{EY_ACCOUNT_NUM},
+			CURRENCY = #{CURRENCY},
+			EXCHANGE_RATE = #{EXCHANGE_RATE},
+			QUANTITY = #{QUANTITY},
+			UNIT_COST = #{UNIT_COST},
+			TOTAL_COST_ENTERED = #{TOTAL_COST_ENTERED},
+			TOTAL_COST_CNY = #{TOTAL_COST_CNY},
+			UNIT_PRICE = #{UNIT_PRICE},
+			MKT_VALUE_ENTERED = #{MKT_VALUE_ENTERED},
+			MKT_VALUE_CNY = #{MKT_VALUE_CNY},
+			APPRECIATION_ENTERED = #{APPRECIATION_ENTERED},
+			APPRECIATION_CNY = #{APPRECIATION_CNY},
+			SUSPENSION_INFO = #{SUSPENSION_INFO},
+			DESCRIPTION = #{DESCRIPTION},
+			ACTIVE = #{ACTIVE},
+			STATUS = #{STATUS},
+			ATTR1 = #{ATTR1},
+			ATTR2 = #{ATTR2},
+			ATTR3 = #{ATTR3},
+			ATTR4 = #{ATTR4},
+			ATTR5 = #{ATTR5},
+			ATTR6 = #{ATTR6},
+		VALUATION_ID = VALUATION_ID
+		where 
+		VALUATION_ID = #{VALUATION_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			VALUATION_ID = #{VALUATION_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					EY_ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					DESCRIPTION LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+		<if test="pd.lastStart!= null and pd.lastStart != ''">
+		    and VDATE &gt;= #{pd.lastStart}
+		</if>
+		
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
+		    and VDATE &lt;= #{pd.lastEnd}
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			VALUATION_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+</mapper>
