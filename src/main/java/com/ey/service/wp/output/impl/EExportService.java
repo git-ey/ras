@@ -33,7 +33,8 @@ public class EExportService extends BaseExportService implements EExportManager{
         
         dataMap.put("E", this.getEData(fundId, period));
         dataMap.put("E300", this.getE300Data(fundId, period));
-//        dataMap.put("G10000", this.getG10000Data(fundId, period));
+        dataMap.put("E400", this.getE400Data(fundId, period));
+        dataMap.put("E500", this.getE500Data(fundId, period));
 
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_E);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_E, xmlStr);
@@ -200,5 +201,55 @@ public class EExportService extends BaseExportService implements EExportManager{
         }
         
         return map;
+    }
+    
+    /**
+     * 处理sheet页E400的数据
+     * @author Dai Zong 2017年9月26日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getE400Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> E400MetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE400Data", queryMap);
+        if(E400MetaDataList == null) {
+            E400MetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        result.put("list", E400MetaDataList);
+        result.put("count", E400MetaDataList.size());
+        
+        return result;
+    }
+    
+    /**
+     * 处理sheet页E500的数据
+     * @author Dai Zong 2017年9月26日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getE500Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> E500MetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE500Data", queryMap);
+        if(E500MetaDataList == null) {
+            E500MetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        result.put("list", E500MetaDataList);
+        result.put("count", E500MetaDataList.size());
+        
+        return result;
     }
 }
