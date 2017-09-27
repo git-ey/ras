@@ -52,4 +52,34 @@
         ORDER BY
             E300D.SORT
     </select>
+    
+    <select id="selectE400Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    E400.ATTR1 AS detailName,
+		    IFNULL(E400.BEGIN_BALANCE_CNY, 0) AS beginBalance,
+		    IFNULL(E400.DR_AMOUNT_CNY, 0) AS drAmount,
+		    IFNULL(E400.CR_AMOUNT_CNY, 0) AS crAmount,
+		    E400.INTEREST as interest
+		FROM
+		    wp_e400 E400
+        where 
+            1 = 1
+        and E400.STATUS = 'Y'
+        and E400.FUND_ID = #{fundId}
+        and E400.PERIOD = #{period}
+    </select>
+    
+    <select id="selectE500Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    E500.ATTR1 AS detailName,
+		    E500.BEGIN_BALANCE_CNY AS beginBalance,
+		    E500.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_e500 E500
+        where 
+            1 = 1
+        and E500.STATUS = 'Y'
+        and E500.FUND_ID = #{fundId}
+        and E500.PERIOD = #{period}
+    </select>
 </mapper>

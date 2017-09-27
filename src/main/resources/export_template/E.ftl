@@ -2303,32 +2303,22 @@
     <Cell ss:StyleID="s63"/>
     <Cell ss:StyleID="s63"/>
    </Row>
+   <#if E400.count != 0>
+   <#list E400.list as item>
    <Row>
-    <Cell ss:StyleID="s53"><Data ss:Type="String">应收申购款</Data></Cell>
+    <Cell ss:StyleID="s53"><Data ss:Type="String">${item.detailName!}</Data></Cell>
     <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s128" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s128" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s71"><Data ss:Type="String">&lt;E410&gt;</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="String">S/S</Data></Cell>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s117" ss:Formula="=RC[-4]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">${(item.interest!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s117" ss:Formula="=RC[-4]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row ss:Height="15.75">
-    <Cell ss:StyleID="s53"><Data ss:Type="String">应收转入款</Data></Cell>
-    <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s128" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">S/S</Data></Cell>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s117" ss:Formula="=RC[-4]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:Height="15.75">
     <Cell ss:StyleID="s53"/>
     <Cell ss:StyleID="s47"/>
@@ -2344,14 +2334,14 @@
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s64"/>
     <Cell ss:StyleID="s109"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s55"><Data ss:Type="String">&lt;E&gt;</Data></Cell>
     <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s64"/>
@@ -3671,37 +3661,18 @@
     <Cell ss:StyleID="s113"/>
     <Cell ss:Index="5" ss:StyleID="s113"/>
    </Row>
+   <#if E500.count != 0>
+   <#list E500.list as item>
    <Row>
-    <Cell ss:StyleID="s131"><Data ss:Type="String">上交所</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">${item.detailName!}</Data></Cell>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s57"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s129"><Data ss:Type="String">S/S</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s131"><Data ss:Type="String">深交所</Data></Cell>
-    <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s129"><Data ss:Type="String">S/S</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s131"><Data ss:Type="String">银行间</Data></Cell>
-    <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s129"><Data ss:Type="String">S/S</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s62">
-    <Cell ss:StyleID="s131"><Data ss:Type="String">ETF现金差额</Data></Cell>
-    <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:Index="5" ss:StyleID="s57"/>
-    <Cell ss:StyleID="s129"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s114"/>
     <Cell ss:StyleID="s61"/>
@@ -3709,10 +3680,8 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s62">
     <Cell ss:StyleID="s109"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s125" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:Index="5" ss:StyleID="s125" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E500.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E500.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s129"><Data ss:Type="String"> &lt;E&gt;</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s62">
@@ -3722,8 +3691,7 @@
    <Row ss:StyleID="s62"/>
    <Row ss:StyleID="s62">
     <Cell ss:StyleID="s199"><Data ss:Type="String">S/S</Data></Cell>
-    <Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">我们查看了期后收款情况，证券清算款已于<Font
-       html:Color="#FF0000">XXXX年X月X日</Font><Font>收讫。</Font></ss:Data></Cell>
+    <Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">我们查看了期后收款情况，证券清算款已于<Font html:Color="#FF0000">XXXX年X月X日</Font><Font>收讫。</Font></ss:Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s51"/>
