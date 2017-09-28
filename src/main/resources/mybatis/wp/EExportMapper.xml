@@ -69,6 +69,98 @@
         and E400.PERIOD = #{period}
     </select>
     
+    <select id="selectE410RuleData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    E410R.TYPE as type,
+		    E410R.ATTR1 as attr1,
+		    E410R.ATTR2 as attr2,
+		    E410R.ATTR3 as attr3,
+		    E410R.ATTR4 as attr4,
+		    E410R.ATTR5 as attr5,
+		    E410R.ATTR6 as attr6,
+		    E410R.ATTR7 as attr7,
+		    E410R.ATTR8 as attr8,
+		    E410R.ATTR9 as attr9
+		FROM
+		    sys_fund_trx_rule E410R
+        where 
+            1 = 1
+        and E410R.ACTIVE = 'Y'
+        and E410R.FUND_ID = #{fundId}
+        and E410R.PERIOD = #{period}
+    </select>
+    
+    <select id="selectE410TrxDayData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    DATE_FORMAT(E410T.CONFIRM_DATE,'%Y-%m-%dT00:00:00.000') as confirmDate,
+		    DATE_FORMAT(E410T.ATTR1,'%Y-%m-%dT00:00:00.000') as attr1,
+		    DATE_FORMAT(E410T.ATTR2,'%Y-%m-%dT00:00:00.000') as attr2,
+		    DATE_FORMAT(E410T.ATTR3,'%Y-%m-%dT00:00:00.000') as attr3,
+		    DATE_FORMAT(E410T.ATTR4,'%Y-%m-%dT00:00:00.000') as attr4,
+		    DATE_FORMAT(E410T.ATTR5,'%Y-%m-%dT00:00:00.000') as attr5,
+		    DATE_FORMAT(E410T.ATTR6,'%Y-%m-%dT00:00:00.000') as attr6,
+		    DATE_FORMAT(E410T.ATTR7,'%Y-%m-%dT00:00:00.000') as attr7,
+		    DATE_FORMAT(E410T.ATTR8,'%Y-%m-%dT00:00:00.000') as attr8,
+		    DATE_FORMAT(E410T.ATTR9,'%Y-%m-%dT00:00:00.000') as attr9
+		FROM
+		    wp_e410_trxday E410T
+        where 
+            1 = 1
+        and E410T.STATUS = 'Y'
+        and E410T.FUND_ID = #{fundId}
+        and E410T.PERIOD = #{period}
+        ORDER BY E410T.CONFIRM_DATE desc
+    </select>
+    
+    <select id="selectE410SummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    DATE_FORMAT(E410S.TRX_DATE,'%Y-%m-%dT00:00:00.000') AS trxDate,
+		    E410S.ATTR1 AS attr1,
+		    E410S.ATTR2 AS attr2,
+		    E410S.ATTR3 AS attr3,
+		    E410S.ATTR4 AS attr4,
+		    E410S.ATTR5 AS attr5,
+		    E410S.ATTR6 AS attr6,
+		    E410S.ATTR7 AS attr7,
+		    E410S.ATTR8 AS attr8,
+		    E410S.ATTR9 AS attr9
+		FROM
+		    wp_e410_summary E410S
+        where 
+            1 = 1
+        and E410S.STATUS = 'Y'
+        and E410S.FUND_ID = #{fundId}
+        and E410S.PERIOD = #{period}
+        ORDER BY E410S.TRX_DATE desc
+    </select>
+    
+    <select id="selectE410ApArTestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    E410A.ITEM as item,
+		    E410A.END_BALANCE_CLIENT as endBalanceClinet
+		FROM
+		    wp_e410_apar_test E410A
+        where 
+            1 = 1
+        and E410A.STATUS = 'Y'
+        and E410A.FUND_ID = #{fundId}
+        and E410A.PERIOD = #{period}
+    </select>
+    
+    <select id="selectE410PeriodAfterTestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    DATE_FORMAT(E410P.TRX_DATE,'%Y-%m-%dT00:00:00.000') as trxDate,
+		    E410P.SETTLEMENT_AMOUNT as settlementAmount
+		FROM
+		    wp_e410_period_after_test E410P
+        where 
+            1 = 1
+        and E410P.STATUS = 'Y'
+        and E410P.FUND_ID = #{fundId}
+        and E410P.PERIOD = #{period}
+        ORDER BY E410P.SEQ
+    </select>
+    
     <select id="selectE500Data" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    E500.ATTR1 AS detailName,
