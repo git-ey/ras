@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.service.wp.output.EExportManager;
@@ -36,6 +40,7 @@ public class EExportService extends BaseExportService implements EExportManager{
         dataMap.put("E300", this.getE300Data(fundId, period));
         dataMap.put("E400", this.getE400Data(fundId, period));
         dataMap.put("E410", this.getE410Data(fundId, period));
+        dataMap.put("E41X", this.getE41XData(fundId, period));
         dataMap.put("E500", this.getE500Data(fundId, period));
 
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_E);
@@ -381,6 +386,74 @@ public class EExportService extends BaseExportService implements EExportManager{
         }
         
         return map;
+    }
+    
+    /**
+     * 处理sheet页E41X的数据
+     * @author Dai Zong 2017年9月29日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getE41XData(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        List<Map<String,Object>> sheetList = new ArrayList<>();
+        Map<String,Object> E41XdealerMetaData = null;
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> E41XdealerMetaDataList = (List<Map<String,Object>>) this.dao.findForList("EExportMapper.selectE41XDealerFlagData", queryMap);
+        if(CollectionUtils.isEmpty(E41XdealerMetaDataList)) {
+            E41XdealerMetaData = new HashMap<>();
+        }else {
+            E41XdealerMetaData = E41XdealerMetaDataList.get(0);
+        }
+        
+        String dealerFlag = StringUtils.EMPTY;
+        if(E41XdealerMetaData.get("dealerFlag") == null) {
+            dealerFlag = "N";
+        }else {
+            dealerFlag = String.valueOf(E41XdealerMetaData.get("dealerFlag"));
+        }
+        Object dealerName = E41XdealerMetaData.get("dealerName");
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> E41XDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE41XDetailData", queryMap);
+        if(E41XDetailMetaDataList == null) {
+            E41XDetailMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        Map<Object, List<Map<String, Object>>> collection = E41XDetailMetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>) item;
+            return map.get("trxDate");
+        }));
+        
+        Set<Entry<Object,List<Map<String,Object>>>> entrySet = collection.entrySet();
+        int i = 1;
+        for(Entry<Object,List<Map<String,Object>>> entry: entrySet) {
+            Map<String,Object> temp = new HashMap<>();
+            temp.put("trxDate", entry.getKey());
+            temp.put("sheetNum", "E41"+(i++));
+            List<Map<String,Object>> list = entry.getValue();
+            if(list == null) {
+                list = new ArrayList<>();
+            }
+            temp.put("list", list);
+            temp.put("count", list.size());
+            
+            sheetList.add(temp);
+        }
+        
+        
+        result.put("dealerFlag", dealerFlag);
+        result.put("dealerName", dealerName);
+        result.put("sheetList", sheetList);
+        result.put("sheetCount", sheetList.size());
+        
+        return result;
     }
     
     /**

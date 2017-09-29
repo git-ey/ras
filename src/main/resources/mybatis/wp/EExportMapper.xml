@@ -161,6 +161,42 @@
         ORDER BY E410P.SEQ
     </select>
     
+    <select id="selectE41XDealerFlagData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            FI.DIRECT_DEALER_NAME as dealerName,
+		    IFNULL(FI.DEALER_SEPERATE,'N') as dealerFlag
+		FROM
+		    sys_fund_info FI
+		where
+		     1 = 1
+		and FI.FUND_ID = #{fundId}
+		LIMIT 1
+    </select>
+    
+    <select id="selectE41XDetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    E410S.TRX_DATE as trxDate,
+		    E41X.TRX_TYPE as trxType,
+		    E41X.DEALER as dealer,
+		    E41X.TRX_QUANTITY as trxQuantity,
+		    E41X.TRX_AMOUNT as trxAmount,
+		    E41X.TRX_FEE as trxFee,
+		    E41X.BACKEND_FEE as backendFee,
+		    E41X.CONFIRMED_AMOUNT as confirmedAmount
+		FROM
+		    ey_daily_settlement E41X
+		INNER JOIN wp_e410_summary E410S ON (
+		    E410S.TRX_DATE = E41X.TRX_DATE
+		    and E410S.FUND_ID = E41X.FUND_ID
+		    and E410S.PERIOD = E41X.PERIOD
+		)
+		where 
+		    1 = 1
+		and E41X.FUND_ID = #{fundId}
+		and E41X.PERIOD = #{period}
+		ORDER BY E41X.TRX_DATE,E41X.SEQ
+    </select>
+    
     <select id="selectE500Data" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    E500.ATTR1 AS detailName,
