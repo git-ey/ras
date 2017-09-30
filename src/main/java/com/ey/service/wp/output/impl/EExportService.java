@@ -42,6 +42,7 @@ public class EExportService extends BaseExportService implements EExportManager{
         dataMap.put("E410", this.getE410Data(fundId, period));
         dataMap.put("E41X", this.getE41XData(fundId, period));
         dataMap.put("E500", this.getE500Data(fundId, period));
+        dataMap.put("E600", this.getE600Data(fundId, period));
 
         String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_E);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_E, xmlStr);
@@ -477,6 +478,57 @@ public class EExportService extends BaseExportService implements EExportManager{
         
         result.put("list", E500MetaDataList);
         result.put("count", E500MetaDataList.size());
+        
+        return result;
+    }
+    
+    /**
+     * 处理sheet页E600的数据
+     * @author Dai Zong 2017年9月30日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getE600Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        List<Map<String,Object>> itemList =  new ArrayList<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> E600MetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE600Data", queryMap);
+        if(E600MetaDataList == null) {
+            E600MetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        Map<Object, List<Map<String, Object>>> collect = E600MetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>) item;
+            return map.get("item");
+        }));
+        
+        collect.forEach((k,v) -> {
+            Map<String,Object> temp = new HashMap<>();
+            temp.put("item", k);
+            if(v == null) {
+                v = new ArrayList<>();
+                v.add(new HashMap<>());
+            }
+            temp.put("detailList", v);
+            temp.put("detailCount", v.size());
+            
+            itemList.add(temp);
+        });
+        
+        Integer totalCount = 0;
+        for(Map<String,Object> map : itemList) {
+            totalCount += Integer.parseInt(String.valueOf(map.get("detailCount")));
+        }
+        
+        result.put("itemList", itemList);
+        result.put("itemCount", itemList.size());
+        result.put("totalCount", totalCount+3*itemList.size());
         
         return result;
     }

@@ -210,4 +210,19 @@
         and E500.FUND_ID = #{fundId}
         and E500.PERIOD = #{period}
     </select>
+    
+    <select id="selectE600Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    E600.ATTR1 as item,
+		    E600.ATTR4 as detailName,
+		    E600.BEGIN_BALANCE_CNY as beginBalance,
+		    E600.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_e600 E600
+        where 
+            1 = 1
+        and E600.STATUS = 'Y'
+        and E600.FUND_ID = #{fundId}
+        and E600.PERIOD = #{period}
+    </select>
 </mapper>

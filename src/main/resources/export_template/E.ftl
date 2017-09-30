@@ -3716,22 +3716,20 @@
     <Cell ss:StyleID="s65"/>
     <Cell ss:Index="5" ss:StyleID="s60"/>
    </Row>
+   <#if E600.itemCount != 0>
+   <#list E600.itemList as item>
+   <#if item.detailCount != 0>
+   <#list item.detailList as detail>
    <Row ss:StyleID="s63">
-    <Cell ss:StyleID="s53"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s53"><Data ss:Type="String"><#if detail_index == 0>${item.item!}</#if></Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${detail.detailName!}</Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(detail.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(detail.endBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:Index="10" ss:StyleID="s58"/>
    </Row>
-   <Row ss:StyleID="s63">
-    <Cell ss:StyleID="s53"/>
-    <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s59"/>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s63">
     <Cell ss:StyleID="s53"/>
     <Cell ss:StyleID="s47"/>
@@ -3744,9 +3742,9 @@
    <Row ss:StyleID="s63">
     <Cell ss:StyleID="s53"/>
     <Cell ss:StyleID="s47"><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(1+item.detailCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(1+item.detailCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s127"/>
     <Cell ss:Index="10" ss:StyleID="s58"/>
    </Row>
@@ -3759,62 +3757,14 @@
     <Cell ss:StyleID="s127"/>
     <Cell ss:Index="10" ss:StyleID="s58"/>
    </Row>
-   <Row ss:StyleID="s63">
-    <Cell ss:StyleID="s53"><Data ss:Type="String">基金</Data></Cell>
-    <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s128"/>
-    <Cell ss:Index="5" ss:StyleID="s128"/>
-    <Cell ss:StyleID="s127"/>
-    <Cell ss:Index="10" ss:StyleID="s58"/>
-   </Row>
-   <Row ss:StyleID="s63">
-    <Cell ss:StyleID="s53"/>
-    <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s128"/>
-    <Cell ss:Index="5" ss:StyleID="s128"/>
-    <Cell ss:StyleID="s127"/>
-    <Cell ss:Index="10" ss:StyleID="s58"/>
-   </Row>
-   <Row ss:StyleID="s63">
-    <Cell ss:StyleID="s53"/>
-    <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s128"/>
-    <Cell ss:Index="5" ss:StyleID="s128"/>
-    <Cell ss:StyleID="s127"/>
-    <Cell ss:Index="10" ss:StyleID="s58"/>
-   </Row>
-   <Row ss:StyleID="s63">
-    <Cell ss:StyleID="s53"/>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:Index="5" ss:StyleID="s126" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data
-      ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s127"/>
-    <Cell ss:Index="10" ss:StyleID="s58"/>
-   </Row>
-   <Row ss:StyleID="s96">
-    <Cell ss:StyleID="s53"/>
-    <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s128"/>
-    <Cell ss:StyleID="s116"/>
-    <Cell ss:StyleID="s128"/>
-    <Cell ss:StyleID="s130"/>
-    <Cell ss:Index="10" ss:StyleID="s116"/>
-    <Cell ss:StyleID="s116"/>
-    <Cell ss:StyleID="s116"/>
-    <Cell ss:StyleID="s116"/>
-    <Cell ss:StyleID="s116"/>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:Height="14.25" ss:StyleID="s63">
     <Cell ss:StyleID="s109"/>
     <Cell ss:StyleID="s56"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s125"
-     ss:Formula="=SUMIF(R[-10]C[-1]:R[-2]C[-1],&quot;小计&quot;,R[-10]C:R[-2]C)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUMIF(R[${(-E600.totalCount)?string('0')}]C[-1]:R[-2]C[-1],&quot;小计&quot;,R[${(-E600.totalCount)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s117"/>
-    <Cell ss:StyleID="s125"
-     ss:Formula="=SUMIF(R[-10]C[-3]:R[-2]C[-3],&quot;小计&quot;,R[-10]C:R[-2]C)"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUMIF(R[${(-E600.totalCount)?string('0')}]C[-3]:R[-2]C[-3],&quot;小计&quot;,R[${(-E600.totalCount)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s129"><Data ss:Type="String">&lt;E&gt;</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s64">
@@ -3950,85 +3900,22 @@
     <Cell ss:Index="3" ss:StyleID="s168"><Data ss:Type="String">${(period)?string('0')}年12月31日</Data></Cell>
     <Cell ss:StyleID="s168"><Data ss:Type="String">${(period-1)?string('0')}年12月31日</Data></Cell>
    </Row>
+   <#if E300.disc.count != 0>
+   <#list E300.disc.list as item>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">应收活期存款利息</Data></Cell>
-    <Cell ss:StyleID="s168"/>
-    <Cell ss:StyleID="s168"/>
-    <Cell ss:StyleID="s77"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s169"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s168"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s168"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="String"><#if item_index == 0>&lt;审定财务报表&gt;</#if></Data></Cell>
    </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">应收定期存款利息</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s77"/>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">应收其他存款利息</Data></Cell>
-    <Cell ss:StyleID="s168"/>
-    <Cell ss:StyleID="s168"/>
-    <Cell ss:StyleID="s77"/>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">应收结算备付金利息</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s76"/>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">应收债券利息</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s75"/>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">应收买入返售证券利息</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s75"/>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">应收申购款利息</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s75"/>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">应收黄金合约拆借孳息</Data></Cell>
-    <Cell ss:StyleID="s168"/>
-    <Cell ss:StyleID="s168"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:Index="9" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">其他</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s168"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s111"/>
-    <Cell ss:StyleID="s111"/>
-    <Cell ss:StyleID="s111"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s171"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s170" ss:Formula="=SUM(R[-9]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s170" ss:Formula="=SUM(R[-9]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s170" ss:Formula="=SUM(R[${(-E300.disc.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s170" ss:Formula="=SUM(R[${(-E300.disc.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s75"/>
     <Cell ss:Index="9" ss:StyleID="s62"/>
     <Cell ss:StyleID="s62"/>
@@ -4044,9 +3931,8 @@
    <Row>
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s73"><Data ss:Type="String">control</Data></Cell>
-    <Cell ss:StyleID="s112" ss:Formula="=R[-2]C-E!R[-9]C[5]"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s112" ss:Formula="=E10000!R[-2]C-E!R[-9]C[2]"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s112" ss:Formula="=R[-2]C-E!R12C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s112" ss:Formula="=R[-2]C-E!R12C6"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row/>
    <Row>
