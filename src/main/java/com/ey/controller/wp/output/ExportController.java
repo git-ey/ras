@@ -22,9 +22,12 @@ import com.ey.service.wp.output.GExportManager;
 import com.ey.service.wp.output.NExportManager;
 import com.ey.service.wp.output.PExportManager;
 import com.ey.service.wp.output.ReportExportManager;
-import com.ey.util.FileDownload;
+import com.ey.util.DelAllFile;
 import com.ey.util.FileZip;
 import com.ey.util.PageData;
+import com.ey.util.PathUtil;
+import com.ey.util.fileexport.Constants;
+import com.ey.util.fileexport.FileExportUtils;
 
 /**
  * 说明： 底稿输出Controller
@@ -58,6 +61,19 @@ public class ExportController extends BaseController {
 	}
 	
 	/**
+	 * 数据校验
+	 * @author Dai Zong 2017年10月17日
+	 * 
+	 * @param fundId 基金ID
+	 * @param periodStr 期间字符串
+	 */
+	private void dataCheck(String fundId, String periodStr) {
+	    if(fundId == null || periodStr == null) {
+            throw new IllegalArgumentException("基金ID和期间不能为空");
+        }
+	}
+	
+	/**
      * 导出Word报告
      * 
      * @param
@@ -68,9 +84,8 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        if(fundId == null || periodStr == null) {
-            throw new IllegalArgumentException("基金ID和期间不能为空");
-        }
+        this.dataCheck(fundId, periodStr);
+        
         this.reportExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
     }
 
@@ -85,9 +100,8 @@ public class ExportController extends BaseController {
 		PageData pd = this.getPageData();
 		String fundId = pd.getString("FUND_ID");
 		String periodStr = pd.getString("PEROID");
-		if(fundId == null || periodStr == null) {
-		    throw new IllegalArgumentException("基金ID和期间不能为空");
-		}
+		this.dataCheck(fundId, periodStr);
+        
 		this.cExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
 	}
 	
@@ -102,9 +116,8 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        if(fundId == null || periodStr == null) {
-            throw new IllegalArgumentException("基金ID和期间不能为空");
-        }
+        this.dataCheck(fundId, periodStr);
+        
         this.gExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
     }
     
@@ -119,9 +132,8 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        if(fundId == null || periodStr == null) {
-            throw new IllegalArgumentException("基金ID和期间不能为空");
-        }
+        this.dataCheck(fundId, periodStr);
+        
         this.nExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
     }
     
@@ -136,9 +148,8 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        if(fundId == null || periodStr == null) {
-            throw new IllegalArgumentException("基金ID和期间不能为空");
-        }
+        this.dataCheck(fundId, periodStr);
+        
         this.pExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
     }
     
@@ -153,39 +164,40 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        if(fundId == null || periodStr == null) {
-            throw new IllegalArgumentException("基金ID和期间不能为空");
-        }
+        this.dataCheck(fundId, periodStr);
+        
         this.eExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
     }
     
     @RequestMapping(value = "/download")
     public void downLoadOneFund(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();
-        String fundId = pd.getString("FUND_ID");
-        String periodStr = pd.getString("PEROID");
-        if(fundId == null || periodStr == null) {
-            throw new IllegalArgumentException("基金ID和期间不能为空");
+        final String fundId = pd.getString("FUND_ID");
+        final String periodStr = pd.getString("PEROID");
+        this.dataCheck(fundId, periodStr);
+        final long period = Long.parseLong(periodStr);
+        
+        final String fileIdentifier = fundId + "_" + periodStr;
+        final String resourcePath = PathUtil.getClassResources();
+        final String folderName = resourcePath + fileIdentifier + "_" + String.valueOf(new Date().getTime());
+        
+        this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, period);
+        this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, period);
+        this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, period);
+        this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, period);
+        this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, period);
+        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, fundId, period);
+        
+        final String zipFileName = fileIdentifier + ".zip";
+        final String zipFileFullName = resourcePath + zipFileName;
+        FileZip.zip(folderName, zipFileFullName);
+        
+        FileExportUtils.writeFileToHttpResponse(request, response, zipFileName, new File(zipFileFullName));
+        
+        DelAllFile.delFolder(folderName);
+        File zipFile = new File(zipFileFullName);
+        if(zipFile.exists() && zipFile.isFile()) {
+            zipFile.delete();
         }
-        
-        String path = (String.valueOf(Thread.currentThread().getContextClassLoader().getResource(""))).replaceAll("file:/", "").replaceAll("%20", " ").trim(); 
-        if(path.indexOf(":") != 1){
-            path = File.separator + path;
-        }
-        
-        String folderName = path + fundId + "_" + periodStr + "_" + String.valueOf(new Date().getTime());
-        
-        long period = Long.parseLong(periodStr);
-        cExportService.doExport(folderName, "C.xls", fundId, period);
-        gExportService.doExport(folderName, "G.xls", fundId, period);
-        nExportService.doExport(folderName, "N.xls", fundId, period);
-        pExportService.doExport(folderName, "P.xls", fundId, period);
-        eExportService.doExport(folderName, "E.xls", fundId, period);
-        reportExportService.doExport(folderName, "report.doc", fundId, period);
-        
-        String zipFileName = path + fundId + "_" + periodStr + ".zip";
-        FileZip.zip(folderName, zipFileName);
-        
-        FileDownload.fileDownload(response, zipFileName, fundId + "_" + periodStr + ".zip");
     }
 }

@@ -14,6 +14,10 @@ public interface Constants {
      */
     static final String EXPORT_TEMPLATE_FILE_NAME_REPORT = "Report.ftl";
     /**
+     * 底稿名称--Report
+     */
+    static final String EXPORT_AIM_FILE_NAME_REPORT = "report.doc";
+    /**
      * 模板名称--C
      */
     static final String EXPORT_TEMPLATE_FILE_NAME_C = "C.ftl";

@@ -1,7 +1,5 @@
 package com.ey.service.wp.output.impl;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,8 +24,16 @@ import com.ey.util.fileexport.FreeMarkerUtils;
 @Service("gExportService")
 public class GExportService extends BaseExportService implements GExportManager{
 
-	@Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
+    /**
+     * 生成文件内容
+     * @author Dai Zong 2017年10月17日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private String generateFileContent(String fundId, Long period) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
         
         dataMap.put("period", period);
@@ -37,9 +43,20 @@ public class GExportService extends BaseExportService implements GExportManager{
         dataMap.put("G300", this.getG300Data(fundId, period));
         dataMap.put("G10000", this.getG10000Data(fundId, period));
         
-        String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_G);
+        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_G);
+    }
+    
+	@Override
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
+        String xmlStr = this.generateFileContent(fundId, period);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_G, xmlStr);
-        
+        return true;
+    }
+	
+	@Override
+    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
+	    String xmlStr = this.generateFileContent(fundId, period);
+        FileExportUtils.writeFileToDisk(folederName, fileName, xmlStr);
         return true;
     }
     
@@ -135,22 +152,5 @@ public class GExportService extends BaseExportService implements GExportManager{
         result.put("count", metaDataList.size());
         
         return result;
-    }
-
-    @Override
-    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
-Map<String, Object> dataMap = new HashMap<String, Object>();
-        
-        dataMap.put("period", period);
-        dataMap.put("fundId", fundId);
-        
-        dataMap.put("G", this.getGData(fundId, period));
-        dataMap.put("G300", this.getG300Data(fundId, period));
-        dataMap.put("G10000", this.getG10000Data(fundId, period));
-        
-        String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_G);
-        FileExportUtils.writeFileToDisk(folederName, fileName, new BufferedInputStream(new ByteArrayInputStream(xmlStr.getBytes("UTF-8")), 1024));
-        
-        return true;
     }
 }

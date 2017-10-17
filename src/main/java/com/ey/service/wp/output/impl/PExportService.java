@@ -1,7 +1,5 @@
 package com.ey.service.wp.output.impl;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +23,16 @@ import com.ey.util.fileexport.FreeMarkerUtils;
 @Service("pExportService")
 public class PExportService extends BaseExportService implements PExportManager{
 
-	@Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
+    /**
+     * 生成文件内容
+     * @author Dai Zong 2017年10月17日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private String generateFileContent(String fundId, Long period) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
         
         dataMap.put("period", period);
@@ -40,9 +46,20 @@ public class PExportService extends BaseExportService implements PExportManager{
         dataMap.put("P800", this.getP800Data(fundId, period));
         dataMap.put("P10000", this.getP10000Data(fundId, period));
         
-        String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_P);
+        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_P);
+    }
+    
+	@Override
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
+        String xmlStr = this.generateFileContent(fundId, period);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_P, xmlStr);
-        
+        return true;
+    }
+	
+	@Override
+    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
+	    String xmlStr = this.generateFileContent(fundId, period);
+        FileExportUtils.writeFileToDisk(folederName, fileName, xmlStr);
         return true;
     }
 	
@@ -304,26 +321,5 @@ public class PExportService extends BaseExportService implements PExportManager{
         result.put("count", P10000MetaDataList.size());
         
         return result;
-    }
-
-    @Override
-    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
-Map<String, Object> dataMap = new HashMap<String, Object>();
-        
-        dataMap.put("period", period);
-        dataMap.put("fundId", fundId);
-        
-        dataMap.put("P", this.getPData(fundId, period));
-        dataMap.put("P300", this.getP300Data(fundId, period));
-        dataMap.put("P400", this.getP400Data(fundId, period));
-        dataMap.put("P500", this.getP500Data(fundId, period));
-        dataMap.put("P600", this.getP600Data(fundId, period));
-        dataMap.put("P800", this.getP800Data(fundId, period));
-        dataMap.put("P10000", this.getP10000Data(fundId, period));
-        
-        String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_P);
-        FileExportUtils.writeFileToDisk(folederName, fileName, new BufferedInputStream(new ByteArrayInputStream(xmlStr.getBytes("UTF-8")), 1024));
-        
-        return true;
     }
 }
