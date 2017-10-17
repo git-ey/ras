@@ -22,5 +22,7 @@ public interface BaseExportManager{
      * @throws Exception
      */
     boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception;
+    
+    boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception;
 }
 

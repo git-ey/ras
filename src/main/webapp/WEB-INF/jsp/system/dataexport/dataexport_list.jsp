@@ -114,7 +114,7 @@
 											<td class='center'>
 											    <c:choose>  
                                                    <c:when test="${var.EXTFLAG > 0 }">
-                                                       <a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon green"></i></a>
+                                                       <a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}','${var.PERIOD}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon green"></i></a>
                                                    </c:when>
                                                    <c:otherwise>
                                                        <a class="btn btn-light btn-xs" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon gray"></i></a>

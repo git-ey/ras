@@ -1,5 +1,7 @@
 package com.ey.service.wp.output.impl;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +51,26 @@ public class EExportService extends BaseExportService implements EExportManager{
         
         return true;
     }
+	
+	public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception{
+	    Map<String, Object> dataMap = new HashMap<String, Object>();
+        
+        dataMap.put("period", period);
+        dataMap.put("fundId", fundId);
+        
+        dataMap.put("E", this.getEData(fundId, period));
+        dataMap.put("E300", this.getE300Data(fundId, period));
+        dataMap.put("E400", this.getE400Data(fundId, period));
+        dataMap.put("E410", this.getE410Data(fundId, period));
+        dataMap.put("E41X", this.getE41XData(fundId, period));
+        dataMap.put("E500", this.getE500Data(fundId, period));
+        dataMap.put("E600", this.getE600Data(fundId, period));
+
+        String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_E);
+	    
+        FileExportUtils.writeFileToDisk(folederName, fileName, new BufferedInputStream(new ByteArrayInputStream(xmlStr.getBytes("UTF-8")), 1024));
+	    return true;
+	}
 	
 	/**
      * 处理sheet页E的数据

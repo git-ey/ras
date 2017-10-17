@@ -1,5 +1,7 @@
 package com.ey.service.wp.output.impl;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -283,5 +285,23 @@ public class CExportService extends BaseExportService implements CExportManager{
         result.put("detailListCount", detailList.size());
         //========process dataMap for main view end========
         return result;
+    }
+
+    @Override
+    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
+Map<String, Object> dataMap = new HashMap<String, Object>();
+        
+        dataMap.put("period", period);
+        dataMap.put("fundId", fundId);
+        
+        dataMap.put("C", this.getCData(fundId, period));
+        dataMap.put("C300", this.getC300Data(fundId, period));
+        dataMap.put("C400", this.getC400Data(fundId, period));
+        dataMap.put("C10000", this.getC10000Data(fundId, period));
+        
+        String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_C);
+        FileExportUtils.writeFileToDisk(folederName, fileName, new BufferedInputStream(new ByteArrayInputStream(xmlStr.getBytes("UTF-8")), 1024));
+        
+        return true;
     }
 }

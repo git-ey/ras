@@ -39,4 +39,10 @@ public class ReportExportService implements ReportExportManager {
 		return true;
 	}
 
+    @Override
+    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }
