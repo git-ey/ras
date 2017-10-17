@@ -25,7 +25,6 @@ import com.ey.service.wp.output.ReportExportManager;
 import com.ey.util.FileDownload;
 import com.ey.util.FileZip;
 import com.ey.util.PageData;
-import com.ey.util.PathUtil;
 
 /**
  * 说明： 底稿输出Controller
@@ -182,6 +181,7 @@ public class ExportController extends BaseController {
         nExportService.doExport(folderName, "N.xls", fundId, period);
         pExportService.doExport(folderName, "P.xls", fundId, period);
         eExportService.doExport(folderName, "E.xls", fundId, period);
+        reportExportService.doExport(folderName, "report.doc", fundId, period);
         
         String zipFileName = path + fundId + "_" + periodStr + ".zip";
         FileZip.zip(folderName, zipFileName);

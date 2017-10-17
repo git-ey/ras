@@ -1,5 +1,7 @@
 package com.ey.service.wp.output.impl;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,8 +43,14 @@ public class ReportExportService implements ReportExportManager {
 
     @Override
     public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
-        // TODO Auto-generated method stub
-        return false;
+        Map<String, Object> dataMap = new HashMap<String, Object>();
+
+        dataMap.put("period", period);
+        dataMap.put("fundId", fundId);
+
+        String xmlStr = FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_REPORT);
+        FileExportUtils.writeFileToDisk(folederName, fileName, new BufferedInputStream(new ByteArrayInputStream(xmlStr.getBytes("UTF-8")), 1024));
+        return true;
     }
 
 }
