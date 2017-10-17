@@ -38,7 +38,7 @@
 			<form action="" method="post" name="loginForm" id="loginForm">
 				<div class="control-group normal_text">
 					<h3>
-						EY底稿报告辅助系统
+						EY HIVE
 					</h3>
 				</div>
 				<div class="control-group">

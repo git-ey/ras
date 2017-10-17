@@ -66,9 +66,11 @@
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
+								<!-- 
 								<td style="vertical-align:top;">
 									<c:if test="${QX.toExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="exportAll('确定要导出选中的数据吗?');" title="批量导出"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td></c:if>
 								</td>
+								 -->
 								<td style="padding-left:2px;text-align:right;width:20%;"></td>
 							</tr>
 						</table>
@@ -109,7 +111,16 @@
 									        <td class="center"><a class="btn btn-mini">U</a></td>
 								 	        <td class="center"><a class="btn btn-mini">V</a></td>
 											<td class='center'><a class="btn btn-mini btn-success" onclick="wpExport('Report','${var.FUND_ID}','${var.PERIOD}');">报告</a></td>
-											<td class='center'><a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td>
+											<td class='center'>
+											    <c:choose>  
+                                                   <c:when test="${var.EXTFLAG > 0 }">
+                                                       <a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon green"></i></a>
+                                                   </c:when>
+                                                   <c:otherwise>
+                                                       <a class="btn btn-light btn-xs" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon gray"></i></a>
+                                                   </c:otherwise>
+                                                </c:choose>
+											</td>
 										</tr>
 									
 									</c:forEach>
@@ -224,6 +235,11 @@
 		//导出
 		function wpExport(type,fundId,peroid){
 			window.location.href="<%=basePath%>wpExport/"+type+".do?FUND_ID="+fundId+"&PEROID="+peroid;
+		}
+		
+		//下载
+		function toDownload(fundId,peroid){
+			window.location.href="<%=basePath%>wpExport/download.do?FUND_ID="+fundId+"&PEROID="+peroid;
 		}
 		
 		//批量导出
