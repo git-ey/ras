@@ -178,7 +178,7 @@ public class ExportController extends BaseController {
         final long period = Long.parseLong(periodStr);
         
         final String fileIdentifier = fundId + "_" + periodStr;
-        final String resourcePath = PathUtil.getClassResources();
+        final String resourcePath = PathUtil.getWebResourcePath(request);
         final String folderName = resourcePath + fileIdentifier + "_" + String.valueOf(new Date().getTime());
         
         this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, period);
