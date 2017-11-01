@@ -55,6 +55,16 @@ public class BaseController {
 	 * 基金信息导入模版代码
 	 */
 	protected final static String FI_IMPORT_TEMPLATE_CODE = "FI";
+	
+	/**
+	 * 资产负债表映射导入模版代码
+	 */
+	protected final static String BSM_IMPORT_TEMPLATE_CODE = "BSM";
+	
+	/**
+	 * 利润表映射导入模版代码
+	 */
+	protected final static String PLM_IMPORT_TEMPLATE_CODE = "PLM";
 
 	/**
 	 * new PageData对象

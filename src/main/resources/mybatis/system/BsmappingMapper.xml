@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BsmappingMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_BSMAPPING
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		BTCODE,	
+		DESCRIPSION,	
+		SOURCETABLE,	
+		REVEAL_ITEM,	
+		EY_ACCOUNT_NUM,	
+		BSMAPPING_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{BTCODE},	
+		#{DESCRIPSION},	
+		#{SOURCETABLE},	
+		#{REVEAL_ITEM},	
+		#{EY_ACCOUNT_NUM},	
+		#{BSMAPPING_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		     #{pd.BTCODE},	
+		     #{pd.DESCRIPSION},	
+		     #{pd.SOURCETABLE},	
+		     #{pd.REVEAL_ITEM},	
+		     #{pd.EY_ACCOUNT_NUM},	
+		     #{pd.BSMAPPING_ID}
+         )
+         </foreach >
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			BSMAPPING_ID = #{BSMAPPING_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			BTCODE = #{BTCODE},
+			DESCRIPSION = #{DESCRIPSION},
+			SOURCETABLE = #{SOURCETABLE},
+			REVEAL_ITEM = #{REVEAL_ITEM},
+			EY_ACCOUNT_NUM = #{EY_ACCOUNT_NUM},
+		BSMAPPING_ID = BSMAPPING_ID
+		where 
+		BSMAPPING_ID = #{BSMAPPING_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			BSMAPPING_ID = #{BSMAPPING_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!--  根据需求自己加检索条件 -->
+					DESCRIPSION LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					EY_ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+		<if test="pd.SOURCETABLE != null and pd.SOURCETABLE != ''">
+		    and SOURCETABLE = #{pd.SOURCETABLE}
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			BSMAPPING_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+</mapper>

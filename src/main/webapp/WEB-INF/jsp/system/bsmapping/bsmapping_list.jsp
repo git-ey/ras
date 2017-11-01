@@ -31,7 +31,7 @@
 						<div class="col-xs-12">
 							
 						<!-- 检索  -->
-						<form action="acctmapping/list.do" method="post" name="Form" id="Form">
+						<form action="bsmapping/list.do" method="post" name="Form" id="Form">
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -43,26 +43,24 @@
 									</div>
 								</td>
 								<td style="vertical-align:top;padding-left:2px;">
-								    <input type="text" style="width:98%;" placeholder="基金ID" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }"/>
-								</td>
-								<td style="vertical-align:top;padding-left:2px;">
-								    <input type="text" style="width:98%;" placeholder="科目代码" class="nav-search-input" name="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM }"/>
-								</td>
-								<td style="vertical-align:top;padding-left:2px;">
-								    <input type="text" style="width:98%;" placeholder="EY科目ID" class="nav-search-input" name="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM }"/>
-								</td>
-								<td style="vertical-align:top;padding-left:2px;">
-								 	<select class="chosen-select form-control" name="LEVEL" id="id" data-placeholder="科目级别" style="vertical-align:top;width: 120px;">
+								 	<select class="chosen-select form-control" name="SOURCETABLE" id="SOURCETABLE" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
 									<option value=""></option>
-									<option value="1" <c:if test="${pd.LEVEL == 1}">selected</c:if>>1级</option>
-									<option value="2" <c:if test="${pd.LEVEL == 2}">selected</c:if>>2级</option>
-									<option value="3" <c:if test="${pd.LEVEL == 3}">selected</c:if>>3级</option>
-									<option value="4" <c:if test="${pd.LEVEL == 4}">selected</c:if>>4级</option>
-									<option value="5" <c:if test="${pd.LEVEL == 5}">selected</c:if>>5级</option>
+									<option value="C" <c:if test="${pd.SOURCETABLE == 'C'}">selected</c:if>>C</option>
+									<option value="H" <c:if test="${pd.SOURCETABLE == 'H'}">selected</c:if>>H</option>
+									<option value="P" <c:if test="${pd.SOURCETABLE == 'P'}">selected</c:if>>P</option>
+									<option value="E" <c:if test="${pd.SOURCETABLE == 'E'}">selected</c:if>>E</option>
+									<option value="G" <c:if test="${pd.SOURCETABLE == 'G'}">selected</c:if>>G</option>
+									<option value="N" <c:if test="${pd.SOURCETABLE == 'N'}">selected</c:if>>N</option>
+									<option value="T" <c:if test="${pd.SOURCETABLE == 'T'}">selected</c:if>>T</option>
+									<option value="I" <c:if test="${pd.SOURCETABLE == 'I'}">selected</c:if>>I</option>
+									<option value="U" <c:if test="${pd.SOURCETABLE == 'U'}">selected</c:if>>U</option>
+									<option value="V" <c:if test="${pd.SOURCETABLE == 'V'}">selected</c:if>>V</option>
 								  	</select>
 								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
+								</c:if>
+								<c:if test="${QX.toExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
 								<c:if test="${QX.FromExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="ace-icon fa fa-cloud-upload bigger-110 nav-search-icon blue"></i></a></td></c:if>
 							</tr>
@@ -76,17 +74,12 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
-									<th class="center" style="width:8%;">基金ID</th>
-									<th class="center" style="width:10%;">科目代码</th>
-									<th class="center" style="width:15%;">科目名称</th>
-									<th class="center" style="width:6%;">级别</th>
-									<th class="center" style="width:6%;">币种</th>
-									<th class="center" style="width:8%;">科目属性</th>
-									<th class="center" style="width:7%;">记账科目</th>
-									<th class="center" style="width:10%;">EY科目ID</th>
-									<th class="center" style="width:7%;">属性1</th>
-									<th class="center" style="width:7%;">是否启用</th>
-									<th class="center" style="width:8%;">操作</th>
+									<th class="center">表项</th>
+									<th class="center">表项名称</th>
+									<th class="center">来源表</th>
+									<th class="center">披露名称</th>
+									<th class="center">EY科目代码</th>
+									<th class="center">操作</th>
 								</tr>
 							</thead>
 													
@@ -98,41 +91,26 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.ACCTMAPPING_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.BSMAPPING_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
-											<td class='center'>${var.FUND_ID}</td>
-											<td class='center'>${var.ACCOUNT_NUM}</td>
-											<td class='center'>${var.ACCOUNT_DESCRIPTION}</td>
-											<td class='center'>${var.LEVEL}</td>
-											<td class='center'>${var.CURRENCY}</td>
-											<td class='center'>${var.TYPE}</td>
-											<td class='center'>
-											    <c:choose>
-											        <c:when test="${var.ENTERABLE == 'Y'}">是</c:when>
-											        <c:when test="${var.ENTERABLE == 'N'}">否</c:when>
-											    </c:choose>
-											</td>
+											<td class='center'>${var.BTCODE}</td>
+											<td class='center'>${var.DESCRIPSION}</td>
+											<td class='center'>${var.SOURCETABLE}</td>
+											<td class='center'>${var.REVEAL_ITEM}</td>
 											<td class='center'>${var.EY_ACCOUNT_NUM}</td>
-											<td class='center'>${var.ATTR1}</td>
-											<td class='center'>
-											    <c:choose>
-											        <c:when test="${var.ACTIVE == 'Y'}">是</c:when>
-											        <c:when test="${var.ACTIVE == 'N'}">否</c:when>
-											    </c:choose>
-											</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.ACCTMAPPING_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.BSMAPPING_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.ACCTMAPPING_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.BSMAPPING_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -146,7 +124,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.ACCTMAPPING_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.BSMAPPING_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -155,7 +133,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.ACCTMAPPING_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.BSMAPPING_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -292,9 +270,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>acctmapping/goAdd.do';
-			 diag.Width = 800;
-			 diag.Height = 480;
+			 diag.URL = '<%=basePath%>bsmapping/goAdd.do';
+			 diag.Width = 450;
+			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -317,7 +295,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>acctmapping/goUploadExcel.do';
+			 diag.URL = '<%=basePath%>bsmapping/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -339,7 +317,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>acctmapping/delete.do?ACCTMAPPING_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>bsmapping/delete.do?BSMAPPING_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -353,9 +331,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>acctmapping/goEdit.do?ACCTMAPPING_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 480;
+			 diag.URL = '<%=basePath%>bsmapping/goEdit.do?BSMAPPING_ID='+Id;
+			 diag.Width = 450;
+			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 
@@ -397,7 +375,7 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>acctmapping/deleteAll.do?tm='+new Date().getTime(),
+								url: '<%=basePath%>bsmapping/deleteAll.do?tm='+new Date().getTime(),
 						    	data: {DATA_IDS:str},
 								dataType:'json',
 								//beforeSend: validateData,
@@ -414,6 +392,10 @@
 			});
 		};
 		
+		//导出excel
+		function toExcel(){
+			window.location.href='<%=basePath%>bsmapping/excel.do';
+		}
 	</script>
 
 
