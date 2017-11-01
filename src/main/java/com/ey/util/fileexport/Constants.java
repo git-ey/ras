@@ -57,4 +57,12 @@ public interface Constants {
      * 底稿名称--E
      */
     static final String EXPORT_AIM_FILE_NAME_E = "E.xls";
+    /**
+     * 模板名称--U
+     */
+    static final String EXPORT_TEMPLATE_FILE_NAME_U = "U.ftl"; 
+    /**
+     * 底稿名称--U
+     */
+    static final String EXPORT_AIM_FILE_NAME_U = "U.xls";
 }
