@@ -110,7 +110,7 @@
 										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('N','${var.FUND_ID}','${var.PERIOD}');">N</a></td>
 										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('P','${var.FUND_ID}','${var.PERIOD}');">P</a></td>
 										         <td class="center"><a class="btn btn-mini">T</a></td>
-										         <td class="center"><a class="btn btn-mini">U</a></td>
+										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('U','${var.FUND_ID}','${var.PERIOD}');">U</a></td>
 									 	         <td class="center"><a class="btn btn-mini">V</a></td>
 										         <td class='center'><a class="btn btn-mini btn-success" onclick="wpExport('Report','${var.FUND_ID}','${var.PERIOD}');">报告</a></td>
                                                  <td class='center'>
