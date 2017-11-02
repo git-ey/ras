@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UExportMapper">
+    <select id="selectUData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U.EY_ACCOUNT_NUM as accountNum,
+            U.REVEAL_ITEM as item,
+            U.AMOUNT_CURRENT as amountCurrent,
+            U.AMOUNT_ADJ_CR as crAmountAdj,
+            U.AMOUNT_ADJ_DR as drAmountAdj,
+            U.AMOUNT_AUDIT_LAST as amountAuditLast
+        FROM
+            wp_u U
+        where 
+            1 = 1
+        and U.STATUS = 'Y'
+        and U.FUND_ID = #{fundId}
+        and U.PERIOD = #{period}
+    </select>
+    
+</mapper>
