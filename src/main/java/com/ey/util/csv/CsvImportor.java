@@ -147,7 +147,7 @@ public class CsvImportor extends FileImportor {
 		case STRING:
 			if (rows > importCell.getNumber()) {
 				maps.put(key,
-						StringUtils.isBlank(rowLine[importCell.getNumber()]) ? "''" : rowLine[importCell.getNumber()]);
+						StringUtils.isBlank(rowLine[importCell.getNumber()]) ? "''" : rowLine[importCell.getNumber()].replace("\"", "'"));
 			} else {
 				maps.put(key, null);
 			}

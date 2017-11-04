@@ -287,7 +287,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 			}
 			cnt++;
 		}
-		String tableValue = sbv.toString().replace(",)", ")").replace("\"", "'");
+		String tableValue = sbv.toString().replace(",)", ")");
 		// 插入数据库对应表
 		if (StringUtils.isNotBlank(tableValue)) {
 			try {
