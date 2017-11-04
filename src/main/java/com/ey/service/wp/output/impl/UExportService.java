@@ -39,7 +39,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         dataMap.put("fundId", fundId);
         
         dataMap.put("U", this.getUData(fundId, period));
-//        dataMap.put("E300", this.getE300Data(fundId, period));
+        dataMap.put("U300", this.getU300Data(fundId, period));
 //        dataMap.put("E400", this.getE400Data(fundId, period));
 //        dataMap.put("E410", this.getE410Data(fundId, period));
 //        dataMap.put("E41X", this.getE41XData(fundId, period));
@@ -141,6 +141,77 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("KM6011", M6011);
         result.put("KM6111", M6111);
         
+        return result;
+    }
+    
+    /**
+     * 处理sheet页U300的数据
+     * @author Dai Zong 2017年11月4日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU300Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String, Object> main = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U300MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU300MainData", queryMap);
+        if(U300MainMetaDataList == null) {
+            U300MainMetaDataList = new ArrayList<>(); 
+        }
+        Map<String,Object> temp = new HashMap<>();
+        for(Map<String,Object> map : U300MainMetaDataList) {
+            temp.put(String.valueOf(map.get("item")), map);
+        }
+        main.put("S1", temp.get("股票投资收益")==null?new HashMap<String,Object>():temp.get("股票投资收益"));
+        main.put("S2", temp.get("债券投资收益")==null?new HashMap<String,Object>():temp.get("债券投资收益"));
+        main.put("S3", temp.get("资产支持性证券投资收益")==null?new HashMap<String,Object>():temp.get("资产支持性证券投资收益"));
+        main.put("S4", temp.get("基金投资收益")==null?new HashMap<String,Object>():temp.get("基金投资收益"));
+        main.put("S5", temp.get("贵金属投资收益")==null?new HashMap<String,Object>():temp.get("贵金属投资收益"));
+        main.put("S6", temp.get("衍生工具收益")==null?new HashMap<String,Object>():temp.get("衍生工具收益"));
+        main.put("S7", temp.get("股利收益")==null?new HashMap<String,Object>():temp.get("股利收益"));
+        main.put("S8", temp.get("存款利息收入")==null?new HashMap<String,Object>():temp.get("存款利息收入"));
+        main.put("S9", temp.get("债券利息收入")==null?new HashMap<String,Object>():temp.get("债券利息收入"));
+        main.put("S10", temp.get("资产支持证券利息收入")==null?new HashMap<String,Object>():temp.get("资产支持证券利息收入"));
+        main.put("S11", temp.get("买入返售证券收入")==null?new HashMap<String,Object>():temp.get("买入返售证券收入"));
+        main.put("S12", temp.get("其他利息收入")==null?new HashMap<String,Object>():temp.get("其他利息收入"));
+        
+        Map<String, Object> dividend = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U300DividendMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU300DividendData", queryMap);
+        if(U300DividendMetaDataList == null) {
+            U300DividendMetaDataList = new ArrayList<>(); 
+        }
+        temp = new HashMap<>();
+        for(Map<String,Object> map : U300DividendMetaDataList) {
+            temp.put(String.valueOf(map.get("item")), map);
+        }
+        dividend.put("S1", temp.get("股票")==null?new HashMap<String,Object>():temp.get("股票"));
+        dividend.put("S2", temp.get("基金")==null?new HashMap<String,Object>():temp.get("基金"));
+        
+        Map<String, Object> interest = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U300InterestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU300InterestData", queryMap);
+        if(U300InterestMetaDataList == null) {
+            U300InterestMetaDataList = new ArrayList<>(); 
+        }
+        temp = new HashMap<>();
+        for(Map<String,Object> map : U300InterestMetaDataList) {
+            temp.put(String.valueOf(map.get("item")), map);
+        }
+        interest.put("S1", temp.get("活期存款利息收入")==null?new HashMap<String,Object>():temp.get("活期存款利息收入"));
+        interest.put("S2", temp.get("定期存款利息收入")==null?new HashMap<String,Object>():temp.get("定期存款利息收入"));
+        interest.put("S3", temp.get("其他存款利息收入")==null?new HashMap<String,Object>():temp.get("其他存款利息收入"));
+        interest.put("S4", temp.get("结算备付金利息收入")==null?new HashMap<String,Object>():temp.get("结算备付金利息收入"));
+        interest.put("S5", temp.get("其他")==null?new HashMap<String,Object>():temp.get("其他"));
+        
+        result.put("main", main);
+        result.put("dividend", dividend);
+        result.put("interest", interest);
         return result;
     }
 
