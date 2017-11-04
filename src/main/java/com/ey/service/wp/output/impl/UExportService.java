@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.service.wp.output.UExportManager;
@@ -40,11 +41,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         dataMap.put("U", this.getUData(fundId, period));
         dataMap.put("U300", this.getU300Data(fundId, period));
-//        dataMap.put("E400", this.getE400Data(fundId, period));
-//        dataMap.put("E410", this.getE410Data(fundId, period));
-//        dataMap.put("E41X", this.getE41XData(fundId, period));
-//        dataMap.put("E500", this.getE500Data(fundId, period));
-//        dataMap.put("E600", this.getE600Data(fundId, period));
+        dataMap.put("U400", this.getU400Data(fundId, period));
+        dataMap.put("U500", this.getU500Data(fundId, period));
+        dataMap.put("U600", this.getU600Data(fundId, period));
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_U);
     }
@@ -215,4 +214,170 @@ public class UExportService extends BaseExportService implements UExportManager 
         return result;
     }
 
+    /**
+     * 处理sheet页U400的数据
+     * @author Dai Zong 2017年11月4日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU400Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U400MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU400Data", queryMap);
+        if(U400MetaDataList == null) {
+            U400MetaDataList = new ArrayList<>(); 
+        }
+        
+        Map<String,Object> temp = new HashMap<>();
+        for(Map<String,Object> map : U400MetaDataList) {
+            temp.put(String.valueOf(map.get("item")), map);
+        }
+        result.put("S1", temp.get("赎回费收入")==null?new HashMap<String,Object>():temp.get("赎回费收入"));
+        result.put("S2", temp.get("转换费收入")==null?new HashMap<String,Object>():temp.get("转换费收入"));
+        result.put("S3", temp.get("印花税返还收入")==null?new HashMap<String,Object>():temp.get("印花税返还收入"));
+        result.put("S4", temp.get("其他收入")==null?new HashMap<String,Object>():temp.get("其他收入"));
+        
+        return result;
+    }
+    
+    /**
+     * 处理sheet页U500的数据
+     * @author Dai Zong 2017年11月4日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU500Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String, Object> main = new HashMap<String,Object>();
+        Map<String, Object> trade = new HashMap<String,Object>();
+        Map<String, Object> bank = new HashMap<String,Object>();
+        Map<String, Object> KM6407 = new HashMap<String,Object>();
+        Map<String, Object> KM6411 = new HashMap<String,Object>();
+        
+        trade.put("S1", new HashMap<String,Object>());
+        trade.put("S2", new HashMap<String,Object>());
+        trade.put("S3", new HashMap<String,Object>());
+        trade.put("S4", new HashMap<String,Object>());
+        trade.put("S5", new HashMap<String,Object>());
+        bank.put("S1", new HashMap<String,Object>());
+        bank.put("S2", new HashMap<String,Object>());
+        KM6411.put("S1", new HashMap<String,Object>());
+        KM6411.put("S2", new HashMap<String,Object>());
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U500MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU500MainData", queryMap);
+        if(U500MainMetaDataList == null) {
+            U500MainMetaDataList = new ArrayList<>(); 
+        }
+        
+        for(Map<String,Object> map : U500MainMetaDataList) {
+            if("6407".equals(map.get("accountNum"))) {
+                if("交易所".equals(map.get("type"))) {
+                    if("股票交易费用".equals(map.get("item"))) {
+                        trade.put("S1", map);
+                    }else if("基金交易费用".equals(map.get("item"))) {
+                        trade.put("S2", map);
+                    }else if("债券交易费用".equals(map.get("item"))) {
+                        trade.put("S3", map);
+                    }else if("期货交易费用".equals(map.get("item"))) {
+                        trade.put("S4", map);
+                    }else if("资产支持证券交易费用".equals(map.get("item"))) {
+                        trade.put("S5", map);
+                    }
+                }else if("银行间".equals(map.get("type"))) {
+                    if("结算服务费".equals(map.get("item"))) {
+                        bank.put("S1", map);
+                    }else if("交易手续费".equals(map.get("item"))) {
+                        bank.put("S2", map);
+                    }
+                }
+            }else if("6411".equals(map.get("accountNum"))) {
+                if("卖出回购证券支出".equals(map.get("item"))) {
+                    KM6411.put("S1", map);
+                }else if("银行借款利息支出".equals(map.get("item"))) {
+                    KM6411.put("S2", map);
+                }
+            }
+        }
+        
+        KM6407.put("trade", trade);
+        KM6407.put("bank", bank);
+        main.put("KM6407", KM6407);
+        main.put("KM6411", KM6411);
+        
+        Map<String, Object> trxFee = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U500TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU500TrxFeeData", queryMap);
+        if(U500TrxFeeMetaDataList == null) {
+            U500TrxFeeMetaDataList = new ArrayList<>(); 
+        }
+        Map<String,Object> temp = new HashMap<>();
+        for(Map<String,Object> map : U500TrxFeeMetaDataList) {
+            temp.put(String.valueOf(map.get("market")), map);
+        }
+        
+        trxFee.put("SH", temp.get("上交所") ==null?new HashMap<String,Object>():temp.get("上交所"));
+        trxFee.put("SZ", temp.get("深交所") ==null?new HashMap<String,Object>():temp.get("深交所"));
+        
+        Map<String, Object> test = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U500TestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU500TestData", queryMap);
+        if(CollectionUtils.isNotEmpty(U500TestMetaDataList)) {
+            test.put("commission", U500TestMetaDataList.get(0).get("commission"));
+            test.put("perClient", U500TestMetaDataList.get(0).get("perClient"));
+        }
+        
+        result.put("main", main);
+        result.put("trxFee", trxFee);
+        result.put("test", test);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页U600的数据
+     * @author Dai Zong 2017年11月4日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU600Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U600MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU600Data", queryMap);
+        if(U600MetaDataList == null) {
+            U600MetaDataList = new ArrayList<>(); 
+        }
+        
+        Map<String,Object> temp = new HashMap<>();
+        for(Map<String,Object> map : U600MetaDataList) {
+            temp.put(String.valueOf(map.get("item")), map);
+        }
+        
+        result.put("S1", temp.get("审计费")==null?new HashMap<String,Object>():temp.get("审计费"));
+        result.put("S2", temp.get("信息披露费")==null?new HashMap<String,Object>():temp.get("信息披露费"));
+        result.put("S3", temp.get("上市年费")==null?new HashMap<String,Object>():temp.get("上市年费"));
+        result.put("S4", temp.get("分红手续费")==null?new HashMap<String,Object>():temp.get("分红手续费"));
+        result.put("S5", temp.get("指数使用费")==null?new HashMap<String,Object>():temp.get("指数使用费"));
+        result.put("S6", temp.get("银行划款费用")==null?new HashMap<String,Object>():temp.get("银行划款费用"));
+        result.put("S7", temp.get("账户维护费")==null?new HashMap<String,Object>():temp.get("账户维护费"));
+        result.put("S8", temp.get("交易费用")==null?new HashMap<String,Object>():temp.get("交易费用"));
+        result.put("S9", temp.get("回购手续费")==null?new HashMap<String,Object>():temp.get("回购手续费"));
+        result.put("S10", temp.get("其他")==null?new HashMap<String,Object>():temp.get("其他"));
+
+        return result;
+    }
 }
