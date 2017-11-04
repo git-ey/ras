@@ -18,4 +18,45 @@
         and U.PERIOD = #{period}
     </select>
     
+    <select id="selectU300MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U300.ATTR1 as item,
+            U300.AMOUNT_CURRENT_CNY as amountCurrent,
+            U300.AMOUNT_LAST_CNY as amountLast
+        FROM
+            wp_u300 U300
+        where 
+            1 = 1
+        and U300.STATUS = 'Y'
+        and U300.FUND_ID = #{fundId}
+        and U300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectU300DividendData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U300D.ATTR2 as item,
+            U300D.AMOUNT_CURRENT_CNY as amountCurrent,
+            U300D.AMOUNT_LAST_CNY as amountLast
+        FROM
+            wp_u300_dividend U300D
+        where 
+            1 = 1
+        and U300D.STATUS = 'Y'
+        and U300D.FUND_ID = #{fundId}
+        and U300D.PERIOD = #{period}
+    </select>
+    
+    <select id="selectU300InterestData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U300I.ATTR2 as item,
+            U300I.AMOUNT_CURRENT_CNY as amountCurrent,
+            U300I.AMOUNT_LAST_CNY as amountLast
+        FROM
+            wp_u300_interest U300I
+        where 
+            1 = 1
+        and U300I.STATUS = 'Y'
+        and U300I.FUND_ID = #{fundId}
+        and U300I.PERIOD = #{period}
+    </select>
 </mapper>
