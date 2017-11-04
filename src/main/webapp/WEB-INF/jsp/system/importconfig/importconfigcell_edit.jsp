@@ -37,12 +37,12 @@
 								<td><input type="number" name="NUMBER" id="NUMBER" value="${pd.NUMBER}" maxlength="32" placeholder="这里输入对应的序列" title="对应的序列" style="width:60%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">列说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="32" placeholder="这里输入列说明" title="列说明" style="width:60%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">存储KEY:</td>
 								<td><input type="text" name="MAPKEY" id="MAPKEY" value="${pd.MAPKEY}" maxlength="60" placeholder="这里输入存储的KEY" title="存储的KEY" style="width:60%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">列说明:</td>
+								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="32" placeholder="这里输入列说明" title="列说明" style="width:60%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">单元格类型:</td>
