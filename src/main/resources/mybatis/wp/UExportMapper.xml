@@ -59,4 +59,83 @@
         and U300I.FUND_ID = #{fundId}
         and U300I.PERIOD = #{period}
     </select>
+    
+    <select id="selectU400Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U400.ATTR1 as item,
+            U400.AMOUNT_CURRENT_CNY as amountCurrent,
+            U400.AMOUNT_LAST_CNY as amountLast
+        FROM
+            wp_u400 U400
+        where 
+            1 = 1
+        and U400.STATUS = 'Y'
+        and U400.FUND_ID = #{fundId}
+        and U400.PERIOD = #{period}
+    </select>
+    
+    <select id="selectU500MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U500.EY_ACCOUNT_NUM as accountNum,
+            U500.ATTR1 as item,
+            U500.ATTR5 as type,
+            U500.AMOUNT_CURRENT_CNY as amountCurrent,
+            U500.AMOUNT_LAST_CNY as amountLast
+        FROM
+            wp_u500 U500
+        where 
+            1 = 1
+        and U500.STATUS = 'Y'
+        and U500.FUND_ID = #{fundId}
+        and U500.PERIOD = #{period}
+    </select>
+    
+    <select id="selectU500TrxFeeData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    U500UTF.MARKET as market,
+		    U500UTF.TRX_AMOUNT as trxAmount,
+		    U500UTF.TRX_QUANTITY as trxQuantity,
+		    U500UTF.AMOUNT_STOCK as amountStock,
+		    U500UTF.RATE_STAMP as stampRate,
+		    U500UTF.RATE_BROKERAGE as brokerageRate,
+		    U500UTF.RATE_SEC as setRate,
+		    U500UTF.RATE_TRANSFER as transferRate
+		FROM
+		    wp_u500_trx_fee U500UTF
+        where 
+            1 = 1
+        and U500UTF.STATUS = 'Y'
+        and U500UTF.FUND_ID = #{fundId}
+        and U500UTF.PERIOD = #{period}
+        order by
+            U500UTF.SORT
+    </select>
+    
+    <select id="selectU500TestData" parameterType="java.util.Map" resultType="java.util.Map"> 
+	    SELECT
+		    U500T.COMMISSION as commission,
+		    U500T.TRX_FEE_CLIENT perClient
+		FROM
+		    wp_u500_test U500T
+		where 
+            1 = 1
+        and U500T.STATUS = 'Y'
+        and U500T.FUND_ID = #{fundId}
+        and U500T.PERIOD = #{period}
+        LIMIT 1
+     </select>
+     
+     <select id="selectU600Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U600.ATTR1 as item,
+            U600.AMOUNT_CURRENT_CNY as amountCurrent,
+            U600.AMOUNT_LAST_CNY as amountLast
+        FROM
+            wp_u600 U600
+        where 
+            1 = 1
+        and U600.STATUS = 'Y'
+        and U600.FUND_ID = #{fundId}
+        and U600.PERIOD = #{period}
+    </select>
 </mapper>
