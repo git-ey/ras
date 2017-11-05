@@ -44,11 +44,7 @@
 								</td>
 								<td style="padding-left:2px;text-align:right;width:10%;">期间:</td>
 								<td style="vertical-align:top;padding-left:2px;width:5%;">
-								 	<select class="chosen-select form-control" name="PERIOD" id="PERIOD" data-placeholder="请选择期间" style="vertical-align:top;width: 120px;">
-									    <c:forEach items="${periodList}" var="var" varStatus="vs">
-									        <option value="${var.PERIOD}" <c:if test="${pd.PERIOD == var.PERIOD}">selected</c:if>>${var.PERIOD_NAME}</option>
-									    </c:forEach>
-								  	</select>
+								 	<input class="span10 date-picker" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" type="text" data-date-format="yyyymmdd" readonly="readonly" placeholder="期间" title="期间"/>
 								</td>
 								<td style="padding-left:2px;text-align:right;width:10%;">管理公司:</td>
 								<td style="vertical-align:top;padding-left:2px;width:5%;">

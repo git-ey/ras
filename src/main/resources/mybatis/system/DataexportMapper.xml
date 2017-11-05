@@ -5,18 +5,21 @@
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">
 		SELECT sfi.FUND_ID,
-		       prd.PERIOD,
+		<choose>
+		    <when test="pd.PERIOD != null and pd.PERIOD != ''">
+		        #{pd.PERIOD}
+		    </when>
+		    <otherwise>
+                concat(YEAR(now())-1,'1231')
+            </otherwise>
+		</choose>
+		            PERIOD,
                sfi.SHORT_NAME,
                smc.SHORT_NAME MGR_COMPANY,
                (SELECT COUNT(*) FROM wp_c c where c.FUND_ID = sfi.FUND_ID) EXTFLAG
           FROM sys_fund_info sfi
      LEFT JOIN sys_mgrcompany smc
-            ON sfi.FIRM_CODE = smc.COMPANY_CODE,
-               (select d.BIANMA PERIOD
-  from sys_dictionaries d 
- where d.PARENT_ID in (select sd.DICTIONARIES_ID 
-                         from sys_dictionaries sd 
-                        where sd.BIANMA = 'PERIOD')) prd
+            ON sfi.FIRM_CODE = smc.COMPANY_CODE
          WHERE 1 = 1
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
@@ -35,14 +38,6 @@
 		<if test="pd.FUND_ID != null and pd.FUND_ID != ''">
 		    and sfi.FUND_ID = #{pd.FUND_ID}
 		</if>
-		<choose>
-		    <when test="pd.PERIOD != null and pd.PERIOD != ''">
-		        and prd.PERIOD = #{pd.PERIOD}
-		    </when>
-		    <otherwise>
-                and prd.PERIOD = YEAR(SYSDATE())
-            </otherwise>
-		</choose>
 	</select>
 	
 	
