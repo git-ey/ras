@@ -44,6 +44,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         dataMap.put("U400", this.getU400Data(fundId, period));
         dataMap.put("U500", this.getU500Data(fundId, period));
         dataMap.put("U600", this.getU600Data(fundId, period));
+        dataMap.put("U10000", this.getU10000Data(fundId, period));
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_U);
     }
@@ -380,4 +381,114 @@ public class UExportService extends BaseExportService implements UExportManager 
 
         return result;
     }
+    
+    /**
+     * 处理sheet页U10000的数据
+     * @author Dai Zong 2017年11月5日
+     * 
+     * @param fundId
+     * @param period
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU10000Data(String fundId, Long period) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String, Object> interest = new HashMap<String,Object>();
+        interest.put("S1", new HashMap<String,Object>());
+        interest.put("S2", new HashMap<String,Object>());
+        interest.put("S3", new HashMap<String,Object>());
+        interest.put("S4", new HashMap<String,Object>());
+        interest.put("S5", new HashMap<String,Object>());
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000InterestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000InterestData", queryMap);
+        if(U10000InterestMetaDataList == null) {
+            U10000InterestMetaDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : U10000InterestMetaDataList) {
+            if("活期存款利息收入".equals(map.get("item"))) {
+                interest.put("S1", map);
+            }else if("定期存款利息收入".equals(map.get("item"))) {
+                interest.put("S2", map);
+            }else if("其他存款利息收入".equals(map.get("item"))) {
+                interest.put("S3", map);
+            }else if("结算备付金利息收入".equals(map.get("item"))) {
+                interest.put("S4", map);
+            }else if("其他".equals(map.get("item"))) {
+                interest.put("S5", map);
+            }
+        }
+        result.put("interest", interest);
+        
+        Map<String, Object> dividend = new HashMap<String,Object>();
+        dividend.put("S1", new HashMap<String,Object>());
+        dividend.put("S2", new HashMap<String,Object>());
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000DividendMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000DividendData", queryMap);
+        if(U10000DividendMetaDataList == null) {
+            U10000DividendMetaDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : U10000DividendMetaDataList) {
+            if("股票投资产生的股利收益".equals(map.get("item"))) {
+                dividend.put("S1", map);
+            }else if("基金投资产生的股利收益".equals(map.get("item"))) {
+                dividend.put("S2", map);
+            }
+        }
+        result.put("dividend", dividend);
+        
+        Map<String, Object> other_r = new HashMap<String,Object>();
+        other_r.put("S1", new HashMap<String,Object>());
+        other_r.put("S2", new HashMap<String,Object>());
+        other_r.put("S3", new HashMap<String,Object>());
+        other_r.put("S4", new HashMap<String,Object>());
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000OtherRMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherRData", queryMap);
+        if(U10000OtherRMetaDataList == null) {
+            U10000OtherRMetaDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : U10000OtherRMetaDataList) {
+            if("基金赎回费收入".equals(map.get("item"))) {
+                other_r.put("S1", map);
+            }else if("基金转换费收入".equals(map.get("item"))) {
+                other_r.put("S2", map);
+            }else if("印花税返还".equals(map.get("item"))) {
+                other_r.put("S3", map);
+            }else if("其他".equals(map.get("item"))) {
+                other_r.put("S4", map);
+            }
+        }
+        result.put("other_r", other_r);
+        
+        Map<String, Object> trxFee = new HashMap<String,Object>();
+        trxFee.put("S1", new HashMap<String,Object>());
+        trxFee.put("S2", new HashMap<String,Object>());
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000TrxFeeData", queryMap);
+        if(U10000TrxFeeMetaDataList == null) {
+            U10000TrxFeeMetaDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : U10000TrxFeeMetaDataList) {
+            if("交易所市场交易费用".equals(map.get("item"))) {
+                trxFee.put("S1", map);
+            }else if("银行间市场交易费用".equals(map.get("item"))) {
+                trxFee.put("S2", map);
+            }
+        }
+        result.put("trxFee", trxFee);
+        
+        Map<String, Object> other_c = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000OtherCMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherCData", queryMap);
+        if(U10000OtherCMetaDataList == null) {
+            U10000OtherCMetaDataList = new ArrayList<>(); 
+        }
+        other_c.put("list", U10000OtherCMetaDataList);
+        other_c.put("count", U10000OtherCMetaDataList.size());
+        result.put("other_c", other_c);
+        
+        return result;
+    }
+    
 }
