@@ -72,7 +72,7 @@ public class ExcelImportor extends FileImportor {
 	private List<Map> readExcel(Workbook workbook, ImportConfig configuration, StringBuilder sb)
 			throws FileImportException {
 		// 选择第一个sheet
-		Sheet sheet = workbook.getSheetAt(0);
+		Sheet sheet = workbook.getSheetAt(configuration.getSheetNo() == null ? 0 : configuration.getSheetNo());
 		int startRow = configuration.getStartRowNo();
 		List<ImportConfigCell> lists = configuration.getImportCells();
 		int phyRow = sheet.getPhysicalNumberOfRows();

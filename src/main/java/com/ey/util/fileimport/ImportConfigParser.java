@@ -51,6 +51,8 @@ public class ImportConfigParser {
     	    	importConfig.setImportTempCode(importTempCode);
         		// 导入模板名称
     	    	importConfig.setImportTempName(importConfigPd.getString("IMPORT_TEMP_NAME"));
+    	    	// 读取起始Sheet
+    	    	importConfig.setSheetNo(Integer.parseInt(importConfigPd.get("SHEET_NO").toString()));
         		// 读取起始行
     	    	importConfig.setStartRowNo(Integer.parseInt(importConfigPd.get("START_ROW_NO").toString()));
         		// 导入文件类型
