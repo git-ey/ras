@@ -29,13 +29,13 @@ public abstract class BaseExportService implements BaseExportManager{
 	 * @author Dai Zong 2017年9月12日
 	 * 
 	 * @param fundId
-	 * @param period
+	 * @param periodStr
 	 * @return
 	 */
-	protected Map<String,Object> createBaseQueryMap(String fundId, Long period){
+	protected Map<String,Object> createBaseQueryMap(String fundId, String periodStr){
 	    Map<String, Object> res = new HashMap<String,Object>();
 	    res.put("fundId", fundId);
-	    res.put("period", period);
+	    res.put("period", periodStr);
 	    return res;
 	}
 

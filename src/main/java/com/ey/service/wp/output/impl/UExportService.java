@@ -29,36 +29,42 @@ public class UExportService extends BaseExportService implements UExportManager 
      * @author Dai Zong 2017年11月1日
      * 
      * @param fundId
-     * @param period
+     * @param periodStrStr
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, Long period) throws Exception {
+    private String generateFileContent(String fundId, String periodStr) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
         
+        Long period = Long.parseLong(periodStr.substring(0, 4));
+        Long month = Long.parseLong(periodStr.substring(4, 6));
+        Long day = Long.parseLong(periodStr.substring(6, 8));
+        
         dataMap.put("period", period);
+        dataMap.put("month", month);
+        dataMap.put("day", day);
         dataMap.put("fundId", fundId);
         
-        dataMap.put("U", this.getUData(fundId, period));
-        dataMap.put("U300", this.getU300Data(fundId, period));
-        dataMap.put("U400", this.getU400Data(fundId, period));
-        dataMap.put("U500", this.getU500Data(fundId, period));
-        dataMap.put("U600", this.getU600Data(fundId, period));
-        dataMap.put("U10000", this.getU10000Data(fundId, period));
+        dataMap.put("U", this.getUData(fundId, periodStr));
+        dataMap.put("U300", this.getU300Data(fundId, periodStr));
+        dataMap.put("U400", this.getU400Data(fundId, periodStr));
+        dataMap.put("U500", this.getU500Data(fundId, periodStr));
+        dataMap.put("U600", this.getU600Data(fundId, periodStr));
+        dataMap.put("U10000", this.getU10000Data(fundId, periodStr));
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_U);
     }
 
     @Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, period);
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+        String xmlStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_U, xmlStr);
         return true;
     }
 
     @Override
-    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, period);
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+        String xmlStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToDisk(folederName, fileName, xmlStr);
         return true;
     }
@@ -68,12 +74,12 @@ public class UExportService extends BaseExportService implements UExportManager 
      * @author Dai Zong 2017年11月2日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getUData(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getUData(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
@@ -149,12 +155,12 @@ public class UExportService extends BaseExportService implements UExportManager 
      * @author Dai Zong 2017年11月4日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getU300Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getU300Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         Map<String, Object> main = new HashMap<>();
@@ -220,12 +226,12 @@ public class UExportService extends BaseExportService implements UExportManager 
      * @author Dai Zong 2017年11月4日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getU400Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getU400Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
@@ -251,12 +257,12 @@ public class UExportService extends BaseExportService implements UExportManager 
      * @author Dai Zong 2017年11月4日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getU500Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getU500Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         Map<String, Object> main = new HashMap<String,Object>();
@@ -349,12 +355,12 @@ public class UExportService extends BaseExportService implements UExportManager 
      * @author Dai Zong 2017年11月4日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getU600Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getU600Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
@@ -387,12 +393,12 @@ public class UExportService extends BaseExportService implements UExportManager 
      * @author Dai Zong 2017年11月5日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getU10000Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getU10000Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         Map<String, Object> interest = new HashMap<String,Object>();

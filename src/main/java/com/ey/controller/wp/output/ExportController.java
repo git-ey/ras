@@ -3,12 +3,14 @@ package com.ey.controller.wp.output;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -65,16 +67,23 @@ public class ExportController extends BaseController {
 	}
 	
 	/**
-	 * 数据校验
+	 * 数据校验，如periodStr位数不足8位则补齐
 	 * @author Dai Zong 2017年10月17日
 	 * 
 	 * @param fundId 基金ID
 	 * @param periodStr 期间字符串
+	 * @return 处理过的期间字符串
 	 */
-	private void dataCheck(String fundId, String periodStr) {
-	    if(fundId == null || periodStr == null) {
+	private String dataCheck(String fundId, String periodStr) {
+	    if(StringUtils.isEmpty(fundId) || StringUtils.isEmpty(periodStr)) {
             throw new IllegalArgumentException("基金ID和期间不能为空");
         }
+	    if(periodStr.length() > 8) {
+	        periodStr = periodStr.substring(0, 8);
+	    }else if(periodStr.length() < 8) {
+	        periodStr = periodStr + (String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "1231").substring(periodStr.length(), 8);
+	    }
+	    return periodStr;
 	}
 	
 	/**
@@ -88,9 +97,9 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        this.dataCheck(fundId, periodStr);
+        periodStr = this.dataCheck(fundId, periodStr);
         
-        this.reportExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+        this.reportExportService.doExport(request, response, fundId, periodStr);
     }
 
 	/**
@@ -104,9 +113,9 @@ public class ExportController extends BaseController {
 		PageData pd = this.getPageData();
 		String fundId = pd.getString("FUND_ID");
 		String periodStr = pd.getString("PEROID");
-		this.dataCheck(fundId, periodStr);
+		periodStr = this.dataCheck(fundId, periodStr);
         
-		this.cExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+		this.cExportService.doExport(request, response, fundId, periodStr);
 	}
 	
 	/**
@@ -120,9 +129,9 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        this.dataCheck(fundId, periodStr);
+        periodStr = this.dataCheck(fundId, periodStr);
         
-        this.gExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+        this.gExportService.doExport(request, response, fundId, periodStr);
     }
     
     /**
@@ -136,9 +145,9 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        this.dataCheck(fundId, periodStr);
+        periodStr = this.dataCheck(fundId, periodStr);
         
-        this.nExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+        this.nExportService.doExport(request, response, fundId, periodStr);
     }
     
     /**
@@ -152,9 +161,9 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        this.dataCheck(fundId, periodStr);
+        periodStr = this.dataCheck(fundId, periodStr);
         
-        this.pExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+        this.pExportService.doExport(request, response, fundId, periodStr);
     }
     
     /**
@@ -168,9 +177,9 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        this.dataCheck(fundId, periodStr);
+        periodStr = this.dataCheck(fundId, periodStr);
         
-        this.eExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+        this.eExportService.doExport(request, response, fundId, periodStr);
     }
     
     /**
@@ -184,30 +193,29 @@ public class ExportController extends BaseController {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
-        this.dataCheck(fundId, periodStr);
+        periodStr = this.dataCheck(fundId, periodStr);
         
-        this.uExportService.doExport(request, response, fundId, Long.parseLong(periodStr));
+        this.uExportService.doExport(request, response, fundId, periodStr);
     }
     
     @RequestMapping(value = "/download")
     public void downLoadOneFund(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();
         final String fundId = pd.getString("FUND_ID");
-        final String periodStr = pd.getString("PEROID");
-        this.dataCheck(fundId, periodStr);
-        final long period = Long.parseLong(periodStr);
+        String periodStr = pd.getString("PEROID");
+        periodStr = this.dataCheck(fundId, periodStr);
         
         final String fileIdentifier = fundId + "_" + periodStr;
         final String resourcePath = PathUtil.getWebResourcePath(request);
         final String folderName = resourcePath + fileIdentifier + "_" + String.valueOf(new Date().getTime());
         
-        this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, period);
-        this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, period);
-        this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, period);
-        this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, period);
-        this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, period);
-        this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, period);
-        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, fundId, period);
+        this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr);
+        this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, periodStr);
+        this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, periodStr);
+        this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, periodStr);
+        this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr);
+        this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
+        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, fundId, periodStr);
         
         final String zipFileName = fileIdentifier + ".zip";
         final String zipFileFullName = resourcePath + zipFileName;

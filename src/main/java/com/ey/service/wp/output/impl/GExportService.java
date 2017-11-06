@@ -29,33 +29,39 @@ public class GExportService extends BaseExportService implements GExportManager{
      * @author Dai Zong 2017年10月17日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, Long period) throws Exception {
+    private String generateFileContent(String fundId, String periodStr) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
         
+        Long period = Long.parseLong(periodStr.substring(0, 4));
+        Long month = Long.parseLong(periodStr.substring(4, 6));
+        Long day = Long.parseLong(periodStr.substring(6, 8));
+        
         dataMap.put("period", period);
+        dataMap.put("month", month);
+        dataMap.put("day", day);
         dataMap.put("fundId", fundId);
         
-        dataMap.put("G", this.getGData(fundId, period));
-        dataMap.put("G300", this.getG300Data(fundId, period));
-        dataMap.put("G10000", this.getG10000Data(fundId, period));
+        dataMap.put("G", this.getGData(fundId, periodStr));
+        dataMap.put("G300", this.getG300Data(fundId, periodStr));
+        dataMap.put("G10000", this.getG10000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_G);
     }
     
 	@Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, period);
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+        String xmlStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_G, xmlStr);
         return true;
     }
 	
 	@Override
-    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
-	    String xmlStr = this.generateFileContent(fundId, period);
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+	    String xmlStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToDisk(folederName, fileName, xmlStr);
         return true;
     }
@@ -65,12 +71,12 @@ public class GExportService extends BaseExportService implements GExportManager{
 	 * @author Dai Zong 2017年9月8日
 	 * 
 	 * @param fundId
-	 * @param period
+	 * @param periodStr
 	 * @return
 	 * @throws Exception
 	 */
-    private Map<String,Object> getGData(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getGData(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
@@ -99,12 +105,12 @@ public class GExportService extends BaseExportService implements GExportManager{
      * @author Dai Zong 2017年9月8日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getG300Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getG300Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         List<Map<String, Object>> KM1221 = new ArrayList<>();
@@ -136,17 +142,19 @@ public class GExportService extends BaseExportService implements GExportManager{
      * @author Dai Zong 2017年9月8日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getG10000Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getG10000Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("GExportMapper.selectG10000Data", queryMap);
-        if(CollectionUtils.isEmpty(metaDataList)) {return result;}
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
         
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());

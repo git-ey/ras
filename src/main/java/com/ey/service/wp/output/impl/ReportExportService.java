@@ -26,29 +26,35 @@ public class ReportExportService implements ReportExportManager {
      * @author Dai Zong 2017年10月17日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, Long period) throws Exception {
+    private String generateFileContent(String fundId, String periodStr) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
 
+        Long period = Long.parseLong(periodStr.substring(0, 4));
+        Long month = Long.parseLong(periodStr.substring(4, 6));
+        Long day = Long.parseLong(periodStr.substring(6, 8));
+        
         dataMap.put("period", period);
+        dataMap.put("month", month);
+        dataMap.put("day", day);
         dataMap.put("fundId", fundId);
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_REPORT);
     }
     
 	@Override
-	public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
-		String fileStr = this.generateFileContent(fundId, period);
+	public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+		String fileStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_REPORT, fileStr);
 		return true;
 	}
 
     @Override
-    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
-        String fileStr = this.generateFileContent(fundId, period);
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+        String fileStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToDisk(folederName, fileName, fileStr);
         return true;
     }

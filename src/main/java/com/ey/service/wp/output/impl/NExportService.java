@@ -28,39 +28,45 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年10月17日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, Long period) throws Exception {
+    private String generateFileContent(String fundId, String periodStr) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
         
+        Long period = Long.parseLong(periodStr.substring(0, 4));
+        Long month = Long.parseLong(periodStr.substring(4, 6));
+        Long day = Long.parseLong(periodStr.substring(6, 8));
+        
         dataMap.put("period", period);
+        dataMap.put("month", month);
+        dataMap.put("day", day);
         dataMap.put("fundId", fundId);
         
-        dataMap.put("N", this.getNData(fundId, period));
-        dataMap.put("N300", this.getN300Data(fundId, period));
-        dataMap.put("N400", this.getN400Data(fundId, period));
-        dataMap.put("N500", this.getN500Data(fundId, period));
-        dataMap.put("N510", this.getN510Data(fundId, period));
-        dataMap.put("N600", this.getN600Data(fundId, period));
-        dataMap.put("N700", this.getN700Data(fundId, period));
-        dataMap.put("N800", this.getN800Data(fundId, period));
-        dataMap.put("N10000", this.getN10000Data(fundId, period));
+        dataMap.put("N", this.getNData(fundId, periodStr));
+        dataMap.put("N300", this.getN300Data(fundId, periodStr));
+        dataMap.put("N400", this.getN400Data(fundId, periodStr));
+        dataMap.put("N500", this.getN500Data(fundId, periodStr));
+        dataMap.put("N510", this.getN510Data(fundId, periodStr));
+        dataMap.put("N600", this.getN600Data(fundId, periodStr));
+        dataMap.put("N700", this.getN700Data(fundId, periodStr));
+        dataMap.put("N800", this.getN800Data(fundId, periodStr));
+        dataMap.put("N10000", this.getN10000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_N);
     }
     
 	@Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, period);
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+        String xmlStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_N, xmlStr);
         return true;
     }
 	
 	@Override
-    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
-	    String xmlStr = this.generateFileContent(fundId, period);
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+	    String xmlStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToDisk(folederName, fileName, xmlStr);
         return true;
     }
@@ -70,12 +76,12 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年9月12日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getNData(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getNData(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
@@ -107,12 +113,12 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年9月13日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getN300Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getN300Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
@@ -132,12 +138,12 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年9月14日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getN400Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getN400Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         Map<String, Object> KM2206 = new HashMap<String,Object>();
@@ -166,12 +172,12 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年9月14日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getN500Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getN500Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         //========process dataMap for main view begin========
@@ -252,12 +258,12 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年9月17日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getN510Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getN510Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         Map<String, Object> main = new HashMap<String,Object>();
@@ -296,12 +302,12 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年9月17日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getN600Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getN600Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
@@ -321,12 +327,12 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年9月17日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getN700Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getN700Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
@@ -346,12 +352,12 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年9月17日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getN800Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getN800Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         //========process dataMap for main view begin========
@@ -429,12 +435,12 @@ public class NExportService extends BaseExportService implements NExportManager{
      * @author Dai Zong 2017年9月17日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getN10000Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getN10000Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
