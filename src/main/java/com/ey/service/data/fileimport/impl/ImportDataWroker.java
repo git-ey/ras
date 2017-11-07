@@ -107,7 +107,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 				Long cnt = 1L;
 				int[] nameSection = null;
 				// 校验文件是否已导入
-				if (!checkFileExsit(pathFile.getName())) {
+				if (!checkFileExsit(pathFile.getName(),configuration.getSheetNo())) {
 					// 获取文件名解析段
 					nameSection = this.getFileNameSeg(configuration.getNameSection());
 					if (configuration.getImportFileType() == ImportConfig.ImportFileType.EXCEL) {
@@ -130,7 +130,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 				}
 				// 回写导入文件信息表
 				try {
-					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile.getName(), nameSection,
+					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile.getName(),configuration.getSheetNo(), nameSection,
 							configuration.getFileNameDelimiter(), configuration.getTableName(), importMessage, cnt);
 				} catch (Exception e) {
 					throw new Exception("回写导入文件信息表失败:" + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
@@ -164,8 +164,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * @return
 	 * @throws Exception
 	 */
-	private Boolean checkFileExsit(String pathFile) throws Exception {
-		Long filrCnt = importService.findFileCount(pathFile);
+	private Boolean checkFileExsit(String pathFile,Integer sheetNo) throws Exception {
+		Long filrCnt = importService.findFileCount(pathFile,sheetNo);
 		if (filrCnt > 0) {
 			return Boolean.TRUE;
 		}
@@ -334,17 +334,19 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * 
 	 * @param importFileId
 	 * @param importId
+	 * @param sheetNo 
 	 * @param pathFile
 	 * @param tableName
 	 * @param cnt
 	 * @throws Exception
 	 */
-	private void saveImportFile(String importFileId, String importId, String pathFileName, int[] nameSection,
+	private void saveImportFile(String importFileId, String importId, String pathFileName, Integer sheetNo, int[] nameSection,
 			String fileNameDelimiter, String tableName, String message, Long cnt) throws Exception {
 		PageData importFilePd = new PageData();
 		importFilePd.put("IMPORT_FILE_ID", importFileId);
 		importFilePd.put("IMPORT_ID", importId);
 		importFilePd.put("IMPORT_FILE_NAME", pathFileName);
+		importFilePd.put("SHEET_NO", sheetNo);
 		// 文件名解析,配置解析规则的才处理
 		if (nameSection != null && nameSection.length > 0) {
 			this.fileNameParser(importFilePd, pathFileName, nameSection, fileNameDelimiter);

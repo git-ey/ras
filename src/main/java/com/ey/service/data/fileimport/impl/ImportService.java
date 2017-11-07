@@ -147,8 +147,11 @@ public class ImportService implements ImportManager{
 	 * @param pathFiles
 	 * @return
 	 */
-	public Long findFileCount(String pathFile) throws Exception {
-		return (Long)dao.findForObject("ImportMapper.findFileCount", pathFile);
+	public Long findFileCount(String pathFile,Integer sheetNo) throws Exception {
+		PageData pd = new PageData();
+		pd.put("IMPORT_FILE_NAME", pathFile);
+		pd.put("SHEET_NO", sheetNo);
+		return (Long)dao.findForObject("ImportMapper.findFileCount", pd);
 	}
 	
 	/**

@@ -41,6 +41,7 @@
 	    IMPORT_FILE_ID,	
 		IMPORT_ID,
 		IMPORT_FILE_NAME,
+		SHEET_NO,
 		NAME_SEG_1,
 		NAME_SEG_2,
 		NAME_SEG_3,
@@ -57,6 +58,7 @@
 		#{IMPORT_FILE_ID},
 		#{IMPORT_ID},
 		#{IMPORT_FILE_NAME},
+		#{SHEET_NO},
 	    #{NAME_SEG_1},
 		#{NAME_SEG_2},
 		#{NAME_SEG_3},
@@ -206,13 +208,14 @@
 	</delete>
 	
 	<!-- 查询文件名存在条数 -->
-	<select id="findFileCount" parameterType="list" resultType="Long">
+	<select id="findFileCount" parameterType="pd" resultType="Long">
 		select
 		  count(*)
 		from 
 		<include refid="fileTableName"></include>
 		where
-		  IMPORT_FILE_NAME = #{pathFile, jdbcType=VARCHAR}
+		  IMPORT_FILE_NAME = #{pd.IMPORT_FILE_NAME}
+		  and SHEET_NO = #{pd.SHEET_NO}
           and MESSAGE IS NULL
 	</select>
 	
