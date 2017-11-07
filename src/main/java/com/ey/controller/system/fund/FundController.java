@@ -28,6 +28,7 @@ import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.mgrcompany.MgrcompanyManager;
 import com.ey.service.system.othdis.OthdisHeadManager;
 import com.ey.service.system.term.TermHeadManager;
+import com.ey.service.system.urowset.URowSetManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
 import com.ey.util.FileDownload;
@@ -57,6 +58,8 @@ public class FundController extends BaseController {
 	private TermHeadManager termheadService;
 	@Resource(name="othdisheadService")
 	private OthdisHeadManager othdisheadService;
+	@Resource(name="urowsetService")
+	private URowSetManager urowsetService;
 	
 	/**保存
 	 * @param
@@ -167,12 +170,15 @@ public class FundController extends BaseController {
 		List<PageData> companyList = mgrcompanyService.listAll(pd);
 		mv.setViewName("system/fund/fund_edit");
 		// 期间账龄信息
-		List<PageData>	termList = termheadService.listAll(pd);
+		List<PageData> termList = termheadService.listAll(pd);
 		// 其他负债批量口径
-		List<PageData>	othdisList = othdisheadService.listAll(pd);
+		List<PageData> othdisList = othdisheadService.listAll(pd);
+		// U底稿行集
+		List<PageData> uRowSetList = urowsetService.listURowSet(pd);
 		mv.addObject("companyList", companyList);
 		mv.addObject("othdisList", othdisList);
 		mv.addObject("termList",termList);
+		mv.addObject("uRowSetList",uRowSetList);
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;

@@ -192,6 +192,15 @@
 								</td>
 							</tr>
 							<tr>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">U底稿行集:</td>
+								<td>
+								    <select class="chosen-select form-control" name="U_ROW_SET" id="U_ROW_SET" data-placeholder="请U底稿行集" style="vertical-align:top;width: 98%;">
+									    <option value=""></option>
+									    <c:forEach items="${uRowSetList}" var="var" varStatus="vs">
+									        <option value="${var.ROW_SET_CODE}" <c:if test="${pd.U_ROW_SET == var.ROW_SET_CODE}">selected</c:if>>${var.ROW_SET}</option>
+									    </c:forEach>
+								  	</select>
+								</td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
@@ -295,6 +304,16 @@
 		            time:2
 		        });
 				$("#STRUCTURED").focus();
+			return false;
+			}
+			if($("#U_ROW_SET").val()==""){
+				$("#U_ROW_SET").tips({
+					side:3,
+		            msg:'请输入U底稿行集',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#U_ROW_SET").focus();
 			return false;
 			}
 			if($("#DATE_FROM").val()==""){

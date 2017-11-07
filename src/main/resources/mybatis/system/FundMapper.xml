@@ -36,6 +36,7 @@
 		OTHER_LIABILITIES,
 		DIRECT_DEALER_NAME,
 		DEALER_SEPERATE,
+		U_ROW_SET,
 		ACTIVE,	
 		STATUS,	
 		FUND_ID
@@ -70,6 +71,7 @@
 		#{OTHER_LIABILITIES},
 		#{DIRECT_DEALER_NAME},
 		#{DEALER_SEPERATE},
+		#{U_ROW_SET},
 		#{ACTIVE},	
 		#{STATUS},	
 		#{FUND_ID}
@@ -132,6 +134,7 @@
 			OTHER_LIABILITIES = #{OTHER_LIABILITIES},
 			DIRECT_DEALER_NAME = #{DIRECT_DEALER_NAME},
 		    DEALER_SEPERATE = #{DEALER_SEPERATE},
+		    U_ROW_SET = #{U_ROW_SET},
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS},
 		FUND_ID = FUND_ID
@@ -178,6 +181,7 @@
 		       sf.OTHER_LIABILITIES,
 		       sf.DIRECT_DEALER_NAME,
 		       sf.DEALER_SEPERATE,
+		       sf.U_ROW_SET,
 		       sf.ACTIVE,	
 		       sf.STATUS,	
 		       sf.FUND_ID,
@@ -301,6 +305,7 @@
 		       fi.OTHER_LIABILITIES = REPLACE(fi.OTHER_LIABILITIES,'''',null),
 		       fi.DIRECT_DEALER_NAME = REPLACE(fi.DIRECT_DEALER_NAME,'''',null),
 		       fi.DEALER_SEPERATE = REPLACE(fi.DEALER_SEPERATE,'''',null),
+		       fi.U_ROW_SET = REPLACE(fi.U_ROW_SET,'''',null),
 		       fi.ACTIVE = REPLACE(fi.ACTIVE,'''',null),
 		       fi.`STATUS` = REPLACE(fi.`STATUS`,'''',null)
 	</update>
