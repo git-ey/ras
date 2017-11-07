@@ -29,34 +29,40 @@ public class CExportService extends BaseExportService implements CExportManager{
      * @author Dai Zong 2017年10月17日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, Long period) throws Exception {
+    private String generateFileContent(String fundId, String periodStr) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
         
+        Long period = Long.parseLong(periodStr.substring(0, 4));
+        Long month = Long.parseLong(periodStr.substring(4, 6));
+        Long day = Long.parseLong(periodStr.substring(6, 8));
+        
         dataMap.put("period", period);
+        dataMap.put("month", month);
+        dataMap.put("day", day);
         dataMap.put("fundId", fundId);
         
-        dataMap.put("C", this.getCData(fundId, period));
-        dataMap.put("C300", this.getC300Data(fundId, period));
-        dataMap.put("C400", this.getC400Data(fundId, period));
-        dataMap.put("C10000", this.getC10000Data(fundId, period));
+        dataMap.put("C", this.getCData(fundId, periodStr));
+        dataMap.put("C300", this.getC300Data(fundId, periodStr));
+        dataMap.put("C400", this.getC400Data(fundId, periodStr));
+        dataMap.put("C10000", this.getC10000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_C);
     }
 
     @Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, Long period) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, period);
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+        String xmlStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_C, xmlStr);
         return true;
     }
     
     @Override
-    public boolean doExport(String folederName, String fileName, String fundId, Long period) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, period);
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+        String xmlStr = this.generateFileContent(fundId, periodStr);
         FileExportUtils.writeFileToDisk(folederName, fileName, xmlStr);
         return true;
     }
@@ -66,12 +72,12 @@ public class CExportService extends BaseExportService implements CExportManager{
      * @author Dai Zong 2017年8月27日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
-    private Map<String,Object> getCData(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getCData(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
@@ -91,13 +97,13 @@ public class CExportService extends BaseExportService implements CExportManager{
      * @author Dai Zong 2017年8月27日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
-    private Map<String,Object> getC300Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getC300Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
         Map<String, Object> mainMap = new HashMap<String,Object>();
@@ -236,13 +242,13 @@ public class CExportService extends BaseExportService implements CExportManager{
      * @author Dai Zong 2017年8月30日
      * 
      * @param fundId
-     * @param period
+     * @param periodStr
      * @return
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
-    private Map<String,Object> getC400Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getC400Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String,Object> result = new HashMap<>();
         
         Map<String,Object> mainData = new HashMap<>();
@@ -280,8 +286,8 @@ public class CExportService extends BaseExportService implements CExportManager{
     }
     
     @SuppressWarnings("unchecked")
-    private Map<String,Object> getC10000Data(String fundId, Long period) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, period);
+    private Map<String,Object> getC10000Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String,Object> result = new HashMap<>();
         
         List<Map<String, Object>> headList = new ArrayList<>();
