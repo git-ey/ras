@@ -214,8 +214,8 @@
 		from 
 		<include refid="fileTableName"></include>
 		where
-		  IMPORT_FILE_NAME = #{pd.IMPORT_FILE_NAME}
-		  and SHEET_NO = #{pd.SHEET_NO}
+		  IMPORT_FILE_NAME = #{IMPORT_FILE_NAME}
+		  and SHEET_NO = #{SHEET_NO}
           and MESSAGE IS NULL
 	</select>
 	
