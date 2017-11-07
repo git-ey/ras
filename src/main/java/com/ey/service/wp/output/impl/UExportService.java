@@ -47,6 +47,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         dataMap.put("U", this.getUData(fundId, periodStr));
         dataMap.put("U300", this.getU300Data(fundId, periodStr));
+        dataMap.put("U320", this.getU320Data(fundId, periodStr));
         dataMap.put("U400", this.getU400Data(fundId, periodStr));
         dataMap.put("U500", this.getU500Data(fundId, periodStr));
         dataMap.put("U600", this.getU600Data(fundId, periodStr));
@@ -218,6 +219,30 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("main", main);
         result.put("dividend", dividend);
         result.put("interest", interest);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页U320的数据
+     * @author Dai Zong 2017年11月7日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU320Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U320MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU320Data", queryMap);
+        if(U320MetaDataList == null) {
+            U320MetaDataList = new ArrayList<>(); 
+        }
+        
+        result.put("list", U320MetaDataList);
+        result.put("count", U320MetaDataList.size());
         return result;
     }
 
