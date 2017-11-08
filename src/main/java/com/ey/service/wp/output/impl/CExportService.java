@@ -30,10 +30,11 @@ public class CExportService extends BaseExportService implements CExportManager{
      * 
      * @param fundId
      * @param periodStr
+     * @param fundInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, String periodStr) throws Exception {
+    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
         
         Long period = Long.parseLong(periodStr.substring(0, 4));
@@ -43,7 +44,7 @@ public class CExportService extends BaseExportService implements CExportManager{
         dataMap.put("period", period);
         dataMap.put("month", month);
         dataMap.put("day", day);
-        dataMap.put("fundId", fundId);
+        dataMap.put("fundInfo", fundInfo);
         
         dataMap.put("C", this.getCData(fundId, periodStr));
         dataMap.put("C300", this.getC300Data(fundId, periodStr));
@@ -55,15 +56,19 @@ public class CExportService extends BaseExportService implements CExportManager{
 
     @Override
     public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, periodStr);
-        FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_C, xmlStr);
+        Map<String, String> fundInfo = this.selectFundInfo(fundId);
+        fundInfo.put("periodStr", periodStr);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_C, fundInfo), xmlStr);
         return true;
     }
     
     @Override
     public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, periodStr);
-        FileExportUtils.writeFileToDisk(folederName, fileName, xmlStr);
+        Map<String, String> fundInfo = this.selectFundInfo(fundId);
+        fundInfo.put("periodStr", periodStr);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), xmlStr);
         return true;
     }
 	

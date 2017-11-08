@@ -17748,7 +17748,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s39"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s208"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -17759,7 +17759,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s211"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -17780,7 +17780,7 @@
    <Row ss:StyleID="s159">
     <Cell ss:MergeDown="1" ss:StyleID="s124"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s124"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s265"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s265"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s63"/>
     <Cell ss:StyleID="s63"><Data ss:Type="String">波动</Data></Cell>
@@ -18089,7 +18089,7 @@
    </Row>
    <Row ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s208"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -18098,7 +18098,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -18128,7 +18128,7 @@
     <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell><Data ss:Type="String">本期借方</Data></Cell>
     <Cell><Data ss:Type="String">本期贷方</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s217"><Data ss:Type="String">按报表科目“其他负债”的披露口径分类</Data></Cell>
     <Cell ss:Index="11" ss:StyleID="s81"/>
    </Row>
@@ -18288,7 +18288,7 @@
    </Row>
    <Row ss:StyleID="s69">
     <Cell ss:StyleID="s39"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s35"/>
     <Cell ss:StyleID="s208"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">XX</Data></Cell>
@@ -18309,7 +18309,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s69">
     <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s35"/>
     <Cell ss:StyleID="s211"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">XX</Data></Cell>
@@ -18378,7 +18378,7 @@
     <Cell ss:StyleID="s63"><Data ss:Type="String">本期借方</Data></Cell>
     <Cell ss:StyleID="s63"/>
     <Cell ss:StyleID="s63"><Data ss:Type="String">本期贷方</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s63"/>
     <Cell ss:StyleID="s63"><Data ss:Type="String">For Disclosure</Data></Cell>
     <Cell ss:StyleID="s246"/>
@@ -18899,7 +18899,7 @@
    </Row>
    <Row ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s208"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -18908,7 +18908,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -18948,7 +18948,7 @@
     <Cell ss:Index="3" ss:StyleID="s203"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell><Data ss:Type="String">本期借方</Data></Cell>
     <Cell><Data ss:Type="String">本期贷方</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="9" ss:StyleID="s217"><Data ss:Type="String">按报表科目“其他负债”的披露口径分类</Data></Cell>
    </Row>
@@ -19072,7 +19072,7 @@
    </Row>
    <Row ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s208"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -19086,7 +19086,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s211"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -19113,7 +19113,7 @@
     <Cell ss:StyleID="s174"/>
    </Row>
    <Row ss:StyleID="s168">
-    <Cell ss:MergeAcross="5" ss:StyleID="s267"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:MergeAcross="5" ss:StyleID="s267"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s184"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
    <Row ss:StyleID="s168">
@@ -19790,7 +19790,7 @@
    </Row>
    <Row ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s208"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -19799,7 +19799,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -19999,7 +19999,7 @@
    </Row>
    <Row ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s208"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -20013,7 +20013,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s35">
     <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s211"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -20041,7 +20041,7 @@
     <Cell ss:Index="3" ss:StyleID="s203"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s63"><Data ss:Type="String">本期借方</Data></Cell>
     <Cell ss:StyleID="s63"><Data ss:Type="String">本期贷方</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s203"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s116"/>
     <Cell ss:StyleID="s63"><Data ss:Type="String">For Disclosure</Data></Cell>
    </Row>
@@ -20155,7 +20155,7 @@
    </Row>
    <Row ss:StyleID="s81">
     <Cell ss:StyleID="s39"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s208"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s209"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -20164,7 +20164,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s81">
     <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -20194,7 +20194,7 @@
    </Row>
    <Row ss:StyleID="s69">
     <Cell ss:Index="2" ss:StyleID="s94"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="DateTime">${(period)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s93"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s92"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
    <#if P10000.count != 0>

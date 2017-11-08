@@ -6,6 +6,7 @@ import java.io.StringWriter;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,6 +25,10 @@ public class FreeMarkerUtils {
 	private static Configuration freeMarkerConfig = null;
 	
 	private static int DEF_STR_WRITER_BUF_SIZE = 1024;
+	
+	private FreeMarkerUtils() throws IllegalAccessException {
+        throw new IllegalAccessException();
+    }
 	
 	private static void initConfiguration(){
 	    // lazy load with double check lock
@@ -70,4 +75,23 @@ public class FreeMarkerUtils {
 		template.process(templateData, writer);
 		return writer.toString();
 	}
+	
+	/**
+	 * 基于${KEY}的字符串简单替换
+	 * @author Dai Zong 2017年11月8日
+	 * 
+	 * @param source 模板
+	 * @param dataMap 数据源
+	 * @return 替换后的模板
+	 */
+	public static String simpleReplace(String source, Map<String, String> dataMap) {
+	    if(source == null || dataMap == null) {
+	        return null;
+	    }
+	    for(Entry<String,String> entry : dataMap.entrySet()) {
+	        source = source.replace("${" + entry.getKey() + "}", entry.getValue());
+	    }
+	    return source;
+	}
+	
 }

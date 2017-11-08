@@ -19,7 +19,7 @@ import com.ey.util.fileexport.FreeMarkerUtils;
  * @author andy.chen 2017年9月7日
  */
 @Service("reportExportService")
-public class ReportExportService implements ReportExportManager {
+public class ReportExportService extends BaseExportService implements ReportExportManager {
 
     /**
      * 生成文件内容
@@ -27,10 +27,11 @@ public class ReportExportService implements ReportExportManager {
      * 
      * @param fundId
      * @param periodStr
+     * @param fundInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, String periodStr) throws Exception {
+    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
 
         Long period = Long.parseLong(periodStr.substring(0, 4));
@@ -47,15 +48,19 @@ public class ReportExportService implements ReportExportManager {
     
 	@Override
 	public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
-		String fileStr = this.generateFileContent(fundId, periodStr);
-        FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_REPORT, fileStr);
+	    Map<String, String> fundInfo = this.selectFundInfo(fundId);
+        fundInfo.put("periodStr", periodStr);
+		String fileStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_REPORT, fundInfo), fileStr);
 		return true;
 	}
 
     @Override
     public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
-        String fileStr = this.generateFileContent(fundId, periodStr);
-        FileExportUtils.writeFileToDisk(folederName, fileName, fileStr);
+        Map<String, String> fundInfo = this.selectFundInfo(fundId);
+        fundInfo.put("periodStr", periodStr);
+        String fileStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), fileStr);
         return true;
     }
     

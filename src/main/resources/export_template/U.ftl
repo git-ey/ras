@@ -3992,7 +3992,7 @@
    </Row>
    <Row ss:StyleID="s93">
     <Cell ss:StyleID="s191"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s76"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="String">XX</Data></Cell>
@@ -4622,7 +4622,7 @@
    </Row>
    <Row ss:StyleID="s395">
     <Cell ss:StyleID="s396"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s176"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s397"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s444"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s398"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -5147,7 +5147,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s335"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s449"><Data ss:Type="String">XX</Data></Cell>
@@ -6657,7 +6657,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s335"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s449"><Data ss:Type="String">XX</Data></Cell>
@@ -7274,7 +7274,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s335"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s449"><Data ss:Type="String">XX</Data></Cell>
@@ -8146,7 +8146,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s335"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s449"><Data ss:Type="String">XX</Data></Cell>
@@ -9147,7 +9147,7 @@
    </Row>
    <Row ss:StyleID="s334">
     <Cell ss:StyleID="s335"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s449"><Data ss:Type="String">XX</Data></Cell>
@@ -9670,7 +9670,7 @@
    </Row>
    <Row ss:StyleID="s334">
     <Cell ss:StyleID="s335"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s449"><Data ss:Type="String">XX</Data></Cell>
@@ -9829,7 +9829,7 @@
    </Row>
    <Row ss:StyleID="s334">
     <Cell ss:StyleID="s335"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s449"><Data ss:Type="String">XX</Data></Cell>
@@ -9989,7 +9989,7 @@
    <Row ss:Height="14.25"/>
    <Row>
     <Cell ss:StyleID="s563"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s564"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s564"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s565"/>
     <Cell ss:Index="5" ss:StyleID="s566"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s567"><Data ss:Type="String">XX</Data></Cell>
@@ -10444,7 +10444,7 @@
    </Row>
    <Row ss:StyleID="s77">
     <Cell ss:StyleID="s191"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s82"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -10667,7 +10667,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s175"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s543"><Data ss:Type="String">xx基金</Data></Cell>
+    <Cell ss:StyleID="s543"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s77"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="String">XX</Data></Cell>
@@ -11478,7 +11478,7 @@
    </Row>
    <Row ss:StyleID="s77">
     <Cell ss:StyleID="s191"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s76"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="String">XX</Data></Cell>
@@ -11903,7 +11903,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s191"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s77"/>
     <Cell ss:StyleID="s77"/>
     <Cell ss:StyleID="s83"><Data ss:Type="String">WP Ref</Data></Cell>
@@ -12078,7 +12078,7 @@
    </Row>
    <Row ss:StyleID="s77">
     <Cell ss:StyleID="s191"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">XX基金</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="String">Prepared by</Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s82"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>

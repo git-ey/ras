@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FundInfoMapper">
+
+    <select id="selectFundInfo" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    sfi.FUND_ID as fundId,
+		    sfi.SHORT_NAME as fundShortName,
+		    sfi.FULL_NAME as fundFullName,
+		    smc.SHORT_NAME as companyShortName
+		FROM
+		    SYS_FUND_INFO sfi
+		inner join sys_mgrcompany smc on smc.COMPANY_CODE = sfi.FIRM_CODE
+		WHERE
+		    1 = 1
+		AND sfi.ACTIVE = 'Y'
+		AND sfi.FUND_ID = #{fundId}
+    </select>
+    
+</mapper>
