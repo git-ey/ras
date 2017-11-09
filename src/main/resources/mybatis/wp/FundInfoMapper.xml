@@ -17,4 +17,14 @@
 		AND sfi.FUND_ID = #{fundId}
     </select>
     
+    <select id="selectETFFlag" parameterType="java.util.Map" resultType="java.lang.String"> 
+       SELECT
+		    ifnull( sfi.ETF, 'N' ) AS ETF 
+		FROM
+		    SYS_FUND_INFO sfi 
+		WHERE
+		    1 = 1 
+        AND sfi.FUND_ID = #{fundId}
+    </select>
+    
 </mapper>

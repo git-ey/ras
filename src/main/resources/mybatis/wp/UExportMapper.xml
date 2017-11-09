@@ -193,6 +193,24 @@
             U10000RI.SORT
     </select>
     
+    <select id="selectU10000ImportData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    U10000RI.COLUMN_NUM as 'column',
+		    U10000RI.ITEM as item,
+		    U10000RI.AMOUNT_CURRENT as amountCurrent,
+		    U10000RI.AMOUNT_LAST as amountLast
+		from
+		    wp_u10000_r_import U10000RI
+		where
+		    1 = 1
+		AND U10000RI.status = 'Y'
+		AND U10000RI.U10000_TYPE = #{type}
+		and U10000RI.FUND_ID = #{fundId}
+        and U10000RI.PERIOD = #{period}
+        order by
+            U10000RI.SORT
+    </select>
+    
     <select id="selectU10000DividendData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000RD.ITEM as item,
