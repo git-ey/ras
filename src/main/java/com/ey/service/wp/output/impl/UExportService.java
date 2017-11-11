@@ -29,11 +29,12 @@ public class UExportService extends BaseExportService implements UExportManager 
      * @author Dai Zong 2017年11月1日
      * 
      * @param fundId
-     * @param periodStrStr
+     * @param periodStr
+     * @param fundInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, String periodStr) throws Exception {
+    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
         
         Long period = Long.parseLong(periodStr.substring(0, 4));
@@ -43,10 +44,11 @@ public class UExportService extends BaseExportService implements UExportManager 
         dataMap.put("period", period);
         dataMap.put("month", month);
         dataMap.put("day", day);
-        dataMap.put("fundId", fundId);
+        dataMap.put("fundInfo", fundInfo);
         
         dataMap.put("U", this.getUData(fundId, periodStr));
         dataMap.put("U300", this.getU300Data(fundId, periodStr));
+        dataMap.put("U320", this.getU320Data(fundId, periodStr));
         dataMap.put("U400", this.getU400Data(fundId, periodStr));
         dataMap.put("U500", this.getU500Data(fundId, periodStr));
         dataMap.put("U600", this.getU600Data(fundId, periodStr));
@@ -57,15 +59,19 @@ public class UExportService extends BaseExportService implements UExportManager 
 
     @Override
     public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, periodStr);
-        FileExportUtils.writeFileToHttpResponse(request, response, Constants.EXPORT_AIM_FILE_NAME_U, xmlStr);
+        Map<String, String> fundInfo = this.selectFundInfo(fundId);
+        fundInfo.put("periodStr", periodStr);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_U, fundInfo), xmlStr);
         return true;
     }
 
     @Override
     public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
-        String xmlStr = this.generateFileContent(fundId, periodStr);
-        FileExportUtils.writeFileToDisk(folederName, fileName, xmlStr);
+        Map<String, String> fundInfo = this.selectFundInfo(fundId);
+        fundInfo.put("periodStr", periodStr);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), xmlStr);
         return true;
     }
     
@@ -218,6 +224,30 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("main", main);
         result.put("dividend", dividend);
         result.put("interest", interest);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页U320的数据
+     * @author Dai Zong 2017年11月7日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU320Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U320MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU320Data", queryMap);
+        if(U320MetaDataList == null) {
+            U320MetaDataList = new ArrayList<>(); 
+        }
+        
+        result.put("list", U320MetaDataList);
+        result.put("count", U320MetaDataList.size());
         return result;
     }
 
@@ -401,6 +431,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
+        String ETF = String.valueOf(this.dao.findForObject("FundInfoMapper.selectETFFlag", queryMap));
+        result.put("ETF", ETF);
+        
         Map<String, Object> interest = new HashMap<String,Object>();
         interest.put("S1", new HashMap<String,Object>());
         interest.put("S2", new HashMap<String,Object>());
@@ -426,6 +459,224 @@ public class UExportService extends BaseExportService implements UExportManager 
             }
         }
         result.put("interest", interest);
+        
+        Map<String, Object> stocks = new HashMap<String,Object>();
+        stocks.put("S1", new HashMap<String,Object>());
+        stocks.put("S2", new HashMap<String,Object>());
+        stocks.put("S3", new HashMap<String,Object>());
+        stocks.put("S4", new HashMap<String,Object>());
+        stocks.put("S5", new HashMap<String,Object>());
+        stocks.put("S6", new HashMap<String,Object>());
+        stocks.put("S7", new HashMap<String,Object>());
+        stocks.put("S8", new HashMap<String,Object>());
+        stocks.put("S9", new HashMap<String,Object>());
+        stocks.put("S10", new HashMap<String,Object>());
+        stocks.put("S11", new HashMap<String,Object>());
+        queryMap.put("type", "STOCKS");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000StocksMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
+        if(U10000StocksMetaDataList == null) {
+            U10000StocksMetaDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : U10000StocksMetaDataList) {
+            if ("股票投资收益——买卖股票差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+                stocks.put("S1", map);
+            } else if ("股票投资收益——赎回差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+                stocks.put("S2", map);
+            } else if ("卖出股票成交总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                stocks.put("S3", map);
+            } else if ("减：卖出股票成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                stocks.put("S4", map);
+            } else if ("赎回基金份额对价总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+                stocks.put("S5", map);
+            } else if ("减：现金支付赎回款总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+                stocks.put("S6", map);
+            } else if ("减：卖出股票成本总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+                stocks.put("S7", map);
+            } else if ("申购基金份额总额".equals(map.get("item")) && "G".equals(map.get("column"))) {
+                stocks.put("S8", map);
+            } else if ("减：现金支付申购款总额".equals(map.get("item")) && "G".equals(map.get("column"))) {
+                stocks.put("S9", map);
+            } else if ("减：申购股票成本总额".equals(map.get("item")) && "G".equals(map.get("column"))) {
+                stocks.put("S10", map);
+            } else if ("其他".equals(map.get("item")) && "G".equals(map.get("column"))) {
+                stocks.put("S11", map);
+            }
+        }
+        result.put("stocks", stocks);
+        
+        Map<String, Object> fund = new HashMap<String,Object>();
+        fund.put("S1", new HashMap<String,Object>());
+        fund.put("S2", new HashMap<String,Object>());
+        queryMap.put("type", "FUND");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000FundMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
+        if(U10000FundMetaDataList == null) {
+            U10000FundMetaDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : U10000FundMetaDataList) {
+            if ("卖出/赎回基金成交总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                fund.put("S1", map);
+            } else if ("减：卖出/赎回基金成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                fund.put("S2", map);
+            }
+        }
+        result.put("fund", fund);
+        
+        Map<String, Object> bond = new HashMap<String,Object>();
+        bond.put("S1", new HashMap<String,Object>());
+        bond.put("S2", new HashMap<String,Object>());
+        bond.put("S3", new HashMap<String,Object>());
+        bond.put("S4", new HashMap<String,Object>());
+        bond.put("S5", new HashMap<String,Object>());
+        bond.put("S6", new HashMap<String,Object>());
+        bond.put("S7", new HashMap<String,Object>());
+        bond.put("S8", new HashMap<String,Object>());
+        bond.put("S9", new HashMap<String,Object>());
+        bond.put("S10", new HashMap<String,Object>());
+        bond.put("S11", new HashMap<String,Object>());
+        bond.put("S12", new HashMap<String,Object>());
+        bond.put("S13", new HashMap<String,Object>());
+        bond.put("S14", new HashMap<String,Object>());
+        queryMap.put("type", "BOND");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000BondMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
+        if(U10000BondMetaDataList == null) {
+            U10000BondMetaDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : U10000BondMetaDataList) {
+            if ("债券投资收益——买卖债券（、债转股及债券到期兑付）差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+                bond.put("S1", map);
+            } else if ("债券投资收益——赎回差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+                bond.put("S2", map);
+            } else if ("卖出债券（、债转股及债券到期兑付）成交金额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                bond.put("S3", map);
+            } else if ("减：卖出债券（、债转股及债券到期兑付）成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                bond.put("S4", map);
+            } else if ("减：应收利息总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                bond.put("S5", map);
+            } else if ("赎回基金份额对价总额".equals(map.get("item")) && "I".equals(map.get("column"))) {
+                bond.put("S6", map);
+            } else if ("减：现金支付赎回款总额".equals(map.get("item")) && "I".equals(map.get("column"))) {
+                bond.put("S7", map);
+            } else if ("减：赎回债券成本总额".equals(map.get("item")) && "I".equals(map.get("column"))) {
+                bond.put("S8", map);
+            } else if ("减：赎回债券应收利息总额".equals(map.get("item")) && "I".equals(map.get("column"))) {
+                bond.put("S9", map);
+            } else if ("申购基金份额对价总额".equals(map.get("item")) && "J".equals(map.get("column"))) {
+                bond.put("S10", map);
+            } else if ("减：现金支付申购款总额".equals(map.get("item")) && "J".equals(map.get("column"))) {
+                bond.put("S11", map);
+            } else if ("减：申购债券成本总额".equals(map.get("item")) && "J".equals(map.get("column"))) {
+                bond.put("S12", map);
+            } else if ("减：申购债券应收利息总额".equals(map.get("item")) && "J".equals(map.get("column"))) {
+                bond.put("S13", map);
+            } else if ("其他".equals(map.get("item")) && "J".equals(map.get("column"))) {
+                bond.put("S14", map);
+            }
+        }
+        result.put("bond", bond);
+        
+        Map<String, Object> abs = new HashMap<String,Object>();
+        abs.put("S1", new HashMap<String,Object>());
+        abs.put("S2", new HashMap<String,Object>());
+        abs.put("S3", new HashMap<String,Object>());
+        queryMap.put("type", "ABS");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000AbsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
+        if(U10000AbsMetaDataList == null) {
+            U10000AbsMetaDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : U10000AbsMetaDataList) {
+            if ("卖出资产支持证券成交总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                abs.put("S1", map);
+            } else if ("减：卖出资产支持证券成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                abs.put("S2", map);
+            } else if ("减：应收利息总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                abs.put("S3", map);
+            }
+        }
+        result.put("abs", abs);
+        
+        Map<String, Object> gold = new HashMap<String,Object>();
+        gold.put("S1", new HashMap<String,Object>());
+        gold.put("S2", new HashMap<String,Object>());
+        gold.put("S3", new HashMap<String,Object>());
+        gold.put("S4", new HashMap<String,Object>());
+        gold.put("S5", new HashMap<String,Object>());
+        gold.put("S6", new HashMap<String,Object>());
+        gold.put("S7", new HashMap<String,Object>());
+        gold.put("S8", new HashMap<String,Object>());
+        gold.put("S9", new HashMap<String,Object>());
+        gold.put("S10", new HashMap<String,Object>());
+        gold.put("S11", new HashMap<String,Object>());
+        queryMap.put("type", "GOLD");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000GoldMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
+        if(U10000GoldMetaDataList == null) {
+            U10000GoldMetaDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : U10000GoldMetaDataList) {
+            if ("贵金属投资收益——买卖贵金属差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+                gold.put("S1", map);
+            } else if ("贵金属投资收益——赎回差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+                gold.put("S2", map);
+            } else if ("卖出贵金属成交总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                gold.put("S3", map);
+            } else if ("减：卖出贵金属成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+                gold.put("S4", map);
+            } else if ("赎回贵金属份额对价总额".equals(map.get("item")) && "E".equals(map.get("column"))) {
+                gold.put("S5", map);
+            } else if ("减：现金支付赎回款总额".equals(map.get("item")) && "E".equals(map.get("column"))) {
+                gold.put("S6", map);
+            } else if ("减：赎回贵金属成本总额".equals(map.get("item")) && "E".equals(map.get("column"))) {
+                gold.put("S7", map);
+            } else if ("申购贵金属份额总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+                gold.put("S8", map);
+            } else if ("减：现金支付申购款总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+                gold.put("S9", map);
+            } else if ("减：申购贵金属成本总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+                gold.put("S10", map);
+            } else if ("其他".equals(map.get("item")) && "F".equals(map.get("column"))) {
+                gold.put("S11", map);
+            }
+
+        }
+        result.put("gold", gold);
+        
+        Map<String, Object> di = new HashMap<String,Object>();
+        di.put("S1", new HashMap<String,Object>());
+        di.put("S2", new HashMap<String,Object>());
+        di.put("S3", new HashMap<String,Object>());
+        queryMap.put("type", "DI_WARRAMT");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000DiWarrantMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
+        if(U10000DiWarrantMetaDataList == null) {
+            U10000DiWarrantMetaDataList = new ArrayList<>(); 
+        }
+        queryMap.put("type", "DI_OTHER");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000DiOtherMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
+        if(U10000DiOtherMetaDataList == null) {
+            U10000DiOtherMetaDataList = new ArrayList<>(); 
+        }
+        List<Map<String,Object>> U10000DiMetaDataList = new ArrayList<>();
+        U10000DiMetaDataList.addAll(U10000DiWarrantMetaDataList);
+        U10000DiMetaDataList.addAll(U10000DiOtherMetaDataList);
+        int diCount = U10000DiMetaDataList.size();
+        if(diCount != 0) {
+            for(Map<String,Object> map : U10000DiMetaDataList) {
+                if ("卖出权证成交金额".equals(map.get("item"))) {
+                    di.put("S1", map);
+                } else if ("减：卖出权证成本总额".equals(map.get("item"))) {
+                    di.put("S2", map);
+                } else if ("黄金现货延期交收合约".equals(map.get("item"))) {
+                    di.put("S3", map);
+                }
+            }
+        }
+        result.put("diCount", diCount>0?1:0);
+        result.put("di", di);
         
         Map<String, Object> dividend = new HashMap<String,Object>();
         dividend.put("S1", new HashMap<String,Object>());

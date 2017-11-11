@@ -60,6 +60,44 @@
         and U300I.PERIOD = #{period}
     </select>
     
+    <select id="selectU320Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            ts.TRANSACTION_DATE as transactionDate,
+			ts.CURRENCY as currency,
+			ts.EY_BUYSELL_TYPE as eyBuysellType,
+			ts.EY_STOCKBOND_TYPE as eyStockbondType,
+			ts.MARKET_FLAG as marketFlag,
+			ts.STOCK_CODE as stockCode,
+			ts.STOCK_NAME as stockName,
+			ts.QUANTITY as quantity,
+			ts.AMOUNT as amount,
+			ts.SEAT_COMMISSION as seatCommission,
+			ts.STAMPS as stamps,
+			ts.BROKERAGE_FEE as brokerageFee,
+			ts.TRANSFER_FEE as transferFee,
+			ts.SEC_FEE as secFee,
+			ts.CONTINGENCY_FEE as contingencyFee,
+			ts.OTHER_FEE as otherFee,
+			ts.BROKERAGE_TRANSFER_FEE as brokerageTransferFee,
+			ts.BOND_INTEREST as bondInterest,
+			ts.REPO_EARNINGS as repoEarnings,
+			ts.NET_AMOUNT as netAmount,
+			ts.TRX_TYPE as trxType,
+			ts.MARKET as market,
+			ts.AGENT as agent,
+			ts.SEAT_NUM as seatNum,
+			ts.AVERAGE_PRICE as averagePrice,
+			ts.EY_SECURITY_CODE as eySecurityCode,
+			ts.EY_SECURITY_NAME as eySecurityName
+        FROM
+            ey_trx_settlement ts
+        where 
+            1 = 1
+        and ts.ACTIVE = 'Y'
+        and ts.FUND_ID = #{fundId}
+        and ts.PERIOD = #{period}
+    </select>
+    
     <select id="selectU400Data" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U400.ATTR1 as item,
@@ -150,6 +188,24 @@
             1 = 1
         and U10000RI.STATUS = 'Y'
         and U10000RI.FUND_ID = #{fundId}
+        and U10000RI.PERIOD = #{period}
+        order by
+            U10000RI.SORT
+    </select>
+    
+    <select id="selectU10000ImportData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    U10000RI.COLUMN_NUM as 'column',
+		    U10000RI.ITEM as item,
+		    U10000RI.AMOUNT_CURRENT as amountCurrent,
+		    U10000RI.AMOUNT_LAST as amountLast
+		from
+		    wp_u10000_r_import U10000RI
+		where
+		    1 = 1
+		AND U10000RI.status = 'Y'
+		AND U10000RI.U10000_TYPE = #{type}
+		and U10000RI.FUND_ID = #{fundId}
         and U10000RI.PERIOD = #{period}
         order by
             U10000RI.SORT
