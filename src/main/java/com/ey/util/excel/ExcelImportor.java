@@ -188,7 +188,6 @@ public class ExcelImportor extends FileImportor {
 					maps.put(key, temp.intValue());
 				}
 				break;
-
 			case STRING:
 				String temp = null;
 				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
@@ -201,11 +200,9 @@ public class ExcelImportor extends FileImportor {
 					maps.put(key, StringUtils.isBlank(temp) ? "''" : quotes + temp + quotes);
 					break;
 				}
-
 				errMsg = String.format("line:%d,column:%d is not string\n", showLine, showColumn);
 				setErrMsg(errMsg, maps, sb);
 				break;
-
 			case FLOAT:
 				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
 					Double temp1 = cell.getNumericCellValue();
@@ -215,7 +212,6 @@ public class ExcelImportor extends FileImportor {
 					setErrMsg(errMsg, maps, sb);
 				}
 				break;
-
 			case DATE:
 				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
 					Date date = DateUtil.getJavaDate(cell.getNumericCellValue());
@@ -226,7 +222,7 @@ public class ExcelImportor extends FileImportor {
 				}
 				break;
 			case BIGDECIMAL:
-				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
+				if (rawCellType == Cell.CELL_TYPE_NUMERIC || rawCellType == Cell.CELL_TYPE_FORMULA) {
 					Double temp1 = cell.getNumericCellValue();
 					maps.put(key, BigDecimal.valueOf(temp1));
 				} else {

@@ -141,6 +141,9 @@
 		<if test="pd.TEMP_TYPE != null and pd.TEMP_TYPE != ''">
 		    and TEMP_TYPE != #{pd.TEMP_TYPE}
 		</if>
+		<if test="pd.TEMP_TYPE_CODE != null and pd.TEMP_TYPE_CODE != ''">
+		    and TEMP_TYPE = #{pd.TEMP_TYPE_CODE}
+		</if>
 		order by IMPORT_TEMP_CODE ASC
 	</select>
 	

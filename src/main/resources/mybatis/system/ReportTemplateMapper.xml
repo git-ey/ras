@@ -1,126 +1,252 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReportTemplateMapper">
-	
+
 	<!--表名 -->
 	<sql id="tableName">
 		SYS_REPORTTEMPLATE
 	</sql>
-	
+
 	<!-- 字段 -->
 	<sql id="Field">
-		CHAPTER,	
-		TITLE,	
-		ITEM_QUANTITY,	
-		ITEM_SEQ,	
-		ITEM_NAME,	
-		SUB_SEQ,	
-		ITEM_TYPE,	
-		ITEM_CODE,	
-		STATUS,	
+		CHAPTER,
+		TITLE,
+		ITEM_QUANTITY,
+		ITEM_SEQ,
+		ITEM_NAME,
+		SUB_SEQ,
+		ITEM_TYPE,
+		ITEM_CODE,
+		STATUS,
+		DESCRIPTION,
+		FORMAT_DESC,
+		CHECK_FLAG,
+		CITE_FILED,
+		A_FG,
+		A_YY,
+		A_YH,
+		A_HA,
+		A_TZ,
+		A_CT,
+		A_HX,
+		A_GD,
+		B_XG,
+		B_CXG,
+		B_JG,
+		C_ZFJ,
+		C_JFJ,
+		C_FFJ,
+		D_ZX,
+		D_FZX,
+		E_JG,
+		E_CZ,
+		E_JZ,
+		E_HH,
+		E_HJ,
+		E_ETF,
+		E_ELJ,
+		E_QD,
+		F_BB,
+		F_FBB,
+		G_FB,
+		G_DQKF,
+		G_KF,
+		H_ZS,
+		H_FZS,
+		J_CF,
+		J_FCF,
+		K_HG,
+		K_FHG,
+		L_LOF,
+		L_FLOF,
+		M_FH,
+		M_FFH,
 		REPORTTEMPLATE_ID
 	</sql>
-	
+
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{CHAPTER},	
-		#{TITLE},	
-		#{ITEM_QUANTITY},	
-		#{ITEM_SEQ},	
-		#{ITEM_NAME},	
-		#{SUB_SEQ},	
-		#{ITEM_TYPE},	
-		#{ITEM_CODE},	
-		#{STATUS},	
+		#{CHAPTER},
+		#{TITLE},
+		#{ITEM_QUANTITY},
+		#{ITEM_SEQ},
+		#{ITEM_NAME},
+		#{SUB_SEQ},
+		#{ITEM_TYPE},
+		#{ITEM_CODE},
+		#{STATUS},
+		#{DESCRIPTION},
+		#{FORMAT_DESC},
+		#{CHECK_FLAG},
+		#{CITE_FILED},
+		#{A_FG},
+		#{A_YY},
+		#{A_YH},
+		#{A_HA},
+		#{A_TZ},
+		#{A_CT},
+		#{A_HX},
+		#{A_GD},
+		#{B_XG},
+		#{B_CXG},
+		#{B_JG},
+		#{C_ZFJ},
+		#{C_JFJ},
+		#{C_FFJ},
+		#{D_ZX},
+		#{D_FZX},
+		#{E_JG},
+		#{E_CZ},
+		#{E_JZ},
+		#{E_HH},
+		#{E_HJ},
+		#{E_ETF},
+		#{E_ELJ},
+		#{E_QD},
+		#{F_BB},
+		#{F_FBB},
+		#{G_FB},
+		#{G_DQKF},
+		#{G_KF},
+		#{H_ZS},
+		#{H_FZS},
+		#{J_CF},
+		#{J_FCF},
+		#{K_HG},
+		#{K_FHG},
+		#{L_LOF},
+		#{L_FLOF},
+		#{M_FH},
+		#{M_FFH},
 		#{REPORTTEMPLATE_ID}
 	</sql>
-	
-	<!-- 新增-->
+
+	<!-- 新增 -->
 	<insert id="save" parameterType="pd">
-		insert into 
-	<include refid="tableName"></include>
+		insert into
+		<include refid="tableName"></include>
 		(
-	<include refid="Field"></include>
+		<include refid="Field"></include>
 		) values (
-	<include refid="FieldValue"></include>
+		<include refid="FieldValue"></include>
 		)
 	</insert>
-	
-	<!-- 删除-->
+
+	<!-- 删除 -->
 	<delete id="delete" parameterType="pd">
 		delete from
 		<include refid="tableName"></include>
-		where 
-			REPORTTEMPLATE_ID = #{REPORTTEMPLATE_ID}
+		where REPORTTEMPLATE_ID = #{REPORTTEMPLATE_ID}
 	</delete>
-	
+
 	<!-- 修改 -->
 	<update id="edit" parameterType="pd">
 		update
 		<include refid="tableName"></include>
-		set 
-			CHAPTER = #{CHAPTER},
-			TITLE = #{TITLE},
-			ITEM_QUANTITY = #{ITEM_QUANTITY},
-			ITEM_SEQ = #{ITEM_SEQ},
-			ITEM_NAME = #{ITEM_NAME},
-			SUB_SEQ = #{SUB_SEQ},
-			ITEM_TYPE = #{ITEM_TYPE},
-			ITEM_CODE = #{ITEM_CODE},
-			STATUS = #{STATUS}
-		where 
-		REPORTTEMPLATE_ID = #{REPORTTEMPLATE_ID}
+		set
+		CHAPTER = #{CHAPTER},
+		TITLE = #{TITLE},
+		ITEM_QUANTITY = #{ITEM_QUANTITY},
+		ITEM_SEQ = #{ITEM_SEQ},
+		ITEM_NAME = #{ITEM_NAME},
+		SUB_SEQ = #{SUB_SEQ},
+		ITEM_TYPE = #{ITEM_TYPE},
+		ITEM_CODE = #{ITEM_CODE},
+		STATUS = #{STATUS},
+		DESCRIPTION = #{DESCRIPTION},
+		FORMAT_DESC = #{FORMAT_DESC},
+		CHECK_FLAG = #{CHECK_FLAG},
+		CITE_FILED = #{CITE_FILED},
+		A_FG = #{A_FG},
+		A_YY = #{A_YY},
+		A_YH = #{A_YH},
+		A_HA = #{A_HA},
+		A_TZ = #{A_TZ},
+		A_CT = #{A_CT},
+		A_HX = #{A_HX},
+		A_GD = #{A_GD},
+		B_XG = #{B_XG},
+		B_CXG = #{B_CXG},
+		B_JG = #{B_JG},
+		C_ZFJ = #{C_ZFJ},
+		C_JFJ = #{C_JFJ},
+		C_FFJ = #{C_FFJ},
+		D_ZX = #{D_ZX},
+		D_FZX = #{D_FZX},
+		E_JG = #{E_JG},
+		E_CZ = #{E_CZ},
+		E_JZ = #{E_JZ},
+		E_HH = #{E_HH},
+		E_HJ = #{E_HJ},
+		E_ETF = #{E_ETF},
+		E_ELJ = #{E_ELJ},
+		E_QD = #{E_QD},
+		F_BB = #{F_BB},
+		F_FBB = #{F_FBB},
+		G_FB = #{G_FB},
+		G_DQKF = #{G_DQKF},
+		G_KF = #{G_KF},
+		H_ZS = #{H_ZS},
+		H_FZS = #{H_FZS},
+		J_CF = #{J_CF},
+		J_FCF = #{J_FCF},
+		K_HG = #{K_HG},
+		K_FHG = #{K_FHG},
+		L_LOF = #{L_LOF},
+		L_FLOF = #{L_FLOF},
+		M_FH = #{M_FH},
+		M_FFH = #{M_FFH}
+		where REPORTTEMPLATE_ID = #{REPORTTEMPLATE_ID}
 	</update>
-	
+
 	<!-- 通过ID获取数据 -->
 	<select id="findById" parameterType="pd" resultType="pd">
-		select 
+		select
 		<include refid="Field"></include>
-		from 
+		from
 		<include refid="tableName"></include>
-		where 
-			REPORTTEMPLATE_ID = #{REPORTTEMPLATE_ID}
+		where REPORTTEMPLATE_ID = #{REPORTTEMPLATE_ID}
 	</select>
-	
+
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">
 		select
 		<include refid="Field"></include>
-		from 
+		from
 		<include refid="tableName"></include>
 		where 1=1
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
-				(
-				<!-- 根据需求自己加检索条件 -->
-					CHAPTER LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
-					 or 
-					TITLE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				     or 
-					ITEM_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				)
+			(
+			<!-- 根据需求自己加检索条件 -->
+			CHAPTER LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+			or 
+			TITLE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+			or 
+			ITEM_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+			)
 		</if>
 		<if test="pd.STATUS != null and pd.STATUS != ''">
-		    and STATUS = #{pd.STATUS}
+			and STATUS = #{pd.STATUS}
 		</if>
 	</select>
-	
+
 	<!-- 列表(全部) -->
 	<select id="listAll" parameterType="pd" resultType="pd">
 		select
 		<include refid="Field"></include>
-		from 
+		from
 		<include refid="tableName"></include>
 	</select>
-	
+
 	<!-- 批量删除 -->
 	<delete id="deleteAll" parameterType="String">
 		delete from
 		<include refid="tableName"></include>
-		where 
-			REPORTTEMPLATE_ID in
+		where
+		REPORTTEMPLATE_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
-                 #{item}
+			#{item}
 		</foreach>
 	</delete>
 </mapper>
