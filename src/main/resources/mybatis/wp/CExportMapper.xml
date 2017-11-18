@@ -45,6 +45,7 @@
 	    and C300IR.STATUS = 'Y'
 		and C300IR.FUND_ID = #{fundId}
 		and C300IR.PERIOD = #{period}
+		order by C300IR.sort
     </select>
     
     <select id="selectC300IntRiskTimeDepositsData" parameterType="java.util.Map" resultType="java.util.Map">
@@ -59,6 +60,7 @@
 		and C300IR.FUND_ID = #{fundId}
 		and C300IR.PERIOD = #{period}
 		and C300IR.DEPOSIT_TYPE = '定期存款'
+		order by C300IR.sort
     </select>
     
     <select id="selectC300RelatedData" parameterType="java.util.Map" resultType="java.util.Map">
@@ -111,7 +113,7 @@
     </select>
     
     <select id="selectC400TermData" parameterType="java.util.Map" resultType="java.lang.String">
-		SELECT
+		SELECT DISTINCT
 		    C400T.TERM_PERIOD as termPeriod
 		FROM
 		    wp_c400_term C400T
@@ -120,6 +122,7 @@
         and C400T.STATUS = 'Y'
 		and C400T.FUND_ID = #{fundId}
 		and C400T.PERIOD = #{period}
+		order by C400T.sort
     </select>
     
     <select id="selectC10000MainData" parameterType="java.util.Map" resultType="java.util.Map">

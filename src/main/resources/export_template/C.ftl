@@ -81,7 +81,7 @@
     ss:Format="_([$€-2]* #,##0.00_);_([$€-2]* \(#,##0.00\);_([$€-2]* &quot;-&quot;??_)"/>
    <Protection/>
   </Style>
-  <Style ss:ID="s63" ss:Name="常规_T-Owner's equity">
+  <Style ss:ID="s62" ss:Name="常规_T-Owner's equity">
    <Alignment ss:Vertical="Bottom"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
@@ -132,10 +132,18 @@
   <Style ss:ID="s57" ss:Name="千位分隔 2">
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
-  <Style ss:ID="s64" ss:Name="千位分隔_E-WanFeng WeiHai2004">
+  <Style ss:ID="s59" ss:Name="千位分隔_资产类">
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
-  <Style ss:ID="s59" ss:Name="千位分隔_资产类">
+  <Style ss:ID="s63" ss:Parent="s26">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#FF0000" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+   <Protection ss:Protected="0"/>
+  </Style>
+  <Style ss:ID="s64" ss:Name="千位分隔_E-WanFeng WeiHai2004">
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s65" ss:Parent="s45">
@@ -963,7 +971,7 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#FF0000" ss:Pattern="Solid"/>
   </Style>
-  <Style ss:ID="s204" ss:Parent="s63">
+  <Style ss:ID="s204" ss:Parent="s62">
    <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -1229,6 +1237,12 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#FF0000" ss:Pattern="Solid"/>
   </Style>
+  <Style ss:ID="s241">
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#000000" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+   <Protection/>
+  </Style>
   <Style ss:ID="s245" ss:Parent="s56">
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#00B0F0"/>
@@ -1304,68 +1318,6 @@
   <NamedRange ss:Name="银行存款明细" ss:RefersTo="=#REF!"/>
   <NamedRange ss:Name="银行存款取数表" ss:RefersTo="=#REF!"/>
  </Names>
- <Worksheet ss:Name="目录">
-  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultRowHeight="13.5">
-   <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="78.75"/>
-   <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="321.75"/>
-   <Row>
-    <Cell ss:StyleID="s199"><Data ss:Type="String">底稿目录</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s199"/>
-   </Row>
-   <Row ss:Index="4">
-    <Cell><Data ss:Type="String">Index</Data></Cell>
-    <Cell ss:StyleID="s167"><Data ss:Type="String">内容</Data></Cell>
-    <Cell ss:StyleID="s168"/>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s169"><Data ss:Type="String">C</Data></Cell>
-    <Cell><Data ss:Type="String">C Leadsheet</Data></Cell>
-   </Row>
-   <Row ss:Index="7" ss:Height="14.25">
-    <Cell ss:StyleID="s169"><Data ss:Type="String">C300</Data></Cell>
-    <Cell ss:StyleID="s178"><Data ss:Type="String">货币资金明细表，除定期存款外的其他项目的对账、函证测试</Data></Cell>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s169"><Data ss:Type="String">C300 QD</Data></Cell>
-    <Cell ss:StyleID="s178"><Data ss:Type="String">QDII基金的货币资金明细表，除定期存款外的其他项目的对账、函证测试，汇率折算测试</Data></Cell>
-   </Row>
-   <Row ss:Index="10" ss:Height="14.25">
-    <Cell ss:StyleID="s169"><Data ss:Type="String">C400</Data></Cell>
-    <Cell ss:StyleID="s178"><Data ss:Type="String">定期存款函证、计息测试</Data></Cell>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s169"><Data ss:Type="String">C400 QD</Data></Cell>
-    <Cell ss:StyleID="s178"><Data ss:Type="String">QDII基金的定期存款函证、计息测试</Data></Cell>
-   </Row>
-   <Row ss:Index="13" ss:Height="14.25">
-    <Cell ss:StyleID="s169"><Data ss:Type="String">C500</Data></Cell>
-    <Cell><Data ss:Type="String">银行存款截止测试</Data></Cell>
-   </Row>
-   <Row ss:Index="15" ss:Height="14.25">
-    <Cell ss:StyleID="s169"><Data ss:Type="String">C10000</Data></Cell>
-    <Cell ss:StyleID="s178"><Data ss:Type="String">报表附注披露相关</Data></Cell>
-   </Row>
-  </Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <PageSetup>
-    <Header x:Margin="0.3"/>
-    <Footer x:Margin="0.3"/>
-    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
-   </PageSetup>
-   <Zoom>90</Zoom>
-   <Panes>
-    <Pane>
-     <Number>3</Number>
-     <ActiveRow>15</ActiveRow>
-     <ActiveCol>1</ActiveCol>
-    </Pane>
-   </Panes>
-   <ProtectObjects>False</ProtectObjects>
-   <ProtectScenarios>False</ProtectScenarios>
-  </WorksheetOptions>
- </Worksheet>
  <Worksheet ss:Name="C">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s128" ss:DefaultColumnWidth="47.25" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s128" ss:AutoFitWidth="0" ss:Width="107.25"/>
@@ -1388,7 +1340,7 @@
     <Cell ss:StyleID="s70"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s108">
-    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s65"/>
     <Cell ss:Index="6" ss:StyleID="s174"><Data ss:Type="String">Reviewed by</Data></Cell>
@@ -1463,14 +1415,14 @@
    <Row>
     <Cell ss:StyleID="s146"><Data ss:Type="String">银行存款</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">C300</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1002.amountCurrent??>${C.KM1002.amountCurrent?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1002.drAmountAdj??>${C.KM1002.drAmountAdj?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1002.crAmountAdj??>${C.KM1002.crAmountAdj?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1002.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1002.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1002.crAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data><NamedCell ss:Name="_银行存款审定"/></Cell>
     <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1002.amountAuditLast??>${C.KM1002.amountAuditLast?string('0.##')}</#if></Data><NamedCell ss:Name="_银行存款期初"/></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1002.amountAuditLast!0)?string('0.##')}</Data><NamedCell ss:Name="_银行存款期初"/></Cell>
     <Cell ss:StyleID="s127"/>
-    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s152" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s108">
     <Cell ss:StyleID="s146"/>
@@ -1486,14 +1438,14 @@
    <Row>
     <Cell ss:StyleID="s146"><Data ss:Type="String">清算备付金</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">C300</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1021.amountCurrent??>${C.KM1021.amountCurrent?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1021.drAmountAdj??>${C.KM1021.drAmountAdj?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1021.crAmountAdj??>${C.KM1021.crAmountAdj?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1021.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1021.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1021.crAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1021.amountAuditLast??>${C.KM1021.amountAuditLast?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1021.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s127"/>
-    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s152" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s108">
     <Cell ss:StyleID="s147"/>
@@ -1509,14 +1461,14 @@
    <Row>
     <Cell ss:StyleID="s146"><Data ss:Type="String">存出保证金</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">C300</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1031.amountCurrent??>${C.KM1031.amountCurrent?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1031.drAmountAdj??>${C.KM1031.drAmountAdj?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1031.crAmountAdj??>${C.KM1031.crAmountAdj?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1031.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1031.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1031.crAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s72"/>
     <Cell ss:StyleID="s72"><Data ss:Type="Number"><#if C.KM1031.amountAuditLast??>${C.KM1031.amountAuditLast?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s127"/>
-    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s152" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s108">
     <Cell ss:StyleID="s146"/>
@@ -1532,15 +1484,14 @@
    <Row ss:Height="14.25" ss:StyleID="s130">
     <Cell ss:StyleID="s146"><Data ss:Type="String">货币资金合计</Data></Cell>
     <Cell ss:StyleID="s146"/>
-    <Cell ss:StyleID="s142" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s142" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s73"/>
     <Cell ss:StyleID="s72"/>
     <Cell ss:StyleID="s142" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s142" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s142" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s73"/>
-    <Cell ss:StyleID="s152" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data
-      ss:Type="Error">#VALUE!</Data></Cell>
+    <Cell ss:StyleID="s152" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s108">
     <Cell ss:StyleID="s146"/>
@@ -1567,8 +1518,8 @@
     <Cell ss:StyleID="s104"/>
    </Row>
    <Row ss:StyleID="s108">
-    <Cell ss:StyleID="s204"><Data ss:Type="String">分析性复核参见SRM。</Data></Cell>
-    <Cell ss:StyleID="s86"/>
+    <Cell ss:StyleID="s236"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s241"><Data ss:Type="String">分析性复核</Data></Cell>
     <Cell ss:StyleID="s133"/>
     <Cell ss:StyleID="s134"/>
     <Cell ss:StyleID="s104"/>
@@ -1731,7 +1682,7 @@
     <Cell ss:Index="10" ss:StyleID="s70"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s108"/>
     <Cell ss:StyleID="s108"/>
@@ -1870,7 +1821,7 @@
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
     <Cell ss:StyleID="s161"><Data ss:Type="Number"><#if item.beginBalance??>${item.beginBalance?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s110"/>
-    <Cell ss:StyleID="s207"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String"><#if item_index == 0>C400</#if></Data></Cell>
     <Cell ss:StyleID="s161"><Data ss:Type="Number"><#if item.endBalance??>${item.endBalance?string('0.##')}</#if></Data></Cell>
    </Row>
    </#list>
@@ -2135,7 +2086,7 @@
    <Row>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.relatedParty!}</Data></Cell>
     <Cell><Data ss:Type="String">活期存款</Data></Cell>
-    <Cell ss:StyleID="s245" ss:Formula="=SUMIFS(R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C[6]:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C[6],R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C,RC[-2],R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C[-1]:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C[-1],&quot;活期&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161" ss:Formula="=SUMIFS(R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C[6]:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C[6],R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C,RC[-2],R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C[-1]:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count))?string('0')}]C[-1],&quot;活期&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
    </Row>
    </#list>
@@ -2145,7 +2096,7 @@
    <Row>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.relatedParty!}</Data></Cell>
     <Cell><Data ss:Type="String">定期存款</Data></Cell>
-    <Cell ss:StyleID="s245" ss:Formula="=SUMIFS(R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C[6]:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C[6],R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C,RC[-2],R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C[-1]:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C[-1],&quot;定期&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161" ss:Formula="=SUMIFS(R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C[6]:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C[6],R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C,RC[-2],R[${(-(29+item_index+C300.main.KM1002.demandDepositsCount+C300.main.KM1002.timeDepositsCount+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C[-1]:R[${(-(24+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount))?string('0')}]C[-1],&quot;定期&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
    </Row>
    </#list>
@@ -2164,7 +2115,7 @@
    <Row>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.relatedParty!}</Data></Cell>
     <Cell><Data ss:Type="String">结算备付金</Data></Cell>
-    <Cell ss:StyleID="s245" ss:Formula="=SUMIFS(R[${(-(19+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C[6]:R[${(-(19+item_index+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C[6],R[${(-(19+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C:R[${(-(19+item_index+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C,RC[-2])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161" ss:Formula="=SUMIFS(R[${(-(19+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C[6]:R[${(-(19+item_index+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C[6],R[${(-(19+item_index+C300.main.KM1021.count+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C:R[${(-(19+item_index+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount))?string('0')}]C,RC[-2])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
    </Row>
    </#list>
@@ -2177,7 +2128,7 @@
    <Row>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.relatedParty!}</Data></Cell>
     <Cell><Data ss:Type="String">存出保证金</Data></Cell>
-    <Cell ss:StyleID="s245" ss:Formula="=SUMIFS(R[${(-(16+item_index+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount+C300.related.KM1021Count))?string('0')}]C[6]:R[${(-(16+item_index+C300.related.demandDepositsCount+C300.related.timeDepositsCount+C300.related.KM1021Count))?string('0')}]C[6],R[${(-(16+item_index+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount+C300.related.KM1021Count))?string('0')}]C:R[${(-(16+item_index+C300.related.demandDepositsCount+C300.related.timeDepositsCount+C300.related.KM1021Count))?string('0')}]C,RC[-2])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161" ss:Formula="=SUMIFS(R[${(-(16+item_index+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount+C300.related.KM1021Count))?string('0')}]C[6]:R[${(-(16+item_index+C300.related.demandDepositsCount+C300.related.timeDepositsCount+C300.related.KM1021Count))?string('0')}]C[6],R[${(-(16+item_index+C300.main.KM1031.count+C300.related.demandDepositsCount+C300.related.timeDepositsCount+C300.related.KM1021Count))?string('0')}]C:R[${(-(16+item_index+C300.related.demandDepositsCount+C300.related.timeDepositsCount+C300.related.KM1021Count))?string('0')}]C,RC[-2])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
    </Row>
    </#list>
@@ -2195,9 +2146,11 @@
     <Cell ss:Index="3" ss:MergeAcross="7" ss:StyleID="s253"><Data ss:Type="String">利率风险敞口</Data></Cell>
    </Row>
    <Row>
+    <Cell/>
+    <Cell/>
     <#if C300.intRiskPeriod.intRistPeriodsCount != 0>
     <#list C300.intRiskPeriod.intRistPeriods as item>
-    <Cell <#if item_index == 0>ss:Index="3" </#if>ss:StyleID="s205"><Data ss:Type="String">${item!}</Data></Cell>
+    <Cell ss:StyleID="s205"><Data ss:Type="String">${item!}</Data></Cell>
     </#list>
     </#if>
     <Cell ss:StyleID="s205"><Data ss:Type="String">合计</Data></Cell>
@@ -2290,327 +2243,6 @@
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
    </Row>
-   <Row>
-   </Row>
-   <Row>
-   </Row>
-   <Row>
-   </Row>
-   <Row>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s106"/>
-   </Row>
-   <Row ss:Height="15.75">
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15.75">
-    <Cell ss:StyleID="s157"><Data ss:Type="String">Guidance</Data></Cell>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s178"><Data ss:Type="String">本页内容：货币资金明细表，除定期存款外的其他项目的对账、函证测试</Data></Cell>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15.75">
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s178"><Data ss:Type="String">数据来源：本年未审数来源于余额表。</Data></Cell>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s178"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s178"><Data ss:Type="String">注释：</Data></Cell>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s178"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">1. 定期存款相关的资料获取及测试在C400进行。除定期存款之外的其他项目与外部资料的核对情况在此记录，根据获取的资料进行<Font
-       html:Color="#FF0000">索引或写注释</Font><Font>，获取外部证据的顺序如下：</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s178"><Data ss:Type="String">a. 头寸表</Data></Cell>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s178"><Data ss:Type="String">b. 网银截屏</Data></Cell>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s178"><Data ss:Type="String">c. 根据与托管行的对账方式，获取合适的证据</Data></Cell>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s178"><Data ss:Type="String">2. 函证。可以函证的都函。与定期存款相关的记录在C400，其他记录在这里</Data></Cell>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s201">
-    <Cell ss:StyleID="s202"><Data ss:Type="String">3.清算备付金：报表披露为结算备付金，主要用来核算为证券交易资金交割与交收而存入证券结算机构的款项。普通基金存放机构主要为上交所，深交所和银行间，投资期货的基金还会存放在期货交易所。&#10;。</Data></Cell>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s201">
-    <Cell ss:StyleID="s179"><Data ss:Type="String">  上交所/深交所最低结算备付金：每月根据交易所通知的金额进行调整（根据交易量计算而来）。</Data></Cell>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s201">
-    <Cell ss:StyleID="s179"><Data ss:Type="String">  上交所/深交所结算备付金，通常情况下，交易资金流水均经过此帐户，日终划转至银行存款，无余额。</Data></Cell>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s201">
-    <Cell ss:StyleID="s179"><Data ss:Type="String">  实际上，有银行间交易的基金应该开立有DVP账户（即有银行间结算备付金），但是客户记账时基本上都会合并归集在上交所/深交所结算备付金里。</Data></Cell>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s201">
-    <Cell ss:StyleID="s179"><Data ss:Type="String">  期货结算备付金包括暂存的流动资金和每日无负债结算后产生的损益；而期货交易时占用的保证金是在存出保证金科目进行核算的。</Data></Cell>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-    <Cell ss:StyleID="s200"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s182">
-    <Cell ss:StyleID="s179"><Data ss:Type="String">4. 存出保证金：主要指金融企业因办理业务需要存出或交纳的各种保证金款项，包括日常存出保证金、远期存出保证金、权证存储保证金等。普通基金存放机构主要为上交所和深交所，投资期货的基金还会存放在期货交易所。</Data></Cell>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s182">
-    <Cell ss:StyleID="s179"><Data ss:Type="String">   每月根据交易所通知的金额进行调整（根据交易量计算而来）。</Data></Cell>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s74">
-    <Cell ss:StyleID="s178"><Data ss:Type="String">5. 利率风险的口径是以剩余期限进行归集。</Data></Cell>
-    <Cell ss:StyleID="s155"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-   </Row>
-   <Row ss:Height="15">
-    <Cell ss:StyleID="s160"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s159"/>
-    <Cell ss:StyleID="s46"/>
-   </Row>
-   <Row ss:Height="12" ss:StyleID="s165">
-    <Cell ss:Index="2" ss:StyleID="s166"/>
-   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -2691,7 +2323,7 @@
     <Cell ss:StyleID="s86"/>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s65"/>
@@ -2824,10 +2456,10 @@
     <Cell ss:StyleID="s92"><Data ss:Type="String">${item.leftPeriod!}</Data></Cell>
     <Cell ss:StyleID="s92"/>
     <Cell ss:StyleID="s123"><Data ss:Type="DateTime">${item.dateFromCurrent!}</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="Number"><#if (item.dateCount)??>${(item.dateCount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s94" ss:Formula="=R3C2-RC[-1]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s88" ss:Formula="=RC[-9]*RC[-8]*RC[-1]/360"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s196"/>
-    <Cell ss:StyleID="s197" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s197"/>
+    <Cell ss:StyleID="s197"></Cell>
     <Cell ss:StyleID="s117"/>
    </Row>
    </#list>
@@ -2873,7 +2505,7 @@
    <Row>
     <Cell ss:StyleID="s211"><Data ss:Type="String">${item.bankName!}</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">${item.related!}</Data></Cell>
-    <Cell ss:StyleID="s212"><Data ss:Type="Number">${(item.endBalance)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s212" ss:Formula="=SUMIF(C2,RC[-2],C4)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String"><#if item_index == 0>&lt;C300&gt;</#if></Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s191"/>
     <Cell ss:StyleID="s191"/>
@@ -2927,12 +2559,12 @@
    </#list>
    </#if>
    <Row ss:StyleID="s74">
-    <Cell ss:StyleID="s82"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s83" ss:Formula="=SUM(R[${(-(C400.groupByTerm.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s228"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s229" ss:Formula="=SUM(R[${(-(C400.groupByTerm.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s74">
     <Cell ss:StyleID="s75"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s217" ss:Formula="=R[-1]C-R[${(-(13+C400.groupByBank.count+C400.groupByTerm.count))?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s225" ss:Formula="=R[-1]C-R[${(-(13+C400.groupByBank.count+C400.groupByTerm.count))?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s74">
     <Cell ss:StyleID="s75"/>
@@ -2970,8 +2602,7 @@
    </Row>
    <Row>
     <Cell><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s225" ss:Formula="=R[-1]C-R[${(-(18+C400.groupByBank.count+C400.groupByTerm.count+C300.intRiskPeriod.intRistPeriodsCount))?string('0')}]C[2]"><Data
-      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s225" ss:Formula="=R[-1]C-R[${(-(18+C400.groupByBank.count+C400.groupByTerm.count+C300.intRiskPeriod.intRistPeriodsCount))?string('0')}]C[2]"><Data ss:Type="Number">0</Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -3034,7 +2665,7 @@
     <Cell ss:StyleID="s119"/>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s68"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s102"/>
     <Cell ss:StyleID="s102"/>
@@ -3052,7 +2683,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s68"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s69"><Data ss:Type="String">货币资金-银行存款截止测试</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">银行存款截止测试</Data></Cell>
     <Cell ss:StyleID="s102"/>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s151"/>
@@ -3103,7 +2734,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s98"><Data ss:Type="String">目的：</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">确认基金不存在期末通过利用银行账户之间转账时间差虚增资产的情况</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">确认基金是否存在期末通过利用银行账户之间转账时间差虚增资产的情况</Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
@@ -3139,7 +2770,7 @@
     <Cell ss:StyleID="s101"><Data ss:Type="String">工作步骤：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40">1、获得<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">12</Font><Font>月</Font><Font html:Color="#000000">31</Font><Font>日所有银行账户的头寸表</Font></ss:Data></Cell>
+       html:Color="#000000">${month?string('0')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('0')}</Font><Font>日所有银行账户的头寸表</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -3158,7 +2789,7 @@
     <Cell ss:StyleID="s101"/>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40">2、查看<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">12</Font><Font>月</Font><Font html:Color="#000000">31</Font><Font>日是否存在银行账户之间的转账，如有，查看相应凭证</Font></ss:Data></Cell>
+       html:Color="#000000">${month?string('0')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('0')}</Font><Font>日是否存在银行账户之间的转账，如有，查看相应凭证</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -3210,9 +2841,9 @@
    <Row>
     <Cell ss:StyleID="s101"><Data ss:Type="String">结果：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">我们查看了基金${period?string('0')}年12月31日的头寸表，未发现<Font
-       html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font html:Color="#000000">12</Font><Font>月</Font><Font
-       html:Color="#000000">31</Font><Font>日银行账户之间发生转账，未发现在途资金。</Font></ss:Data></Cell>
+      xmlns="http://www.w3.org/TR/REC-html40">我们查看了基金${period?string('0')}年${month?string('0')}月${day?string('0')}日的头寸表，未发现<Font
+       html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font html:Color="#000000">${month?string('0')}</Font><Font>月</Font><Font
+       html:Color="#000000">${day?string('0')}</Font><Font>日银行账户之间发生转账，未发现在途资金。</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -3248,7 +2879,7 @@
     <Cell ss:StyleID="s101"><Data ss:Type="String">结论：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40">该基金于<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">12</Font><Font>月</Font><Font html:Color="#000000">31</Font><Font>日不存在通过利用银行账户之间转账时间差虚增资产的情况</Font></ss:Data></Cell>
+       html:Color="#000000">${month?string('0')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('0')}</Font><Font>日不存在通过利用银行账户之间转账时间差虚增资产的情况</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
@@ -3334,7 +2965,7 @@
     <Cell ss:Index="7" ss:StyleID="s70"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s174"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s219"><Data ss:Type="String">XX</Data></Cell>
@@ -3385,35 +3016,47 @@
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s74"/>
    </Row>
-   <#if C10000.headListCount != 0>
-   <#list C10000.headList as item>
    <Row>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">${item.item!}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String"><#if item_index == 0>&lt;审定财务报表&gt;</#if></Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">C300</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">活期存款</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(C10000.demandDeposits.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(C10000.demandDeposits.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s74"/>
    </Row>
-   <#if item.item == '定期存款'>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">C400</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">定期存款</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(C10000.timeDeposits.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(C10000.timeDeposits.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s74"/>
+   </Row>
+   <#if C10000.detailListCount != 0>
    <#list C10000.detailList as detail>
    <Row>
-    <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">C400</Data></Cell>
     <Cell ss:StyleID="s208"><Data ss:Type="String">${detail.item!}</Data></Cell>
-    <Cell ss:StyleID="s78"><Data ss:Type="Number">${detail.endBalance?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s78"><Data ss:Type="Number">${detail.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(detail.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(detail.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s74"/>
    </Row>
    </#list>
    </#if>
-   </#list>
-   </#if>
+   <Row>
+   <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">其他存款</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(C10000.other.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(C10000.other.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s74"/>
+   </Row>
    <Row>
     <Cell ss:StyleID="s74"/>
     <Cell ss:StyleID="s82"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s83" ss:Formula="=SUM(R[${(-(C10000.headListCount+C10000.detailListCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s83" ss:Formula="=SUM(R[${(-(C10000.headListCount+C10000.detailListCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s83" ss:Formula="=SUM(R[${(-(3+C10000.detailListCount))?string('0')}]C:R[-1]C)-R[${(-(2+C10000.detailListCount))?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s83" ss:Formula="=SUM(R[${(-(3+C10000.detailListCount))?string('0')}]C:R[-1]C)-R[${(-(2+C10000.detailListCount))?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s81"/>
     <Cell ss:StyleID="s74"/>
    </Row>

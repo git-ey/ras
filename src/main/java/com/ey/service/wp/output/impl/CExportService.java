@@ -295,7 +295,9 @@ public class CExportService extends BaseExportService implements CExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String,Object> result = new HashMap<>();
         
-        List<Map<String, Object>> headList = new ArrayList<>();
+        Map<String,Object> demandDeposits = new HashMap<>();
+        Map<String,Object> timeDeposits = new HashMap<>();
+        Map<String,Object> other = new HashMap<>();
         List<Map<String, Object>> detailList = new ArrayList<>();
         //========process dataMap for main view begin========
         List<Map<String,Object>> metaData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC10000MainData", queryMap);
@@ -304,11 +306,18 @@ public class CExportService extends BaseExportService implements CExportManager{
             if("Y".equals(map.get("detailFlag"))) {
                 detailList.add(map);
             }else {
-                headList.add(map);
+                if("活期存款".equals(map.get("item"))) {
+                    demandDeposits = map;
+                }else if("定期存款".equals(map.get("item"))) {
+                    timeDeposits = map;
+                }else if("其他存款".equals(map.get("item"))) {
+                    other = map;
+                }
             }
         }
-        result.put("headList", headList);
-        result.put("headListCount", headList.size());
+        result.put("demandDeposits", demandDeposits);
+        result.put("timeDeposits", timeDeposits);
+        result.put("other", other);
         result.put("detailList", detailList);
         result.put("detailListCount", detailList.size());
         //========process dataMap for main view end========
