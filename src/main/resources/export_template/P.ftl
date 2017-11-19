@@ -2710,19 +2710,19 @@
     <Cell ss:StyleID="s46"><Data ss:Type="String">上市年费</Data></Cell>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String">PXXX</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.contractAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.contractAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s243"></Cell>
     <Cell ss:StyleID="s243"></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=MIN(RC[-2],R6C6)-MAX(RC[-3],R6C2+1)+1"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-5]/RC[-2]*RC[-1]),&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.incomeFee!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s53" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-5]/RC[-2]*RC[-1]),&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.incomeFee!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s53"/>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.quota!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.amortization!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.directFee!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=RC[-3]+RC[-2]+RC[-1]-RC[-6]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.quota!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.amortization!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.directFee!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=RC[-3]+RC[-2]+RC[-1]-RC[-6]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s53"/>
     <Cell ss:StyleID="s53"/>
     <Cell ss:StyleID="s53"/>
@@ -2735,19 +2735,19 @@
     <Cell ss:StyleID="s46"><Data ss:Type="String">审计费</Data></Cell>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String">业务约定书</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.contractAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.auditFee.contractAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s243"></Cell>
     <Cell ss:StyleID="s243"></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=MIN(RC[-2],R6C6)-MAX(RC[-3],R6C2+1)+1"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-5]/RC[-2]*RC[-1]),&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.incomeFee!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s53" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-5]/RC[-2]*RC[-1]),&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.auditFee.incomeFee!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s53"/>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.quota!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.amortization!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.auditFee.directFee!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=RC[-3]+RC[-2]+RC[-1]-RC[-6]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.auditFee.quota!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.auditFee.amortization!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.auditFee.directFee!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=RC[-3]+RC[-2]+RC[-1]-RC[-6]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s53"/>
     <Cell ss:StyleID="s53"/>
     <Cell ss:StyleID="s53"/>
@@ -2779,12 +2779,12 @@
     <Cell ss:StyleID="s46"><Data ss:Type="String"><#if item_index == 0>信息披露费</#if></Data></Cell>
     <Cell ss:StyleID="s46"><Data ss:Type="String">${item.detailName!}</Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">${item.confirmationNum!}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(item.contractAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(item.contractAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${item.contractBeginDate!}</Data></Cell>
     <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${item.contractEndDate!}</Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=MIN(RC[-2],R6C6)-MAX(RC[-3],R6C2+1)+1"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-5]/RC[-2]*RC[-1]),&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-5]/RC[-2]*RC[-1]),&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s235"/>
     <Cell ss:StyleID="s235"/>
     <Cell ss:StyleID="s235"/>
@@ -2816,19 +2816,19 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s46"><Data ss:Type="String">信息披露费小计</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s244" ss:Formula="=SUM(R[${(-(1+P400.detail.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s76" ss:Formula="=SUM(R[${(-(1+P400.detail.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s242"/>
     <Cell ss:StyleID="s242"/>
     <Cell ss:StyleID="s242"/>
     <Cell ss:StyleID="s242"/>
-    <Cell ss:Formula="=SUM(R[${(-(1+P400.detail.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.subtotal.incomeFee!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s53" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Formula="=SUM(R[${(-(1+P400.detail.count))?string('0')}]C:R[-1]C)" ss:StyleID="s76"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.subtotal.incomeFee!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.subtotal.quota!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.subtotal.amortization!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="Number">${(P400.summary.subtotal.directFee!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=RC[-3]+RC[-2]+RC[-1]-RC[-6]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.subtotal.quota!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.subtotal.amortization!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.subtotal.directFee!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=RC[-3]+RC[-2]+RC[-1]-RC[-6]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s46"/>
@@ -3207,15 +3207,15 @@
     <Cell><Data ss:Type="String">上交所</Data></Cell>
     <Cell><Data ss:Type="String">质押式</Data></Cell>
     <Cell ss:StyleID="s228"><Data ss:Type="String">PXXX</Data></Cell>
-    <Cell><Data ss:Type="Number">70000000</Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">70000000</Data></Cell>
     <Cell ss:StyleID="s200"><Data ss:Type="String">${(period-1)?string('0')}-12-29</Data></Cell>
     <Cell ss:StyleID="s200" ss:Formula="=RC[-1]+16"><Data ss:Type="DateTime">${(period)?string('0')}-01-14T00:00:00.000</Data></Cell>
-    <Cell><Data ss:Type="Number">70063291.670000002</Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">70063291.670000002</Data></Cell>
     <Cell ss:StyleID="s173"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell ss:Formula="=RC[-3]-RC[-4]"><Data ss:Type="Number">16</Data></Cell>
     <Cell ss:StyleID="s200"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:Formula="=RC[-1]-RC[-6]"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:Formula="=(RC[-5]-RC[-8])/RC[-3]*RC[-1]"><Data ss:Type="Number">7911.4587500002235</Data></Cell>
+    <Cell  ss:StyleID="s234" ss:Formula="=(RC[-5]-RC[-8])/RC[-3]*RC[-1]"><Data ss:Type="Number">7911.4587500002235</Data></Cell>
     <Cell ss:StyleID="s238"/>
     <Cell ss:StyleID="s238"/>
    </Row>

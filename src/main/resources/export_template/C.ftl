@@ -364,7 +364,7 @@
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
-   <NumberFormat ss:Format="0.00_);[Red]\(0.00\)"/>
+   <NumberFormat ss:Format="_ * #,##0_ ;_ * \-#,##0_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s95" ss:Parent="s48">
    <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>

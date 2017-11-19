@@ -3672,14 +3672,14 @@
    <Row>
     <Cell><Data ss:Type="String">${item.name!}</Data></Cell>
     <Cell ss:StyleID="s317"><Data ss:Type="String">${item.related!}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.repo!0)?string('0.##')}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.stock!0)?string('0.##')}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.bond!0)?string('0.##')}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.warrant!0)?string('0.##')}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.fund!0)?string('0.##')}</Data></Cell>
-    <Cell ss:Index="9"><Data ss:Type="Number">${(item.perEY!0)?string('0.##')}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.perClient!0)?string('0.##')}</Data></Cell>
-    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.repo!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.stock!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.bond!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.warrant!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.fund!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s122"><Data ss:Type="Number">${(item.perEY!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.perClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -3735,11 +3735,11 @@
    <Row ss:Height="40.5">
     <Cell><Data ss:Type="String">${item.name!}</Data></Cell>
     <Cell ss:StyleID="s318"><Data ss:Type="String">通过该关联方席位进行的成交金额</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.repo!0)?string('0.##')}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.stock!0)?string('0.##')}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.bond!0)?string('0.##')}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.warrant!0)?string('0.##')}</Data></Cell>
-    <Cell><Data ss:Type="Number">${(item.fund!0)?string('0.##')}</Data></Cell>>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.repo!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.stock!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.bond!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.warrant!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.fund!0)?string('0.##')}</Data></Cell>>
     <Cell ss:StyleID="s324"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="28.5">
