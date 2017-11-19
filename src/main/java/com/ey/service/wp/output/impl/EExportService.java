@@ -501,14 +501,42 @@ public class EExportService extends BaseExportService implements EExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
+        Map<String, Object> sh = new HashMap<String,Object>();
+        Map<String, Object> sz = new HashMap<String,Object>();
+        Map<String, Object> bank = new HashMap<String,Object>();
+        Map<String, Object> other = new HashMap<String,Object>();
+        List<Map<String, Object>> otherList = new ArrayList<>();
+        Integer etfCount = 0;
+        
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> E500MetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE500Data", queryMap);
         if(E500MetaDataList == null) {
             E500MetaDataList = new ArrayList<Map<String,Object>>(); 
         }
         
-        result.put("list", E500MetaDataList);
-        result.put("count", E500MetaDataList.size());
+        for(Map<String,Object> map : E500MetaDataList) {
+            if("上交所".equals(map.get("detailName"))) {
+                sh = map;
+            }else if("深交所".equals(map.get("detailName"))) {
+                sz = map;
+            }else if("银行间".equals(map.get("detailName"))) {
+                bank = map;
+            }else if("ETF现金差额".equals(map.get("detailName"))) {
+                result.put("etf", map);
+                etfCount = 1;
+            }else {
+                otherList.add(map);
+            }
+        }
+        
+        other.put("list", otherList);
+        other.put("count", otherList.size());
+        
+        result.put("sh", sh);
+        result.put("sz", sz);
+        result.put("bank", bank);
+        result.put("other", other);
+        result.put("etfCount", etfCount);
         
         return result;
     }

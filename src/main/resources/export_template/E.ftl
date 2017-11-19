@@ -2968,8 +2968,42 @@
     <Cell ss:StyleID="s113"/>
     <Cell ss:Index="5" ss:StyleID="s113"/>
    </Row>
-   <#if E500.count != 0>
-   <#list E500.list as item>
+   <Row>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">上交所</Data></Cell>
+    <Cell ss:StyleID="s58"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E500.sh.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s61"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E500.sh.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s129"><Data ss:Type="String">S/S</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">深交所</Data></Cell>
+    <Cell ss:StyleID="s58"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E500.sz.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s61"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E500.sz.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s129"><Data ss:Type="String">S/S</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">银行间</Data></Cell>
+    <Cell ss:StyleID="s58"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E500.bank.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s61"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E500.bank.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s129"><Data ss:Type="String">S/S</Data></Cell>
+   </Row>
+   <#if E500.etfCount != 0>
+   <Row>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">ETF现金差额</Data></Cell>
+    <Cell ss:StyleID="s58"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E500.etf.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s61"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E500.etf.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s129"><Data ss:Type="String">S/S</Data></Cell>
+   </Row>
+   </#if>
+   <#if E500.other.count != 0>
+   <#list E500.other.list as item>
    <Row>
     <Cell ss:StyleID="s131"><Data ss:Type="String">${item.detailName!}</Data></Cell>
     <Cell ss:StyleID="s58"/>
@@ -2987,8 +3021,8 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s62">
     <Cell ss:StyleID="s109"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E500.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="5" ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E500.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s125" ss:Formula="=SUM(R[${(-(4+E500.other.count+E500.etfCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s125" ss:Formula="=SUM(R[${(-(4+E500.other.count+E500.etfCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s129"><Data ss:Type="String"> &lt;E&gt;</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s62">
