@@ -116,6 +116,25 @@
   <Style ss:ID="s23" ss:Name="千位分隔_资产类">
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
+  <Style ss:ID="s25">
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#FF0000" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s26">
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s27">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#FF0000" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+   <Protection ss:Protected="0"/>
+  </Style>
   <Style ss:ID="m1973208348752">
    <Alignment ss:Horizontal="Justify" ss:Vertical="Center" ss:WrapText="1"/>
    <Borders>
@@ -1204,108 +1223,6 @@
     ss:Color="#000000" ss:Bold="1"/>
   </Style>
  </Styles>
- <Worksheet ss:Name="目录">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
-   <Column ss:AutoFitWidth="0" ss:Width="74.25"/>
-   <Row>
-    <Cell ss:StyleID="s78"><Data ss:Type="String">底稿目录</Data></Cell>
-    <Cell ss:StyleID="s63"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s47"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">E  Leadsheet</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"/>
-    <Cell ss:StyleID="s154"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E300</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">应收利息明细表及计息测试。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E300 QD</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">适用于QDII基金的应收利息明细表,计息测试及汇率折算测试</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"/>
-    <Cell ss:StyleID="s154"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E400</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">应收申购款明细表</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E400 QD</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">适用于QDII基金的应收申购款明细表及汇率折算测试</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E410</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="String">申赎转款、申赎转费余额核对、及期后收款测试</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s189">
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E410 QD</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="String">适用于QDII基金，根据币种，进行申赎转款、申赎转费余额核对、及期后收款测试</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E411</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">日交割汇总表(XXXX年XX月XX日)</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E412</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">日交割汇总表(XXXX年XX月XX日)</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s63"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E500</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">应收证券清算款明细表，期后收款测试。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E500 QD</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">适用于QDII基金的应收证券清算款明细表，期后收款测试及汇率折算测试。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s79"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E600</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">应收股利明细表。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E600 QD</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">适用于QDII基金的应收股利明细表。</Data></Cell>
-   </Row>
-   <Row/>
-   <Row/>
-   <Row>
-    <Cell ss:StyleID="s182"><Data ss:Type="String">E10000</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">报表附注披露相关</Data></Cell>
-   </Row>
-  </Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <PageSetup>
-    <Header x:Margin="0.3"/>
-    <Footer x:Margin="0.3"/>
-    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
-   </PageSetup>
-   <Selected/>
-   <Panes>
-    <Pane>
-     <Number>3</Number>
-     <ActiveRow>33</ActiveRow>
-     <ActiveCol>1</ActiveCol>
-    </Pane>
-   </Panes>
-   <ProtectObjects>False</ProtectObjects>
-   <ProtectScenarios>False</ProtectScenarios>
-  </WorksheetOptions>
- </Worksheet>
  <Worksheet ss:Name="E">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s63" ss:DefaultColumnWidth="47.25" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="100.5"/>
@@ -1336,7 +1253,7 @@
     <Cell ss:StyleID="s49"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s64">
-    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s193"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s47"/>
     <Cell ss:Index="6" ss:StyleID="s159"><Data ss:Type="String">Reviewed by</Data></Cell>
@@ -1432,7 +1349,7 @@
     <Cell ss:StyleID="s40"/>
     <Cell ss:StyleID="s43"><Data ss:Type="Number">${(E.KM1204.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s42"/>
-    <Cell ss:StyleID="s41" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s41" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s64">
     <Cell ss:StyleID="s99"/>
@@ -1456,7 +1373,7 @@
     <Cell ss:StyleID="s40"/>
     <Cell ss:StyleID="s43"><Data ss:Type="Number">${(E.KM1207.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s42"/>
-    <Cell ss:StyleID="s41" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s41" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s64">
     <Cell ss:StyleID="s99"/>
@@ -1480,7 +1397,7 @@
     <Cell ss:StyleID="s40"/>
     <Cell ss:StyleID="s43"><Data ss:Type="Number">${(E.KM3003.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s42"/>
-    <Cell ss:StyleID="s41" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s41" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s64">
     <Cell ss:StyleID="s99"/>
@@ -1504,7 +1421,7 @@
     <Cell ss:StyleID="s40"/>
     <Cell ss:StyleID="s40"><Data ss:Type="Number">${(E.KM1203.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s40"/>
-    <Cell ss:StyleID="s41" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s41" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s96"/>
@@ -1613,8 +1530,8 @@
     <Cell ss:StyleID="s47"/>
    </Row>
    <Row ss:StyleID="s64">
-    <Cell ss:StyleID="s196"><Data ss:Type="String">分析性复核参见SRM。</Data></Cell>
-    <Cell ss:StyleID="s79"/>
+    <Cell ss:StyleID="s25"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">分析性复核</Data></Cell>
     <Cell ss:StyleID="s47"/>
    </Row>
    <Row>
@@ -1625,13 +1542,10 @@
     <Cell ss:Index="7" ss:StyleID="s63"/>
     <Cell ss:Index="9" ss:StyleID="s63"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:Index="5" ss:StyleID="s63"/>
-    <Cell ss:Index="7" ss:StyleID="s63"/>
-    <Cell ss:Index="9" ss:StyleID="s63"/>
+   <Row ss:StyleID="s64">
+    <Cell ss:StyleID="s25"><Data ss:Type="String">Note 2</Data></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">本期未发生应收股利相关业务，无余额及发生额，符合预期。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s63"/>
@@ -1808,7 +1722,7 @@
     <Cell ss:Index="10" ss:StyleID="s49"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s64">
-    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s47"/>
     <Cell ss:Index="6" ss:StyleID="s159"><Data ss:Type="String">Reviewed by</Data></Cell>
@@ -1849,7 +1763,7 @@
    <Row ss:StyleID="s63">
     <Cell ss:StyleID="s53"><Data ss:Type="String">${item.item!}</Data></Cell>
     <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">${item.discType!}</Data></Cell>
+    <Cell ss:StyleID="s47"/>
     <Cell ss:StyleID="s47"/>
     <Cell ss:StyleID="s128"/>
     <Cell ss:StyleID="s47"/>
@@ -1873,7 +1787,7 @@
     <Cell ss:StyleID="s128"><Data ss:Type="Number">${(subItem.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s47"/>
     <Cell ss:StyleID="s128"><Data ss:Type="Number">${(subItem.endBalance!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s127"/>
+    <Cell ss:StyleID="s129"><Data ss:Type="String"><#if subItem_index == 0><#if item.item == '应收债券利息'>&lt;H500&gt;<#elseif item.item == '应收资产支持证券利息'>&lt;H500&gt;<#elseif item.item == '应收买入返售利息'>&lt;H800&gt;<#else></#if></#if></Data></Cell>
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s62"/>
@@ -1921,12 +1835,12 @@
    <Row ss:StyleID="s63">
     <Cell ss:StyleID="s53"/>
     <Cell ss:StyleID="s47"><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s47"/>
-    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(2+item.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${item.discType!}</Data></Cell>
     <Cell ss:StyleID="s47"/>
     <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(2+item.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s127"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(2+item.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s129"><Data ss:Type="String"><#if item.item == '应收定期存款利息'>&lt;C400&gt;</#if></Data></Cell>
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s62"/>
@@ -2087,24 +2001,20 @@
    <Row>
     <Cell ss:MergeDown="1" ss:StyleID="m1973208348752"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s167"><Data ss:Type="String">本期末</Data></Cell>
-    <Cell ss:StyleID="s167"><Data ss:Type="String">上年度末</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:Index="2" ss:StyleID="s168"><Data ss:Type="String">${(period)?string('0')}年12月31日</Data></Cell>
-    <Cell ss:StyleID="s168"><Data ss:Type="String">${(period-1)?string('0')}年12月31日</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s168"><Data ss:Type="String">${(period)?string('0')}年${(month)?string('0')}月${(month)?string('0')}日</Data></Cell>
    </Row>
    <#if E300.disc.count != 0>
    <#list E300.disc.list as item>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s169"><Data ss:Type="String">${item.item!}</Data></Cell>
-    <Cell ss:StyleID="s168"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s168"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s168" ss:Formula="=SUMIF(C3,RC[-1],C7)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s171"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s170" ss:Formula="=SUM(R[${(-(E300.disc.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s170" ss:Formula="=SUM(R[${(-(E300.disc.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
@@ -2129,69 +2039,6 @@
    <Row>
     <Cell ss:StyleID="s51"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">^：</Font></B><Font>加计正确。</Font></ss:Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s51"/>
-    <Cell ss:Index="3" ss:StyleID="s61"/>
-    <Cell ss:Index="5" ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s51"/>
-    <Cell ss:Index="3" ss:StyleID="s61"/>
-    <Cell ss:Index="5" ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s61"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s51"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s98"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s119"><Data ss:Type="String">Guidance</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">本页内容：应收利息明细表及计息测试。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">数据来源：本年未审数来源于余额表应收利息科目下的各级明细。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">注释：</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">1.应收利息明细项按实际情况列示，如有调整，需调整入明细，最终展示出审定数。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">2.应收利息的计息测试一般在各相关资产的section那里进行，因此a. 相关数据索引至测试底稿；b. 在本页中需说明测试在哪个底稿中已经进行及测试结果。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">  一般，债券、定期存款及买入返售债券的应收利息金额比较，我们会做计息测试。其他类型的应收利息，如果超过Threshold，需要做计息测试。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s163"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><Font html:Color="#000000">  </Font><B><Font
-        html:Color="#FF0000">Note1</Font></B><Font html:Color="#000000"> 的参考表述方式: a. XX应收利息测试，未发现重大差异，详见</Font><Font
-       html:Color="#FF0000">&lt;XXX&gt;</Font><Font html:Color="#000000">。 b. XX应收利息测试，发现差异并进行调整，调整金额为XXX，详见</Font><Font
-       html:Color="#FF0000">&lt;XXX&gt;</Font><Font html:Color="#000000">。 c. XX应收利息因金额较小，我们不再进行测试。</Font></ss:Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s163"/>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -2257,7 +2104,7 @@
     <Cell ss:Index="10" ss:StyleID="s49"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s64">
-    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="5" ss:StyleID="s159"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s160"><Data ss:Type="String">XX</Data></Cell>
@@ -2459,7 +2306,7 @@
     <Cell ss:Index="10" ss:StyleID="s89"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s87"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s87"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s88"/>
     <Cell ss:StyleID="s88"/>
@@ -2758,7 +2605,7 @@
     <Cell ss:StyleID="s133"><Data ss:Type="String">申购款</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">E400</Data></Cell>
     <Cell ss:StyleID="s183"><Data ss:Type="Number">${(E410.apArTest.attr1.endBalanceClinet!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R37C${(2+E410.summary.splitPoint)?string('0')}:R39C${(1+E410.summary.count)?string('0')},R25C${(2+E410.summary.splitPoint)?string('0')}:R27C${(1+E410.summary.count)?string('0')},&quot;&gt;${(E410.apArTest.periodLastDayNum)?string('0')}&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R37C${(2+E410.summary.splitPoint)?string('0')}:R39C${(1+E410.summary.count)?string('0')},R25C${(2+E410.summary.splitPoint)?string('0')}:R27C${(1+E410.summary.count)?string('0')},&quot;&gt;&quot;&amp;R3C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s184" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s151"/>
@@ -2767,7 +2614,7 @@
     <Cell ss:StyleID="s133"><Data ss:Type="String">转入款</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">E400</Data></Cell>
     <Cell ss:StyleID="s183"><Data ss:Type="Number">${(E410.apArTest.attr2.endBalanceClinet!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R40C${(2+E410.summary.splitPoint)?string('0')}:R40C${(1+E410.summary.count)?string('0')},R28C${(2+E410.summary.splitPoint)?string('0')}:R28C${(1+E410.summary.count)?string('0')},&quot;&gt;${(E410.apArTest.periodLastDayNum)?string('0')}&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R40C${(2+E410.summary.splitPoint)?string('0')}:R40C${(1+E410.summary.count)?string('0')},R28C${(2+E410.summary.splitPoint)?string('0')}:R28C${(1+E410.summary.count)?string('0')},&quot;&gt;&quot;&amp;R3C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s184" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s151"/>
@@ -2776,7 +2623,7 @@
     <Cell ss:StyleID="s133"><Data ss:Type="String">赎回款</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">N300</Data></Cell>
     <Cell ss:StyleID="s183"><Data ss:Type="Number">${(E410.apArTest.attr3.endBalanceClinet!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R41C${(2+E410.summary.splitPoint)?string('0')}:R41C${(1+E410.summary.count)?string('0')},R29C${(2+E410.summary.splitPoint)?string('0')}:R29C${(1+E410.summary.count)?string('0')},&quot;&gt;${(E410.apArTest.periodLastDayNum)?string('0')}&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R41C${(2+E410.summary.splitPoint)?string('0')}:R41C${(1+E410.summary.count)?string('0')},R29C${(2+E410.summary.splitPoint)?string('0')}:R29C${(1+E410.summary.count)?string('0')},&quot;&gt;&quot;&amp;R3C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s184" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s151"/>
@@ -2785,7 +2632,7 @@
     <Cell ss:StyleID="s133"><Data ss:Type="String">转出款</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">N300</Data></Cell>
     <Cell ss:StyleID="s183"><Data ss:Type="Number">${(E410.apArTest.attr4.endBalanceClinet!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R42C${(2+E410.summary.splitPoint)?string('0')}:R42C${(1+E410.summary.count)?string('0')},R30C${(2+E410.summary.splitPoint)?string('0')}:R30C${(1+E410.summary.count)?string('0')},&quot;&gt;${(E410.apArTest.periodLastDayNum)?string('0')}&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R42C${(2+E410.summary.splitPoint)?string('0')}:R42C${(1+E410.summary.count)?string('0')},R30C${(2+E410.summary.splitPoint)?string('0')}:R30C${(1+E410.summary.count)?string('0')},&quot;&gt;&quot;&amp;R3C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s184" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s151"/>
@@ -2794,7 +2641,7 @@
     <Cell ss:StyleID="s133"><Data ss:Type="String">赎回费</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">P500</Data></Cell>
     <Cell ss:StyleID="s183"><Data ss:Type="Number">${(E410.apArTest.attr5.endBalanceClinet!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R43C${(2+E410.summary.splitPoint)?string('0')}:R43C${(1+E410.summary.count)?string('0')},R31C${(2+E410.summary.splitPoint)?string('0')}:R31C${(1+E410.summary.count)?string('0')},&quot;&gt;${(E410.apArTest.periodLastDayNum)?string('0')}&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R43C${(2+E410.summary.splitPoint)?string('0')}:R43C${(1+E410.summary.count)?string('0')},R31C${(2+E410.summary.splitPoint)?string('0')}:R31C${(1+E410.summary.count)?string('0')},&quot;&gt;&quot;&amp;R3C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s184" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s151"/>
@@ -2803,7 +2650,7 @@
     <Cell ss:StyleID="s133"><Data ss:Type="String">转换费</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">P500</Data></Cell>
     <Cell ss:StyleID="s183"><Data ss:Type="Number">${(E410.apArTest.attr6.endBalanceClinet!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R44C${(2+E410.summary.splitPoint)?string('0')}:R44C${(1+E410.summary.count)?string('0')},R32C${(2+E410.summary.splitPoint)?string('0')}:R32C${(1+E410.summary.count)?string('0')},&quot;&gt;${(E410.apArTest.periodLastDayNum)?string('0')}&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R44C${(2+E410.summary.splitPoint)?string('0')}:R44C${(1+E410.summary.count)?string('0')},R32C${(2+E410.summary.splitPoint)?string('0')}:R32C${(1+E410.summary.count)?string('0')},&quot;&gt;&quot;&amp;R3C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s184" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s151"/>
@@ -2812,7 +2659,7 @@
     <Cell ss:StyleID="s133"><Data ss:Type="String">后端申购费</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">P500</Data></Cell>
     <Cell ss:StyleID="s183"><Data ss:Type="Number">${(E410.apArTest.attr7.endBalanceClinet!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R45C${(2+E410.summary.splitPoint)?string('0')}:R45C${(1+E410.summary.count)?string('0')},R33C${(2+E410.summary.splitPoint)?string('0')}:R33C${(1+E410.summary.count)?string('0')},&quot;&gt;${(E410.apArTest.periodLastDayNum)?string('0')}&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R45C${(2+E410.summary.splitPoint)?string('0')}:R45C${(1+E410.summary.count)?string('0')},R33C${(2+E410.summary.splitPoint)?string('0')}:R33C${(1+E410.summary.count)?string('0')},&quot;&gt;&quot;&amp;R3C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s184" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s151"/>
@@ -2871,302 +2718,6 @@
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">Note 2</Font></B><Font
        html:Color="#000000">：根据划款规则，汇总各业务当日划款的金额。</Font></ss:Data></Cell>
    </Row>
-   <Row/>
-   <Row ss:StyleID="s91"/>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"><Data ss:Type="String">Guidance</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s154"><Data ss:Type="String">本页内容：申赎转款、申赎转费余额核对 及期后收款测试</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s154"><Data ss:Type="String">数据来源：本年未审数来源于各明细表,日交割汇总表</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s154"><Data ss:Type="String">注释：</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s154"><Data ss:Type="String">1.交易规则和各业务划款情况中涉及的日期需根据“申赎规律统计”填写</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s154"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s102">
-    <Cell ss:StyleID="s98"><Data ss:Type="String">此处主要涉及四种业务，申购、赎回、转入、转出。涉及三个日期：申请日、确认日和划款日。</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">我们通常假设T日为申请日，那么下一个交易日T+1为确认日（记账日）。划款日则分业务不同而不同。</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">假设：</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">申购=T日申请，T+1日确认，T+2日划款</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">赎回，转出，转入=T日申请，T+1日确认，T+3日划款</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">以${(period-1)?string('0')}年为例：余额表截止至${(period-1)?string('0')}1231的数字指的是已确认但是还没有划款的数字，所以余额表上才会有应收/应付余额 </Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">${(period-1)?string('0')}年，应收申购T日=${(period-1)?string('0')}1229申请申购，T+1日=30号确认，T+2日=${(period)?string('0')}0103划款，所以余额表上的应收申购款余额为30号确认的金额</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">${(period-1)?string('0')}年，赎回/转入/转出期末余额的组成包含以下2种情况：</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">T日=${(period-1)?string('0')}1228申请赎回/转入/转出的，T+1日=29号确认，T+3日=${(period)?string('0')}0103</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">T日=${(period-1)?string('0')}1229申请赎回/转入/转出的，T+1日=30号确认，T+3日=${(period)?string('0')}0104</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s176"><Data ss:Type="String">确认日/划款日必须为交易日，如不是则顺延至下一交易日</Data></Cell>
-    <Cell ss:StyleID="s177"/>
-    <Cell ss:StyleID="s177"/>
-    <Cell ss:StyleID="s178"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s179"><Data ss:Type="String">${(period-1)?string('0')}/12/31为非交易日，比较特殊，举例一个年末是交易日的例子,其他情况以此类推。</Data></Cell>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">以2015年为例：</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s91">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">2015年，对应收申购款来说：T日=20151230申请，T+1日=31号确认，T+2日=${(period-1)?string('0')}0104</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s180"/>
-   </Row>
-   <Row ss:Height="15" ss:StyleID="s102">
-    <Cell ss:StyleID="s98"><Data ss:Type="String">2015年，对应付赎回/转入/转出来说：T日=20151229/20151230申请，T+1日=30/31号确认，T+3日=${(period-1)?string('0')}0104/${(period-1)?string('0')}0105</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s175"/>
-   </Row>
-   <Row ss:StyleID="s102">
-    <Cell ss:StyleID="s181"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s154"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s154"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s154"><Data ss:Type="String">2.期后收款测试中，实际交收金额优先从头寸表来，可参考C section获取的资料。若获取的是头寸表以外的资料，如网银划款记录，则需修改来源的措辞，如“From 网银截屏”。</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s191"><Data ss:Type="String">  期后收款测试差异较小的话，需要标注immaterial leave的标志，否则需要写原因，并指明是否需要调整。</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -3224,7 +2775,7 @@
     <Cell ss:Index="8" ss:StyleID="s49"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s159"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s160"><Data ss:Type="String">XX</Data></Cell>
@@ -3250,31 +2801,17 @@
    </Row>
    <Row ss:StyleID="s91">
     <Cell ss:Index="2" ss:StyleID="s105"><Data ss:Type="String">申购款（代销）</Data></Cell>
-    <#if E41X.dealerFlag == 'N'>
-    <Cell ss:StyleID="s147"><Data ss:Type="Number">0</Data></Cell>
-    <#else>
-    <Cell ss:StyleID="s147" ss:Formula="=SUMIFS(C[1],C[-2],&quot;申购&quot;,C[-1],&quot;&lt;&gt;&quot;&amp;R[1]C[2])"><Data ss:Type="Number"></Data></Cell>
-    </#if>
+    <Cell ss:StyleID="s147" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s101"><Data ss:Type="String">&lt;E410&gt;</Data></Cell>
-    <Cell><Data ss:Type="String">ref</Data></Cell>
    </Row>
    <Row ss:StyleID="s91">
     <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">申购款（直销）</Data></Cell>
-    <#if E41X.dealerFlag == 'N'>
-    <Cell ss:StyleID="s148"><Data ss:Type="Number">0</Data></Cell>
-    <#else>
-    <Cell ss:StyleID="s148" ss:Formula="=SUMIFS(C[1],C[-2],&quot;申购&quot;,C[-1],RC[2])"><Data ss:Type="Number"></Data></Cell>
-    </#if>
+    <Cell ss:StyleID="s148" ss:Formula="=SUMIFS(C4,C1,&quot;申购&quot;,C2,&quot;${E41X.dealerName!}&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s103"><Data ss:Type="String">&lt;E410&gt;</Data></Cell>
-    <Cell ss:StyleID="s195"><Data ss:Type="String">${E41X.dealerName!}</Data></Cell>
    </Row>
    <Row ss:StyleID="s91">
     <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">申购款</Data></Cell>
-    <#if E41X.dealerFlag != 'N'>
-    <Cell ss:StyleID="s148"><Data ss:Type="Number">0</Data></Cell>
-    <#else>
     <Cell ss:StyleID="s148" ss:Formula="=SUMIFS(C[1],C[-2],&quot;申购&quot;)"><Data ss:Type="Number"></Data></Cell>
-    </#if>
     <Cell ss:StyleID="s103"><Data ss:Type="String">&lt;E410&gt;</Data></Cell>
    </Row>
    <Row ss:StyleID="s91">
@@ -3339,26 +2876,6 @@
    </Row>
    </#list>
    </#if>
-   <Row ss:StyleID="s92"/>
-   <Row ss:StyleID="s91"/>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"><Data ss:Type="String">Guidance</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s154"><Data ss:Type="String">本页内容：XXXX年XX月XX日的日交割汇总表</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s61"><Data ss:Type="String">摘录E410所需申赎转涉及到的金额</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row ss:StyleID="s91">
-    <Cell ss:StyleID="s119"/>
-   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -3405,7 +2922,7 @@
     <Cell ss:Index="10" ss:StyleID="s49"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s159"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s160"><Data ss:Type="String">XX</Data></Cell>
@@ -3500,132 +3017,6 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s62"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s51"/>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s119"><Data ss:Type="String">Guidance</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">本页内容：应收证券清算款明细表，期后收款测试。</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s119"/>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">数据来源：本年未审数来源于余额表。</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s119"/>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s110"><Data ss:Type="String">应收证券清算款在余额表中的科目名称为证券清算款，科目代码（3003）</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">如果期末余额为正数代表是应收证券清算款；如果期末余额为负数代表的是应付证券清算款，余额应放入N600底稿中；</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">证券清算款不可正负相抵，应分开列示应收/应付。例如上交所(30030101)与深交所（30030201）不可正负相抵；正负相同可以合计为应收/应付。</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">注释：</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">1.<Font
-       html:Color="#FF0000">S/S</Font><Font>  查看头寸表，根据实际收款日填写期后收款日。</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">2.ETF现金差额科目仅ETF基金适用，通常金额较小，也不再查看期后收款情况，如大于Threshold，则追加查看期后收款程序</Data></Cell>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:Index="4" ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s61"/>
-    <Cell ss:Index="4" ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="3" ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s62"/>
-   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <Print>
@@ -3674,7 +3065,7 @@
     <Cell ss:StyleID="s49"/>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s64">
-    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s153"/>
     <Cell ss:Index="6" ss:StyleID="s159"><Data ss:Type="String">Reviewed by</Data></Cell>
@@ -3716,12 +3107,13 @@
     <Cell ss:StyleID="s65"/>
     <Cell ss:Index="5" ss:StyleID="s60"/>
    </Row>
-   <#if E600.itemCount != 0>
-   <#list E600.itemList as item>
-   <#if item.detailCount != 0>
-   <#list item.detailList as detail>
    <Row ss:StyleID="s63">
-    <Cell ss:StyleID="s53"><Data ss:Type="String"><#if detail_index == 0>${item.item!}</#if></Data></Cell>
+    <Cell ss:StyleID="s53"><Data ss:Type="String">股票</Data></Cell>
+   </Row>
+   <#if E600.stock.count != 0>
+   <#list E600.stock.list as detail>
+   <Row ss:StyleID="s63">
+    <Cell ss:StyleID="s53"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">${detail.detailName!}</Data></Cell>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(detail.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s115"/>
@@ -3742,9 +3134,9 @@
    <Row ss:StyleID="s63">
     <Cell ss:StyleID="s53"/>
     <Cell ss:StyleID="s47"><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(1+item.detailCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(1+E600.stock.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(1+item.detailCount))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(1+E600.stock.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s127"/>
     <Cell ss:Index="10" ss:StyleID="s58"/>
    </Row>
@@ -3757,14 +3149,54 @@
     <Cell ss:StyleID="s127"/>
     <Cell ss:Index="10" ss:StyleID="s58"/>
    </Row>
+   <Row ss:StyleID="s63">
+    <Cell ss:StyleID="s53"><Data ss:Type="String">基金</Data></Cell>
+   </Row>
+   <#if E600.fund.count != 0>
+   <#list E600.fund.list as detail>
+   <Row ss:StyleID="s63">
+    <Cell ss:StyleID="s53"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${detail.detailName!}</Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(detail.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s115"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(detail.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s58"/>
+   </Row>
    </#list>
    </#if>
+   <Row ss:StyleID="s63">
+    <Cell ss:StyleID="s53"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s115"/>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s59"/>
+    <Cell ss:Index="10" ss:StyleID="s58"/>
+   </Row>
+   <Row ss:StyleID="s63">
+    <Cell ss:StyleID="s53"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(1+E600.fund.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s115"/>
+    <Cell ss:StyleID="s126" ss:Formula="=SUM(R[${(-(1+E600.fund.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s127"/>
+    <Cell ss:Index="10" ss:StyleID="s58"/>
+   </Row>
+   <Row ss:StyleID="s63">
+    <Cell ss:StyleID="s53"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s128"/>
+    <Cell ss:StyleID="s115"/>
+    <Cell ss:StyleID="s128"/>
+    <Cell ss:StyleID="s127"/>
+    <Cell ss:Index="10" ss:StyleID="s58"/>
+   </Row>
    <Row ss:Height="14.25" ss:StyleID="s63">
     <Cell ss:StyleID="s109"/>
     <Cell ss:StyleID="s56"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUMIF(R[${(-E600.totalCount)?string('0')}]C[-1]:R[-2]C[-1],&quot;小计&quot;,R[${(-E600.totalCount)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUMIF(R[${(-8-E600.totalCount)?string('0')}]C[-1]:R[-2]C[-1],&quot;小计&quot;,R[${(-8-E600.totalCount)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s117"/>
-    <Cell ss:StyleID="s125" ss:Formula="=SUMIF(R[${(-E600.totalCount)?string('0')}]C[-3]:R[-2]C[-3],&quot;小计&quot;,R[${(-E600.totalCount)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUMIF(R[${(-8-E600.totalCount)?string('0')}]C[-3]:R[-2]C[-3],&quot;小计&quot;,R[${(-8-E600.totalCount)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s129"><Data ss:Type="String">&lt;E&gt;</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s64">
@@ -3869,7 +3301,7 @@
     <Cell ss:Index="8" ss:StyleID="s49"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s159"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s160"><Data ss:Type="String">XX</Data></Cell>
@@ -3903,7 +3335,7 @@
    <#if E300.disc.count != 0>
    <#list E300.disc.list as item>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s62"/>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">&lt;E300&gt;</Data></Cell>
     <Cell ss:StyleID="s169"><Data ss:Type="String">${item.item!}</Data></Cell>
     <Cell ss:StyleID="s168"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s168"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>

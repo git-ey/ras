@@ -526,7 +526,10 @@ public class EExportService extends BaseExportService implements EExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
-        List<Map<String,Object>> itemList =  new ArrayList<>();
+        List<Map<String,Object>> stockList =  new ArrayList<>();
+        List<Map<String,Object>> fundList =  new ArrayList<>();
+        Map<String, Object> stock = new HashMap<String,Object>();
+        Map<String, Object> fund = new HashMap<String,Object>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> E600MetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE600Data", queryMap);
@@ -534,32 +537,23 @@ public class EExportService extends BaseExportService implements EExportManager{
             E600MetaDataList = new ArrayList<Map<String,Object>>(); 
         }
         
-        Map<Object, List<Map<String, Object>>> collect = E600MetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
-            Map<String,Object> map = (Map<String,Object>) item;
-            return map.get("item");
-        }));
-        
-        collect.forEach((k,v) -> {
-            Map<String,Object> temp = new HashMap<>();
-            temp.put("item", k);
-            if(v == null) {
-                v = new ArrayList<>();
-                v.add(new HashMap<>());
+        for(Map<String,Object> map : E600MetaDataList) {
+            if("股票".equals(map.get("item"))) {
+                stockList.add(map);
+            }else if("基金".equals(map.get("item"))) {
+                fundList.add(map);
             }
-            temp.put("detailList", v);
-            temp.put("detailCount", v.size());
-            
-            itemList.add(temp);
-        });
-        
-        Integer totalCount = 0;
-        for(Map<String,Object> map : itemList) {
-            totalCount += Integer.parseInt(String.valueOf(map.get("detailCount")));
         }
         
-        result.put("itemList", itemList);
-        result.put("itemCount", itemList.size());
-        result.put("totalCount", totalCount+3*itemList.size());
+        stock.put("list", stockList);
+        stock.put("count", stockList.size());
+        
+        fund.put("list", fundList);
+        fund.put("count", fundList.size());
+        
+        result.put("stock", stock);
+        result.put("fund", fund);
+        result.put("totalCount", E600MetaDataList.size());
         
         return result;
     }
