@@ -65,6 +65,11 @@ public class BaseController {
 	 * 利润表映射导入模版代码
 	 */
 	protected final static String PLM_IMPORT_TEMPLATE_CODE = "PLM";
+	
+	/**
+	 * AMA科目映射属性导入模版代码
+	 */
+	protected final static String AMA_IMPORT_TEMPLATE_CODE = "AMA";
 
 	/**
 	 * new PageData对象

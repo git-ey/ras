@@ -190,7 +190,7 @@ public class ExcelImportor extends FileImportor {
 				break;
 			case STRING:
 				String temp = null;
-				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
+				if (rawCellType == Cell.CELL_TYPE_NUMERIC || rawCellType == Cell.CELL_TYPE_FORMULA) {
 					temp = String.valueOf(cell.getNumericCellValue());
 					maps.put(key, StringUtils.isBlank(temp) ? "''" : quotes + temp + quotes);
 					break;

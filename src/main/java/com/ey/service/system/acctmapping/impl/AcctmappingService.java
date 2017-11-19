@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -47,7 +46,7 @@ public class AcctmappingService implements AcctmappingManager {
 		int idx = 1;
 		List<PageData> pds = new ArrayList<PageData>();
 		for (Map<String, Object> map : maps) {
-			if (StringUtils.isNotBlank(map.get("FUND_ID").toString())) {
+			if (null != map.get("FUND_ID")) {
 				PageData pd = new PageData();
 				pd.put("ACCTMAPPING_ID", UuidUtil.get32UUID());
 				pd.put("FUND_ID", map.get("FUND_ID"));

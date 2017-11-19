@@ -50,6 +50,12 @@ public interface FundManager{
 	 */
 	public List<PageData> listAll(PageData pd)throws Exception;
 	
+	/**列表全部基金
+	 * @param pd
+	 * @throws Exception
+	 */
+	public List<PageData> listAllFund(PageData pd) throws Exception;
+	
 	/**通过id获取数据
 	 * @param pd
 	 * @throws Exception

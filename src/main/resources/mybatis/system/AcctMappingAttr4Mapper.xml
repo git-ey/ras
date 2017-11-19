@@ -100,4 +100,29 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		     #{pd.ACC_NUM},	
+		     #{pd.ATTR},	
+		     #{pd.ACTIVE},	
+		     #{pd.ACCTMAPPINGATTR4_ID}
+         )
+         </foreach >
+	</insert>
+	
+	<!-- 导入后批量处理 -->
+    <update id="updateBatch" parameterType="pd">
+	    update <include refid="tableName"></include>
+           set ACC_NUM = REPLACE(ACC_NUM,'.0','')
+         where ACC_NUM LIKE '%.0'
+	</update>
+	
 </mapper>

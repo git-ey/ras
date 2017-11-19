@@ -216,6 +216,16 @@
 		<include refid="tableName"></include>
 	</select>
 	
+	<!-- 列表全部基金 -->
+	<select id="listAllFund" parameterType="pd" resultType="pd">
+		select FUND_ID,
+		       FIRM_CODE,	
+		       SHORT_NAME,	
+		       FULL_NAME
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
 	<!-- 批量删除 -->
 	<delete id="deleteAll" parameterType="String">
 		delete from

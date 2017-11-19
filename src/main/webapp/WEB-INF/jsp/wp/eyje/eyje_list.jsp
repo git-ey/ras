@@ -42,6 +42,14 @@
 										</span>
 									</div>
 								</td>
+								<td style="padding-left:2px;width:10%;">基金ID:</td>
+								<td style="vertical-align:top;padding-left:2px;">
+								 	<select class="chosen-select form-control" name="FUND_ID" id="FUND_ID" data-placeholder="请选择基金" style="vertical-align:top;width: 120px;">
+									    <c:forEach items="${fundList}" var="var" varStatus="vs">
+									        <option value="${var.FUND_ID}" <c:if test="${pd.FUND_ID == var.FUND_ID}">selected</c:if>>${var.FUND_ID}</option>
+									    </c:forEach>
+								  	</select>
+								</td>
 								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
 								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
 								<c:if test="${QX.cha == 1 }">

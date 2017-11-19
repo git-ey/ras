@@ -111,6 +111,16 @@ public class FundService implements FundManager{
 		return (List<PageData>)dao.findForList("FundMapper.listAll", pd);
 	}
 	
+	/**列表全部基金
+	 * @param pd
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PageData> listAllFund(PageData pd) throws Exception {
+		return (List<PageData>)dao.findForList("FundMapper.listAllFund", pd);
+	}
+	
 	/**通过id获取数据
 	 * @param pd
 	 * @throws Exception
