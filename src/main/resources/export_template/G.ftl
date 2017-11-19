@@ -34,6 +34,25 @@
    <NumberFormat/>
    <Protection/>
   </Style>
+  <Style ss:ID="s25">
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#FF0000" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s26">
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s27">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#FF0000" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+   <Protection ss:Protected="0"/>
+  </Style>
   <Style ss:ID="s34" ss:Name="Comma 2">
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
@@ -589,54 +608,6 @@
    <NumberFormat ss:Format="yyyy\-mm\-dd"/>
   </Style>
  </Styles>
- <Worksheet ss:Name="目录">
-  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s142" ss:DefaultColumnWidth="54.75" ss:DefaultRowHeight="13.5">
-   <Column ss:StyleID="s142" ss:AutoFitWidth="0" ss:Width="69.75"/>
-   <Row>
-    <Cell ss:StyleID="s103"><Data ss:Type="String">底稿目录</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s103"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s145"><Data ss:Type="String">Index</Data></Cell>
-    <Cell ss:StyleID="s145"><Data ss:Type="String">内容</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s141"><Data ss:Type="String">G</Data></Cell>
-    <Cell><Data ss:Type="String">G  Leadsheet</Data></Cell>
-   </Row>
-   <Row ss:Index="6">
-    <Cell ss:StyleID="s141"><Data ss:Type="String">G300</Data></Cell>
-    <Cell><Data ss:Type="String">其他应付款明细表。</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s141"><Data ss:Type="String">G300 QD</Data></Cell>
-    <Cell><Data ss:Type="String">QDII基金的其他应付款明细表及汇率折算测试。（在没有外币的情况下，直接使用通用版G300）</Data></Cell>
-   </Row>
-   <Row ss:Index="9">
-    <Cell ss:StyleID="s141"><Data ss:Type="String">G10000</Data></Cell>
-    <Cell ss:StyleID="s135"><Data ss:Type="String">报表附注披露相关</Data></Cell>
-   </Row>
-  </Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <PageSetup>
-    <Header x:Margin="0.3"/>
-    <Footer x:Margin="0.3"/>
-    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
-   </PageSetup>
-   <Zoom>90</Zoom>
-   <Panes>
-    <Pane>
-     <Number>3</Number>
-     <ActiveRow>32</ActiveRow>
-     <ActiveCol>8</ActiveCol>
-    </Pane>
-   </Panes>
-   <ProtectObjects>False</ProtectObjects>
-   <ProtectScenarios>False</ProtectScenarios>
-  </WorksheetOptions>
- </Worksheet>
  <Worksheet ss:Name="G">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s78" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s78" ss:AutoFitWidth="0" ss:Width="84"/>
@@ -661,7 +632,7 @@
     <Cell ss:Index="10" ss:StyleID="s101"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s85"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s85"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s140"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s130"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s131"><Data ss:Type="String">XX</Data></Cell>
@@ -748,7 +719,7 @@
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s81"><Data ss:Type="Number"><#if (G.KM1221.amountAuditLast)??>${(G.KM1221.amountAuditLast)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s115" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s115" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s109"/>
@@ -771,7 +742,7 @@
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s81"><Data ss:Type="Number"><#if (G.KM1501.amountAuditLast)??>${(G.KM1501.amountAuditLast)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s115" ss:Formula="=(RC[-4]-RC[-2])/RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s115" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s112"/>
@@ -820,16 +791,16 @@
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s144"><Data ss:Type="String">分析性复核参见SRM。</Data></Cell>
-    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s25"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">分析性复核</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s76"/>
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s25"><Data ss:Type="String">Note 2</Data></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">本期未发生其他应收款/待摊费用相关业务，无余额及发生额，符合预期。</Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -879,7 +850,7 @@
     <Cell ss:Index="9" ss:StyleID="s101"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s86">
-    <Cell ss:StyleID="s85"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s85"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s140"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s130"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s131"/>
@@ -1087,7 +1058,7 @@
     <Cell ss:Index="8" ss:StyleID="s101"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s85"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s85"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s140"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s130"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s131"><Data ss:Type="String">XX</Data></Cell>
@@ -1120,7 +1091,8 @@
    <#if G10000.count != 0>
    <#list G10000.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s92"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s27"><Data ss:Type="String">G300</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">${item.item!}</Data></Cell>
     <Cell ss:StyleID="s93"><Data ss:Type="Number"><#if item.endBalance??>${(item.endBalance)?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s93"><Data ss:Type="Number"><#if item.beginBalance??>${(item.beginBalance)?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String"><#if item_index==0>&lt;审定财务报表&gt;</#if></Data></Cell>
