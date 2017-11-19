@@ -4176,6 +4176,7 @@
     <Cell ss:StyleID="s197"/>
     <Cell ss:Index="11" ss:StyleID="s250"/>
    </Row>
+   <#if N800.MFFlag == 'Y'>
    <Row ss:StyleID="s194">
     <Cell ss:StyleID="s109"/>
     <Cell ss:StyleID="s198"/>
@@ -4511,6 +4512,7 @@
     <Cell ss:StyleID="s197"/>
     <Cell ss:StyleID="s197"/>
    </Row>
+   </#if>
    <Row ss:StyleID="s231">
     <Cell ss:StyleID="s197"/>
     <Cell ss:StyleID="s197"/>

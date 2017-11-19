@@ -164,6 +164,16 @@
         and N800.PERIOD = #{period}
     </select>
     
+    <select id="selectMFFlag" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT DISTINCT
+		    IFNULL(sfi.MF, 'N') as MFFlag
+		FROM
+		    sys_fund_info sfi 
+		WHERE
+		    sfi.FUND_ID = #{fundId}
+		AND sfi.ACTIVE = 'Y'
+    </select>
+    
     <select id="selectN800NoteLevels" parameterType="java.util.Map" resultType="java.lang.String"> 
         SELECT DISTINCT
 		    IFNULL(N800N.`LEVEL`,'发生额') as levels

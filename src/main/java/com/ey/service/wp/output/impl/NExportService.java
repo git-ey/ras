@@ -392,6 +392,9 @@ public class NExportService extends BaseExportService implements NExportManager{
         List<Object> item5 = new ArrayList<Object>();
         List<Object> item6 = new ArrayList<Object>();
         
+        String MFFlag = (String)this.dao.findForObject("NExportMapper.selectMFFlag", queryMap);
+        result.put("MFFlag", MFFlag);
+        
         @SuppressWarnings("unchecked")
         List<String> N800NoteLevels = (List<String>)this.dao.findForList("NExportMapper.selectN800NoteLevels", queryMap);
         if(N800NoteLevels == null) {
