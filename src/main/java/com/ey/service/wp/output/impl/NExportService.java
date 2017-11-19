@@ -315,14 +315,42 @@ public class NExportService extends BaseExportService implements NExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
+        Map<String, Object> sh = new HashMap<String,Object>();
+        Map<String, Object> sz = new HashMap<String,Object>();
+        Map<String, Object> bank = new HashMap<String,Object>();
+        Map<String, Object> other = new HashMap<String,Object>();
+        List<Map<String, Object>> otherList = new ArrayList<>();
+        Integer etfCount = 0;
+        
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> N600MetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN600Data", queryMap);
         if(N600MetaDataList == null) {
             N600MetaDataList = new ArrayList<Map<String,Object>>(); 
         }
         
-        result.put("list", N600MetaDataList);
-        result.put("count", N600MetaDataList.size());
+        for(Map<String,Object> map : N600MetaDataList) {
+            if("上交所".equals(map.get("name"))) {
+                sh = map;
+            }else if("深交所".equals(map.get("name"))) {
+                sz = map;
+            }else if("银行间".equals(map.get("name"))) {
+                bank = map;
+            }else if("ETF现金差额".equals(map.get("name"))) {
+                result.put("etf", map);
+                etfCount = 1;
+            }else {
+                otherList.add(map);
+            }
+        }
+        
+        other.put("list", otherList);
+        other.put("count", otherList.size());
+        
+        result.put("sh", sh);
+        result.put("sz", sz);
+        result.put("bank", bank);
+        result.put("other", other);
+        result.put("etfCount", etfCount);
         
         return result;
     }
@@ -391,6 +419,9 @@ public class NExportService extends BaseExportService implements NExportManager{
         List<Object> item4 = new ArrayList<Object>();
         List<Object> item5 = new ArrayList<Object>();
         List<Object> item6 = new ArrayList<Object>();
+        
+        String MFFlag = (String)this.dao.findForObject("NExportMapper.selectMFFlag", queryMap);
+        result.put("MFFlag", MFFlag);
         
         @SuppressWarnings("unchecked")
         List<String> N800NoteLevels = (List<String>)this.dao.findForList("NExportMapper.selectN800NoteLevels", queryMap);
