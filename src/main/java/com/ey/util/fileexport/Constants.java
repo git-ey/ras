@@ -24,7 +24,7 @@ public interface Constants {
     /**
      * 底稿名称--C
      */
-    static final String EXPORT_AIM_FILE_NAME_C = "${companyShortName}_C_${fundId}_${fundShortName}_${periodStr}.xls";
+    static final String EXPORT_AIM_FILE_NAME_C = "${companyShortName}_C_${fundId}_${fundShortName}_${periodStr}.xml";
     /**
      * 模板名称--G
      */
@@ -32,7 +32,7 @@ public interface Constants {
     /**
      * 底稿名称--G
      */
-    static final String EXPORT_AIM_FILE_NAME_G = "${companyShortName}_G_${fundId}_${fundShortName}_${periodStr}.xls";
+    static final String EXPORT_AIM_FILE_NAME_G = "${companyShortName}_G_${fundId}_${fundShortName}_${periodStr}.xml";
     /**
      * 模板名称--N
      */
@@ -40,7 +40,7 @@ public interface Constants {
     /**
      * 底稿名称--N
      */
-    static final String EXPORT_AIM_FILE_NAME_N = "${companyShortName}_N_${fundId}_${fundShortName}_${periodStr}.xls";
+    static final String EXPORT_AIM_FILE_NAME_N = "${companyShortName}_N_${fundId}_${fundShortName}_${periodStr}.xml";
     /**
      * 模板名称--P
      */
@@ -48,7 +48,7 @@ public interface Constants {
     /**
      * 底稿名称--P
      */
-    static final String EXPORT_AIM_FILE_NAME_P = "${companyShortName}_P_${fundId}_${fundShortName}_${periodStr}.xls";
+    static final String EXPORT_AIM_FILE_NAME_P = "${companyShortName}_P_${fundId}_${fundShortName}_${periodStr}.xml";
     /**
      * 模板名称--E
      */
@@ -56,7 +56,7 @@ public interface Constants {
     /**
      * 底稿名称--E
      */
-    static final String EXPORT_AIM_FILE_NAME_E = "${companyShortName}_E_${fundId}_${fundShortName}_${periodStr}.xls";
+    static final String EXPORT_AIM_FILE_NAME_E = "${companyShortName}_E_${fundId}_${fundShortName}_${periodStr}.xml";
     /**
      * 模板名称--U
      */
@@ -64,5 +64,5 @@ public interface Constants {
     /**
      * 底稿名称--U
      */
-    static final String EXPORT_AIM_FILE_NAME_U = "${companyShortName}_U_${fundId}_${fundShortName}_${periodStr}.xls";
+    static final String EXPORT_AIM_FILE_NAME_U = "${companyShortName}_U_${fundId}_${fundShortName}_${periodStr}.xml";
 }

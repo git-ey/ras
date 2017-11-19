@@ -2387,7 +2387,7 @@
     <Cell ss:StyleID="s140"><Data ss:Type="String">各费/款划款情况</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:Index="2" ss:MergeAcross="7" ss:StyleID="s214"><Data ss:Type="String">各业务确认日对应的划款日</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="<#if E410.trxDay.count == 0>0<#else>${(E410.trxDay.count-1)?string('0')}</#if>" ss:StyleID="s214"><Data ss:Type="String">各业务确认日对应的划款日</Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">业务确认日</Data></Cell>
@@ -2479,7 +2479,7 @@
     </#if>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:Index="2" ss:MergeAcross="7" ss:StyleID="s214"><Data ss:Type="String">日交割汇总表基金确认金额</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="<#if E410.summary.count == 0>0<#else>${(E410.summary.count-1)?string('0')}</#if>" ss:StyleID="s214"><Data ss:Type="String">日交割汇总表基金确认金额</Data></Cell>
    </Row>
    <Row>
     <Cell/>
@@ -2691,7 +2691,7 @@
    <Row>
     <Cell ss:StyleID="s137"><Data ss:Type="DateTime">${item.trxDate}</Data></Cell>
     <Cell/>
-    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R37C2:R45C${(1+E410.summary.count)?string('0')},R25C2:R33C${(1+E410.summary.count)?string('0')},RC[-2])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R37C2:R40C${(1+E410.summary.count)?string('0')},R25C2:R28C${(1+E410.summary.count)?string('0')},RC[-2])-SUMIFS(R41C2:R45C${(1+E410.summary.count)?string('0')},R29C2:R33C${(1+E410.summary.count)?string('0')},RC[-2])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s183"><Data ss:Type="Number">${(item.settlementAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s184" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s200"><Data ss:Type="String">m</Data></Cell>
