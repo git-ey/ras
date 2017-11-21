@@ -65,4 +65,20 @@ public interface Constants {
      * 底稿名称--U
      */
     static final String EXPORT_AIM_FILE_NAME_U = "${companyShortName}_U_${fundId}_${fundShortName}_${periodStr}.xml";
+    /**
+     * 模板名称--V
+     */
+    static final String EXPORT_TEMPLATE_FILE_NAME_V = "V.ftl"; 
+    /**
+     * 底稿名称--V
+     */
+    static final String EXPORT_AIM_FILE_NAME_V = "${companyShortName}_V_${fundId}_${fundShortName}_${periodStr}.xml";
+    /**
+     * 模板名称--T
+     */
+    static final String EXPORT_TEMPLATE_FILE_NAME_T = "T.ftl"; 
+    /**
+     * 底稿名称--T
+     */
+    static final String EXPORT_AIM_FILE_NAME_T = "${companyShortName}_T_${fundId}_${fundShortName}_${periodStr}.xml";
 }
