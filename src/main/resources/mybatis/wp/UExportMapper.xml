@@ -60,6 +60,17 @@
         and U300I.PERIOD = #{period}
     </select>
     
+    <select id="selectFinSys" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT DISTINCT
+            IFNULL(sfi.FIN_SYSTEM, 'YSS') as FinSys
+        FROM
+            sys_fund_info sfi 
+        WHERE
+            sfi.FUND_ID = #{fundId}
+        AND sfi.ACTIVE = 'Y'
+        LIMIT 1
+    </select>
+    
     <select id="selectU320Data" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             ts.TRANSACTION_DATE as transactionDate,

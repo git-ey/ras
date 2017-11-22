@@ -240,12 +240,15 @@ public class UExportService extends BaseExportService implements UExportManager 
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
+        String finSys = (String)this.dao.findForObject("UExportMapper.selectFinSys", queryMap);
+        
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U320MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU320Data", queryMap);
         if(U320MetaDataList == null) {
             U320MetaDataList = new ArrayList<>(); 
         }
         
+        result.put("finSys", finSys);
         result.put("list", U320MetaDataList);
         result.put("count", U320MetaDataList.size());
         return result;
