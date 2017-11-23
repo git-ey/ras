@@ -16,7 +16,14 @@
 		            PERIOD,
                sfi.SHORT_NAME,
                smc.SHORT_NAME MGR_COMPANY,
-               (SELECT COUNT(*) FROM wp_c c where c.FUND_ID = sfi.FUND_ID) EXTFLAG
+               ((SELECT COUNT(*) FROM wp_c c where c.FUND_ID = sfi.FUND_ID) +
+               (SELECT COUNT(*) FROM wp_e e where e.FUND_ID = sfi.FUND_ID) +
+               (SELECT COUNT(*) FROM wp_g g where g.FUND_ID = sfi.FUND_ID) +
+               (SELECT COUNT(*) FROM wp_h h where h.FUND_ID = sfi.FUND_ID) +
+               (SELECT COUNT(*) FROM wp_n n where n.FUND_ID = sfi.FUND_ID) +
+               (SELECT COUNT(*) FROM wp_p p where p.FUND_ID = sfi.FUND_ID) +
+               (SELECT COUNT(*) FROM wp_t t where t.FUND_ID = sfi.FUND_ID) +
+               (SELECT COUNT(*) FROM wp_u u where u.FUND_ID = sfi.FUND_ID)) EXTFLAG
           FROM sys_fund_info sfi
      LEFT JOIN sys_mgrcompany smc
             ON sfi.FIRM_CODE = smc.COMPANY_CODE
