@@ -27,34 +27,33 @@
 				<div class="row">
 					<div class="col-xs-12">
 					
-					<form action="beta/${msg }.do" name="Form" id="Form" method="post">
-						<input type="hidden" name="BETA_ID" id="BETA_ID" value="${pd.BETA_ID}"/>
+					<form action="convexity/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="CONVEXITY_ID" id="CONVEXITY_ID" value="${pd.CONVEXITY_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="255" placeholder="这里输入基金代码" title="基金代码" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">债券简称:</td>
+								<td><input type="text" name="BOND_NAME" id="BOND_NAME" value="${pd.BOND_NAME}" maxlength="255" placeholder="这里输入债券简称" title="债券简称" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="SOURCE" id="SOURCE" value="${pd.SOURCE}" maxlength="30" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">债券代码:</td>
+								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="255" placeholder="这里输入债券代码" title="债券代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">股票代码:</td>
-								<td><input type="text" name="STOCK_CODE" id="STOCK_CODE" value="${pd.STOCK_CODE}" maxlength="30" placeholder="这里输入股票代码" title="股票代码" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">估值日期:</td>
+								<td><input class="span10 date-picker" name="VALUE_DATE" id="VALUE_DATE" value="${pd.VALUE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="估值日期" title="估值日期" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">Beta:</td>
-								<td><input type="number" name="BETA" id="BETA" value="${pd.BETA}" maxlength="32" placeholder="这里输入Beta" title="Beta" style="width:49%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">来源:</td>
+								<td><input type="text" name="SOURCE" id="SOURCE" value="${pd.SOURCE}" maxlength="30" placeholder="这里输入来源" title="来源" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>
-								<td>
-									<select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
-								    <option value="Y" <c:if test="${pd.ACTIVE == 'Y'}">selected</c:if>>是</option>
-								    <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
-								    </select>
-								</td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">估价修正久期:</td>
+								<td><input type="number" name="DURATION" id="DURATION" value="${pd.DURATION}" maxlength="32" placeholder="这里输入估价修正久期" title="估价修正久期" style="width:98%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">估价凸性:</td>
+								<td><input type="number" name="CONVEXITY" id="CONVEXITY" value="${pd.CONVEXITY}" maxlength="32" placeholder="这里输入估价凸性" title="估价凸性" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">
@@ -91,44 +90,64 @@
 		$(top.hangge());
 		//保存
 		function save(){
-			if($("#FUND_ID").val()==""){
-				$("#FUND_ID").tips({
+			if($("#BOND_NAME").val()==""){
+				$("#BOND_NAME").tips({
 					side:3,
-		            msg:'请输入基金代码',
+		            msg:'请输入债券简称',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#FUND_ID").focus();
+				$("#BOND_NAME").focus();
+			return false;
+			}
+			if($("#BOND_CODE").val()==""){
+				$("#BOND_CODE").tips({
+					side:3,
+		            msg:'请输入债券代码',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#BOND_CODE").focus();
+			return false;
+			}
+			if($("#VALUE_DATE").val()==""){
+				$("#VALUE_DATE").tips({
+					side:3,
+		            msg:'请输入估值日期',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#VALUE_DATE").focus();
 			return false;
 			}
 			if($("#SOURCE").val()==""){
 				$("#SOURCE").tips({
 					side:3,
-		            msg:'请输入期间',
+		            msg:'请输入来源',
 		            bg:'#AE81FF',
 		            time:2
 		        });
 				$("#SOURCE").focus();
 			return false;
 			}
-			if($("#STOCK_CODE").val()==""){
-				$("#STOCK_CODE").tips({
+			if($("#DURATION").val()==""){
+				$("#DURATION").tips({
 					side:3,
-		            msg:'请输入股票代码',
+		            msg:'请输入估价修正久期',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#STOCK_CODE").focus();
+				$("#DURATION").focus();
 			return false;
 			}
-			if($("#BETA").val()==""){
-				$("#BETA").tips({
+			if($("#CONVEXITY").val()==""){
+				$("#CONVEXITY").tips({
 					side:3,
-		            msg:'请输入Beta',
+		            msg:'请输入估价凸性',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#BETA").focus();
+				$("#CONVEXITY").focus();
 			return false;
 			}
 			$("#Form").submit();

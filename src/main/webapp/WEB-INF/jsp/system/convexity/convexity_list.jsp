@@ -31,7 +31,7 @@
 						<div class="col-xs-12">
 							
 						<!-- 检索  -->
-						<form action="beta/list.do" method="post" name="Form" id="Form">
+						<form action="convexity/list.do" method="post" name="Form" id="Form">
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -59,11 +59,12 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
-									<th class="center">基金代码</th>
+									<th class="center">债券简称</th>
+									<th class="center">债券代码</th>
+									<th class="center">估值日期</th>
 									<th class="center">来源</th>
-									<th class="center">股票代码</th>
-									<th class="center">股票简称</th>
-									<th class="center">Beta</th>
+									<th class="center">估价修正久期</th>
+									<th class="center">估价凸性</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -76,26 +77,27 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.BETA_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.CONVEXITY_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
-											<td class='center'>${var.FUND_ID}</td>
+											<td class='center'>${var.BOND_NAME}</td>
+											<td class='center'>${var.BOND_CODE}</td>
+											<td class='center'>${var.VALUE_DATE}</td>
 											<td class='center'>${var.SOURCE}</td>
-											<td class='center'>${var.STOCK_CODE}</td>
-											<td class='center'>${var.STOCK_NAME}</td>
-											<td class='center'>${var.BETA}</td>
+											<td class='center'>${var.DURATION}</td>
+											<td class='center'>${var.CONVEXITY}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.BETA_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.CONVEXITY_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.BETA_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.CONVEXITY_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -109,7 +111,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.BETA_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.CONVEXITY_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -118,7 +120,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.BETA_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.CONVEXITY_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -255,9 +257,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>beta/goAdd.do';
-			 diag.Width = 500;
-			 diag.Height = 400;
+			 diag.URL = '<%=basePath%>convexity/goAdd.do';
+			 diag.Width = 450;
+			 diag.Height = 500;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -279,7 +281,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>beta/delete.do?BETA_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>convexity/delete.do?CONVEXITY_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -293,9 +295,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>beta/goEdit.do?BETA_ID='+Id;
-			 diag.Width = 500;
-			 diag.Height = 400;
+			 diag.URL = '<%=basePath%>convexity/goEdit.do?CONVEXITY_ID='+Id;
+			 diag.Width = 450;
+			 diag.Height = 500;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 
@@ -337,7 +339,7 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>beta/deleteAll.do?tm='+new Date().getTime(),
+								url: '<%=basePath%>convexity/deleteAll.do?tm='+new Date().getTime(),
 						    	data: {DATA_IDS:str},
 								dataType:'json',
 								//beforeSend: validateData,
@@ -356,7 +358,7 @@
 		
 		//导出excel
 		function toExcel(){
-			window.location.href='<%=basePath%>beta/excel.do';
+			window.location.href='<%=basePath%>convexity/excel.do';
 		}
 	</script>
 

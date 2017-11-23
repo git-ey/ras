@@ -1,32 +1,36 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="BetaMapper">
+<mapper namespace="ConvexityMapper">
 	
 	<!--表名 -->
 	<sql id="tableName">
-		SYS_BETA
+		SYS_DURATION_CONVEXITY
 	</sql>
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		FUND_ID,	
+		BOND_NAME,	
+		BOND_CODE,	
+		VALUE_DATE,	
 		SOURCE,	
-		STOCK_CODE,	
-		BETA,
+		DURATION,	
+		CONVEXITY,	
 		ACTIVE,	
-		STATUS,
-		BETA_ID
+		STATUS,	
+		CONVEXITY_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{FUND_ID},	
+		#{BOND_NAME},	
+		#{BOND_CODE},	
+		#{VALUE_DATE},	
 		#{SOURCE},	
-		#{STOCK_CODE},	
-		#{BETA},
+		#{DURATION},	
+		#{CONVEXITY},	
 		#{ACTIVE},	
-		#{STATUS},
-		#{BETA_ID}
+		#{STATUS},	
+		#{CONVEXITY_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -45,7 +49,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BETA_ID = #{BETA_ID}
+			CONVEXITY_ID = #{CONVEXITY_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -53,14 +57,15 @@
 		update
 		<include refid="tableName"></include>
 		set 
-			FUND_ID = #{FUND_ID},
+			BOND_NAME = #{BOND_NAME},
+			BOND_CODE = #{BOND_CODE},
+			VALUE_DATE = #{VALUE_DATE},
 			SOURCE = #{SOURCE},
-			STOCK_CODE = #{STOCK_CODE},
-			BETA = #{BETA},
-			ACTIVE = #{ACTIVE},
-			STATUS = #{STATUS}
+			DURATION = #{DURATION},
+			CONVEXITY = #{CONVEXITY},
+		CONVEXITY_ID = CONVEXITY_ID
 		where 
-		BETA_ID = #{BETA_ID}
+		CONVEXITY_ID = #{CONVEXITY_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -70,7 +75,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			BETA_ID = #{BETA_ID}
+			CONVEXITY_ID = #{CONVEXITY_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -83,10 +88,11 @@
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-				<!-- 根据需求自己加检索条件 -->
-					SOURCE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				     or 
-					STOCK_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				<!--	根据需求自己加检索条件
+					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				-->
 				)
 		</if>
 	</select>
@@ -104,7 +110,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BETA_ID in
+			CONVEXITY_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>

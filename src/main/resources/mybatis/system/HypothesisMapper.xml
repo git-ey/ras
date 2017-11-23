@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="BetaMapper">
+<mapper namespace="HypothesisMapper">
 	
 	<!--表名 -->
 	<sql id="tableName">
-		SYS_BETA
+		EY_HYPOTHESIS
 	</sql>
 	
 	<!-- 字段 -->
 	<sql id="Field">
 		FUND_ID,	
-		SOURCE,	
-		STOCK_CODE,	
-		BETA,
+		HYPOTHESIS_TPYE,	
+		HYPOTHESIS_NUM,	
+		DESCRIPTION,	
 		ACTIVE,	
-		STATUS,
-		BETA_ID
+		STATUS,	
+		HYPOTHESIS_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
 		#{FUND_ID},	
-		#{SOURCE},	
-		#{STOCK_CODE},	
-		#{BETA},
+		#{HYPOTHESIS_TPYE},	
+		#{HYPOTHESIS_NUM},	
+		#{DESCRIPTION},	
 		#{ACTIVE},	
-		#{STATUS},
-		#{BETA_ID}
+		#{STATUS},	
+		#{HYPOTHESIS_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -45,7 +45,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BETA_ID = #{BETA_ID}
+			HYPOTHESIS_ID = #{HYPOTHESIS_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -54,13 +54,13 @@
 		<include refid="tableName"></include>
 		set 
 			FUND_ID = #{FUND_ID},
-			SOURCE = #{SOURCE},
-			STOCK_CODE = #{STOCK_CODE},
-			BETA = #{BETA},
+			HYPOTHESIS_TPYE = #{HYPOTHESIS_TPYE},
+			HYPOTHESIS_NUM = #{HYPOTHESIS_NUM},
+			DESCRIPTION = #{DESCRIPTION},
 			ACTIVE = #{ACTIVE},
-			STATUS = #{STATUS}
+		HYPOTHESIS_ID = HYPOTHESIS_ID
 		where 
-		BETA_ID = #{BETA_ID}
+		HYPOTHESIS_ID = #{HYPOTHESIS_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -70,7 +70,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			BETA_ID = #{BETA_ID}
+			HYPOTHESIS_ID = #{HYPOTHESIS_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -84,9 +84,12 @@
 			and
 				(
 				<!-- 根据需求自己加检索条件 -->
-					SOURCE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				     or 
-					STOCK_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					HYPOTHESIS_TPYE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					 or 
+					HYPOTHESIS_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				
 				)
 		</if>
 	</select>
@@ -104,7 +107,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BETA_ID in
+			HYPOTHESIS_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>

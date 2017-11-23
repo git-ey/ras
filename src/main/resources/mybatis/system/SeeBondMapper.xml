@@ -1,32 +1,44 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="BetaMapper">
+<mapper namespace="SeeBondMapper">
 	
 	<!--表名 -->
 	<sql id="tableName">
-		SYS_BETA
+		SYS_SEEBOND
 	</sql>
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		FUND_ID,	
-		SOURCE,	
-		STOCK_CODE,	
-		BETA,
+		VALUE_DATE,	
+		SHH_CODE,	
+		SHZ_CODE,	
+		INTER_BANK_CODE,	
+		CALCULATION_PRICE,	
+		YIELD_TO_MATURITY,	
+		MODIFIED_DURATION,	
+		CONVEXITY,	
+		CLEAN_PRICE,	
+		ACCRUED_INTEREST,	
 		ACTIVE,	
-		STATUS,
-		BETA_ID
+		STATUS,	
+		SEEBOND_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{FUND_ID},	
-		#{SOURCE},	
-		#{STOCK_CODE},	
-		#{BETA},
+		#{VALUE_DATE},	
+		#{SHH_CODE},	
+		#{SHZ_CODE},	
+		#{INTER_BANK_CODE},	
+		#{CALCULATION_PRICE},	
+		#{YIELD_TO_MATURITY},	
+		#{MODIFIED_DURATION},	
+		#{CONVEXITY},	
+		#{CLEAN_PRICE},	
+		#{ACCRUED_INTEREST},	
 		#{ACTIVE},	
-		#{STATUS},
-		#{BETA_ID}
+		#{STATUS},	
+		#{SEEBOND_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -45,7 +57,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BETA_ID = #{BETA_ID}
+			SEEBOND_ID = #{SEEBOND_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -53,14 +65,19 @@
 		update
 		<include refid="tableName"></include>
 		set 
-			FUND_ID = #{FUND_ID},
-			SOURCE = #{SOURCE},
-			STOCK_CODE = #{STOCK_CODE},
-			BETA = #{BETA},
-			ACTIVE = #{ACTIVE},
-			STATUS = #{STATUS}
+			VALUE_DATE = #{VALUE_DATE},
+			SHH_CODE = #{SHH_CODE},
+			SHZ_CODE = #{SHZ_CODE},
+			INTER_BANK_CODE = #{INTER_BANK_CODE},
+			CALCULATION_PRICE = #{CALCULATION_PRICE},
+			YIELD_TO_MATURITY = #{YIELD_TO_MATURITY},
+			MODIFIED_DURATION = #{MODIFIED_DURATION},
+			CONVEXITY = #{CONVEXITY},
+			CLEAN_PRICE = #{CLEAN_PRICE},
+			ACCRUED_INTEREST = #{ACCRUED_INTEREST},
+		SEEBOND_ID = SEEBOND_ID
 		where 
-		BETA_ID = #{BETA_ID}
+		SEEBOND_ID = #{SEEBOND_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -70,7 +87,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			BETA_ID = #{BETA_ID}
+			SEEBOND_ID = #{SEEBOND_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -83,10 +100,11 @@
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-				<!-- 根据需求自己加检索条件 -->
-					SOURCE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				     or 
-					STOCK_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				<!--	根据需求自己加检索条件
+					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				-->
 				)
 		</if>
 	</select>
@@ -104,7 +122,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BETA_ID in
+			SEEBOND_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>

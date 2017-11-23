@@ -27,34 +27,29 @@
 				<div class="row">
 					<div class="col-xs-12">
 					
-					<form action="beta/${msg }.do" name="Form" id="Form" method="post">
-						<input type="hidden" name="BETA_ID" id="BETA_ID" value="${pd.BETA_ID}"/>
+					<form action="hypothesis/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="HYPOTHESIS_ID" id="HYPOTHESIS_ID" value="${pd.HYPOTHESIS_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="255" placeholder="这里输入基金代码" title="基金代码" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
+								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="SOURCE" id="SOURCE" value="${pd.SOURCE}" maxlength="30" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">类型:</td>
+								<td><input type="text" name="HYPOTHESIS_TPYE" id="HYPOTHESIS_TPYE" value="${pd.HYPOTHESIS_TPYE}" maxlength="255" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">股票代码:</td>
-								<td><input type="text" name="STOCK_CODE" id="STOCK_CODE" value="${pd.STOCK_CODE}" maxlength="30" placeholder="这里输入股票代码" title="股票代码" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">编码:</td>
+								<td><input type="text" name="HYPOTHESIS_NUM" id="HYPOTHESIS_NUM" value="${pd.HYPOTHESIS_NUM}" maxlength="255" placeholder="这里输入编码" title="编码" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">Beta:</td>
-								<td><input type="number" name="BETA" id="BETA" value="${pd.BETA}" maxlength="32" placeholder="这里输入Beta" title="Beta" style="width:49%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
+								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>
-								<td>
-									<select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
-								    <option value="Y" <c:if test="${pd.ACTIVE == 'Y'}">selected</c:if>>是</option>
-								    <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
-								    </select>
-								</td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
+								<td><input type="text" name="ACTIVE" id="ACTIVE" value="${pd.ACTIVE}" maxlength="10" placeholder="这里输入启用" title="启用" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">
@@ -94,41 +89,51 @@
 			if($("#FUND_ID").val()==""){
 				$("#FUND_ID").tips({
 					side:3,
-		            msg:'请输入基金代码',
+		            msg:'请输入基金ID',
 		            bg:'#AE81FF',
 		            time:2
 		        });
 				$("#FUND_ID").focus();
 			return false;
 			}
-			if($("#SOURCE").val()==""){
-				$("#SOURCE").tips({
+			if($("#HYPOTHESIS_TPYE").val()==""){
+				$("#HYPOTHESIS_TPYE").tips({
 					side:3,
-		            msg:'请输入期间',
+		            msg:'请输入类型',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#SOURCE").focus();
+				$("#HYPOTHESIS_TPYE").focus();
 			return false;
 			}
-			if($("#STOCK_CODE").val()==""){
-				$("#STOCK_CODE").tips({
+			if($("#HYPOTHESIS_NUM").val()==""){
+				$("#HYPOTHESIS_NUM").tips({
 					side:3,
-		            msg:'请输入股票代码',
+		            msg:'请输入编码',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#STOCK_CODE").focus();
+				$("#HYPOTHESIS_NUM").focus();
 			return false;
 			}
-			if($("#BETA").val()==""){
-				$("#BETA").tips({
+			if($("#DESCRIPTION").val()==""){
+				$("#DESCRIPTION").tips({
 					side:3,
-		            msg:'请输入Beta',
+		            msg:'请输入说明',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#BETA").focus();
+				$("#DESCRIPTION").focus();
+			return false;
+			}
+			if($("#ACTIVE").val()==""){
+				$("#ACTIVE").tips({
+					side:3,
+		            msg:'请输入启用',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#ACTIVE").focus();
 			return false;
 			}
 			$("#Form").submit();
