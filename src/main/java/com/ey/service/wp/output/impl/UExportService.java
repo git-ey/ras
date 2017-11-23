@@ -396,6 +396,8 @@ public class UExportService extends BaseExportService implements UExportManager 
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
+        List<Object> list = new ArrayList<>();
+        
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U600MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU600Data", queryMap);
         if(U600MetaDataList == null) {
@@ -409,14 +411,31 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         result.put("S1", temp.get("审计费")==null?new HashMap<String,Object>():temp.get("审计费"));
         result.put("S2", temp.get("信息披露费")==null?new HashMap<String,Object>():temp.get("信息披露费"));
-        result.put("S3", temp.get("上市年费")==null?new HashMap<String,Object>():temp.get("上市年费"));
-        result.put("S4", temp.get("分红手续费")==null?new HashMap<String,Object>():temp.get("分红手续费"));
-        result.put("S5", temp.get("指数使用费")==null?new HashMap<String,Object>():temp.get("指数使用费"));
-        result.put("S6", temp.get("银行划款费用")==null?new HashMap<String,Object>():temp.get("银行划款费用"));
-        result.put("S7", temp.get("账户维护费")==null?new HashMap<String,Object>():temp.get("账户维护费"));
-        result.put("S8", temp.get("交易费用")==null?new HashMap<String,Object>():temp.get("交易费用"));
-        result.put("S9", temp.get("回购手续费")==null?new HashMap<String,Object>():temp.get("回购手续费"));
-        result.put("S10", temp.get("其他")==null?new HashMap<String,Object>():temp.get("其他"));
+        
+        temp.remove("审计费");
+        temp.remove("信息披露费");
+        
+        temp.forEach((k,v) -> {
+            list.add(v);
+        });
+        
+        result.put("list", list);
+        result.put("count", list.size());
+        
+        String testFlag = "N";
+        if(temp.get("指数使用费") != null) {
+            testFlag = "Y";
+        }
+        result.put("testFlag", testFlag);
+        
+//        result.put("S3", temp.get("上市年费")==null?new HashMap<String,Object>():temp.get("上市年费"));
+//        result.put("S4", temp.get("分红手续费")==null?new HashMap<String,Object>():temp.get("分红手续费"));
+//        result.put("S5", temp.get("指数使用费")==null?new HashMap<String,Object>():temp.get("指数使用费"));
+//        result.put("S6", temp.get("银行划款费用")==null?new HashMap<String,Object>():temp.get("银行划款费用"));
+//        result.put("S7", temp.get("账户维护费")==null?new HashMap<String,Object>():temp.get("账户维护费"));
+//        result.put("S8", temp.get("交易费用")==null?new HashMap<String,Object>():temp.get("交易费用"));
+//        result.put("S9", temp.get("回购手续费")==null?new HashMap<String,Object>():temp.get("回购手续费"));
+//        result.put("S10", temp.get("其他")==null?new HashMap<String,Object>():temp.get("其他"));
 
         return result;
     }

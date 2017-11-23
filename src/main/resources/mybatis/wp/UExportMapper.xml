@@ -178,7 +178,8 @@
         SELECT
             U600.ATTR1 as item,
             U600.AMOUNT_CURRENT_CNY as amountCurrent,
-            U600.AMOUNT_LAST_CNY as amountLast
+            U600.AMOUNT_LAST_CNY as amountLast,
+            U600.ATTR5 as disc
         FROM
             wp_u600 U600
         where 
