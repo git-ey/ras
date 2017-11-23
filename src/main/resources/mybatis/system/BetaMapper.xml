@@ -1,26 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ButtonMapper">
+<mapper namespace="BetaMapper">
 	
 	<!--表名 -->
 	<sql id="tableName">
-		SYS_BUTTON
+		EY_BETA
 	</sql>
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		NAME,	
-		QX_NAME,	
-		BZ,	
-		BUTTON_ID
+		FUND_ID,	
+		PERIOD,	
+		STOCK_CODE,	
+		BETA,
+		ACTIVE,	
+		STATUS,
+		BETA_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{NAME},	
-		#{QX_NAME},	
-		#{BZ},	
-		#{BUTTON_ID}
+		#{FUND_ID},	
+		#{PERIOD},	
+		#{STOCK_CODE},	
+		#{BETA},
+		#{ACTIVE},	
+		#{STATUS},
+		#{BETA_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -39,7 +45,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BUTTON_ID = #{BUTTON_ID}
+			BETA_ID = #{BETA_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -47,12 +53,14 @@
 		update
 		<include refid="tableName"></include>
 		set 
-			NAME = #{NAME},
-			QX_NAME = #{QX_NAME},
-			BZ = #{BZ},
-		BUTTON_ID = BUTTON_ID
+			FUND_ID = #{FUND_ID},
+			PERIOD = #{PERIOD},
+			STOCK_CODE = #{STOCK_CODE},
+			BETA = #{BETA},
+			ACTIVE = #{ACTIVE},
+			STATUS = #{STATUS}
 		where 
-		BUTTON_ID = #{BUTTON_ID}
+		BETA_ID = #{BETA_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -62,7 +70,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			BUTTON_ID = #{BUTTON_ID}
+			BETA_ID = #{BETA_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -73,13 +81,15 @@
 		<include refid="tableName"></include>
 		where 1=1
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
-		and
-			(
-				NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
-				 or 
-				QX_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-			)
-				
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					STOCK_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				     or 
+					STOCK_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
 		</if>
 	</select>
 	
@@ -96,7 +106,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BUTTON_ID in
+			BETA_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>
