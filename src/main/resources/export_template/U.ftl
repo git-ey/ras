@@ -3844,6 +3844,27 @@
    <NumberFormat/>
    <Protection ss:Protected="0"/>
   </Style>
+  <!-- 带下划线的非加粗表头 -->
+  <Style ss:ID="s10067">
+   <Alignment ss:Horizontal="CenterAcrossSelection" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Protection/>
+  </Style>
+  <!-- 普通居中文字 -->
+  <Style ss:ID="s10068">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Protection/>
+  </Style>
+  <!-- 灰色背景单元格 -->
+  <Style ss:ID="s10069">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior ss:Color="#BFBFBF" ss:Pattern="Solid"/>
+  </Style>
   <!-- 普通表头 -->
   <Style ss:ID="s10063" ss:Parent="s10062">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
@@ -11530,6 +11551,90 @@
     <Cell ss:Index="7" ss:StyleID="s252"/>
     <Cell ss:StyleID="s253"/>
    </Row>
+   <#if U600.testFlag == 'N'>
+   <Row>
+    <Cell ss:StyleID="s545"><Data ss:Type="String">指数许可使用基点费的收取标准为以指数作为跟踪标的的基金产品资产净值的${((U600Test.fundIndexfeeRate.indexRate!0)*100)?string('0.######')}%，收取下限为每季人民币${((U600Test.fundIndexfeeRate.minIndexFee!0)/10000)?string('0.####')}万。</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s545"><Data ss:Type="String">指数许可使用基点费测试：</Data></Cell>
+   </Row>
+   <Row>
+    <Cell/>
+    <Cell/>
+    <Cell ss:StyleID="s10067"><Data ss:Type="String">指数许可使用基点费</Data></Cell>
+    <Cell ss:StyleID="s10067"/>
+    <Cell ss:StyleID="s10067"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">季度</Data></Cell>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">托管费</Data></Cell>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">按资产净值计算</Data></Cell>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">最低下限</Data></Cell>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">应确认费用</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s10068"/>
+    <Cell ss:StyleID="s110"><Data ss:Type="Number">${(U600Test.fundIndexfeeRate.costodyRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="Number">${(U600Test.fundIndexfeeRate.indexRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s241"><Data ss:Type="Number">${(U600Test.fundIndexfeeRate.minIndexFee!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s10068"/>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s241"><Data ss:Type="Number">${(U600Test.detail.attr1!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="=IF(R[-2]C[-1]&lt;&gt;0,RC[-1]/R[-2]C[-1]*R[-2]C,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="=IF(RC[-2]&gt;RC[-1],RC[-2],RC[-1])"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s241"><Data ss:Type="Number">${(U600Test.detail.attr2!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="=IF(R[-3]C[-1]&lt;&gt;0,RC[-1]/R[-3]C[-1]*R[-3]C,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="R[-3]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="=IF(RC[-2]&gt;RC[-1],RC[-2],RC[-1])"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s241"><Data ss:Type="Number">${(U600Test.detail.attr3!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="=IF(R[-4]C[-1]&lt;&gt;0,RC[-1]/R[-4]C[-1]*R[-4]C,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="=IF(RC[-2]&gt;RC[-1],RC[-2],RC[-1])"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s241"><Data ss:Type="Number">${(U600Test.detail.attr4!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="=IF(R[-5]C[-1]&lt;&gt;0,RC[-1]/R[-5]C[-1]*R[-5]C,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="R[-5]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s241" ss:Formula="=IF(RC[-2]&gt;RC[-1],RC[-2],RC[-1])"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s10068"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s247" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s10069"/>
+    <Cell ss:StyleID="s10069"/>
+    <Cell ss:StyleID="s247" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell/>
+    <Cell/>
+    <Cell/>
+    <Cell ss:StyleID="s545"><Data ss:Type="String">per client</Data></Cell>
+    <Cell ss:StyleID="s241"><Data ss:Type="Number">${(U600Test.detail.indexFeePerClient!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row>
+    <Cell/>
+    <Cell/>
+    <Cell/>
+    <Cell ss:StyleID="s545"><Data ss:Type="String">diff</Data></Cell>
+    <Cell ss:StyleID="s247" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s545"><Data ss:Type="String">测试结果：指数许可使用基点费计提合理。</Data></Cell>
+   </Row>
+   </#if>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
