@@ -189,6 +189,23 @@
         and U600.PERIOD = #{period}
     </select>
     
+    <select id="selectU600TestData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    U600T.ATTR1 as attr1,
+		    U600T.ATTR2 as attr2,
+		    U600T.ATTR3 as attr3,
+		    U600T.ATTR4 as attr4,
+		    U600T.INDEX_FEE_PERCLIENT as indexFeePerClient
+		FROM
+		    wp_u600_test U600T
+		where 
+		    1 = 1
+        and U600T.STATUS = 'Y'
+        and U600T.FUND_ID = #{fundId}
+        and U600T.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectU10000InterestData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000RI.ITEM as item,

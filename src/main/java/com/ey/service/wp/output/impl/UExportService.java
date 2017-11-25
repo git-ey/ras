@@ -52,6 +52,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         dataMap.put("U400", this.getU400Data(fundId, periodStr));
         dataMap.put("U500", this.getU500Data(fundId, periodStr));
         dataMap.put("U600", this.getU600Data(fundId, periodStr));
+        dataMap.put("U600Test", this.getU600TestData(fundId, periodStr));
         dataMap.put("U10000", this.getU10000Data(fundId, periodStr));
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_U);
@@ -437,6 +438,33 @@ public class UExportService extends BaseExportService implements UExportManager 
 //        result.put("S9", temp.get("回购手续费")==null?new HashMap<String,Object>():temp.get("回购手续费"));
 //        result.put("S10", temp.get("其他")==null?new HashMap<String,Object>():temp.get("其他"));
 
+        return result;
+    }
+    
+    /**
+     * 处理sheet页U600Test的数据
+     * @author Dai Zong 2017年11月24日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU600TestData(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> U600TestDetailData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU600TestData", queryMap);
+        if(U600TestDetailData == null) {
+            U600TestDetailData = new HashMap<>();
+        }
+        
+        Map<String,Object> fundIndexfeeRate = new HashMap<>();//TODO SYS_FUND_INDEXFEE_RATE表呢?
+        
+        result.put("detail", U600TestDetailData);
+        result.put("fundIndexfeeRate", fundIndexfeeRate);
+        
         return result;
     }
     
