@@ -109,4 +109,23 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+			#{SOURCE},
+			#{STOCK_CODE},
+			#{BETA},
+			#{ACTIVE},
+		    #{FUND_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>

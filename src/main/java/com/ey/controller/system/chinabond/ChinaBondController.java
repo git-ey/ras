@@ -10,22 +10,30 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
 import com.ey.service.system.chinabond.BondChinaManager;
+import com.ey.service.system.loger.LogerManager;
 import com.ey.util.AppUtil;
+import com.ey.util.Const;
+import com.ey.util.FileDownload;
 import com.ey.util.Jurisdiction;
 import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
+import com.ey.util.PathUtil;
+import com.ey.util.fileimport.MapResult;
 
 /** 
  * 说明：中债估值
@@ -39,6 +47,8 @@ public class ChinaBondController extends BaseController {
 	String menuUrl = "chinabond/list.do"; //菜单地址(权限用)
 	@Resource(name="chinabondService")
 	private BondChinaManager chinabondService;
+	@Resource(name = "logService")
+	private LogerManager logManager;
 	
 	/**保存
 	 * @param
@@ -169,6 +179,55 @@ public class ChinaBondController extends BaseController {
 		pdList.add(pd);
 		map.put("list", pdList);
 		return AppUtil.returnObject(pd, map);
+	}
+	
+	/**
+	 * 打开上传EXCEL页面
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/goUploadExcel")
+	public ModelAndView goUploadExcel() throws Exception {
+		ModelAndView mv = this.getModelAndView();
+		mv.setViewName("system/chinabond/uploadexcel");
+		return mv;
+	}
+
+	/**
+	 * 下载模版
+	 * 
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/downExcel")
+	public void downExcel(HttpServletResponse response) throws Exception {
+		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "China_Bond.xls",
+				"China_Bond.xlsx");
+	}
+
+	/**
+	 * 从EXCEL导入到数据库
+	 * 
+	 * @param file
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/readExcel")
+	public ModelAndView readExcel(@RequestParam(value = "excel", required = false) MultipartFile file)
+			throws Exception {
+		logManager.save(Jurisdiction.getUsername(), "从EXCEL导入中债估值到数据库");
+		ModelAndView mv = this.getModelAndView();
+		if (!Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
+			return null;
+		}
+		MapResult mapResult = readExcel(file, SCB_IMPORT_TEMPLATE_CODE);
+		/* 存入数据库操作====================================== */
+		List<Map> maps = mapResult.getResult();
+		chinabondService.saveBatch(maps);
+		mv.addObject("msg", "success");
+		mv.setViewName("save_result");
+		return mv;
 	}
 	
 	 /**导出到excel

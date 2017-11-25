@@ -1,11 +1,16 @@
 package com.ey.service.system.beta.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.util.AppUtil;
 import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 import com.ey.service.system.beta.BetaManager;
 
 /** 
@@ -76,6 +81,35 @@ public class BetaService implements BetaManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("BetaMapper.deleteAll", ArrayDATA_IDS);
+	}
+	
+	@Override
+	public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			if (null != map.get("STOCK_CODE")) {
+				PageData pd = new PageData();
+				pd.put("BETA_ID", UuidUtil.get32UUID());
+				pd.put("SOURCE", map.get("SOURCE"));
+				pd.put("STOCK_CODE", map.get("STOCK_CODE"));
+				pd.put("BETA", map.get("BETA"));
+				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pds.add(pd);
+				idx++;
+			}
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("BetaMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("BetaMapper.saveBatch", pds);
+		}
 	}
 	
 }

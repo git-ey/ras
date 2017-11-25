@@ -34,24 +34,18 @@
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券简称:</td>
 								<td><input type="text" name="BOND_NAME" id="BOND_NAME" value="${pd.BOND_NAME}" maxlength="255" placeholder="这里输入债券简称" title="债券简称" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券代码:</td>
 								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="255" placeholder="这里输入债券代码" title="债券代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值日期:</td>
 								<td><input class="span10 date-picker" name="VALUE_DATE" id="VALUE_DATE" value="${pd.VALUE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="估值日期" title="估值日期" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">来源:</td>
 								<td><input type="text" name="SOURCE" id="SOURCE" value="${pd.SOURCE}" maxlength="30" placeholder="这里输入来源" title="来源" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估价修正久期:</td>
 								<td><input type="number" name="DURATION" id="DURATION" value="${pd.DURATION}" maxlength="32" placeholder="这里输入估价修正久期" title="估价修正久期" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估价凸性:</td>
 								<td><input type="number" name="CONVEXITY" id="CONVEXITY" value="${pd.CONVEXITY}" maxlength="32" placeholder="这里输入估价凸性" title="估价凸性" style="width:98%;"/></td>
 							</tr>

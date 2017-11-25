@@ -127,4 +127,31 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{VALUE_DATE},	
+		#{SHH_CODE},	
+		#{SHZ_CODE},	
+		#{INTER_BANK_CODE},	
+		#{CALCULATION_PRICE},	
+		#{YIELD_TO_MATURITY},	
+		#{MODIFIED_DURATION},	
+		#{CONVEXITY},	
+		#{CLEAN_PRICE},	
+		#{ACCRUED_INTEREST},	
+		#{ACTIVE},	
+		#{STATUS},	
+		#{SEEBOND_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>

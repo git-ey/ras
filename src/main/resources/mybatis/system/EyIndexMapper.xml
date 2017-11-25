@@ -108,4 +108,23 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		     #{pd.INDEX_TYPE},	
+		     #{pd.INDEX_DATE},	
+		     #{pd.INDEX_QTY},
+		     #{pd.ACTIVE},
+		     #{pd.INDEX_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>

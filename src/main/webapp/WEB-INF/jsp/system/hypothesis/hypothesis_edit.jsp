@@ -49,7 +49,12 @@
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
-								<td><input type="text" name="ACTIVE" id="ACTIVE" value="${pd.ACTIVE}" maxlength="10" placeholder="这里输入启用" title="启用" style="width:98%;"/></td>
+							    <td>
+									<select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
+								    <option value="Y" <c:if test="${pd.ACTIVE == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

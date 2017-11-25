@@ -4,7 +4,7 @@
 	
 	<!--表名 -->
 	<sql id="tableName">
-		EY_HYPOTHESIS
+		SYS_HYPOTHESIS
 	</sql>
 	
 	<!-- 字段 -->
@@ -112,4 +112,25 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{FUND_ID},	
+		#{HYPOTHESIS_TPYE},	
+		#{HYPOTHESIS_NUM},	
+		#{DESCRIPTION},	
+		#{ACTIVE},	
+		#{STATUS},	
+		#{HYPOTHESIS_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>

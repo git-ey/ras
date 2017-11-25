@@ -1,6 +1,8 @@
 package com.ey.service.system.seebond;
 
 import java.util.List;
+import java.util.Map;
+
 import com.ey.entity.Page;
 import com.ey.util.PageData;
 
@@ -53,6 +55,13 @@ public interface SeeBondManager{
 	 * @throws Exception
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception;
+	
+	/**批量新增
+	 * @param pds
+	 * @throws Exception
+	 */
+	public void saveBatch(List<Map> maps) throws Exception;
+	
 	
 }
 

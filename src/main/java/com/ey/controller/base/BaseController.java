@@ -70,7 +70,42 @@ public class BaseController {
 	 * AMA科目映射属性导入模版代码
 	 */
 	protected final static String AMA_IMPORT_TEMPLATE_CODE = "AMA";
-
+	
+	/**
+	 * BETA系数导入模版代码
+	 */
+	protected final static String BETA_IMPORT_TEMPLATE_CODE = "BETA";
+	
+	/**
+	 * SCB中债估值导入模版代码
+	 */
+	protected final static String SCB_IMPORT_TEMPLATE_CODE = "SCB";
+	
+	/**
+	 * SDC久期凸性导入模版代码
+	 */
+	protected final static String SDC_IMPORT_TEMPLATE_CODE = "SDC";
+	
+	/**
+	 * EYI指数导入模版代码
+	 */
+	protected final static String EYI_IMPORT_TEMPLATE_CODE = "EYI";
+	
+	/**
+	 * FIFR基金指数使用费率导入模版代码
+	 */
+	protected final static String FIFR_IMPORT_TEMPLATE_CODE = "FIFR";
+	
+	/**
+	 * HPTS风险分析性假设导入模版代码
+	 */
+	protected final static String HPTS_IMPORT_TEMPLATE_CODE = "HPTS";
+	
+	/**
+	 * SSB中证估值导入模版代码
+	 */
+	protected final static String SSB_IMPORT_TEMPLATE_CODE = "SSB";
+	
 	/**
 	 * new PageData对象
 	 * 

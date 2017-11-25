@@ -31,7 +31,7 @@
 						<div class="col-xs-12">
 							
 						<!-- 检索  -->
-						<form action="eyindex/list.do" method="post" name="Form" id="Form">
+						<form action="fundindexfeerate/list.do" method="post" name="Form" id="Form">
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -42,14 +42,13 @@
 										</span>
 									</div>
 								</td>
-								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
-								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
 								<!-- 
 								<c:if test="${QX.toExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td></c:if>
 							    -->
+							    <c:if test="${QX.FromExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="ace-icon fa fa-cloud-upload bigger-110 nav-search-icon blue"></i></a></td></c:if>
 							</tr>
 						</table>
 						<!-- 检索  -->
@@ -61,10 +60,11 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
-									<th class="center">类型</th>
-									<th class="center">日期</th>
-									<th class="center">指数</th>
-									<th class="center">是否启用</th>
+									<th class="center">基金ID</th>
+									<th class="center">托管费率</th>
+									<th class="center">指数使用费率</th>
+									<th class="center">指数使用费最低下限</th>
+									<th class="center">启用</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -77,12 +77,13 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.INDEX_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.FUNDINDEXFEERATE_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
-											<td class='center'>${var.INDEX_TYPE}</td>
-											<td class='center'>${var.INDEX_DATE}</td>
-											<td class='center'>${var.INDEX_QTY}</td>
+											<td class='center'>${var.FUND_ID}</td>
+											<td class='center'>${var.COSTODY_RATE}</td>
+											<td class='center'>${var.INDEX_RATE}</td>
+											<td class='center'>${var.MIN_INDEX_FEE}</td>
 											<td class='center'>${var.ACTIVE}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
@@ -90,12 +91,12 @@
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.INDEX_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.FUNDINDEXFEERATE_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.INDEX_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.FUNDINDEXFEERATE_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -109,7 +110,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.INDEX_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.FUNDINDEXFEERATE_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -118,7 +119,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.INDEX_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.FUNDINDEXFEERATE_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -255,8 +256,8 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>eyindex/goAdd.do';
-			 diag.Width = 450;
+			 diag.URL = '<%=basePath%>fundindexfeerate/goAdd.do';
+			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -279,7 +280,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>eyindex/delete.do?INDEX_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>fundindexfeerate/delete.do?FUNDINDEXFEERATE_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -293,8 +294,8 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>eyindex/goEdit.do?INDEX_ID='+Id;
-			 diag.Width = 450;
+			 diag.URL = '<%=basePath%>fundindexfeerate/goEdit.do?FUNDINDEXFEERATE_ID='+Id;
+			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -337,7 +338,7 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>eyindex/deleteAll.do?tm='+new Date().getTime(),
+								url: '<%=basePath%>fundindexfeerate/deleteAll.do?tm='+new Date().getTime(),
 						    	data: {DATA_IDS:str},
 								dataType:'json',
 								//beforeSend: validateData,
@@ -354,9 +355,32 @@
 			});
 		};
 		
+		//打开上传excel页面
+		function fromExcel(){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="EXCEL导入到数据库";
+			 diag.URL = '<%=basePath%>fundindexfeerate/goUploadExcel.do';
+			 diag.Width = 450;
+			 diag.Height = 260;
+			 diag.CancelEvent = function(){ //关闭事件
+				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+					 if('${page.currentPage}' == '0'){
+						 top.jzts();
+						 setTimeout("self.location.reload()",100);
+					 }else{
+						 nextPage("${page.currentPage}");
+					 }
+				}
+				diag.close();
+			 };
+			 diag.show();
+		}
+		
 		//导出excel
 		function toExcel(){
-			window.location.href='<%=basePath%>eyindex/excel.do';
+			window.location.href='<%=basePath%>fundindexfeerate/excel.do';
 		}
 	</script>
 

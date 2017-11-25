@@ -1,11 +1,16 @@
 package com.ey.service.system.hypothesis.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.util.AppUtil;
 import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 import com.ey.service.system.hypothesis.HypothesisManager;
 
 /** 
@@ -76,6 +81,36 @@ public class HypothesisService implements HypothesisManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("HypothesisMapper.deleteAll", ArrayDATA_IDS);
+	}
+	
+	@Override
+	public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			if (null != map.get("FUND_ID")) {
+				PageData pd = new PageData();
+				pd.put("HYPOTHESIS_ID", UuidUtil.get32UUID());
+				pd.put("FUND_ID", map.get("FUND_ID"));
+				pd.put("HYPOTHESIS_TPYE", map.get("HYPOTHESIS_TPYE"));
+				pd.put("HYPOTHESIS_NUM", map.get("HYPOTHESIS_NUM"));
+				pd.put("DESCRIPTION", map.get("DESCRIPTION"));
+				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pds.add(pd);
+				idx++;
+			}
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("HypothesisMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("HypothesisMapper.saveBatch", pds);
+		}
 	}
 	
 }

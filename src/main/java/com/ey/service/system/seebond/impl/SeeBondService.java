@@ -1,11 +1,16 @@
 package com.ey.service.system.seebond.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.util.AppUtil;
 import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 import com.ey.service.system.seebond.SeeBondManager;
 
 /** 
@@ -76,6 +81,42 @@ public class SeeBondService implements SeeBondManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("SeeBondMapper.deleteAll", ArrayDATA_IDS);
+	}
+	
+	@Override
+	public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			if (null != map.get("VALUE_DATE")) {
+				PageData pd = new PageData();
+				pd.put("SEEBOND_ID", UuidUtil.get32UUID());
+				pd.put("VALUE_DATE", map.get("VALUE_DATE"));
+				pd.put("SHH_CODE", map.get("SHH_CODE"));
+				pd.put("SHZ_CODE", map.get("SHZ_CODE"));
+				pd.put("INTER_BANK_CODE", map.get("INTER_BANK_CODE"));
+				pd.put("CALCULATION_PRICE", map.get("CALCULATION_PRICE"));
+				pd.put("YIELD_TO_MATURITY", map.get("YIELD_TO_MATURITY"));
+				pd.put("MODIFIED_DURATION", map.get("MODIFIED_DURATION"));
+				pd.put("CONVEXITY", map.get("CONVEXITY"));
+				pd.put("CLEAN_PRICE", map.get("CLEAN_PRICE"));
+				pd.put("ACCRUED_INTEREST", map.get("ACCRUED_INTEREST"));
+				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pds.add(pd);
+				idx++;
+			}
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("SeeBondMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("SeeBondMapper.saveBatch", pds);
+		}
 	}
 	
 }
