@@ -11551,7 +11551,7 @@
     <Cell ss:Index="7" ss:StyleID="s252"/>
     <Cell ss:StyleID="s253"/>
    </Row>
-   <#if U600.testFlag == 'N'>
+   <#if U600.testFlag == 'Y'>
    <Row>
     <Cell ss:StyleID="s545"><Data ss:Type="String">指数许可使用基点费的收取标准为以指数作为跟踪标的的基金产品资产净值的${((U600Test.fundIndexfeeRate.indexRate!0)*100)?string('0.######')}%，收取下限为每季人民币${((U600Test.fundIndexfeeRate.minIndexFee!0)/10000)?string('0.####')}万。</Data></Cell>
    </Row>

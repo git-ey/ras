@@ -460,7 +460,11 @@ public class UExportService extends BaseExportService implements UExportManager 
             U600TestDetailData = new HashMap<>();
         }
         
-        Map<String,Object> fundIndexfeeRate = new HashMap<>();//TODO SYS_FUND_INDEXFEE_RATE表呢?
+        @SuppressWarnings("unchecked")
+        Map<String,Object> fundIndexfeeRate = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU600IndexFeeRateData", queryMap);
+        if(fundIndexfeeRate == null) {
+            fundIndexfeeRate = new HashMap<>();
+        }
         
         result.put("detail", U600TestDetailData);
         result.put("fundIndexfeeRate", fundIndexfeeRate);
