@@ -202,8 +202,8 @@ public class EyIndexController extends BaseController {
 	 */
 	@RequestMapping(value = "/downExcel")
 	public void downExcel(HttpServletResponse response) throws Exception {
-		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "eyIndex.xlsx",
-				"Acct_Mapping_Attr.xlsx");
+		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "EyIndex.xlsx",
+				"EyIndex.xlsx");
 	}
 
 	/**

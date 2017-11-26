@@ -155,7 +155,7 @@ public class CsvImportor extends FileImportor {
 		case FLOAT:
 			if (rows > importCell.getNumber()) {
 				maps.put(key,
-						StringUtils.isBlank(rowLine[importCell.getNumber()]) ? null : rowLine[importCell.getNumber()]);
+						StringUtils.isBlank(rowLine[importCell.getNumber()]) ? null : rowLine[importCell.getNumber()].replace(",",""));
 			} else {
 				maps.put(key, null);
 			}
@@ -163,7 +163,7 @@ public class CsvImportor extends FileImportor {
 		case BIGDECIMAL:
 			if (rows > importCell.getNumber()) {
 				maps.put(key,
-						StringUtils.isBlank(rowLine[importCell.getNumber()]) ? null : rowLine[importCell.getNumber()]);
+						StringUtils.isBlank(rowLine[importCell.getNumber()]) ? null : rowLine[importCell.getNumber()].replace(",",""));
 			} else {
 				maps.put(key, null);
 			}
