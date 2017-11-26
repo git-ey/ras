@@ -205,15 +205,15 @@ public class StockController extends BaseController {
 	@RequestMapping(value = "/readExcel")
 	public ModelAndView readExcel(@RequestParam(value = "excel", required = false) MultipartFile file)
 			throws Exception {
-		logBefore(logger, Jurisdiction.getUsername()+"从EXCEL导入资产负债表映射到数据库");
+		logBefore(logger, Jurisdiction.getUsername()+"从EXCEL导入股票信息到数据库");
 		ModelAndView mv = this.getModelAndView();
 		if (!Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
 			return null;
 		}
-		MapResult mapResult = readExcel(file, BSM_IMPORT_TEMPLATE_CODE);
+		MapResult mapResult = readExcel(file, SSI_IMPORT_TEMPLATE_CODE);
 		/* 存入数据库操作====================================== */
 		List<Map> maps = mapResult.getResult();
-		//stockService.saveBatch(maps);
+		stockService.saveBatch(maps);
 		mv.addObject("msg", "success");
 		mv.setViewName("save_result");
 		return mv;

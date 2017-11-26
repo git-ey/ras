@@ -114,7 +114,7 @@ public class StockService implements StockManager{
 				pd.put("RESUMPTION_PRICE", map.get("RESUMPTION_PRICE"));
 				pd.put("NEW_FLAG", map.get("NEW_FLAG"));
 				pd.put("AFLOAT_DATE", map.get("AFLOAT_DATE"));
-				pd.put("ACTIVE", map.get("ACTIVE"));
+				pd.put("ACTIVE", map.get("ACTIVE") == null ? "Y" : map.get("ACTIVE"));
 				pd.put("STATUS", map.get("STATUS"));
 				pds.add(pd);
 				idx++;
@@ -131,6 +131,8 @@ public class StockService implements StockManager{
 			// 批量插入
 			dao.save("StockMapper.saveBatch", pds);
 		}
+		// 批量更新
+		dao.update("StockMapper.updateBatch", null);
 	}
 	
 }

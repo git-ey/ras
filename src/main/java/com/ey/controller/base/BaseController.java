@@ -57,6 +57,11 @@ public class BaseController {
 	protected final static String FI_IMPORT_TEMPLATE_CODE = "FI";
 	
 	/**
+	 * 股票信息导入模版代码
+	 */
+	protected final static String SSI_IMPORT_TEMPLATE_CODE = "SSI";
+	
+	/**
 	 * 资产负债表映射导入模版代码
 	 */
 	protected final static String BSM_IMPORT_TEMPLATE_CODE = "BSM";

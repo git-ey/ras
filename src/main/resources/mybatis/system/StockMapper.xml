@@ -151,12 +151,14 @@
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-				<!--	根据需求自己加检索条件
-					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				<!-- 根据需求自己加检索条件 -->
+					CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
-					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				-->
+					NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
+		</if>
+		<if test="pd.PERIOD != null and pd.PERIOD != ''">
+		    and PERIOD =  #{pd.PERIOD}
 		</if>
 	</select>
 	
@@ -178,4 +180,12 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 导入后批量处理 -->
+    <update id="updateBatch" parameterType="pd">
+	    update <include refid="tableName"></include>
+           set PERIOD = REPLACE(PERIOD,'.0','')
+         where PERIOD LIKE '%.0'
+	</update>
+	
 </mapper>
