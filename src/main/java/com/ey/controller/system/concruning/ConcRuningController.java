@@ -213,30 +213,31 @@ public class ConcRuningController extends BaseController {
 				titles.add(varOList.get(i).getString("LOG_MSG_19"));
 				titles.add(varOList.get(i).getString("LOG_MSG_20"));
 				dataMap.put("titles", titles);
+			} else {
+			    // 构建Excel内容
+				PageData vpd = new PageData();
+				vpd.put("var1", varOList.get(i).getString("LOG_MSG_1")); // 1
+				vpd.put("var2", varOList.get(i).getString("LOG_MSG_2")); // 2
+				vpd.put("var3", varOList.get(i).getString("LOG_MSG_3")); // 3
+				vpd.put("var4", varOList.get(i).getString("LOG_MSG_4")); // 4
+				vpd.put("var5", varOList.get(i).getString("LOG_MSG_5")); // 5
+				vpd.put("var6", varOList.get(i).getString("LOG_MSG_6")); // 6
+				vpd.put("var7", varOList.get(i).getString("LOG_MSG_7")); // 7
+				vpd.put("var8", varOList.get(i).getString("LOG_MSG_8")); // 8
+				vpd.put("var9", varOList.get(i).getString("LOG_MSG_9")); // 9
+				vpd.put("var10", varOList.get(i).getString("LOG_MSG_10")); // 10
+				vpd.put("var11", varOList.get(i).getString("LOG_MSG_11")); // 11
+				vpd.put("var12", varOList.get(i).getString("LOG_MSG_12")); // 12
+				vpd.put("var13", varOList.get(i).getString("LOG_MSG_13")); // 13
+				vpd.put("var14", varOList.get(i).getString("LOG_MSG_14")); // 14
+				vpd.put("var15", varOList.get(i).getString("LOG_MSG_15")); // 15
+				vpd.put("var16", varOList.get(i).getString("LOG_MSG_16")); // 16
+				vpd.put("var17", varOList.get(i).getString("LOG_MSG_17")); // 17
+				vpd.put("var18", varOList.get(i).getString("LOG_MSG_18")); // 18
+				vpd.put("var19", varOList.get(i).getString("LOG_MSG_19")); // 19
+				vpd.put("var20", varOList.get(i).getString("LOG_MSG_20")); // 20
+				varList.add(vpd);
 			}
-		    // 构建Excel内容
-			PageData vpd = new PageData();
-			vpd.put("var1", varOList.get(i).getString("LOG_MSG_1")); // 1
-			vpd.put("var2", varOList.get(i).getString("LOG_MSG_2")); // 2
-			vpd.put("var3", varOList.get(i).getString("LOG_MSG_3")); // 3
-			vpd.put("var4", varOList.get(i).getString("LOG_MSG_4")); // 4
-			vpd.put("var5", varOList.get(i).getString("LOG_MSG_5")); // 5
-			vpd.put("var6", varOList.get(i).getString("LOG_MSG_6")); // 6
-			vpd.put("var7", varOList.get(i).getString("LOG_MSG_7")); // 7
-			vpd.put("var8", varOList.get(i).getString("LOG_MSG_8")); // 8
-			vpd.put("var9", varOList.get(i).getString("LOG_MSG_9")); // 9
-			vpd.put("var10", varOList.get(i).getString("LOG_MSG_10")); // 10
-			vpd.put("var11", varOList.get(i).getString("LOG_MSG_11")); // 11
-			vpd.put("var12", varOList.get(i).getString("LOG_MSG_12")); // 12
-			vpd.put("var13", varOList.get(i).getString("LOG_MSG_13")); // 13
-			vpd.put("var14", varOList.get(i).getString("LOG_MSG_14")); // 14
-			vpd.put("var15", varOList.get(i).getString("LOG_MSG_15")); // 15
-			vpd.put("var16", varOList.get(i).getString("LOG_MSG_16")); // 16
-			vpd.put("var17", varOList.get(i).getString("LOG_MSG_17")); // 17
-			vpd.put("var18", varOList.get(i).getString("LOG_MSG_18")); // 18
-			vpd.put("var19", varOList.get(i).getString("LOG_MSG_19")); // 19
-			vpd.put("var20", varOList.get(i).getString("LOG_MSG_20")); // 20
-			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);
 		ObjectExcelView erv = new ObjectExcelView();

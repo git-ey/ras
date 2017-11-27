@@ -42,7 +42,7 @@
 										</span>
 									</div>
 								</td>
-								<td style="padding-left:2px;text-align:right;width:100px;">导入状态:</td>
+								<td style="padding-left:2px;text-align:right;width:100px;">模版类型:</td>
 								<td style="vertical-align:top;padding-left:2px;width:150px;">
 								 	<select class="chosen-select form-control" name="TEMP_TYPE_CODE" id="TEMP_TYPE_CODE" data-placeholder="请选择" style="width:49%;">
 								    <option value=""></option>
