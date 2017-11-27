@@ -206,6 +206,20 @@
         LIMIT 1
     </select>
     
+    <select id="selectU600IndexFeeRateData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    sfir.COSTODY_RATE AS costodyRate,
+		    sfir.INDEX_RATE AS indexRate,
+		    sfir.MIN_INDEX_FEE AS minIndexFee 
+		FROM
+		    sys_fund_indexfee_rate sfir 
+		WHERE
+		    1 = 1 
+	    AND sfir.FUND_ID = #{fundId}
+	    AND sfir.ACTIVE = 'Y' 
+	    LIMIT 1
+    </select>
+    
     <select id="selectU10000InterestData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000RI.ITEM as item,
