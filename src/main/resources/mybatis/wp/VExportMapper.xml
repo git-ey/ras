@@ -1,4 +1,35 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="VExportMapper">
+
+    <select id="selectV300Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    V300.TYPE as type,
+		    V300.INT_RISK_PERIOD as intRiskPeriod,
+		    V300.AMOUNT as amount,
+		    V300.AMOUNT_LAST_CNY as amountLast,
+		    V300.SORT as sort
+		FROM
+		    wp_v300 V300 
+		WHERE
+		    1 = 1 
+		AND V300.STATUS = 'Y'
+		AND V300.FUND_ID = #{fundId}
+		AND V300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectV300IntRiskPeriodData" parameterType="java.util.Map" resultType="java.lang.String"> 
+        SELECT DISTINCT
+            V300.INT_RISK_PERIOD as intRiskPeriod
+        FROM
+            wp_v300 V300 
+        WHERE
+            1 = 1 
+        AND V300.STATUS = 'Y'
+        AND V300.FUND_ID = #{fundId}
+        AND V300.PERIOD = #{period}
+        ORDER BY
+            V300.SORT
+    </select>
+
 </mapper>
