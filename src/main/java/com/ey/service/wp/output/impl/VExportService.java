@@ -47,7 +47,7 @@ public class VExportService extends BaseExportService implements VExportManager{
         dataMap.put("fundInfo", fundInfo);
         
         dataMap.put("V300", this.getV300Data(fundId, periodStr));
-//        dataMap.put("E400", this.getE400Data(fundId, periodStr));
+        dataMap.put("V400", this.getV400Data(fundId, periodStr));
 //        dataMap.put("E410", this.getE410Data(fundId, periodStr));
 //        dataMap.put("E41X", this.getE41XData(fundId, periodStr));
 //        dataMap.put("E500", this.getE500Data(fundId, periodStr));
@@ -337,6 +337,55 @@ public class VExportService extends BaseExportService implements VExportManager{
         result.put("intRistPeriods", V300IntRistPeriodsDataList);
         result.put("intRistPeriodsCount", V300IntRistPeriodsDataList.size());
         result.put("detail", detail);
+        
+        return result;
+    }
+    
+    /**
+     * 处理sheet页V400的数据
+     * @author Dai Zong 2017年11月28日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getV400Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String,Object> fundInfo = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> V400FundInfoMetaData = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400FundInfoData", queryMap);
+        if(V400FundInfoMetaData != null) {
+            fundInfo = V400FundInfoMetaData;
+        }
+        
+        @SuppressWarnings("unchecked")
+        List<String> V400HypothesisDataList = (List<String>)this.dao.findForList("VExportMapper.selectV400HypothesisData", queryMap);
+        if(V400HypothesisDataList == null) {
+            V400HypothesisDataList = new ArrayList<>(); 
+        }
+        
+        @SuppressWarnings("unchecked")
+        List<String> V400DetailMetaDataList = (List<String>)this.dao.findForList("VExportMapper.selectV400DetailData", queryMap);
+        if(V400DetailMetaDataList == null) {
+            V400DetailMetaDataList = new ArrayList<>(); 
+        }
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> V400SummaryData = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400SummaryData", queryMap);
+        if(V400SummaryData == null) {
+            V400SummaryData = new HashMap<>(); 
+        }
+        
+        result.put("fundInfo", fundInfo);
+        result.put("hypothesis", V400HypothesisDataList);
+        result.put("hypothesisCount", V400HypothesisDataList.size());
+        result.put("detailList", V400DetailMetaDataList);
+        result.put("detailCount", V400DetailMetaDataList.size());
+        result.put("summary", V400SummaryData);
         
         return result;
     }

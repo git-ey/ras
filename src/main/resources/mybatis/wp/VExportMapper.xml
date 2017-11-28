@@ -31,5 +31,65 @@
         ORDER BY
             V300.SORT
     </select>
+    
+    <select id="selectV400FundInfoData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IFNULL(sfi.INTEREST_SENSTVT_METHOD,'久期法') as interestSensitiveMethod,
+		    sfi.RISK_VARIABLE as riskVariable,
+		    sfi.INTEREST_SENSTVT_SOURSE as interestSenstvtSourse,
+		    IFNULL(sfi.INTEREST_SENSITIVITY,'N') as interestSensitivity
+		FROM
+		    sys_fund_info sfi 
+		WHERE
+		    1 = 1
+		AND sfi.FUND_ID = #{fundId}
+		AND sfi.ACTIVE = 'Y'
+		LIMIT 1
+    </select>
+    
+    <select id="selectV400HypothesisData" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+		    CONCAT( sh.HYPOTHESIS_NUM, '. ', sh.DESCRIPTION ) AS description 
+		FROM
+		    sys_hypothesis sh 
+		WHERE
+		    1 = 1 
+	    AND sh.FUND_ID = #{fundId}
+	    AND sh.ACTIVE = 'Y' 
+	    AND sh.HYPOTHESIS_TPYE = '利率'
+		ORDER BY sh.HYPOTHESIS_NUM
+    </select>
+    
+    <select id="selectV400DetailData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    V400D.BOND_CODE AS bondCode,
+		    V400D.BOND_NAME AS bondName,
+		    V400D.MARKET AS market,
+		    V400D.MKT_VALUE_CNY AS marketValue,
+		    V400D.WEIGHT AS weight,
+		    V400D.DURATION AS duration,
+		    V400D.CONVEXITY AS convexity 
+		FROM
+		    wp_v400_detail V400D 
+		WHERE
+		    1 = 1
+        and V400D.STATUS = 'Y'
+        and V400D.FUND_ID = #{fundId}
+        and V400D.PERIOD = #{period}
+    </select>
+    
+    <select id="selectV400SummaryData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    V400S.SUM_MKT_VALUE AS sumMktValue,
+		    V400S.EXCHENGEABLE_BOND AS exchengeableBond
+		FROM
+		    wp_v400_summary V400S
+		WHERE
+		    1 = 1
+        and V400S.STATUS = 'Y'
+        and V400S.FUND_ID = #{fundId}
+        and V400S.PERIOD = #{period}
+        LIMIT 1
+    </select>
 
 </mapper>
