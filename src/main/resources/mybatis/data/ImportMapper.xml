@@ -48,6 +48,10 @@
 		NAME_SEG_4,
 		NAME_SEG_5,
 		NAME_SEG_6,
+		NAME_SEG_7,
+		NAME_SEG_8,
+		NAME_SEG_9,
+		NAME_SEG_10,
 		TABLE_NAME,
 		CNT,
 		MESSAGE
@@ -65,6 +69,10 @@
 		#{NAME_SEG_4},
 		#{NAME_SEG_5},
 		#{NAME_SEG_6},
+		#{NAME_SEG_7},
+		#{NAME_SEG_8},
+		#{NAME_SEG_9},
+		#{NAME_SEG_10},
 		#{TABLE_NAME},
 		#{CNT},
 		#{MESSAGE}

@@ -63,10 +63,6 @@
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
-									</th>
-									<th class="center" style="width:50px;">序号</th>
 									<th class="center">基金</th>
 									<th class="center">期间</th>
 									<th class="center">科目代码</th>
@@ -82,8 +78,6 @@
 									<th class="center">年末借贷方</th>
 									<th class="center">年末份额</th>
 									<th class="center">年末金额</th>
-									<th class="center">启用</th>
-									<th class="center">状态</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -110,8 +104,6 @@
 											<td class='center'>${var.END_DRCR}</td>
 											<td class='center'>${var.END_UNITS}</td>
 											<td class='center'>${var.END_BALANCE}</td>
-											<td class='center'>${var.ACTIVE}</td>
-											<td class='center'>${var.STATUS}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>

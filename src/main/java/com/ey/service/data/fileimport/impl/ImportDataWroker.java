@@ -34,7 +34,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * 附加字段，导入文件ID及序号
 	 */
 	private final String ADDITIONAL_FIELDS = "`import_file_id`,`SEQ`";
-	private final int NAME_SEG_CNT = 6;
+	private final int NAME_SEG_CNT = 10;
 	// 数据导入配置解析器
 	private ImportConfigParser importConfigParser;
 	// 数据导入配置服务
