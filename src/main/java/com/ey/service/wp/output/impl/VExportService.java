@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.service.wp.output.VExportManager;
@@ -48,10 +50,7 @@ public class VExportService extends BaseExportService implements VExportManager{
         
         dataMap.put("V300", this.getV300Data(fundId, periodStr));
         dataMap.put("V400", this.getV400Data(fundId, periodStr));
-//        dataMap.put("E410", this.getE410Data(fundId, periodStr));
-//        dataMap.put("E41X", this.getE41XData(fundId, periodStr));
-//        dataMap.put("E500", this.getE500Data(fundId, periodStr));
-//        dataMap.put("E600", this.getE600Data(fundId, periodStr));
+        dataMap.put("V500", this.getV500Data(fundId, periodStr));
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_V);
     }
@@ -369,7 +368,7 @@ public class VExportService extends BaseExportService implements VExportManager{
         }
         
         @SuppressWarnings("unchecked")
-        List<String> V400DetailMetaDataList = (List<String>)this.dao.findForList("VExportMapper.selectV400DetailData", queryMap);
+        List<Map<String,Object>> V400DetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400DetailData", queryMap);
         if(V400DetailMetaDataList == null) {
             V400DetailMetaDataList = new ArrayList<>(); 
         }
@@ -387,6 +386,136 @@ public class VExportService extends BaseExportService implements VExportManager{
         result.put("detailCount", V400DetailMetaDataList.size());
         result.put("summary", V400SummaryData);
         
+        return result;
+    }
+    
+    /**
+     * 处理sheet页V500的数据
+     * @author Dai Zong 2017年11月29日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getV500Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String, Object> attr1 = new HashMap<String,Object>();
+        Map<String, Object> attr2 = new HashMap<String,Object>();
+        Map<String, Object> attr3 = new HashMap<String,Object>();
+        Map<String, Object> attr4 = new HashMap<String,Object>();
+        Map<String, Object> attr5 = new HashMap<String,Object>();
+        Map<String, Object> attr6 = new HashMap<String,Object>();
+        Map<String, Object> attr7 = new HashMap<String,Object>();
+        Map<String, Object> attr8 = new HashMap<String,Object>();
+        Map<String, Object> invest = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V500InvertMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500InvertData", queryMap);
+        if(V500InvertMetaDataList == null) {
+            V500InvertMetaDataList = new ArrayList<>(); 
+        }
+        Map<String,Map<String,Object>> temp = new HashMap<>();
+        for(Map<String,Object> map : V500InvertMetaDataList) {
+            temp.put(String.valueOf(map.get("item")), map);
+        }
+        for(Entry<String, Map<String,Object>> entry : temp.entrySet()) {
+            if ("股票投资".equals(entry.getKey())) {
+                attr1 = entry.getValue();
+            } else if ("基金投资".equals(entry.getKey())) {
+                attr2 = entry.getValue();
+            } else if ("债券投资".equals(entry.getKey())) {
+                attr3 = entry.getValue();
+            } else if ("贵金属投资".equals(entry.getKey())) {
+                attr4 = entry.getValue();
+            } else if ("资产支持证券投资".equals(entry.getKey())) {
+                attr5 = entry.getValue();
+            } else if ("衍生金融资产-权证投资".equals(entry.getKey())) {
+                attr6 = entry.getValue();
+            } else if ("衍生金融资产-股指期货".equals(entry.getKey())) {
+                attr7 = entry.getValue();
+            } else if ("其他".equals(entry.getKey())) {
+                attr8 = entry.getValue();
+            }
+        }
+        invest.put("attr1", attr1);
+        invest.put("attr2", attr2);
+        invest.put("attr3", attr3);
+        invest.put("attr4", attr4);
+        invest.put("attr5", attr5);
+        invest.put("attr6", attr6);
+        invest.put("attr7", attr7);
+        invest.put("attr8", attr8);
+        
+        Map<String, Object> riskExposure = new HashMap<String,Object>();
+        attr1 = new HashMap<String,Object>();
+        attr2 = new HashMap<String,Object>();
+        attr3 = new HashMap<String,Object>();
+        attr4 = new HashMap<String,Object>();
+        attr5 = new HashMap<String,Object>();
+        attr6 = new HashMap<String,Object>();
+        Double netValue = 0D;
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V500riskExposureMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500riskExposureData", queryMap);
+        if(CollectionUtils.isEmpty(V500riskExposureMetaDataList)) {
+            V500riskExposureMetaDataList = new ArrayList<>(); 
+        }else {
+            netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValue")));
+        }
+        temp = new HashMap<>();
+        for(Map<String,Object> map : V500riskExposureMetaDataList) {
+            temp.put(String.valueOf(map.get("item")), map);
+        }
+        for(Entry<String, Map<String,Object>> entry : temp.entrySet()) {
+            if ("交易性金融资产-股票投资".equals(entry.getKey())) {
+                attr1 = entry.getValue();
+            } else if ("交易性金融资产-基金投资".equals(entry.getKey())) {
+                attr2 = entry.getValue();
+            } else if ("交易性金融资产-债券投资".equals(entry.getKey())) {
+                attr3 = entry.getValue();
+            } else if ("交易性金融资产-贵金属投资".equals(entry.getKey())) {
+                attr4 = entry.getValue();
+            } else if ("衍生金融资产-权证投资".equals(entry.getKey())) {
+                attr5 = entry.getValue();
+            } else if ("其他".equals(entry.getKey())) {
+                attr6 = entry.getValue();
+            }
+        }
+        riskExposure.put("attr1", attr1);
+        riskExposure.put("attr2", attr2);
+        riskExposure.put("attr3", attr3);
+        riskExposure.put("attr4", attr4);
+        riskExposure.put("attr5", attr5);
+        riskExposure.put("attr6", attr6);
+        riskExposure.put("netValue", netValue);
+        
+        @SuppressWarnings("unchecked")
+        List<String> V500HypothesisDataList = (List<String>)this.dao.findForList("VExportMapper.selectV500HypothesisData", queryMap);
+        if(V500HypothesisDataList == null) {
+            V500HypothesisDataList = new ArrayList<>(); 
+        }
+        
+        @SuppressWarnings("unchecked")
+        List<String> V500DetailSlopeMetaDataList = (List<String>)this.dao.findForList("VExportMapper.selectV500DetailSlopeData", queryMap);
+        if(V500DetailSlopeMetaDataList == null) {
+            V500DetailSlopeMetaDataList = new ArrayList<>(); 
+        }
+        
+        @SuppressWarnings("unchecked")
+        List<String> V500DetailBetaMetaDataList = (List<String>)this.dao.findForList("VExportMapper.selectV500DetailBetaData", queryMap);
+        if(V500DetailBetaMetaDataList == null) {
+            V500DetailBetaMetaDataList = new ArrayList<>(); 
+        }
+        
+        result.put("invest", invest);
+        result.put("riskExposure", riskExposure);
+        result.put("hypothesis", V500HypothesisDataList);
+        result.put("hypothesisCount", V500HypothesisDataList.size());
+        result.put("slopeList", V500DetailSlopeMetaDataList);
+        result.put("slopeCount", V500DetailSlopeMetaDataList.size());
+        result.put("betaList", V500DetailBetaMetaDataList);
+        result.put("betaCount", V500DetailBetaMetaDataList.size());
         return result;
     }
 
