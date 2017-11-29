@@ -16,6 +16,11 @@ public class AppUtil  {
 	 */
 	public static int BATCH_INSERT_COUNT = 500;
 	
+	/**
+	 * 全局CVS文件分隔符
+	 */
+	public static String CSV_DELIMITER = "♈";
+	
 	/**检查参数是否完整
 	 * @param method
 	 * @param pd

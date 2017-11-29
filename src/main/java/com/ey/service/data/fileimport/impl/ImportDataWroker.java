@@ -279,6 +279,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 					this.saveImportFileData(configuration.getTableName(), sbf.toString(),
 							tableValue.substring(0, tableValue.length() - 1));
 				} catch (Exception e) {
+					e.printStackTrace();
+					logger.error(e.getMessage());
 					throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
 				}
 				// 重新初始化

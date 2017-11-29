@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.ey.entity.system.ImportConfig;
 import com.ey.entity.system.ImportConfigCell;
+import com.ey.util.AppUtil;
 import com.ey.util.fileimport.FileImportException;
 import com.ey.util.fileimport.FileImportor;
 import com.ey.util.fileimport.ImportResult;
@@ -65,6 +66,8 @@ public class CsvImportor extends FileImportor {
 		}
 		List<ImportConfigCell> lists = configuration.getImportCells();
 		List<Map> results = Lists.newLinkedList();
+		// CSV字段分隔符
+		String delimiter = AppUtil.CSV_DELIMITER;
 		// 引号，处理MySQL插入数据返回的Map用到
 		String quotes = "";
 		if (StringUtils.isNotBlank(configuration.getTableName())) {
@@ -81,7 +84,7 @@ public class CsvImportor extends FileImportor {
 					line = readline.replace("\"", quotes);
 					Map<String, Object> maps = Maps.newLinkedHashMap();
 					maps.put(MapResult.IS_LINE_LEGAL_KEY, true);
-					String[] rowLine = line.split("`");// 按照`符号分割处理
+					String[] rowLine = line.split(delimiter);// 按照`符号分割处理
 					// 行过滤规则
 					if (configuration.getIgnoreRule() != null && isIgnoreRow(configuration.getIgnoreRule(), rowLine)) {
 						continue;

@@ -40,6 +40,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.ey.util.AppUtil;
+
 public class XlsxToCsv {
 
 	/**
@@ -188,7 +190,7 @@ public class XlsxToCsv {
 		public void endElement(String uri, String localName, String name) throws SAXException {
 
 			String thisStr = null;
-			String delimiter = "`"; // CSV字段分隔符
+			String delimiter = AppUtil.CSV_DELIMITER; // CSV字段分隔符
 
 			// v => contents of a cell
 			if ("v".equals(name)) {

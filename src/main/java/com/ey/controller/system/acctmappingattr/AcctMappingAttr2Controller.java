@@ -61,7 +61,7 @@ public class AcctMappingAttr2Controller extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("ACCTMAPPINGATTR1_ID", this.get32UUID());	//主键
+		pd.put("ACCTMAPPINGATTR2_ID", this.get32UUID());	//主键
 		acctmappingattr2Service.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
