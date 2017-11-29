@@ -2796,10 +2796,9 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <Worksheet ss:Name="V400利率敏感性-久期法">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s89" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+ <#if V400.fundInfo.interestSensitiveMethod == '久期法'>
+ <Worksheet ss:Name="V400">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s89" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="66"/>
    <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="130.5"/>
    <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="111.75"/>
@@ -2848,31 +2847,33 @@
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
    </Row>
+   <#if V400.hypothesisCount == 0>
    <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:MergeDown="2" ss:StyleID="s358"><Data ss:Type="String">假设</Data></Cell>
-    <Cell ss:MergeAcross="2" ss:StyleID="s356"><Data ss:Type="String">1. XXXX；</Data></Cell>
+    <Cell ss:StyleID="s358"><Data ss:Type="String">假设</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s356"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
    </Row>
+   <#else>
+   <#list V400.hypothesis as item>
    <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s357"><Data ss:Type="String">2. XXXXX；</Data></Cell>
+    <#if item_index == 0>
+    <Cell ss:MergeDown="${(V400.hypothesisCount-1)?string('0')}" ss:StyleID="s358"><Data ss:Type="String">假设</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s356"><Data ss:Type="String">${item!}</Data></Cell>
+    <#else>
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s356"><Data ss:Type="String">${item!}</Data></Cell>
+    </#if>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s360"><Data ss:Type="String">3. XXXXX。</Data></Cell>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s43"/>
     <Cell ss:MergeDown="4" ss:StyleID="s358"><Data ss:Type="String">分析</Data></Cell>
@@ -2902,10 +2903,9 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[40]C[1]"><Data
-      ss:Type="Number">2.5000000000000001E-3</Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=R[40]C[2]"><Data ss:Type="Number">4848588.1902825395</Data></Cell>
-    <Cell ss:StyleID="s140"><Data ss:Type="Number">10000</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(24+V400.detailCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=R[${(24+V400.detailCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
@@ -2913,10 +2913,9 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[40]C[1]"><Data
-      ss:Type="Number">-2.5000000000000001E-3</Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=R[40]C[2]"><Data ss:Type="Number">-4848588.1902825395</Data></Cell>
-    <Cell ss:StyleID="s140"><Data ss:Type="Number">-10000</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(24+V400.detailCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=R[${(24+V400.detailCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
@@ -3045,154 +3044,22 @@
     <Cell ss:StyleID="s154"/>
     <Cell ss:StyleID="s111"/>
     <Cell ss:StyleID="s113"><Data ss:Type="String">市值/利率敏感资产总市值</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="String">From 大智慧/wind/…</Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="String">${V400.fundInfo.interestSenstvtSourse!}</Data></Cell>
     <Cell ss:StyleID="s113"><Data ss:Type="String">权重×久期</Data></Cell>
    </Row>
+   <#if V400.detailCount != 0>
+   <#list V400.detailList as item>
    <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">019539</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">16国债11</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">27963600</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">6.0829679748717509E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">0.1123</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">6.8311730357809757E-3</Data></Cell>
+    <Cell ss:StyleID="s153"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s112"><Data ss:Type="String">${item.bondName!}</Data></Cell>
+    <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.marketValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203" ss:Formula="=IF(R${(28+V400.detailCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(28+V400.detailCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s85"><Data ss:Type="Number">${(item.duration!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">15红星01</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">7873600</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">1.7127571788664628E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">4.8677000000000001</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">8.3371881195682812E-2</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">136205</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">16龙盛01</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">3943200</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">8.5777079197650839E-3</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">5.4200999999999997</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">4.6492034695918727E-2</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">128013</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">洪涛转债</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">225.72</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">4.9101243448198784E-7</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">5.4278000000000004</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">2.6651172918813338E-6</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">138234</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">13新天治理债</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">7419600</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">1.6139978109527543E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">5.4828999999999999</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">8.8493885976728567E-2</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">148118</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">14扬州开发债</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">21952000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">4.7752547234399249E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">4.6170999999999998</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.22047828583594475</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">AG6036</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">16九华山MTN002</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">20256000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">4.4063210494715337E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">5.4753999999999996</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.24126370274276435</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">140228</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">14国开28</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">30711000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">6.6806144229028572E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">5.6192000000000002</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.37539708565175739</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">150203</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">15国开03</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">30045000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">6.5357383457431001E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">3.8494000000000002</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.25158671188103493</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">150209</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">15国开09</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">30729000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">6.6845299925558238E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">1.4332</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">9.5802683853310075E-2</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">150220</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">15国开20</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">19826000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">4.3127824410951143E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">3.8855</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.16757316174875067</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">150417</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">15农发17</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">40072000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">8.7169281740927779E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">2.2955999999999999</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.20010580316447379</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">160208</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">16国开08</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">19672000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">4.2792825673975125E-2</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">4.2194000000000003</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.18056004864877065</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">160211</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">16国开11</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">89847000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">0.19544565922781837</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">4.7129000000000003</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.92111584737478525</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">160212</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">16国开12</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">59748000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">0.12997080868079838</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">5.5742000000000003</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.7244832817485064</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s85">
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">160214</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">16国开14</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">49645000</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=RC[-1]/R44C4"><Data ss:Type="Number">0.10799358634528747</Data></Cell>
-    <Cell><Data ss:Type="Number">5.6978999999999997</Data></Cell>
-    <Cell ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">0.61533665563681339</Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s89"/>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s85">
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s153"/>
@@ -3205,35 +3072,36 @@
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s86"><Data ss:Type="String">利率敏感资产合计</Data></Cell>
-    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[-17]C:R[-1]C)"><Data
-      ss:Type="Number">459703225.72000003</Data></Cell>
+    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[${(-1-V400.detailCount)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s86"><Data ss:Type="String">组合久期</Data></Cell>
-    <Cell ss:StyleID="s210" ss:Formula="=SUM(R[-17]C:R[-1]C)"><Data
-      ss:Type="Number">4.2188949083083145</Data></Cell>
+    <Cell ss:StyleID="s210" ss:Formula="=SUM(R[${(-1-V400.detailCount)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s261"><Data ss:Type="String">固定收益类投资市值</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">H500</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">459703225.72000003</Data></Cell>
+    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V400.summary.sumMktValue!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s210"/>
    </Row>
+   <#if V400.fundInfo.interestSensitivity == 'Y'>
+   <Row/>
+   <#else>
    <Row>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s261"><Data ss:Type="String">其中：利率不敏感的</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">H500</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.summary.exchengeableBond!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s115"/>
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s210"/>
    </Row>
+   </#if>
    <Row>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s212"><Data ss:Type="String">固定收益品种投资完整性control</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s43" ss:Formula="=R[-3]C=R[-2]C-R[-1]C"><Data
-      ss:Type="Boolean">1</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s43" ss:Formula="=R[-3]C=R[-2]C-R[-1]C"><Data ss:Type="Boolean"></Data></Cell>
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s210"/>
@@ -3289,97 +3157,25 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s91" ss:Formula="=R[-9]C[2]"><Data ss:Type="Number">459703225.72000003</Data></Cell>
-    <Cell ss:StyleID="s92" ss:Formula="=R[-9]C[4]"><Data ss:Type="Number">4.2188949083083145</Data></Cell>
-    <Cell ss:StyleID="s76"><Data ss:Type="Number">2.5000000000000001E-3</Data></Cell>
-    <Cell ss:StyleID="s283" ss:Formula="=R53C2*R53C3*RC[-1]"><Data ss:Type="Number">4848598.9958075397</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">4848588.1902825395</Data></Cell>
-    <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">10.805525000207126</Data></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=RC[-1]/RC[-2]"><Data ss:Type="Number">2.2285920305344514E-6</Data></Cell>
+    <Cell ss:StyleID="s91" ss:Formula="=R[-9]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s92" ss:Formula="=R[-9]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.fundInfo.riskVariable!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s283" ss:Formula="=RC[-3]*RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number"></Data>0</Cell>
+    <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s213"/>
-    <Cell ss:StyleID="s76"><Data ss:Type="Number">-2.5000000000000001E-3</Data></Cell>
-    <Cell ss:StyleID="s282" ss:Formula="=R53C2*R53C3*RC[-1]"><Data ss:Type="Number">-4848598.9958075397</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">-4848588.1902825395</Data></Cell>
-    <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">-10.805525000207126</Data></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=RC[-1]/RC[-2]"><Data ss:Type="Number">2.2285920305344514E-6</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(-V400.fundInfo.riskVariable!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s282" ss:Formula="=RC[-3]*RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s213"/>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s213"/>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s213"/>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s213"/>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:StyleID="s119"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s214"/>
-    <Cell ss:Index="3" ss:StyleID="s213"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s213"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -3406,9 +3202,9 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <Worksheet ss:Name="V400利率敏感性-久期凸性法">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s216" ss:DefaultRowHeight="13.5">
+ <#else>
+ <Worksheet ss:Name="V400">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s216" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s216" ss:AutoFitWidth="0" ss:Width="78.75"/>
    <Column ss:StyleID="s216" ss:Width="111.75"/>
    <Column ss:StyleID="s216" ss:Width="142.5"/>
@@ -3470,46 +3266,33 @@
     <Cell ss:StyleID="s71"/>
     <Cell ss:StyleID="s71"/>
    </Row>
-   <Row ss:StyleID="s89">
+   <#if V400.hypothesisCount == 0>
+   <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:MergeDown="2" ss:StyleID="s358"><Data ss:Type="String">假设</Data></Cell>
-    <Cell ss:MergeAcross="2" ss:StyleID="s356"><Data ss:Type="String">1. XXXX；</Data></Cell>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
+    <Cell ss:StyleID="s358"><Data ss:Type="String">假设</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s356"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
    </Row>
-   <Row ss:StyleID="s89">
+   <#else>
+   <#list V400.hypothesis as item>
+   <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s357"><Data ss:Type="String">2. XXXXX；</Data></Cell>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
+    <#if item_index == 0>
+    <Cell ss:MergeDown="${(V400.hypothesisCount-1)?string('0')}" ss:StyleID="s358"><Data ss:Type="String">假设</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s356"><Data ss:Type="String">${item!}</Data></Cell>
+    <#else>
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s356"><Data ss:Type="String">${item!}</Data></Cell>
+    </#if>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
    </Row>
-   <Row ss:StyleID="s89">
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s360"><Data ss:Type="String">3. XXXXX。</Data></Cell>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s89">
     <Cell ss:StyleID="s43"/>
     <Cell ss:MergeDown="4" ss:StyleID="s358"><Data ss:Type="String">分析</Data></Cell>
@@ -3554,10 +3337,9 @@
    </Row>
    <Row ss:StyleID="s89">
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[59]C[2]"><Data
-      ss:Type="Number">2.5000000000000001E-3</Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=R[59]C[3]"><Data ss:Type="Number">-3733954.4932091287</Data></Cell>
-    <Cell ss:StyleID="s289"/>
+    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(33+V400.detailCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=R[${(33+V400.detailCount)?string('0')}]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
@@ -3570,10 +3352,9 @@
    </Row>
    <Row ss:StyleID="s89">
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[59]C[2]"><Data
-      ss:Type="Number">-2.5000000000000001E-3</Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=R[59]C[3]"><Data ss:Type="Number">3768280.6466339724</Data></Cell>
-    <Cell ss:StyleID="s289"/>
+    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(33+V400.detailCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=R[${(33+V400.detailCount)?string('0')}]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
@@ -3868,7 +3649,7 @@
     <Cell ss:StyleID="s154"/>
     <Cell ss:StyleID="s111"/>
     <Cell ss:StyleID="s113"><Data ss:Type="String">市值/利率敏感资产总市值</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="String">From 大智慧/wind/…</Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="String">${V400.fundInfo.interestSenstvtSourse!}</Data></Cell>
     <Cell ss:StyleID="s131"/>
     <Cell ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
@@ -3876,383 +3657,23 @@
     <Cell ss:StyleID="s71"/>
     <Cell ss:StyleID="s132"/>
    </Row>
+   <#if V400.detailCount != 0>
+   <#list V400.detailList as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122048</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">10首机02</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">30003000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">4.2059197506726625E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">9.2600000000000002E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.7100000000000001E-2</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s44"><Data ss:Type="String">${item.bondName!}</Data></Cell>
+    <Cell ss:StyleID="s220"><Data ss:Type="Number">${(item.marketValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(36+V400.detailCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(36+V400.detailCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s222"><Data ss:Type="Number">${(item.duration!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s222"><Data ss:Type="Number">${(item.convexity!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
     <Cell ss:StyleID="s71"/>
     <Cell ss:StyleID="s132"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122273</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">13鲁金01</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">10196000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">1.4293089950291125E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.5654999999999999</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">4.0015000000000001</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122295</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">13川投01</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">20852000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">2.9231023111364315E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">2.044</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">6.3708</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122353</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">14东兴债</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">10138000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">1.421178363240991E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">2.0495999999999999</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">6.3666999999999998</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122358</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15际华03</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">70308000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">9.8560079268837628E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">3.3418000000000001</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">14.831300000000001</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122366</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">14武钢债</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">5050000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">7.0792569879335214E-3</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.4026000000000001</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">3.3546</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122453</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15联发01</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">69454000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">9.7362913829690062E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.6047</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">4.1509999999999998</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122465</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15广越01</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">69972000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">9.8089063358353337E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.6177999999999999</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">4.2087000000000003</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122489</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15西建工</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">15852800</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">2.2222979243230204E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.6813</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">4.4710999999999999</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">122494</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15华夏05</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">50020000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">7.0119690007214797E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">3.3616999999999999</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">15.035600000000001</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="Number">122591</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">12常交债</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">937437</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">1.3141301847519676E-3</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">2.3521000000000001</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">8.0314999999999994</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="Number">124377</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">PR渝碚城</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">16706000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">2.3419023215924241E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">2.0510000000000002</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">7.2793000000000001</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="Number">132007</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">16凤凰EB</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">853699.2</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">1.1967437677610408E-3</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">136012</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15梅花02</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">49570000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">6.9488865127101909E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">2.5909</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">9.3644999999999996</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="Number">128013</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">洪涛转债</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">197505</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">2.7686903988154659E-4</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">112052</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">11许继债</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">10341000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">1.4496355744994168E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.7714000000000001</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">4.8841999999999999</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">112190</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">11亚迪02</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">12343200</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">1.7303105911576445E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.6049</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">4.1685999999999996</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">112253</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15荣盛01</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">9096690</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">1.2752040841498016E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">3.0152000000000001</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">12.54</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">112257</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15荣盛02</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">24500000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">3.4344910139479462E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">2.3130999999999999</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">7.7519</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">112258</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15荣盛03</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">40008000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">5.6084537341236501E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">3.1238000000000001</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">13.2761</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">112267</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15阳房02</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">24865000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">3.4856579208904358E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.4824999999999999</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">3.6482999999999999</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:Index="14" ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">112272</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15金科01</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">21366367.800000001</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">2.9952080901961938E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">1.5114000000000001</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">3.7643</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">101466005</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">14淮北矿业MTN001</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">20006000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">2.8045072336752085E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">2.1469</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">6.8596000000000004</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">101554021</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15粤物资MTN001</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">20260000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">2.8401137935749138E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">2.8426</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">11.347</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">101556033</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">15漯河城投MTN001</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">50515000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">7.0813597375338974E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">3.2446000000000002</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">14.158200000000001</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">160209</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">16国开09</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">59940000</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=RC[-1]/R62C4"><Data ss:Type="Number">8.4025874031036688E-2</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">0.18529999999999999</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">6.8699999999999997E-2</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s219"/>
     <Cell ss:StyleID="s44"/>
@@ -4278,15 +3699,10 @@
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s86"><Data ss:Type="String">利率敏感资产合计</Data></Cell>
-    <Cell ss:StyleID="s224" ss:Formula="=SUM(R[-28]C:R[-2]C)"><Data
-      ss:Type="Number">713351699</Data></Cell>
+    <Cell ss:StyleID="s224" ss:Formula="=SUM(R[${(-2-V400.detailCount)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s224"/>
-    <Cell ss:StyleID="s225"
-     ss:Formula="=SUMPRODUCT(R[-28]C:R[-2]C,R[-28]C[-1]:R[-2]C[-1])"><Data
-      ss:Type="Number">2.1033762589645422</Data></Cell>
-    <Cell ss:StyleID="s225"
-     ss:Formula="=SUMPRODUCT(R[-28]C:R[-2]C,R[-28]C[-2]:R[-2]C[-2])"><Data
-      ss:Type="Number">7.6991259089649118</Data></Cell>
+    <Cell ss:StyleID="s225" ss:Formula="=SUMPRODUCT(R[${(-2-V400.detailCount)?string('0')}]C:R[-2]C,R[${(-2-V400.detailCount)?string('0')}]C[-1]:R[-2]C[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s225" ss:Formula="=SUMPRODUCT(R[${(-2-V400.detailCount)?string('0')}]C:R[-2]C,R[${(-2-V400.detailCount)?string('0')}]C[-2]:R[-2]C[-2])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
@@ -4297,7 +3713,7 @@
    <Row>
     <Cell ss:Index="2" ss:StyleID="s261"><Data ss:Type="String">固定收益类投资市值</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">H500</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">713351699</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.summary.sumMktValue!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s220"/>
     <Cell ss:Index="7" ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
@@ -4307,10 +3723,13 @@
     <Cell ss:StyleID="s132"/>
     <Cell ss:StyleID="s132"/>
    </Row>
+   <#if V400.fundInfo.interestSensitivity == 'Y'>
+   <Row/>
+   <#else>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s261"><Data ss:Type="String">其中：利率不敏感的</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">H500</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.summary.exchengeableBond!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s220"/>
     <Cell ss:Index="7" ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
@@ -4320,11 +3739,11 @@
     <Cell ss:StyleID="s132"/>
     <Cell ss:StyleID="s132"/>
    </Row>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s212"><Data ss:Type="String">固定收益品种投资完整性control</Data></Cell>
     <Cell ss:StyleID="s89"/>
-    <Cell ss:StyleID="s43" ss:Formula="=R[-3]C=R[-2]C-R[-1]C"><Data
-      ss:Type="Boolean">1</Data></Cell>
+    <Cell ss:StyleID="s43" ss:Formula="=R[-3]C=R[-2]C-R[-1]C"><Data ss:Type="Boolean"></Data></Cell>
     <Cell ss:StyleID="s132"/>
     <Cell ss:Index="7" ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
@@ -4402,217 +3821,30 @@
     <Cell ss:StyleID="s132"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s227" ss:Formula="=R[-10]C[2]"><Data
-      ss:Type="Number">713351699</Data></Cell>
-    <Cell ss:Formula="=R[-10]C[3]"><Data ss:Type="Number">2.1033762589645422</Data></Cell>
-    <Cell ss:Formula="=R[-10]C[3]"><Data ss:Type="Number">7.6991259089649118</Data></Cell>
-    <Cell ss:StyleID="s76"><Data ss:Type="Number">2.5000000000000001E-3</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=-RC3*0.25%+0.5*RC4*(0.25%)^2"><Data
-      ss:Type="Number">-5.2343808789458409E-3</Data></Cell>
-    <Cell ss:StyleID="s283" ss:Formula="=RC[-1]*RC[-5]"><Data ss:Type="Number">-3733954.4932091287</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">-3733954.4932091292</Data></Cell>
-    <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=RC[-1]/RC[-2]"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s227" ss:Formula="=R[-10]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Formula="=R[-10]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Formula="=R[-10]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.fundInfo.riskVariable!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s228" ss:Formula="=-RC[-3]*RC[-1]+0.5*RC[-2]*(RC[-1])^2"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s283" ss:Formula="=RC[-1]*RC[-5]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
     <Cell ss:StyleID="s132"/>
     <Cell ss:StyleID="s132"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s227"/>
-    <Cell ss:Index="5" ss:StyleID="s76"><Data ss:Type="Number">-2.5000000000000001E-3</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-1]C3*0.25%+0.5*R[-1]C4*(0.25%)^2"><Data
-      ss:Type="Number">5.282500415876871E-3</Data></Cell>
-    <Cell ss:StyleID="s283" ss:Formula="=RC[-1]*R[-1]C[-5]"><Data ss:Type="Number">3768280.6466339724</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">3768280.6466339733</Data></Cell>
-    <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=RC[-1]/RC[-2]"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s76"><Data ss:Type="Number">${(-V400.fundInfo.riskVariable!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s228" ss:Formula="=-R[-1]C[-3]*RC[-1]+0.5*R[-1]C[-2]*(RC[-1])^2"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s283" ss:Formula="=RC[-1]*R[-1]C[-5]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
     <Cell ss:StyleID="s132"/>
     <Cell ss:StyleID="s132"/>
-    <Cell ss:Index="15" ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s229"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="4" ss:StyleID="s83"/>
-    <Cell ss:Index="6" ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
-   </Row>
-   <Row ss:StyleID="s89">
-    <Cell ss:StyleID="s214"/>
-    <Cell ss:Index="3" ss:StyleID="s213"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-   </Row>
-   <Row ss:StyleID="s89">
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s213"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s215"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-   </Row>
-   <Row ss:StyleID="s89">
-    <Cell ss:Index="2" ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:StyleID="s226"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"/>
-    <Cell ss:Index="4" ss:StyleID="s226"/>
-    <Cell ss:StyleID="s231"/>
-    <Cell ss:StyleID="s232"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"/>
-    <Cell ss:Index="4" ss:StyleID="s226"/>
-    <Cell ss:StyleID="s231"/>
-    <Cell ss:StyleID="s232"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"/>
-    <Cell ss:StyleID="s233"/>
-    <Cell ss:StyleID="s232"/>
-    <Cell ss:StyleID="s232"/>
-    <Cell ss:StyleID="s232"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:Index="13" ss:StyleID="s226"/>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -4640,6 +3872,7 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
+ </#if>
  <Worksheet ss:Name="V500-其他价格风险敞口及敏感性-斜率法">
   <Names>
    <NamedRange ss:Name="_FilterDatabase"
