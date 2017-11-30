@@ -95,23 +95,26 @@
 											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
 											<td class='center'>${var.MGR_COMPANY}</td>
+											<!-- 
 										    <c:choose>  
                                               <c:when test="${var.EXTFLAG > 0 }">
+                                            -->
                                                  <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('C','${var.FUND_ID}','${var.PERIOD}');">C</a></td>
 										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('E','${var.FUND_ID}','${var.PERIOD}');">E</a></td>
 										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('G','${var.FUND_ID}','${var.PERIOD}');">G</a></td>
 										         <td class="center"><a class="btn btn-mini">H</a></td>
 										         <td class="center"><a class="btn btn-mini">H-旗下基金总表</a></td>
-										         <!-- <td class="center"><a class="btn btn-mini">I</a></td>  -->
+										         <td class="center"><a class="btn btn-mini">I</a></td>
 										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('N','${var.FUND_ID}','${var.PERIOD}');">N</a></td>
 										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('P','${var.FUND_ID}','${var.PERIOD}');">P</a></td>
-										         <td class="center"><a class="btn btn-mini">T</a></td>
+										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('T','${var.FUND_ID}','${var.PERIOD}');">T</a></td>
 										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('U','${var.FUND_ID}','${var.PERIOD}');">U</a></td>
 									 	         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('V','${var.FUND_ID}','${var.PERIOD}');">V</a></td>
 										         <td class='center'><a class="btn btn-mini btn-success" onclick="wpExport('Report','${var.FUND_ID}','${var.PERIOD}');">报告</a></td>
                                                  <td class='center'>
                                                       <a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}','${var.PERIOD}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon green"></i></a>
                                                  </td>
+                                               <!-- 
                                                </c:when>
                                                <c:otherwise>
                                                   <td class="center"><a class="btn btn-mini">C</a></td>
@@ -119,7 +122,7 @@
 								                  <td class="center"><a class="btn btn-mini">G</a></td>
 								                  <td class="center"><a class="btn btn-mini">H</a></td>
 								                  <td class="center"><a class="btn btn-mini">H-旗下基金总表</a></td>
-								                  <!-- <td class="center"><a class="btn btn-mini">I</a></td>  -->
+								                  <td class="center"><a class="btn btn-mini">I</a></td>
 								                  <td class="center"><a class="btn btn-mini">N</a></td>
 								                  <td class="center"><a class="btn btn-mini">P</a></td>
 								                  <td class="center"><a class="btn btn-mini">T</a></td>
@@ -131,6 +134,7 @@
                                                   </td>
                                                   </c:otherwise>
                                                </c:choose>
+                                                -->
 										</tr>
 									</c:forEach>
 									</c:if>
