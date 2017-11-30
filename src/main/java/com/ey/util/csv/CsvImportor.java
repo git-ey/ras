@@ -205,7 +205,7 @@ public class CsvImportor extends FileImportor {
 					return false;
 				}
 			} catch (Exception ex) {
-				return false;
+				return true;
 			}
 		}
 		return true;

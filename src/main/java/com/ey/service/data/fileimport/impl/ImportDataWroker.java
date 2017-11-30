@@ -199,6 +199,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 			csvFilePath = excelFilePath;
 			break;
 		}
+		// 强制释放资源
+		System.gc();
 		MapResult mapResult = null;
 		File csvFile = new File(csvFilePath);
 		if(!csvFile.exists()){

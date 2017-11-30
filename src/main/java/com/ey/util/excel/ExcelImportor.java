@@ -125,7 +125,7 @@ public class ExcelImportor extends FileImportor {
 				}*/
 			} catch (Exception ex) {
 				logger.error("过滤条件解析异常:"+ex.getMessage());
-				return false;
+				return true;
 			}
 		}
 		return false;
