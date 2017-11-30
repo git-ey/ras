@@ -37,7 +37,12 @@
             IFNULL(sfi.INTEREST_SENSTVT_METHOD,'久期法') as interestSensitiveMethod,
 		    sfi.RISK_VARIABLE as riskVariable,
 		    sfi.INTEREST_SENSTVT_SOURSE as interestSenstvtSourse,
-		    IFNULL(sfi.INTEREST_SENSITIVITY,'N') as interestSensitivity
+		    IFNULL(sfi.INTEREST_SENSITIVITY,'N') as interestSensitivity,
+		    IFNULL(sfi.PRICE_SENSTVT_METHOD,'斜率法') as priceSensitiveMethod,
+		    IFNULL(sfi.PRICE_SENSITIVITY,'N') as priceSensitivity,
+            sfi.PRICE_SENSTVT_INDEX as priceSensitiveIndex,
+            sfi.INDEX_SOURSE as indexSourse,
+            sfi.BETA_SOURSE as betaSourse
 		FROM
 		    sys_fund_info sfi 
 		WHERE
@@ -90,6 +95,79 @@
         and V400S.FUND_ID = #{fundId}
         and V400S.PERIOD = #{period}
         LIMIT 1
+    </select>
+    
+    <select id="selectV500InvertData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    V500I.ITEM as item,
+		    V500I.MKT_VALUE_ENTERED as marketValueEntered,
+		    V500I.PRICE_SENSITIVITY as priceSensitivity
+		FROM
+		    wp_v500_invest V500I
+		where
+		    1 = 1
+        and V500I.STATUS = 'Y'
+        and V500I.FUND_ID = #{fundId}
+        and V500I.PERIOD = #{period}
+    </select>
+    
+    <select id="selectV500riskExposureData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    V500RE.ITEM as item,
+		    V500RE.NET_VALUE as netValue,
+		    V500RE.AMOUNT_CURRENT as amountCurrent,
+		    V500RE.AMOUNT_LAST as amountLast,
+		    V500RE.RATE_LAST as rateLast
+		FROM
+		    wp_v500_risk_exposure V500RE
+	    where
+            1 = 1
+        and V500RE.STATUS = 'Y'
+        and V500RE.FUND_ID = #{fundId}
+        and V500RE.PERIOD = #{period}
+    </select>
+
+    <select id="selectV500HypothesisData" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+            CONCAT( sh.HYPOTHESIS_NUM, '. ', sh.DESCRIPTION ) AS description 
+        FROM
+            sys_hypothesis sh 
+        WHERE
+            1 = 1 
+        AND sh.FUND_ID = #{fundId}
+        AND sh.ACTIVE = 'Y' 
+        AND sh.HYPOTHESIS_TPYE = '其他价格'
+        ORDER BY sh.HYPOTHESIS_NUM
+    </select>
+    
+    <select id="selectV500DetailSlopeData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    V500DS.THX_DATE AS thxDate,
+		    V500DS.UNIT_NETVALUE AS unitNetvalue,
+		    V500DS.DIVIDENT AS divident,
+		    V500DS.INDEX AS `index` 
+		FROM
+		    wp_v500_detail_slope V500DS
+	    where
+            1 = 1
+        and V500DS.STATUS = 'Y'
+        and V500DS.FUND_ID = #{fundId}
+        and V500DS.PERIOD = #{period}
+    </select>
+    
+    <select id="selectV500DetailBetaData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            V500DB.STOCK_CODE as stockCode,
+			V500DB.STOCK_NAME as stockName,
+			V500DB.MKT_VALUE as mktValue,
+			V500DB.BETA as beta
+        FROM
+            wp_v500_detail_beta V500DB
+        where
+            1 = 1
+        and V500DB.STATUS = 'Y'
+        and V500DB.FUND_ID = #{fundId}
+        and V500DB.PERIOD = #{period}
     </select>
 
 </mapper>
