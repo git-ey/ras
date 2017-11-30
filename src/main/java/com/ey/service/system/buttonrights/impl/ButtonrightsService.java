@@ -23,7 +23,8 @@ public class ButtonrightsService implements ButtonrightsManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("ButtonrightsMapper.save", pd);
 	}
 	
@@ -31,7 +32,8 @@ public class ButtonrightsService implements ButtonrightsManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd) throws Exception {
+	@Override
+    public PageData findById(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("ButtonrightsMapper.findById", pd);
 	}
 	
@@ -39,7 +41,8 @@ public class ButtonrightsService implements ButtonrightsManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("ButtonrightsMapper.delete", pd);
 	}
 	
@@ -47,7 +50,8 @@ public class ButtonrightsService implements ButtonrightsManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("ButtonrightsMapper.listAll", pd);
 	}
@@ -56,7 +60,8 @@ public class ButtonrightsService implements ButtonrightsManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAllBrAndQxname(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("ButtonrightsMapper.listAllBrAndQxname", pd);
 	}

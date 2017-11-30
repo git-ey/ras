@@ -31,7 +31,8 @@ public class ConvexityService implements ConvexityManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("ConvexityMapper.save", pd);
 	}
 	
@@ -39,7 +40,8 @@ public class ConvexityService implements ConvexityManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("ConvexityMapper.delete", pd);
 	}
 	
@@ -47,7 +49,8 @@ public class ConvexityService implements ConvexityManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("ConvexityMapper.edit", pd);
 	}
 	
@@ -55,7 +58,8 @@ public class ConvexityService implements ConvexityManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("ConvexityMapper.datalistPage", page);
 	}
@@ -64,7 +68,8 @@ public class ConvexityService implements ConvexityManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("ConvexityMapper.listAll", pd);
 	}
@@ -73,7 +78,8 @@ public class ConvexityService implements ConvexityManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("ConvexityMapper.findById", pd);
 	}
 	
@@ -81,7 +87,8 @@ public class ConvexityService implements ConvexityManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("ConvexityMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

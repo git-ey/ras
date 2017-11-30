@@ -31,7 +31,8 @@ public class TrxCalendarService implements TrxCalendarManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("TrxCalendarMapper.save", pd);
 	}
 	
@@ -39,7 +40,8 @@ public class TrxCalendarService implements TrxCalendarManager{
 	 * @param pds
 	 * @throws Exception
 	 */
-	public void saveBatch(List<Map> maps) throws Exception {
+	@Override
+    public void saveBatch(List<Map> maps) throws Exception {
 		int idx = 1;
 		List<PageData> pds = new ArrayList<PageData>();
 		for (Map<String, Object> map : maps) {
@@ -68,7 +70,8 @@ public class TrxCalendarService implements TrxCalendarManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("TrxCalendarMapper.delete", pd);
 	}
 	
@@ -76,7 +79,8 @@ public class TrxCalendarService implements TrxCalendarManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("TrxCalendarMapper.edit", pd);
 	}
 	
@@ -84,7 +88,8 @@ public class TrxCalendarService implements TrxCalendarManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("TrxCalendarMapper.datalistPage", page);
 	}
@@ -93,7 +98,8 @@ public class TrxCalendarService implements TrxCalendarManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("TrxCalendarMapper.listAll", pd);
 	}
@@ -102,7 +108,8 @@ public class TrxCalendarService implements TrxCalendarManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("TrxCalendarMapper.findById", pd);
 	}
 	
@@ -110,7 +117,8 @@ public class TrxCalendarService implements TrxCalendarManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("TrxCalendarMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

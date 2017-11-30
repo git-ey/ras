@@ -137,7 +137,7 @@ public class EExportService extends BaseExportService implements EExportManager{
         }
         
         Map<String, List<Map<String, Object>>> groupByItemRes = E300MainMetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
-            Map<String,Object> map = (Map<String,Object>) item;
+            Map<String,Object> map = item;
             return String.valueOf(map.get("item"));
         }));
         
@@ -459,7 +459,7 @@ public class EExportService extends BaseExportService implements EExportManager{
         }
         
         Map<Object, List<Map<String, Object>>> collection = E41XDetailMetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
-            Map<String,Object> map = (Map<String,Object>) item;
+            Map<String,Object> map = item;
             return map.get("trxDate");
         }));
         

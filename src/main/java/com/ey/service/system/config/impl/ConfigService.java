@@ -24,7 +24,8 @@ public class ConfigService implements ConfigManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("ConfigMapper.save", pd);
 	}
 	
@@ -32,7 +33,8 @@ public class ConfigService implements ConfigManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("ConfigMapper.delete", pd);
 	}
 	
@@ -40,7 +42,8 @@ public class ConfigService implements ConfigManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("ConfigMapper.edit", pd);
 	}
 	
@@ -48,7 +51,8 @@ public class ConfigService implements ConfigManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("ConfigMapper.datalistPage", page);
 	}
@@ -57,7 +61,8 @@ public class ConfigService implements ConfigManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("ConfigMapper.listAll", pd);
 	}
@@ -66,7 +71,8 @@ public class ConfigService implements ConfigManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("ConfigMapper.findById", pd);
 	}
 	
@@ -74,7 +80,8 @@ public class ConfigService implements ConfigManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("ConfigMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

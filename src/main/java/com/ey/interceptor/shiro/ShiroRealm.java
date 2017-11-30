@@ -18,7 +18,8 @@ public class ShiroRealm extends AuthorizingRealm {
 	/*
 	 * 登录信息和用户验证信息验证
 	 */
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+	@Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		 String username = (String)token.getPrincipal();  				//得到用户名 
 	     String password = new String((char[])token.getCredentials()); 	//得到密码
 	     if(null != username && null != password){
@@ -31,7 +32,8 @@ public class ShiroRealm extends AuthorizingRealm {
 	/*
 	 * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用,负责在应用程序中决定用户的访问控制的方法
 	 */
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
+	@Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
 		return null;
 	}
 

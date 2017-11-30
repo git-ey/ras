@@ -25,7 +25,8 @@ public class RoleService implements RoleManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<Role> listAllRolesByPId(PageData pd) throws Exception {
 		return (List<Role>) dao.findForList("RoleMapper.listAllRolesByPId", pd);
 	}
@@ -35,7 +36,8 @@ public class RoleService implements RoleManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findObjectById(PageData pd) throws Exception {
+	@Override
+    public PageData findObjectById(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("RoleMapper.findObjectById", pd);
 	}
 	
@@ -43,7 +45,8 @@ public class RoleService implements RoleManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void add(PageData pd) throws Exception {
+	@Override
+    public void add(PageData pd) throws Exception {
 		dao.save("RoleMapper.insert", pd);
 	}
 	
@@ -51,7 +54,8 @@ public class RoleService implements RoleManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd) throws Exception {
+	@Override
+    public void edit(PageData pd) throws Exception {
 		dao.update("RoleMapper.edit", pd);
 	}
 	
@@ -59,7 +63,8 @@ public class RoleService implements RoleManager{
 	 * @param ROLE_ID
 	 * @throws Exception
 	 */
-	public void deleteRoleById(String ROLE_ID) throws Exception {
+	@Override
+    public void deleteRoleById(String ROLE_ID) throws Exception {
 		dao.delete("RoleMapper.deleteRoleById", ROLE_ID);
 	}
 	
@@ -67,7 +72,8 @@ public class RoleService implements RoleManager{
 	 * @param role
 	 * @throws Exception
 	 */
-	public void updateRoleRights(Role role) throws Exception {
+	@Override
+    public void updateRoleRights(Role role) throws Exception {
 		dao.update("RoleMapper.updateRoleRights", role);
 	}
 	
@@ -76,7 +82,8 @@ public class RoleService implements RoleManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public Role getRoleById(String ROLE_ID) throws Exception {
+	@Override
+    public Role getRoleById(String ROLE_ID) throws Exception {
 		return (Role) dao.findForObject("RoleMapper.getRoleById", ROLE_ID);
 	}
 	
@@ -84,7 +91,8 @@ public class RoleService implements RoleManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void setAllRights(PageData pd) throws Exception {
+	@Override
+    public void setAllRights(PageData pd) throws Exception {
 		dao.update("RoleMapper.setAllRights", pd);
 	}
 	
@@ -93,7 +101,8 @@ public class RoleService implements RoleManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void saveB4Button(String msg,PageData pd) throws Exception {
+	@Override
+    public void saveB4Button(String msg,PageData pd) throws Exception {
 		dao.update("RoleMapper."+msg, pd);
 	}
 

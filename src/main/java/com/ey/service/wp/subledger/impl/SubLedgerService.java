@@ -27,7 +27,8 @@ public class SubLedgerService implements SubLedgerManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("SubLedgerMapper.save", pd);
 	}
 	
@@ -35,7 +36,8 @@ public class SubLedgerService implements SubLedgerManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("SubLedgerMapper.delete", pd);
 	}
 	
@@ -43,7 +45,8 @@ public class SubLedgerService implements SubLedgerManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("SubLedgerMapper.edit", pd);
 	}
 	
@@ -51,7 +54,8 @@ public class SubLedgerService implements SubLedgerManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("SubLedgerMapper.datalistPage", page);
 	}
@@ -60,7 +64,8 @@ public class SubLedgerService implements SubLedgerManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("SubLedgerMapper.listAll", pd);
 	}
@@ -69,7 +74,8 @@ public class SubLedgerService implements SubLedgerManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("SubLedgerMapper.findById", pd);
 	}
 	
@@ -77,7 +83,8 @@ public class SubLedgerService implements SubLedgerManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("SubLedgerMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

@@ -22,7 +22,8 @@ public class StaffService implements StaffManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("StaffMapper.save", pd);
 	}
 	
@@ -30,7 +31,8 @@ public class StaffService implements StaffManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("StaffMapper.delete", pd);
 	}
 	
@@ -38,7 +40,8 @@ public class StaffService implements StaffManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("StaffMapper.edit", pd);
 	}
 	
@@ -46,7 +49,8 @@ public class StaffService implements StaffManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("StaffMapper.datalistPage", page);
 	}
@@ -55,7 +59,8 @@ public class StaffService implements StaffManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("StaffMapper.listAll", pd);
 	}
@@ -64,7 +69,8 @@ public class StaffService implements StaffManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("StaffMapper.findById", pd);
 	}
 	
@@ -72,7 +78,8 @@ public class StaffService implements StaffManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("StaffMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
@@ -80,7 +87,8 @@ public class StaffService implements StaffManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void userBinding(PageData pd)throws Exception{
+	@Override
+    public void userBinding(PageData pd)throws Exception{
 		dao.update("StaffMapper.userBinding", pd);
 	}
 	

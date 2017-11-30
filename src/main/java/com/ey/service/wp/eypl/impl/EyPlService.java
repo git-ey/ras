@@ -24,7 +24,8 @@ public class EyPlService implements EyPlManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("EyPlMapper.save", pd);
 	}
 	
@@ -32,7 +33,8 @@ public class EyPlService implements EyPlManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("EyPlMapper.delete", pd);
 	}
 	
@@ -40,7 +42,8 @@ public class EyPlService implements EyPlManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("EyPlMapper.edit", pd);
 	}
 	
@@ -48,7 +51,8 @@ public class EyPlService implements EyPlManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("EyPlMapper.datalistPage", page);
 	}
@@ -57,7 +61,8 @@ public class EyPlService implements EyPlManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("EyPlMapper.listAll", pd);
 	}
@@ -66,7 +71,8 @@ public class EyPlService implements EyPlManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("EyPlMapper.findById", pd);
 	}
 	
@@ -74,7 +80,8 @@ public class EyPlService implements EyPlManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("EyPlMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

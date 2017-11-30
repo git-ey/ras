@@ -31,7 +31,8 @@ public class EyIndexService implements EyIndexManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("EyIndexMapper.save", pd);
 	}
 	
@@ -39,7 +40,8 @@ public class EyIndexService implements EyIndexManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("EyIndexMapper.delete", pd);
 	}
 	
@@ -47,7 +49,8 @@ public class EyIndexService implements EyIndexManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("EyIndexMapper.edit", pd);
 	}
 	
@@ -55,7 +58,8 @@ public class EyIndexService implements EyIndexManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("EyIndexMapper.datalistPage", page);
 	}
@@ -64,7 +68,8 @@ public class EyIndexService implements EyIndexManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("EyIndexMapper.listAll", pd);
 	}
@@ -73,7 +78,8 @@ public class EyIndexService implements EyIndexManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("EyIndexMapper.findById", pd);
 	}
 	
@@ -81,7 +87,8 @@ public class EyIndexService implements EyIndexManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("EyIndexMapper.deleteAll", ArrayDATA_IDS);
 	}
 

@@ -32,7 +32,8 @@ public class StockService implements StockManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("StockMapper.save", pd);
 	}
 	
@@ -40,7 +41,8 @@ public class StockService implements StockManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("StockMapper.delete", pd);
 	}
 	
@@ -48,7 +50,8 @@ public class StockService implements StockManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("StockMapper.edit", pd);
 	}
 	
@@ -56,7 +59,8 @@ public class StockService implements StockManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("StockMapper.datalistPage", page);
 	}
@@ -65,7 +69,8 @@ public class StockService implements StockManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("StockMapper.listAll", pd);
 	}
@@ -74,7 +79,8 @@ public class StockService implements StockManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("StockMapper.findById", pd);
 	}
 	
@@ -82,7 +88,8 @@ public class StockService implements StockManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("StockMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
@@ -92,7 +99,8 @@ public class StockService implements StockManager{
 	 * @param pds
 	 * @throws Exception
 	 */
-	public void saveBatch(List<Map> maps) throws Exception {
+	@Override
+    public void saveBatch(List<Map> maps) throws Exception {
 		int idx = 1;
 		List<PageData> pds = new ArrayList<PageData>();
 		for (Map<String, Object> map : maps) {

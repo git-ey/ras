@@ -20,7 +20,8 @@ public class startFilter extends BaseController implements Filter{
 	/**
 	 * 初始化
 	 */
-	public void init(FilterConfig fc) throws ServletException {
+	@Override
+    public void init(FilterConfig fc) throws ServletException {
 		this.reductionDbBackupQuartzState();
 	}
 	
@@ -34,10 +35,12 @@ public class startFilter extends BaseController implements Filter{
 		} 
 	}
 	
-	public void destroy() {
+	@Override
+    public void destroy() {
 	}
 	
-	public void doFilter(ServletRequest arg0, ServletResponse arg1,
+	@Override
+    public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain arg2) throws IOException, ServletException {
 	}
 	

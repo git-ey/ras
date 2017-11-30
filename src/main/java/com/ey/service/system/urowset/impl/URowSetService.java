@@ -24,7 +24,8 @@ public class URowSetService implements URowSetManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("URowSetMapper.save", pd);
 	}
 	
@@ -32,7 +33,8 @@ public class URowSetService implements URowSetManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("URowSetMapper.delete", pd);
 	}
 	
@@ -40,7 +42,8 @@ public class URowSetService implements URowSetManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("URowSetMapper.edit", pd);
 	}
 	
@@ -48,7 +51,8 @@ public class URowSetService implements URowSetManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("URowSetMapper.datalistPage", page);
 	}
@@ -57,7 +61,8 @@ public class URowSetService implements URowSetManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("URowSetMapper.listAll", pd);
 	}
@@ -66,7 +71,8 @@ public class URowSetService implements URowSetManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listURowSet(PageData pd) throws Exception {
 		return (List<PageData>)dao.findForList("URowSetMapper.listURowSet", pd);
 	}
@@ -75,7 +81,8 @@ public class URowSetService implements URowSetManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("URowSetMapper.findById", pd);
 	}
 	
@@ -83,7 +90,8 @@ public class URowSetService implements URowSetManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("URowSetMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

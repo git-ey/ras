@@ -122,6 +122,62 @@
         and P600.PERIOD = #{period}
     </select>
     
+    <select id="selectP600TestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P600T.ATTR3 as `code`,
+		    P600T.ATTR4 as simpleName,
+		    P600T.ATTR5 as market,
+		    P600T.ATTR2 as subType,
+		    P600T.EY_INDEX as `index`,
+		    P600T.END_BALANCE_CNY as endBalance,
+		    P600T.FIRST_ACCOUNT_DAY as firstAccountDay,
+		    P600T.DUE_ACCOUNT_DAY as dueAccountDay,
+		    P600T.PERIOD_LEFT as periodLeft,
+		    P600T.DUE_AMOUNT as dueAmount,
+		    P600T.BUY_OUT_BOND as byOutBond,
+		    P600T.VALUATION_DAY as valuationDay
+		FROM
+		    wp_p600_test P600T
+		WHERE
+		    1 = 1
+        and P600T.STATUS = 'Y'
+        and P600T.FUND_ID = #{fundId}
+        and P600T.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP600TestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P600TD.BOND_CODE as bondCode,
+		    P600TD.BOND_NAME as bondName,
+		    P600TD.RETURN_DAY as returnDay,
+		    P600TD.PRICE as price,
+		    P600TD.QUANTITY as quantity,
+		    P600TD.AMOUNT as amount,
+		    P600T.BUY_OUT_BOND as byOutBond
+		FROM
+		    wp_p600_test_detail P600TD
+		INNER JOIN wp_p600_test P600T ON P600T.HEAD_ID = P600TD.HEAD_ID AND P600T.STATUS = 'Y'
+		WHERE
+		    1 = 1
+        and P600TD.STATUS = 'Y'
+        and P600TD.FUND_ID = #{fundId}
+        and P600TD.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP600ExposurePeriodData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P600EP.PERIOD_LEFT as periodLeft,
+		    P600EP.AMOUNT as amount
+		FROM
+		    wp_p600_exposure_period P600EP
+		WHERE
+		    1 = 1
+        and P600EP.STATUS = 'Y'
+        and P600EP.FUND_ID = #{fundId}
+        and P600EP.PERIOD = #{period}
+        ORDER BY P600EP.SORT
+    </select>
+    
     <select id="selectP800Data" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             P800.ATTR1 AS detailName,

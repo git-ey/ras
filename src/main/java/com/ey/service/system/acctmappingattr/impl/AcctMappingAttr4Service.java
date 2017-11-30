@@ -31,7 +31,8 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("AcctMappingAttr4Mapper.save", pd);
 	}
 	
@@ -39,7 +40,8 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("AcctMappingAttr4Mapper.delete", pd);
 	}
 	
@@ -47,7 +49,8 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("AcctMappingAttr4Mapper.edit", pd);
 	}
 	
@@ -55,7 +58,8 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("AcctMappingAttr4Mapper.datalistPage", page);
 	}
@@ -64,7 +68,8 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("AcctMappingAttr4Mapper.listAll", pd);
 	}
@@ -73,7 +78,8 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("AcctMappingAttr4Mapper.findById", pd);
 	}
 	
@@ -81,7 +87,8 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("AcctMappingAttr4Mapper.deleteAll", ArrayDATA_IDS);
 	}
 	

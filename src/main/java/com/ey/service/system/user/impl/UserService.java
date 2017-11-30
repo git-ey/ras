@@ -27,7 +27,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData getUserByNameAndPwd(PageData pd)throws Exception{
+	@Override
+    public PageData getUserByNameAndPwd(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.getUserInfo", pd);
 	}
 	
@@ -35,7 +36,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void updateLastLogin(PageData pd)throws Exception{
+	@Override
+    public void updateLastLogin(PageData pd)throws Exception{
 		dao.update("UserMapper.updateLastLogin", pd);
 	}
 	
@@ -44,7 +46,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public User getUserAndRoleById(String USER_ID) throws Exception {
+	@Override
+    public User getUserAndRoleById(String USER_ID) throws Exception {
 		return (User) dao.findForObject("UserMapper.getUserAndRoleById", USER_ID);
 	}
 	
@@ -53,7 +56,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findByUsername(PageData pd)throws Exception{
+	@Override
+    public PageData findByUsername(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.findByUsername", pd);
 	}
 	
@@ -62,7 +66,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAllUserByRoldId(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("UserMapper.listAllUserByRoldId", pd);
 		
@@ -72,7 +77,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void saveIP(PageData pd)throws Exception{
+	@Override
+    public void saveIP(PageData pd)throws Exception{
 		dao.update("UserMapper.saveIP", pd);
 	}
 	
@@ -81,7 +87,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listUsers(Page page)throws Exception{
 		return (List<PageData>) dao.findForList("UserMapper.userlistPage", page);
 	}
@@ -91,7 +98,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listUsersBystaff(Page page)throws Exception{
 		return (List<PageData>) dao.findForList("UserMapper.userBystafflistPage", page);
 	}
@@ -101,7 +109,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findByUE(PageData pd)throws Exception{
+	@Override
+    public PageData findByUE(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.findByUE", pd);
 	}
 	
@@ -110,7 +119,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findByUN(PageData pd)throws Exception{
+	@Override
+    public PageData findByUN(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.findByUN", pd);
 	}
 	
@@ -119,7 +129,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.findById", pd);
 	}
 	
@@ -127,7 +138,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void saveU(PageData pd)throws Exception{
+	@Override
+    public void saveU(PageData pd)throws Exception{
 		dao.save("UserMapper.saveU", pd);
 	}
 	 
@@ -135,7 +147,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void editU(PageData pd)throws Exception{
+	@Override
+    public void editU(PageData pd)throws Exception{
 		dao.update("UserMapper.editU", pd);
 	}
 	
@@ -143,7 +156,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void deleteU(PageData pd)throws Exception{
+	@Override
+    public void deleteU(PageData pd)throws Exception{
 		dao.delete("UserMapper.deleteU", pd);
 	}
 	
@@ -151,7 +165,8 @@ public class UserService implements UserManager{
 	 * @param USER_IDS
 	 * @throws Exception
 	 */
-	public void deleteAllU(String[] USER_IDS)throws Exception{
+	@Override
+    public void deleteAllU(String[] USER_IDS)throws Exception{
 		dao.delete("UserMapper.deleteAllU", USER_IDS);
 	}
 	
@@ -159,7 +174,8 @@ public class UserService implements UserManager{
 	 * @param USER_IDS
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAllUser(PageData pd)throws Exception{
 		return (List<PageData>) dao.findForList("UserMapper.listAllUser", pd);
 	}
@@ -168,7 +184,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData getUserCount(String value)throws Exception{
+	@Override
+    public PageData getUserCount(String value)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.getUserCount", value);
 	}
 	

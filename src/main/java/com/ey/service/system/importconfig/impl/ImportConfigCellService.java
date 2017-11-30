@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -28,7 +27,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("ImportConfigCellMapper.save", pd);
 	}
 	
@@ -36,7 +36,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("ImportConfigCellMapper.delete", pd);
 	}
 	
@@ -44,7 +45,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("ImportConfigCellMapper.edit", pd);
 	}
 	
@@ -52,7 +54,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("ImportConfigCellMapper.datalistPage", page);
 	}
@@ -61,7 +64,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("ImportConfigCellMapper.listAll", pd);
 	}
@@ -70,7 +74,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("ImportConfigCellMapper.findById", pd);
 	}
 	
@@ -78,7 +83,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public List<PageData> findByConfigId(String importConfigId)throws Exception {
+	@Override
+    public List<PageData> findByConfigId(String importConfigId)throws Exception {
 		return (List<PageData>)dao.findForList("ImportConfigCellMapper.findByConfigId", importConfigId);
 	}
 	
@@ -86,7 +92,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("ImportConfigCellMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
@@ -94,7 +101,8 @@ public class ImportConfigCellService implements ImportConfigCellManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findCount(PageData pd)throws Exception{
+	@Override
+    public PageData findCount(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("ImportConfigCellMapper.findCount", pd);
 	}
 	

@@ -76,39 +76,48 @@ public class PageData extends HashMap implements Map{
 		return map.remove(key);
 	}
 
-	public void clear() {
+	@Override
+    public void clear() {
 		map.clear();
 	}
 
-	public boolean containsKey(Object key) {
+	@Override
+    public boolean containsKey(Object key) {
 		return map.containsKey(key);
 	}
 
-	public boolean containsValue(Object value) {
+	@Override
+    public boolean containsValue(Object value) {
 		return map.containsValue(value);
 	}
 
-	public Set entrySet() {
+	@Override
+    public Set entrySet() {
 		return map.entrySet();
 	}
 
-	public boolean isEmpty() {
+	@Override
+    public boolean isEmpty() {
 		return map.isEmpty();
 	}
 
-	public Set keySet() {
+	@Override
+    public Set keySet() {
 		return map.keySet();
 	}
 
-	public void putAll(Map t) {
+	@Override
+    public void putAll(Map t) {
 		map.putAll(t);
 	}
 
-	public int size() {
+	@Override
+    public int size() {
 		return map.size();
 	}
 
-	public Collection values() {
+	@Override
+    public Collection values() {
 		return map.values();
 	}
 	

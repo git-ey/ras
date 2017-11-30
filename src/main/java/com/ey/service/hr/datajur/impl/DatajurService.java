@@ -21,7 +21,8 @@ public class DatajurService implements DatajurManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("DatajurMapper.save", pd);
 	}
 	
@@ -29,7 +30,8 @@ public class DatajurService implements DatajurManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("DatajurMapper.edit", pd);
 	}
 	
@@ -38,7 +40,8 @@ public class DatajurService implements DatajurManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("DatajurMapper.findById", pd);
 	}
 	
@@ -46,7 +49,8 @@ public class DatajurService implements DatajurManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData getDEPARTMENT_IDS(String USERNAME)throws Exception{
+	@Override
+    public PageData getDEPARTMENT_IDS(String USERNAME)throws Exception{
 		return (PageData)dao.findForObject("DatajurMapper.getDEPARTMENT_IDS", USERNAME);
 	}
 	

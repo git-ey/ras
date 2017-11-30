@@ -30,7 +30,8 @@ public class FundService implements FundManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("FundMapper.save", pd);
 	}
 	
@@ -38,7 +39,8 @@ public class FundService implements FundManager{
 	 * @param pds
 	 * @throws Exception
 	 */
-	public void saveBatch(List<Map> maps) throws Exception {
+	@Override
+    public void saveBatch(List<Map> maps) throws Exception {
 		int idx = 1;
 		List<PageData> pds = new ArrayList<PageData>();
 		for (Map<String, Object> map : maps) {
@@ -81,7 +83,8 @@ public class FundService implements FundManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("FundMapper.delete", pd);
 	}
 	
@@ -89,7 +92,8 @@ public class FundService implements FundManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("FundMapper.edit", pd);
 	}
 	
@@ -97,7 +101,8 @@ public class FundService implements FundManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("FundMapper.datalistPage", page);
 	}
@@ -106,7 +111,8 @@ public class FundService implements FundManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("FundMapper.listAll", pd);
 	}
@@ -125,7 +131,8 @@ public class FundService implements FundManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("FundMapper.findById", pd);
 	}
 	
@@ -133,7 +140,8 @@ public class FundService implements FundManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("FundMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
@@ -141,7 +149,8 @@ public class FundService implements FundManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findCount(PageData pd) throws Exception {
+	@Override
+    public PageData findCount(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("FundMapper.findCount", pd);
 	}
 	

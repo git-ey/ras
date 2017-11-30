@@ -495,10 +495,10 @@ public class DbTools{
 	 * @throws SQLException
 	 */
 	public static List<String> getFieldLsit(Connection conn, String table) throws SQLException{
-		PreparedStatement pstmt = (PreparedStatement) conn.prepareStatement(table);
+		PreparedStatement pstmt = conn.prepareStatement(table);
 		pstmt.execute();  									//这点特别要注意:如果是Oracle而对于mysql可以不用加.
 		List<String> columnList = new ArrayList<String>();	//存放字段
-		ResultSetMetaData rsmd = (ResultSetMetaData) pstmt.getMetaData();
+		ResultSetMetaData rsmd = pstmt.getMetaData();
 		 for (int i = 1; i < rsmd.getColumnCount() + 1; i++) {
 			 columnList.add(rsmd.getColumnName(i));			//把字段名放list里
           }
@@ -512,10 +512,10 @@ public class DbTools{
 	 * @throws SQLException
 	 */
 	public static List<Map<String,String>> getFieldParameterLsit(Connection conn, String table) throws SQLException{
-		PreparedStatement pstmt = (PreparedStatement) conn.prepareStatement("select * from " + table);
+		PreparedStatement pstmt = conn.prepareStatement("select * from " + table);
 		pstmt.execute();  															//这点特别要注意:如果是Oracle而对于mysql可以不用加.
 		List<Map<String,String>> columnList = new ArrayList<Map<String,String>>();	//存放字段
-		ResultSetMetaData rsmd = (ResultSetMetaData) pstmt.getMetaData();
+		ResultSetMetaData rsmd = pstmt.getMetaData();
 		 for (int i = 1; i < rsmd.getColumnCount() + 1; i++) {
 			 Map<String,String> fmap = new HashMap<String,String>();
 			 fmap.put("fieldNanme", rsmd.getColumnName(i));							//字段名称

@@ -27,7 +27,8 @@ public class EyJeService implements EyJeManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("EyJeMapper.save", pd);
 	}
 	
@@ -35,7 +36,8 @@ public class EyJeService implements EyJeManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("EyJeMapper.delete", pd);
 	}
 	
@@ -43,7 +45,8 @@ public class EyJeService implements EyJeManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("EyJeMapper.edit", pd);
 	}
 	
@@ -51,7 +54,8 @@ public class EyJeService implements EyJeManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("EyJeMapper.datalistPage", page);
 	}
@@ -60,7 +64,8 @@ public class EyJeService implements EyJeManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("EyJeMapper.listAll", pd);
 	}
@@ -69,7 +74,8 @@ public class EyJeService implements EyJeManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("EyJeMapper.findById", pd);
 	}
 	
@@ -77,7 +83,8 @@ public class EyJeService implements EyJeManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("EyJeMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

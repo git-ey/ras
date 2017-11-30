@@ -29,7 +29,8 @@ public class HypothesisService implements HypothesisManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("HypothesisMapper.save", pd);
 	}
 	
@@ -37,7 +38,8 @@ public class HypothesisService implements HypothesisManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("HypothesisMapper.delete", pd);
 	}
 	
@@ -45,7 +47,8 @@ public class HypothesisService implements HypothesisManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("HypothesisMapper.edit", pd);
 	}
 	
@@ -53,7 +56,8 @@ public class HypothesisService implements HypothesisManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("HypothesisMapper.datalistPage", page);
 	}
@@ -62,7 +66,8 @@ public class HypothesisService implements HypothesisManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("HypothesisMapper.listAll", pd);
 	}
@@ -71,7 +76,8 @@ public class HypothesisService implements HypothesisManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("HypothesisMapper.findById", pd);
 	}
 	
@@ -79,7 +85,8 @@ public class HypothesisService implements HypothesisManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("HypothesisMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

@@ -24,7 +24,8 @@ public class ConcParamService implements ConcParamManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("ConcParamMapper.save", pd);
 	}
 	
@@ -32,7 +33,8 @@ public class ConcParamService implements ConcParamManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("ConcParamMapper.delete", pd);
 	}
 	
@@ -40,7 +42,8 @@ public class ConcParamService implements ConcParamManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("ConcParamMapper.edit", pd);
 	}
 	
@@ -48,7 +51,8 @@ public class ConcParamService implements ConcParamManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("ConcParamMapper.datalistPage", page);
 	}
@@ -57,7 +61,8 @@ public class ConcParamService implements ConcParamManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listParam(Page page) throws Exception {
 		return (List<PageData>)dao.findForList("ConcParamMapper.listParam", page);
 	}
@@ -66,7 +71,8 @@ public class ConcParamService implements ConcParamManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("ConcParamMapper.listAll", pd);
 	}
@@ -75,7 +81,8 @@ public class ConcParamService implements ConcParamManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("ConcParamMapper.findById", pd);
 	}
 	
@@ -83,7 +90,8 @@ public class ConcParamService implements ConcParamManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("ConcParamMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
@@ -91,7 +99,8 @@ public class ConcParamService implements ConcParamManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findCount(PageData pd)throws Exception{
+	@Override
+    public PageData findCount(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("ConcParamMapper.findCount", pd);
 	}
 	

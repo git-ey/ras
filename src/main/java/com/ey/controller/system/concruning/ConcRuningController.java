@@ -76,7 +76,8 @@ public class ConcRuningController extends BaseController {
 		List<Map.Entry<String, Object>> pds = new ArrayList<Map.Entry<String, Object>>(pd.entrySet());
 		// 排序
 		Collections.sort(pds, new Comparator<Map.Entry<String, Object>>() {
-			public int compare(Map.Entry<String, Object> o1, Map.Entry<String, Object> o2) {
+			@Override
+            public int compare(Map.Entry<String, Object> o1, Map.Entry<String, Object> o2) {
 				return (o1.getKey()).toString().compareTo(o2.getKey());
 			}
 		});

@@ -25,7 +25,8 @@ public class DictionariesService implements DictionariesManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("DictionariesMapper.save", pd);
 	}
 	
@@ -33,7 +34,8 @@ public class DictionariesService implements DictionariesManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("DictionariesMapper.delete", pd);
 	}
 	
@@ -41,7 +43,8 @@ public class DictionariesService implements DictionariesManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("DictionariesMapper.edit", pd);
 	}
 	
@@ -49,7 +52,8 @@ public class DictionariesService implements DictionariesManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("DictionariesMapper.datalistPage", page);
 	}
@@ -58,7 +62,8 @@ public class DictionariesService implements DictionariesManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("DictionariesMapper.findById", pd);
 	}
 	
@@ -66,7 +71,8 @@ public class DictionariesService implements DictionariesManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findByBianma(PageData pd)throws Exception{
+	@Override
+    public PageData findByBianma(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("DictionariesMapper.findByBianma", pd);
 	}
 	
@@ -76,7 +82,8 @@ public class DictionariesService implements DictionariesManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<Dictionaries> listSubDictByParentId(String parentId) throws Exception {
 		return (List<Dictionaries>) dao.findForList("DictionariesMapper.listSubDictByParentId", parentId);
 	}
@@ -87,7 +94,8 @@ public class DictionariesService implements DictionariesManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Dictionaries> listAllDict(String parentId) throws Exception {
+	@Override
+    public List<Dictionaries> listAllDict(String parentId) throws Exception {
 		List<Dictionaries> dictList = this.listSubDictByParentId(parentId);
 		for(Dictionaries dict : dictList){
 			dict.setTreeurl("dictionaries/list.do?DICTIONARIES_ID="+dict.getDICTIONARIES_ID());
@@ -101,7 +109,8 @@ public class DictionariesService implements DictionariesManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findFromTbs(PageData pd)throws Exception{
+	@Override
+    public PageData findFromTbs(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("DictionariesMapper.findFromTbs", pd);
 	}
 	

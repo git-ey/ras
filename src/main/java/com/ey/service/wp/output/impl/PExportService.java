@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -271,15 +272,72 @@ public class PExportService extends BaseExportService implements PExportManager{
     private Map<String,Object> getP600Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        
+        //========process dataMap for main view begin========
+        Map<String, Object> main = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
-        List<Map<String,Object>> P600MetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600Data", queryMap);
-        if(P600MetaDataList == null) {
-            P600MetaDataList = new ArrayList<Map<String,Object>>(); 
+        List<Map<String,Object>> P600MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600Data", queryMap);
+        if(P600MainMetaDataList == null) {
+            P600MainMetaDataList = new ArrayList<Map<String,Object>>(); 
         }
+        main.put("list", P600MainMetaDataList);
+        main.put("count", P600MainMetaDataList.size());
+        //========process dataMap for main view end========
         
-        result.put("list", P600MetaDataList);
-        result.put("count", P600MetaDataList.size());
+        //========process dataMap for test view begin========
+        Map<String, Object> test = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P600TestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600TestData", queryMap);
+        if(P600TestMetaDataList == null) {
+            P600TestMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        test.put("list", P600TestMetaDataList);
+        test.put("count", P600TestMetaDataList.size());
+        //========process dataMap for test view end========
+        
+        //========process dataMap for testDetail view begin========
+        Map<String, Object> testDetail = new HashMap<String,Object>();
+        Map<String, Object> note2 = new HashMap<String,Object>();
+        Map<String, Object> note3 = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P600TestDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600TestDetailData", queryMap);
+        if(P600TestDetailMetaDataList == null) {
+            P600TestDetailMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        Map<String, List<Map<String, Object>>> groups = P600TestDetailMetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = item;
+            return String.valueOf(map.get("byOutBond"));
+        }));
+        List<Map<String,Object>> note2List = new ArrayList<>();
+        List<Map<String,Object>> note3List = new ArrayList<>();
+        if(groups.get("Note 2") != null) {
+            note2List = groups.get("Note 2");
+        }
+        if(groups.get("Note 3") != null) {
+            note3List = groups.get("Note 3");
+        }
+        note2.put("list", note2List);
+        note2.put("count", note2List.size());
+        note3.put("list", note3List);
+        note3.put("count", note3List.size());
+        testDetail.put("note2", note2);
+        testDetail.put("note3", note3);
+        //========process dataMap for testDetail view end========
+        
+        //========process dataMap for exposurePeriod view begin========
+        Map<String, Object> exposurePeriod = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P600ExposurePeriodMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600ExposurePeriodData", queryMap);
+        if(P600ExposurePeriodMetaDataList == null) {
+            P600ExposurePeriodMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        exposurePeriod.put("list", P600ExposurePeriodMetaDataList);
+        exposurePeriod.put("count", P600ExposurePeriodMetaDataList.size());
+        //========process dataMap for exposurePeriod view end========
+        
+        result.put("main", main);
+        result.put("test", test);
+        result.put("testDetail", testDetail);
+        result.put("exposurePeriod", exposurePeriod);
         
         return result;
     }

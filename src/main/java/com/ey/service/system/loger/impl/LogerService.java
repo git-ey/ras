@@ -27,7 +27,8 @@ public class LogerService implements LogerManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(String USERNAME, String CONTENT)throws Exception{
+	@Override
+    public void save(String USERNAME, String CONTENT)throws Exception{
 		PageData pd = new PageData();
 		pd.put("USERNAME", USERNAME);					//用户名
 		pd.put("CONTENT", CONTENT);						//事件
@@ -40,7 +41,8 @@ public class LogerService implements LogerManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("LogMapper.delete", pd);
 	}
 	
@@ -48,7 +50,8 @@ public class LogerService implements LogerManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("LogMapper.datalistPage", page);
 	}
@@ -57,7 +60,8 @@ public class LogerService implements LogerManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("LogMapper.listAll", pd);
 	}
@@ -66,7 +70,8 @@ public class LogerService implements LogerManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("LogMapper.findById", pd);
 	}
 	
@@ -74,7 +79,8 @@ public class LogerService implements LogerManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("LogMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

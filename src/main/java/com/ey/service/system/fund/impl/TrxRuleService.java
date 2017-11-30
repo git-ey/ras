@@ -24,7 +24,8 @@ public class TrxRuleService implements TrxRuleManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("FundTrxRuleMapper.save", pd);
 	}
 	
@@ -32,7 +33,8 @@ public class TrxRuleService implements TrxRuleManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("FundTrxRuleMapper.delete", pd);
 	}
 	
@@ -40,7 +42,8 @@ public class TrxRuleService implements TrxRuleManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("FundTrxRuleMapper.edit", pd);
 	}
 	
@@ -48,7 +51,8 @@ public class TrxRuleService implements TrxRuleManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("FundTrxRuleMapper.datalistPage", page);
 	}
@@ -57,7 +61,8 @@ public class TrxRuleService implements TrxRuleManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("FundTrxRuleMapper.listAll", pd);
 	}
@@ -66,7 +71,8 @@ public class TrxRuleService implements TrxRuleManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("FundTrxRuleMapper.findById", pd);
 	}
 	
@@ -74,7 +80,8 @@ public class TrxRuleService implements TrxRuleManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("FundTrxRuleMapper.deleteAll", ArrayDATA_IDS);
 	}
 	

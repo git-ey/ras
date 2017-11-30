@@ -24,7 +24,8 @@ public class CreateCodeService implements CreateCodeManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("CreateCodeMapper.save", pd);
 	}
 	
@@ -32,7 +33,8 @@ public class CreateCodeService implements CreateCodeManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("CreateCodeMapper.delete", pd);
 	}
 	
@@ -40,7 +42,8 @@ public class CreateCodeService implements CreateCodeManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("CreateCodeMapper.datalistPage", page);
 	}
@@ -49,7 +52,8 @@ public class CreateCodeService implements CreateCodeManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("CreateCodeMapper.findById", pd);
 	}
 	
@@ -57,7 +61,8 @@ public class CreateCodeService implements CreateCodeManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("CreateCodeMapper.deleteAll", ArrayDATA_IDS);
 	}
 
@@ -65,7 +70,8 @@ public class CreateCodeService implements CreateCodeManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listFa() throws Exception {
 		return (List<PageData>)dao.findForList("CreateCodeMapper.listFa", "");
 	}

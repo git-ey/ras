@@ -29,7 +29,8 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("FundIndexfeeRateMapper.save", pd);
 	}
 	
@@ -37,7 +38,8 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("FundIndexfeeRateMapper.delete", pd);
 	}
 	
@@ -45,7 +47,8 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("FundIndexfeeRateMapper.edit", pd);
 	}
 	
@@ -53,7 +56,8 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("FundIndexfeeRateMapper.datalistPage", page);
 	}
@@ -62,7 +66,8 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("FundIndexfeeRateMapper.listAll", pd);
 	}
@@ -71,7 +76,8 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("FundIndexfeeRateMapper.findById", pd);
 	}
 	
@@ -79,7 +85,8 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	@Override
+    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("FundIndexfeeRateMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
