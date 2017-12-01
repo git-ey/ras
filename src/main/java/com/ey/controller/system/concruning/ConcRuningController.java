@@ -88,7 +88,8 @@ public class ConcRuningController extends BaseController {
 			}
 			i++;
 		}
-		pd.put("CONC_PROGRAM", concPd.getString("CONC_PROGRAM"));
+		pd.put("CONC_PROGRAM", concPd.getString("CONC_PROGRAM"));// 运行程序
+		pd.put("RUN_PARAM", concParam.toString());// 运行参数
 		// 参数排序
 		concParam.append(concRuningId);
 		String[] paramArray = concParam.toString().split(",", -1);// 分割后保留空字符
@@ -146,9 +147,7 @@ public class ConcRuningController extends BaseController {
 		pd = this.getPageData();
 		pd.put("ENABLED_FLAG", "Y");
 		// 查询可用并发程序
-		Page page = new Page();
-		page.setPd(pd);
-		List<PageData> coucList = concService.list(page);
+		List<PageData> coucList = concService.listAll(pd);
 		mv.setViewName("system/concruning/concruning_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("concList", coucList);

@@ -68,18 +68,15 @@
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
-									</th>
-									<th class="center" style="width:4%;">序号</th>
-									<th class="center" style="width:9%;">程序代码</th>
+									<th class="center" style="width:10%;">程序代码</th>
 									<th class="center" style="width:13%;">程序名称</th>
-									<th class="center" style="width:14%;">开始时间</th>
-									<th class="center" style="width:14%;">结束时间</th>
-									<th class="center" style="width:8%;">运行状态</th>
+									<th class="center" style="width:13%;">开始时间</th>
+									<th class="center" style="width:13%;">结束时间</th>
+									<th class="center" style="width:15%;">运行参数</th>
+									<th class="center" style="width:7%;">状态</th>
 									<th class="center" style="width:20%;">运行消息</th>
-									<th class="center" style="width:8%;">运行人</th>
-									<th class="center" style="width:10%;">查看日志</th>
+									<th class="center" style="width:6%;">运行人</th>
+									<th class="center" style="width:5%;">日志</th>
 								</tr>
 							</thead>
 													
@@ -90,14 +87,11 @@
 									<c:if test="${QX.cha == 1 }">
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
-											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.CONCRUNING_ID}" class="ace" /><span class="lbl"></span></label>
-											</td>
-											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.CONC_CODE}</td>
 											<td class='center'>${var.CONC_NAME}</td>
 											<td class='center'>${var.START_DATETIME}</td>
 											<td class='center'>${var.END_DATETIME}</td>
+											<td class='center'>${var.RUN_PARAM}</td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.RESULT == 'R' }">
@@ -165,8 +159,6 @@
 	<!-- basic scripts -->
 	<!-- 页面底部js¨ -->
 	<%@ include file="../../system/index/foot.jsp"%>
-	<!-- 删除时确认窗口 -->
-	<script src="static/ace/js/bootbox.js"></script>
 	<!-- ace scripts -->
 	<script src="static/ace/js/ace/ace.js"></script>
 	<!-- 下拉框 -->

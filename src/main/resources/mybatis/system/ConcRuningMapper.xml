@@ -14,7 +14,8 @@
 		END_DATETIME,	
 		RESULT,	
 		MESSAGE,	
-		OPERATOR,	
+		OPERATOR,
+		RUN_PARAM,
 		CONCRUNING_ID
 	</sql>
 	
@@ -25,7 +26,8 @@
 		#{END_DATETIME},	
 		#{RESULT},	
 		#{MESSAGE},	
-		#{OPERATOR},	
+		#{OPERATOR},
+		#{RUN_PARAM},
 		#{CONCRUNING_ID}
 	</sql>
 	
@@ -56,7 +58,8 @@
 			CONC_CODE = #{CONC_CODE},
 		    END_DATETIME = #{END_DATETIME},	
 		    RESULT = #{RESULT},	
-		    MESSAGE = #{MESSAGE}
+		    MESSAGE = #{MESSAGE},
+		    RUN_PARAM = #{RUN_PARAM}
 		where 
 		CONCRUNING_ID = #{CONCRUNING_ID}
 	</update>
@@ -79,7 +82,8 @@
 		      sr.END_DATETIME,	
 		      sr.RESULT,	
 		      sr.MESSAGE,	
-		      sr.OPERATOR,	
+		      sr.OPERATOR,
+		      sr.RUN_PARAM,
 		      sr.CONCRUNING_ID
 		 from sys_concruning sr,
 		      sys_conc sc

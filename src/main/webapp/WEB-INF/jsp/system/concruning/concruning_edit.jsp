@@ -34,7 +34,7 @@
 								<td style="width:120px;text-align: center;padding-top: 13px;">程序代码</td>
 								<td>
 								<select class="chosen-select form-control" name="CONC_CODE" id="CONC_CODE"  onchange="initParam(this.options[this.options.selectedIndex].value)" data-placeholder="请选择并发程序" style="vertical-align:top;" style="width:98%;" >
-								<option value="请选择并发程序"></option>
+								<option value=""></option>
 								<c:forEach items="${concList}" var="var" varStatus="vs">
 									<option value="${var.CONC_CODE }">${var.CONC_DESCRIPTION }</option>
 								</c:forEach>
@@ -81,6 +81,37 @@
 	<!--提示框-->
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
 		<script type="text/javascript">
+		
+		$(function() {
+			
+			//下拉框
+			if(!ace.vars['touch']) {
+				$('.chosen-select').chosen({allow_single_deselect:true}); 
+				$(window)
+				.off('resize.chosen')
+				.on('resize.chosen', function() {
+					$('.chosen-select').each(function() {
+						 var $this = $(this);
+						 $this.next().css({'width': $this.parent().width()});
+					});
+				}).trigger('resize.chosen');
+				$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+					if(event_name != 'sidebar_collapsed') return;
+					$('.chosen-select').each(function() {
+						 var $this = $(this);
+						 $this.next().css({'width': $this.parent().width()});
+					});
+				});
+				$('#chosen-multiple-style .btn').on('click', function(e){
+					var target = $(this).find('input[type=radio]');
+					var which = parseInt(target.val());
+					if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+					 else $('#form-field-select-4').removeClass('tag-input-style');
+				});
+			}
+		
+		});
+		
 		$(top.hangge());		
 		$(document).ready(function(){
 			$('#CONC_CODE').change(function(){
