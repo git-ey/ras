@@ -112,6 +112,11 @@ public class BaseController {
 	protected final static String SSB_IMPORT_TEMPLATE_CODE = "SSB";
 	
 	/**
+	 * SLI股票受限信息导入模版代码
+	 */
+	protected final static String SLI_IMPORT_TEMPLATE_CODE = "SLI";
+	
+	/**
 	 * new PageData对象
 	 * 
 	 * @return

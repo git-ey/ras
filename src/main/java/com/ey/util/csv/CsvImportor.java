@@ -138,6 +138,7 @@ public class CsvImportor extends FileImportor {
 			errMsg = String.format("line:%d,column:%d is null \n", showLine, showColumn);
 			setErrMsg(errMsg, maps, sb);
 		}
+		String numeralStr = "";
 		switch (cellType) {
 		case INT:
 			if (rows > importCell.getNumber()) {
@@ -157,16 +158,16 @@ public class CsvImportor extends FileImportor {
 			break;
 		case FLOAT:
 			if (rows > importCell.getNumber()) {
-				maps.put(key,
-						StringUtils.isBlank(rowLine[importCell.getNumber()]) ? null : rowLine[importCell.getNumber()].replace(",",""));
+				numeralStr = AppUtil.StringFilter(rowLine[importCell.getNumber()]);
+				maps.put(key,StringUtils.isBlank(numeralStr) ? null : numeralStr);
 			} else {
 				maps.put(key, null);
 			}
 			break;
 		case BIGDECIMAL:
 			if (rows > importCell.getNumber()) {
-				maps.put(key,
-						StringUtils.isBlank(rowLine[importCell.getNumber()]) ? null : rowLine[importCell.getNumber()].replace(",",""));
+				numeralStr = AppUtil.StringFilter(rowLine[importCell.getNumber()]);
+				maps.put(key,StringUtils.isBlank(numeralStr) ? null : numeralStr);
 			} else {
 				maps.put(key, null);
 			}
@@ -174,7 +175,7 @@ public class CsvImportor extends FileImportor {
 		case DATE:
 			if (rows > importCell.getNumber()) {
 				String dateStr = com.ey.util.DateUtil.getDateTimeStr(rowLine[importCell.getNumber()],importCell.getDateFormat());
-				maps.put(key,quotes + dateStr + quotes);
+				maps.put(key,StringUtils.isBlank(dateStr) ? null : quotes + dateStr + quotes);
 			} else {
 				maps.put(key, null);
 			}

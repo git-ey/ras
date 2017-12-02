@@ -1,21 +1,21 @@
-package com.ey.service.system.fund.impl;
+package com.ey.service.system.fundrelatedparty.impl;
 
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.service.system.fund.RelatedPartyManager;
 import com.ey.util.PageData;
+import com.ey.service.system.fundrelatedparty.FundRelatedPartyManager;
 
 /** 
- * 说明： 基金关联方
+ * 说明： 基金关联方信息
  * 创建人：andychen
- * 创建时间：2017-08-27
+ * 创建时间：2017-12-02
  * @version
  */
-@Service("relatedpartyService")
-public class RelatedPartyService implements RelatedPartyManager{
+@Service("fundrelatedpartyService")
+public class FundRelatedPartyService implements FundRelatedPartyManager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
@@ -24,8 +24,7 @@ public class RelatedPartyService implements RelatedPartyManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    public void save(PageData pd)throws Exception{
+	public void save(PageData pd)throws Exception{
 		dao.save("FundRelatedPartyMapper.save", pd);
 	}
 	
@@ -33,8 +32,7 @@ public class RelatedPartyService implements RelatedPartyManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    public void delete(PageData pd)throws Exception{
+	public void delete(PageData pd)throws Exception{
 		dao.delete("FundRelatedPartyMapper.delete", pd);
 	}
 	
@@ -42,8 +40,7 @@ public class RelatedPartyService implements RelatedPartyManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    public void edit(PageData pd)throws Exception{
+	public void edit(PageData pd)throws Exception{
 		dao.update("FundRelatedPartyMapper.edit", pd);
 	}
 	
@@ -51,8 +48,7 @@ public class RelatedPartyService implements RelatedPartyManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@Override
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("FundRelatedPartyMapper.datalistPage", page);
 	}
@@ -61,8 +57,7 @@ public class RelatedPartyService implements RelatedPartyManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("FundRelatedPartyMapper.listAll", pd);
 	}
@@ -71,9 +66,16 @@ public class RelatedPartyService implements RelatedPartyManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    public PageData findById(PageData pd)throws Exception{
+	public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("FundRelatedPartyMapper.findById", pd);
+	}
+	
+	/**批量删除
+	 * @param ArrayDATA_IDS
+	 * @throws Exception
+	 */
+	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+		dao.delete("FundRelatedPartyMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
 }

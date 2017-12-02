@@ -1,16 +1,16 @@
-package com.ey.service.system.fund;
+package com.ey.service.system.fundrelatedparty;
 
 import java.util.List;
 import com.ey.entity.Page;
 import com.ey.util.PageData;
 
 /** 
- * 说明： 申赎规则接口
+ * 说明： 基金关联方信息接口
  * 创建人：andychen
- * 创建时间：2017-08-28
+ * 创建时间：2017-12-02
  * @version
  */
-public interface TrxRuleManager{
+public interface FundRelatedPartyManager{
 
 	/**新增
 	 * @param pd

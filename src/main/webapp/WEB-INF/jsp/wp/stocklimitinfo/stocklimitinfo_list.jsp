@@ -31,20 +31,47 @@
 						<div class="col-xs-12">
 							
 						<!-- 检索  -->
-						<form action="fund/trxrule/list.do" method="post" name="Form" id="Form">
-						<input type="hidden" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}"/>
-						<div id="zhongxin" style="padding-top: 13px;"></div>
+						<form action="stocklimitinfo/list.do" method="post" name="Form" id="Form">
+						<table style="margin-top:5px;">
+							<tr>
+								<td>
+									<div class="nav-search">
+										<span class="input-icon">
+											<input type="text" placeholder="这里输入关键词" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }" placeholder="这里输入关键词"/>
+											<i class="ace-icon fa fa-search nav-search-icon"></i>
+										</span>
+									</div>
+								</td>
+								<c:if test="${QX.cha == 1 }">
+								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
+								</c:if>
+								<!-- 
+								<c:if test="${QX.toExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td></c:if>
+							    -->
+							    <c:if test="${QX.FromExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="ace-icon fa fa-cloud-upload bigger-110 nav-search-icon blue"></i></a></td></c:if>
+							</tr>
+						</table>
 						<!-- 检索  -->
 					
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:50px;">序号</th>
-									<th class="center">基金ID</th>
+									<th class="center" style="width:35px;">
+									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									</th>
 									<th class="center">期间</th>
-									<th class="center">类型</th>
-									<th class="center">启用</th>
-									<th class="center">状态</th>
+									<th class="center">公司代码</th>
+									<th class="center">基金代码</th>
+									<th class="center">科目代码</th>
+									<th class="center">股票代码</th>
+									<th class="center">股票名称</th>
+									<th class="center">交易市场</th>
+									<th class="center">子类型</th>
+									<th class="center">期末交易状态</th>
+									<th class="center">流通受限类型</th>
+									<th class="center">认购日</th>
+									<th class="center">认购价格</th>
+									<th class="center">可流通日</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -56,29 +83,34 @@
 									<c:if test="${QX.cha == 1 }">
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
-											<td class='center' style="width: 30px;">${vs.index+1}</td>
-											<td class='center'>${var.FUND_ID}</td>
-											<td class='center'>${var.PERIOD}</td>
-											<td class='center'>${var.TYPE}</td>
 											<td class='center'>
-                                            <c:choose>  
-                                               <c:when test="${var.ACTIVE == 'Y' }"> 是 </c:when>
-                                               <c:when test="${var.ACTIVE == 'N' }"> 否 </c:when>  
-                                            </c:choose>
-                                            </td>
-											<td class='center'>${var.STATUS}</td>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.STOCKLIMITINFO_ID}" class="ace" /><span class="lbl"></span></label>
+											</td>
+											<td class='center'>${var.PERIOD}</td>
+											<td class='center'>${var.FIRM_CODE}</td>
+											<td class='center'>${var.FUND_ID}</td>
+											<td class='center'>${var.ACCOUNT_NUM}</td>
+											<td class='center'>${var.STOCK_CODE}</td>
+											<td class='center'>${var.STOCK_NAME}</td>
+											<td class='center'>${var.MARKET}</td>
+											<td class='center'>${var.SUB_TYPE}</td>
+											<td class='center'>${var.TRX_STATUS}</td>
+											<td class='center'>${var.RESTRICT_TYPE}</td>
+											<td class='center'>${var.SUBSCRIBE_DATE}</td>
+											<td class='center'>${var.SUBSCRIBE_PRICE}</td>
+											<td class='center'>${var.LEFTING_DATE}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.FUNDTRXRULE_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.STOCKLIMITINFO_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.FUNDTRXRULE_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.STOCKLIMITINFO_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -92,7 +124,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.FUNDTRXRULE_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.STOCKLIMITINFO_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -101,7 +133,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.FUNDTRXRULE_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.STOCKLIMITINFO_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -135,16 +167,18 @@
 							<tr>
 								<td style="vertical-align:top;">
 									<c:if test="${QX.add == 1 }">
-									<a class="btn btn-mini btn-success" onclick="add('${pd.FUND_ID}');">新增</a>
+									<a class="btn btn-mini btn-success" onclick="add();">新增</a>
 									</c:if>
-									<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>
+									<c:if test="${QX.del == 1 }">
+									<a class="btn btn-mini btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
+									</c:if>
 								</td>
 								<td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
 							</tr>
 						</table>
 						</div>
 						</form>
-					    <div id="zhongxin2" class="center" style="display:none"></div>
+					
 						</div>
 						<!-- /.col -->
 					</div>
@@ -231,13 +265,13 @@
 		});
 		
 		//新增
-		function add(Id){
+		function add(){
 			 top.jzts();
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = "<%=basePath%>fund/trxrule/goAdd.do?FUND_ID="+Id;
-			 diag.Width = 700;
+			 diag.URL = '<%=basePath%>stocklimitinfo/goAdd.do';
+			 diag.Width = 800;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -260,7 +294,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>fund/trxrule/delete.do?FUNDTRXRULE_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>stocklimitinfo/delete.do?STOCKLIMITINFO_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -274,8 +308,8 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>fund/trxrule/goEdit.do?FUNDTRXRULE_ID='+Id;
-			 diag.Width = 700;
+			 diag.URL = '<%=basePath%>stocklimitinfo/goEdit.do?STOCKLIMITINFO_ID='+Id;
+			 diag.Width = 800;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -289,7 +323,82 @@
 			 diag.show();
 		}
 		
+		//批量操作
+		function makeAll(msg){
+			bootbox.confirm(msg, function(result) {
+				if(result) {
+					var str = '';
+					for(var i=0;i < document.getElementsByName('ids').length;i++){
+					  if(document.getElementsByName('ids')[i].checked){
+					  	if(str=='') str += document.getElementsByName('ids')[i].value;
+					  	else str += ',' + document.getElementsByName('ids')[i].value;
+					  }
+					}
+					if(str==''){
+						bootbox.dialog({
+							message: "<span class='bigger-110'>您没有选择任何内容!</span>",
+							buttons: 			
+							{ "button":{ "label":"确定", "className":"btn-sm btn-success"}}
+						});
+						$("#zcheckbox").tips({
+							side:1,
+				            msg:'点这里全选',
+				            bg:'#AE81FF',
+				            time:8
+				        });
+						return;
+					}else{
+						if(msg == '确定要删除选中的数据吗?'){
+							top.jzts();
+							$.ajax({
+								type: "POST",
+								url: '<%=basePath%>stocklimitinfo/deleteAll.do?tm='+new Date().getTime(),
+						    	data: {DATA_IDS:str},
+								dataType:'json',
+								//beforeSend: validateData,
+								cache: false,
+								success: function(data){
+									 $.each(data.list, function(i, list){
+											tosearch();
+									 });
+								}
+							});
+						}
+					}
+				}
+			});
+		};
+		
+		
+		//打开上传excel页面
+		function fromExcel(){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="EXCEL导入到数据库";
+			 diag.URL = '<%=basePath%>stocklimitinfo/goUploadExcel.do';
+			 diag.Width = 450;
+			 diag.Height = 260;
+			 diag.CancelEvent = function(){ //关闭事件
+				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+					 if('${page.currentPage}' == '0'){
+						 top.jzts();
+						 setTimeout("self.location.reload()",100);
+					 }else{
+						 nextPage("${page.currentPage}");
+					 }
+				}
+				diag.close();
+			 };
+			 diag.show();
+		}
+		
+		//导出excel
+		function toExcel(){
+			window.location.href='<%=basePath%>stocklimitinfo/excel.do';
+		}
 	</script>
+
 
 </body>
 </html>

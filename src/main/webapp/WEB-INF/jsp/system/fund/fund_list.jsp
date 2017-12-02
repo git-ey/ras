@@ -61,14 +61,14 @@
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:9%;">基金</th>
-									<th class="center" style="width:8%;">基金代码</th>
-									<th class="center" style="width:9%;">管理公司</th>
-									<th class="center" style="width:22%;">基金简称</th>
-									<th class="center" style="width:30%;" colspan="4">附属信息</th>
-									<th class="center" style="width:8%;">分级</th>
-									<th class="center" style="width:7%;">启用</th>
-									<th class="center" style="width:7%;">操作</th>
+									<th class="center" style="width:10%;">基金</th>
+									<th class="center" style="width:10%;">基金代码</th>
+									<th class="center" style="width:10%;">管理公司</th>
+									<th class="center" style="width:25%;">基金简称</th>
+									<th class="center" style="width:16%;">财务系统</th>
+									<th class="center" style="width:10%;">分级</th>
+									<th class="center" style="width:10%;">启用</th>
+									<th class="center" style="width:10%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -83,10 +83,12 @@
 											<td class='center'>${var.FUND_CODE}</td>
 											<td class='center'>${var.COMPANY_SHORT_NAME}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
-											<td class='center'><a class="btn btn-mini btn-success" onclick="related('${var.FUND_ID}');">关联方</a></td>
-											<td class='center'><a class="btn btn-mini btn-success" onclick="signoff('${var.FUND_ID}');">签字人</a></td>
-											<td class='center'><a class="btn btn-mini btn-success" onclick="structured('${var.FUND_ID}');">分级信息</a></td>
-											<td class='center'><a class="btn btn-mini btn-success" onclick="trxrule('${var.FUND_ID}');">申赎规则</a></td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.FIN_SYSTEM == 'HS' }">恒生</c:when> 
+                                               <c:when test="${var.FIN_SYSTEM == 'JSZ' }">金手指</c:when>
+                                            </c:choose>
+											</td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.STRUCTURED == 'T' }">T-真分级</c:when> 

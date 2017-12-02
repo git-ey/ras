@@ -1,16 +1,18 @@
-package com.ey.service.system.fund;
+package com.ey.service.wp.stocklimitinfo;
 
 import java.util.List;
+import java.util.Map;
+
 import com.ey.entity.Page;
 import com.ey.util.PageData;
 
 /** 
- * 说明： 基金关联方接口
+ * 说明： 股票流通受限信息接口
  * 创建人：andychen
- * 创建时间：2017-08-27
+ * 创建时间：2017-12-02
  * @version
  */
-public interface RelatedPartyManager{
+public interface StockLimitInfoManager{
 
 	/**新增
 	 * @param pd
@@ -47,6 +49,19 @@ public interface RelatedPartyManager{
 	 * @throws Exception
 	 */
 	public PageData findById(PageData pd)throws Exception;
+	
+	/**批量删除
+	 * @param ArrayDATA_IDS
+	 * @throws Exception
+	 */
+	public void deleteAll(String[] ArrayDATA_IDS)throws Exception;
 
+	
+	/**批量新增
+	 * @param pds
+	 * @throws Exception
+	 */
+	public void saveBatch(List<Map> maps) throws Exception;
+	
 }
 

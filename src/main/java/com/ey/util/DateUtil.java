@@ -198,7 +198,7 @@ public class DateUtil {
      */
     public static String getDateTimeStr(String datetime,String fmt) {
     	if(StringUtils.isBlank(datetime)){
-    		return null;
+    		return "";
     	}
     	return DateUtil.getDateTimeStr(DateUtil.fomatDate(datetime, fmt));
     }
@@ -210,7 +210,7 @@ public class DateUtil {
      */
     public static String getDateTimeStr(Date datetime) {
     	if(datetime == null){
-    		return null;
+    		return "";
     	}
         SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateStr = sdfd.format(datetime);

@@ -1,4 +1,4 @@
-package com.ey.controller.system.fund;
+package com.ey.controller.system.fundrelatedparty;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -21,27 +21,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
-import com.ey.service.system.dataexport.DataexportManager;
-import com.ey.service.system.fund.SignoffManager;
+import com.ey.service.system.fundrelatedparty.FundRelatedPartyManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Jurisdiction;
 import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
 
 /** 
- * 说明：基金签字人
+ * 说明：基金关联方信息
  * 创建人：andychen
- * 创建时间：2017-08-28
+ * 创建时间：2017-12-02
  */
 @Controller
-@RequestMapping(value="/fund/signoff")
-public class SignoffController extends BaseController {
+@RequestMapping(value="/fundrelatedparty")
+public class FundRelatedPartyController extends BaseController {
 	
-	String menuUrl = "fund/signoff/list.do"; //菜单地址(权限用)
-	@Resource(name="fundsignoffService")
-	private SignoffManager fundsignoffService;
-	@Resource(name="dataexportService")
-	private DataexportManager dataexportService;
+	String menuUrl = "fundrelatedparty/list.do"; //菜单地址(权限用)
+	@Resource(name="fundrelatedpartyService")
+	private FundRelatedPartyManager fundrelatedpartyService;
 	
 	/**保存
 	 * @param
@@ -49,13 +46,13 @@ public class SignoffController extends BaseController {
 	 */
 	@RequestMapping(value="/save")
 	public ModelAndView save() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"新增FundSignoff");
+		logBefore(logger, Jurisdiction.getUsername()+"新增FundRelatedParty");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("FUNDSIGNOFF_ID", this.get32UUID());	//主键
-		fundsignoffService.save(pd);
+		pd.put("FUNDRELATEDPARTY_ID", this.get32UUID());	//主键
+		fundrelatedpartyService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -67,11 +64,11 @@ public class SignoffController extends BaseController {
 	 */
 	@RequestMapping(value="/delete")
 	public void delete(PrintWriter out) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"删除FundSignoff");
+		logBefore(logger, Jurisdiction.getUsername()+"删除FundRelatedParty");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		fundsignoffService.delete(pd);
+		fundrelatedpartyService.delete(pd);
 		out.write("success");
 		out.close();
 	}
@@ -82,12 +79,12 @@ public class SignoffController extends BaseController {
 	 */
 	@RequestMapping(value="/edit")
 	public ModelAndView edit() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"修改FundSignoff");
+		logBefore(logger, Jurisdiction.getUsername()+"修改FundRelatedParty");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		fundsignoffService.edit(pd);
+		fundrelatedpartyService.edit(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -99,7 +96,7 @@ public class SignoffController extends BaseController {
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView list(Page page) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"列表FundSignoff");
+		logBefore(logger, Jurisdiction.getUsername()+"列表FundRelatedParty");
 		//if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限(无权查看时页面会有提示,如果不注释掉这句代码就无法进入列表页面,所以根据情况是否加入本句代码)
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
@@ -109,8 +106,8 @@ public class SignoffController extends BaseController {
 			pd.put("keywords", keywords.trim());
 		}
 		page.setPd(pd);
-		List<PageData>	varList = fundsignoffService.list(page);	//列出FundSignoff列表
-		mv.setViewName("system/fund/signoff_list");
+		List<PageData>	varList = fundrelatedpartyService.list(page);	//列出FundRelatedParty列表
+		mv.setViewName("system/fundrelatedparty/fundrelatedparty_list");
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
@@ -126,9 +123,7 @@ public class SignoffController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		List<PageData> periodList = dataexportService.listPeriod(pd);
-		mv.setViewName("system/fund/signoff_edit");
-		mv.addObject("periodList", periodList);
+		mv.setViewName("system/fundrelatedparty/fundrelatedparty_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -143,10 +138,8 @@ public class SignoffController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd = fundsignoffService.findById(pd);	//根据ID读取
-		List<PageData> periodList = dataexportService.listPeriod(pd);
-		mv.setViewName("system/fund/signoff_edit");
-		mv.addObject("periodList", periodList);
+		pd = fundrelatedpartyService.findById(pd);	//根据ID读取
+		mv.setViewName("system/fundrelatedparty/fundrelatedparty_edit");
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;
@@ -159,7 +152,7 @@ public class SignoffController extends BaseController {
 	@RequestMapping(value="/deleteAll")
 	@ResponseBody
 	public Object deleteAll() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"批量删除FundSignoff");
+		logBefore(logger, Jurisdiction.getUsername()+"批量删除FundRelatedParty");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return null;} //校验权限
 		PageData pd = new PageData();		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -168,7 +161,7 @@ public class SignoffController extends BaseController {
 		String DATA_IDS = pd.getString("DATA_IDS");
 		if(null != DATA_IDS && !"".equals(DATA_IDS)){
 			String ArrayDATA_IDS[] = DATA_IDS.split(",");
-			fundsignoffService.deleteAll(ArrayDATA_IDS);
+			fundrelatedpartyService.deleteAll(ArrayDATA_IDS);
 			pd.put("msg", "ok");
 		}else{
 			pd.put("msg", "no");
@@ -184,28 +177,42 @@ public class SignoffController extends BaseController {
 	 */
 	@RequestMapping(value="/excel")
 	public ModelAndView exportExcel() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"导出FundSignoff到excel");
+		logBefore(logger, Jurisdiction.getUsername()+"导出FundRelatedParty到excel");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
 		ModelAndView mv = new ModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		Map<String,Object> dataMap = new HashMap<String,Object>();
 		List<String> titles = new ArrayList<String>();
-		titles.add("基金");	//1
-		titles.add("期间");	//2
-		titles.add("签字人1");	//3
-		titles.add("签字人2");	//4
-		titles.add("签字人3");	//5
+		titles.add("基金ID");	//1
+		titles.add("关联方名称");	//2
+		titles.add("关联方简称1");	//3
+		titles.add("关联方简称2");	//4
+		titles.add("关联方简称3");	//5
+		titles.add("备注7");	//6
+		titles.add("股票代码");	//7
+		titles.add("债券代码");	//8
+		titles.add("基金代码");	//9
+		titles.add("备注11");	//10
+		titles.add("与本基金的关系");	//11
+		titles.add("关联方ID");	//12
 		dataMap.put("titles", titles);
-		List<PageData> varOList = fundsignoffService.listAll(pd);
+		List<PageData> varOList = fundrelatedpartyService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
 		for(int i=0;i<varOList.size();i++){
 			PageData vpd = new PageData();
 			vpd.put("var1", varOList.get(i).getString("FUND_ID"));	    //1
-			vpd.put("var2", varOList.get(i).getString("PERIOD"));	    //2
-			vpd.put("var3", varOList.get(i).getString("SIGNOFF_1"));	    //3
-			vpd.put("var4", varOList.get(i).getString("SIGNOFF_2"));	    //4
-			vpd.put("var5", varOList.get(i).getString("SIGNOFF_3"));	    //5
+			vpd.put("var2", varOList.get(i).getString("PARTY_FULL_NAME"));	    //2
+			vpd.put("var3", varOList.get(i).getString("PARTY_SHORT_NAME_1"));	    //3
+			vpd.put("var4", varOList.get(i).getString("PARTY_SHORT_NAME_2"));	    //4
+			vpd.put("var5", varOList.get(i).getString("PARTY_SHORT_NAME_3"));	    //5
+			vpd.put("var6", varOList.get(i).getString("RELATIONSHIP"));	    //6
+			vpd.put("var7", varOList.get(i).getString("STOCK_CODE"));	    //7
+			vpd.put("var8", varOList.get(i).getString("BOND_CODE"));	    //8
+			vpd.put("var9", varOList.get(i).getString("FUND_CODE"));	    //9
+			vpd.put("var10", varOList.get(i).getString("ACTIVE"));	    //10
+			vpd.put("var11", varOList.get(i).getString("STATUS"));	    //11
+			vpd.put("var12", varOList.get(i).getString("PARTY_ID"));	    //12
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

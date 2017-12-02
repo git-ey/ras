@@ -48,6 +48,8 @@ import org.apache.poi.hssf.record.StringRecord;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
+import com.ey.util.AppUtil;
+
 public class XlsToCsv implements HSSFListener {
 	private int minColumns;
 	private POIFSFileSystem fs;
@@ -147,7 +149,7 @@ public class XlsToCsv implements HSSFListener {
 		int thisRow = -1;
 		int thisColumn = -1;
 		String thisStr = null;
-		String delimiter = "`"; // CSV字段分隔符
+		String delimiter = AppUtil.CSV_DELIMITER; // CSV字段分隔符
 		switch (record.getSid()) {
 		case BoundSheetRecord.sid:
 			boundSheetRecords.add(record);

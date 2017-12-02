@@ -113,7 +113,24 @@ public class ExcelImportor extends FileImportor {
 				int cellKey = Integer.parseInt(ir[0]);
 				String ignoreValue = ir[1];
 				Pattern p = Pattern.compile(ignoreValue);
-				Matcher m = p.matcher(isCellEmpty(row.getCell(cellKey)) ? "" : row.getCell(cellKey).getStringCellValue());
+				String matchStr = "";
+				switch(row.getCell(cellKey).getCellType()){
+				case Cell.CELL_TYPE_STRING :
+					matchStr = row.getCell(cellKey).getStringCellValue();
+					break;
+				case Cell.CELL_TYPE_BLANK :
+					matchStr = "";
+					break;
+				case Cell.CELL_TYPE_FORMULA :
+					matchStr = row.getCell(cellKey).getCellFormula();
+					break;
+				case Cell.CELL_TYPE_NUMERIC :
+					matchStr = String.valueOf(row.getCell(cellKey).getNumericCellValue());
+					break;
+				default:
+					break;
+				}
+				Matcher m = p.matcher(matchStr);
 				// 任意一个条件满足则过滤
 				if (m.find()) {
 					return true;
