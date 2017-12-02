@@ -485,7 +485,13 @@ public class UExportService extends BaseExportService implements UExportManager 
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
-        String ETF = String.valueOf(this.dao.findForObject("FundInfoMapper.selectETFFlag", queryMap));
+        @SuppressWarnings("unchecked")
+        Map<String, Object> ETF_MAP = (Map<String, Object>)this.dao.findForObject("FundInfoMapper.selectETFFlag", queryMap);
+        String ETF = "N";
+        if("Y".equals(ETF_MAP.get("ETF")) || "Y".equals(ETF_MAP.get("ETF_CONNECTION"))) {
+            ETF = "Y";
+        }
+        
         result.put("ETF", ETF);
         
         Map<String, Object> interest = new HashMap<String,Object>();
