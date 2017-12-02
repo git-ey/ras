@@ -2140,7 +2140,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s97"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s137"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s138"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s139"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -2169,7 +2169,7 @@
     <Cell ss:MergeDown="1" ss:StyleID="s200"><Data ss:Type="String">合计</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s193"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s193"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="12" ss:StyleID="s193"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
    <Row>
@@ -2821,7 +2821,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s43">
     <Cell ss:StyleID="s97"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s137"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s138"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s139"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
@@ -3237,7 +3237,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s128"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s137"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s138"><Data ss:Type="String">XX</Data></Cell>
@@ -3942,7 +3942,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s128"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s137"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s138"><Data ss:Type="String">XX</Data></Cell>
@@ -4344,7 +4344,7 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="s362"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s205"><Data ss:Type="String">本期末&#10;${(period)?string('0')}年${month?string('0')}月${day?string('0')}日</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s205"><Data ss:Type="String">本期末&#10;${(period)?string('0')}年${month?string('00')}月${day?string('00')}日</Data></Cell>
     <Cell ss:MergeAcross="1" ss:StyleID="s205"><Data ss:Type="String">上年度末&#10;${(period-1)?string('0')}年12月31日</Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s74"/>
     <Cell ss:Index="25" ss:StyleID="s69"/>
@@ -5197,7 +5197,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s128"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s137"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s138"><Data ss:Type="String">XX</Data></Cell>
@@ -5640,7 +5640,7 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="s362"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s205"><Data ss:Type="String">本期末&#10;${(period)?string('0')}年${month?string('0')}月${day?string('0')}日</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s205"><Data ss:Type="String">本期末&#10;${(period)?string('0')}年${month?string('00')}月${day?string('00')}日</Data></Cell>
     <Cell ss:MergeAcross="1" ss:StyleID="s205"><Data ss:Type="String">上年度末&#10;${(period-1)?string('0')}年12月31日</Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s74"/>
     <Cell ss:Index="25" ss:StyleID="s69"/>

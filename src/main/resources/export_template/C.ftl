@@ -1341,7 +1341,7 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s108">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s65"/>
     <Cell ss:Index="6" ss:StyleID="s174"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s175"><Data ss:Type="String">XX</Data></Cell>
@@ -1361,7 +1361,7 @@
    <Row ss:Index="7" ss:StyleID="s108">
     <Cell ss:MergeDown="1" ss:StyleID="s107"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s107"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s251"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s251"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s126"/>
     <Cell ss:StyleID="s177"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s126"/>
@@ -1683,7 +1683,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s108"/>
     <Cell ss:StyleID="s108"/>
     <Cell ss:StyleID="s108"/>
@@ -1725,7 +1725,7 @@
     <Cell ss:StyleID="s206"><Data ss:Type="String">关联方（Y/N）</Data></Cell>
     <Cell><Data ss:Type="String">是否计息</Data></Cell>
     <Cell ss:StyleID="s71"><Data ss:Type="String">${(period-1)?string('0')}-12-31</Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s71"><Data ss:Type="String">${period?string('0')}-${month?string('0')}-${day?string('0')}</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s71"><Data ss:Type="String">${period?string('0')}-${month?string('00')}-${day?string('00')}</Data></Cell>
    </Row>
    <Row ss:StyleID="s113">
     <Cell ss:Index="2" ss:StyleID="s114"/>
@@ -2324,7 +2324,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s65"/>
@@ -2370,7 +2370,7 @@
     <Cell ss:Index="5" ss:StyleID="s108"/>
    </Row>
    <Row>
-    <Cell ss:Index="4" ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:Index="8" ss:MergeAcross="1" ss:StyleID="s254"><Data ss:Type="String">按报告披露要求</Data></Cell>
     <Cell ss:Index="11" ss:MergeAcross="4" ss:StyleID="s253"><Data ss:Type="String">计息测试</Data></Cell>
    </Row>
@@ -2666,7 +2666,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s68"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s102"/>
     <Cell ss:StyleID="s102"/>
     <Cell ss:StyleID="s102"/>
@@ -2770,7 +2770,7 @@
     <Cell ss:StyleID="s101"><Data ss:Type="String">工作步骤：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40">1、获得<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">${month?string('0')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('0')}</Font><Font>日所有银行账户的头寸表</Font></ss:Data></Cell>
+       html:Color="#000000">${month?string('00')</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日所有银行账户的头寸表</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -2789,7 +2789,7 @@
     <Cell ss:StyleID="s101"/>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40">2、查看<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">${month?string('0')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('0')}</Font><Font>日是否存在银行账户之间的转账，如有，查看相应凭证</Font></ss:Data></Cell>
+       html:Color="#000000">${month?string('00')</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日是否存在银行账户之间的转账，如有，查看相应凭证</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -2841,9 +2841,9 @@
    <Row>
     <Cell ss:StyleID="s101"><Data ss:Type="String">结果：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">我们查看了基金${period?string('0')}年${month?string('0')}月${day?string('0')}日的头寸表，未发现<Font
-       html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font html:Color="#000000">${month?string('0')}</Font><Font>月</Font><Font
-       html:Color="#000000">${day?string('0')}</Font><Font>日银行账户之间发生转账，未发现在途资金。</Font></ss:Data></Cell>
+      xmlns="http://www.w3.org/TR/REC-html40">我们查看了基金${period?string('0')}年${month?string('00')月${day?string('00')}日的头寸表，未发现<Font
+       html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font html:Color="#000000">${month?string('00')</Font><Font>月</Font><Font
+       html:Color="#000000">${day?string('00')}</Font><Font>日银行账户之间发生转账，未发现在途资金。</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -2879,7 +2879,7 @@
     <Cell ss:StyleID="s101"><Data ss:Type="String">结论：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40">该基金于<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">${month?string('0')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('0')}</Font><Font>日不存在通过利用银行账户之间转账时间差虚增资产的情况</Font></ss:Data></Cell>
+       html:Color="#000000">${month?string('00')</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日不存在通过利用银行账户之间转账时间差虚增资产的情况</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
@@ -2966,7 +2966,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="DateTime">${period?string('0')}-${month?string('0')}-${day?string('0')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s174"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s219"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
