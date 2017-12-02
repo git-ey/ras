@@ -265,7 +265,7 @@
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>fundrelatedparty/goAdd.do';
 			 diag.Width = 700;
-			 diag.Height = 350;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -303,7 +303,7 @@
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>fundrelatedparty/goEdit.do?FUNDRELATEDPARTY_ID='+Id;
 			 diag.Width = 700;
-			 diag.Height = 350;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 

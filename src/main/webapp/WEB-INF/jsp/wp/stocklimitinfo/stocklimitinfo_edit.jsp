@@ -66,6 +66,18 @@
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">可流通日:</td>
 								<td><input class="span10 date-picker" name="LEFTING_DATE" id="LEFTING_DATE" value="${pd.LEFTING_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="可流通日" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">停牌日期:</td>
+								<td><input class="span10 date-picker" name="SUSPENSION_DATE" id="SUSPENSION_DATE" value="${pd.SUSPENSION_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="停牌日期" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">停牌原因:</td>
+								<td><input type="text" name="SUSPENSION_INFO" id="SUSPENSION_INFO" value="${pd.SUSPENSION_INFO}" maxlength="255" title="停牌原因" style="width:98%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">复牌日期:</td>
+								<td><input class="span10 date-picker" name="RESUMPTION_DATE" id="RESUMPTION_DATE" value="${pd.RESUMPTION_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="复牌日期" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">复牌开盘单价:</td>
+								<td><input type="text" name="RESMPATION_OPEN_PRICE" id="RESMPATION_OPEN_PRICE" value="${pd.RESMPATION_OPEN_PRICE}" maxlength="255" title="复牌开盘单价" style="width:98%;"/></td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">Createdby:</td>
 								<td><input type="text" name="CREATOR" id="CREATOR" value="${pd.CREATOR}" maxlength="255" title="Createdby" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">ReviewedBy:</td>

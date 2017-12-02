@@ -31,7 +31,7 @@
 						<div class="col-xs-12">
 							
 						<!-- 检索  -->
-						<form action="stocklimitinfo/list.do" method="post" name="Form" id="Form">
+						<form action="fundsignoff/list.do" method="post" name="Form" id="Form">
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -45,10 +45,7 @@
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
-								<!-- 
 								<c:if test="${QX.toExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td></c:if>
-							    -->
-							    <c:if test="${QX.FromExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="ace-icon fa fa-cloud-upload bigger-110 nav-search-icon blue"></i></a></td></c:if>
 							</tr>
 						</table>
 						<!-- 检索  -->
@@ -59,19 +56,12 @@
 									<th class="center" style="width:35px;">
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
+									<th class="center" style="width:50px;">序号</th>
+									<th class="center">基金ID</th>
 									<th class="center">期间</th>
-									<th class="center">公司代码</th>
-									<th class="center">基金代码</th>
-									<th class="center">科目代码</th>
-									<th class="center">股票代码</th>
-									<th class="center">股票名称</th>
-									<th class="center">交易市场</th>
-									<th class="center">子类型</th>
-									<th class="center">期末交易状态</th>
-									<th class="center">流通受限类型</th>
-									<th class="center">认购日</th>
-									<th class="center">认购价格</th>
-									<th class="center">可流通日</th>
+									<th class="center">签字人1</th>
+									<th class="center">签字人2</th>
+									<th class="center">启用</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -84,33 +74,26 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.STOCKLIMITINFO_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.FUNDSIGNOFF_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
-											<td class='center'>${var.PERIOD}</td>
-											<td class='center'>${var.FIRM_CODE}</td>
+											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.FUND_ID}</td>
-											<td class='center'>${var.ACCOUNT_NUM}</td>
-											<td class='center'>${var.STOCK_CODE}</td>
-											<td class='center'>${var.STOCK_NAME}</td>
-											<td class='center'>${var.MARKET}</td>
-											<td class='center'>${var.SUB_TYPE}</td>
-											<td class='center'>${var.TRX_STATUS}</td>
-											<td class='center'>${var.RESTRICT_TYPE}</td>
-											<td class='center'>${var.SUBSCRIBE_DATE}</td>
-											<td class='center'>${var.SUBSCRIBE_PRICE}</td>
-											<td class='center'>${var.LEFTING_DATE}</td>
+											<td class='center'>${var.PERIOD}</td>
+											<td class='center'>${var.SIGNOFF_1}</td>
+											<td class='center'>${var.SIGNOFF_2}</td>
+											<td class='center'>${var.ACTIVE}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.STOCKLIMITINFO_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.FUNDSIGNOFF_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.STOCKLIMITINFO_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.FUNDSIGNOFF_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -124,7 +107,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.STOCKLIMITINFO_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.FUNDSIGNOFF_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -133,7 +116,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.STOCKLIMITINFO_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.FUNDSIGNOFF_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -270,9 +253,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>stocklimitinfo/goAdd.do';
-			 diag.Width = 900;
-			 diag.Height = 450;
+			 diag.URL = '<%=basePath%>fundsignoff/goAdd.do';
+			 diag.Width = 450;
+			 diag.Height = 380;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -294,7 +277,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>stocklimitinfo/delete.do?STOCKLIMITINFO_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>fundsignoff/delete.do?FUNDSIGNOFF_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -308,9 +291,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>stocklimitinfo/goEdit.do?STOCKLIMITINFO_ID='+Id;
-			 diag.Width = 900;
-			 diag.Height = 450;
+			 diag.URL = '<%=basePath%>fundsignoff/goEdit.do?FUNDSIGNOFF_ID='+Id;
+			 diag.Width = 450;
+			 diag.Height = 380;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 
@@ -352,7 +335,7 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>stocklimitinfo/deleteAll.do?tm='+new Date().getTime(),
+								url: '<%=basePath%>fundsignoff/deleteAll.do?tm='+new Date().getTime(),
 						    	data: {DATA_IDS:str},
 								dataType:'json',
 								//beforeSend: validateData,
@@ -369,33 +352,9 @@
 			});
 		};
 		
-		
-		//打开上传excel页面
-		function fromExcel(){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>stocklimitinfo/goUploadExcel.do';
-			 diag.Width = 450;
-			 diag.Height = 260;
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 if('${page.currentPage}' == '0'){
-						 top.jzts();
-						 setTimeout("self.location.reload()",100);
-					 }else{
-						 nextPage("${page.currentPage}");
-					 }
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-		
 		//导出excel
 		function toExcel(){
-			window.location.href='<%=basePath%>stocklimitinfo/excel.do';
+			window.location.href='<%=basePath%>fundsignoff/excel.do';
 		}
 	</script>
 
