@@ -9,7 +9,6 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		FUND_ID,	
 		SOURCE,	
 		STOCK_CODE,	
 		BETA,
@@ -20,7 +19,6 @@
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{FUND_ID},	
 		#{SOURCE},	
 		#{STOCK_CODE},	
 		#{BETA},
@@ -53,7 +51,6 @@
 		update
 		<include refid="tableName"></include>
 		set 
-			FUND_ID = #{FUND_ID},
 			SOURCE = #{SOURCE},
 			STOCK_CODE = #{STOCK_CODE},
 			BETA = #{BETA},
@@ -122,8 +119,7 @@
 			#{SOURCE},
 			#{STOCK_CODE},
 			#{BETA},
-			#{ACTIVE},
-		    #{FUND_ID}
+			#{ACTIVE}
          )
          </foreach >
 	</insert>

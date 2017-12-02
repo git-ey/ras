@@ -60,7 +60,6 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
-									<th class="center">基金代码</th>
 									<th class="center">来源</th>
 									<th class="center">股票代码</th>
 									<th class="center">股票简称</th>
@@ -80,7 +79,6 @@
 												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.BETA_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
-											<td class='center'>${var.FUND_ID}</td>
 											<td class='center'>${var.SOURCE}</td>
 											<td class='center'>${var.STOCK_CODE}</td>
 											<td class='center'>${var.STOCK_NAME}</td>

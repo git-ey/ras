@@ -32,10 +32,6 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="255" placeholder="这里输入基金代码" title="基金代码" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
 								<td><input type="text" name="SOURCE" id="SOURCE" value="${pd.SOURCE}" maxlength="30" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
 							</tr>
