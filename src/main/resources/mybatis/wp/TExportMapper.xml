@@ -17,5 +17,73 @@
         and T.FUND_ID = #{fundId}
         and T.PERIOD = #{period}
     </select>
+    
+    <select id="selectExtraFundInfo" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IFNULL(sfi.DATE_FROM,'2000-01-01') as dateFrom,
+		    IFNULL(sfi.STRUCTURED,'N') as structured,
+		    IFNULL(sfi.MF,'N') as mf,
+		    IFNULL(sfi.ETF,'N') as etf
+		FROM
+		    SYS_FUND_INFO sfi
+		WHERE
+		    1 = 1
+		AND sfi.ACTIVE = 'Y'
+		AND sfi.FUND_ID = #{fundId}
+		LIMIT 1
+    </select>
+    
+    <select id="selectT300MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T300.`LEVEL` as `level`,
+            T300.BEGIN_BALANCE_CNY as beginBalance,
+            T300.DR_AMOUNT_CNY as drAmount,
+            T300.CR_AMOUNT_CNY as crAmount,
+            T300.BEGIN_UNITS as beginUnits,
+            T300.DR_UNITS as drUnits,
+            T300.CR_UNITS as crUnits
+        FROM
+            wp_t300 T300
+        where 
+            1 = 1
+        and T300.STATUS = 'Y'
+        and T300.FUND_ID = #{fundId}
+        and T300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT300NoteData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T300N.NOTE as note,
+            T300N.ITEM1 as item1,
+            T300N.ITEM2 as item2,
+            T300N.ITEM3 as item3,
+            T300N.ITEM4 as item4,
+            T300N.ITEM5 as item5,
+            T300N.ITEM6 as item6,
+            T300N.ITEM7 as item7,
+            T300N.ITEM8 as item8,
+            T300N.ITEM9 as item9,
+            T300N.ITEM10 as item10
+        FROM
+            wp_t300_drcr_note T300N
+        where 
+            1 = 1
+        and T300N.STATUS = 'Y'
+        and T300N.FUND_ID = #{fundId}
+        and T300N.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT300RaiseData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    sfri.`LEVEL` AS `level`,
+		    sfri.AMOUNT AS amount,
+		    sfri.UNITS AS units 
+		FROM
+		    sys_fund_raise_info sfri 
+		WHERE
+		    1 = 1 
+		    AND sfri.FUND_ID = #{fundId}
+		    AND sfri.ACTIVE = 'Y'
+    </select>
 
 </mapper>
