@@ -123,7 +123,9 @@ public class GExportService extends BaseExportService implements GExportManager{
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("GExportMapper.selectG300Data", queryMap);
-        if(CollectionUtils.isEmpty(metaDataList)) {return result;}
+        if(CollectionUtils.isEmpty(metaDataList)) {
+            metaDataList = new ArrayList<>();
+        }
         
         for(Map<String,Object> map : metaDataList) {
             if("1221".equals(map.get("accountNum"))) {

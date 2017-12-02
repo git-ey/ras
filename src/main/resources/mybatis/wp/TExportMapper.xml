@@ -1,4 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="TExportMapper">
+
+    <select id="selectTData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    T.EY_ACCOUNT_NUM as accountNum,
+		    T.AMOUNT_CURRENT as amountCurrent,
+		    T.AMOUNT_ADJ_CR as crAmountAdj,
+		    T.AMOUNT_ADJ_DR as drAmountAdj,
+		    T.AMOUNT_AUDIT_LAST as amountAuditLast
+		FROM
+		    wp_t T
+		where 
+		    1 = 1
+		and T.STATUS = 'Y'
+        and T.FUND_ID = #{fundId}
+        and T.PERIOD = #{period}
+    </select>
+
 </mapper>
