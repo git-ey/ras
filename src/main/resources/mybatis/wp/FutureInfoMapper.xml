@@ -118,4 +118,27 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.PERIOD},	
+		#{pd.FUTURE_CODE},	
+		#{pd.FUTURE_NAME},	
+		#{pd.MARKET},	
+		#{pd.SUB_TYPE},	
+		#{pd.OBJECT},	
+		#{pd.MULTIPLIER},	
+		#{pd.UNIT_SETTL_PRICE},	
+		#{pd.FUTUREINFO_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>

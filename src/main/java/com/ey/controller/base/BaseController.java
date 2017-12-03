@@ -117,6 +117,32 @@ public class BaseController {
 	protected final static String SLI_IMPORT_TEMPLATE_CODE = "SLI";
 	
 	/**
+	 * SVI估值方法索引导入模版代码
+	 */
+	protected final static String SVI_IMPORT_TEMPLATE_CODE = "SVI";
+	
+	/**
+	 * EFI基金投资信息导入模版代码
+	 */
+	protected final static String EFI_IMPORT_TEMPLATE_CODE = "EFI";
+	
+	/**
+	 * EFUI期货投资信息导入模版代码
+	 */
+	protected final static String EFUI_IMPORT_TEMPLATE_CODE = "EFUI";
+	
+	/**
+	 * EBI债券投资信息导入模版代码
+	 */
+	protected final static String EBI_IMPORT_TEMPLATE_CODE = "EBI";
+	
+	/**
+	 * BLI债券流通受限信息导入模版代码
+	 */
+	protected final static String BLI_IMPORT_TEMPLATE_CODE = "BLI";
+	
+	
+	/**
 	 * new PageData对象
 	 * 
 	 * @return

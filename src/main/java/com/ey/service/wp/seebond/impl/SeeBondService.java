@@ -1,4 +1,4 @@
-package com.ey.service.system.seebond.impl;
+package com.ey.service.wp.seebond.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +8,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.service.wp.seebond.SeeBondManager;
 import com.ey.util.AppUtil;
 import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
-import com.ey.service.system.seebond.SeeBondManager;
 
 /** 
  * 说明： 中证估值
@@ -95,9 +95,10 @@ public class SeeBondService implements SeeBondManager{
 		int idx = 1;
 		List<PageData> pds = new ArrayList<PageData>();
 		for (Map<String, Object> map : maps) {
-			if (null != map.get("VALUE_DATE")) {
+			if (null != map.get("PERIOD")) {
 				PageData pd = new PageData();
 				pd.put("SEEBOND_ID", UuidUtil.get32UUID());
+				pd.put("PERIOD", map.get("PERIOD"));
 				pd.put("VALUE_DATE", map.get("VALUE_DATE"));
 				pd.put("SHH_CODE", map.get("SHH_CODE"));
 				pd.put("SHZ_CODE", map.get("SHZ_CODE"));

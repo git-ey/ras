@@ -129,4 +129,32 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+		
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.MMF},	
+		#{pd.TYPE},	
+		#{pd.MARKET},	
+		#{pd.SUB_TYPE},	
+		#{pd.TRX_STATUS},	
+		#{pd.INTEREST_MODE},	
+		#{pd.VAL_TYPE_INDEX},	
+		#{pd.VAL_TYPE_CODE},	
+		#{pd.VAL_TYPE_DEXS},	
+		#{pd.VAL_BASE_SOURCE},	
+		#{pd.VAL_COLUMN},	
+		#{pd.THREE_LEVEL},	
+		#{pd.VALUEATIONINDEX_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>

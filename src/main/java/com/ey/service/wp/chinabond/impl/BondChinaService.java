@@ -1,4 +1,4 @@
-package com.ey.service.system.chinabond.impl;
+package com.ey.service.wp.chinabond.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.service.system.chinabond.BondChinaManager;
+import com.ey.service.wp.chinabond.BondChinaManager;
 import com.ey.util.AppUtil;
 import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
@@ -97,12 +97,14 @@ public class BondChinaService implements BondChinaManager{
 		int idx = 1;
 		List<PageData> pds = new ArrayList<PageData>();
 		for (Map<String, Object> map : maps) {
-			if (null != map.get("BOND_CODE")) {
+			if (null != map.get("PERIOD")) {
 				PageData pd = new PageData();
 				pd.put("CHINABOND_ID", UuidUtil.get32UUID());
+				pd.put("PERIOD", map.get("PERIOD"));
 				pd.put("BOND_CODE", map.get("BOND_CODE"));
 				pd.put("BOND_NAME", map.get("BOND_NAME"));
 				pd.put("VALUE_DATE", map.get("VALUE_DATE"));
+				pd.put("MARKET", map.get("MARKET"));
 				pd.put("VALUATION_NET_PRICE", map.get("VALUATION_NET_PRICE"));
 				pd.put("VALUATION_RETURN", map.get("VALUATION_RETURN"));
 				pd.put("DURATION", map.get("DURATION"));

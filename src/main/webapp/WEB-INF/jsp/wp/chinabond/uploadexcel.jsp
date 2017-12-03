@@ -14,7 +14,7 @@
 <base href="<%=basePath%>">
 
 <!-- jsp文件头和头部 -->
-<%@ include file="../index/top.jsp"%>
+<%@ include file="../../system/index/top.jsp"%>
 
 </head>
 <body class="no-skin">
@@ -27,7 +27,7 @@
 				<div class="page-content">
 					<div class="row">
 						<div class="col-xs-12">
-							<form action="seebond/readExcel.do" name="Form" id="Form" method="post" enctype="multipart/form-data">
+							<form action="chinabond/readExcel.do" name="Form" id="Form" method="post" enctype="multipart/form-data">
 								<div id="zhongxin">
 								<table style="width:95%;" >
 									<tr>
@@ -37,7 +37,7 @@
 										<td style="text-align: center;padding-top: 10px;">
 											<a class="btn btn-mini btn-primary" onclick="save();">导入</a>
 											<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>
-											<a class="btn btn-mini btn-success" onclick="window.location.href='<%=basePath%>/seebond/downExcel.do'">下载模版</a>
+											<a class="btn btn-mini btn-success" onclick="window.location.href='<%=basePath%>/chinabond/downExcel.do'">下载模版</a>
 										</td>
 									</tr>
 								</table>
@@ -58,7 +58,7 @@
 
 	<!-- basic scripts -->
 	<!-- 页面底部js¨ -->
-	<%@ include file="../index/foot.jsp"%>
+	<%@ include file="../../system/index/foot.jsp"%>
 	<!-- ace scripts -->
 	<script src="static/ace/js/ace/ace.js"></script>
 	<!-- 上传控件 -->

@@ -267,8 +267,8 @@
 			 diag.Drag=true;
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>chinabond/goAdd.do';
-			 diag.Width = 800;
-			 diag.Height = 500;
+			 diag.Width = 700;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -305,8 +305,8 @@
 			 diag.Drag=true;
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>chinabond/goEdit.do?BONDCHINA_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 500;
+			 diag.Width = 700;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 

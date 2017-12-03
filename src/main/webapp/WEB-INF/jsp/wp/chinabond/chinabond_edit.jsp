@@ -32,34 +32,40 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
+								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="255" title="期间" style="width:98%;"/></td>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">流通场所:</td>
+								<td><input type="text" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="255" title="流通场所" style="width:98%;"/></td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券简称:</td>
-								<td><input type="text" name="BOND_NAME" id="BOND_NAME" value="${pd.BOND_NAME}" maxlength="255" placeholder="这里输入债券简称" title="债券简称" style="width:98%;"/></td>
+								<td><input type="text" name="BOND_NAME" id="BOND_NAME" value="${pd.BOND_NAME}" maxlength="255" title="债券简称" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券代码:</td>
-								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="255" placeholder="这里输入债券代码" title="债券代码" style="width:98%;"/></td>
+								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="255" title="债券代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值日期:</td>
-								<td><input class="span10 date-picker" name="VALUE_DATE" id="VALUE_DATE" value="${pd.VALUE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="估值日期" title="估值日期" style="width:98%;"/></td>
+								<td><input class="span10 date-picker" name="VALUE_DATE" id="VALUE_DATE" value="${pd.VALUE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="估值日期" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估价净价:</td>
-								<td><input type="number" name="VALUATION_NET_PRICE" id="VALUATION_NET_PRICE" value="${pd.VALUATION_NET_PRICE}" maxlength="32" placeholder="这里输入估价净价" title="估价净价" style="width:98%;"/></td>
+								<td><input type="number" name="VALUATION_NET_PRICE" id="VALUATION_NET_PRICE" value="${pd.VALUATION_NET_PRICE}" maxlength="32" title="估价净价" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估价收益率:</td>
-								<td><input type="number" name="VALUATION_RETURN" id="VALUATION_RETURN" value="${pd.VALUATION_RETURN}" maxlength="32" placeholder="这里输入估价收益率" title="估价收益率" style="width:98%;"/></td>
+								<td><input type="number" name="VALUATION_RETURN" id="VALUATION_RETURN" value="${pd.VALUATION_RETURN}" maxlength="32"  title="估价收益率" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估价修正久期:</td>
-								<td><input type="number" name="DURATION" id="DURATION" value="${pd.DURATION}" maxlength="32" placeholder="这里输入估价修正久期" title="估价修正久期" style="width:98%;"/></td>
+								<td><input type="number" name="DURATION" id="DURATION" value="${pd.DURATION}" maxlength="32" title="估价修正久期" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估价凸性:</td>
-								<td><input type="number" name="CONVEXITY" id="CONVEXITY" value="${pd.CONVEXITY}" maxlength="32" placeholder="这里输入估价凸性" title="估价凸性" style="width:98%;"/></td>
+								<td><input type="number" name="CONVEXITY" id="CONVEXITY" value="${pd.CONVEXITY}" maxlength="32" title="估价凸性" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">可信度:</td>
-								<td><input type="text" name="RELIABILITY" id="RELIABILITY" value="${pd.RELIABILITY}" maxlength="255" placeholder="这里输入可信度" title="可信度" style="width:98%;"/></td>
+								<td><input type="text" name="RELIABILITY" id="RELIABILITY" value="${pd.RELIABILITY}" maxlength="255" title="可信度" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">日终估价全价:</td>
-								<td><input type="number" name="VALUATION_PRICE_END" id="VALUATION_PRICE_END" value="${pd.VALUATION_PRICE_END}" maxlength="32" placeholder="这里输入日终估价全价" title="日终估价全价" style="width:98%;"/></td>
+								<td><input type="number" name="VALUATION_PRICE_END" id="VALUATION_PRICE_END" value="${pd.VALUATION_PRICE_END}" maxlength="32" title="日终估价全价" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">日终应计利息:</td>
-								<td><input type="number" name="INTEREST_END" id="INTEREST_END" value="${pd.INTEREST_END}" maxlength="32" placeholder="这里输入日终应计利息" title="日终应计利息" style="width:98%;"/></td>
+								<td><input type="number" name="INTEREST_END" id="INTEREST_END" value="${pd.INTEREST_END}" maxlength="32" title="日终应计利息" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

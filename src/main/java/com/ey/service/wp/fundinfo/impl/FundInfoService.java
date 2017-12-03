@@ -1,11 +1,16 @@
 package com.ey.service.wp.fundinfo.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.util.AppUtil;
 import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 import com.ey.service.wp.fundinfo.FundInfoManager;
 
 /** 
@@ -76,6 +81,46 @@ public class FundInfoService implements FundInfoManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("FundInfoMapper.deleteAll", ArrayDATA_IDS);
+	}
+	
+	/**
+	 * 批量新增
+	 * 
+	 * @param pds
+	 * @throws Exception
+	 */
+	@Override
+    public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			if (null != map.get("PERIOD")) {
+				PageData pd = new PageData();
+				pd.put("FUNDINFO_ID", UuidUtil.get32UUID());
+				pd.put("PERIOD", map.get("PERIOD"));
+				pd.put("FUND_CODE", map.get("FUND_CODE"));
+				pd.put("FUND_NAME", map.get("FUND_NAME"));
+				pd.put("FUND_FULLNAME", map.get("FUND_FULLNAME"));
+				pd.put("MARKET", map.get("MARKET"));
+				pd.put("TRX_STATUS", map.get("TRX_STATUS"));
+				pd.put("RE_STATUS", map.get("RE_STATUS"));
+				pd.put("CLOSING_PRICE", map.get("CLOSING_PRICE"));
+				pd.put("UNIT_NAV", map.get("UNIT_NAV"));
+				pds.add(pd);
+				idx++;
+			}
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("FundInfoMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("FundInfoMapper.saveBatch", pds);
+		}
 	}
 	
 }

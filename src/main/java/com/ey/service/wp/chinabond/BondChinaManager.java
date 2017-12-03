@@ -1,4 +1,4 @@
-package com.ey.service.system.seebond;
+package com.ey.service.wp.chinabond;
 
 import java.util.List;
 import java.util.Map;
@@ -7,12 +7,12 @@ import com.ey.entity.Page;
 import com.ey.util.PageData;
 
 /** 
- * 说明： 中证估值接口
+ * 说明： 中债估值接口
  * 创建人：andychen
  * 创建时间：2017-11-23
  * @version
  */
-public interface SeeBondManager{
+public interface BondChinaManager{
 
 	/**新增
 	 * @param pd

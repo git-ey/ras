@@ -1,4 +1,4 @@
-package com.ey.controller.system.chinabond;
+package com.ey.controller.wp.seebond;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -24,8 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
-import com.ey.service.system.chinabond.BondChinaManager;
 import com.ey.service.system.loger.LogerManager;
+import com.ey.service.wp.seebond.SeeBondManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
 import com.ey.util.FileDownload;
@@ -36,17 +36,17 @@ import com.ey.util.PathUtil;
 import com.ey.util.fileimport.MapResult;
 
 /** 
- * 说明：中债估值
+ * 说明：中证估值
  * 创建人：andychen
  * 创建时间：2017-11-23
  */
 @Controller
-@RequestMapping(value="/chinabond")
-public class ChinaBondController extends BaseController {
+@RequestMapping(value="/seebond")
+public class SeeBondController extends BaseController {
 	
-	String menuUrl = "chinabond/list.do"; //菜单地址(权限用)
-	@Resource(name="chinabondService")
-	private BondChinaManager chinabondService;
+	String menuUrl = "seebond/list.do"; //菜单地址(权限用)
+	@Resource(name="seebondService")
+	private SeeBondManager seebondService;
 	@Resource(name = "logService")
 	private LogerManager logManager;
 	
@@ -56,13 +56,15 @@ public class ChinaBondController extends BaseController {
 	 */
 	@RequestMapping(value="/save")
 	public ModelAndView save() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"新增BondChina");
+		logBefore(logger, Jurisdiction.getUsername()+"新增SeeBond");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("BONDCHINA_ID", this.get32UUID());	//主键
-		chinabondService.save(pd);
+		pd.put("SEEBOND_ID", this.get32UUID());	//主键
+		pd.put("ACTIVE", "Y");	//启用
+		pd.put("STATUS", "");	//状态
+		seebondService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -74,11 +76,11 @@ public class ChinaBondController extends BaseController {
 	 */
 	@RequestMapping(value="/delete")
 	public void delete(PrintWriter out) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"删除BondChina");
+		logBefore(logger, Jurisdiction.getUsername()+"删除SeeBond");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		chinabondService.delete(pd);
+		seebondService.delete(pd);
 		out.write("success");
 		out.close();
 	}
@@ -89,12 +91,12 @@ public class ChinaBondController extends BaseController {
 	 */
 	@RequestMapping(value="/edit")
 	public ModelAndView edit() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"修改BondChina");
+		logBefore(logger, Jurisdiction.getUsername()+"修改SeeBond");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		chinabondService.edit(pd);
+		seebondService.edit(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -106,7 +108,7 @@ public class ChinaBondController extends BaseController {
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView list(Page page) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"列表BondChina");
+		logBefore(logger, Jurisdiction.getUsername()+"列表SeeBond");
 		//if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限(无权查看时页面会有提示,如果不注释掉这句代码就无法进入列表页面,所以根据情况是否加入本句代码)
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
@@ -116,8 +118,8 @@ public class ChinaBondController extends BaseController {
 			pd.put("keywords", keywords.trim());
 		}
 		page.setPd(pd);
-		List<PageData>	varList = chinabondService.list(page);	//列出BondChina列表
-		mv.setViewName("system/chinabond/chinabond_list");
+		List<PageData>	varList = seebondService.list(page);	//列出SeeBond列表
+		mv.setViewName("wp/seebond/seebond_list");
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
@@ -133,7 +135,7 @@ public class ChinaBondController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		mv.setViewName("system/chinabond/chinabond_edit");
+		mv.setViewName("wp/seebond/seebond_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -148,8 +150,8 @@ public class ChinaBondController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd = chinabondService.findById(pd);	//根据ID读取
-		mv.setViewName("system/chinabond/chinabond_edit");
+		pd = seebondService.findById(pd);	//根据ID读取
+		mv.setViewName("wp/seebond/seebond_edit");
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;
@@ -162,7 +164,7 @@ public class ChinaBondController extends BaseController {
 	@RequestMapping(value="/deleteAll")
 	@ResponseBody
 	public Object deleteAll() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"批量删除BondChina");
+		logBefore(logger, Jurisdiction.getUsername()+"批量删除SeeBond");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return null;} //校验权限
 		PageData pd = new PageData();		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -171,7 +173,7 @@ public class ChinaBondController extends BaseController {
 		String DATA_IDS = pd.getString("DATA_IDS");
 		if(null != DATA_IDS && !"".equals(DATA_IDS)){
 			String ArrayDATA_IDS[] = DATA_IDS.split(",");
-			chinabondService.deleteAll(ArrayDATA_IDS);
+			seebondService.deleteAll(ArrayDATA_IDS);
 			pd.put("msg", "ok");
 		}else{
 			pd.put("msg", "no");
@@ -190,7 +192,7 @@ public class ChinaBondController extends BaseController {
 	@RequestMapping(value = "/goUploadExcel")
 	public ModelAndView goUploadExcel() throws Exception {
 		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("system/chinabond/uploadexcel");
+		mv.setViewName("wp/seebond/uploadexcel");
 		return mv;
 	}
 
@@ -202,8 +204,8 @@ public class ChinaBondController extends BaseController {
 	 */
 	@RequestMapping(value = "/downExcel")
 	public void downExcel(HttpServletResponse response) throws Exception {
-		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "China_Bond.xls",
-				"China_Bond.xlsx");
+		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "See_Bond.xlsx",
+				"See_Bond.xlsx");
 	}
 
 	/**
@@ -216,15 +218,15 @@ public class ChinaBondController extends BaseController {
 	@RequestMapping(value = "/readExcel")
 	public ModelAndView readExcel(@RequestParam(value = "excel", required = false) MultipartFile file)
 			throws Exception {
-		logManager.save(Jurisdiction.getUsername(), "从EXCEL导入中债估值到数据库");
+		logManager.save(Jurisdiction.getUsername(), "从EXCEL导入中证估值到数据库");
 		ModelAndView mv = this.getModelAndView();
 		if (!Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
 			return null;
 		}
-		MapResult mapResult = readExcel(file, SCB_IMPORT_TEMPLATE_CODE);
+		MapResult mapResult = readExcel(file, SSB_IMPORT_TEMPLATE_CODE);
 		/* 存入数据库操作====================================== */
 		List<Map> maps = mapResult.getResult();
-		chinabondService.saveBatch(maps);
+		seebondService.saveBatch(maps);
 		mv.addObject("msg", "success");
 		mv.setViewName("save_result");
 		return mv;
@@ -236,38 +238,44 @@ public class ChinaBondController extends BaseController {
 	 */
 	@RequestMapping(value="/excel")
 	public ModelAndView exportExcel() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"导出BondChina到excel");
+		logBefore(logger, Jurisdiction.getUsername()+"导出SeeBond到excel");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
 		ModelAndView mv = new ModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		Map<String,Object> dataMap = new HashMap<String,Object>();
 		List<String> titles = new ArrayList<String>();
-		titles.add("债券简称");	//1
-		titles.add("债券代码");	//2
-		titles.add("估值日期");	//3
-		titles.add("估价净价");	//4
-		titles.add("估价收益率");	//5
-		titles.add("估价修正久期");	//6
-		titles.add("估价凸性");	//7
-		titles.add("可信度");	//8
-		titles.add("日终估价全价");	//9
-		titles.add("日终应计利息");	//10
+		titles.add("期间");	//1
+		titles.add("估值日");	//2
+		titles.add("上海代码");	//3
+		titles.add("深圳代码");	//4
+		titles.add("银行间代码");	//5
+		titles.add("全价");	//6
+		titles.add("到期收益率");	//7
+		titles.add("修正久期");	//8
+		titles.add("凸性");	//9
+		titles.add("净价");	//10
+		titles.add("应收利息");	//11
+		titles.add("启用");	//12
+		titles.add("状态");	//13
 		dataMap.put("titles", titles);
-		List<PageData> varOList = chinabondService.listAll(pd);
+		List<PageData> varOList = seebondService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
 		for(int i=0;i<varOList.size();i++){
 			PageData vpd = new PageData();
-			vpd.put("var1", varOList.get(i).getString("BOND_NAME"));	    //1
-			vpd.put("var2", varOList.get(i).getString("BOND_CODE"));	    //2
-			vpd.put("var3", varOList.get(i).getString("VALUE_DATE"));	    //3
-			vpd.put("var4", varOList.get(i).get("VALUATION_NET_PRICE").toString());	//4
-			vpd.put("var5", varOList.get(i).get("VALUATION_RETURN").toString());	//5
-			vpd.put("var6", varOList.get(i).get("DURATION").toString());	//6
-			vpd.put("var7", varOList.get(i).get("CONVEXITY").toString());	//7
-			vpd.put("var8", varOList.get(i).getString("RELIABILITY"));	    //8
-			vpd.put("var9", varOList.get(i).get("VALUATION_PRICE_END").toString());	//9
-			vpd.put("var10", varOList.get(i).get("INTEREST_END").toString());	//10
+			vpd.put("var1", varOList.get(i).getString("PERIOD"));	    //1
+			vpd.put("var2", varOList.get(i).getString("VALUE_DATE"));   //2
+			vpd.put("var3", varOList.get(i).getString("SHH_CODE"));	    //3
+			vpd.put("var4", varOList.get(i).getString("SHZ_CODE"));	    //4
+			vpd.put("var5", varOList.get(i).getString("INTER_BANK_CODE"));	    //5
+			vpd.put("var6", varOList.get(i).get("CALCULATION_PRICE").toString());	//6
+			vpd.put("var7", varOList.get(i).get("YIELD_TO_MATURITY").toString());	//7
+			vpd.put("var8", varOList.get(i).get("MODIFIED_DURATION").toString());	//8
+			vpd.put("var9", varOList.get(i).get("CONVEXITY").toString());	//9
+			vpd.put("var10", varOList.get(i).get("CLEAN_PRICE").toString());	//10
+			vpd.put("var11", varOList.get(i).get("ACCRUED_INTEREST").toString());	//11
+			vpd.put("var12", varOList.get(i).getString("ACTIVE"));	    //12
+			vpd.put("var13", varOList.get(i).getString("STATUS"));	    //13
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

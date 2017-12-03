@@ -369,7 +369,6 @@
 			});
 		};
 		
-		
 		//打开上传excel页面
 		function fromExcel(){
 			 top.jzts();

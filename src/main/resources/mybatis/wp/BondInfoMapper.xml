@@ -202,4 +202,55 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.PERIOD},	
+		#{pd.BOND_CODE},	
+		#{pd.BOND_NAME},	
+		#{pd.FULL_NAME},	
+		#{pd.MARKET},	
+		#{pd.BOND_TYPE},	
+		#{pd.SUSPENSION},	
+		#{pd.SUSPENSION_INFO},	
+		#{pd.PAR_VALUE_ISSUE},	
+		#{pd.PAR_VALUE_LAST},	
+		#{pd.COUPON_RATE},	
+		#{pd.ISSUE_PRICE},	
+		#{pd.DATE_FROM},	
+		#{pd.DATE_TO},	
+		#{pd.DATE_PAY},	
+		#{pd.INTEREST_MODE},	
+		#{pd.PAYMENT_METHOD},	
+		#{pd.PAYMENT_TIMES_YEAR},	
+		#{pd.INTEREST_PAY_METHOD},	
+		#{pd.PAY_DATE_YEAR},	
+		#{pd.PAY_DATE_LAST},	
+		#{pd.PAY_DATE_NEXT},	
+		#{pd.BOND_RATING},	
+		#{pd.BOND_RATING_ORG},	
+		#{pd.BOND_RATING_DATE},	
+		#{pd.ENTITY_RATING},	
+		#{pd.ENTITY_RATING_ORG},	
+		#{pd.ENTITY_RATING_DATE},	
+		#{pd.TAX_FREE},	
+		#{pd.TAX_RATE},	
+		#{pd.SPECIAL_CLAUSE},	
+		#{pd.EARLY_EXERCISE},	
+		#{pd.YEAR_N},	
+		#{pd.INTEREST_RATE_OPTION},	
+		#{pd.SELL_BACK},	
+		#{pd.REDEMPTION},	
+		#{pd.BONDINFO_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>
