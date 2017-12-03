@@ -103,5 +103,30 @@
         and T300A.PERIOD = #{period}
         ORDER BY T300A.SORT
     </select>
+    
+    <select id="selectT310Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    T310.`LEVEL` as `level`,
+		    T310.SEQ as seq,
+		    IFNULL(DATE_FORMAT(T310.BONUS_DATE,'%Y-%m-%d'),'2000-01-01') as bonusDate,
+		    IFNULL(DATE_FORMAT(T310.REGISTRATION_DATE,'%Y-%m-%d'),'2000-01-01') as registrationDate,
+		    IFNULL(DATE_FORMAT(T310.LISTED_DIVIDEND_DATE,'%Y-%m-%d'),'2000-01-01') as listedDividendDate,
+		    IFNULL(DATE_FORMAT(T310.UNLISTED_DIVIDEND_DATE,'%Y-%m-%d'),'2000-01-01') as unlistedDividendDate,
+		    T310.BONUS as bonus,
+		    T310.FUND_BEFORE_ALT as fundBeforeAlt,
+		    T310.PROFIT_CLIENT as profitClent,
+		    T310.FUND_AFTER_INVEST as fundAfterInvest,
+		    T310.PL_UNREALIZED as plUnrealized,
+		    T310.PL_REALIZED as plRealized,
+		    T310.CASH as cash
+		FROM
+		    wp_t310 T310
+		WHERE
+		    1 = 1
+        and T310.STATUS = 'Y'
+        and T310.FUND_ID = #{fundId}
+        and T310.PERIOD = #{period}
+        ORDER BY T310.SEQ
+    </select>
 
 </mapper>

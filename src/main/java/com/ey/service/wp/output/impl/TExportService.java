@@ -51,7 +51,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         
         dataMap.put("T", this.getTData(fundId, periodStr));
         dataMap.put("T300", this.getT300Data(fundId, periodStr));
-//        dataMap.put("E400", this.getE400Data(fundId, periodStr));
+        dataMap.put("T310", this.getT310Data(fundId, periodStr));
 //        dataMap.put("E410", this.getE410Data(fundId, periodStr));
 //        dataMap.put("E41X", this.getE41XData(fundId, periodStr));
 //        dataMap.put("E500", this.getE500Data(fundId, periodStr));
@@ -254,7 +254,7 @@ public class TExportService extends BaseExportService implements TExportManager{
                     items.add(item);
                 }
             }
-            Map<String, Map<String, List<Map<String, Object>>>> groups = adjMetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
+            Map<String, Map<String, List<Map<String, Object>>>> groups = adjMetaDataList.stream().collect(Collectors.groupingBy(item -> {
                 Map<String,Object> map = (Map<String,Object>) item;
                 return String.valueOf(map.get("sort"));
             }, Collectors.groupingBy(item -> {
@@ -290,6 +290,49 @@ public class TExportService extends BaseExportService implements TExportManager{
         result.put("note", note);
         result.put("raise", raise);
         result.put("adj", adj);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页T310的数据
+     * @author Dai Zong 2017年12月04日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getT310Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT310Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        List<String> levelNames = metaDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        Map<String, List<Map<String, Object>>> groups = metaDataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String, Object> map = (Map<String, Object>)item;
+            return String.valueOf(map.get("level"));
+        }));
+        List<Object> levelMaps = new ArrayList<>();
+        for(String level : levelNames) {
+            List<Object> tempList = new ArrayList<>();
+            Map<String,Object> tempMap = new HashMap<>();
+            if(groups.get(level) != null) {
+                tempList.addAll(groups.get(level));
+            }
+            tempMap.put("list", tempList);
+            tempMap.put("count", tempList.size());
+            tempMap.put("levelName", level);
+            levelMaps.add(tempMap);
+        }
+        
+        result.put("levels", levelMaps);
+        result.put("levelCount", levelMaps.size());
         return result;
     }
     

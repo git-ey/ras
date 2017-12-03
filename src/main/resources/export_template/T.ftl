@@ -6807,9 +6807,7 @@
  </Worksheet>
  </#if>
  <Worksheet ss:Name="T310">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="148.5"/>
    <Column ss:StyleID="s75" ss:Width="96.75"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="108.75" ss:Span="1"/>
@@ -6904,6 +6902,8 @@
     <Cell ss:StyleID="s49"/>
     <Cell ss:StyleID="s132"/>
    </Row>
+   <#if T310.levelCount != 0>
+   <#list T310.levels as outer>
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s131"/>
     <Cell ss:StyleID="s131"/>
@@ -6921,8 +6921,9 @@
     <Cell ss:StyleID="s49"/>
     <Cell ss:StyleID="s132"/>
    </Row>
+   <#if extraFundInfo.structured == 'T'>
    <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s48"><Data ss:Type="String">X级基金份额本年分红如下：</Data></Cell>
+    <Cell ss:StyleID="s48"><Data ss:Type="String">${outer.levelName!}基金份额本年分红如下：</Data></Cell>
     <Cell ss:StyleID="s131"/>
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s43"/>
@@ -6938,6 +6939,7 @@
     <Cell ss:StyleID="s49"/>
     <Cell ss:StyleID="s132"/>
    </Row>
+   </#if>
    <Row ss:StyleID="s75">
     <Cell ss:MergeDown="3" ss:StyleID="m2413322651916"/>
     <Cell ss:MergeDown="3" ss:StyleID="m2413322651896"/>
@@ -7008,94 +7010,29 @@
     <Cell ss:StyleID="s142"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s140"/>
    </Row>
+   <#if outer.count != 0>
+   <#list outer.list as inner>
    <Row>
-    <Cell ss:StyleID="s143"><Data ss:Type="String">本年度第1次分红</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="String">本年度第${(inner.seq!0)?string('0')}次分红</Data></Cell>
     <Cell ss:StyleID="s349"><Data ss:Type="String">T30X</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">2016-12-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s219"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s218"><Data ss:Type="Number">183373604.75</Data></Cell>
-    <Cell ss:StyleID="s218" ss:Formula="=RC[-2]*RC[-1]/10"><Data ss:Type="Number">18337360.475000001</Data></Cell>
-    <Cell ss:StyleID="s212"><Data ss:Type="Number">18337390.030000001</Data></Cell>
-    <Cell ss:StyleID="s212" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">-29.554999999701977</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">1114119.98</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">221782.16</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">10021437.25</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=RC[-3]+RC[-2]+RC[-1]"><Data
-      ss:Type="Number">11357339.390000001</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">11</Data></Cell>
-    <Cell ss:StyleID="s214"
-     ss:Formula="=ROUND(RC[-7],2)-ROUND(SUM(RC[-2]:RC[-1]),2)"><Data
-      ss:Type="Number">6980039.6400000006</Data></Cell>
+    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">${inner.bonusDate!}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">${inner.registrationDate!}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">${inner.listedDividendDate!}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">${inner.unlistedDividendDate!}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s219"><Data ss:Type="Number">${(inner.bonus!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s218"><Data ss:Type="Number">${(inner.fundBeforeAlt!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s218" ss:Formula="=RC[-2]*RC[-1]/10"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s212"><Data ss:Type="Number">${(inner.profitClent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s212" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(inner.fundAfterInvest!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(inner.plUnrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(inner.plRealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=RC[-3]+RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(inner.cash!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s214" ss:Formula="=ROUND(RC[-7],2)-ROUND(SUM(RC[-2]:RC[-1]),2)"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">……</Data></Cell>
-    <Cell ss:StyleID="s349"><Data ss:Type="String">T30X</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="DateTime">2016-12-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s221"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s218"><Data ss:Type="Number">183373604.75</Data></Cell>
-    <Cell ss:StyleID="s218" ss:Formula="=RC[-2]*RC[-1]/10"><Data ss:Type="Number">18337360.475000001</Data></Cell>
-    <Cell ss:StyleID="s212"><Data ss:Type="Number">18337390.030000001</Data></Cell>
-    <Cell ss:StyleID="s212" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">-29.554999999701977</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">1114119.98</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">221782.16</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">10021437.25</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=RC[-3]+RC[-2]+RC[-1]"><Data
-      ss:Type="Number">11357339.390000001</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">11</Data></Cell>
-    <Cell ss:StyleID="s214"
-     ss:Formula="=ROUND(RC[-7],2)-ROUND(SUM(RC[-2]:RC[-1]),2)"><Data
-      ss:Type="Number">6980039.6400000006</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">……</Data></Cell>
-    <Cell ss:StyleID="s349"><Data ss:Type="String">T30X</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="DateTime">2016-12-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s221"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s218"><Data ss:Type="Number">183373604.75</Data></Cell>
-    <Cell ss:StyleID="s218" ss:Formula="=RC[-2]*RC[-1]/10"><Data ss:Type="Number">18337360.475000001</Data></Cell>
-    <Cell ss:StyleID="s212"><Data ss:Type="Number">18337390.030000001</Data></Cell>
-    <Cell ss:StyleID="s212" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">-29.554999999701977</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">1114119.98</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">221782.16</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">10021437.25</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=RC[-3]+RC[-2]+RC[-1]"><Data
-      ss:Type="Number">11357339.390000001</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">11</Data></Cell>
-    <Cell ss:StyleID="s214"
-     ss:Formula="=ROUND(RC[-7],2)-ROUND(SUM(RC[-2]:RC[-1]),2)"><Data
-      ss:Type="Number">6980039.6400000006</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s143"><Data ss:Type="String">本年度第n次分红</Data></Cell>
-    <Cell ss:StyleID="s349"><Data ss:Type="String">T30X</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">2016-12-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="DateTime">2016-12-13T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s219"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s218"><Data ss:Type="Number">183373604.75</Data></Cell>
-    <Cell ss:StyleID="s218" ss:Formula="=RC[-2]*RC[-1]/10"><Data ss:Type="Number">18337360.475000001</Data></Cell>
-    <Cell ss:StyleID="s212"><Data ss:Type="Number">18337390.030000001</Data></Cell>
-    <Cell ss:StyleID="s212" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">-29.554999999701977</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">1114119.98</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">221782.16</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">10021437.25</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=RC[-3]+RC[-2]+RC[-1]"><Data
-      ss:Type="Number">11357339.390000001</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">11</Data></Cell>
-    <Cell ss:StyleID="s214"
-     ss:Formula="=ROUND(RC[-7],2)-ROUND(SUM(RC[-2]:RC[-1]),2)"><Data
-      ss:Type="Number">6980039.6400000006</Data></Cell>
-   </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s75">
     <Cell ss:Index="7" ss:StyleID="s220"/>
     <Cell ss:StyleID="s215"/>
@@ -7114,14 +7051,14 @@
     <Cell ss:StyleID="s222" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">4</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s223"/>
-    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">73349560.120000005</Data></Cell>
-    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">-118.21999999880791</Data></Cell>
-    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">4456479.92</Data></Cell>
-    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">887128.64</Data></Cell>
-    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">40085749</Data></Cell>
-    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">45429357.560000002</Data></Cell>
-    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">44</Data></Cell>
-    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">27920158.560000002</Data></Cell>
+    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s223" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s75">
     <Cell ss:Index="7" ss:StyleID="s145"><Data ss:Type="String">^</Data></Cell>
@@ -7146,6 +7083,8 @@
     <Cell ss:StyleID="s147"><Data ss:Type="String">&lt;T11000&gt;</Data></Cell>
     <Cell ss:StyleID="s147"><Data ss:Type="String">&lt;NXXX&gt;</Data></Cell>
    </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s75">
     <Cell ss:Index="7" ss:StyleID="s147"/>
     <Cell ss:Index="10" ss:StyleID="s147"/>
