@@ -85,5 +85,23 @@
 		    AND sfri.FUND_ID = #{fundId}
 		    AND sfri.ACTIVE = 'Y'
     </select>
+    
+    <select id="selectT300AdjData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T300A.SORT as sort,
+            T300A.`LEVEL` as `level`,
+            T300A.ITEM as item,
+            T300A.UNITS as units,
+            T300A.AMOUNT as amount,
+            T300A.REFERENCE as reference
+        FROM
+            wp_t300_adj T300A 
+        WHERE
+            1 = 1
+        and T300A.STATUS = 'Y'
+        and T300A.FUND_ID = #{fundId}
+        and T300A.PERIOD = #{period}
+        ORDER BY T300A.SORT
+    </select>
 
 </mapper>

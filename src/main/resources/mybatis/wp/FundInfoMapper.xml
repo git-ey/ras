@@ -83,6 +83,35 @@
 			FUNDINFO_ID = #{FUNDINFO_ID}
 	</select>
 	
+	<!-- 底稿导出时查询基金基本信息 daigaokuo@hotmail.com 17-12-03 -->
+    <select id="selectFundInfo" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            sfi.FUND_ID as fundId,
+            sfi.SHORT_NAME as fundShortName,
+            sfi.FULL_NAME as fundFullName,
+            smc.SHORT_NAME as companyShortName
+        FROM
+            SYS_FUND_INFO sfi
+        inner join sys_mgrcompany smc on smc.COMPANY_CODE = sfi.FIRM_CODE
+        WHERE
+            1 = 1
+        AND sfi.ACTIVE = 'Y'
+        AND sfi.FUND_ID = #{fundId}
+    </select>
+    
+    <!-- 底稿导出时查询基金ETF信息 daigaokuo@hotmail.com 17-12-03 -->
+    <select id="selectETFFlag" parameterType="java.util.Map" resultType="java.util.Map"> 
+       SELECT
+            ifnull( sfi.ETF, 'N' ) AS ETF,
+            ifnull( sfi.ETF_CONNECTION, 'N') as ETF_CONNECTION
+        FROM
+            SYS_FUND_INFO sfi 
+        WHERE
+            1 = 1 
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+	
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">
 		select

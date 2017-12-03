@@ -3778,8 +3778,8 @@
    <Row>
     <Cell ss:StyleID="s87"/>
     <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></#if></Data></Cell>
     <Cell ss:StyleID="s57"/>
     <Cell ss:StyleID="s76"/>
    </Row>
@@ -4063,6 +4063,7 @@
     <Cell ss:StyleID="s119"/>
     <Cell ss:StyleID="s183"/>
    </Row>
+   <#if T300.adj.adjFlag == 'Y'>
    <Row>
     <Cell ss:StyleID="s103"><Data ss:Type="String">Note 4</Data></Cell>
     <Cell ss:StyleID="s112"/>
@@ -4079,92 +4080,27 @@
     <Cell ss:StyleID="s71"/>
     <Cell ss:StyleID="s71"/>
    </Row>
+   <#list T300.adj.items as outer>
    <Row>
-    <Cell ss:StyleID="s200"><Data ss:Type="String">上年度末</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="String">S/L</Data></Cell>
-    <Cell ss:StyleID="s202"><Data ss:Type="Number">35435003292.319946</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">14746375017.510012</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s71"/>
+    <#list outer.levels as inner>
+    <Cell ss:StyleID="s200"><Data ss:Type="String">${inner.item!}</Data></Cell>
+    <Cell ss:StyleID="s201"><Data ss:Type="String"><#if outer_index == 0>S/L</#if></Data></Cell>
+    <#if inner.item == '本期末'>
+    <Cell ss:StyleID="s202" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s203" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s202"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>
+    </#if>
+    <Cell><Data ss:Type="String">${inner.reference!}</Data></Cell>
+    <Cell/>
+    </#list>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间申购</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">3789854828.0300002</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">1576776364.9100001</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=-1460393128.15"><Data ss:Type="Number">-1460393128.1500001</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=-607701625.64"><Data ss:Type="Number">-607701625.63999999</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">2016年1月29日份额折算前</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-3]C+R[-2]C+R[-1]C"><Data
-      ss:Type="Number">37764464992.199944</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-3]C+R[-2]C+R[-1]C"><Data
-      ss:Type="Number">15715449756.780012</Data></Cell>
-    <Cell><Data ss:Type="String">注：份额与折算公告核对一致</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">基金份额折算调整</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=-13823577474.81"><Data ss:Type="Number">-13823577474.809999</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="String">注：份额与折算公告核对一致</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间申购</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">4640559733.4300003</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">3046105289.8200002</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=-12786661746.77"><Data ss:Type="Number">-12786661746.77</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=-8393733951.76"><Data ss:Type="Number">-8393733951.7600002</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">2016年12月15日份额折算前</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">15794785504.049946</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">10367821094.840014</Data></Cell>
-    <Cell><Data ss:Type="String">注：份额与折算公告核对一致</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">基金份额折算调整</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">294405639.79000002</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="String">注：份额与折算公告核对一致</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间申购</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">26510166.93</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">17084157.059999999</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=-104918202.61"><Data ss:Type="Number">-104918202.61</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=-67613567.84"><Data ss:Type="Number">-67613567.840000004</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">本期末</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data
-      ss:Type="Number">16010783108.159946</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data
-      ss:Type="Number">10317291684.060013</Data></Cell>
-   </Row>
+   </#list>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s112"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R14C6"><Data ss:Type="Number">14230877521.359947</Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R10C6"><Data ss:Type="Number">8537386097.2600126</Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R14C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R10C6"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s198"/>
@@ -4187,6 +4123,7 @@
     <Cell ss:StyleID="s104"><Data ss:Type="String">注3</Data></Cell>
     <Cell ss:StyleID="s347"><Data ss:Type="String">本基金于2016年12月15日进行定期份额折算，对富国军工A份额和富国军工份额按照基金合同规定的定期份额折算方法进行份额调整。根据基金管理人于2016年12月19日发布的《关于富国中证军工指数分级证券投资基金定期份额折算结果及恢复交易的公告》，折算前富国军工份额为10,518,556,580.05份，富国军工A份额为2,638,114,462.00份；折算后富国军工份额为10,812,962,219.84份，富国军工A份额为2,638,114,462.00份。</Data></Cell>
    </Row>
+   </#if>
    <Row/>
    <Row/>
    <Row>
@@ -4695,6 +4632,7 @@
     <Cell ss:StyleID="s71"/>
     <Cell ss:StyleID="s71"/>
    </Row>
+   <#if T300.adj.adjFlag == 'Y'>
    <Row>
     <Cell ss:StyleID="s103"><Data ss:Type="String">Note 4</Data></Cell>
     <Cell ss:StyleID="s112"/>
@@ -4703,99 +4641,41 @@
     <Cell ss:StyleID="s71"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">X级基金份额折算调整</Data></Cell>
+    <#list T300.adj.levels as level>
+    <Cell ss:StyleID="s198"><Data ss:Type="String">${level!}基金份额折算调整</Data></Cell>
     <Cell ss:StyleID="s112"/>
     <Cell ss:StyleID="s199"><Data ss:Type="String">份额</Data></Cell>
     <Cell ss:StyleID="s199"><Data ss:Type="String">金额</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s71"/>
     <Cell ss:StyleID="s71"/>
     <Cell ss:StyleID="s71"/>
+    </#list>
    </Row>
+   <#list T300.adj.items as outer>
    <Row>
-    <Cell ss:StyleID="s200"><Data ss:Type="String">上年度末</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="String">S/L</Data></Cell>
-    <Cell ss:StyleID="s202"><Data ss:Type="Number">35435003292.319946</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">14746375017.510012</Data></Cell>
+    <#list outer.levels as inner>
+    <Cell ss:StyleID="s200"><Data ss:Type="String">${inner.item!}</Data></Cell>
+    <Cell ss:StyleID="s201"><Data ss:Type="String"><#if outer_index == 0>S/L</#if></Data></Cell>
+    <#if inner.item == '本期末'>
+    <Cell ss:StyleID="s202" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s203" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s202"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>
+    </#if>
+    <Cell><Data ss:Type="String">${inner.reference!}</Data></Cell>
+    <Cell/>
+    </#list>
    </Row>
+   </#list>
    <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间申购</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">3789854828.0300002</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">1576776364.9100001</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=-1460393128.15"><Data ss:Type="Number">-1460393128.1500001</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=-607701625.64"><Data ss:Type="Number">-607701625.63999999</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">2016年1月29日份额折算前</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-3]C+R[-2]C+R[-1]C"><Data
-      ss:Type="Number">37764464992.199944</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-3]C+R[-2]C+R[-1]C"><Data
-      ss:Type="Number">15715449756.780012</Data></Cell>
-    <Cell><Data ss:Type="String">注：份额与折算公告核对一致</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">基金份额折算调整</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=-13823577474.81"><Data ss:Type="Number">-13823577474.809999</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="String">注：份额与折算公告核对一致</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间申购</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">4640559733.4300003</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">3046105289.8200002</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=-12786661746.77"><Data ss:Type="Number">-12786661746.77</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=-8393733951.76"><Data ss:Type="Number">-8393733951.7600002</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">2016年12月15日份额折算前</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">15794785504.049946</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">10367821094.840014</Data></Cell>
-    <Cell><Data ss:Type="String">注：份额与折算公告核对一致</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">基金份额折算调整</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">294405639.79000002</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="String">注：份额与折算公告核对一致</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间申购</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">26510166.93</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">17084157.059999999</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">期间赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=-104918202.61"><Data ss:Type="Number">-104918202.61</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=-67613567.84"><Data ss:Type="Number">-67613567.840000004</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">本期末</Data></Cell>
-    <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data
-      ss:Type="Number">16010783108.159946</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data
-      ss:Type="Number">10317291684.060013</Data></Cell>
-   </Row>
-   <Row>
+    <#list T300.adj.levels as level>
     <Cell ss:StyleID="s204"><Data ss:Type="String">control</Data></Cell>
     <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R[-62]C[3]"><Data ss:Type="Number">15028555688.529947</Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R[-71]C[2]"><Data ss:Type="Number">10317291684.060013</Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R${(18+level_index+T300.main.count)}C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R${(12+level_index)}C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    </#list>
    </Row>
    <Row>
     <Cell ss:StyleID="s198"/>
@@ -4818,6 +4698,7 @@
     <Cell ss:StyleID="s104"><Data ss:Type="String">注3</Data></Cell>
     <Cell ss:StyleID="s347"><Data ss:Type="String">本基金于2016年12月15日进行定期份额折算，对富国军工A份额和富国军工份额按照基金合同规定的定期份额折算方法进行份额调整。根据基金管理人于2016年12月19日发布的《关于富国中证军工指数分级证券投资基金定期份额折算结果及恢复交易的公告》，折算前富国军工份额为10,518,556,580.05份，富国军工A份额为2,638,114,462.00份；折算后富国军工份额为10,812,962,219.84份，富国军工A份额为2,638,114,462.00份。</Data></Cell>
    </Row>
+   </#if>
    <Row/>
    <Row/>
    <Row>
@@ -5034,8 +4915,8 @@
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s144"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s317"/>
     <Cell ss:StyleID="s300"/>
     <Cell ss:StyleID="s300"/>
@@ -5732,8 +5613,8 @@
     <Cell ss:StyleID="s144"/>
     <Cell ss:StyleID="s144"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s317"/>
     <Cell ss:StyleID="s300"/>
     <Cell ss:StyleID="s300"/>
@@ -6210,86 +6091,68 @@
     <Cell ss:Index="6" ss:StyleID="s72"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:MergeAcross="7" ss:StyleID="s446"><Data ss:Type="String">2017年度</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="<#if T300.main.count == 0>1<#else>${(2*T300.main.count-1)?string('0')}</#if>" ss:StyleID="s446"><Data ss:Type="String">2017年度</Data></Cell>
    </Row>
    <Row>
     <Cell ss:MergeDown="1" ss:StyleID="s398"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">A级</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">B级</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">C级</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">D级</Data></Cell>
+    <#if T300.main.count != 0>
+    <#list T300.main.list as item>
+    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">${item.level!}</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s368"><Data ss:Type="String">基金份额（份）</Data></Cell>
+    <#if T300.main.count != 0>
+    <#list T300.main.list as item>
+    <Cell <#if item_index == 0>ss:Index="2"</#if> ss:StyleID="s368"><Data ss:Type="String">基金份额（份）</Data></Cell>
     <Cell ss:StyleID="s368"><Data ss:Type="String">账面金额</Data></Cell>
-    <Cell ss:StyleID="s368"><Data ss:Type="String">基金份额（份）</Data></Cell>
-    <Cell ss:StyleID="s368"><Data ss:Type="String">账面金额</Data></Cell>
-    <Cell ss:StyleID="s368"><Data ss:Type="String">基金份额（份）</Data></Cell>
-    <Cell ss:StyleID="s368"><Data ss:Type="String">账面金额</Data></Cell>
-    <Cell ss:StyleID="s368"><Data ss:Type="String">基金份额（份）</Data></Cell>
-    <Cell ss:StyleID="s368"><Data ss:Type="String">账面金额</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row>
     <Cell ss:StyleID="s124"><Data ss:Type="String">上年度末</Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R[-56]C[1]"><Data ss:Type="Number">558154382.97000003</Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R[-66]C"><Data ss:Type="Number">558154382.97000003</Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R[-55]C[-1]"><Data ss:Type="Number">4731896235.7200003</Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R[-65]C[-2]"><Data ss:Type="Number">4731896235.7200003</Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R[-54]C[-3]"><Data ss:Type="Number">80418.89</Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R[-64]C[-4]"><Data ss:Type="Number">80418.89</Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R[-53]C[-5]"><Data ss:Type="Number">4825215.66</Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R[-63]C[-6]"><Data ss:Type="Number">4825215.66</Data></Cell>
+    <#if T300.main.count != 0>
+    <#list T300.main.list as item>
+    <Cell ss:StyleID="s336" ss:Formula="=R${(18+T300.main.count+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s336" ss:Formula="=R${(12+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row>
     <Cell ss:StyleID="s123"><Data ss:Type="String">本期申购</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R[-57]C[3]-R[-29]C[1]"><Data
-      ss:Type="Number">4561196602.6599998</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R[-67]C[2]-R[-29]C"><Data ss:Type="Number">4561196602.6599998</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R[-56]C[1]-R[-28]C[-1]"><Data
-      ss:Type="Number">42810856766.350006</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R[-66]C-R[-28]C[-2]"><Data
-      ss:Type="Number">42810856766.350006</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R[-55]C[-1]"><Data ss:Type="Number">242060232.72</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R[-65]C[-2]"><Data ss:Type="Number">242060232.72</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R[-54]C[-3]"><Data ss:Type="Number">63177904.829999998</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R[-64]C[-4]"><Data ss:Type="Number">63177904.829999998</Data></Cell>
+    <#if T300.main.count != 0>
+    <#list T300.main.list as item>
+    <Cell ss:StyleID="s125" ss:Formula="=R${(18+T300.main.count+item_index)?string('0')}C5-R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=R${(12+item_index)?string('0')}C5-R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row>
     <Cell ss:StyleID="s123"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R[-58]C[2]+R[-30]C[1]"><Data
-      ss:Type="Number">-4310905786.6300001</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R[-68]C[1]+R[-30]C"><Data
-      ss:Type="Number">-4310905786.6300001</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R[-57]C+R[-29]C[-1]"><Data
-      ss:Type="Number">-34898870376.010002</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R[-67]C[-1]+R[-29]C[-2]"><Data
-      ss:Type="Number">-34898870376.010002</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R[-56]C[-2]"><Data ss:Type="Number">-221454244.66999999</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R[-66]C[-3]"><Data ss:Type="Number">-221454244.66999999</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R[-55]C[-4]"><Data ss:Type="Number">-45459682.289999999</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R[-65]C[-5]"><Data ss:Type="Number">-45459682.289999999</Data></Cell>
+    <#if T300.main.count != 0>
+    <#list T300.main.list as item>
+    <Cell ss:StyleID="s125" ss:Formula="=-R${(18+T300.main.count+item_index)?string('0')}C4+R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=-R${(12+item_index)?string('0')}C4+R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row>
     <Cell ss:StyleID="s123"><Data ss:Type="String">本期末</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">808445199</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">808445199</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">12643882626.060005</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">12643882626.060005</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">20686406.939999998</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">20686406.939999998</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">22543438.199999996</Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">22543438.199999996</Data></Cell>
+    <#if T300.main.count != 0>
+    <#list T300.main.list as item>
+    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row>
     <Cell ss:StyleID="s337"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R[-60]C[4]"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R[-70]C[3]"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R[-59]C[2]"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R[-69]C[1]"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R[-58]C"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R[-68]C[-1]"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R[-57]C[-2]"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R[-67]C[-3]"><Data ss:Type="Number">0</Data></Cell>
+    <#if T300.main.count != 0>
+    <#list T300.main.list as item>
+    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R${(18+T300.main.count+item_index)?string('0')}C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R${(12+item_index)?string('0')}C6"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row/>
    <Row/>
@@ -6515,8 +6378,8 @@
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s144"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s317"/>
     <Cell ss:StyleID="s300"/>
    </Row>

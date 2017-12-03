@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.service.wp.output.TExportManager;
@@ -180,6 +182,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         main.put("list", mainMetaDataList);
         main.put("count", mainMetaDataList.size());
         //========process dataMap for main view end========
+        
         //========process dataMap for note view begin========
         Map<String, Object> note = new HashMap<>();
         Map<String, Object> note1 = new HashMap<>();
@@ -219,6 +222,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         note.put("note1", note1);
         note.put("note2", note2);
         //========process dataMap for note view end========
+        
         //========process dataMap for raise view begin========
         Map<String, Object> raise = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -230,9 +234,62 @@ public class TExportService extends BaseExportService implements TExportManager{
         raise.put("count", raiseMetaDataList.size());
         //========process dataMap for raise view end========
         
+        //========process dataMap for adj view begin========
+        Map<String, Object> adj = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> adjMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT300AdjData", queryMap);
+        if(CollectionUtils.isEmpty(adjMetaDataList)) {
+            adj.put("adjFlag", "N");
+        }else {
+            adj.put("adjFlag", "Y");
+            List<String> levels = new ArrayList<>();
+            List<String> items = new ArrayList<>();
+            for(Map<String,Object> map : adjMetaDataList) {
+                String level = String.valueOf(map.get("level"));
+                String item = String.valueOf(map.get("sort"));
+                if(!levels.contains(level)) {
+                    levels.add(level);
+                }
+                if(!items.contains(item)) {
+                    items.add(item);
+                }
+            }
+            Map<String, Map<String, List<Map<String, Object>>>> groups = adjMetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
+                Map<String,Object> map = (Map<String,Object>) item;
+                return String.valueOf(map.get("sort"));
+            }, Collectors.groupingBy(item -> {
+                Map<String,Object> map = (Map<String,Object>) item;
+                return String.valueOf(map.get("level"));
+            })));
+            
+            List<Map<String,Object>> itemMaps = new ArrayList<>();
+            for(String item : items) {
+                Map<String, List<Map<String, Object>>> outMap = groups.get(item);
+                if(outMap == null) {
+                    outMap = new HashMap<>();
+                }
+                Map<String,Object> container = new HashMap<>();
+                List<Map<String,Object>> levelMaps = new ArrayList<>();
+                for(String level : levels) {
+                    List<Map<String, Object>> innerMap = outMap.get(level);
+                    if(innerMap != null) {
+                        levelMaps.addAll(innerMap);
+                    }
+                }
+                container.put("levels", levelMaps);
+                container.put("levelCount", levelMaps.size());
+                itemMaps.add(container);
+            }
+            adj.put("items", itemMaps);
+            adj.put("itemCount", itemMaps.size());
+            adj.put("levels", levels);
+        }
+        //========process dataMap for adj view end========
+        
         result.put("main", main);
         result.put("note", note);
         result.put("raise", raise);
+        result.put("adj", adj);
         return result;
     }
     
