@@ -1,38 +1,60 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="FundInfoMapper">
+<mapper namespace="BondLimitInfoMapper">
 	
 	<!--表名 -->
 	<sql id="tableName">
-		EY_FUND_INFO
+		EY_BOND_LIMIT_INFO
 	</sql>
 	
 	<!-- 字段 -->
 	<sql id="Field">
 		PERIOD,	
-		FUND_CODE,	
-		FUND_NAME,	
-		FUND_FULLNAME,	
+		FIRM_CODE,	
+		FUND_ID,	
+		MMF,	
+		ACCOUNT_NUM,	
+		BOND_CODE,	
+		BOND_NAME,	
 		MARKET,	
+		SUB_TYPE,	
 		TRX_STATUS,	
-		RE_STATUS,	
-		CLOSING_PRICE,	
-		UNIT_NAV,	
-		FUNDINFO_ID
+		RESTRICT_TYPE,	
+		SUBSCRIBE_DATE,	
+		SUBSCRIBE_PRICE,	
+		LIFTING_DATE,	
+		SUSPENSION_DATE,	
+		SUSPENSION_INFO,	
+		RESUMPTION_DATE,	
+		RESMPATION_OPEN_PRICE,	
+		CREATOR,	
+		REVIEWER,	
+		BONDLIMITINFO_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
 		#{PERIOD},	
-		#{FUND_CODE},	
-		#{FUND_NAME},	
-		#{FUND_FULLNAME},	
+		#{FIRM_CODE},	
+		#{FUND_ID},	
+		#{MMF},	
+		#{ACCOUNT_NUM},	
+		#{BOND_CODE},	
+		#{BOND_NAME},	
 		#{MARKET},	
+		#{SUB_TYPE},	
 		#{TRX_STATUS},	
-		#{RE_STATUS},	
-		#{CLOSING_PRICE},	
-		#{UNIT_NAV},	
-		#{FUNDINFO_ID}
+		#{RESTRICT_TYPE},	
+		#{SUBSCRIBE_DATE},	
+		#{SUBSCRIBE_PRICE},	
+		#{LIFTING_DATE},	
+		#{SUSPENSION_DATE},	
+		#{SUSPENSION_INFO},	
+		#{RESUMPTION_DATE},	
+		#{RESMPATION_OPEN_PRICE},	
+		#{CREATOR},	
+		#{REVIEWER},	
+		#{BONDLIMITINFO_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -51,7 +73,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			FUNDINFO_ID = #{FUNDINFO_ID}
+			BONDLIMITINFO_ID = #{BONDLIMITINFO_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -60,17 +82,28 @@
 		<include refid="tableName"></include>
 		set 
 			PERIOD = #{PERIOD},
-			FUND_CODE = #{FUND_CODE},
-			FUND_NAME = #{FUND_NAME},
-			FUND_FULLNAME = #{FUND_FULLNAME},
+			FIRM_CODE = #{FIRM_CODE},
+			FUND_ID = #{FUND_ID},
+			MMF = #{MMF},
+			ACCOUNT_NUM = #{ACCOUNT_NUM},
+			BOND_CODE = #{BOND_CODE},
+			BOND_NAME = #{BOND_NAME},
 			MARKET = #{MARKET},
+			SUB_TYPE = #{SUB_TYPE},
 			TRX_STATUS = #{TRX_STATUS},
-			RE_STATUS = #{RE_STATUS},
-			CLOSING_PRICE = #{CLOSING_PRICE},
-			UNIT_NAV = #{UNIT_NAV},
-		FUNDINFO_ID = FUNDINFO_ID
+			RESTRICT_TYPE = #{RESTRICT_TYPE},
+			SUBSCRIBE_DATE = #{SUBSCRIBE_DATE},
+			SUBSCRIBE_PRICE = #{SUBSCRIBE_PRICE},
+			LIFTING_DATE = #{LIFTING_DATE},
+			SUSPENSION_DATE = #{SUSPENSION_DATE},
+			SUSPENSION_INFO = #{SUSPENSION_INFO},
+			RESUMPTION_DATE = #{RESUMPTION_DATE},
+			RESMPATION_OPEN_PRICE = #{RESMPATION_OPEN_PRICE},
+			CREATOR = #{CREATOR},
+			REVIEWER = #{REVIEWER},
+		BONDLIMITINFO_ID = BONDLIMITINFO_ID
 		where 
-		FUNDINFO_ID = #{FUNDINFO_ID}
+		BONDLIMITINFO_ID = #{BONDLIMITINFO_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -80,7 +113,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			FUNDINFO_ID = #{FUNDINFO_ID}
+			BONDLIMITINFO_ID = #{BONDLIMITINFO_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -93,11 +126,12 @@
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-				<!--	根据需求自己加检索条件
-					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				<!-- 根据需求自己加检索条件 -->
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
-					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				-->
+					FIRM_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					 or 
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
 		</if>
 	</select>
@@ -115,7 +149,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			FUNDINFO_ID in
+			BONDLIMITINFO_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>
