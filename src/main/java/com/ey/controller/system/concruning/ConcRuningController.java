@@ -187,6 +187,11 @@ public class ConcRuningController extends BaseController {
 		pd = this.getPageData();
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		List<PageData> varOList = concruningService.listLog(pd);
+		if(varOList == null || varOList.size() == 0){
+			List<String> titles = new ArrayList<String>();
+			titles.add("不存在日志记录");
+			dataMap.put("titles", titles);
+		}
 		List<PageData> varList = new ArrayList<PageData>();
 		for (int i = 0; i < varOList.size(); i++) {
 			// 构建Excel标题
