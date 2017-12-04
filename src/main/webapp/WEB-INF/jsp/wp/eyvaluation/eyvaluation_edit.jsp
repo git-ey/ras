@@ -36,26 +36,20 @@
 								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" placeholder="F+基金官方代码+#+2位顺序编码，如F600001#01" title="基金ID" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
 								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="10" placeholder="4位年" title="期间" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">估值日期:</td>
-								<td><input class="span10 date-picker" name="VDATE" id="VDATE" value="${pd.VDATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="比如2016-12-31" title="估值日期" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">EY科目代码:</td>
 								<td><input type="text" name="EY_ACCOUNT_NUM" id="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM}" maxlength="255" placeholder="根据映射表映射" title="EY科目代码" style="width:98%;"/></td>
 							</tr>
-							<tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">币种:</td>
 								<td><input type="text" name="CURRENCY" id="CURRENCY" value="${pd.CURRENCY}" maxlength="30" placeholder="这里输入币种" title="币种" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">汇率:</td>
 								<td><input type="number" name="EXCHANGE_RATE" id="EXCHANGE_RATE" value="${pd.EXCHANGE_RATE}" maxlength="32" placeholder="这里输入汇率" title="汇率" style="width:98%;"/></td>
-							</tr>
-							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
 								<td><input type="number" name="QUANTITY" id="QUANTITY" value="${pd.QUANTITY}" maxlength="32" placeholder="这里输入数量" title="数量" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">单位成本:</td>
-								<td><input type="number" name="UNIT_COST" id="UNIT_COST" value="${pd.UNIT_COST}" maxlength="32" placeholder="这里输入单位成本" title="单位成本" style="width:98%;"/></td>
 							</tr>
 							<tr>	
+								<td style="width:100px;text-align: right;padding-top: 13px;">单位成本:</td>
+								<td><input type="number" name="UNIT_COST" id="UNIT_COST" value="${pd.UNIT_COST}" maxlength="32" placeholder="这里输入单位成本" title="单位成本" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">成本_原币:</td>
 								<td><input type="number" name="TOTAL_COST_ENTERED" id="TOTAL_COST_ENTERED" value="${pd.TOTAL_COST_ENTERED}" maxlength="32" placeholder="这里输入成本_原币" title="成本_原币" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">成本_本位币:</td>
@@ -66,14 +60,12 @@
 								<td><input type="number" name="UNIT_PRICE" id="UNIT_PRICE" value="${pd.UNIT_PRICE}" maxlength="32" placeholder="这里输入行情收市价" title="行情收市价" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">市值_原币:</td>
 								<td><input type="number" name="MKT_VALUE_ENTERED" id="MKT_VALUE_ENTERED" value="${pd.MKT_VALUE_ENTERED}" maxlength="32" placeholder="这里输入市值_原币" title="市值_原币" style="width:98%;"/></td>
-							</tr>
-							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">市值_本位币:</td>
 								<td><input type="number" name="MKT_VALUE_CNY" id="MKT_VALUE_CNY" value="${pd.MKT_VALUE_CNY}" maxlength="32" placeholder="这里输入市值_本位币" title="市值_本位币" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">估值增值_原币:</td>
-								<td><input type="number" name="APPRECIATION_ENTERED" id="APPRECIATION_ENTERED" value="${pd.APPRECIATION_ENTERED}" maxlength="32" placeholder="这里输入估值增值_原币" title="估值增值_原币" style="width:98%;"/></td>
 							</tr>
 							<tr>	
+								<td style="width:100px;text-align: right;padding-top: 13px;">估值增值_原币:</td>
+								<td><input type="number" name="APPRECIATION_ENTERED" id="APPRECIATION_ENTERED" value="${pd.APPRECIATION_ENTERED}" maxlength="32" placeholder="这里输入估值增值_原币" title="估值增值_原币" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值增值_本位币:</td>
 								<td><input type="number" name="APPRECIATION_CNY" id="APPRECIATION_CNY" value="${pd.APPRECIATION_CNY}" maxlength="32" placeholder="这里输入估值增值_本位币" title="估值增值_本位币" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">停牌信息:</td>

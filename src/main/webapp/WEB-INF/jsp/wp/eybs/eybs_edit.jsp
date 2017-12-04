@@ -38,12 +38,8 @@
 								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">日期:</td>
-								<td><input class="span10 date-picker" name="BS_DATE" id="BS_DATE" value="${pd.BS_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="日期" title="日期" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">表项:</td>
 								<td><input type="text" name="BSCODE" id="BSCODE" value="${pd.BSCODE}" maxlength="50" placeholder="这里输入表项" title="表项" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
 								<td><input type="text" name="DESCRIPSION" id="DESCRIPSION" value="${pd.DESCRIPSION}" maxlength="255" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 							</tr>

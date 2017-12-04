@@ -133,7 +133,7 @@
 				)
 		</if>
 		<if test="pd.FUND_ID != null and pd.FUND_ID != ''" >
-		    and FUND_ID = #{pd.pd.FUND_ID,jdbcType=VARCHAR}
+		    and FUND_ID = #{pd.FUND_ID,jdbcType=VARCHAR}
 		</if>
 		<if test="pd.lastStart!= null and pd.lastStart != ''">
 		    and EFFECTIVE_DATE &gt;= #{pd.lastStart,jdbcType=DATE}

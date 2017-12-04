@@ -11,7 +11,6 @@
 	<sql id="Field">
 		FUND_ID,	
 		PERIOD,	
-		PL_DATE,	
 		PLCODE,	
 		DESCRIPSION,	
 		PERIOD_ACCT,	
@@ -23,7 +22,6 @@
 	<sql id="FieldValue">
 		#{FUND_ID},	
 		#{PERIOD},	
-		#{PL_DATE},	
 		#{PLCODE},	
 		#{DESCRIPSION},	
 		#{PERIOD_ACCT},	
@@ -57,7 +55,6 @@
 		set 
 			FUND_ID = #{FUND_ID},
 			PERIOD = #{PERIOD},
-			PL_DATE = #{PL_DATE},
 			PLCODE = #{PLCODE},
 			DESCRIPSION = #{DESCRIPSION},
 			PERIOD_ACCT = #{PERIOD_ACCT},

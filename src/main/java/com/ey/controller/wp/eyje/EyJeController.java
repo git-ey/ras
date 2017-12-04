@@ -110,7 +110,12 @@ public class EyJeController extends BaseController {
 			pd.put("keywords", keywords.trim());
 		}
 		// 动态构建表名
-		pd.put("TABLE_NAME", StringUtils.isBlank(pd.getString("FUND_ID")) ? "`ey_je`" : "`ey_je_"+pd.getString("FUND_ID")+"`");
+		if(StringUtils.isBlank(pd.getString("FUND_ID"))){
+			pd.put("TABLE_NAME","`ey_je`");
+		}else{
+			PageData resultPd = fundService.findById(pd);
+			pd.put("TABLE_NAME","`ey_je_"+resultPd.getString("FIRM_CODE")+"`");
+		}
 		page.setPd(pd);
 		List<PageData> fundList = fundService.listAllFund(pd);	//列出所有基金列表
 		List<PageData> varList = eyjeService.list(page);	//列出EyJe列表

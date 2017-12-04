@@ -11,7 +11,6 @@
 	<sql id="Field">
 		FUND_ID,	
 		PERIOD,	
-		VDATE,	
 		EY_ACCOUNT_NUM,	
 		CURRENCY,	
 		EXCHANGE_RATE,	
@@ -41,7 +40,6 @@
 	<sql id="FieldValue">
 		#{FUND_ID},	
 		#{PERIOD},	
-		#{VDATE},	
 		#{EY_ACCOUNT_NUM},	
 		#{CURRENCY},	
 		#{EXCHANGE_RATE},	
@@ -93,7 +91,6 @@
 		set 
 			FUND_ID = #{FUND_ID},
 			PERIOD = #{PERIOD},
-			VDATE = #{VDATE},
 			EY_ACCOUNT_NUM = #{EY_ACCOUNT_NUM},
 			CURRENCY = #{CURRENCY},
 			EXCHANGE_RATE = #{EXCHANGE_RATE},
@@ -146,13 +143,6 @@
 					 or 
 					DESCRIPTION LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
-		</if>
-		<if test="pd.lastStart!= null and pd.lastStart != ''">
-		    and VDATE &gt;= #{pd.lastStart}
-		</if>
-		
-		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
-		    and VDATE &lt;= #{pd.lastEnd}
 		</if>
 	</select>
 	

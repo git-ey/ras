@@ -66,7 +66,6 @@
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">基金ID</th>
 									<th class="center">期间</th>
-									<th class="center">日期</th>
 									<th class="center">表项</th>
 									<th class="center">说明</th>
 									<th class="center">期初金额</th>
@@ -88,7 +87,6 @@
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.FUND_ID}</td>
 											<td class='center'>${var.PERIOD}</td>
-											<td class='center'>${var.BS_DATE}</td>
 											<td class='center'>${var.BSCODE}</td>
 											<td class='center'>${var.DESCRIPSION}</td>
 											<td class='center'>${var.BEG_BALANCE}</td>
@@ -265,8 +263,8 @@
 			 diag.Drag=true;
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>eybs/goAdd.do';
-			 diag.Width = 700;
-			 diag.Height = 400;
+			 diag.Width = 600;
+			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -303,8 +301,8 @@
 			 diag.Drag=true;
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>eybs/goEdit.do?BS_ID='+Id;
-			 diag.Width = 700;
-			 diag.Height = 400;
+			 diag.Width = 600;
+			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 

@@ -68,15 +68,15 @@
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:10%;">程序代码</th>
-									<th class="center" style="width:13%;">程序名称</th>
-									<th class="center" style="width:13%;">开始时间</th>
-									<th class="center" style="width:13%;">结束时间</th>
-									<th class="center" style="width:15%;">运行参数</th>
+									<th class="center" style="width:12%;">运行编号</th>
+									<th class="center" style="width:15%;">程序名称</th>
+									<th class="center" style="width:7%;">开始时间</th>
+									<th class="center" style="width:7%;">结束时间</th>
+									<th class="center" style="width:16%;">运行参数</th>
 									<th class="center" style="width:7%;">状态</th>
-									<th class="center" style="width:20%;">运行消息</th>
-									<th class="center" style="width:6%;">运行人</th>
-									<th class="center" style="width:5%;">日志</th>
+									<th class="center" style="width:22%;">运行消息</th>
+									<th class="center" style="width:7%;">运行人</th>
+									<th class="center" style="width:4%;">日志</th>
 								</tr>
 							</thead>
 													
@@ -87,7 +87,7 @@
 									<c:if test="${QX.cha == 1 }">
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
-											<td class='center'>${var.CONC_CODE}</td>
+											<td class='center'>${var.CONCRUNING_ID}</td>
 											<td class='center'>${var.CONC_NAME}</td>
 											<td class='center'>${var.START_DATETIME}</td>
 											<td class='center'>${var.END_DATETIME}</td>
