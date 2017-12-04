@@ -81,12 +81,16 @@
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-				<!--	根据需求自己加检索条件
-					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
-					 or 
-					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				-->
+				<!-- 根据需求自己加检索条件 -->
+					INDEX_TYPE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 				)
+		</if>
+		<if test="pd.lastStart!= null and pd.lastStart != ''">
+		    and INDEX_DATE &gt;= #{pd.lastStart,jdbcType=DATE}
+		</if>
+		
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
+		    and INDEX_DATE &lt;= #{pd.lastEnd,jdbcType=DATE}
 		</if>
 	</select>
 	
