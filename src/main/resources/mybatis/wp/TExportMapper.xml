@@ -128,5 +128,32 @@
         and T310.PERIOD = #{period}
         ORDER BY T310.SEQ
     </select>
+    
+    <select id="selectT400Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    T400.`LEVEL` as `level`,
+		    T400.TYPE as type,
+		    T400.ATTR1 as attr1,
+		    T400.ATTR2 as attr2,
+		    T400.ATTR3 as attr3,
+		    T400.ATTR4 as attr4,
+		    T400.ATTR5 as attr5,
+		    T400.ATTR6 as attr6,
+		    T400.ATTR7 as attr7,
+		    T400.ATTR8 as attr8,
+		    T400.ATTR9 as attr9,
+		    T400.ATTR10 as attr10,
+		    T400.ATTR11 as attr11,
+		    T400.ATTR12 as attr12,
+		    T400.ATTR13 as attr13,
+		    T400.ATTR14 as attr14
+		FROM
+		    wp_t400 T400 
+		WHERE
+		    1 = 1
+        and T400.STATUS = 'Y'
+        and T400.FUND_ID = #{fundId}
+        and T400.PERIOD = #{period}
+    </select>
 
 </mapper>
