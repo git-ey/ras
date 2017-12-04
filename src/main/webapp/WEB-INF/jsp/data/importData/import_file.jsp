@@ -52,6 +52,7 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:50px;">序号</th>
+									<th class="center" style="width:25%;">导入文件ID</th>
 									<th class="center" style="width:25%;">导入文件名</th>
 									<th class="center" style="width:8%;">Sheet</th>
 									<th class="center" style="width:15%;">目标表名</th>
@@ -68,6 +69,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
+											<td class='center'>${var.IMPORT_FILE_ID}</td>
 											<td class='center'>${var.IMPORT_FILE_NAME}</td>
 											<td class='center'>${var.SHEET_NO}</td>
 											<td class='center'>${var.TABLE_NAME}</td>
