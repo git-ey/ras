@@ -87,11 +87,23 @@ public class CExportService extends BaseExportService implements CExportManager{
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> resMapList = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectCData", queryMap);
-        if(CollectionUtils.isEmpty(resMapList)) {return result;}
+        if(resMapList == null) {
+            resMapList = new ArrayList<>();
+        }
         
         for(Map<String, Object> resMap : resMapList) {
             if(resMap == null || resMap.get("accountNum") == null) {continue;}
             result.put("KM" + (String) resMap.get("accountNum"), resMap);
+        }
+        
+        if(result.get("KM1002") == null) {
+            result.put("KM1002", new HashMap<>());
+        }
+        if(result.get("KM1021") == null) {
+            result.put("KM1021", new HashMap<>());
+        }
+        if(result.get("KM1031") == null) {
+            result.put("KM1031", new HashMap<>());
         }
         
         return result;
