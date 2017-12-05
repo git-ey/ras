@@ -1,6 +1,7 @@
 package com.ey.service.wp.output.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.service.wp.output.TExportManager;
@@ -53,8 +55,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         dataMap.put("T300", this.getT300Data(fundId, periodStr));
         dataMap.put("T310", this.getT310Data(fundId, periodStr));
         dataMap.put("T400", this.getT400Data(fundId, periodStr));
-//        dataMap.put("E41X", this.getE41XData(fundId, periodStr));
-//        dataMap.put("E500", this.getE500Data(fundId, periodStr));
+        dataMap.put("T500", this.getT500Data(fundId, periodStr));
 //        dataMap.put("E600", this.getE600Data(fundId, periodStr));
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_T);
@@ -385,6 +386,109 @@ public class TExportService extends BaseExportService implements TExportManager{
         
         result.put("levels", levels);
         result.put("levelCount", levels.size());
+        return result;
+    }
+    
+    /**
+     * 处理sheet页T500的数据
+     * @author Dai Zong 2017年12月05日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getT500Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        //========process dataMap for main view begin========
+        String oldPeriodStr = StringUtils.EMPTY;
+        try {
+            oldPeriodStr = String.valueOf(Long.parseLong(periodStr.substring(0, 4))-1)+"1231";
+        }catch (Exception e) {
+            oldPeriodStr = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)-1)+"1231";
+        }
+        Map<String, Object> oldQueryMap = this.createBaseQueryMap(fundId, oldPeriodStr);
+        
+        Map<String, Object> main = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT500MainData", queryMap);
+        if(mainMetaDataList == null) {
+            mainMetaDataList = new ArrayList<>();
+        }
+        Map<String,Map<String,Object>> mainContainer = new HashMap<>();
+        for(Map<String,Object> map : mainMetaDataList) {
+            mainContainer.put(String.valueOf(map.get("type")), map);
+        }
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mainOldMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT500MainData", oldQueryMap);
+        if(mainOldMetaDataList == null) {
+            mainOldMetaDataList = new ArrayList<>();
+        }
+        Map<String,Map<String,Object>> mainOldContainer = new HashMap<>();
+        for(Map<String,Object> map : mainOldMetaDataList) {
+            mainOldContainer.put(String.valueOf(map.get("type")), map);
+        }
+        for(int i=1 ; i<=7 ; i++) {
+            String tag = "attr" + i;
+            Map<String,Object> temp = new HashMap<>();
+            if(mainContainer.get("实收基金") != null) {
+                temp.put("SS", mainContainer.get("实收基金").get(tag));
+            }
+            if(mainContainer.get("利润分配") != null) {
+                temp.put("WFP", mainContainer.get("利润分配").get(tag));
+            }
+            if(mainContainer.get("所有者权益合计") != null) {
+                temp.put("SYZ", mainContainer.get("所有者权益合计").get(tag));
+            }
+            if(mainOldContainer.get("实收基金") != null) {
+                temp.put("SSOLD", mainOldContainer.get("实收基金").get(tag));
+            }
+            if(mainOldContainer.get("利润分配") != null) {
+                temp.put("WFPOLD", mainOldContainer.get("利润分配").get(tag));
+            }
+            if(mainOldContainer.get("所有者权益合计") != null) {
+                temp.put("SYZOLD", mainOldContainer.get("所有者权益合计").get(tag));
+            }
+            main.put(tag, temp);
+        }
+        //========process dataMap for main view end========
+        //========process dataMap for n_test view begin========
+        Map<String, Object> n_test = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> ntestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT500NTestData", queryMap);
+        if(ntestMetaDataList == null) {
+            ntestMetaDataList = new ArrayList<>();
+        }
+        n_test.put("list", ntestMetaDataList);
+        n_test.put("count", ntestMetaDataList.size());
+        //========process dataMap for n_test view end========
+        //========process dataMap for f_test view begin========
+        Map<String, Object> f_test = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> ftestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT500FTestData", queryMap);
+        if(ftestMetaDataList == null) {
+            ftestMetaDataList = new ArrayList<>();
+        }
+        Map<String, Object> mother = new HashMap<>();
+        Map<String, Object> steady = new HashMap<>();
+        Map<String, Object> enterprise = new HashMap<>();
+        for(Map<String,Object> map : ftestMetaDataList) {
+            if("母基金".equals(map.get("item"))) {
+                mother = map;
+            }else if("稳健型".equals(map.get("item"))) {
+                steady = map;
+            }else if("进取型".equals(map.get("item"))) {
+                enterprise = map;
+            }
+        }
+        f_test.put("mother", mother);
+        f_test.put("steady", steady);
+        f_test.put("enterprise", enterprise);
+        //========process dataMap for f_test view end========
+        result.put("main", main);
+        result.put("n_test", n_test);
+        result.put("f_test", f_test);
         return result;
     }
     

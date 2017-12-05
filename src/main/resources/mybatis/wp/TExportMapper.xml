@@ -23,7 +23,12 @@
 		    IFNULL(sfi.DATE_FROM,'2000-01-01') as dateFrom,
 		    IFNULL(sfi.STRUCTURED,'N') as structured,
 		    IFNULL(sfi.MF,'N') as mf,
-		    IFNULL(sfi.ETF,'N') as etf
+		    IFNULL(sfi.ETF,'N') as etf,
+		    IFNULL(sfi.COMPOUND,'单利') as compound,
+		    IFNULL(sfi.NAV_ROUND, 4) as navRound,
+		    sfi.ROR_BASELINE as rorBaseline,
+		    sfi.ROR as ror,
+		    sfi.LEVERAGE as leverage
 		FROM
 		    SYS_FUND_INFO sfi
 		WHERE
@@ -154,6 +159,58 @@
         and T400.STATUS = 'Y'
         and T400.FUND_ID = #{fundId}
         and T400.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT500MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    T500.TYPE AS type,
+		    T500.ATTR1 AS attr1,
+		    T500.ATTR2 AS attr2,
+		    T500.ATTR3 AS attr3,
+		    T500.ATTR4 AS attr4,
+		    T500.ATTR5 AS attr5,
+		    T500.ATTR6 AS attr6,
+		    T500.ATTR7 AS attr7
+		FROM
+		    wp_t500 T500 
+		WHERE
+		    1 = 1
+        and T500.STATUS = 'Y'
+        and T500.FUND_ID = #{fundId}
+        and T500.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT500NTestData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    T500N.`LEVEL` AS `level`,
+		    T500N.COLLECTION_FUND AS collectionFund,
+		    T500N.UNDIS_PROFIT AS undisProfit,
+		    T500N.OWNER_EQUITY AS ownerEquity,
+		    T500N.UNITS AS units,
+		    T500N.NAV_CLIENT AS navClient 
+		FROM
+		    wp_t500_ntest T500N 
+		WHERE
+		    1 = 1
+        and T500N.STATUS = 'Y'
+        and T500N.FUND_ID = #{fundId}
+        and T500N.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT500FTestData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    T500F.ITEM as item,
+		    T500F.DATE_TYPE as dateType,
+		    IFNULL(DATE_FORMAT(T500F.DATE_FROM,'%Y-%m-%d'),'2000-01-01') as dateFrom,
+		    T500F.UNITS as units,
+		    T500F.NAV_CLIENT as navClient
+		FROM
+		    wp_t500_ftest T500F 
+		WHERE
+		    1 = 1
+        and T500F.STATUS = 'Y'
+        and T500F.FUND_ID = #{fundId}
+        and T500F.PERIOD = #{period}
     </select>
 
 </mapper>
