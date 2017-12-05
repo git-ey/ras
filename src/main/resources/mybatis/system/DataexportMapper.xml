@@ -12,18 +12,19 @@
 		    <otherwise>
                 concat(YEAR(now())-1,'1231')
             </otherwise>
-		</choose>
-		            PERIOD,
-               sfi.SHORT_NAME,
-               smc.SHORT_NAME MGR_COMPANY,
-               ((SELECT COUNT(*) FROM wp_c c where c.FUND_ID = sfi.FUND_ID) +
-               (SELECT COUNT(*) FROM wp_e e where e.FUND_ID = sfi.FUND_ID) +
-               (SELECT COUNT(*) FROM wp_g g where g.FUND_ID = sfi.FUND_ID) +
-               (SELECT COUNT(*) FROM wp_h h where h.FUND_ID = sfi.FUND_ID) +
-               (SELECT COUNT(*) FROM wp_n n where n.FUND_ID = sfi.FUND_ID) +
-               (SELECT COUNT(*) FROM wp_p p where p.FUND_ID = sfi.FUND_ID) +
-               (SELECT COUNT(*) FROM wp_t t where t.FUND_ID = sfi.FUND_ID) +
-               (SELECT COUNT(*) FROM wp_u u where u.FUND_ID = sfi.FUND_ID)) EXTFLAG
+		</choose> PERIOD,
+        sfi.SHORT_NAME,
+        smc.SHORT_NAME MGR_COMPANY,
+        (SELECT COUNT(*) FROM wp_c c where c.FUND_ID = sfi.FUND_ID AND c.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) CFLAG,
+        (SELECT COUNT(*) FROM wp_e e where e.FUND_ID = sfi.FUND_ID AND e.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) EFLAG,
+        (SELECT COUNT(*) FROM wp_g g where g.FUND_ID = sfi.FUND_ID AND g.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) GFLAG,
+        (SELECT COUNT(*) FROM wp_h h where h.FUND_ID = sfi.FUND_ID AND h.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) HFALG,
+        (SELECT COUNT(*) FROM wp_n n where n.FUND_ID = sfi.FUND_ID AND n.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) NFLAG,
+        (SELECT COUNT(*) FROM wp_p p where p.FUND_ID = sfi.FUND_ID AND p.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) PFLAG,
+        (SELECT COUNT(*) FROM wp_t t where t.FUND_ID = sfi.FUND_ID AND t.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) TFLAG,
+        (SELECT COUNT(*) FROM wp_u u where u.FUND_ID = sfi.FUND_ID AND u.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) UFLAG,
+        (SELECT COUNT(*) FROM wp_v300 v where v.FUND_ID = sfi.FUND_ID AND v.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) VFLAG,
+        (SELECT COUNT(*) FROM wp_i_rp i where i.FUND_ID = sfi.FUND_ID AND i.PERIOD = IFNULL('${pd.PERIOD}',concat(YEAR(now())-1,'1231'))) IFLAG
           FROM sys_fund_info sfi
      LEFT JOIN sys_mgrcompany smc
             ON sfi.FIRM_CODE = smc.COMPANY_CODE

@@ -44,7 +44,7 @@
 								</td>
 								<td style="padding-left:2px;text-align:right;width:10%;">期间:</td>
 								<td style="vertical-align:top;padding-left:2px;width:5%;">
-								 	<input class="span10 date-picker" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" type="text" data-date-format="yyyymmdd" readonly="readonly" placeholder="期间" title="期间"/>
+								 	<input class="nav-search-input" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" type="text" placeholder="期间" title="期间"/>
 								</td>
 								<td style="padding-left:2px;text-align:right;width:10%;">管理公司:</td>
 								<td style="vertical-align:top;padding-left:2px;width:5%;">
@@ -95,46 +95,91 @@
 											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
 											<td class='center'>${var.MGR_COMPANY}</td>
-											<!-- 
-										    <c:choose>  
-                                              <c:when test="${var.EXTFLAG > 0 }">
-                                            -->
-                                             <!-- 
-                                               </c:when>
+											<c:choose>  
+                                              <c:when test="${var.CFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('C','${var.FUND_ID}','${var.PERIOD}');">C</a></td>
+                                              </c:when>
                                                <c:otherwise>
-                                                  <td class="center"><a class="btn btn-mini">C</a></td>
-								                  <td class="center"><a class="btn btn-mini">E</a></td>
-								                  <td class="center"><a class="btn btn-mini">G</a></td>
-								                  <td class="center"><a class="btn btn-mini">H</a></td>
-								                  <td class="center"><a class="btn btn-mini">H-旗下基金总表</a></td>
-								                  <td class="center"><a class="btn btn-mini">I</a></td>
-								                  <td class="center"><a class="btn btn-mini">N</a></td>
-								                  <td class="center"><a class="btn btn-mini">P</a></td>
-								                  <td class="center"><a class="btn btn-mini">T</a></td>
-								                  <td class="center"><a class="btn btn-mini">U</a></td>
-							 	                  <td class="center"><a class="btn btn-mini">V</a></td>
-										          <td class='center'><a class="btn btn-mini">报告</a></td>
-                                                  <td class='center'>    
-                                                      <a class="btn btn-light btn-xs" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon gray"></i></a>
-                                                  </td>
-                                                  </c:otherwise>
-                                               </c:choose>
-                                                -->
-                                                 <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('C','${var.FUND_ID}','${var.PERIOD}');">C</a></td>
-										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('E','${var.FUND_ID}','${var.PERIOD}');">E</a></td>
-										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('G','${var.FUND_ID}','${var.PERIOD}');">G</a></td>
-										         <td class="center"><a class="btn btn-mini">H</a></td>
-										         <td class="center"><a class="btn btn-mini">H-旗下基金总表</a></td>
-										         <td class="center"><a class="btn btn-mini">I</a></td>
-										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('N','${var.FUND_ID}','${var.PERIOD}');">N</a></td>
-										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('P','${var.FUND_ID}','${var.PERIOD}');">P</a></td>
-										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('T','${var.FUND_ID}','${var.PERIOD}');">T</a></td>
-										         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('U','${var.FUND_ID}','${var.PERIOD}');">U</a></td>
-									 	         <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('V','${var.FUND_ID}','${var.PERIOD}');">V</a></td>
-										         <td class='center'><a class="btn btn-mini btn-success" onclick="wpExport('Report','${var.FUND_ID}','${var.PERIOD}');">报告</a></td>
-                                                 <td class='center'>
-                                                      <a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}','${var.PERIOD}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon green"></i></a>
-                                                 </td>
+                                                 <td class="center"><a class="btn btn-mini">C</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>  
+                                              <c:when test="${var.EFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('E','${var.FUND_ID}','${var.PERIOD}');">E</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">E</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>  
+                                              <c:when test="${var.GFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('G','${var.FUND_ID}','${var.PERIOD}');">G</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">G</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>  
+                                              <c:when test="${var.HFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('H','${var.FUND_ID}','${var.PERIOD}');">H</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">H</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                             <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('HX','${var.FUND_ID}','${var.PERIOD}');">H旗下基金</a></td>
+                                            <c:choose>  
+                                              <c:when test="${var.IFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('I','${var.FUND_ID}','${var.PERIOD}');">I</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">I</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>  
+                                              <c:when test="${var.NFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('N','${var.FUND_ID}','${var.PERIOD}');">N</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">N</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>  
+                                              <c:when test="${var.PFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('P','${var.FUND_ID}','${var.PERIOD}');">P</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">P</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>  
+                                              <c:when test="${var.TFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('T','${var.FUND_ID}','${var.PERIOD}');">T</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">T</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>  
+                                              <c:when test="${var.UFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('U','${var.FUND_ID}','${var.PERIOD}');">U</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">U</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>  
+                                              <c:when test="${var.VFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('V','${var.FUND_ID}','${var.PERIOD}');">V</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">V</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('Report','${var.FUND_ID}','${var.PERIOD}');">报告</a></td>
+									       <td class='center'>
+                                               <a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}','${var.PERIOD}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon green"></i></a>
+                                           </td>
 										</tr>
 									</c:forEach>
 									</c:if>

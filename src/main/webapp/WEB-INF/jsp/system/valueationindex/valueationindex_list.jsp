@@ -59,7 +59,6 @@
 									<th class="center" style="width:35px;">
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
-									<th class="center" style="width:50px;">序号</th>
 									<th class="center">是否货基</th>
 									<th class="center">投资标的</th>
 									<th class="center">交易市场</th>
@@ -86,7 +85,6 @@
 											<td class='center'>
 												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.VALUEATIONINDEX_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
-											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.MMF}</td>
 											<td class='center'>${var.TYPE}</td>
 											<td class='center'>${var.MARKET}</td>
