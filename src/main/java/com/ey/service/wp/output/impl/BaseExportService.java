@@ -53,7 +53,7 @@ public abstract class BaseExportService implements BaseExportManager{
 	    Map<String, Object> query = new HashMap<String,Object>();
 	    query.put("fundId", fundId);
 	    @SuppressWarnings("unchecked")
-        List<Map<String,Object>> resMapList = (List<Map<String,Object>>)this.dao.findForList("FundInfoMapper.selectFundInfo", query);
+        List<Map<String,Object>> resMapList = (List<Map<String,Object>>)this.dao.findForList("FundMapper.selectFundInfo", query);
         if(CollectionUtils.isEmpty(resMapList) || resMapList.size() != 1) {
             throw new Exception("基金ID " + fundId + " 无效");
         }
