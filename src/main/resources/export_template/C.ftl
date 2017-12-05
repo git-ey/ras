@@ -2770,7 +2770,7 @@
     <Cell ss:StyleID="s101"><Data ss:Type="String">工作步骤：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40">1、获得<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">${month?string('00')</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日所有银行账户的头寸表</Font></ss:Data></Cell>
+       html:Color="#000000">${month?string('00')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日所有银行账户的头寸表</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -2789,7 +2789,7 @@
     <Cell ss:StyleID="s101"/>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40">2、查看<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">${month?string('00')</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日是否存在银行账户之间的转账，如有，查看相应凭证</Font></ss:Data></Cell>
+       html:Color="#000000">${month?string('00')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日是否存在银行账户之间的转账，如有，查看相应凭证</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -2841,8 +2841,8 @@
    <Row>
     <Cell ss:StyleID="s101"><Data ss:Type="String">结果：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">我们查看了基金${period?string('0')}年${month?string('00')月${day?string('00')}日的头寸表，未发现<Font
-       html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font html:Color="#000000">${month?string('00')</Font><Font>月</Font><Font
+      xmlns="http://www.w3.org/TR/REC-html40">我们查看了基金${period?string('0')}年${month?string('00')}月${day?string('00')}日的头寸表，未发现<Font
+       html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font html:Color="#000000">${month?string('00')}</Font><Font>月</Font><Font
        html:Color="#000000">${day?string('00')}</Font><Font>日银行账户之间发生转账，未发现在途资金。</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
@@ -2879,7 +2879,7 @@
     <Cell ss:StyleID="s101"><Data ss:Type="String">结论：</Data></Cell>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40">该基金于<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">${month?string('00')</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日不存在通过利用银行账户之间转账时间差虚增资产的情况</Font></ss:Data></Cell>
+       html:Color="#000000">${month?string('00')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日不存在通过利用银行账户之间转账时间差虚增资产的情况</Font></ss:Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
