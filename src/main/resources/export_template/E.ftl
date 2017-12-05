@@ -2689,7 +2689,7 @@
    <#if E410.periodAfterTest.count != 0>
    <#list E410.periodAfterTest.list as item>
    <Row>
-    <Cell ss:StyleID="s137"><Data ss:Type="DateTime">${item.trxDate}</Data></Cell>
+    <Cell ss:StyleID="s137"><Data ss:Type="DateTime"><#if item.trxDate??>${item.trxDate}</#if></Data></Cell>
     <Cell/>
     <Cell ss:StyleID="s183" ss:Formula="=SUMIFS(R37C2:R40C${(1+E410.summary.count)?string('0')},R25C2:R28C${(1+E410.summary.count)?string('0')},RC[-2])-SUMIFS(R41C2:R45C${(1+E410.summary.count)?string('0')},R29C2:R33C${(1+E410.summary.count)?string('0')},RC[-2])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s183"><Data ss:Type="Number">${(item.settlementAmount!0)?string('0.##')}</Data></Cell>
