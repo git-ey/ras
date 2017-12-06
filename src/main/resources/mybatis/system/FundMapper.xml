@@ -288,7 +288,8 @@
             sfi.FUND_ID as fundId,
             sfi.SHORT_NAME as fundShortName,
             sfi.FULL_NAME as fundFullName,
-            smc.SHORT_NAME as companyShortName
+            smc.SHORT_NAME as companyShortName,
+            sfi.FIRM_CODE as firmCode
         FROM
             SYS_FUND_INFO sfi
         inner join sys_mgrcompany smc on smc.COMPANY_CODE = sfi.FIRM_CODE
@@ -296,6 +297,7 @@
             1 = 1
         AND sfi.ACTIVE = 'Y'
         AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
     </select>
     
     <!-- 底稿导出时查询基金ETF信息 daigaokuo@hotmail.com 17-12-03 -->

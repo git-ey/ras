@@ -21,6 +21,7 @@ import com.ey.controller.base.BaseController;
 import com.ey.service.wp.output.CExportManager;
 import com.ey.service.wp.output.EExportManager;
 import com.ey.service.wp.output.GExportManager;
+import com.ey.service.wp.output.HSumExportManager;
 import com.ey.service.wp.output.NExportManager;
 import com.ey.service.wp.output.PExportManager;
 import com.ey.service.wp.output.ReportExportManager;
@@ -64,9 +65,12 @@ public class ExportController extends BaseController {
     // 底稿V
     @Resource(name = "vExportService")
     private VExportManager vExportService;
-    // 底稿V
+    // 底稿T
     @Resource(name = "tExportService")
     private TExportManager tExportService;
+    // 底稿H_SUM
+    @Resource(name = "hSumExportService")
+    private HSumExportManager hSumExportService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -236,6 +240,35 @@ public class ExportController extends BaseController {
         periodStr = this.dataCheck(fundId, periodStr);
         
         this.tExportService.doExport(request, response, fundId, periodStr);
+    }
+    
+    /**
+     * 底稿导出--HSUM
+     * 
+     * @param
+     * @throws Exception
+     */
+    @RequestMapping(value = "/HSUM")
+    public void exportHSum(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PageData pd = this.getPageData();
+        String fundId = pd.getString("FUND_ID");
+        String periodStr = pd.getString("PEROID");
+        String firmCode = pd.getString("FIRM_CODE");
+
+        if(StringUtils.isEmpty(periodStr) || (StringUtils.isEmpty(fundId) && StringUtils.isEmpty(firmCode))) {
+            throw new IllegalArgumentException("期间不能为空,基金ID和公司代码至少一个不能为空");
+        }
+        if(periodStr.length() > 8) {
+            periodStr = periodStr.substring(0, 8);
+        }else if(periodStr.length() < 8) {
+            periodStr = periodStr + (String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "1231").substring(periodStr.length(), 8);
+        }
+        
+        if(StringUtils.isNotEmpty(fundId)) {
+            this.hSumExportService.doExport(request, response, fundId, periodStr);
+        }else{
+            this.hSumExportService.doExport(firmCode, periodStr, request, response);
+        }
     }
     
     @RequestMapping(value = "/download")

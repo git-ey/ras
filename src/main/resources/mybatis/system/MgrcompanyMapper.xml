@@ -117,4 +117,19 @@
 		</foreach>
 	</delete>
 	
+	<!-- 底稿导出时查询管理公司基本信息 daigaokuo@hotmail.com 17-12-06 -->
+    <select id="selectCompanyInfo" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    sm.SHORT_NAME AS shortName,
+		    sm.FULL_NAME AS fullName,
+		    sm.ORIGINAL_NAME AS originalName 
+		FROM
+		    sys_mgrcompany sm 
+		WHERE
+		    1 = 1 
+        AND sm.ACTIVE = 'Y'
+        AND sm.COMPANY_CODE = #{companyCode}
+        LIMIT 1
+    </select>
+	
 </mapper>

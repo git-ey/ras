@@ -81,4 +81,12 @@ public interface Constants {
      * 底稿名称--T
      */
     static final String EXPORT_AIM_FILE_NAME_T = "${companyShortName}_T_${fundId}_${fundShortName}_${periodStr}.xml";
+    /**
+     * 模板名称--H_SUM
+     */
+    static final String EXPORT_TEMPLATE_FILE_NAME_H_SUM = "H_SUM.ftl"; 
+    /**
+     * 底稿名称--H_SUM
+     */
+    static final String EXPORT_AIM_FILE_NAME_H_SUM = "${shortName}_H_旗下基金总表_${periodStr}.xml";
 }
