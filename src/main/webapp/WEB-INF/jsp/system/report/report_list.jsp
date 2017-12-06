@@ -45,11 +45,12 @@
 								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastStart" id="lastStart"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="开始日期"/></td>
 								<td style="padding-left:2px;"><input class="span10 date-picker" name="lastEnd" name="lastEnd"  value="" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="结束日期"/></td>
 								<td style="vertical-align:top;padding-left:2px;">
-								 	<select class="chosen-select form-control" name="RESULT" id="RESULT" data-placeholder="请选择" style="vertical-align:top;width: 120px;">
+								 	<select class="chosen-select form-control" name="RESULT" id="RESULT" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
 									<option value=""></option>
-									<option value="Y" <c:if test="${pd.RESULT == 'R'}">selected</c:if>>运行中</option>
-									<option value="Y" <c:if test="${pd.RESULT == 'Y'}">selected</c:if>>成功</option>
-									<option value="N" <c:if test="${pd.RESULT == 'N'}">selected</c:if>>失败</option>
+									<option value="R" <c:if test="${pd.RESULT == 'R'}">selected</c:if>>运行中</option>
+									<option value="S" <c:if test="${pd.RESULT == 'S'}">selected</c:if>>成功</option>
+									<option value="E" <c:if test="${pd.RESULT == 'E'}">selected</c:if>>失败</option>
+									<option value="W" <c:if test="${pd.RESULT == 'W'}">selected</c:if>>警告</option>
 								  	</select>
 								</td>
 								<c:if test="${QX.cha == 1 }">
@@ -58,7 +59,7 @@
 								<td style="padding-left:2px;width:20%;"></td>
 								<td style="vertical-align:top;">
 									<c:if test="${QX.add == 1 }">
-									<a class="btn btn-mini btn-success" onclick="add();">提交新请求</a>
+									<a class="btn btn-mini btn-success" onclick="add();">提交新导出</a>
 									</c:if>
 								</td>
 							</tr>
@@ -88,7 +89,22 @@
 											<td class='center'>${var.OPERATOR}</td>
 											<td class='center'>${var.RUN_DATETIME}</td>
 											<td class='center'>${var.OUTBOND_PATH}</td>
-											<td class='center'>${var.RESULT}</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.RESULT == 'R' }">
+                                                 <font color="#7B7B7B"><b>运行中</b></font>
+                                               </c:when>  
+                                               <c:when test="${var.RESULT == 'S' }">
+                                                 <font color="#00A600"><b>成功</b></font>
+                                               </c:when> 
+                                               <c:when test="${var.RESULT == 'W' }">
+                                                  <font color="#C6A300"><b>警告</b></font>
+                                               </c:when> 
+                                               <c:when test="${var.RESULT == 'E' }">
+                                                  <font color="#FF0000"><b>错误</b></font>
+                                               </c:when>
+                                            </c:choose>
+											</td>
 											<td class='center'>${var.MESSAGE}</td>
 										</tr>
 									

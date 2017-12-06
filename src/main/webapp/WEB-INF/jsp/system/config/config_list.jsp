@@ -59,6 +59,7 @@
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">配置代码</th>
 									<th class="center">配置值</th>
+									<th class="center">描述</th>
 									<th class="center" style="width: 120px;">是否启用</th>
 									<th class="center" style="width: 180px;">操作</th>
 								</tr>
@@ -77,6 +78,7 @@
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.CONFIG_CODE}</td>
 											<td class='center'>${var.CONFIG_VALUE}</td>
+											<td class='center'>${var.DESCRIPTION}</td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.ENABLED_FLAG == 'Y' }">

@@ -85,5 +85,15 @@ public class ConfigService implements ConfigManager{
 		dao.delete("ConfigMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
+	/**
+	 * 根据代码获取配置值
+	 * @param configCode
+	 * @return
+	 * @throws Exception
+	 */
+	public String findByCode(String configCode) throws Exception {
+		return (String)dao.findForObject("ConfigMapper.findByCode", configCode);
+	}
+	
 }
 

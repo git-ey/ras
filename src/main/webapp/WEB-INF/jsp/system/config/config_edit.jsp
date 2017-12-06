@@ -40,6 +40,10 @@
 								<td><input type="text" name="CONFIG_VALUE" id="CONFIG_VALUE" value="${pd.CONFIG_VALUE}" maxlength="480" placeholder="这里输入配置值" title="配置值" style="width:98%;"/></td>
 							</tr>
 							<tr>
+								<td style="width:75px;text-align: right;padding-top: 13px;">描述:</td>
+								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" title="描述" style="width:98%;"/></td>
+							</tr>
+							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">是否启用:</td>
 								<td>
 								<div class="col-sm-9">

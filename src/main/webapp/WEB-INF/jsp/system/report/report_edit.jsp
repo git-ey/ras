@@ -59,8 +59,8 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">货基:</td>
 								<td>
 								    <select class="chosen-select form-control" name="MF" id="MF" data-placeholder="请选择" style="width:49%;">
-								        <option value="N" <c:if test="${pd.ETF == 'N'}">selected</c:if>>否</option>
-								        <option value="Y" <c:if test="${pd.ETF == 'Y'}">selected</c:if>>是</option>
+								        <option value="N" <c:if test="${pd.MF == 'N'}">selected</c:if>>否</option>
+								        <option value="Y" <c:if test="${pd.MF == 'Y'}">selected</c:if>>是</option>
 								    </select>
 								</td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">ETF:</td>
@@ -126,7 +126,7 @@
 								  	</select>
 								</td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">导出路径:</td>
-								<td><input type="text" name="OUTBOND_PATH" id="OUTBOND_PATH" maxlength="480" title="导出路径" style="width:98%;"/></td>
+								<td><input type="text" name="OUTBOND_PATH" id="OUTBOND_PATH" value="${outbondPath}" maxlength="480" title="导出路径" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

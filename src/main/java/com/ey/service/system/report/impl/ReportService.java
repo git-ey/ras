@@ -108,5 +108,15 @@ public class ReportService implements ReportManager{
 		return (List<PageData>)dao.findForList("ReportMapper.listParagraphAll",pd);
 	}
 	
+	/**
+	 * 运行报告导出程序
+	 * @param pd
+	 */
+	public void exportReport(PageData pd) throws Exception {
+		
+		// 设置消息
+		pd.put("RESULT", "S");
+	}
+	
 }
 

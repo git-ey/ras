@@ -62,21 +62,9 @@
 	<update id="edit" parameterType="pd">
 		update
 		<include refid="tableName"></include>
-		set 
-			RUN_PARAM = #{RUN_PARAM},
-			P1 = #{P1},
-			P2 = #{P2},
-			P3 = #{P3},
-			P4 = #{P4},
-			P5 = #{P5},
-			OPERATOR = #{OPERATOR},
-			RUN_DATETIME = #{RUN_DATETIME},
-			OUTBOND_PATH = #{OUTBOND_PATH},
-			RESULT = #{RESULT},
+		set RESULT = #{RESULT},
 			MESSAGE = #{MESSAGE}
-		REPORT_ID = REPORT_ID
-		where 
-		REPORT_ID = #{REPORT_ID}
+		where REPORT_ID = #{REPORT_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->

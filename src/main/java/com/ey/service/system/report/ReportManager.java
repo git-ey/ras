@@ -66,6 +66,12 @@ public interface ReportManager{
 	 * @throws Exception
 	 */
 	public List<PageData> listParagraphAll(PageData pd) throws Exception;
+
+	/**
+	 * 运行报告导出程序
+	 * @param pd
+	 */
+	public void exportReport(PageData pd) throws Exception;
 	
 }
 
