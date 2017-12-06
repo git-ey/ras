@@ -1,4 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="HSumExportMapper">
+
+    <select id="selectH10Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    H10.FUND_ID AS fundId,
+		    H10.STOCK_CODE AS stockCode,
+		    H10.STOCK_NAME AS stockName,
+		    H10.MARKET AS market,
+		    H10.SUB_TYPE AS subType,
+		    H10.RELEATED AS releated,
+		    H10.TRX_STATUS AS trxStatus,
+		    H10.VAL_TYPE_CODE AS valTypeCode,
+		    H10.VAL_PRICE AS valPrice,
+		    H10.THREE_LEVEL AS threeLevel,
+		    H10.RESTRICT_TYPE AS restrictType,
+		    DATE_FORMAT(H10.SUBSCRIBE_DATE,'%Y-%m-%dT00:00:00.000') AS subscribeDate,
+		    H10.SUBSCRIBE_PRICE AS subscribePrice,
+		    DATE_FORMAT(H10.LIFTING_DATE,'%Y-%m-%dT00:00:00.000') AS liftingDate,
+		    DATE_FORMAT(H10.SUSPENSION_DATE,'%Y-%m-%dT00:00:00.000') AS suspensionDate,
+		    H10.SUSPENSION_INFO AS suspensionInfo,
+		    DATE_FORMAT(H10.RESUMPTION_DATE,'%Y-%m-%dT00:00:00.000') AS resumptionDate,
+		    H10.RESMPATION_OPEN_PRICE AS resmpationOpenPrice 
+		FROM
+		    wp_h10 H10 
+		WHERE
+		    1 = 1 
+	    AND H10.PERIOD = #{period}
+	    AND H10.FIRM_CODE = #{firmCode}
+	    ORDER BY H10.SORT
+    </select>
+
 </mapper>

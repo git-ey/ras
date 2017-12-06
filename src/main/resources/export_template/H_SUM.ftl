@@ -1098,129 +1098,30 @@
     <Cell ss:StyleID="s119"><Data ss:Type="String">From 公开市场信息</Data></Cell>
     <Cell ss:Index="20" ss:StyleID="s41"/>
    </Row>
+   <#if H10.count != 0>
+   <#list H10.list as item>
    <Row>
-    <Cell><Data ss:Type="Number">12345</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">019539</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">16国债11</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">上交所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">新股</Data></Cell>
-    <Cell><Data ss:Type="String">Y</Data></Cell>
-    <Cell><Data ss:Type="String">正常交易</Data></Cell>
-    <Cell ss:Index="9"><Data ss:Type="String">股A</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:Index="12"><Data ss:Type="String">一层次</Data></Cell>
-    <Cell ss:Index="14"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123456</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell><Data ss:Type="String">停牌</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1123</Data></Cell>
+    <Cell><Data ss:Type="String">${item.fundId!}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">${item.stockCode!}</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">${item.stockName!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.market!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.subType!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.releated!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.trxStatus!}</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.valPrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
+    <Cell ss:Index="14"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
+    <Cell ss:Index="16" ss:StyleID="s103"><Data ss:Type="DateTime">${item.subscribeDate!}</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.subscribePrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">${item.liftingDate!}</Data></Cell>
+    <Cell ss:Index="20" ss:StyleID="s103"><Data ss:Type="DateTime">${item.suspensionDate!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.suspensionInfo!}</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">${item.resumptionDate!}</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.resmpationOpenPrice!0)?string('0.##')}</Data></Cell>
    </Row>
-   <Row>
-    <Cell><Data ss:Type="Number">12345</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星01</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">深交所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">非公开</Data></Cell>
-    <Cell><Data ss:Type="String">N</Data></Cell>
-    <Cell><Data ss:Type="String">停牌</Data></Cell>
-    <Cell ss:Index="9"><Data ss:Type="String">股B</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:Index="12"><Data ss:Type="String">二层次</Data></Cell>
-    <Cell ss:Index="14"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-05T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123456</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-05T00:00:00.000</Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell><Data ss:Type="String">停牌</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="Number">12346</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星02</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">深交所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">普通</Data></Cell>
-    <Cell><Data ss:Type="String">N</Data></Cell>
-    <Cell><Data ss:Type="String">未上市</Data></Cell>
-    <Cell ss:Index="9"><Data ss:Type="String">股C1</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:Index="12"><Data ss:Type="String">三层次</Data></Cell>
-    <Cell ss:Index="14"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-06T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123456</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-06T00:00:00.000</Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell><Data ss:Type="String">停牌</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="Number">12347</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星03</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">深交所</Data></Cell>
-    <Cell ss:StyleID="s69"><Data ss:Type="String">配股或增发</Data></Cell>
-    <Cell><Data ss:Type="String">N</Data></Cell>
-    <Cell><Data ss:Type="String">非公开1</Data></Cell>
-    <Cell ss:Index="9"><Data ss:Type="String">股C2</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:Index="12"><Data ss:Type="String">三层次</Data></Cell>
-    <Cell ss:Index="14"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-07T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123456</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-07T00:00:00.000</Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell><Data ss:Type="String">停牌</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="Number">12348</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星04</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">深交所</Data></Cell>
-    <Cell ss:StyleID="s69"><Data ss:Type="String">配股或增发</Data></Cell>
-    <Cell><Data ss:Type="String">N</Data></Cell>
-    <Cell><Data ss:Type="String">非公开2</Data></Cell>
-    <Cell ss:Index="9"><Data ss:Type="String">股D</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:Index="12"><Data ss:Type="String">三层次</Data></Cell>
-    <Cell ss:Index="14"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123456</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-08T00:00:00.000</Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell><Data ss:Type="String">停牌</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="Number">12349</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星05</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">深交所</Data></Cell>
-    <Cell ss:StyleID="s69"><Data ss:Type="String">配股或增发</Data></Cell>
-    <Cell><Data ss:Type="String">N</Data></Cell>
-    <Cell><Data ss:Type="String">非公开3</Data></Cell>
-    <Cell ss:Index="9"><Data ss:Type="String">股E</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:Index="12"><Data ss:Type="String">三层次</Data></Cell>
-    <Cell ss:Index="14"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-09T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123456</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-09T00:00:00.000</Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell><Data ss:Type="String">停牌</Data></Cell>
-    <Cell ss:StyleID="s103"><Data ss:Type="DateTime">2016-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">123</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:Index="5" ss:StyleID="s69"/>
-   </Row>
+   </#list>
+   </#if>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>

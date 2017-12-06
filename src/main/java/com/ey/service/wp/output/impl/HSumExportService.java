@@ -1,5 +1,6 @@
 package com.ey.service.wp.output.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,7 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         dataMap.put("day", day);
         dataMap.put("companyInfo", companyInfo);
         
-//        dataMap.put("G", this.getGData(fundId, periodStr));
+        dataMap.put("H10", this.getH10Data(firmCode, periodStr));
 //        dataMap.put("G300", this.getG300Data(fundId, periodStr));
 //        dataMap.put("G10000", this.getG10000Data(fundId, periodStr));
         
@@ -117,6 +118,30 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         String xmlStr = this.generateFileContent(firmCode, periodStr, companyInfo);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(String.valueOf(fileName), companyInfo), xmlStr);
         return true;
+    }
+    
+    /**
+     * 处理sheet页H10的数据
+     * @author Dai Zong 2017年12月06日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH10Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH10Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
+        return result;
     }
     
 }
