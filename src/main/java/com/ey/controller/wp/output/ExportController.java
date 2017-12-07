@@ -248,7 +248,7 @@ public class ExportController extends BaseController {
      * @param
      * @throws Exception
      */
-    @RequestMapping(value = "/HSUM")
+    @RequestMapping(value = "/HX")
     public void exportHSum(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
