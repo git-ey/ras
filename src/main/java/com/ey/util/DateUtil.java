@@ -208,6 +208,20 @@ public class DateUtil {
      * @param datetime
      * @return
      */
+    public static String getDateTimeStr(Date datetime,String fmt) {
+    	if(datetime == null){
+    		return "";
+    	}
+        SimpleDateFormat sdfd = new SimpleDateFormat(StringUtils.isBlank(fmt) ? "yyyy-MM-dd HH:mm:ss" : fmt);
+        String dateStr = sdfd.format(datetime);
+        return dateStr;
+    }
+    
+    /**
+     * 获取时间指定格式字符串
+     * @param datetime
+     * @return
+     */
     public static String getDateTimeStr(Date datetime) {
     	if(datetime == null){
     		return "";

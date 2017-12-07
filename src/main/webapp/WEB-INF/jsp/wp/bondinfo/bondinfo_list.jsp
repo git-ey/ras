@@ -103,7 +103,6 @@
 											<td class='center'>${var.ISSUE_PRICE}</td>
 											<td class='center'>${var.DATE_FROM}</td>
 											<td class='center'>${var.DATE_TO}</td>
-											<td class='center'>${var.DATE_PAY}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>

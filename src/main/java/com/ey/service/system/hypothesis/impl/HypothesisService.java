@@ -103,6 +103,7 @@ public class HypothesisService implements HypothesisManager{
 				pd.put("HYPOTHESIS_NUM", map.get("HYPOTHESIS_NUM"));
 				pd.put("DESCRIPTION", map.get("DESCRIPTION"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 				pds.add(pd);
 				idx++;
 			}

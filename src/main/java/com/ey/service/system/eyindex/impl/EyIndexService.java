@@ -104,6 +104,7 @@ public class EyIndexService implements EyIndexManager{
 				pd.put("INDEX_DATE", map.get("INDEX_DATE"));
 				pd.put("INDEX_QTY", map.get("INDEX_QTY"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 				pds.add(pd);
 				idx++;
 			}

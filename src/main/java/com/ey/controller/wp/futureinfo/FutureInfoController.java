@@ -190,7 +190,7 @@ public class FutureInfoController extends BaseController {
 	@RequestMapping(value = "/goUploadExcel")
 	public ModelAndView goUploadExcel() throws Exception {
 		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("system/acctmapping/uploadexcel");
+		mv.setViewName("wp/futureinfo/uploadexcel");
 		return mv;
 	}
 

@@ -23,7 +23,9 @@
 		#{FUND_ID},	
 		#{FUND_CODE},	
 		#{SHORT_NAME},	
-		#{LEVEL},	
+		#{LEVEL},
+		#{ACTIVE},
+		#{STATUS},
 		#{FUNDSTRUCTURED_ID}
 	</sql>
 	
@@ -110,4 +112,25 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.FUND_ID},	
+		#{pd.FUND_CODE},	
+		#{pd.SHORT_NAME},	
+		#{pd.LEVEL},
+		#{pd.ACTIVE},
+		#{pd.STATUS},
+		#{pd.FUNDSTRUCTURED_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>

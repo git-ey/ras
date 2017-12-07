@@ -190,7 +190,7 @@ public class BondInfoController extends BaseController {
 	@RequestMapping(value = "/goUploadExcel")
 	public ModelAndView goUploadExcel() throws Exception {
 		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("system/bondinfo/uploadexcel");
+		mv.setViewName("wp/bondinfo/uploadexcel");
 		return mv;
 	}
 

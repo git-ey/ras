@@ -159,4 +159,15 @@
          </foreach >
 	</insert>
 	
+		<!-- 批量更新-->
+	<update id="updateBatch" parameterType="pd">
+		UPDATE <include refid="tableName"></include>
+		   SET SHH_CODE = IF(SHH_CODE='\'\'',NULL,SHH_CODE),
+		       SHZ_CODE = IF(SHZ_CODE='\'\'',NULL,SHZ_CODE),
+		       INTER_BANK_CODE = IF(INTER_BANK_CODE='\'\'',NULL,INTER_BANK_CODE)
+		 WHERE (SHH_CODE = '\'\'' 
+		      OR SHZ_CODE = '\'\''
+		      OR INTER_BANK_CODE = '\'\'')
+	</update>	
+
 </mapper>

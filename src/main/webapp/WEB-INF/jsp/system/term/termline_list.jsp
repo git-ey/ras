@@ -43,8 +43,8 @@
 									<th class="center">排序号</th>
 									<th class="center">账龄期限名称</th>
 									<th class="center">披露名称</th>
-									<th class="center">天数从</th>
-									<th class="center">天数至</th>
+									<th class="center">月数从</th>
+									<th class="center">月数至</th>
 									<th class="center">说明</th>
 									<th class="center">操作</th>
 								</tr>
@@ -63,8 +63,8 @@
 											<td class='center'>${var.SORT}</td>
 											<td class='center'>${var.PERIOD_NAME}</td>
 											<td class='center'>${var.REVEAL_NAME}</td>
-											<td class='center'>${var.DAYS_FROM}</td>
-											<td class='center'>${var.DAYS_TO}</td>
+											<td class='center'>${var.MONTH_FROM}</td>
+											<td class='center'>${var.MONTH_TO}</td>
 											<td class='center'>${var.DESCRIPTION}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">

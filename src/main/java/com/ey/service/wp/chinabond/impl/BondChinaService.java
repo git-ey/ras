@@ -113,6 +113,7 @@ public class BondChinaService implements BondChinaManager{
 				pd.put("VALUATION_PRICE_END", map.get("VALUATION_PRICE_END"));
 				pd.put("INTEREST_END", map.get("INTEREST_END"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 				pds.add(pd);
 				idx++;
 			}

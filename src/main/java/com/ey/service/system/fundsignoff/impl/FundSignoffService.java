@@ -1,11 +1,16 @@
 package com.ey.service.system.fundsignoff.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.util.AppUtil;
 import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 import com.ey.service.system.fundsignoff.FundSignoffManager;
 
 /** 
@@ -76,6 +81,38 @@ public class FundSignoffService implements FundSignoffManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("FundSignoffMapper.deleteAll", ArrayDATA_IDS);
+	}
+	
+	@Override
+	public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			if (null != map.get("FUND_ID")) {
+				PageData pd = new PageData();
+				pd.put("FUNDSIGNOFF_ID", UuidUtil.get32UUID());
+				pd.put("FUND_ID", map.get("FUND_ID"));
+				pd.put("PERIOD", map.get("PERIOD"));
+				pd.put("SIGNOFF_1", map.get("SIGNOFF_1"));
+				pd.put("SIGNOFF_2", map.get("SIGNOFF_2"));
+				pd.put("SIGNOFF_3", map.get("SIGNOFF_3"));
+				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
+				pds.add(pd);
+				idx++;
+			}
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("FundSignoffMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("FundSignoffMapper.saveBatch", pds);
+		}
 	}
 	
 }

@@ -1,12 +1,19 @@
 package com.ey.service.system.fundstructured.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.util.PageData;
 import com.ey.service.system.fundstructured.FundStructuredManager;
+import com.ey.util.AppUtil;
+import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 
 /** 
  * 说明： 基金分级信息
@@ -76,6 +83,37 @@ public class FundStructuredService implements FundStructuredManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("FundStructuredMapper.deleteAll", ArrayDATA_IDS);
+	}
+	
+	@Override
+	public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			if (null != map.get("FUND_ID")) {
+				PageData pd = new PageData();
+				pd.put("FUNDSTRUCTURED_ID", UuidUtil.get32UUID());
+				pd.put("FUND_ID", map.get("FUND_ID"));
+				pd.put("FUND_CODE", map.get("FUND_CODE"));
+				pd.put("SHORT_NAME", map.get("SHORT_NAME"));
+				pd.put("LEVEL", map.get("LEVEL"));
+				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
+				pds.add(pd);
+				idx++;
+			}
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("FundStructuredMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("FundStructuredMapper.saveBatch", pds);
+		}
 	}
 	
 }

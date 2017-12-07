@@ -45,12 +45,12 @@
 								<td><input type="text" name="REVEAL_NAME" id="REVEAL_NAME" value="${pd.REVEAL_NAME}" maxlength="120" placeholder="这里输入披露名称" title="披露名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">天数从:</td>
-								<td><input type="number" name="DAYS_FROM" id="DAYS_FROM" value="${pd.DAYS_FROM}" maxlength="32" placeholder="均为>" title="天数从" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">月数从:</td>
+								<td><input type="number" name="MONTH_FROM" id="MONTH_FROM" value="${pd.MONTH_FROM}" maxlength="32" placeholder="均为>" title="月数从" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">天数至:</td>
-								<td><input type="number" name="DAYS_TO" id="DAYS_TO" value="${pd.DAYS_TO}" maxlength="32" placeholder="均为<=" title="天数至" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">月数至:</td>
+								<td><input type="number" name="MONTH_TO" id="MONTH_TO" value="${pd.MONTH_TO}" maxlength="32" placeholder="均为<=" title="月数至" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
@@ -121,24 +121,24 @@
 				$("#REVEAL_NAME").focus();
 			return false;
 			}
-			if($("#DAYS_FROM").val()==""){
-				$("#DAYS_FROM").tips({
+			if($("#MONTH_FROM").val()==""){
+				$("#MONTH_FROM").tips({
 					side:3,
-		            msg:'请输入天数从',
+		            msg:'请输入月数从',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#DAYS_FROM").focus();
+				$("#MONTH_FROM").focus();
 			return false;
 			}
-			if($("#DAYS_TO").val()==""){
-				$("#DAYS_TO").tips({
+			if($("#MONTH_TO").val()==""){
+				$("#MONTH_TO").tips({
 					side:3,
-		            msg:'请输入天数至',
+		            msg:'请输入月数至',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#DAYS_TO").focus();
+				$("#MONTH_TO").focus();
 			return false;
 			}
 			$("#Form").submit();

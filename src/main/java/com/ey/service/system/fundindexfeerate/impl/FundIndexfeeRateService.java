@@ -103,6 +103,7 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 				pd.put("INDEX_RATE", map.get("INDEX_RATE"));
 				pd.put("MIN_INDEX_FEE", map.get("MIN_INDEX_FEE"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 				pds.add(pd);
 				idx++;
 			}

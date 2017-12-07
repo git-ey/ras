@@ -110,6 +110,7 @@ public class SeeBondService implements SeeBondManager{
 				pd.put("CLEAN_PRICE", map.get("CLEAN_PRICE"));
 				pd.put("ACCRUED_INTEREST", map.get("ACCRUED_INTEREST"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 				pds.add(pd);
 				idx++;
 			}
@@ -125,6 +126,10 @@ public class SeeBondService implements SeeBondManager{
 			// 批量插入
 			dao.save("SeeBondMapper.saveBatch", pds);
 		}
+		
+		// 批量更新
+		dao.save("SeeBondMapper.updateBatch", null);
+		
 	}
 	
 }

@@ -126,6 +126,7 @@
 		     #{pd.INDEX_DATE},	
 		     #{pd.INDEX_QTY},
 		     #{pd.ACTIVE},
+		     #{pd.STATUS},
 		     #{pd.INDEX_ID}
          )
          </foreach >

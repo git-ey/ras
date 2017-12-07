@@ -141,6 +141,21 @@ public class BaseController {
 	 */
 	protected final static String BLI_IMPORT_TEMPLATE_CODE = "BLI";
 	
+	/**
+	 * SFS基金分级信息导入模版代码
+	 */
+	protected final static String SFS_IMPORT_TEMPLATE_CODE = "SFS";
+	
+	/**
+	 * SFR基金申赎规则导入模版代码
+	 */
+	protected final static String SFR_IMPORT_TEMPLATE_CODE = "SFR";
+	
+	/**
+	 * SFSO基金签字人导入模版代码
+	 */
+	protected final static String SFSO_IMPORT_TEMPLATE_CODE = "SFSO";
+	
 	
 	/**
 	 * new PageData对象

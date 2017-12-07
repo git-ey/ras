@@ -122,13 +122,13 @@
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
-		#{FUND_ID},	
-		#{HYPOTHESIS_TPYE},	
-		#{HYPOTHESIS_NUM},	
-		#{DESCRIPTION},	
-		#{ACTIVE},	
-		#{STATUS},	
-		#{HYPOTHESIS_ID}
+		#{pd.FUND_ID},	
+		#{pd.HYPOTHESIS_TPYE},	
+		#{pd.HYPOTHESIS_NUM},	
+		#{pd.DESCRIPTION},	
+		#{pd.ACTIVE},	
+		#{pd.STATUS},	
+		#{pd.HYPOTHESIS_ID}
          )
          </foreach >
 	</insert>
