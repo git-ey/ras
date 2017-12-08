@@ -1,6 +1,9 @@
 package com.ey.service.wp.output.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +26,8 @@ import com.ey.util.fileexport.FreeMarkerUtils;
  */
 @Service("hSumExportService")
 public class HSumExportService extends BaseExportService implements HSumExportManager{
+    
+    private static ThreadLocal<SimpleDateFormat> localSimpleDateFormat = new ThreadLocal<SimpleDateFormat>();
 
     /**
      * 生成文件内容
@@ -47,10 +52,33 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         dataMap.put("companyInfo", companyInfo);
         
         dataMap.put("H10", this.getH10Data(firmCode, periodStr));
-//        dataMap.put("G300", this.getG300Data(fundId, periodStr));
-//        dataMap.put("G10000", this.getG10000Data(fundId, periodStr));
+        dataMap.put("H12", this.getH12Data(firmCode, periodStr));
+        dataMap.put("H20", this.getH20Data(firmCode, periodStr));
+        dataMap.put("H21", this.getH21Data(firmCode, periodStr));
+        dataMap.put("H30", this.getH30Data(firmCode, periodStr));
+        dataMap.put("H31", this.getH31Data(firmCode, periodStr));
+        dataMap.put("H40", this.getH40Data(firmCode, periodStr));
+        dataMap.put("H50", this.getH50Data(firmCode, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H_SUM);
+    }
+    
+    /**
+     * 获取小于指定日期的最近的闰日
+     * @author Dai Zong 2017年12月8日
+     * 
+     * @param date 指定日期
+     * @return 最近的闰日[以yyyy-MM-dd表示]
+     */
+    private String getRecentLeap(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+        while(!((year%4 == 0 && year%100 != 0) || year%400 == 0)) {
+            year--;
+        }
+        calendar.set(year, 1, 29, 0, 0, 0);
+        return year + "-02-29";
     }
     
     @Override
@@ -135,6 +163,200 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH10Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H12的数据
+     * @author Dai Zong 2017年12月07日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH12Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH12Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H20的数据
+     * @author Dai Zong 2017年12月07日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH20Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH20Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H21的数据
+     * @author Dai Zong 2017年12月07日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH21Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH21Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H30的数据
+     * @author Dai Zong 2017年12月08日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH30Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH30Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        SimpleDateFormat sdf = localSimpleDateFormat.get();  
+        if (sdf == null) {  
+            sdf = new SimpleDateFormat("yyyyMMdd");  
+            localSimpleDateFormat.set(sdf);  
+        }  
+        String recentLeap = null;
+        try {
+            recentLeap = this.getRecentLeap(sdf.parse(periodStr))+"T00:00:00.000";
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
+        result.put("recentLeap", recentLeap);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H31的数据
+     * @author Dai Zong 2017年12月08日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH31Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH31Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        SimpleDateFormat sdf = localSimpleDateFormat.get();  
+        if (sdf == null) {  
+            sdf = new SimpleDateFormat("yyyyMMdd");  
+            localSimpleDateFormat.set(sdf);  
+        }  
+        String recentLeap = null;
+        try {
+            recentLeap = this.getRecentLeap(sdf.parse(periodStr))+"T00:00:00.000";
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
+        result.put("recentLeap", recentLeap);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H40的数据
+     * @author Dai Zong 2017年12月08日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH40Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH40Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H50的数据
+     * @author Dai Zong 2017年12月08日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH50Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH50Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
