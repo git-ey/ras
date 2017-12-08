@@ -26,9 +26,73 @@
 		    wp_h10 H10 
 		WHERE
 		    1 = 1 
+		AND H10.STATUS = 'Y'
 	    AND H10.PERIOD = #{period}
 	    AND H10.FIRM_CODE = #{firmCode}
 	    ORDER BY H10.SORT
+    </select>
+    
+    <select id="selectH11HeadData" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT
+		    H11H.STOCK_CODE AS stockCode,
+		    H11H.STOCK_NAME AS stockName,
+		    H11H.VAL_PRICE AS valPrice,
+		    H11H.RESULT AS result 
+		FROM
+		    wp_h11_head H11H 
+		WHERE
+		    1 = 1 
+	    AND H11H.`STATUS` = 'Y' 
+	    AND H11H.FIRM_CODE = #{firmCode}
+	    AND H11H.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH11LineData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    H11L.INDUSTRY AS industry,
+		    H11L.VALUATION_DATE AS valuationDate,
+		    DATE_FORMAT( H11L.VALUATION_DATE, '%Y-%m-%dT00:00:00.000' ) AS valuationDateStr,
+		    H11L.INDUSTRY_INDEX AS industryIndex,
+		    H11L.UNIT_PRICE AS unitPrice 
+		FROM
+		    wp_h11_line H11L 
+		WHERE
+		    1 = 1 
+	    AND H11L.`STATUS` = 'Y' 
+	    AND H11L.FIRM_CODE = #{firmCode}
+	    AND H11L.PERIOD = #{period}
+	    AND H11L.STOCK_CODE = #{stockCode}
+    </select>
+    
+    <select id="selectH11TestTitleData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT DISTINCT
+		    H11T.FUND_ID AS fundId,
+		    sfi.FULL_NAME AS fullName 
+		FROM
+		    wp_h11_test H11T
+		    INNER JOIN sys_fund_info sfi ON sfi.FUND_ID = H11T.FUND_ID  AND sfi.ACTIVE = 'Y' 
+		WHERE
+		    1 = 1 
+	    AND H11T.`STATUS` = 'Y' 
+	    AND H11T.FIRM_CODE = #{firmCode}
+	    AND H11T.PERIOD = #{period}
+	    AND H11T.STOCK_CODE = #{stockCode}
+    </select>
+    
+    <select id="selectH11TestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H11T.FUND_ID as fundId,
+		    H11T.QUANTITY AS quantity,
+		    H11T.NAV AS nav 
+		FROM
+		    wp_h11_test H11T 
+		WHERE
+		    1 = 1 
+	    AND H11T.`STATUS` = 'Y' 
+	    AND H11T.FIRM_CODE = #{firmCode}
+	    AND H11T.PERIOD = #{period}
+	    AND H11T.STOCK_CODE = #{stockCode}
+	    AND H11T.VALUATION_DATE = #{valuationDate}
     </select>
     
     <select id="selectH12Data" parameterType="java.util.Map" resultType="java.util.Map">
@@ -78,6 +142,7 @@
 		    wp_h20 H20 
 		WHERE
 		    1 = 1 
+		AND H20.STATUS = 'Y'
         AND H20.PERIOD = #{period}
         AND H20.FIRM_CODE = #{firmCode}
     </select>
@@ -112,6 +177,7 @@
 		    wp_h21 H21 
 		WHERE
 		    1 = 1 
+		AND H21.STATUS = 'Y'
         AND H21.PERIOD = #{period}
         AND H21.FIRM_CODE = #{firmCode}
     </select>
@@ -148,6 +214,7 @@
 		    wp_h30 H30 
 		WHERE
 		    1 = 1 
+		AND H30.STATUS = 'Y'
         AND H30.PERIOD = #{period}
         AND H30.FIRM_CODE = #{firmCode}
     </select>
@@ -184,6 +251,7 @@
 		    wp_h31 H31 
 		WHERE
 		    1 = 1 
+		AND H31.STATUS = 'Y'
         AND H31.PERIOD = #{period}
         AND H31.FIRM_CODE = #{firmCode}
     </select>
@@ -203,6 +271,7 @@
 		    wp_h40 H40 
 		WHERE
 		    1 = 1 
+		AND H40.STATUS = 'Y'
         AND H40.PERIOD = #{period}
         AND H40.FIRM_CODE = #{firmCode}
         ORDER BY H40.SORT
@@ -222,6 +291,7 @@
 		    wp_h50 H50 
 		WHERE
             1 = 1 
+        AND H50.STATUS = 'Y'
         AND H50.PERIOD = #{period}
         AND H50.FIRM_CODE = #{firmCode}
         ORDER BY H50.SORT

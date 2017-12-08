@@ -52,6 +52,7 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         dataMap.put("companyInfo", companyInfo);
         
         dataMap.put("H10", this.getH10Data(firmCode, periodStr));
+        dataMap.put("H11", this.getH11Data(firmCode, periodStr));
         dataMap.put("H12", this.getH12Data(firmCode, periodStr));
         dataMap.put("H20", this.getH20Data(firmCode, periodStr));
         dataMap.put("H21", this.getH21Data(firmCode, periodStr));
@@ -169,6 +170,88 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H11的数据
+     * @author Dai Zong 2017年12月08日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH11Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> result = new HashMap<>();
+        
+        //查询头
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> headMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH11HeadData", queryMap);
+        if(headMetaDataList == null) {
+            headMetaDataList = new ArrayList<>();
+        }
+        
+        Integer offset = 0;
+        Integer preLineCout = 0;
+        for(Map<String,Object> headMap : headMetaDataList) {
+            Map<String,Object> lines = new HashMap<>();
+            Map<String,Object> titles = new HashMap<>();
+            //查询行
+            queryMap.put("stockCode", headMap.get("stockCode"));
+            @SuppressWarnings("unchecked")
+            List<Map<String,Object>> lineMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH11LineData", queryMap);
+            if(lineMetaDataList == null) {
+                lineMetaDataList = new ArrayList<>();
+            }
+            //查询行上应有的明细TITLE
+            @SuppressWarnings("unchecked")
+            List<Map<String,Object>> detailTitleMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH11TestTitleData", queryMap);
+            if(detailTitleMetaDataList == null) {
+                detailTitleMetaDataList = new ArrayList<>();
+            }
+            //查询明细
+            for(Map<String,Object> lineMap : lineMetaDataList) {
+                Map<String,Object> details = new HashMap<>();
+                List<Map<String,Object>> detailList = new ArrayList<>();
+                
+                queryMap.put("valuationDate", lineMap.get("valuationDate"));
+                @SuppressWarnings("unchecked")
+                List<Map<String,Object>> detailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH11TestData", queryMap);
+                if(detailMetaDataList == null) {
+                    detailMetaDataList = new ArrayList<>();
+                }
+                Map<String,Map<String,Object>> temp = new HashMap<>();
+                for(Map<String,Object> map : detailMetaDataList) {
+                    temp.put(String.valueOf(map.get("fundId")), map);
+                }
+                for(Map<String,Object> titleMap : detailTitleMetaDataList) {
+                    Map<String,Object> detail = temp.get(String.valueOf(titleMap.get("fundId")));
+                    if(detail == null) {
+                        detail = new HashMap<>();
+                    }
+                    detailList.add(detail);
+                }
+                details.put("list", detailList);
+                details.put("count", detailList.size());
+                lineMap.put("details", details);
+                
+            }
+            lines.put("list", lineMetaDataList);
+            lines.put("count", lineMetaDataList.size());
+            titles.put("list", detailTitleMetaDataList);
+            titles.put("count", detailTitleMetaDataList.size());
+            //生成偏移量
+            offset += preLineCout;
+            preLineCout = lineMetaDataList.size();
+            headMap.put("offset", offset);
+            headMap.put("lines", lines);
+            headMap.put("titles", titles);
+        }
+        
+        result.put("list", headMetaDataList);
+        result.put("count", headMetaDataList.size());
         return result;
     }
     

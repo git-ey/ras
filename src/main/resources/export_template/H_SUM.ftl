@@ -1148,9 +1148,7 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="H11">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s39" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s39" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s39" ss:Width="76.5"/>
    <Column ss:StyleID="s39" ss:Width="96.75"/>
    <Column ss:StyleID="s39" ss:AutoFitWidth="0" ss:Width="89.25"/>
@@ -1296,14 +1294,16 @@
     <Cell ss:StyleID="s67"/>
     <Cell ss:Index="7" ss:StyleID="s54"/>
    </Row>
+   <#if H11.count != 0>
+   <#list H11.list as head>
    <Row>
     <Cell ss:StyleID="s54"><Data ss:Type="String">停牌股票：</Data></Cell>
-    <Cell ss:StyleID="s117"><Data ss:Type="String" x:Ticked="1">600000</Data></Cell>
-    <Cell ss:StyleID="s117"><Data ss:Type="String">简称</Data></Cell>
+    <Cell ss:StyleID="s117"><Data ss:Type="String" x:Ticked="1">${head.stockCode!}</Data></Cell>
+    <Cell ss:StyleID="s117"><Data ss:Type="String">${head.stockName!}</Data></Cell>
     <Cell ss:StyleID="s54"><Data ss:Type="String">估值价格：</Data></Cell>
-    <Cell ss:StyleID="s116"><Data ss:Type="Number">26333</Data></Cell>
+    <Cell ss:StyleID="s116"><Data ss:Type="Number">${(head.valPrice!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s54"><Data ss:Type="String">结论：</Data></Cell>
-    <Cell ss:StyleID="s154"/>
+    <Cell ss:StyleID="s117"><Data ss:Type="String">${head.result!}</Data></Cell>
    </Row>
    <Row ss:StyleID="s58">
     <Cell ss:StyleID="s54"/>
@@ -1320,77 +1320,56 @@
     <Cell ss:StyleID="s109"/>
     <Cell ss:StyleID="s109"/>
     <Cell ss:StyleID="s110"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s168"><Data ss:Type="String">XX基金</Data></Cell>
+    <#if head.titles.count != 0>
+    <#list head.titles.list as title>
+    <Cell ss:MergeAcross="3" ss:StyleID="s168"><Data ss:Type="String">${title.fullName!}</Data></Cell>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s168"><Data ss:Type="String">XX基金</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row>
     <Cell ss:StyleID="s111"><Data ss:Type="String">日期</Data></Cell>
     <Cell ss:StyleID="s111"><Data ss:Type="String">所属行业</Data></Cell>
     <Cell ss:StyleID="s111"><Data ss:Type="String">行业指数</Data></Cell>
     <Cell ss:StyleID="s112"><Data ss:Type="String">估值价格</Data></Cell>
+    <#if head.titles.count != 0>
+    <#list head.titles.list as title>
     <Cell ss:StyleID="s111"><Data ss:Type="String">持有股数</Data></Cell>
     <Cell ss:StyleID="s111"><Data ss:Type="String">每日净值</Data></Cell>
     <Cell ss:StyleID="s113"><Data ss:Type="String">对净值影响%</Data></Cell>
     <Cell ss:StyleID="s111"><Data ss:Type="String">是否超过0.25%</Data></Cell>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">持有股数</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">每日净值</Data></Cell>
-    <Cell ss:StyleID="s113"><Data ss:Type="String">对净值影响%</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">是否超过0.25%</Data></Cell>
+    </#list>
+    </#if>
    </Row>
+   <#if head.lines.count != 0>
+   <#list head.lines.list as line>
    <Row>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2016-12-15T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="String">食品</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="Number">6874.5641999999998</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="Number">19.420000000000002</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="Number">2200000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">737496689.44000006</Data></Cell>
+    <Cell ss:StyleID="s105"><#if line.valuationDateStr??><Data ss:Type="DateTime">${line.valuationDateStr!}</Data></#if></Cell>
+    <Cell ss:StyleID="s85"><Data ss:Type="String">${line.industry!}</Data></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">${(line.industryIndex!0)?string('0.##')}</Data></Cell>
+    <#if line_index == 0>
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">${(line.unitPrice!0)?string('0.##')}</Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s107" ss:Formula="=ROUND(RC[-1]*R${(32+head.offset+8*head_index)?string('0')}C/R${(32+head.offset+8*head_index)?string('0')}C[-1],2)"><Data ss:Type="Number"></Data></Cell>
+    </#if>
+    <#if line.details.count != 0>
+    <#list line.details.list as detail>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">${(detail.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s106"><Data ss:Type="Number">${(detail.nav!0)?string('0.##')}</Data></Cell>
+    <#if line_index == 0>
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s85"/>
-    <Cell ss:Index="10" ss:StyleID="s108"><Data ss:Type="Number">4260000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">1056970072.22</Data></Cell>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
+    <#else>
+    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R${(32+head.offset+8*head_index)?string('0')}C4)*R[-1]C[-2]/R[-1]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data ss:Type="String"></Data></Cell>
+    </#if>
+    <Cell/>
+    </#list>
+    </#if>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2016-12-16T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="String">食品</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="Number">6931.8037999999997</Data></Cell>
-    <Cell ss:StyleID="s107" ss:Formula="=ROUND(RC[-1]*R32C/R32C[-1],2)"><Data
-      ss:Type="Number">19.579999999999998</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="Number">2200000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">751797311.62</Data></Cell>
-    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R32C4)*R[-1]C[-2]/R[-1]C[-1]"><Data
-      ss:Type="Number">4.7729027809911259E-4</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data
-      ss:Type="String">N</Data></Cell>
-    <Cell ss:Index="10" ss:StyleID="s108"><Data ss:Type="Number">4260000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">1063100404.23</Data></Cell>
-    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R32C4)*R[-1]C[-2]/R[-1]C[-1]"><Data
-      ss:Type="Number">6.4486215637912195E-4</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data
-      ss:Type="String">N</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2016-12-19T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="String">食品</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="Number">6943.2870000000003</Data></Cell>
-    <Cell ss:StyleID="s107" ss:Formula="=ROUND(RC[-1]*R32C/R32C[-1],2)"><Data
-      ss:Type="Number">19.61</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="Number">2200000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">746447411.14999998</Data></Cell>
-    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R32C4)*R[-1]C[-2]/R[-1]C[-1]"><Data
-      ss:Type="Number">5.5600092410449504E-4</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data
-      ss:Type="String">N</Data></Cell>
-    <Cell ss:Index="10" ss:StyleID="s108"><Data ss:Type="Number">4260000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">1002998144.2</Data></Cell>
-    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R32C4)*R[-1]C[-2]/R[-1]C[-1]"><Data
-      ss:Type="Number">7.6135800229164242E-4</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data
-      ss:Type="String">N</Data></Cell>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s105"/>
     <Cell ss:StyleID="s85"/>
@@ -1447,148 +1426,8 @@
     <Cell ss:StyleID="s55"/>
     <Cell ss:StyleID="s55"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">停牌股票：</Data></Cell>
-    <Cell ss:StyleID="s117"><Data ss:Type="String" x:Ticked="1">600000</Data></Cell>
-    <Cell ss:StyleID="s117"><Data ss:Type="String">简称</Data></Cell>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">估值价格：</Data></Cell>
-    <Cell ss:StyleID="s116"><Data ss:Type="Number">262626</Data></Cell>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">结论：</Data></Cell>
-    <Cell ss:StyleID="s154"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s56"/>
-    <Cell ss:StyleID="s56"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s58"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s110"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s168"><Data ss:Type="String">XX基金</Data></Cell>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s168"><Data ss:Type="String">XX基金</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">日期</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">所属行业</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">行业指数</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">估值价格</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">持有股数</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">每日净值</Data></Cell>
-    <Cell ss:StyleID="s113"><Data ss:Type="String">对净值影响%</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">是否超过0.25%</Data></Cell>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">持有股数</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">每日净值</Data></Cell>
-    <Cell ss:StyleID="s113"><Data ss:Type="String">对净值影响%</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="String">是否超过0.25%</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2016-12-15T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="String">食品</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="Number">6874.5641999999998</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="Number">19.420000000000002</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="Number">2200000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">737496689.44000006</Data></Cell>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:Index="10" ss:StyleID="s108"><Data ss:Type="Number">4260000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">1056970072.22</Data></Cell>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2016-12-16T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="String">食品</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="Number">6931.8037999999997</Data></Cell>
-    <Cell ss:StyleID="s107" ss:Formula="=ROUND(RC[-1]*R43C/R43C[-1],2)"><Data
-      ss:Type="Number">19.579999999999998</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="Number">2200000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">751797311.62</Data></Cell>
-    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R43C4)*R[-1]C[-2]/R[-1]C[-1]"><Data
-      ss:Type="Number">4.7729027809911259E-4</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data
-      ss:Type="String">N</Data></Cell>
-    <Cell ss:Index="10" ss:StyleID="s108"><Data ss:Type="Number">4260000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">1063100404.23</Data></Cell>
-    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R43C4)*R[-1]C[-2]/R[-1]C[-1]"><Data
-      ss:Type="Number">6.4486215637912195E-4</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data
-      ss:Type="String">N</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s105"><Data ss:Type="DateTime">2016-12-19T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="String">食品</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="Number">6943.2870000000003</Data></Cell>
-    <Cell ss:StyleID="s107" ss:Formula="=ROUND(RC[-1]*R43C/R43C[-1],2)"><Data
-      ss:Type="Number">19.61</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="Number">2200000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">746447411.14999998</Data></Cell>
-    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R43C4)*R[-1]C[-2]/R[-1]C[-1]"><Data
-      ss:Type="Number">5.5600092410449504E-4</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data
-      ss:Type="String">N</Data></Cell>
-    <Cell ss:Index="10" ss:StyleID="s108"><Data ss:Type="Number">4260000</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="Number">1002998144.2</Data></Cell>
-    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R43C4)*R[-1]C[-2]/R[-1]C[-1]"><Data
-      ss:Type="Number">7.6135800229164242E-4</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data
-      ss:Type="String">N</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:Index="10" ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:Index="10" ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:Index="10" ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
+   </#list>
+   </#if>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
