@@ -11,7 +11,8 @@
 	<sql id="Field">
 		TERMHEAD_ID,	
 		TERM_TYPE,	
-		NAME,	
+		NAME,
+		PREV_RANGE,
 		DESCRIPTION,	
 		ACTIVE
 	</sql>
@@ -19,7 +20,8 @@
 	<!-- 字段值 -->
 	<sql id="FieldValue">
 		#{TERMHEAD_ID},	
-		#{TERM_TYPE},	
+		#{TERM_TYPE},
+		#{PREV_RANGE},
 		#{NAME},	
 		#{DESCRIPTION},	
 		#{ACTIVE}
@@ -51,6 +53,7 @@
 		set 
 			TERM_TYPE = #{TERM_TYPE},
 			NAME = #{NAME},
+			PREV_RANGE = #{PREV_RANGE},
 			DESCRIPTION = #{DESCRIPTION},
 			ACTIVE = #{ACTIVE}
 		where 

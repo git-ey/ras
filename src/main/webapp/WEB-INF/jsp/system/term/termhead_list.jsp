@@ -53,12 +53,13 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:5%">序号</th>
-									<th class="center" style="width:15%;">账龄代码</th>
-									<th class="center" style="width:15%;">账龄类型</th>
+									<th class="center" style="width:12%;">账龄代码</th>
+									<th class="center" style="width:13%;">账龄类型</th>
 									<th class="center" style="width:20%;">账龄名称</th>
-									<th class="center" style="width:20%;">说明</th>
-									<th class="center" style="width:10%;">是否启用</th>
-									<th class="center" style="width:15%;">操作</th>
+									<th class="center" style="width:22%;">同一日期归属上期</th>
+									<th class="center" style="width:10%;">说明</th>
+									<th class="center" style="width:8%;">是否启用</th>
+									<th class="center" style="width:10%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -73,6 +74,7 @@
 											<td class='center'>${var.TERMHEAD_ID}</td>
 											<td class='center'>${var.TERM_TYPE}</td>
 											<td class='center'>${var.NAME}</td>
+											<td class='center'>${var.PREV_RANGE}</td>
 											<td class='center'>${var.DESCRIPTION}</td>
 											<td class='center'>
 											<c:choose>  

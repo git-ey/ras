@@ -32,19 +32,21 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">账龄代码:</td>
-								<td><input type="text" name="TERMHEAD_ID" id="TERMHEAD_ID" value="${pd.TERMHEAD_ID}" maxlength="100" placeholder="这里输入账龄代码" title="账龄代码" style="width:98%;"/></td>
-								<td style="width:75px;text-align: right;padding-top: 13px;">账龄类型:</td>
-								<td><input type="text" name="TERM_TYPE" id="TERM_TYPE" value="${pd.TERM_TYPE}" maxlength="60" placeholder="存款期限/利率风险敞口" title="账龄类型" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">账龄代码:</td>
+								<td><input type="text" name="TERMHEAD_ID" id="TERMHEAD_ID" value="${pd.TERMHEAD_ID}" maxlength="100" title="账龄代码" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">账龄类型:</td>
+								<td><input type="text" name="TERM_TYPE" id="TERM_TYPE" value="${pd.TERM_TYPE}" maxlength="60" title="账龄类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">账龄名称:</td>
-								<td><input type="text" name="NAME" id="NAME" value="${pd.NAME}" maxlength="60" placeholder="这里输入账龄名称" title="账龄名称" style="width:98%;"/></td>
-								<td style="width:75px;text-align: right;padding-top: 13px;">说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">账龄名称:</td>
+								<td><input type="text" name="NAME" id="NAME" value="${pd.NAME}" maxlength="60" title="账龄名称" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">同一日期归属上期:</td>
+								<td><input type="text" name="PREV_RANGE" id="PREV_RANGE" value="${pd.PREV_RANGE}" maxlength="480" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">是否启用:</td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
+								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" title="说明" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
 								        <option value="Y" <c:if test="${pd.ACTIVE == 'Y'}">selected</c:if>>是</option>
