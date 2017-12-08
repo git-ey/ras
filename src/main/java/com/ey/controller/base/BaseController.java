@@ -155,7 +155,11 @@ public class BaseController {
 	 * SFSO基金签字人导入模版代码
 	 */
 	protected final static String SFSO_IMPORT_TEMPLATE_CODE = "SFSO";
-	
+
+	/**
+	 * DSS日交割单导入模版代码
+	 */
+	protected final static String DSS_IMPORT_TEMPLATE_CODE = "DSS";
 	
 	/**
 	 * new PageData对象

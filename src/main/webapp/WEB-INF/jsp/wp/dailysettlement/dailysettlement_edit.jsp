@@ -32,38 +32,36 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">顺序编码:</td>
-								<td><input type="number" name="SEQ" id="SEQ" value="${pd.SEQ}" maxlength="32" title="顺序编码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
 								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" title="基金ID" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
 								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="20" title="期间" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">日期:</td>
 								<td><input class="span10 date-picker" name="TRX_DATE" id="TRX_DATE" value="${pd.TRX_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="日期" title="日期" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">业务名称:</td>
 								<td><input type="text" name="TRX_TYPE" id="TRX_TYPE" value="${pd.TRX_TYPE}" maxlength="60" title="业务名称" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">销售商名称:</td>
 								<td><input type="text" name="DEALER" id="DEALER" value="${pd.DEALER}" maxlength="255" title="销售商名称" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">成交份额:</td>
 								<td><input type="number" name="TRX_QUANTITY" id="TRX_QUANTITY" value="${pd.TRX_QUANTITY}" maxlength="32" title="成交份额" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">成交金额:</td>
 								<td><input type="number" name="TRX_AMOUNT" id="TRX_AMOUNT" value="${pd.TRX_AMOUNT}" maxlength="32" title="成交金额" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">交易费用:</td>
 								<td><input type="number" name="TRX_FEE" id="TRX_FEE" value="${pd.TRX_FEE}" maxlength="32" title="交易费用" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">后收费:</td>
 								<td><input type="number" name="BACKEND_FEE" id="BACKEND_FEE" value="${pd.BACKEND_FEE}" maxlength="32"  title="后收费" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">确认金额:</td>
 								<td><input type="number" name="CONFIRMED_AMOUNT" id="CONFIRMED_AMOUNT" value="${pd.CONFIRMED_AMOUNT}" maxlength="32" title="确认金额" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">状态:</td>
 								<td><input type="text" name="STATUS" id="STATUS" value="${pd.STATUS}" maxlength="30" title="状态" style="width:98%;"/></td>
 							</tr>

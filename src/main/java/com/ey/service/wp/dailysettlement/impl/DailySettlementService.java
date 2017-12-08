@@ -1,12 +1,19 @@
 package com.ey.service.wp.dailysettlement.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.util.PageData;
 import com.ey.service.wp.dailysettlement.DailySettlementManager;
+import com.ey.util.AppUtil;
+import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 
 /** 
  * 说明： 日交割汇总
@@ -83,6 +90,50 @@ public class DailySettlementService implements DailySettlementManager{
 	@Override
     public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("DailySettlementMapper.deleteAll", ArrayDATA_IDS);
+	}
+	
+	/**
+	 * 批量新增
+	 * 
+	 * @param pds
+	 * @throws Exception
+	 */
+	@Override
+    public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			if (null != map.get("FUND_ID")) {
+				PageData pd = new PageData();
+				pd.put("DAILY_SETTLEMENT_ID", UuidUtil.get32UUID());
+				pd.put("FUND_ID", map.get("FUND_ID"));
+				pd.put("PERIOD", map.get("PERIOD"));
+				pd.put("TRX_DATE", map.get("TRX_DATE"));
+				pd.put("TRX_TYPE", map.get("TRX_TYPE"));
+				pd.put("DEALER", map.get("DEALER"));
+				pd.put("TRX_QUANTITY", map.get("TRX_QUANTITY"));
+				pd.put("TRX_AMOUNT", map.get("TRX_AMOUNT"));
+				pd.put("TRX_FEE", map.get("TRX_FEE"));
+				pd.put("BACKEND_FEE", map.get("BACKEND_FEE"));
+				pd.put("CONFIRMED_AMOUNT", map.get("CONFIRMED_AMOUNT"));
+				pd.put("TRX_FEE", map.get("TRX_FEE"));
+				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pd.put("STATUS", null == map.get("STATUS") ? "Y" : map.get("STATUS"));
+				pds.add(pd);
+				idx++;
+			}
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("DailySettlementMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("DailySettlementMapper.saveBatch", pds);
+		}
 	}
 	
 }

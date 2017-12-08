@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.service.wp.stocklimitinfo.StockLimitInfoManager;
 import com.ey.util.AppUtil;
 import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
-import com.ey.service.wp.stocklimitinfo.StockLimitInfoManager;
 
 /** 
  * 说明： 股票流通受限信息
@@ -107,6 +109,7 @@ public class StockLimitInfoService implements StockLimitInfoManager{
 				pd.put("CREATOR", map.get("CREATOR"));
 				pd.put("REVIEWER", map.get("REVIEWER"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+				pd.put("STATUS", null == map.get("STATUS") ? "Y" : map.get("STATUS"));
 				pds.add(pd);
 				idx++;
 			}

@@ -9,7 +9,6 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		SEQ,	
 		FUND_ID,	
 		PERIOD,	
 		TRX_DATE,	
@@ -19,14 +18,14 @@
 		TRX_AMOUNT,	
 		TRX_FEE,	
 		BACKEND_FEE,	
-		CONFIRMED_AMOUNT,	
+		CONFIRMED_AMOUNT,
+		ACTIVE,
 		STATUS,	
 		DAILY_SETTLEMENT_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{SEQ},	
 		#{FUND_ID},	
 		#{PERIOD},	
 		#{TRX_DATE},	
@@ -36,7 +35,8 @@
 		#{TRX_AMOUNT},	
 		#{TRX_FEE},	
 		#{BACKEND_FEE},	
-		#{CONFIRMED_AMOUNT},	
+		#{CONFIRMED_AMOUNT},
+		#{ACTIVE},
 		#{STATUS},	
 		#{DAILY_SETTLEMENT_ID}
 	</sql>
@@ -65,7 +65,6 @@
 		update
 		<include refid="tableName"></include>
 		set 
-			SEQ = #{SEQ},
 			FUND_ID = #{FUND_ID},
 			PERIOD = #{PERIOD},
 			TRX_DATE = #{TRX_DATE},
@@ -76,6 +75,7 @@
 			TRX_FEE = #{TRX_FEE},
 			BACKEND_FEE = #{BACKEND_FEE},
 			CONFIRMED_AMOUNT = #{CONFIRMED_AMOUNT},
+			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS}
 		where 
 		DAILY_SETTLEMENT_ID = #{DAILY_SETTLEMENT_ID}
@@ -128,4 +128,31 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.FUND_ID},	
+		#{pd.PERIOD},	
+		#{pd.TRX_DATE},	
+		#{pd.TRX_TYPE},	
+		#{pd.DEALER},	
+		#{pd.TRX_QUANTITY},	
+		#{pd.TRX_AMOUNT},	
+		#{pd.TRX_FEE},	
+		#{pd.BACKEND_FEE},	
+		#{pd.CONFIRMED_AMOUNT},	
+		#{pd.ACTIVE},
+		#{pd.STATUS},	
+		#{pd.DAILY_SETTLEMENT_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>
