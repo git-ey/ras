@@ -188,4 +188,43 @@
         AND H31.FIRM_CODE = #{firmCode}
     </select>
     
+    <select id="selectH40Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H40.FUND_ID AS fundId,
+		    H40.FUND_CODE AS fundCode,
+		    H40.FUND_NAME AS fundName,
+		    H40.MARKET AS market,
+		    H40.RELEATED AS releated,
+		    H40.TRX_STATUS AS trxStatus,
+		    H40.VAL_TYPE_CODE AS valTypeCode,
+		    H40.VAL_PRICE AS valPrice,
+		    H40.THREE_LEVEL AS threeLevel 
+		FROM
+		    wp_h40 H40 
+		WHERE
+		    1 = 1 
+        AND H40.PERIOD = #{period}
+        AND H40.FIRM_CODE = #{firmCode}
+        ORDER BY H40.SORT
+    </select>
+    
+    <select id="selectH50Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H50.FUND_ID AS fundId,
+		    H50.FUTURE_CODE AS futureCode,
+		    H50.FUTURE_NAME AS futureName,
+		    H50.MARKET AS market,
+		    H50.SUB_TYPE AS subType,
+		    H50.MULTIPLIER AS multiplier,
+		    H50.UNIT_SETTL_PRICE AS unitSettlPrice,
+		    H50.THREE_LEVEL AS threeLevel 
+		FROM
+		    wp_h50 H50 
+		WHERE
+            1 = 1 
+        AND H50.PERIOD = #{period}
+        AND H50.FIRM_CODE = #{firmCode}
+        ORDER BY H50.SORT
+    </select>
+    
 </mapper>

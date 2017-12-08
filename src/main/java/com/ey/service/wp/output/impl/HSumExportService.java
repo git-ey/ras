@@ -57,6 +57,8 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         dataMap.put("H21", this.getH21Data(firmCode, periodStr));
         dataMap.put("H30", this.getH30Data(firmCode, periodStr));
         dataMap.put("H31", this.getH31Data(firmCode, periodStr));
+        dataMap.put("H40", this.getH40Data(firmCode, periodStr));
+        dataMap.put("H50", this.getH50Data(firmCode, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H_SUM);
     }
@@ -313,6 +315,54 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         result.put("recentLeap", recentLeap);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H40的数据
+     * @author Dai Zong 2017年12月08日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH40Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH40Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H50的数据
+     * @author Dai Zong 2017年12月08日
+     * 
+     * @param firmCode
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH50Data(String firmCode, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        Map<String, Object> result = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH50Data", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
         return result;
     }
     

@@ -2842,9 +2842,7 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="H40">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s43" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s43" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="91.5"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="133.5"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="112.5"/>
@@ -2939,148 +2937,21 @@
     <Cell ss:Index="2" ss:StyleID="s37"/>
     <Cell ss:StyleID="s41"/>
    </Row>
+   <#if H40.count != 0>
+   <#list H40.list as item>
    <Row>
-    <Cell><Data ss:Type="String">F100066</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星01</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">上交所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">Y</Data></Cell>
-    <Cell><Data ss:Type="String">正常交易</Data></Cell>
-    <Cell ss:Index="8"><Data ss:Type="String">基A1</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">100</Data></Cell>
-    <Cell><Data ss:Type="String">一层次</Data></Cell>
+    <Cell><Data ss:Type="String">${item.fundId!}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">${item.fundCode!}</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">${item.fundName!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.market!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.releated!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.trxStatus!}</Data></Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.valPrice!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
    </Row>
-   <Row>
-    <Cell><Data ss:Type="String">F100067</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136010</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星02</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">深交所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">Y</Data></Cell>
-    <Cell><Data ss:Type="String">暂停赎回</Data></Cell>
-    <Cell ss:Index="8"><Data ss:Type="String">基A2</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">100</Data></Cell>
-    <Cell><Data ss:Type="String">二层次</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">F100068</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136011</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星03</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">场外</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">Y</Data></Cell>
-    <Cell><Data ss:Type="String">建仓期/未上市</Data></Cell>
-    <Cell ss:Index="8"><Data ss:Type="String">基B</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">100</Data></Cell>
-    <Cell><Data ss:Type="String">三层次</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">F100069</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136012</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星04</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">场外</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">Y</Data></Cell>
-    <Cell><Data ss:Type="String">停牌</Data></Cell>
-    <Cell ss:Index="8"><Data ss:Type="String">基C</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">100</Data></Cell>
-    <Cell><Data ss:Type="String">三层次</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:Index="9" ss:StyleID="s104"/>
-   </Row>
+   </#list>
+   </#if>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -3106,9 +2977,7 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="H50">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s43" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s43" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="69"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="133.5"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="168.75"/>
@@ -3191,203 +3060,21 @@
     <Cell ss:StyleID="s47"><Data ss:Type="String">b</Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">c=a*b</Data></Cell>
    </Row>
+   <#if H50.count != 0>
+   <#list H50.list as item>
    <Row>
-    <Cell><Data ss:Type="String">F100066</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星01</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">中金所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">股指期货</Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">1000000</Data></Cell>
+    <Cell><Data ss:Type="String">${item.fundId!}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">${item.futureCode!}</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">${item.futureName!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.market!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.subType!}</Data></Cell>
+    <Cell ss:StyleID="s115"><Data ss:Type="Number">${(item.multiplier!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.unitSettlPrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s104" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
    </Row>
-   <Row>
-    <Cell><Data ss:Type="String">F100067</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星01</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">中金所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">国债期货</Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">1000000</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">F100068</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136010</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星02</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">金交所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">黄金延期合约</Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">1000000</Data></Cell>
-    <Cell ss:Index="10"><Data ss:Type="String">一层次</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">F100069</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136011</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星03</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">金交所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">黄金延期合约</Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">1000000</Data></Cell>
-    <Cell ss:Index="10"><Data ss:Type="String">一层次</Data></Cell>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">F100069</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="String">136009</Data></Cell>
-    <Cell ss:StyleID="s102"><Data ss:Type="String">15红星03</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">金交所</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">黄金现货合约</Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">1000</Data></Cell>
-    <Cell ss:StyleID="s104" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number">1000000</Data></Cell>
-    <Cell ss:Index="10"><Data ss:Type="String">一层次</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s37"/>
-    <Cell ss:StyleID="s115"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-   </Row>
+   </#list>
+   </#if>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
