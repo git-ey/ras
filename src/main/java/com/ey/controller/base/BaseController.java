@@ -167,6 +167,11 @@ public class BaseController {
 	protected final static String SFRP_IMPORT_TEMPLATE_CODE = "SFRP";
 	
 	/**
+	 * SFRI基金募集信息导入模版代码
+	 */
+	protected final static String SFRI_IMPORT_TEMPLATE_CODE = "SFRI";	
+	
+	/**
 	 * new PageData对象
 	 * 
 	 * @return
