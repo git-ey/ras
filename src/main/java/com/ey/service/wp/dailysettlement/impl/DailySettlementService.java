@@ -107,6 +107,7 @@ public class DailySettlementService implements DailySettlementManager{
 				PageData pd = new PageData();
 				pd.put("DAILY_SETTLEMENT_ID", UuidUtil.get32UUID());
 				pd.put("FUND_ID", map.get("FUND_ID"));
+				pd.put("SEQ", idx);
 				pd.put("PERIOD", map.get("PERIOD"));
 				pd.put("TRX_DATE", map.get("TRX_DATE"));
 				pd.put("TRX_TYPE", map.get("TRX_TYPE"));
