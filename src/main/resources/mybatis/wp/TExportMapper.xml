@@ -213,5 +213,25 @@
         and T500F.FUND_ID = #{fundId}
         and T500F.PERIOD = #{period}
     </select>
+    
+    <select id="selectT11000P4104Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T110004.`LEVEL` as `level`,
+            T110004.TYPE as type,
+            T110004.ATTR1 as attr1,
+            T110004.ATTR2 as attr2,
+            T110004.ATTR3 as attr3,
+            T110004.ATTR4 as attr4,
+            T110004.ATTR5 as attr5,
+            T110004.ATTR6 as attr6,
+            T110004.ATTR7 as attr7
+        FROM
+            wp_t11000_4104 T110004
+        WHERE
+            1 = 1
+        and T110004.STATUS = 'Y'
+        and T110004.FUND_ID = #{fundId}
+        and T110004.PERIOD = #{period}
+    </select>
 
 </mapper>

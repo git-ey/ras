@@ -3646,7 +3646,7 @@
   </WorksheetOptions>
  </Worksheet>
  <#if extraFundInfo.structured != 'T'  && extraFundInfo.mf != 'Y' && extraFundInfo.etf != 'Y'>
- <Worksheet ss:Name="T300非分级非货基">
+ <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="186.75"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="108"/>
@@ -4165,7 +4165,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured == 'T'  && extraFundInfo.mf != 'Y' && extraFundInfo.etf != 'Y'>
- <Worksheet ss:Name="T300分级非货基">
+ <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="178.5"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="105.75"/>
@@ -4740,7 +4740,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured != 'T'  && extraFundInfo.mf == 'Y' && extraFundInfo.etf != 'Y'>
- <Worksheet ss:Name="T300非分级货基">
+ <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s72" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s72" ss:AutoFitWidth="0" ss:Width="174.75"/>
    <Column ss:StyleID="s72" ss:Width="90"/>
@@ -5325,7 +5325,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured == 'T'  && extraFundInfo.mf == 'Y' && extraFundInfo.etf != 'Y'>
- <Worksheet ss:Name="T300分级货基">
+ <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s72" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s72" ss:AutoFitWidth="0" ss:Width="145.5"/>
    <Column ss:StyleID="s72" ss:AutoFitWidth="0" ss:Width="140.25"/>
@@ -6227,7 +6227,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.etf == 'Y'>
- <Worksheet ss:Name="T300ETF">
+ <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s56" ss:DefaultColumnWidth="108.75" ss:DefaultRowHeight="17.25">
    <Column ss:StyleID="s56" ss:AutoFitWidth="0" ss:Width="150.75"/>
    <Column ss:StyleID="s56" ss:AutoFitWidth="0" ss:Width="102"/>
@@ -7185,7 +7185,7 @@
   </WorksheetOptions>
  </Worksheet>
  <#if extraFundInfo.structured != 'T'  && extraFundInfo.mf != 'Y'>
- <Worksheet ss:Name="T400非货基非分级">
+ <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="240.75"/>
@@ -7559,7 +7559,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured == 'T'  && extraFundInfo.mf != 'Y'>
- <Worksheet ss:Name="T400非货基分级">
+ <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="240.75"/>
@@ -8010,7 +8010,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured != 'T'  && extraFundInfo.mf == 'Y'>
- <Worksheet ss:Name="T400货基非分级">
+ <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="240.75"/>
@@ -8303,7 +8303,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured == 'T'  && extraFundInfo.mf == 'Y'>
- <Worksheet ss:Name="T400货基分级">
+ <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="240.75"/>
@@ -8656,7 +8656,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.mf == 'Y'>
- <Worksheet ss:Name="T500 货基">
+ <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s118" ss:AutoFitWidth="0" ss:Width="250.5"/>
    <Column ss:StyleID="s269" ss:Width="110.25"/>
@@ -8869,7 +8869,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.mf != 'Y' && extraFundInfo.structured == 'F' && extraFundInfo.compound == '复利'>
- <Worksheet ss:Name="T500非货基假分级复利">
+ <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s118" ss:AutoFitWidth="0" ss:Width="286.5"/>
    <Column ss:StyleID="s269" ss:Width="132" ss:Span="1"/>
@@ -9221,7 +9221,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.mf != 'Y' && extraFundInfo.structured == 'F' && extraFundInfo.compound != '复利'>
- <Worksheet ss:Name="T500非货基假分级单利">
+ <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s118" ss:AutoFitWidth="0" ss:Width="286.5"/>
    <Column ss:StyleID="s269" ss:Width="132" ss:Span="1"/>
@@ -9581,7 +9581,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.mf != 'Y' && extraFundInfo.structured == 'T'>
- <Worksheet ss:Name="T500非货基真分级">
+ <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s118" ss:AutoFitWidth="0" ss:Width="286.5"/>
    <Column ss:StyleID="s269" ss:Width="132" ss:Span="1"/>
@@ -9908,7 +9908,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.mf != 'Y' && extraFundInfo.structured == 'N'>
- <Worksheet ss:Name="T500 普通">
+ <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s118" ss:AutoFitWidth="0" ss:Width="283.5"/>
    <Column ss:StyleID="s269" ss:Width="132" ss:Span="1"/>
@@ -10288,7 +10288,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured != 'T' && T300.adj.adjFlag != 'Y'>
- <Worksheet ss:Name="T10000无折算非分级">
+ <Worksheet ss:Name="T10000">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="93.75"/>
    <Column ss:StyleID="s75" ss:Width="197.25"/>
@@ -10468,7 +10468,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured == 'T' && T300.adj.adjFlag != 'Y'>
- <Worksheet ss:Name="T10000无折算分级">
+ <Worksheet ss:Name="T10000">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="93.75"/>
    <Column ss:StyleID="s75" ss:Width="197.25"/>
@@ -10662,7 +10662,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured != 'T' && T300.adj.adjFlag == 'Y'>
- <Worksheet ss:Name="T10000有折算非分级">
+ <Worksheet ss:Name="T10000">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="93.75"/>
    <Column ss:StyleID="s75" ss:Width="197.25"/>
@@ -10833,7 +10833,7 @@
  </Worksheet>
  </#if>
  <#if extraFundInfo.structured == 'T' && T300.adj.adjFlag == 'Y'>
- <Worksheet ss:Name="T10000有折算分级">
+ <Worksheet ss:Name="T10000">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="93.75"/>
    <Column ss:StyleID="s75" ss:Width="197.25"/>
@@ -11004,9 +11004,7 @@
  </Worksheet>
  </#if>
  <Worksheet ss:Name="T11000">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s120" ss:AutoFitWidth="0" ss:Width="74.25"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="150.75"/>
    <Column ss:StyleID="s120" ss:AutoFitWidth="0" ss:Width="147.75"/>
@@ -11063,8 +11061,11 @@
    <Row ss:StyleID="s75">
     <Cell ss:Index="2" ss:StyleID="s227"/>
    </Row>
+   <#if extraFundInfo.structured == 'T'>
+   <#if T11000.P4104.levelCount != 0>
+   <#list T11000.P4104.levels as item>
    <Row ss:StyleID="s75">
-    <Cell ss:Index="2"><Data ss:Type="String">A级基金</Data></Cell>
+    <Cell ss:Index="2"><Data ss:Type="String">${item.levelName!}基金</Data></Cell>
    </Row>
    <Row ss:StyleID="s75">
     <Cell><Data ss:Type="String">数据来源</Data></Cell>
@@ -11076,58 +11077,56 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">上年度末</Data></Cell>
-    <Cell ss:StyleID="s41"><Data ss:Type="Number">1698038716.2000008</Data></Cell>
-    <Cell ss:StyleID="s41"><Data ss:Type="Number">119614362.16000599</Data></Cell>
-    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number">1817653078.3600068</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">${(item.attr1.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">${(item.attr1.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s229"><Data ss:Type="String">本期利润</Data></Cell>
-    <Cell ss:StyleID="s42"><Data ss:Type="Number">666555</Data></Cell>
-    <Cell ss:StyleID="s42"><Data ss:Type="Number">3333</Data></Cell>
-    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number">669888</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="Number">${(item.attr2.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="Number">${(item.attr2.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row ss:Height="27">
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s232"><Data ss:Type="String">本期基金份额交易产生的变动数</Data></Cell>
-    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number">14443</Data></Cell>
-    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number">13332</Data></Cell>
-    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number">27775</Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s229"><Data ss:Type="String">其中：基金申购款</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">6666</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">4444</Data></Cell>
-    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number">11110</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr4.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr4.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row ss:Height="27">
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s252"><Data ss:Type="String">      基金赎回款&#10;    （以“-”号填列）</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">7777</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">8888</Data></Cell>
-    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number">16665</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr5.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr5.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s232"><Data ss:Type="String">本期已分配利润</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">9999</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number">9999</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr6.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr6.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s232"><Data ss:Type="String">本期末</Data></Cell>
-    <Cell ss:StyleID="s255" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data
-      ss:Type="Number">1698729713.2000008</Data></Cell>
-    <Cell ss:StyleID="s255" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data
-      ss:Type="Number">119631027.16000599</Data></Cell>
-    <Cell ss:StyleID="s255" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number">1818360740.3600068</Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row ss:StyleID="s75">
@@ -11137,6 +11136,155 @@
     <Cell ss:Index="8" ss:StyleID="s120"/>
     <Cell ss:StyleID="s120"/>
    </Row>
+   </#list>
+   </#if>
+   <#else>
+   <#if T11000.P4104.levelCount == 0>
+   <Row ss:StyleID="s75">
+    <Cell><Data ss:Type="String">数据来源</Data></Cell>
+    <Cell ss:StyleID="s235"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:StyleID="s235"><Data ss:Type="String">已实现部分</Data></Cell>
+    <Cell ss:StyleID="s235"><Data ss:Type="String">未实现部分</Data></Cell>
+    <Cell ss:StyleID="s235"><Data ss:Type="String">未分配利润合计</Data></Cell>
+    <Cell ss:StyleID="s228"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">上年度末</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s229"><Data ss:Type="String">本期利润</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row ss:Height="27">
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String">本期基金份额交易产生的变动数</Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s229"><Data ss:Type="String">其中：基金申购款</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row ss:Height="27">
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s252"><Data ss:Type="String">      基金赎回款&#10;    （以“-”号填列）</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String">本期已分配利润</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s232"><Data ss:Type="String">本期末</Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row ss:StyleID="s75">
+    <Cell ss:Index="3" ss:StyleID="s233"/>
+    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s230"/>
+    <Cell ss:Index="8" ss:StyleID="s120"/>
+    <Cell ss:StyleID="s120"/>
+   </Row>
+   <#else>
+   <#list T11000.P4104.levels as item>
+   <#if item_index == 0>
+   <Row ss:StyleID="s75">
+    <Cell><Data ss:Type="String">数据来源</Data></Cell>
+    <Cell ss:StyleID="s235"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:StyleID="s235"><Data ss:Type="String">已实现部分</Data></Cell>
+    <Cell ss:StyleID="s235"><Data ss:Type="String">未实现部分</Data></Cell>
+    <Cell ss:StyleID="s235"><Data ss:Type="String">未分配利润合计</Data></Cell>
+    <Cell ss:StyleID="s228"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">上年度末</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">${(item.attr1.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">${(item.attr1.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s229"><Data ss:Type="String">本期利润</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="Number">${(item.attr2.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="Number">${(item.attr2.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row ss:Height="27">
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String">本期基金份额交易产生的变动数</Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s229"><Data ss:Type="String">其中：基金申购款</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr4.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr4.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row ss:Height="27">
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s252"><Data ss:Type="String">      基金赎回款&#10;    （以“-”号填列）</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr5.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr5.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String">本期已分配利润</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr6.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr6.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s232"><Data ss:Type="String">本期末</Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row ss:StyleID="s75">
+    <Cell ss:Index="3" ss:StyleID="s233"/>
+    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s230"/>
+    <Cell ss:Index="8" ss:StyleID="s120"/>
+    <Cell ss:StyleID="s120"/>
+   </Row>
+   </#if>
+   </#list>
+   </#if>
+   </#if>
    <Row>
     <Cell ss:Index="6" ss:StyleID="s230"/>
    </Row>
