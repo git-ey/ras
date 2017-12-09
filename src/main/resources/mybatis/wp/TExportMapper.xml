@@ -98,7 +98,8 @@
             T300A.ITEM as item,
             T300A.UNITS as units,
             T300A.AMOUNT as amount,
-            T300A.REFERENCE as reference
+            T300A.REFERENCE as reference,
+            IF( T300A.ITEM = '本期末' OR T300A.ITEM LIKE '%折算前', 'Y', 'N' ) AS sumFlag 
         FROM
             wp_t300_adj T300A 
         WHERE

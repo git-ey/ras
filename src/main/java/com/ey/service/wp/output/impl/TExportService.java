@@ -182,6 +182,42 @@ public class TExportService extends BaseExportService implements TExportManager{
         }
         main.put("list", mainMetaDataList);
         main.put("count", mainMetaDataList.size());
+        //处理T10000需要用到的数据
+        Map<String, Object> dataFor10000 = new HashMap<>();
+        List<String> levelNames = mainMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        List<Map<String,Object>> begin = new ArrayList<>();
+        List<Map<String,Object>> cr = new ArrayList<>();
+        List<Map<String,Object>> dr = new ArrayList<>();
+        Map<String,Map<String,Object>> tempMap = new HashMap<>();
+        for(Map<String,Object> map : mainMetaDataList) {
+            tempMap.put(String.valueOf(map.get("level")), map);
+        }
+        for(String levelName : levelNames) {
+            Map<String, Object> map = tempMap.get(levelName);
+            if(map == null) {
+                map = new HashMap<>();
+            }
+            Map<String,Object> beginMap = new HashMap<>();
+            Map<String,Object> crMap = new HashMap<>();
+            Map<String,Object> drMap = new HashMap<>();
+            beginMap.put("unit", map.get("beginUnits"));
+            beginMap.put("amount", map.get("beginBalance"));
+            crMap.put("unit", map.get("crUnits"));
+            crMap.put("amount", map.get("crAmount"));
+            drMap.put("unit", map.get("drUnits"));
+            drMap.put("amount", map.get("drAmount"));
+            begin.add(beginMap);
+            cr.add(crMap);
+            dr.add(drMap);
+        }
+        dataFor10000.put("levelNames", levelNames);
+        dataFor10000.put("levelsCount", levelNames.size());
+        dataFor10000.put("begin", begin);
+        dataFor10000.put("cr", cr);
+        dataFor10000.put("dr", dr);
+        main.put("dataFor10000", dataFor10000);
         //========process dataMap for main view end========
         
         //========process dataMap for note view begin========
@@ -279,6 +315,7 @@ public class TExportService extends BaseExportService implements TExportManager{
                 }
                 container.put("levels", levelMaps);
                 container.put("levelCount", levelMaps.size());
+                container.put("item", levelMaps.size()==0 ? null : levelMaps.get(0).get("item"));
                 itemMaps.add(container);
             }
             adj.put("items", itemMaps);

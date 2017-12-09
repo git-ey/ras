@@ -4085,12 +4085,12 @@
     <#list outer.levels as inner>
     <Cell ss:StyleID="s200"><Data ss:Type="String">${inner.item!}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String"><#if outer_index == 0>S/L</#if></Data></Cell>
-    <#if inner.item == '本期末'>
-    <Cell ss:StyleID="s202" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <#if inner.sumFlag == 'Y'>
+    <Cell ss:StyleID="s62" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s62" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <#else>
-    <Cell ss:StyleID="s202"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>
     </#if>
     <Cell><Data ss:Type="String">${inner.reference!}</Data></Cell>
     <Cell/>
@@ -4655,12 +4655,12 @@
     <#list outer.levels as inner>
     <Cell ss:StyleID="s200"><Data ss:Type="String">${inner.item!}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String"><#if outer_index == 0>S/L</#if></Data></Cell>
-    <#if inner.item == '本期末'>
-    <Cell ss:StyleID="s202" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=R[-4]C+R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <#if inner.sumFlag == 'Y'>
+    <Cell ss:StyleID="s62" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s62" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <#else>
-    <Cell ss:StyleID="s202"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>
     </#if>
     <Cell><Data ss:Type="String">${inner.reference!}</Data></Cell>
     <Cell/>
@@ -6091,7 +6091,7 @@
     <Cell ss:Index="6" ss:StyleID="s72"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:MergeAcross="<#if T300.main.count == 0>1<#else>${(2*T300.main.count-1)?string('0')}</#if>" ss:StyleID="s446"><Data ss:Type="String">2017年度</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="<#if T300.main.count == 0>1<#else>${(2*T300.main.count-1)?string('0')}</#if>" ss:StyleID="s446"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
    </Row>
    <Row>
     <Cell ss:MergeDown="1" ss:StyleID="s398"><Data ss:Type="String">项目</Data></Cell>
@@ -10287,10 +10287,9 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <#if extraFundInfo.structured != 'T' && T300.adj.adjFlag != 'Y'>
  <Worksheet ss:Name="T10000无折算非分级">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="93.75"/>
    <Column ss:StyleID="s75" ss:Width="197.25"/>
    <Column ss:StyleID="s120" ss:Width="136.5"/>
@@ -10364,9 +10363,8 @@
     <Cell ss:Index="9" ss:StyleID="s75"/>
    </Row>
    <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="m2413322649840"><Data
-      ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="m2413322649860"><Data ss:Type="String">2017年度</Data></Cell>
+    <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="m2413322649840"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="m2413322649860"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
    </Row>
    <Row ss:StyleID="s75">
     <Cell><Data ss:Type="String">数据来源</Data></Cell>
@@ -10376,32 +10374,56 @@
    <Row>
     <Cell ss:StyleID="s228"><Data ss:Type="String">T300</Data></Cell>
     <Cell ss:StyleID="s303"><Data ss:Type="String">上年度末</Data></Cell>
+    <#if T300.main.dataFor10000.levelsCount == 0>
     <Cell ss:StyleID="s304"/>
     <Cell ss:StyleID="s304"/>
+    <#else>
+    <#list T300.main.dataFor10000.begin as item>
+    <#if item_index == 0>
+    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.unit!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s230"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s75"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s303"><Data ss:Type="String">本期申购</Data></Cell>
+    <#if T300.main.dataFor10000.levelsCount == 0>
     <Cell ss:StyleID="s304"/>
     <Cell ss:StyleID="s304"/>
+    <#else>
+    <#list T300.main.dataFor10000.cr as item>
+    <#if item_index == 0>
+    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.unit!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:Index="9" ss:StyleID="s75"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s303"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
+    <#if T300.main.dataFor10000.levelsCount == 0>
     <Cell ss:StyleID="s304"/>
     <Cell ss:StyleID="s304"/>
+    <#else>
+    <#list T300.main.dataFor10000.dr as item>
+    <#if item_index == 0>
+    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.unit!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s230"/>
     <Cell ss:StyleID="s305"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s75"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s303"><Data ss:Type="String">本期末</Data></Cell>
-    <Cell ss:StyleID="s306" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s306" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s306" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s306" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s307" ss:Formula="=RC[-2]-T!R12C6"><Data ss:Type="Number">-185367598.13</Data></Cell>
+    <Cell ss:StyleID="s307" ss:Formula="=RC[-2]-T!R12C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="9" ss:StyleID="s75"/>
    </Row>
    <Row>
@@ -10444,10 +10466,10 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
+ </#if>
+ <#if extraFundInfo.structured == 'T' && T300.adj.adjFlag != 'Y'>
  <Worksheet ss:Name="T10000无折算分级">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="93.75"/>
    <Column ss:StyleID="s75" ss:Width="197.25"/>
    <Column ss:StyleID="s120" ss:Width="136.5"/>
@@ -10521,55 +10543,72 @@
     <Cell ss:Index="9" ss:StyleID="s75"/>
    </Row>
    <Row ss:StyleID="s75">
-    <Cell ss:Index="3" ss:MergeAcross="1" ss:StyleID="s470"><Data ss:Type="String">X级</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s470"><Data ss:Type="String">X级</Data></Cell>
+    <Cell/>
+    <Cell/>
+    <#if T300.main.dataFor10000.levelsCount != 0>
+    <#list T300.main.dataFor10000.levelNames as level>
+    <Cell ss:MergeAcross="1" ss:StyleID="s470"><Data ss:Type="String">${level!}</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row ss:StyleID="s75">
     <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="s398"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="m2413322649228"><Data ss:Type="String">2017年度</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="m2413322649248"><Data ss:Type="String">2017年度</Data></Cell>
+    <#if T300.main.dataFor10000.levelsCount != 0>
+    <#list T300.main.dataFor10000.levelNames as level>
+    <Cell ss:MergeAcross="1" ss:StyleID="m2413322649228"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row ss:StyleID="s75">
-    <Cell ss:Index="3" ss:StyleID="s367"><Data ss:Type="String">基金份额（份）</Data></Cell>
+    <#if T300.main.dataFor10000.levelsCount != 0>
+    <#list T300.main.dataFor10000.levelNames as level>
+    <Cell <#if level_index == 0>ss:Index="3"</#if> ss:StyleID="s367"><Data ss:Type="String">基金份额（份）</Data></Cell>
     <Cell ss:StyleID="s367"><Data ss:Type="String">账面金额</Data></Cell>
-    <Cell ss:StyleID="s367"><Data ss:Type="String">基金份额（份）</Data></Cell>
-    <Cell ss:StyleID="s367"><Data ss:Type="String">账面金额</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s228"><Data ss:Type="String">T300</Data></Cell>
     <Cell ss:StyleID="s398"><Data ss:Type="String">上年度末</Data></Cell>
-    <Cell ss:StyleID="s182"/>
-    <Cell ss:StyleID="s182"/>
-    <Cell ss:StyleID="s207"/>
-    <Cell ss:StyleID="s208"/>
+    <#if T300.main.dataFor10000.levelsCount != 0>
+    <#list T300.main.dataFor10000.begin as item>
+    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(item.unit!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s228"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row ss:StyleID="s75">
     <Cell ss:Index="2" ss:StyleID="s398"><Data ss:Type="String">本期申购</Data></Cell>
-    <Cell ss:StyleID="s182"/>
-    <Cell ss:StyleID="s182"/>
-    <Cell ss:StyleID="s207"/>
-    <Cell ss:StyleID="s208"/>
+    <#if T300.main.dataFor10000.levelsCount != 0>
+    <#list T300.main.dataFor10000.cr as item>
+    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(item.unit!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s228"/>
    </Row>
    <Row ss:StyleID="s75">
     <Cell ss:Index="2" ss:StyleID="s398"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s182"/>
-    <Cell ss:StyleID="s182"/>
-    <Cell ss:StyleID="s207"/>
-    <Cell ss:StyleID="s208"/>
+    <#if T300.main.dataFor10000.levelsCount != 0>
+    <#list T300.main.dataFor10000.dr as item>
+    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(-(item.unit!0))?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(-(item.amount!0))?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s230"/>
     <Cell ss:StyleID="s305"><Data ss:Type="String">Control</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s398"><Data ss:Type="String">本期末</Data></Cell>
-    <Cell ss:StyleID="s182" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s182" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s182" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s182" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <#if T300.main.dataFor10000.levelsCount != 0>
+    <#list T300.main.dataFor10000.levelNames as level>
+    <Cell ss:StyleID="s182" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s182" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s71" ss:Formula="=SUM(RC[-4],RC[-2])-T!R12C6"><Data
-      ss:Type="Number">-185367598.13</Data></Cell>
+    <Cell ss:StyleID="s71" ss:Formula="=SUM(<#if T300.main.dataFor10000.levelsCount != 0><#list T300.main.dataFor10000.levelNames as level><#if level_index != 0>,</#if>RC[${(-2*(level_index+1))?string('0')}]</#list><#else>RC[-1]</#if>)-T!R12C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s75"/>
    </Row>
    <Row>
@@ -10621,10 +10660,10 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
+ </#if>
+ <#if extraFundInfo.structured != 'T' && T300.adj.adjFlag == 'Y'>
  <Worksheet ss:Name="T10000有折算非分级">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="93.75"/>
    <Column ss:StyleID="s75" ss:Width="197.25"/>
    <Column ss:StyleID="s120" ss:Width="136.5"/>
@@ -10704,81 +10743,41 @@
    </Row>
    <Row ss:StyleID="s75">
     <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="s398"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">2017年度</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
    </Row>
    <Row ss:StyleID="s75">
     <Cell ss:Index="3" ss:StyleID="s367"><Data ss:Type="String">基金份额（份）</Data></Cell>
     <Cell ss:StyleID="s367"><Data ss:Type="String">账面金额</Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s440"/>
    </Row>
+   <#list T300.adj.items as outer>
    <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s228"><Data ss:Type="String">T300</Data></Cell>
-    <Cell ss:StyleID="s310"><Data ss:Type="String">上年度末</Data></Cell>
+    <Cell ss:StyleID="s228"><Data ss:Type="String"><#if outer_index == 0>T300</#if></Data></Cell>
+    <Cell ss:StyleID="s310"><Data ss:Type="String">${outer.item!}</Data></Cell>
+    <#if outer.levelCount == 0>
     <Cell ss:StyleID="s311"/>
     <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s228"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <#else>
+    <#list outer.levels as inner>
+    <#if inner_index == 0>
+    <#if inner.sumFlag == 'Y'>
+    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s312"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s312"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#if>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s228"><Data ss:Type="String"><#if outer_index == 0>&lt;审定财务报表&gt;</#if></Data></Cell>
+    <#if outer_index == (T300.adj.itemCount-2)>
+    <Cell ss:StyleID="s305"><Data ss:Type="String">Control</Data></Cell>
+    <#elseif outer_index == (T300.adj.itemCount-1)>
+    <Cell ss:StyleID="s71" ss:Formula="=RC[-2]-T!R12C6"><Data ss:Type="Number"></Data></Cell>
+    </#if>
    </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期申购</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s228"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s230"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">XXXX年X月XX日份额折算前</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s230"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">基金份额折算调整</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期申购</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">XXXX年X月XX日份额折算前</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">基金份额折算调整</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期申购</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:Index="6" ss:StyleID="s305"><Data ss:Type="String">Control</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期末</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s71" ss:Formula="=RC[-2]-T!R12C6"><Data
-      ss:Type="Number">-185367598.13</Data></Cell>
-   </Row>
+   </#list>
    <Row ss:StyleID="s75"/>
    <Row ss:StyleID="s75">
     <Cell ss:Index="2" ss:StyleID="s347"><Data ss:Type="String">定期不定期示例：</Data></Cell>
@@ -10832,10 +10831,10 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
+ </#if>
+ <#if extraFundInfo.structured == 'T' && T300.adj.adjFlag == 'Y'>
  <Worksheet ss:Name="T10000有折算分级">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="93.75"/>
    <Column ss:StyleID="s75" ss:Width="197.25"/>
    <Column ss:StyleID="s120" ss:Width="136.5"/>
@@ -10910,113 +10909,45 @@
    </Row>
    <Row ss:StyleID="s75"/>
    <Row ss:StyleID="s75">
-    <Cell ss:Index="3" ss:MergeAcross="1" ss:StyleID="s470"><Data ss:Type="String">X级</Data></Cell>
+    <Cell/>
+    <Cell/>
+    <#list T300.adj.levels as level>
     <Cell ss:MergeAcross="1" ss:StyleID="s470"><Data ss:Type="String">X级</Data></Cell>
+    </#list>
    </Row>
    <Row ss:StyleID="s75">
     <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="s398"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">2017年度</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">2017年度</Data></Cell>
+    <#list T300.adj.levels as level>
+    <Cell ss:MergeAcross="1" ss:StyleID="s448"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
+    </#list>
    </Row>
    <Row ss:StyleID="s75">
-    <Cell ss:Index="3" ss:StyleID="s367"><Data ss:Type="String">基金份额（份）</Data></Cell>
+    <#list T300.adj.levels as level>
+    <Cell <#if level_index == 0>ss:Index="3"</#if> ss:StyleID="s367"><Data ss:Type="String">基金份额（份）</Data></Cell>
     <Cell ss:StyleID="s367"><Data ss:Type="String">账面金额</Data></Cell>
-    <Cell ss:StyleID="s367"><Data ss:Type="String">基金份额（份）</Data></Cell>
-    <Cell ss:StyleID="s367"><Data ss:Type="String">账面金额</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s440"/>
+    </#list>
    </Row>
+   <#list T300.adj.items as outer>
    <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s228"><Data ss:Type="String">T300</Data></Cell>
-    <Cell ss:StyleID="s310"><Data ss:Type="String">上年度末</Data></Cell>
-    <Cell ss:StyleID="s311"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s311"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s228"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s228"><Data ss:Type="String"><#if outer_index == 0>T300</#if></Data></Cell>
+    <Cell ss:StyleID="s310"><Data ss:Type="String">${outer.item!}</Data></Cell>
+    <#list outer.levels as inner>
+    <#if inner.sumFlag == 'Y'>
+    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s312"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s312"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    <Cell ss:StyleID="s228"><Data ss:Type="String"><#if outer_index == 0>&lt;审定财务报表&gt;</#if></Data></Cell>
+    <#if outer_index == (T300.adj.itemCount-2)>
+    <Cell ss:StyleID="s305"><Data ss:Type="String">Control</Data></Cell>
+    <#elseif outer_index == (T300.adj.itemCount-1)>
+    <Cell ss:StyleID="s71" ss:Formula="=SUM(<#list T300.adj.levels as level><#if level_index != 0>,</#if>RC[${(-2*(1+level_index))?string('0')}]</#list>)-T!R12C6"><Data ss:Type="Number"></Data></Cell>
+    </#if>
    </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期申购</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s228"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s230"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">XXXX年X月XX日份额折算前</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s230"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">基金份额折算调整</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期申购</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">XXXX年X月XX日份额折算前</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">基金份额折算调整</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期申购</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:Index="8" ss:StyleID="s305"><Data ss:Type="String">Control</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:Index="2" ss:StyleID="s313"><Data ss:Type="String">本期末</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s71" ss:Formula="=SUM(RC[-4],RC[-2])-T!R12C6"><Data
-      ss:Type="Number">-185367598.13</Data></Cell>
-   </Row>
+   </#list>
    <Row ss:StyleID="s75"/>
    <Row ss:StyleID="s75">
     <Cell ss:Index="2" ss:StyleID="s347"><Data ss:Type="String">定期不定期示例：</Data></Cell>
@@ -11071,6 +11002,7 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
+ </#if>
  <Worksheet ss:Name="T11000">
   <Table x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s120" ss:DefaultColumnWidth="54"
