@@ -149,6 +149,7 @@
     
     <select id="selectE410PeriodAfterTestData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
+            'AntiNull' AS antiNull,
 		    DATE_FORMAT(E410P.TRX_DATE,'%Y-%m-%dT00:00:00.000') as trxDate,
 		    E410P.SETTLEMENT_AMOUNT as settlementAmount
 		FROM

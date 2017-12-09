@@ -391,6 +391,11 @@ public class EExportService extends BaseExportService implements EExportManager{
         if(E410PeriodAfterTestMetaDataList == null) {
             E410PeriodAfterTestMetaDataList = new ArrayList<Map<String,Object>>(); 
         }
+//        List<Map<String,Object>> tempList = new ArrayList<>();
+//        for(Map<String,Object> item : E410PeriodAfterTestMetaDataList) {
+//            tempList.add(item==null ? new HashMap<>():item);
+//        }
+//        E410PeriodAfterTestMetaDataList = tempList;
         
         periodAfterTest.put("list", E410PeriodAfterTestMetaDataList);
         periodAfterTest.put("count", E410PeriodAfterTestMetaDataList.size());
