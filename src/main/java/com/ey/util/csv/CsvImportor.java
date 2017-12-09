@@ -2,9 +2,9 @@ package com.ey.util.csv;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -60,8 +60,9 @@ public class CsvImportor extends FileImportor {
 	private List<Map> readCsv(File csvFile, ImportConfig configuration, StringBuilder sb) throws FileImportException {
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(csvFile));
-		} catch (FileNotFoundException ex) {
+			InputStreamReader isr = new InputStreamReader(new FileInputStream(csvFile), "UTF-8");
+			br = new BufferedReader(isr);
+		} catch (Exception ex) {
 			sb.append("读取CSV文件失败:" + ex.getMessage());
 		}
 		List<ImportConfigCell> lists = configuration.getImportCells();
