@@ -110,8 +110,9 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        pd.put("PEROID", periodStr);
         
-        this.reportExportService.doExport(request, response, fundId, periodStr);
+        this.reportExportService.doExport(request, response, pd);
     }
 
 	/**
@@ -277,6 +278,7 @@ public class ExportController extends BaseController {
         final String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        pd.put("PEROID", periodStr);
         
         final String fileIdentifier = fundId + "_" + periodStr;
         final String resourcePath = PathUtil.getWebResourcePath(request);
@@ -290,7 +292,7 @@ public class ExportController extends BaseController {
         this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
         this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr);
         this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);   
-        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, fundId, periodStr);
+        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, pd);
         
         final String zipFileName = fileIdentifier + ".zip";
         final String zipFileFullName = resourcePath + zipFileName;

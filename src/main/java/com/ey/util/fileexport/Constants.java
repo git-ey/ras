@@ -10,6 +10,10 @@ public interface Constants {
      */
     static final String EXPORT_TEMPLATE_FOLDER_PATH = "/export_template";
     /**
+     * 报告组件位置[绝对路径]
+     */
+    static final String REPORT_TEMPLATES_FOLDER_PATH = "D:/report_templates";
+    /**
      * 模板名称--Report
      */
     static final String EXPORT_TEMPLATE_FILE_NAME_REPORT = "Report.ftl";

@@ -94,4 +94,39 @@ public class FreeMarkerUtils {
 	    return source;
 	}
 	
+	/**
+     * 通过文件名向指定文件的FreeMarker模板绑定数据，将渲染的结果以String输出
+     * <p>路径为模板所在文件夹绝对路径</p>
+     * @author gaokuo.dai@hand-china.com
+     * 2017年12月11日
+     * 
+     * @param templateData 要绑定进模板的数据，可空
+     * @param templateFolderPath 模板所在文件夹绝对路径
+     * @param templateFileName 模板的文件名全称【例如:"test.ftl"】
+     * @return FreeMarker渲染的结果,以String输出
+     * @throws IOException
+     * @throws TemplateException
+     */
+    public static String processTemplateToStrUseAbsPath(Map<String, Object> templateData, String templateFolderPath, String templateFileName) throws IOException, TemplateException{
+        //参数校验
+        if(templateData == null){
+            templateData = new HashMap<String, Object>();
+        }
+        if(StringUtils.isEmpty(templateFolderPath) || StringUtils.isEmpty(templateFileName)){
+            throw new IllegalArgumentException("Template Folder Path or Template File Name is EMPTY!");
+        }
+        if('/' != templateFolderPath.charAt(0)){
+            templateFolderPath = '/' + templateFolderPath;
+        }
+        //模板加载
+        FreeMarkerUtils.initConfiguration();
+        FileTemplateLoader fileTemplateLoader = new FileTemplateLoader(new File(templateFolderPath));
+        freeMarkerConfig.setTemplateLoader(fileTemplateLoader);
+        //渲染
+        StringWriter writer = new StringWriter(DEF_STR_WRITER_BUF_SIZE);
+        Template template = freeMarkerConfig.getTemplate(templateFileName);
+        template.process(templateData, writer);
+        return writer.toString();
+    }
+	
 }
