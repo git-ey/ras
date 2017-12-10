@@ -3901,18 +3901,6 @@
     <Cell ss:StyleID="s90"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s89"/>
-    <Cell ss:StyleID="s88"/>
-    <Cell ss:StyleID="s88"/>
-    <Cell ss:StyleID="s90"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s89"/>
-    <Cell ss:StyleID="s88"/>
-    <Cell ss:StyleID="s88"/>
-    <Cell ss:StyleID="s90"/>
-   </Row>
-   <Row>
     <Cell ss:Index="2" ss:StyleID="s86"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s85" ss:Formula="=SUM(R[${(-(3+P10000.count))?string('0')}]C:R[-4]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s85" ss:Formula="=SUM(R[${(-(3+P10000.count))?string('0')}]C:R[-4]C)"><Data ss:Type="Number"></Data></Cell>
