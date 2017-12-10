@@ -250,5 +250,27 @@
         and N800D.FUND_ID = #{fundId}
         and N800D.PERIOD = #{period}
     </select>
+    
+    <select id="selectT11000MainData" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT
+		    T11000.`LEVEL` AS `level`,
+		    T11000.SEQ AS seq,
+		    T11000.REGISTRATION_DATE AS registrationDate,
+		    T11000.LISTED_DIVIDEND_DATE AS listedDividendDate,
+		    T11000.UNLISTED_DIVIDEND_DATE AS unlistedDividendDate,
+		    T11000.BONUS_UNIT AS bonusUnit,
+		    T11000.CASH_AMOUNT AS cashAmount,
+		    T11000.REINVEST_AMOUNT AS reinvestAmount,
+		    T11000.TOTAL_AMOUNT AS totalAmount,
+		    T11000.REFERENCE AS reference 
+		FROM
+		    wp_t11000 T11000
+		WHERE
+            1 = 1
+        AND T11000.STATUS = 'Y'
+        AND T11000.FUND_ID = #{fundId}
+        AND T11000.PERIOD = #{period}
+        ORDER BY T11000.SEQ
+    </select>
 
 </mapper>

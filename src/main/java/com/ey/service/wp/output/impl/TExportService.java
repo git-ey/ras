@@ -602,8 +602,39 @@ public class TExportService extends BaseExportService implements TExportManager{
         profitDist.put("list", profitDistList);
         profitDist.put("count", profitDistList.size());
         //========process dataMap for profitDist view end========
+        
+        //========process dataMap for main view begin========
+        Map<String, Object> main = new HashMap<>();
+        List<Map<String, Object>> mainList = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT11000MainData", queryMap);
+        if(mainMetaDataList == null) {
+            mainMetaDataList = new ArrayList<>();
+        }
+        Map<String, List<Map<String, Object>>> groups2 = mainMetaDataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return String.valueOf(map.get("level"));
+        }));
+        List<String> levelNames3 = mainMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        for(String levelName : levelNames3) {
+            Map<String, Object> temp1 = new HashMap<>();
+            List<Map<String, Object>> list = groups2.get(levelName);
+            if(list == null) {
+                list  = new ArrayList<>();
+            }
+            temp1.put("levelName", levelName);
+            temp1.put("list", list);
+            temp1.put("count", list.size());
+            mainList.add(temp1);
+        }
+        main.put("levels", mainList);
+        main.put("levelCount", mainList.size());
+        //========process dataMap for main view end========
         result.put("P4104", P4104);
         result.put("profitDist", profitDist);
+        result.put("main", main);
         return result;
     }
     
