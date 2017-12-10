@@ -53,7 +53,9 @@
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
 								<c:if test="${QX.FromExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="ace-icon fa fa-cloud-upload bigger-110 nav-search-icon blue"></i></a></td></c:if>
+								<!-- 
 								<c:if test="${QX.toExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td></c:if>
+							    -->
 							</tr>
 						</table>
 						<!-- 检索  -->
@@ -62,12 +64,13 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:10%;">基金</th>
-									<th class="center" style="width:10%;">基金代码</th>
-									<th class="center" style="width:10%;">管理公司</th>
+									<th class="center" style="width:8%;">基金代码</th>
+									<th class="center" style="width:8%;">管理公司</th>
 									<th class="center" style="width:25%;">基金简称</th>
-									<th class="center" style="width:16%;">财务系统</th>
+									<th class="center" style="width:10%;">合同生效日</th>
+									<th class="center" style="width:10%;">基金终止日</th>
 									<th class="center" style="width:10%;">分级</th>
-									<th class="center" style="width:10%;">启用</th>
+									<th class="center" style="width:8%;">启用</th>
 									<th class="center" style="width:10%;">操作</th>
 								</tr>
 							</thead>
@@ -83,12 +86,8 @@
 											<td class='center'>${var.FUND_CODE}</td>
 											<td class='center'>${var.COMPANY_SHORT_NAME}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
-											<td class='center'>
-											<c:choose>  
-                                               <c:when test="${var.FIN_SYSTEM == 'HS' }">恒生</c:when> 
-                                               <c:when test="${var.FIN_SYSTEM == 'JSZ' }">金手指</c:when>
-                                            </c:choose>
-											</td>
+											<td class='center'>${var.DATE_FROM}</td>
+											<td class='center'>${var.DATE_TO}</td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.STRUCTURED == 'T' }">T-真分级</c:when> 
@@ -263,91 +262,7 @@
 				});
 			});
 		});
-		
-		//关联方
-		function related(Id){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="关联方";
-			 diag.URL = '<%=basePath%>fund/relatedparty/list.do?FUND_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 500;
-			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮 
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 tosearch();
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-		
-		//签字人
-		function signoff(Id){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="签字人";
-			 diag.URL = '<%=basePath%>fund/signoff/list.do?FUND_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 500;
-			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮 
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 tosearch();
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-
-		//分级
-		function structured(Id){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="分级";
-			 diag.URL = '<%=basePath%>fund/structured/list.do?FUND_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 500;
-			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮 
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 tosearch();
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-		
-		// 申赎款划款规则
-		function trxrule(Id){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="申赎款划款规则";
-			 diag.URL = '<%=basePath%>fund/trxrule/list.do?FUND_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 500;
-			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮 
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 tosearch();
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-		
+	
 		//新增
 		function add(){
 			 top.jzts();
@@ -355,7 +270,7 @@
 			 diag.Drag=true;
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>fund/goAdd.do';
-			 diag.Width = 1000;
+			 diag.Width = 1200;
 			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -408,7 +323,7 @@
 			 diag.Drag=true;
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>fund/goEdit.do?FUND_ID='+Id;
-			 diag.Width = 1000;
+			 diag.Width = 1200;
 			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮

@@ -32,127 +32,142 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="120" placeholder="这里输入基金代码" title="基金代码" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">管理公司:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">基金代码:</td>
+								<td><input type="text" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="120" title="基金代码" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">管理公司:</td>
 								<td>
-								    <select class="chosen-select form-control" name="FIRM_CODE" id="FIRM_CODE" data-placeholder="请选择公司" style="vertical-align:top;width: 120px;">
+								    <select class="chosen-select form-control" name="FIRM_CODE" id="FIRM_CODE" data-placeholder="请选择公司" style="vertical-align:top;width: 110px;">
 									    <c:forEach items="${companyList}" var="var" varStatus="vs">
 									        <option value="${var.COMPANY_CODE}" <c:if test="${pd.FIRM_CODE == var.COMPANY_CODE}">selected</c:if>>${var.SHORT_NAME}</option>
 									    </c:forEach>
 								  	</select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">基金简称:</td>
-								<td><input type="text" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="60" placeholder="这里输入基金简称" title="基金简称" style="width:98%;"/></td>
-							</tr>
+								<td style="width:110px;text-align: right;padding-top: 13px;">基金简称:</td>
+								<td><input type="text" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="60" title="基金简称" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">基金全称:</td>
+								<td><input type="text" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="240" title="基金全称" style="width:98%;"/></td>
+                            </tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">基金全称:</td>
-								<td><input type="text" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="240" placeholder="这里输入基金全称" title="基金全称" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">基金原名:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">基金原名:</td>
 								<td><input type="text" name="FULL_NAME_ORIGINAL" id="FULL_NAME_ORIGINAL" value="${pd.FULL_NAME_ORIGINAL}" maxlength="240" placeholder="这里输入基金原名" title="基金原名" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">帐套号:</td>
-								<td><input type="text" name="LEDGER_NUM" id="LEDGER_NUM" value="${pd.LEDGER_NUM}" maxlength="60" placeholder="这里输入帐套号" title="帐套号" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">TA基金名称:</td>
-								<td><input type="text" name="TA_NAME" id="TA_NAME" value="${pd.TA_NAME}" maxlength="240" placeholder="这里输入TA基金名称" title="TA基金名称" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">财务系统:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">帐套号:</td>
+								<td><input type="text" name="LEDGER_NUM" id="LEDGER_NUM" value="${pd.LEDGER_NUM}" maxlength="60" title="帐套号" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">TA基金名称:</td>
+								<td><input type="text" name="TA_NAME" id="TA_NAME" value="${pd.TA_NAME}" maxlength="240" title="TA基金名称" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">财务系统:</td>
 								<td>
 								    <select class="chosen-select form-control" name="FIN_SYSTEM" id="FIN_SYSTEM" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="HS" <c:if test="${pd.FIN_SYSTEM == 'HS'}">selected</c:if>>恒生</option>
 								    <option value="JSZ" <c:if test="${pd.FIN_SYSTEM == 'JSZ'}">selected</c:if>>金手指</option>
 								    </select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">分级:</td>
+							</tr>
+							<tr>
+								<td style="width:110px;text-align: right;padding-top: 13px;">分级:</td>
 								<td>
 								    <select class="chosen-select form-control" name="STRUCTURED" id="STRUCTURED" data-placeholder="请选择" style="width:98%;">
+								    <option value=""></option>
 								    <option value="N" <c:if test="${pd.STRUCTURED == 'N'}">selected</c:if>>N-不分级</option>
 								    <option value="T" <c:if test="${pd.STRUCTURED == 'T'}">selected</c:if>>T-真分级</option>
 								    <option value="F" <c:if test="${pd.STRUCTURED == 'F'}">selected</c:if>>F-假分级</option>
 								    </select>
 								</td>
-							</tr>
-							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">保本:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">保本:</td>
 								<td>
 								    <select class="chosen-select form-control" name="GUARANTEED" id="GUARANTEED" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.GUARANTEED == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.GUARANTEED == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">封闭:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">封闭:</td>
 								<td>
 								    <select class="chosen-select form-control" name="CLOSED" id="CLOSED" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.CLOSED == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.CLOSED == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">沪港:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">沪港:</td>
 								<td>
 								    <select class="chosen-select form-control" name="SHHK" id="SHHK" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.SHHK == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.SHHK == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">QD:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">QD:</td>
 								<td>
 								    <select class="chosen-select form-control" name="QD" id="QD" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.QD == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.QD == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">货基:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">货基:</td>
 								<td>
 								    <select class="chosen-select form-control" name="MF" id="MF" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.MF == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.MF == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">指数:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">指数:</td>
 								<td>
 								    <select class="chosen-select form-control" name="IDX" id="IDX" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.IDX == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.IDX == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-							</tr>
-							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">LOF:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">LOF:</td>
 								<td>
 								    <select class="chosen-select form-control" name="LOF" id="LOF" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.LOF == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.LOF == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">ETF:</td>
+							</tr>
+							<tr>
+								<td style="width:110px;text-align: right;padding-top: 13px;">ETF:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ETF" id="ETF" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.ETF == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.ETF == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">FOF:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">ETF联接</td>
+								<td>
+								    <select class="chosen-select form-control" name="ETFCONNECTION" id="ETFCONNECTION" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
+								    <option value="Y" <c:if test="${pd.ETFCONNECTION == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.ETFCONNECTION == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">FOF:</td>
 								<td>
 								    <select class="chosen-select form-control" name="FOF" id="FOF" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.FOF == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.FOF == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">货币量纲:</td>
+								<td><input type="number" name="UNIT" id="UNIT" value="${pd.UNIT}" maxlength="32" title="数字，按万元披露的维护成10000/按元披露的维护成1" style="width:49%;"/></td>
 							</tr>
-							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">货币量纲:</td>
-								<td><input type="number" name="UNIT" id="UNIT" value="${pd.UNIT}" maxlength="32" placeholder="数字，按万元披露的维护成10000/按元披露的维护成1" title="货币量纲" style="width:49%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">合同生效日:</td>
-								<td><input class="span10 date-picker" name="DATE_FROM" id="DATE_FROM" value="${pd.DATE_FROM}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="合同生效日" title="合同生效日" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">基金终止日:</td>
-								<td><input class="span10 date-picker" name="DATE_TO" id="DATE_TO" value="${pd.DATE_TO}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="基金终止日" title="基金终止日" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">基金转型日:</td>
-								<td><input class="span10 date-picker" name="DATE_TRANSFORM" id="DATE_TRANSFORM" value="${pd.DATE_TRANSFORM}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="基金转型日" title="基金转型日" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">存款期限账龄:</td>
+							<tr>	
+								<td style="width:110px;text-align: right;padding-top: 13px;">合同生效日:</td>
+								<td><input class="span10 date-picker" name="DATE_FROM" id="DATE_FROM" value="${pd.DATE_FROM}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="合同生效日" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">基金终止日:</td>
+								<td><input class="span10 date-picker" name="DATE_TO" id="DATE_TO" value="${pd.DATE_TO}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="基金终止日" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">基金转型日:</td>
+								<td><input class="span10 date-picker" name="DATE_TRANSFORM" id="DATE_TRANSFORM" value="${pd.DATE_TRANSFORM}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="基金转型日" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">存款期限账龄:</td>
 								<td>
 								    <select class="chosen-select form-control" name="DEPOSIT_TERM_PERIOD" id="DEPOSIT_TERM_PERIOD" data-placeholder="请选择账龄" style="vertical-align:top;width: 98%;">
 									    <option value=""></option>
@@ -161,7 +176,9 @@
 									    </c:forEach>
 								  	</select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">利率风险敞口账龄:</td>
+							</tr>
+							<tr>
+								<td style="width:110px;text-align: right;padding-top: 13px;">利率风险敞口账龄:</td>
 								<td>
 								    <select class="chosen-select form-control" name="INTEREST_RATE_PERIOD" id="INTEREST_RATE_PERIOD" data-placeholder="请选择账龄" style="vertical-align:top;width: 98%;">
 									    <option value=""></option>
@@ -170,9 +187,7 @@
 									    </c:forEach>
 								  	</select>
 								</td>
-							</tr>
-							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">其他负债披露类型:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">其他负债披露类型:</td>
 								<td>
 								    <select class="chosen-select form-control" name="OTHER_LIABILITIES" id="OTHER_LIABILITIES" data-placeholder="请选择披露口径" style="vertical-align:top;width: 98%;">
 									    <option value=""></option>
@@ -181,18 +196,19 @@
 									    </c:forEach>
 								  	</select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">直销销售商名称:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">直销销售商名称:</td>
 								<td><input type="text" name="DIRECT_DEALER_NAME" id="DIRECT_DEALER_NAME" value="${pd.DIRECT_DEALER_NAME}" maxlength="60"  title="直销销售商名称" style="width:98%;"/></td>
-							    <td style="width:100px;text-align: right;padding-top: 13px;">直销代销分离:</td>
+							    <td style="width:110px;text-align: right;padding-top: 13px;">直销代销分离:</td>
 								<td>
 								    <select class="chosen-select form-control" name="DEALER_SEPERATE" id="DEALER_SEPERATE" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.DEALER_SEPERATE == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.DEALER_SEPERATE == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
 							</tr>
 							<tr>
-							    <td style="width:100px;text-align: right;padding-top: 13px;">U底稿行集:</td>
+							    <td style="width:110px;text-align: right;padding-top: 13px;">U底稿行集:</td>
 								<td>
 								    <select class="chosen-select form-control" name="U_ROW_SET" id="U_ROW_SET" data-placeholder="请U底稿行集" style="vertical-align:top;width: 98%;">
 									    <option value=""></option>
@@ -201,15 +217,98 @@
 									    </c:forEach>
 								  	</select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">风险变量:</td>
+								<td><input type="number" name="RISK_VARIABLE" id="RISK_VARIABLE" value="${pd.RISK_VARIABLE}" maxlength="32" title="风险变量" style="width:49%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性方法:</td>
+								<td>
+								    <select class="chosen-select form-control" name="INTEREST_SENSTVT_METHOD" id="INTEREST_SENSTVT_METHOD" data-placeholder="请选择" style="width:98%;">
+								    <option value=""></option>
+								    <option value="JQ" <c:if test="${pd.INTEREST_SENSTVT_METHOD == 'JQ'}">selected</c:if>>久期法</option>
+								    <option value="JQTX" <c:if test="${pd.INTEREST_SENSTVT_METHOD == 'JQTX'}">selected</c:if>>久期&凸性法</option>
+								    </select>
+								</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性数据来源:</td>
+								<td><input type="text" name="INTEREST_SENSTVT_SOURSE" id="INTEREST_SENSTVT_SOURSE" value="${pd.INTEREST_SENSTVT_SOURSE}" maxlength="60" style="width:98%;"/></td>
+							</tr>
+							<tr>
+							    <td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性方法:</td>
+							    <td>
+								    <select class="chosen-select form-control" name="PRICE_SENSTVT_METHOD" id="PRICE_SENSTVT_METHOD" data-placeholder="请选择" style="width:98%;">
+								    <option value=""></option>
+								    <option value="XL" <c:if test="${pd.PRICE_SENSTVT_METHOD == 'XL'}">selected</c:if>>斜率法</option>
+								    <option value="BETA" <c:if test="${pd.PRICE_SENSTVT_METHOD == 'BETA'}">selected</c:if>>BETA</option>
+								    </select>
+								</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性斜率法指数:</td>
+								<td><input type="text" name="PRICE_SENSTVT_INDEX" id="PRICE_SENSTVT_INDEX" value="${pd.PRICE_SENSTVT_INDEX}" maxlength="60" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">指数来源:</td>
+								<td><input type="text" name="INDEX_SOURSE" id="INDEX_SOURSE" value="${pd.INDEX_SOURSE}" maxlength="60" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性BETA:</td>
+								<td><input type="text" name="PRICE_SENSTVT_BETA" id="PRICE_SENSTVT_BETA" value="${pd.PRICE_SENSTVT_BETA}" maxlength="60" style="width:98%;"/></td>							
+							</tr>	
+							<tr>
+							    <td style="width:110px;text-align: right;padding-top: 13px;">BETA来源:</td>
+								<td><input type="text" name="BETA_SOURSE" id="BETA_SOURSE" value="${pd.BETA_SOURSE}" maxlength="60" style="width:98%;"/></td>
+							    <td style="width:110px;text-align: right;padding-top: 13px;">可转债是否利率敏感:</td>
+								<td>
+								    <select class="chosen-select form-control" name="INTEREST_SENSITIVITY" id="INTEREST_SENSITIVITY" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
+								    <option value="Y" <c:if test="${pd.INTEREST_SENSITIVITY == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.INTEREST_SENSITIVITY == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">债券是否价格敏感:</td>
+								<td>
+								    <select class="chosen-select form-control" name="PRICE_SENSITIVITY" id="PRICE_SENSITIVITY" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
+								    <option value="Y" <c:if test="${pd.PRICE_SENSITIVITY == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.PRICE_SENSITIVITY == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">是否显示分级份额:</td>
+								<td>
+								    <select class="chosen-select form-control" name="LEVEL_SHARE" id="LEVEL_SHARE" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
+								    <option value="Y" <c:if test="${pd.LEVEL_SHARE == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.LEVEL_SHARE == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+							</tr>
+							<tr>
+							    <td style="width:110px;text-align: right;padding-top: 13px;">单位净值有效位数:</td>
+								<td><input type="number" name="NAV_ROUND" id="NAV_ROUND" value="${pd.NAV_ROUND==null ? 4 : pd.NAV_ROUND}" maxlength="32" title="单位净值有效位数" style="width:49%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-复利计算:</td>
+								<td>
+								    <select class="chosen-select form-control" name="COMPOUND" id="COMPOUND" data-placeholder="请选择" style="width:49%;">
+								    <option value="FL" <c:if test="${pd.COMPOUND == 'FL'}">selected</c:if>>复利</option>
+								    <option value="DL" <c:if test="${pd.COMPOUND == 'DL'}">selected</c:if>>单利</option>
+								    </select>
+								</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-约定年基准收益率:</td>
+								<td><input type="text" name="ROR_BASELINE" id="ROR_BASELINE" value="${pd.ROR_BASELINE}" maxlength="240" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-本期收益率:</td>
+								<td><input type="number" name="ROR" id="ROR" value="${pd.ROR==null ? 4.5 : pd.ROR}" maxlength="32" title="假分级-本期收益率" style="width:49%;"/></td>
+							</tr>
+							<tr>
+							    <td style="width:110px;text-align: right;padding-top: 13px;">假分级-杠杆比:</td>
+								<td><input type="number" name="LEVERAGE" id="LEVERAGE" value="${pd.LEVERAGE==null ? 2 : pd.LEVERAGE}" maxlength="32" title="假分级-杠杆比" style="width:49%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">递进利率行权起始日口径:</td>
+								<td>
+								    <select class="chosen-select form-control" name="EXERCISE_DATE_METHOD" id="EXERCISE_DATE_METHOD" data-placeholder="请选择" style="width:98%;">
+								    <option value="XYFXR" <c:if test="${pd.COMPOUND == 'XYFXR'}">selected</c:if>>下一付息日</option>
+								    <option value="DQR" <c:if test="${pd.COMPOUND == 'DQR'}">selected</c:if>>到期日</option>
+								    </select>
+								</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.ACTIVE == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">状态:</td>
-								<td><input type="text" name="STATUS" id="STATUS" value="${pd.STATUS}" maxlength="30" placeholder="这里输入状态" title="状态" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">状态:</td>
+								<td><input type="text" name="STATUS" id="STATUS" value="${pd.STATUS}" maxlength="30"  title="状态" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">
