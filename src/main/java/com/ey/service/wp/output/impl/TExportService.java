@@ -579,7 +579,31 @@ public class TExportService extends BaseExportService implements TExportManager{
         P4104.put("levels", levels);
         P4104.put("levelCount", levels.size());
         //========process dataMap for P4104 view end========
+        
+        //========process dataMap for profitDist view begin========
+        Map<String, Object> profitDist = new HashMap<>();
+        List<Map<String,Object>> profitDistList = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> profitDistMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT11000ProfitDistData", queryMap);
+        if(profitDistMetaDataList == null) {
+            profitDistMetaDataList = new ArrayList<>();
+        }
+        List<String> levelNames2 = profitDistMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        Map<String,Map<String,Object>> temp = new HashMap<>();
+        for(Map<String,Object> map : profitDistMetaDataList) {
+            temp.put(String.valueOf(map.get("level")) ,map);
+        }
+        for(String levelName : levelNames2) {
+            Map<String, Object> map = temp.get(levelName);
+            profitDistList.add(map==null ? new HashMap<>() : map);
+        }
+        profitDist.put("list", profitDistList);
+        profitDist.put("count", profitDistList.size());
+        //========process dataMap for profitDist view end========
         result.put("P4104", P4104);
+        result.put("profitDist", profitDist);
         return result;
     }
     

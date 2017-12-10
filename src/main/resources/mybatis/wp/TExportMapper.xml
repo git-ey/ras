@@ -28,7 +28,8 @@
 		    IFNULL(sfi.NAV_ROUND, 4) as navRound,
 		    sfi.ROR_BASELINE as rorBaseline,
 		    sfi.ROR as ror,
-		    sfi.LEVERAGE as leverage
+		    sfi.LEVERAGE as leverage,
+		    IFNULL(sfi.LOF,'N') as lof
 		FROM
 		    SYS_FUND_INFO sfi
 		WHERE
@@ -124,6 +125,7 @@
 		    T310.FUND_AFTER_INVEST as fundAfterInvest,
 		    T310.PL_UNREALIZED as plUnrealized,
 		    T310.PL_REALIZED as plRealized,
+		    T310.REINVEST_AMOUNT as reinvestAmount,
 		    T310.CASH as cash
 		FROM
 		    wp_t310 T310
@@ -232,6 +234,21 @@
         and T110004.STATUS = 'Y'
         and T110004.FUND_ID = #{fundId}
         and T110004.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT11000ProfitDistData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            N800D.`LEVEL` as `level`,
+            N800D.ITEM1 as attr1,
+            N800D.ITEM2 as attr2,
+            N800D.ITEM3 as attr3
+        FROM
+            wp_n800_dis N800D 
+        WHERE
+            1 = 1
+        and N800D.STATUS = 'Y'
+        and N800D.FUND_ID = #{fundId}
+        and N800D.PERIOD = #{period}
     </select>
 
 </mapper>
