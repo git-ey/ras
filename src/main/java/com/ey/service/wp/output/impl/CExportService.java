@@ -280,6 +280,12 @@ public class CExportService extends BaseExportService implements CExportManager{
         mainData.put("list", mainMetaData);
         mainData.put("count", mainListCount);
         //========process dataMap for main view end========
+        //========process dataMap for test view begin========
+        Map<String,Object> test = (Map<String,Object>)this.dao.findForObject("CExportMapper.selectC400TestData", queryMap);
+        if(test == null) {
+            test = new HashMap<>();
+        }
+        //========process dataMap for test view end========
         //========process dataMap for bank view begin========
         List<Map<String,Object>> bankList = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC400BankData", queryMap);
         if(bankList == null) {
@@ -297,6 +303,7 @@ public class CExportService extends BaseExportService implements CExportManager{
         termData.put("count", termList.size());
         //========process dataMap for term view end========
         result.put("main", mainData);
+        result.put("test", test);
         result.put("groupByBank", bankData);
         result.put("groupByTerm", termData);
         return result;

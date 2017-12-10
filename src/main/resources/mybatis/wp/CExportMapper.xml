@@ -98,6 +98,19 @@
 		and C400.PERIOD = #{period}
     </select>
     
+    <select id="selectC400TestData" parameterType="java.util.Map" resultType="java.util.Map">
+        select
+            C400T.AMOUNT_CLIENT as amountClient
+        from
+            wp_c400_test C400T
+        where
+            1 = 1
+        and C400T.STATUS = 'Y'
+        and C400T.FUND_ID = #{fundId}
+        and C400T.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectC400BankData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    C400B.BANK_NAME as bankName,

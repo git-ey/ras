@@ -2472,7 +2472,7 @@
     <Cell ss:Index="4" ss:StyleID="s140" ss:Formula="=SUM(R[${(-(1+C400.main.count))?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;C300&gt;</Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s140" ss:Formula="=SUM(R[${(-(1+C400.main.count))?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140"/>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(C400.test.amountClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s140" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s248"><Data ss:Type="String">m</Data></Cell>
    </Row>
