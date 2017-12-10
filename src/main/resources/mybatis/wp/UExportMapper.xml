@@ -62,7 +62,7 @@
     
     <select id="selectFinSys" parameterType="java.util.Map" resultType="java.lang.String">
         SELECT DISTINCT
-            IFNULL(sfi.FIN_SYSTEM, 'YSS') as FinSys
+            IFNULL(sfi.FIN_SYSTEM, 'JSZ') as FinSys
         FROM
             sys_fund_info sfi 
         WHERE
