@@ -1749,13 +1749,12 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"/>
     <Cell ss:StyleID="s207"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   </#if>
-   <#if C300.main.KM1002.demandDepositsCount != 0>
+   <#else>
    <#list C300.main.KM1002.demandDepositsList as item>
    <Row>
     <Cell><Data ss:Type="String"><#if item_index == 0>银行存款</#if></Data></Cell>
@@ -1763,10 +1762,10 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.storageOrganization!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s110"/>
     <Cell ss:StyleID="s207"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -1800,29 +1799,28 @@
     <Cell ss:StyleID="s110"/>
     <Cell ss:StyleID="s110"/>
    </Row>
-   <#if C300.main.KM1002.demandDepositsCount == 0>
+   <#if C300.main.KM1002.timeDepositsCount == 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110"/>
     <Cell ss:StyleID="s207"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   </#if>
-   <#if C300.main.KM1002.demandDepositsCount != 0>
+   <#else>
    <#list C300.main.KM1002.timeDepositsList as item>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s115"><Data ss:Type="String">${item.type!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.storageOrganization!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number"><#if item.beginBalance??>${item.beginBalance?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s110"/>
     <Cell ss:StyleID="s110"><Data ss:Type="String"><#if item_index == 0>C400</#if></Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number"><#if item.endBalance??>${item.endBalance?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -1914,7 +1912,7 @@
     <Cell ss:StyleID="s163"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s231"/>
-    <Cell ss:StyleID="s236"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="String">NNxxx</Data></Cell>
     <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
@@ -1926,10 +1924,10 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.storageOrganization!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s231"/>
     <Cell ss:StyleID="s236"><Data ss:Type="String">NNxxx</Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -1986,12 +1984,12 @@
     <Cell><Data ss:Type="String">存出保证金</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s115"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s230"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s231"/>
-    <Cell ss:StyleID="s236"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s231"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="String">NNxxx</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
    <#if C300.main.KM1031.count != 0>
@@ -2002,10 +2000,10 @@
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.storageOrganization!}</Data></Cell>
     <Cell ss:StyleID="s115"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="String">${item.calculateInterest!}</Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.beginBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s231"/>
     <Cell ss:StyleID="s236"><Data ss:Type="String">NNxxx</Data></Cell>
-    <Cell ss:StyleID="s161"><Data ss:Type="Number">${item.endBalance?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -2143,7 +2141,7 @@
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="15.75">
     <Cell ss:StyleID="s109"><Data ss:Type="String">风险披露</Data></Cell>
-    <Cell ss:Index="3" ss:MergeAcross="7" ss:StyleID="s253"><Data ss:Type="String">利率风险敞口</Data></Cell>
+    <Cell ss:Index="3" ss:MergeAcross="${(C300.intRiskPeriod.intRistPeriodsCount)?string('0')}" ss:StyleID="s253"><Data ss:Type="String">利率风险敞口</Data></Cell>
    </Row>
    <Row>
     <Cell/>

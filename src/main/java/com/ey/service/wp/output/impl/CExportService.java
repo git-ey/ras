@@ -151,6 +151,11 @@ public class CExportService extends BaseExportService implements CExportManager{
                 KM1031List.add(map);
             }
         }
+        //Anti Null
+        if(demandDepositsList.size() == 0) {demandDepositsList.add(new HashMap<String,Object>());}
+        if(timeDepositsList.size() == 0) {timeDepositsList.add(new HashMap<String,Object>());}
+        if(KM1021List.size() == 0) {KM1021List.add(new HashMap<String,Object>());}
+        if(KM1031List.size() == 0) {KM1031List.add(new HashMap<String,Object>());}
         // calculate count
         demandDepositsListCount = demandDepositsList.size();
         timeDepositsListCount = timeDepositsList.size();
