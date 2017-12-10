@@ -712,7 +712,7 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">其他应收款</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">G300</Data></Cell>
-    <Cell ss:StyleID="s81" ss:Formula="=G300!R[-1]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s81" ss:Formula="=G300!R[${(-3+G300.KM1221Count)?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221.drAmountAdj)??>${(G.KM1221.drAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221.crAmountAdj)??>${(G.KM1221.crAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -891,9 +891,9 @@
     <Cell ss:StyleID="s88"/>
     <Cell><Data ss:Type="String">${item.detail!}</Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.beginBalance)??>${(item.beginBalance)?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s119"/>
     <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.drAmount)??>${(item.drAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s87"/>
    </Row>
@@ -946,9 +946,9 @@
     <Cell ss:StyleID="s88"/>
     <Cell><Data ss:Type="String">${item.detail!}</Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.beginBalance)??>${(item.beginBalance)?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
-    <Cell ss:StyleID="s119"/>
     <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.drAmount)??>${(item.drAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
     <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s87"/>
     <Cell ss:StyleID="s121"/>
