@@ -190,7 +190,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         main.put("S8", temp.get("存款利息收入")==null?new HashMap<String,Object>():temp.get("存款利息收入"));
         main.put("S9", temp.get("债券利息收入")==null?new HashMap<String,Object>():temp.get("债券利息收入"));
         main.put("S10", temp.get("资产支持证券利息收入")==null?new HashMap<String,Object>():temp.get("资产支持证券利息收入"));
-        main.put("S11", temp.get("买入返售证券收入")==null?new HashMap<String,Object>():temp.get("买入返售证券收入"));
+        main.put("S11", temp.get("买入返售金融资产收入")==null?new HashMap<String,Object>():temp.get("买入返售金融资产收入"));
         main.put("S12", temp.get("其他利息收入")==null?new HashMap<String,Object>():temp.get("其他利息收入"));
         
         Map<String, Object> dividend = new HashMap<>();
@@ -278,10 +278,10 @@ public class UExportService extends BaseExportService implements UExportManager 
         for(Map<String,Object> map : U400MetaDataList) {
             temp.put(String.valueOf(map.get("item")), map);
         }
-        result.put("S1", temp.get("赎回费收入")==null?new HashMap<String,Object>():temp.get("赎回费收入"));
-        result.put("S2", temp.get("转换费收入")==null?new HashMap<String,Object>():temp.get("转换费收入"));
+        result.put("S1", temp.get("基金赎回费收入")==null?new HashMap<String,Object>():temp.get("基金赎回费收入"));
+        result.put("S2", temp.get("基金转换费收入")==null?new HashMap<String,Object>():temp.get("基金转换费收入"));
         result.put("S3", temp.get("印花税返还收入")==null?new HashMap<String,Object>():temp.get("印花税返还收入"));
-        result.put("S4", temp.get("其他收入")==null?new HashMap<String,Object>():temp.get("其他收入"));
+        result.put("S4", temp.get("其他")==null?new HashMap<String,Object>():temp.get("其他"));
         
         return result;
     }
