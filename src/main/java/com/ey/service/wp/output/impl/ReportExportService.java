@@ -1,6 +1,7 @@
 package com.ey.service.wp.output.impl;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -128,9 +129,9 @@ public class ReportExportService implements ReportExportManager {
         dataMap.put("P1", this.processP1(templateNameP1, pd));
     }
     
-    private String processP1(String templateName, PageData pd) throws IOException, TemplateException {
+    private String processP1(String templateName, PageData pd) throws IOException, TemplateException, URISyntaxException {
         Map<String,Object> dataMap = new HashMap<>();
         //Map<String, Object> queryMap = this.createBaseQueryMap(pd);
-        return FreeMarkerUtils.processTemplateToStrUseAbsPath(dataMap, Constants.REPORT_TEMPLATES_FOLDER_PATH, templateName);
+        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.REPORT_TEMPLATES_FOLDER_PATH, templateName);
     }
 }

@@ -3888,8 +3888,8 @@
    <Row>
     <Cell ss:StyleID="s13"><Data ss:Type="String"><#if item.item == '应付券商交易单元保证金'>P300<#elseif item.item == '应付赎回费'>P500<#else>P400</#if></Data></Cell>
     <Cell ss:StyleID="s87"><Data ss:Type="String">${item.item!}</Data></Cell>
-    <Cell ss:StyleID="s88"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="Number">${(item.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s88"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s91"><Data ss:Type="String"><#if item_index == 0>&lt;审定财务报表&gt;</#if></Data></Cell>
    </Row>
    </#list>
@@ -3902,8 +3902,8 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s86"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=SUM(R[${(-(3+P10000.count))?string('0')}]C:R[-4]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=SUM(R[${(-(3+P10000.count))?string('0')}]C:R[-4]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s85" ss:Formula="=SUM(R[${(-(1+P10000.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s85" ss:Formula="=SUM(R[${(-(1+P10000.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s84"/>
    </Row>
   </Table>
