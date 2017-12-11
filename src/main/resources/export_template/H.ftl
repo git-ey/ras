@@ -2553,10 +2553,10 @@
     <Cell ss:MergeDown="1" ss:StyleID="s244"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s244"/>
     <Cell ss:StyleID="s244"/>
-    <Cell ss:MergeAcross="1" ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">2017/12/31(RMB)</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${period?string('0')}/${month?string('00')}/${day?string('00')}(RMB)</Data></Cell>
     <Cell ss:StyleID="s244"/>
     <Cell ss:StyleID="s244"/>
-    <Cell ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">2016/12/31</Data></Cell>
+    <Cell ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${(period-1)?string('0')}/${month?string('00')}/${day?string('00')}</Data></Cell>
     <Cell ss:StyleID="s244"/>
     <Cell ss:StyleID="s84"><Data ss:Type="String">波动</Data></Cell>
    </Row>
@@ -2603,17 +2603,14 @@
    <Row>
     <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!RC[1]"><Data ss:Type="Number">400000.12</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!RC[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr1.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr1.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">400000.12</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr1.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">0.70527022130137651</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s82"/>
@@ -2629,17 +2626,14 @@
    <Row>
     <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-2]C[3]"><Data ss:Type="Number">493698.72000000003</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-2]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr2.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr2.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">493698.72000000003</Data></Cell>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.1047236823594113</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr2.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"/>
@@ -2655,17 +2649,14 @@
    <Row>
     <Cell ss:StyleID="s41"><Data ss:Type="String">股票投资估值增值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">93698.600000000035</Data></Cell>
+    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr3.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr3.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">93698.600000000035</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"/>
@@ -2691,17 +2682,14 @@
    <Row>
     <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-成本[MMF：-摊余成本]</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-5]C[1]"><Data ss:Type="Number">500000.14999999997</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-5]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr4.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr4.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">500000.14999999997</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr4.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.1315877766267206</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s82"/>
@@ -2717,17 +2705,14 @@
    <Row>
     <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值[MMF：-影子定价]</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-7]C[3]"><Data ss:Type="Number">617185.1</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-7]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">617185.1</Data></Cell>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.6311676408019882</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"/>
@@ -2742,17 +2727,14 @@
    <Row>
     <Cell ss:StyleID="s41"><Data ss:Type="String">债券投资估值增值[MMF：债券投资偏离金额]</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">117184.95000000001</Data></Cell>
+    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr6.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr6.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">117184.95000000001</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"/>
@@ -2780,17 +2762,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-9]C[1]"><Data ss:Type="Number">400000.12</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-9]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr7.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr7.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">400000.12</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr7.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">0.70527022130137651</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s82"/>
@@ -2806,17 +2785,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值[MMF：-影子定价]</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-11]C[3]"><Data ss:Type="Number">494192.31999999995</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-11]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">494192.31999999995</Data></Cell>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.106827985181206</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"/>
@@ -2831,17 +2807,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"><Data ss:Type="String">资产支持持证券投资估值增值[MMF：资产支持证券投资偏离金额]</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">94192.199999999953</Data></Cell>
+    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr9.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr9.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">94192.199999999953</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"/>
@@ -2869,17 +2842,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-15]C[1]"><Data ss:Type="Number">400000.12</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-15]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr10.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr10.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">400000.12</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr10.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">0.70527022130137651</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s82"/>
@@ -2895,17 +2865,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-17]C[3]"><Data ss:Type="Number">494093.6</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-17]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr11.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr11.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">494093.6</Data></Cell>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.1064071246168472</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr11.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"/>
@@ -2920,17 +2887,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"><Data ss:Type="String">基金投资估值增值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">94093.479999999981</Data></Cell>
+    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr12.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr12.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">94093.479999999981</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"/>
@@ -2958,17 +2922,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-17]C[1]"><Data ss:Type="Number">400000.12</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-17]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr13.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr13.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">400000.12</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr13.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">0.70527022130137651</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s82"/>
@@ -2984,17 +2945,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-19]C[3]"><Data ss:Type="Number">494488.48</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-19]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr14.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr14.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">494488.48</Data></Cell>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.1080905668742831</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr14.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"/>
@@ -3009,17 +2967,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"><Data ss:Type="String">衍生金融工具估值增值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">94488.359999999986</Data></Cell>
+    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr15.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr15.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">94488.359999999986</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"/>
@@ -3059,17 +3014,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-35]C[1]"><Data ss:Type="Number">500000.15</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-35]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr16.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr16.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">500000.15</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr16.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.1315877766267208</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s82"/>
@@ -3085,17 +3037,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-37]C[3]"><Data ss:Type="Number">618665.9</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-37]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr17.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr17.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">618665.9</Data></Cell>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.6374805492673736</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr17.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"/>
@@ -3110,17 +3059,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"><Data ss:Type="String">贵金属投资-金交所黄金合约估值增值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">118665.75</Data></Cell>
+    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr18.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr18.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">118665.75</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"/>
@@ -3148,17 +3094,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-36]C[1]"><Data ss:Type="Number">500000.15</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-36]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr19.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr19.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">500000.15</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr19.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.1315877766267208</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s82"/>
@@ -3174,17 +3117,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-38]C[3]"><Data ss:Type="Number">618665.9</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-38]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr20.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr20.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">618665.9</Data></Cell>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s98"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">1.6374805492673736</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr20.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s57"/>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"/>
@@ -3199,17 +3139,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"><Data ss:Type="String">其他投资估值增值</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">118665.75</Data></Cell>
+    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr21.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr21.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">118665.75</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s41"/>
@@ -3238,17 +3175,14 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String">-账面余额</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H800</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H800!R[-42]C[4]"><Data ss:Type="Number">740736</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H800!R[-42]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data
-      ss:Type="Number">740736</Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">234567</Data></Cell>
+    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231"
-     ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data
-      ss:Type="Number">2.1578866592487436</Data></Cell>
+    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s82"/>

@@ -86,7 +86,9 @@ public class GExportService extends BaseExportService implements GExportManager{
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> GMetaDataList = (List<Map<String,Object>>)this.dao.findForList("GExportMapper.selectGData", queryMap);
-        if(CollectionUtils.isEmpty(GMetaDataList)) {return result;}
+        if(GMetaDataList == null) {
+            GMetaDataList = new ArrayList<>();
+        }
         
         Map<String,Object> KM1221 = new HashMap<>();
         Map<String,Object> KM1501 = new HashMap<>();

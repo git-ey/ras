@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HExportMapper">
+
+    <select id="selectHData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            H.EY_ACCOUNT_NUM as accountNum,
+            H.ITEM as item,
+            IFNULL(H.TYPE, 'NULL') as type,
+            H.AMOUNT_ADJ_CR as crAmountAdj,
+            H.AMOUNT_ADJ_DR as drAmountAdj,
+            H.AMOUNT_AUDIT_LAST as amountAuditLast
+        FROM
+            wp_h H
+        where 
+            1 = 1
+        and H.STATUS = 'Y'
+        and H.FUND_ID = #{fundId}
+        and H.PERIOD = #{period}
+    </select>
+    
+</mapper>
