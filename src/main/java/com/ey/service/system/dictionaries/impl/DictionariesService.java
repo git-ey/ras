@@ -72,8 +72,19 @@ public class DictionariesService implements DictionariesManager{
 	 * @throws Exception
 	 */
 	@Override
-    public PageData findByBianma(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("DictionariesMapper.findByBianma", pd);
+    public PageData findByCode(PageData pd)throws Exception{
+		return (PageData)dao.findForObject("DictionariesMapper.findByCode", pd);
+	}
+	
+	/**通过编码获取数据
+	 * @param code
+	 * @throws Exception
+	 */
+	@Override
+    public PageData findByCode(String code) throws Exception {
+    	PageData pd = new PageData();
+    	pd.put("BIANMA", code);
+		return (PageData)dao.findForObject("DictionariesMapper.findByCode", pd);
 	}
 	
 	/**

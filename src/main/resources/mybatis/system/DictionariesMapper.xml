@@ -82,7 +82,7 @@
 	</select>
 	
 	<!-- 通过编码获取数据 -->
-	<select id="findByBianma" parameterType="pd" resultType="pd">
+	<select id="findByCode" parameterType="pd" resultType="pd">
 		select 
 		<include refid="Field"></include>
 		from 

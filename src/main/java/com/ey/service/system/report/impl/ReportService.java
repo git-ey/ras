@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.service.system.dictionaries.DictionariesManager;
 import com.ey.service.system.report.ReportManager;
 import com.ey.util.PageData;
 
@@ -22,6 +23,8 @@ public class ReportService implements ReportManager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
+	@Resource(name = "dictionariesService")
+	private DictionariesManager dictionariesManager;
 	
 	/**新增
 	 * @param pd
@@ -113,6 +116,8 @@ public class ReportService implements ReportManager{
 	 * @param pd
 	 */
 	public void exportReport(PageData pd) throws Exception {
+		// 根据配置代码获取信息
+		PageData p1 = dictionariesManager.findByCode(pd.getString("P1"));
 		
 		// 设置消息
 		pd.put("RESULT", "S");
