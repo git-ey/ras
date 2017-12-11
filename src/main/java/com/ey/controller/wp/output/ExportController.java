@@ -21,7 +21,9 @@ import com.ey.controller.base.BaseController;
 import com.ey.service.wp.output.CExportManager;
 import com.ey.service.wp.output.EExportManager;
 import com.ey.service.wp.output.GExportManager;
+import com.ey.service.wp.output.HExportManager;
 import com.ey.service.wp.output.HSumExportManager;
+import com.ey.service.wp.output.IExportManager;
 import com.ey.service.wp.output.NExportManager;
 import com.ey.service.wp.output.PExportManager;
 import com.ey.service.wp.output.ReportExportManager;
@@ -71,6 +73,12 @@ public class ExportController extends BaseController {
     // 底稿H_SUM
     @Resource(name = "hSumExportService")
     private HSumExportManager hSumExportService;
+    // 底稿H
+    @Resource(name = "hExportService")
+    private HExportManager hExportService;
+    // 底稿I
+    @Resource(name = "iExportService")
+    private IExportManager iExportService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -272,6 +280,38 @@ public class ExportController extends BaseController {
         }
     }
     
+    /**
+     * 底稿导出--H
+     * 
+     * @param
+     * @throws Exception
+     */
+    @RequestMapping(value = "/H")
+    public void exportH(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PageData pd = this.getPageData();
+        String fundId = pd.getString("FUND_ID");
+        String periodStr = pd.getString("PEROID");
+        periodStr = this.dataCheck(fundId, periodStr);
+        
+        this.hExportService.doExport(request, response, fundId, periodStr);
+    }
+    
+    /**
+     * 底稿导出--I
+     * 
+     * @param
+     * @throws Exception
+     */
+    @RequestMapping(value = "/I")
+    public void exportI(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PageData pd = this.getPageData();
+        String fundId = pd.getString("FUND_ID");
+        String periodStr = pd.getString("PEROID");
+        periodStr = this.dataCheck(fundId, periodStr);
+        
+        this.iExportService.doExport(request, response, fundId, periodStr);
+    }
+    
     @RequestMapping(value = "/download")
     public void downLoadOneFund(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();
@@ -292,6 +332,8 @@ public class ExportController extends BaseController {
         this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
         this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr);
         this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);   
+        this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);   
+        this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);   
         this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, pd);
         
         final String zipFileName = fileIdentifier + ".zip";
