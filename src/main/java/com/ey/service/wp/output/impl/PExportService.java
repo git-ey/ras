@@ -205,7 +205,7 @@ public class PExportService extends BaseExportService implements PExportManager{
                 annualFee4Listing = map;
             }else if("审计费".equals(map.get("item"))) {
                 auditFee = map;
-            }else if ("小计".equals(map.get("item"))) {
+            }else if ("信息披露费".equals(map.get("item"))) {
                 subtotal = map;
             }
         }
