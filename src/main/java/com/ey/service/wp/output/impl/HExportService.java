@@ -47,9 +47,10 @@ public class HExportService extends BaseExportService implements HExportManager{
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("fundInfo", fundInfo);
+        dataMap.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
         
         dataMap.put("H", this.getHData(fundId, periodStr));
-//        dataMap.put("G300", this.getG300Data(fundId, periodStr));
+        dataMap.put("H300", this.getH300Data(fundId, periodStr));
 //        dataMap.put("G10000", this.getG10000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H);
@@ -71,6 +72,49 @@ public class HExportService extends BaseExportService implements HExportManager{
 	    String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), xmlStr);
         return true;
+    }
+	
+	/**
+     * 获取基金额外属性
+     * @author Dai Zong 2017年12月2日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getExtraFundInfo(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectExtraFundInfo", queryMap);
+        if(fundInfo == null) {
+            fundInfo = new HashMap<>();
+        }
+        
+        Integer startYear = 2000, startMonth = 01, startDay = 01;
+        if(fundInfo.get("dateFrom") != null) {
+            String[] splits = String.valueOf(fundInfo.get("dateFrom")).split("-");
+            try {
+                if(splits.length == 1) {
+                    startYear = Integer.parseInt(splits[0]);
+                }else if(splits.length == 2) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                }else if(splits.length >= 3) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                    startDay = Integer.parseInt(splits[2]);
+                }
+            }catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        fundInfo.put("startYear", startYear);
+        fundInfo.put("startMonth", startMonth);
+        fundInfo.put("startDay", startDay);
+        return fundInfo;
     }
 	
 	/**
@@ -161,4 +205,112 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("attr22", attr22);
         return result;
     }
+    
+    /**
+     * 处理sheet页H300的数据
+     * @author Dai Zong 2017年12月12日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH300Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        //========process dataMap for main view begin========
+        Map<String, Object> main = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH300Data", queryMap);
+        if(mainMetaDataList == null) {
+            mainMetaDataList = new ArrayList<>();
+        }
+        Map<String, List<Map<String, Object>>> groups = mainMetaDataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return String.valueOf(map.get("type"));
+        }));
+        Map<String,Object> attr1 = new HashMap<>();
+        Map<String,Object> attr2 = new HashMap<>();
+        Map<String,Object> attr3 = new HashMap<>();
+        Map<String,Object> attr4 = new HashMap<>();
+        Map<String,Object> attr5 = new HashMap<>();
+        Map<String,Object> attr6 = new HashMap<>();
+        Map<String,Object> attr7 = new HashMap<>();
+        Map<String,Object> attr8 = new HashMap<>();
+        List<Map<String,Object>> tempList = null;
+        tempList = groups.get("股票")==null ? new ArrayList<>() : groups.get("股票");
+        attr1 = CollectionUtils.isEmpty(tempList) ? attr1 : tempList.get(0);
+        tempList = groups.get("贵金属投资-金交所黄金合约")==null ? new ArrayList<>() : groups.get("贵金属投资-金交所黄金合约");
+        attr2 = CollectionUtils.isEmpty(tempList) ? attr2 : tempList.get(0);
+        tempList = groups.get("债券")==null ? new ArrayList<>() : groups.get("债券");
+        for(Map<String,Object> map : tempList) {
+            if("交易所".equals(map.get("subtype"))) {
+                attr3 = map;
+            }else if("银行间".equals(map.get("subtype"))) {
+                attr4 = map;
+            }
+        }
+        tempList = groups.get("资产支持性证券投资")==null ? new ArrayList<>() : groups.get("资产支持性证券投资");
+        attr5 = CollectionUtils.isEmpty(tempList) ? attr5 : tempList.get(0);
+        tempList = groups.get("基金投资")==null ? new ArrayList<>() : groups.get("基金投资");
+        attr6 = CollectionUtils.isEmpty(tempList) ? attr6 : tempList.get(0);
+        tempList = groups.get("其他")==null ? new ArrayList<>() : groups.get("其他");
+        attr7 = CollectionUtils.isEmpty(tempList) ? attr7 : tempList.get(0);
+        tempList = groups.get("衍生金融工具")==null ? new ArrayList<>() : groups.get("衍生金融工具");
+        for(Map<String,Object> map : tempList) {
+            if("期货".equals(map.get("subtype"))) {
+                attr8 = map;
+            }
+        }
+        main.put("attr1", attr1);
+        main.put("attr2", attr2);
+        main.put("attr3", attr3);
+        main.put("attr4", attr4);
+        main.put("attr5", attr5);
+        main.put("attr6", attr6);
+        main.put("attr7", attr7);
+        main.put("attr8", attr8);
+        //========process dataMap for main view end========
+        //========process dataMap for interestRatePeriods view begin========
+        Map<String,Object> interestRatePeriod = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<String> periodMetaDataList = (List<String>)this.dao.findForList("HExportMapper.selectH300InterestRatePeriodsData", queryMap);
+        if(periodMetaDataList == null) {
+            periodMetaDataList = new ArrayList<>();
+        }
+        interestRatePeriod.put("list", periodMetaDataList);
+        interestRatePeriod.put("count", periodMetaDataList.size());
+        //========process dataMap for interestRatePeriods view end========
+        //========process dataMap for related view begin========
+        Map<String,Object> related = new HashMap<>();
+        Map<String,Object> H400 = new HashMap<>();
+        Map<String,Object> H500 = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H400MetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH400MainData", queryMap);
+        if(H400MetaDataList == null) {
+            H400MetaDataList = new ArrayList<>();
+        }
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H500MetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH500MainData", queryMap);
+        if(H500MetaDataList == null) {
+            H500MetaDataList = new ArrayList<>();
+        }
+        
+        H400.put("list", H400MetaDataList);
+        H400.put("count", H400MetaDataList.size());
+        H500.put("list", H500MetaDataList);
+        H500.put("count", H500MetaDataList.size());
+        related.put("H400", H400);
+        related.put("H500", H500);
+        //========process dataMap for related view end========
+        
+        result.put("main", main);
+        result.put("interestRatePeriod", interestRatePeriod);
+        result.put("related", related);
+        return result;
+    }
+    
 }
