@@ -3139,7 +3139,7 @@
    <#if P600.main.count != 0>
    <#list P600.main.list as item>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">${item.accountNum!}</Data></Cell>
+    <Cell ss:StyleID="s174"><Data ss:Type="String">${item.code!}</Data></Cell>
     <Cell ss:StyleID="s227"><Data ss:Type="String">${item.shortName!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.tradeMarket!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.subType!}</Data></Cell>
