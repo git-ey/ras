@@ -236,14 +236,19 @@ public class CExportService extends BaseExportService implements CExportManager{
             }
         }
         //map timeDepositsData to right position
-        for(String periodName : intRistPeriods) {
-           for(Map<String,Object> map : timeDepositsDataList) {
-               if(periodName.equals(map.get("intRiskPeriod"))) {
-                   Double amount = Double.parseDouble(String.valueOf(map.get("amount")));
-                   timeDepositsData.add(amount);
-                   break;
-               }
-           }
+        for (String periodName : intRistPeriods) {
+            boolean hitFlag = false;
+            for (Map<String, Object> map : timeDepositsDataList) {
+                if (periodName.equals(map.get("intRiskPeriod"))) {
+                    Double amount = Double.parseDouble(String.valueOf(map.get("amount")));
+                    timeDepositsData.add(amount);
+                    hitFlag = true;
+                    break;
+                } 
+            }
+            if(!hitFlag) {
+                timeDepositsData.add(0D);
+            }
         }
         
         intRiskPeriodMap.put("intRistPeriods", intRistPeriods);
