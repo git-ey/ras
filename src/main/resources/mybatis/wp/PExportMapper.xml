@@ -54,6 +54,8 @@
 		SELECT
 		    P400S.ITEM as item,
 		    P400S.CONTRACT_AMOUNT as contractAmount,
+		    DATE_FORMAT(P400S.CONTRACT_FROM_DATE,'%Y-%m-%dT00:00:00.000') as contractBeginDate,
+            DATE_FORMAT(P400S.CONTRACT_TO_DATE,'%Y-%m-%dT00:00:00.000') as contractEndDate,
 		    P400S.PERIOD_EXPENSE as thisPeriodFee,
 		    P400S.EXPENSE_ENTERED as incomeFee,
 		    P400S.ACCURED_EXPENSE as quota,
@@ -107,7 +109,7 @@
     
     <select id="selectP600Data" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
-		    P600.ACCOUNT_NUM as accountNum,
+		    P600.ATTR3 as code,
 		    P600.ATTR4 as shortName,
 		    P600.ATTR5 as tradeMarket,
 		    P600.ATTR2 as subType,

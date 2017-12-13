@@ -19,4 +19,73 @@
         and H.PERIOD = #{period}
     </select>
     
+    <select id="selectH300Data" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT
+		    H300.TYPE as type,
+		    H300.SUBTYPE as subtype,
+		    H300.COST as cost,
+			H300.FAIR_VALUE as fairValue,
+			H300.END_APPRECIATION as endAppreciation,
+		    H300.BEGIN_APPRECIATION as beginAppreciation 
+		FROM
+		    wp_h300 H300
+        where 
+            1 = 1
+        and H300.STATUS = 'Y'
+        and H300.FUND_ID = #{fundId}
+        and H300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH300InterestRatePeriodsData" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT
+		    stl.REVEAL_NAME AS revealName 
+		FROM
+		    sys_term_line stl
+		INNER JOIN sys_fund_info sfi ON sfi.INTEREST_RATE_PERIOD = stl.TERMHEAD_ID 
+		WHERE
+		    1 = 1 
+		AND sfi.ACTIVE = 'Y' 
+		AND sfi.FUND_ID = #{fundId}
+		ORDER BY
+		    stl.SORT
+    </select>
+    
+    <select id="selectH400MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    'H400' as source,
+		    H400M.PARTY_SHORT_NAME AS partyShortName,
+		    H400M.RELATIONSHIP AS relationship,
+		    H400M.`CODE` AS `code`,
+		    H400M.`NAME` AS `name`,
+		    H400M.TOTAL_COST AS totalCost,
+		    H400M.MKT_VALUE_CLIENT AS mktValueClient,
+		    H400M.APPRECIATION_CLIENT AS appreciationClient 
+		FROM
+		    wp_h400_main H400M
+		where 
+            1 = 1
+        and H400M.STATUS = 'Y'
+        and H400M.FUND_ID = #{fundId}
+        and H400M.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH500MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    'H500' as source,
+		    H500M.PARTY_SHORT_NAME AS partyShortName,
+		    H500M.RELATIONSHIP AS relationship,
+		    H500M.BOND_CODE AS `code`,
+		    H500M.BOND_NAME AS `name`,
+		    H500M.TOTAL_COST AS totalCost,
+		    H500M.MKT_VALUE_CLIENT AS mktValueClient,
+		    H500M.APPRECIATION_CLIENT AS appreciationClient 
+		FROM
+		    wp_h500_main H500M
+        where 
+            1 = 1
+        and H500M.STATUS = 'Y'
+        and H500M.FUND_ID = #{fundId}
+        and H500M.PERIOD = #{period}
+    </select>
+    
 </mapper>
