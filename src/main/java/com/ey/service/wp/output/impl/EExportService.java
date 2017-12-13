@@ -2,11 +2,13 @@ package com.ey.service.wp.output.impl;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -458,17 +460,21 @@ public class EExportService extends BaseExportService implements EExportManager{
             E41XDetailMetaDataList = new ArrayList<Map<String,Object>>(); 
         }
         
-        Map<Object, List<Map<String, Object>>> collection = E41XDetailMetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
+        Map<Object, List<Map<String, Object>>> collection = E41XDetailMetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = item;
             return map.get("trxDate");
         }));
         
         Set<Entry<Object,List<Map<String,Object>>>> entrySet = collection.entrySet();
-        int i = 1;
-        for(Entry<Object,List<Map<String,Object>>> entry: entrySet) {
+        AtomicInteger i = new AtomicInteger(1);
+        entrySet.stream().sorted((A,B) -> {
+            Date d1 = (Date)A.getKey();
+            Date d2 = (Date)B.getKey();
+            return Long.compare(d1.getTime(), d2.getTime());
+        }).forEach(entry -> {
             Map<String,Object> temp = new HashMap<>();
             temp.put("trxDate", entry.getKey());
-            temp.put("sheetNum", "E41"+(i++));
+            temp.put("sheetNum", "E41"+(i.getAndIncrement()));
             List<Map<String,Object>> list = entry.getValue();
             if(list == null) {
                 list = new ArrayList<>();
@@ -477,7 +483,25 @@ public class EExportService extends BaseExportService implements EExportManager{
             temp.put("count", list.size());
             
             sheetList.add(temp);
-        }
+        });
+//        for(Entry<Object,List<Map<String,Object>>> entry: entrySet) {
+//            Map<String,Object> temp = new HashMap<>();
+//            temp.put("trxDate", entry.getKey());
+//            temp.put("sheetNum", "E41"+(i++));
+//            List<Map<String,Object>> list = entry.getValue();
+//            if(list == null) {
+//                list = new ArrayList<>();
+//            }
+//            temp.put("list", list);
+//            temp.put("count", list.size());
+//            
+//            sheetList.add(temp);
+//        }
+//        sheetList = sheetList.stream().sorted((A,B) -> {
+//            Date d1 = (Date)A.get("trxDate");
+//            Date d2 = (Date)B.get("trxDate");
+//            return Long.compare(d1.getTime(), d2.getTime());
+//        }).collect(Collectors.toList());
         
         
         result.put("dealerFlag", dealerFlag);

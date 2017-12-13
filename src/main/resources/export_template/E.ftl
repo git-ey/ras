@@ -2338,48 +2338,48 @@
    </Row>
    <Row>
     <Cell><Data ss:Type="String">申购款（代销）</Data></Cell>
-    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr1??>T+${(E410.rule.debitDay.attr1)?string('0')}</#if></Data></Cell>
     <Cell><Data ss:Type="String"><#if E410.rule.confirmDay.attr1??>T+${(E410.rule.confirmDay.attr1)?string('0')}</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr1??>T+${(E410.rule.debitDay.attr1)?string('0')}</#if></Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">申购款（直销）</Data></Cell>
-    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr2??>T+${(E410.rule.debitDay.attr2)?string('0')}</#if></Data></Cell>
     <Cell><Data ss:Type="String"><#if E410.rule.confirmDay.attr2??>T+${(E410.rule.confirmDay.attr2)?string('0')}</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr2??>T+${(E410.rule.debitDay.attr2)?string('0')}</#if></Data></Cell>
    </Row>
    <Row ss:StyleID="s186">
     <Cell><Data ss:Type="String">申购款</Data></Cell>
-    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr3??>T+${(E410.rule.debitDay.attr3)?string('0')}</#if></Data></Cell>
     <Cell><Data ss:Type="String"><#if E410.rule.confirmDay.attr3??>T+${(E410.rule.confirmDay.attr3)?string('0')}</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr3??>T+${(E410.rule.debitDay.attr3)?string('0')}</#if></Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">转入款</Data></Cell>
-    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr4??>T+${(E410.rule.debitDay.attr4)?string('0')}</#if></Data></Cell>
     <Cell><Data ss:Type="String"><#if E410.rule.confirmDay.attr4??>T+${(E410.rule.confirmDay.attr4)?string('0')}</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr4??>T+${(E410.rule.debitDay.attr4)?string('0')}</#if></Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">赎回款</Data></Cell>
-    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr5??>T+${(E410.rule.debitDay.attr5)?string('0')}</#if></Data></Cell>
     <Cell><Data ss:Type="String"><#if E410.rule.confirmDay.attr5??>T+${(E410.rule.confirmDay.attr5)?string('0')}</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr5??>T+${(E410.rule.debitDay.attr5)?string('0')}</#if></Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">转出款</Data></Cell>
-    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr6??>T+${(E410.rule.debitDay.attr6)?string('0')}</#if></Data></Cell>
     <Cell><Data ss:Type="String"><#if E410.rule.confirmDay.attr6??>T+${(E410.rule.confirmDay.attr6)?string('0')}</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr6??>T+${(E410.rule.debitDay.attr6)?string('0')}</#if></Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">赎回费</Data></Cell>
-    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr7??>T+${(E410.rule.debitDay.attr7)?string('0')}</#if></Data></Cell>
     <Cell><Data ss:Type="String"><#if E410.rule.confirmDay.attr7??>T+${(E410.rule.confirmDay.attr7)?string('0')}</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr7??>T+${(E410.rule.debitDay.attr7)?string('0')}</#if></Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">转换费</Data></Cell>
-    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr8??>T+${(E410.rule.debitDay.attr8)?string('0')}</#if></Data></Cell>
     <Cell><Data ss:Type="String"><#if E410.rule.confirmDay.attr8??>T+${(E410.rule.confirmDay.attr8)?string('0')}</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr8??>T+${(E410.rule.debitDay.attr8)?string('0')}</#if></Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">后端申购费</Data></Cell>
-    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr9??>T+${(E410.rule.debitDay.attr9)?string('0')}</#if></Data></Cell>
     <Cell><Data ss:Type="String"><#if E410.rule.confirmDay.attr9??>T+${(E410.rule.confirmDay.attr9)?string('0')}</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if E410.rule.debitDay.attr9??>T+${(E410.rule.debitDay.attr9)?string('0')}</#if></Data></Cell>
    </Row>
    <Row/>
    <Row/>
