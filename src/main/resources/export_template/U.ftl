@@ -6396,8 +6396,7 @@
     <Cell ss:Index="2"><Data ss:Type="String">减：卖出权证成本总额</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="2"><Data ss:Type="String">买卖权证差价收入</Data><NamedCell
-      ss:Name="_ftnref1"/></Cell>
+    <Cell ss:Index="2"><Data ss:Type="String">买卖权证差价收入</Data></Cell>
     <Cell ss:Index="6"><Data ss:Type="String">注：本项包含权证行权产生的差价收入。</Data></Cell>
    </Row>
    <Row ss:Index="246">

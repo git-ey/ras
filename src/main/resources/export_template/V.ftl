@@ -5030,21 +5030,21 @@
    <#list V500.slopeList as item>
    <#if item_index == 0>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s244"><Data ss:Type="DateTime">${item.thxDate!}T00:00:00.000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.unitNetvalue!0)?string('0.######')}</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.divident!0)?string('0.##')}</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s77"><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s246"><Data ss:Type="Number">${(item.index!0)?string('0.##')}</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:Index="2" ss:StyleID="s244"><Data ss:Type="DateTime">${item.thxDate!}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.unitNetvalue!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.divident!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s77"></Cell>
+    <Cell ss:StyleID="s246"><Data ss:Type="Number">${(item.index!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"></Cell>
    </Row>
    <#else>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s244"><Data ss:Type="DateTime">${item.thxDate!}T00:00:00.000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.unitNetvalue!0)?string('0.######')}</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.divident!0)?string('0.##')}</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s77" ss:Formula="=RC[-2]/(R[-1]C[-2]-RC[-1])-1"><Data ss:Type="Number"></Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s246"><Data ss:Type="Number">${(item.index!0)?string('0.##')}</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=(RC[-1]/R[-1]C[-1]-1)"><Data ss:Type="Number"></Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:Index="2" ss:StyleID="s244"><Data ss:Type="DateTime">${item.thxDate!}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.unitNetvalue!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.divident!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s77" ss:Formula="=RC[-2]/(R[-1]C[-2]-RC[-1])-1"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s246"><Data ss:Type="Number">${(item.index!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76" ss:Formula="=(RC[-1]/R[-1]C[-1]-1)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
    </#list>

@@ -1397,9 +1397,9 @@
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1002.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1002.drAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1002.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data><NamedCell ss:Name="_银行存款审定"/></Cell>
+    <Cell ss:StyleID="s72" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1002.amountAuditLast!0)?string('0.##')}</Data><NamedCell ss:Name="_银行存款期初"/></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">${(C.KM1002.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s127"/>
     <Cell ss:StyleID="s152" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
@@ -1534,7 +1534,7 @@
    </Row>
    <Row ss:StyleID="s108">
     <Cell ss:Index="2" ss:StyleID="s139"/>
-    <Cell ss:StyleID="s132"><NamedCell ss:Name="SJJL"/></Cell>
+    <Cell ss:StyleID="s132"></Cell>
     <Cell ss:StyleID="s104"/>
     <Cell ss:StyleID="s104"/>
     <Cell ss:StyleID="s104"/>
