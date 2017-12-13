@@ -59,7 +59,17 @@
 		    H400M.`NAME` AS `name`,
 		    H400M.TOTAL_COST AS totalCost,
 		    H400M.MKT_VALUE_CLIENT AS mktValueClient,
-		    H400M.APPRECIATION_CLIENT AS appreciationClient 
+		    H400M.APPRECIATION_CLIENT AS appreciationClient,
+		    H400M.TYPE as type,
+		    H400M.ACCOUNT_NUM as accountNum,
+		    H400M.MARKET as market,
+		    H400M.SUB_TYPE as subType,
+		    H400M.QUANTITY as quantity,
+		    H400M.UNIT_PRICE as unitPrice,
+		    H400M.VAL_PRICE as valPrice,
+		    H400M.RELEATED as releated,
+		    H400M.THREE_LEVEL as threeLevel,
+		    H400M.RESTRICT_TYPE as restrictType
 		FROM
 		    wp_h400_main H400M
 		where 
@@ -67,6 +77,19 @@
         and H400M.STATUS = 'Y'
         and H400M.FUND_ID = #{fundId}
         and H400M.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH400OptionData" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT
+		    H400O.OPTION_CODE AS optionCode,
+		    H400O.OPTION_NAME AS optionName 
+		FROM
+		    wp_h400_option H400O
+		where 
+            1 = 1
+        and H400O.STATUS = 'Y'
+        and H400O.FUND_ID = #{fundId}
+        and H400O.PERIOD = #{period}
     </select>
     
     <select id="selectH500MainData" parameterType="java.util.Map" resultType="java.util.Map">

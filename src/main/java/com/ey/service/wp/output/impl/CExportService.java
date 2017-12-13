@@ -193,7 +193,7 @@ public class CExportService extends BaseExportService implements CExportManager{
                 RdemandDepositsList.add(map);
             }else if("定期存款".equals(map.get("depositType"))) {
                 RTimeDepositsList.add(map);
-            }else if("清算备付金".equals(map.get("depositType"))) {
+            }else if("结算备付金".equals(map.get("depositType"))) {
                 RKM1021List.add(map);
             }else if("存出保证金".equals(map.get("depositType"))) {
                 RKM1031List.add(map);

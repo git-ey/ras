@@ -51,6 +51,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         
         dataMap.put("H", this.getHData(fundId, periodStr));
         dataMap.put("H300", this.getH300Data(fundId, periodStr));
+        dataMap.put("H400", this.getH400Data(fundId, periodStr));
 //        dataMap.put("G10000", this.getG10000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H);
@@ -301,6 +302,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         
         H400.put("list", H400MetaDataList);
         H400.put("count", H400MetaDataList.size());
+        H400.put("noteFlag", H400MetaDataList.stream().filter(item -> {return "期货".equals(item.get("type"));}).count()==0 ? "N" : "Y");
         H500.put("list", H500MetaDataList);
         H500.put("count", H500MetaDataList.size());
         related.put("H400", H400);
@@ -310,6 +312,30 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("main", main);
         result.put("interestRatePeriod", interestRatePeriod);
         result.put("related", related);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H400的数据
+     * @author Dai Zong 2017年12月13日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH400Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH400OptionData", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        
+        result.put("list", metaDataList);
+        result.put("count", metaDataList.size());
         return result;
     }
     
