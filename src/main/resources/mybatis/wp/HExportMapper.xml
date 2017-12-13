@@ -60,6 +60,7 @@
 		    H400M.TOTAL_COST AS totalCost,
 		    H400M.MKT_VALUE_CLIENT AS mktValueClient,
 		    H400M.APPRECIATION_CLIENT AS appreciationClient,
+		    <!-- 以上部分共H300使用 -->
 		    H400M.TYPE as type,
 		    H400M.ACCOUNT_NUM as accountNum,
 		    H400M.MARKET as market,
@@ -101,7 +102,21 @@
 		    H500M.BOND_NAME AS `name`,
 		    H500M.TOTAL_COST AS totalCost,
 		    H500M.MKT_VALUE_CLIENT AS mktValueClient,
-		    H500M.APPRECIATION_CLIENT AS appreciationClient 
+		    H500M.APPRECIATION_CLIENT AS appreciationClient,
+		    <!-- 以上部分共H300使用 -->
+		    H500M.TYPE AS type,
+		    H500M.ACCOUNT_NUM AS accountNum,
+		    H500M.MARKET AS market,
+		    H500M.SUB_TYPE AS subType,
+		    H500M.QUANTITY AS quantity,
+		    H500M.UNIT_PRICE AS unitPrice,
+		    H500M.INTEREST_AR_CLIENT AS interestArClient,
+		    H500M.VAL_PRICE AS valPrice,
+		    H500M.UNIT_INTEREST_AT AS unitInterestAt,
+		    H500M.RELEATED AS releated,
+		    H500M.THREE_LEVEL AS threeLevel,
+		    H500M.RESTRICT_TYPE AS restrictType,
+		    H500M.EXPOSURE_PERIOD AS exposurePeriod
 		FROM
 		    wp_h500_main H500M
         where 
@@ -109,6 +124,20 @@
         and H500M.STATUS = 'Y'
         and H500M.FUND_ID = #{fundId}
         and H500M.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH500DiviatonData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H500MD.NET_AMOUNT AS netAmount,
+		    H500MD.DIVIATON_CLIENT AS diviatonClient 
+		FROM
+		    wp_h500_mmf_diviaton H500MD
+        where 
+            1 = 1
+        and H500MD.STATUS = 'Y'
+        and H500MD.FUND_ID = #{fundId}
+        and H500MD.PERIOD = #{period}
+        LIMIT 1
     </select>
     
 </mapper>

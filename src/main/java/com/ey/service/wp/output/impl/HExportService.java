@@ -52,6 +52,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         dataMap.put("H", this.getHData(fundId, periodStr));
         dataMap.put("H300", this.getH300Data(fundId, periodStr));
         dataMap.put("H400", this.getH400Data(fundId, periodStr));
+        dataMap.put("H500", this.getH500Data(fundId, periodStr));
 //        dataMap.put("G10000", this.getG10000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H);
@@ -336,6 +337,42 @@ public class HExportService extends BaseExportService implements HExportManager{
         
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H500的数据
+     * @author Dai Zong 2017年12月13日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH500Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String,Object> interestRatePeriod = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<String> periodMetaDataList = (List<String>)this.dao.findForList("HExportMapper.selectH300InterestRatePeriodsData", queryMap);
+        if(periodMetaDataList == null) {
+            periodMetaDataList = new ArrayList<>();
+        }
+        while(periodMetaDataList.size() < 8) {
+            periodMetaDataList.add(StringUtils.EMPTY);
+        }
+        interestRatePeriod.put("list", periodMetaDataList);
+        interestRatePeriod.put("count", periodMetaDataList.size());
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> diviatonMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH500DiviatonData", queryMap);
+        if(diviatonMetaData == null) {
+            diviatonMetaData = new HashMap<>();
+        }
+        
+        result.put("diviaton", diviatonMetaData);
+        result.put("interestRatePeriod", interestRatePeriod);
         return result;
     }
     

@@ -29,7 +29,8 @@
 		    sfi.ROR_BASELINE as rorBaseline,
 		    sfi.ROR as ror,
 		    sfi.LEVERAGE as leverage,
-		    IFNULL(sfi.LOF,'N') as lof
+		    IFNULL(sfi.LOF,'N') as lof,
+            IFNULL(sfi.INTEREST_SENSITIVITY,'N') as interestSensitivity
 		FROM
 		    SYS_FUND_INFO sfi
 		WHERE
