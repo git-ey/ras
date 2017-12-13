@@ -2728,8 +2728,8 @@
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String">PXXX</Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.annualFee4Listing.contractAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s243"></Cell>
-    <Cell ss:StyleID="s243"></Cell>
+    <Cell ss:StyleID="s243"><#if P400.summary.annualFee4Listing.contractBeginDate??><Data ss:Type="DateTime">${P400.summary.annualFee4Listing.contractBeginDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s243"><#if P400.summary.annualFee4Listing.contractEndDate??><Data ss:Type="DateTime">${P400.summary.annualFee4Listing.contractEndDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=MIN(RC[-2],R6C6)-MAX(RC[-3],R6C2+1)+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-5]/RC[-2]*RC[-1]),&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -2753,8 +2753,8 @@
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String">业务约定书</Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.auditFee.contractAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s243"></Cell>
-    <Cell ss:StyleID="s243"></Cell>
+    <Cell ss:StyleID="s243"><#if P400.summary.auditFee.contractBeginDate??><Data ss:Type="DateTime">${P400.summary.auditFee.contractBeginDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s243"><#if P400.summary.auditFee.contractEndDate??><Data ss:Type="DateTime">${P400.summary.auditFee.contractEndDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=MIN(RC[-2],R6C6)-MAX(RC[-3],R6C2+1)+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-5]/RC[-2]*RC[-1]),&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -2797,8 +2797,8 @@
     <Cell ss:StyleID="s46"><Data ss:Type="String">${item.detailName!}</Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">${item.confirmationNum!}</Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${(item.contractAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${item.contractBeginDate!}</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${item.contractEndDate!}</Data></Cell>
+    <Cell ss:StyleID="s243"><#if item.contractBeginDate??><Data ss:Type="DateTime">${item.contractBeginDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s243"><#if item.contractEndDate??><Data ss:Type="DateTime">${item.contractEndDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=MIN(RC[-2],R6C6)-MAX(RC[-3],R6C2+1)+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-5]/RC[-2]*RC[-1]),&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
