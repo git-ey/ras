@@ -60,9 +60,9 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
+									<th class="center">期间</th>
 									<th class="center">债券简称</th>
 									<th class="center">债券代码</th>
-									<th class="center">估值日期</th>
 									<th class="center">来源</th>
 									<th class="center">估价修正久期</th>
 									<th class="center">估价凸性</th>
@@ -81,9 +81,9 @@
 												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.CONVEXITY_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
+											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.BOND_NAME}</td>
 											<td class='center'>${var.BOND_CODE}</td>
-											<td class='center'>${var.VALUE_DATE}</td>
 											<td class='center'>${var.SOURCE}</td>
 											<td class='center'>${var.DURATION}</td>
 											<td class='center'>${var.CONVEXITY}</td>

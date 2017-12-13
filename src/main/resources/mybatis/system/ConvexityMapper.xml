@@ -11,7 +11,7 @@
 	<sql id="Field">
 		BOND_NAME,	
 		BOND_CODE,	
-		VALUE_DATE,	
+		PERIOD,	
 		SOURCE,	
 		DURATION,	
 		CONVEXITY,	
@@ -24,7 +24,7 @@
 	<sql id="FieldValue">
 		#{BOND_NAME},	
 		#{BOND_CODE},	
-		#{VALUE_DATE},	
+		#{PERIOD},	
 		#{SOURCE},	
 		#{DURATION},	
 		#{CONVEXITY},	
@@ -59,7 +59,7 @@
 		set 
 			BOND_NAME = #{BOND_NAME},
 			BOND_CODE = #{BOND_CODE},
-			VALUE_DATE = #{VALUE_DATE},
+			PERIOD = #{PERIOD},
 			SOURCE = #{SOURCE},
 			DURATION = #{DURATION},
 			CONVEXITY = #{CONVEXITY},
@@ -88,11 +88,10 @@
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-				<!--	根据需求自己加检索条件
-					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				<!-- 根据需求自己加检索条件 -->
+					BOND_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
-					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				-->
+					BOND_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
 		</if>
 	</select>
@@ -125,15 +124,15 @@
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
-		    #{BOND_NAME},	
-		    #{BOND_CODE},	
-		    #{VALUE_DATE},	
-		    #{SOURCE},	
-		    #{DURATION},	
-	 	    #{CONVEXITY},	
-		    #{ACTIVE},	
-		    #{STATUS},	
-		    #{CONVEXITY_ID}
+		    #{pd.BOND_NAME},	
+		    #{pd.BOND_CODE},	
+		    #{pd.PERIOD},	
+		    #{pd.SOURCE},	
+		    #{pd.DURATION},	
+	 	    #{pd.CONVEXITY},	
+		    #{pd.ACTIVE},	
+		    #{pd.STATUS},	
+		    #{pd.CONVEXITY_ID}
          )
          </foreach >
 	</insert>

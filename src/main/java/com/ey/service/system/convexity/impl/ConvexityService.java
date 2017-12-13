@@ -102,7 +102,7 @@ public class ConvexityService implements ConvexityManager{
 				pd.put("CONVEXITY_ID", UuidUtil.get32UUID());
 				pd.put("BOND_CODE", map.get("BOND_CODE"));
 				pd.put("BOND_NAME", map.get("BOND_NAME"));
-				pd.put("VALUE_DATE", map.get("VALUE_DATE"));
+				pd.put("PERIOD", map.get("PERIOD"));
 				pd.put("SOURCE", map.get("SOURCE"));
 				pd.put("DURATION", map.get("DURATION"));
 				pd.put("CONVEXITY", map.get("CONVEXITY"));
