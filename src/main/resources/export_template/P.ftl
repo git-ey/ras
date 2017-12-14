@@ -3044,10 +3044,6 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="P600">
-  <Names>
-   <NamedRange ss:Name="_FilterDatabase" ss:RefersTo="=P600!#REF!" ss:Hidden="1"/>
-   <NamedRange ss:Name="各项买入返售金融资产期末余额_本年" ss:RefersTo="=P600!#REF!"/>
-  </Names>
   <Table x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s52" ss:DefaultColumnWidth="47.25"
    ss:DefaultRowHeight="13.5">
@@ -3244,7 +3240,7 @@
     <Cell ss:Index="6" ss:StyleID="s172" ss:Formula="=SUM(R[${(-(1+P600.test.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Formula="=RC[-1]=R[${(-(10+P600.test.count))?string('0')}]C[-1]"><Data ss:Type="Boolean"></Data></Cell>
     <Cell ss:Index="15" ss:StyleID="s172" ss:Formula="=SUM(R[${(-(1+P600.test.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s172"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s172"><Data ss:Type="Number">${(P600.summary.accruedInterestClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s172" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s205"><Data ss:Type="String">m</Data></Cell>
    </Row>

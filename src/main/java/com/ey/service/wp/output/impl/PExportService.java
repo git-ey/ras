@@ -294,6 +294,14 @@ public class PExportService extends BaseExportService implements PExportManager{
         test.put("count", P600TestMetaDataList.size());
         //========process dataMap for test view end========
         
+        //========process dataMap for summary view begin========
+        @SuppressWarnings("unchecked")
+        Map<String,Object> P600TestSummaryMetaData = (Map<String,Object>)this.dao.findForObject("PExportMapper.selectP600TestSummaryData", queryMap);
+        if(P600TestSummaryMetaData == null) {
+            P600TestSummaryMetaData = new HashMap<>();
+        }
+        //========process dataMap for summary view end========
+        
         //========process dataMap for testDetail view begin========
         Map<String, Object> testDetail = new HashMap<String,Object>();
         Map<String, Object> note2 = new HashMap<String,Object>();
@@ -336,6 +344,7 @@ public class PExportService extends BaseExportService implements PExportManager{
         
         result.put("main", main);
         result.put("test", test);
+        result.put("summary", P600TestSummaryMetaData);
         result.put("testDetail", testDetail);
         result.put("exposurePeriod", exposurePeriod);
         

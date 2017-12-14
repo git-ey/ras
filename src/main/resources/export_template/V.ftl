@@ -3875,12 +3875,6 @@
  </#if>
  <#if V400.fundInfo.priceSensitiveMethod == '斜率法'>
  <Worksheet ss:Name="V500">
-  <Names>
-   <NamedRange ss:Name="_FilterDatabase"
-    ss:RefersTo="='V500-其他价格风险敞口及敏感性-斜率法'!R66:R220" ss:Hidden="1"/>
-   <NamedRange ss:Name="_ftn1" ss:RefersTo="='V500-其他价格风险敞口及敏感性-斜率法'!R34C2"/>
-   <NamedRange ss:Name="_ftnref1" ss:RefersTo="='V500-其他价格风险敞口及敏感性-斜率法'!R30C2"/>
-  </Names>
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s74" ss:DefaultColumnWidth="55.5" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s74" ss:Width="77.25"/>
    <Column ss:StyleID="s74" ss:AutoFitWidth="0" ss:Width="154.5"/>
@@ -5139,10 +5133,6 @@
  </Worksheet>
  <#else>
  <Worksheet ss:Name="V500">
-  <Names>
-   <NamedRange ss:Name="_FilterDatabase"
-    ss:RefersTo="='V500-其他价格风险敞口及敏感性-beta法'!#REF!" ss:Hidden="1"/>
-  </Names>
   <Table x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s74" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s74" ss:AutoFitWidth="0" ss:Width="87"/>

@@ -147,6 +147,21 @@
         and P600T.PERIOD = #{period}
     </select>
     
+    <select id="selectP600TestSummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT
+		    P600S.ACCRUED_INTEREST_EY AS accruedInterestEy,
+		    P600S.ACCRUED_INTEREST_CLIENT AS accruedInterestClient,
+		    P600S.DIFF AS diff 
+		FROM
+		    wp_p600_summary P600S
+		WHERE
+            1 = 1
+        and P600S.STATUS = 'Y'
+        and P600S.FUND_ID = #{fundId}
+        and P600S.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectP600TestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    P600TD.BOND_CODE as bondCode,

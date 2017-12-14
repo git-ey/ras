@@ -3964,9 +3964,6 @@
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
  </Styles>
- <Names>
-  <NamedRange ss:Name="TextRefCopyRangeCount" ss:RefersTo="=18" ss:Hidden="1"/>
- </Names>
  <Worksheet ss:Name="U">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s78" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s93" ss:AutoFitWidth="0" ss:Width="177"/>
@@ -5115,10 +5112,6 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="U310-普通版">
-  <Names>
-   <NamedRange ss:Name="_ftn1" ss:RefersTo="='U310-普通版'!R247C2"/>
-   <NamedRange ss:Name="_ftnref1" ss:RefersTo="='U310-普通版'!R244C2"/>
-  </Names>
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s334" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s334" ss:Width="76.5"/>
    <Column ss:StyleID="s334" ss:Width="159"/>
@@ -6625,10 +6618,6 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="U310-货基版">
-  <Names>
-   <NamedRange ss:Name="_ftn1" ss:RefersTo="='U310-货基版'!#REF!"/>
-   <NamedRange ss:Name="_ftnref1" ss:RefersTo="='U310-货基版'!#REF!"/>
-  </Names>
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s334" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s334" ss:Width="76.5"/>
    <Column ss:StyleID="s334" ss:Width="159"/>
@@ -7239,10 +7228,6 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="U310-黄金ETF">
-  <Names>
-   <NamedRange ss:Name="_ftn1" ss:RefersTo="='U310-黄金ETF'!#REF!"/>
-   <NamedRange ss:Name="_ftnref1" ss:RefersTo="='U310-黄金ETF'!#REF!"/>
-  </Names>
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s334" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s334" ss:Width="76.5"/>
    <Column ss:StyleID="s334" ss:Width="159"/>
@@ -8111,10 +8096,6 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="U310-黄金ETF联接">
-  <Names>
-   <NamedRange ss:Name="_ftn1" ss:RefersTo="='U310-黄金ETF联接'!#REF!"/>
-   <NamedRange ss:Name="_ftnref1" ss:RefersTo="='U310-黄金ETF联接'!#REF!"/>
-  </Names>
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s334" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s334" ss:Width="76.5"/>
    <Column ss:StyleID="s334" ss:Width="159"/>
