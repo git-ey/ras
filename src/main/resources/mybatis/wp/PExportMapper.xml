@@ -164,21 +164,22 @@
     
     <select id="selectP600TestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-		    P600TD.BOND_CODE as bondCode,
-		    P600TD.BOND_NAME as bondName,
-		    P600TD.RETURN_DAY as returnDay,
-		    P600TD.PRICE as price,
-		    P600TD.QUANTITY as quantity,
-		    P600TD.AMOUNT as amount,
-		    P600T.BUY_OUT_BOND as byOutBond
+		    P600TD.HEAD_ID as headerId,
+		    P600TD.BOND_CODE AS bondCode,
+		    P600TD.BOND_NAME AS bondName,
+		    P600TD.RETURN_DAY AS returnDay,
+		    P600TD.PRICE AS price,
+		    P600TD.QUANTITY AS quantity,
+		    P600TD.AMOUNT AS amount,
+		    P600T.BUY_OUT_BOND AS byOutBond 
 		FROM
-		    wp_p600_test_detail P600TD
-		INNER JOIN wp_p600_test P600T ON P600T.HEAD_ID = P600TD.HEAD_ID AND P600T.STATUS = 'Y'
+		    wp_p600_test P600T
+		    INNER JOIN wp_p600_test_detail P600TD ON P600TD.HEAD_ID = P600T.HEAD_ID  AND P600TD.STATUS = 'Y' 
 		WHERE
-		    1 = 1
-        and P600TD.STATUS = 'Y'
-        and P600TD.FUND_ID = #{fundId}
-        and P600TD.PERIOD = #{period}
+		    1 = 1 
+        and P600T.STATUS = 'Y'
+        and P600T.FUND_ID = #{fundId}
+        and P600T.PERIOD = #{period}
     </select>
     
     <select id="selectP600ExposurePeriodData" parameterType="java.util.Map" resultType="java.util.Map">

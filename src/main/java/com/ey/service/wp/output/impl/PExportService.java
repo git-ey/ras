@@ -311,24 +311,50 @@ public class PExportService extends BaseExportService implements PExportManager{
         if(P600TestDetailMetaDataList == null) {
             P600TestDetailMetaDataList = new ArrayList<Map<String,Object>>(); 
         }
-        Map<String, List<Map<String, Object>>> groups = P600TestDetailMetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
+        Map<String, Map<String, List<Map<String, Object>>>> groups = P600TestDetailMetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = item;
             return String.valueOf(map.get("byOutBond"));
-        }));
-        List<Map<String,Object>> note2List = new ArrayList<>();
-        List<Map<String,Object>> note3List = new ArrayList<>();
-        if(groups.get("Note 2") != null) {
-            note2List = groups.get("Note 2");
+        }, Collectors.groupingBy(item -> {
+            Map<String,Object> map = item;
+            return String.valueOf(map.get("headerId"));
+        })));
+        List<String> headerIds = P600TestDetailMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("headerId"));
+        }).distinct().collect(Collectors.toList());
+        Map<String, List<Map<String, Object>>> note2map = groups.get("Note 2")==null ? new HashMap<>() : groups.get("Note 2");
+        Map<String, List<Map<String, Object>>> note3map = groups.get("Note 3")==null ? new HashMap<>() : groups.get("Note 3");
+        List<Map<String,Object>> note2HeadList = new ArrayList<>();
+        Integer noteTotalLineCount = 0;
+        for(String headerId : headerIds) {
+            if (note2map.get(headerId) != null) {
+                Map<String, Object> tempMap = new HashMap<>();
+                List<Map<String, Object>> tempList = note2map.get(headerId);
+                tempMap.put("list", tempList);
+                tempMap.put("count", tempList.size());
+                noteTotalLineCount += tempList.size();
+                note2HeadList.add(tempMap);
+            }
         }
-        if(groups.get("Note 3") != null) {
-            note3List = groups.get("Note 3");
+        List<Map<String,Object>> note3HeadList = new ArrayList<>();
+        for(String headerId : headerIds) {
+            if(note3map.get(headerId) != null) {
+                Map<String,Object> tempMap = new HashMap<>();
+            
+                List<Map<String,Object>> tempList = note3map.get(headerId);
+                tempMap.put("list", tempList);
+                tempMap.put("count", tempList.size());
+                noteTotalLineCount += tempList.size();
+                note3HeadList.add(tempMap);
+            }
         }
-        note2.put("list", note2List);
-        note2.put("count", note2List.size());
-        note3.put("list", note3List);
-        note3.put("count", note3List.size());
+        note2.put("heads", note2HeadList);
+        note2.put("headCount", note2HeadList.size());
+        note3.put("heads", note3HeadList);
+        note3.put("headCount", note3HeadList.size());
         testDetail.put("note2", note2);
         testDetail.put("note3", note3);
+        testDetail.put("noteTotalHeadCount", note2HeadList.size() + note3HeadList.size());
+        testDetail.put("noteTotalLineCount", noteTotalLineCount);
         //========process dataMap for testDetail view end========
         
         //========process dataMap for exposurePeriod view begin========

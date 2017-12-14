@@ -3295,6 +3295,8 @@
     <Cell ss:StyleID="s188"/>
     <Cell ss:StyleID="s188"/>
    </Row>
+   <#if P600.testDetail.note2.headCount != 0>
+   <#list  P600.testDetail.note2.heads as head>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
     <Cell ss:StyleID="s189"><Data ss:Type="String">债券代码</Data></Cell>
@@ -3311,8 +3313,8 @@
     <Cell ss:Index="5" ss:StyleID="s173"><Data ss:Type="String">H-XX旗下基金</Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s229"/>
    </Row>
-   <#if P600.testDetail.note2.count != 0>
-   <#list P600.testDetail.note2.list as item>
+   <#if head.count != 0>
+   <#list head.list as item>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
     <Cell><Data ss:Type="String">${item.bondCode!}</Data></Cell>
@@ -3333,8 +3335,8 @@
     <Cell ss:StyleID="s197"/>
     <Cell ss:StyleID="s186"/>
     <Cell ss:Index="5" ss:StyleID="s190"><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:StyleID="s191" ss:Formula="=SUM(R[${(-(1+P600.testDetail.note2.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s191" ss:Formula="=SUM(R[${(-(1+P600.testDetail.note2.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s191" ss:Formula="=SUM(R[${(-(1+head.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s191" ss:Formula="=SUM(R[${(-(1+head.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s229"/>
    </Row>
    <Row ss:StyleID="s168">
@@ -3344,6 +3346,8 @@
     <Cell ss:StyleID="s173"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s229"/>
    </Row>
+   </#list>
+   </#if>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s197"><Data ss:Type="String">Note 3</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="String">该笔买断式回购相应的债券如下：</Data></Cell>
@@ -3354,6 +3358,8 @@
     <Cell ss:StyleID="s186"/>
     <Cell ss:Index="8" ss:StyleID="s229"/>
    </Row>
+   <#if P600.testDetail.note3.headCount != 0>
+   <#list  P600.testDetail.note3.heads as head>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
     <Cell ss:StyleID="s196"><Data ss:Type="String">债券代码</Data></Cell>
@@ -3374,8 +3380,8 @@
     <Cell ss:StyleID="s174"/>
     <Cell ss:StyleID="s229"/>
    </Row>
-   <#if P600.testDetail.note3.count != 0>
-   <#list P600.testDetail.note3.list as item>
+   <#if head.count != 0>
+   <#list head.list as item>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
     <Cell><Data ss:Type="String">${item.bondCode!}</Data></Cell>
@@ -3403,8 +3409,8 @@
     <Cell ss:StyleID="s174"/>
     <Cell ss:StyleID="s174"/>
     <Cell ss:StyleID="s198"><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:StyleID="s191" ss:Formula="=SUM(R[${(-(1+P600.testDetail.note3.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s191" ss:Formula="=SUM(R[${(-(1+P600.testDetail.note3.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s191" ss:Formula="=SUM(R[${(-(1+head.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s191" ss:Formula="=SUM(R[${(-(1+head.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s229"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:StyleID="s168">
@@ -3414,6 +3420,8 @@
     <Cell ss:StyleID="s173"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s173"><Data ss:Type="String">^</Data></Cell>
    </Row>
+   </#list>
+   </#if>
    <Row ss:AutoFitHeight="0" ss:StyleID="s168">
     <Cell ss:StyleID="s281"><Data ss:Type="String">For Disclosure</Data></Cell>
    </Row>
@@ -3441,7 +3449,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s289"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s290" ss:Formula="=R[-1]C-R[${(-(28+P600.exposurePeriod.count+P600.testDetail.note3.count+P600.testDetail.note2.count))?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s290" ss:Formula="=R[-1]C-R[${(-(18+P600.exposurePeriod.count+P600.testDetail.noteTotalLineCount+5*P600.testDetail.noteTotalHeadCount))?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
