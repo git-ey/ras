@@ -53,7 +53,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         dataMap.put("H300", this.getH300Data(fundId, periodStr));
         dataMap.put("H400", this.getH400Data(fundId, periodStr));
         dataMap.put("H500", this.getH500Data(fundId, periodStr));
-//        dataMap.put("G10000", this.getG10000Data(fundId, periodStr));
+        dataMap.put("H800", this.getH800Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H);
     }
@@ -373,6 +373,87 @@ public class HExportService extends BaseExportService implements HExportManager{
         
         result.put("diviaton", diviatonMetaData);
         result.put("interestRatePeriod", interestRatePeriod);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H800的数据
+     * @author Dai Zong 2017年12月14日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH800Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        //========process dataMap for main view begin========
+        Map<String, Object> main = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH800MainData", queryMap);
+        if(mainMetaDataList == null) {
+            mainMetaDataList = new ArrayList<>();
+        }
+        main.put("list", mainMetaDataList);
+        main.put("count", mainMetaDataList.size());
+        //========process dataMap for main view end========
+        
+        //========process dataMap for interestTest view begin========
+        Map<String, Object> interestTest = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> interestTestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH800InterestTestData", queryMap);
+        if(interestTestMetaDataList == null) {
+            interestTestMetaDataList = new ArrayList<>();
+        }
+        interestTest.put("list", interestTestMetaDataList);
+        interestTest.put("count", interestTestMetaDataList.size());
+        //========process dataMap for interestTest view end========
+        
+        //========process dataMap for interestDetail view begin========
+        Map<String, Object> interestDetail = new HashMap<String,Object>();
+        List<Map<String, Object>> headLists = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> interestDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH800InterestDetailData", queryMap);
+        if(interestDetailMetaDataList == null) {
+            interestDetailMetaDataList = new ArrayList<>();
+        }
+        List<String> headAccountNums = interestTestMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("accountNum"));
+        }).distinct().collect(Collectors.toList());
+        Map<Object, List<Map<String, Object>>> groups = interestDetailMetaDataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return map.get("accountNum");
+        }));
+        for(String headAccountNum : headAccountNums) {
+            List<Map<String, Object>> tempList = groups.get(headAccountNum);
+            if(CollectionUtils.isNotEmpty(tempList)) {
+                Map<String, Object> tempMap = new HashMap<String,Object>();
+                tempMap.put("list", tempList);
+                tempMap.put("count", tempList.size());
+                headLists.add(tempMap);
+            }
+        }
+        interestDetail.put("heads", headLists);
+        interestDetail.put("headsCount", headLists.size());
+        //========process dataMap for interestDetail view end========
+        
+        //========process dataMap for intRiskPeriod view begin========
+        Map<String, Object> intRiskPeriod = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<String> intRiskPeriodMetaDataList = (List<String>)this.dao.findForList("HExportMapper.selectH800IntRiskPeriodData", queryMap);
+        if(intRiskPeriodMetaDataList == null) {
+            intRiskPeriodMetaDataList = new ArrayList<>();
+        }
+        intRiskPeriod.put("list", intRiskPeriodMetaDataList);
+        intRiskPeriod.put("count", intRiskPeriodMetaDataList.size());
+        //========process dataMap for intRiskPeriod view end========
+        
+        result.put("main", main);
+        result.put("interestTest", interestTest);
+        result.put("interestDetail", interestDetail);
+        result.put("intRiskPeriod", intRiskPeriod);
         return result;
     }
     

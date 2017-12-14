@@ -140,4 +140,79 @@
         LIMIT 1
     </select>
     
+    <select id="selectH800MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800M.ACCOUNT_NUM AS accountNum,
+		    H800M.ATTR3 AS `code`,
+		    H800M.ATTR4 AS shortName,
+		    H800M.ATTR5 AS market,
+		    H800M.ATTR2 AS subType,
+		    H800M.END_BALANCE_CNY AS endBalanceCny,
+		    H800M.BEGIN_BALANCE_CNY AS beginBalanceCny 
+		FROM
+		    wp_h800_main H800M
+		WHERE 
+            1 = 1
+        AND H800M.STATUS = 'Y'
+        AND H800M.FUND_ID = #{fundId}
+        AND H800M.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH800InterestTestData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800IT.ACCOUNT_NUM AS accountNum,
+		    H800IT.ATTR3 AS `code`,
+		    H800IT.ATTR4 AS shortName,
+		    H800IT.ATTR5 AS market,
+		    H800IT.ATTR2 AS subtype,
+		    H800IT.`INDEX` AS `index`,
+		    H800IT.END_BALANCE_CNY AS endBalanceCny,
+		    H800IT.FIRST_ACCOUNT_DAY AS firstAccountDay,
+		    H800IT.DUE_ACCOUNT_DAY AS dueAccountDay,
+		    H800IT.DUE_AMOUNT AS dueAmount,
+		    H800IT.BUY_OUT_BOND AS buyOutBond,
+		    H800IT.VALUATION_DAY AS valuationDay,
+		    H800IT.EXPOSURE_PERIOD AS exposurePeriod 
+		FROM
+		    wp_h800_interest_test H800IT
+		WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH800InterestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800ID.ACCOUNT_NUM as accountNum,
+		    H800ID.ACCOUNT_DES as accountDes,
+		    H800ID.BOND_CODE as bondCode,
+		    H800ID.BOND_NAME as bondName,
+		    H800ID.RETURN_DAY as returnDay,
+		    H800ID.PRICE as price,
+		    H800ID.QUANTITY as quantity,
+		    H800ID.REDUCE_AMT as reduceAmt,
+		    H800ID.VALUATION_PRICE as valuationPrice
+		FROM
+		    wp_h800_interest_test H800IT
+		INNER JOIN wp_h800_intest_detail H800ID ON H800ID.HEAD_ID = H800IT.HEAD_ID AND H800ID.ACCOUNT_NUM = H800IT.ACCOUNT_NUM AND H800ID.`STATUS` = 'Y'
+		WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH800IntRiskPeriodData" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT DISTINCT
+		    H800EP.INT_RISK_PERIOD AS intRiskPeriod 
+		FROM
+		    wp_h800_exposure_period H800EP
+		WHERE 
+            1 = 1
+        AND H800EP.STATUS = 'Y'
+        AND H800EP.FUND_ID = #{fundId}
+        AND H800EP.PERIOD = #{period}
+    </select>
+    
 </mapper>
