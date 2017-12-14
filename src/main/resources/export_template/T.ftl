@@ -9074,7 +9074,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s399"><Data ss:Type="String">该基金单位净值保留至小数点的有效位数：</Data></Cell>
-    <Cell ss:StyleID="s399"><Data ss:Type="Number">${(extraFundInfo.navRound)?string('0')}</Data></Cell>
+    <Cell ss:StyleID="s51"><Data ss:Type="String">${(extraFundInfo.navRound)?string('0')}</Data></Cell>
    </Row>
    <Row/>
    <Row>
@@ -9104,7 +9104,7 @@
    </Row>
    <Row>
     <Cell><Data ss:Type="String">杠杆比：（劣后+优先）/劣后</Data></Cell>
-    <Cell ss:StyleID="s383"><Data ss:Type="Number">${(extraFundInfo.leverage!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s387"><Data ss:Type="Number">${(extraFundInfo.leverage!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s377"><Data ss:Type="String">b</Data></Cell>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s269"/>
@@ -9426,7 +9426,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s399"><Data ss:Type="String">该基金单位净值保留至小数点的有效位数：</Data></Cell>
-    <Cell ss:StyleID="s399"><Data ss:Type="Number">${(extraFundInfo.navRound)?string('0')}</Data></Cell>
+    <Cell ss:StyleID="s51"><Data ss:Type="String">${(extraFundInfo.navRound)?string('0')}</Data></Cell>
    </Row>
    <Row/>
    <Row>
@@ -9456,7 +9456,7 @@
    </Row>
    <Row>
     <Cell><Data ss:Type="String">杠杆比：（劣后+优先）/劣后</Data></Cell>
-    <Cell ss:StyleID="s383"><Data ss:Type="Number">${(extraFundInfo.leverage!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s387"><Data ss:Type="Number">${(extraFundInfo.leverage!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s377"><Data ss:Type="String">b</Data></Cell>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s269"/>
@@ -9786,7 +9786,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s399"><Data ss:Type="String">该基金单位净值保留至小数点的有效位数：</Data></Cell>
-    <Cell ss:StyleID="s399"><Data ss:Type="Number">${(extraFundInfo.navRound)?string('0')}</Data></Cell>
+    <Cell ss:StyleID="s51"><Data ss:Type="String">${(extraFundInfo.navRound)?string('0')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s269"/>
@@ -10113,7 +10113,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s399"><Data ss:Type="String">该基金单位净值保留至小数点的有效位数：</Data></Cell>
-    <Cell ss:StyleID="s399"><Data ss:Type="Number">${(extraFundInfo.navRound)?string('0')}</Data></Cell>
+    <Cell ss:StyleID="s51"><Data ss:Type="String">${(extraFundInfo.navRound)?string('0')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s269"/>
