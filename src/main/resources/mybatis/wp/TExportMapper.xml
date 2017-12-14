@@ -30,7 +30,8 @@
 		    sfi.ROR as ror,
 		    sfi.LEVERAGE as leverage,
 		    IFNULL(sfi.LOF,'N') as lof,
-            IFNULL(sfi.INTEREST_SENSITIVITY,'N') as interestSensitivity
+            IFNULL(sfi.INTEREST_SENSITIVITY,'N') as interestSensitivity,
+            IFNULL(sfi.dealer_seperate,'N') as dealerSeperate
 		FROM
 		    SYS_FUND_INFO sfi
 		WHERE

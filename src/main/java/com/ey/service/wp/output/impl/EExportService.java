@@ -52,6 +52,7 @@ public class EExportService extends BaseExportService implements EExportManager{
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("fundInfo", fundInfo);
+        dataMap.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
         
         dataMap.put("E", this.getEData(fundId, periodStr));
         dataMap.put("E300", this.getE300Data(fundId, periodStr));
@@ -81,6 +82,49 @@ public class EExportService extends BaseExportService implements EExportManager{
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), xmlStr);
 	    return true;
 	}
+	
+	/**
+     * 获取基金额外属性
+     * @author Dai Zong 2017年12月2日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getExtraFundInfo(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectExtraFundInfo", queryMap);
+        if(fundInfo == null) {
+            fundInfo = new HashMap<>();
+        }
+        
+        Integer startYear = 2000, startMonth = 01, startDay = 01;
+        if(fundInfo.get("dateFrom") != null) {
+            String[] splits = String.valueOf(fundInfo.get("dateFrom")).split("-");
+            try {
+                if(splits.length == 1) {
+                    startYear = Integer.parseInt(splits[0]);
+                }else if(splits.length == 2) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                }else if(splits.length >= 3) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                    startDay = Integer.parseInt(splits[2]);
+                }
+            }catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        fundInfo.put("startYear", startYear);
+        fundInfo.put("startMonth", startMonth);
+        fundInfo.put("startDay", startDay);
+        return fundInfo;
+    }
 	
 	/**
      * 处理sheet页E的数据
