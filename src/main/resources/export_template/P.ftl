@@ -3282,6 +3282,7 @@
     <Cell ss:StyleID="s197"/>
     <Cell ss:StyleID="s186"/>
    </Row>
+   <#if P600.testDetail.note2.headCount != 0>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s197"><Data ss:Type="String">Note 2</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="String">该笔回购质押如下债券：</Data></Cell>
@@ -3295,6 +3296,7 @@
     <Cell ss:StyleID="s188"/>
     <Cell ss:StyleID="s188"/>
    </Row>
+   </#if>
    <#if P600.testDetail.note2.headCount != 0>
    <#list  P600.testDetail.note2.heads as head>
    <Row ss:StyleID="s168">
@@ -3348,6 +3350,7 @@
    </Row>
    </#list>
    </#if>
+   <#if P600.testDetail.note3.headCount != 0>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s197"><Data ss:Type="String">Note 3</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="String">该笔买断式回购相应的债券如下：</Data></Cell>
@@ -3358,6 +3361,7 @@
     <Cell ss:StyleID="s186"/>
     <Cell ss:Index="8" ss:StyleID="s229"/>
    </Row>
+   </#if>
    <#if P600.testDetail.note3.headCount != 0>
    <#list  P600.testDetail.note3.heads as head>
    <Row ss:StyleID="s168">
@@ -3449,7 +3453,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s289"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s290" ss:Formula="=R[-1]C-R[${(-(18+P600.exposurePeriod.count+P600.testDetail.noteTotalLineCount+5*P600.testDetail.noteTotalHeadCount))?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s290" ss:Formula="=R[-1]C-R[${(-(P600.testDetail.constantCount+P600.exposurePeriod.count+P600.testDetail.noteTotalLineCount+5*P600.testDetail.noteTotalHeadCount))?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">

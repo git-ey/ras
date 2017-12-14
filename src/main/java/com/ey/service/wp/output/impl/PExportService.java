@@ -351,10 +351,18 @@ public class PExportService extends BaseExportService implements PExportManager{
         note2.put("headCount", note2HeadList.size());
         note3.put("heads", note3HeadList);
         note3.put("headCount", note3HeadList.size());
+        Integer constantCount = 18;
+        if(note2HeadList.size() == 0) {
+            constantCount -= 2 ;
+        }
+        if(note3HeadList.size() == 0) {
+            constantCount -= 2 ;
+        }
         testDetail.put("note2", note2);
         testDetail.put("note3", note3);
         testDetail.put("noteTotalHeadCount", note2HeadList.size() + note3HeadList.size());
         testDetail.put("noteTotalLineCount", noteTotalLineCount);
+        testDetail.put("constantCount", constantCount);
         //========process dataMap for testDetail view end========
         
         //========process dataMap for exposurePeriod view begin========
