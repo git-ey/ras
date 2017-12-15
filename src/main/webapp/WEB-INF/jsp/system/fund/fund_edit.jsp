@@ -223,8 +223,8 @@
 								<td>
 								    <select class="chosen-select form-control" name="INTEREST_SENSTVT_METHOD" id="INTEREST_SENSTVT_METHOD" data-placeholder="请选择" style="width:98%;">
 								    <option value=""></option>
-								    <option value="JQ" <c:if test="${pd.INTEREST_SENSTVT_METHOD == 'JQ'}">selected</c:if>>久期法</option>
-								    <option value="JQTX" <c:if test="${pd.INTEREST_SENSTVT_METHOD == 'JQTX'}">selected</c:if>>久期&凸性法</option>
+								    <option value="久期法" <c:if test="${pd.INTEREST_SENSTVT_METHOD == '久期法'}">selected</c:if>>久期法</option>
+								    <option value="久期&凸性法" <c:if test="${pd.INTEREST_SENSTVT_METHOD == '久期&凸性法'}">selected</c:if>>久期&凸性法</option>
 								    </select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性数据来源:</td>
@@ -235,7 +235,7 @@
 							    <td>
 								    <select class="chosen-select form-control" name="PRICE_SENSTVT_METHOD" id="PRICE_SENSTVT_METHOD" data-placeholder="请选择" style="width:98%;">
 								    <option value=""></option>
-								    <option value="XL" <c:if test="${pd.PRICE_SENSTVT_METHOD == 'XL'}">selected</c:if>>斜率法</option>
+								    <option value="斜率法" <c:if test="${pd.PRICE_SENSTVT_METHOD == '斜率法'}">selected</c:if>>斜率法</option>
 								    <option value="BETA" <c:if test="${pd.PRICE_SENSTVT_METHOD == 'BETA'}">selected</c:if>>BETA</option>
 								    </select>
 								</td>
@@ -280,8 +280,8 @@
 								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-复利计算:</td>
 								<td>
 								    <select class="chosen-select form-control" name="COMPOUND" id="COMPOUND" data-placeholder="请选择" style="width:49%;">
-								    <option value="FL" <c:if test="${pd.COMPOUND == 'FL'}">selected</c:if>>复利</option>
-								    <option value="DL" <c:if test="${pd.COMPOUND == 'DL'}">selected</c:if>>单利</option>
+								    <option value="复利" <c:if test="${pd.COMPOUND == '复利'}">selected</c:if>>复利</option>
+								    <option value="单利" <c:if test="${pd.COMPOUND == '单利'}">selected</c:if>>单利</option>
 								    </select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-约定年基准收益率:</td>
@@ -295,8 +295,8 @@
 								<td style="width:110px;text-align: right;padding-top: 13px;">递进利率行权起始日口径:</td>
 								<td>
 								    <select class="chosen-select form-control" name="EXERCISE_DATE_METHOD" id="EXERCISE_DATE_METHOD" data-placeholder="请选择" style="width:98%;">
-								    <option value="XYFXR" <c:if test="${pd.COMPOUND == 'XYFXR'}">selected</c:if>>下一付息日</option>
-								    <option value="DQR" <c:if test="${pd.COMPOUND == 'DQR'}">selected</c:if>>到期日</option>
+								    <option value="下一付息日" <c:if test="${pd.COMPOUND == '下一付息日'}">selected</c:if>>下一付息日</option>
+								    <option value="到期日" <c:if test="${pd.COMPOUND == '到期日'}">selected</c:if>>到期日</option>
 								    </select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">启用:</td>
@@ -307,8 +307,11 @@
 								    <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
+								<!-- 
 								<td style="width:110px;text-align: right;padding-top: 13px;">状态:</td>
 								<td><input type="text" name="STATUS" id="STATUS" value="${pd.STATUS}" maxlength="30"  title="状态" style="width:98%;"/></td>
+								 -->
+								
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

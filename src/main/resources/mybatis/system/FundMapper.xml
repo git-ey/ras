@@ -53,6 +53,7 @@
 		ROR_BASELINE,
 		ROR,
 		LEVERAGE,
+		EXERCISE_DATE_METHOD,
 		ACTIVE,	
 		STATUS,	
 		FUND_ID
@@ -104,6 +105,7 @@
 		#{ROR_BASELINE},
 		#{ROR},
 		#{LEVERAGE},
+		#{EXERCISE_DATE_METHOD},
 		#{ACTIVE},	
 		#{STATUS},	
 		#{FUND_ID}
@@ -191,6 +193,7 @@
 			<if test="LEVERAGE != null and LEVERAGE != ''">
 			LEVERAGE = #{LEVERAGE},
 			</if>
+			EXERCISE_DATE_METHOD = #{EXERCISE_DATE_METHOD},
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS},
 		FUND_ID = FUND_ID
@@ -254,6 +257,7 @@
 		       sf.ROR_BASELINE,
 		       sf.ROR,
 		       sf.LEVERAGE,
+		       sf.EXERCISE_DATE_METHOD,
 		       sf.ACTIVE,	
 		       sf.STATUS,	
 		       sf.FUND_ID,
@@ -432,6 +436,7 @@
 		       fi.ROR_BASELINE = REPLACE(fi.ROR_BASELINE,'''',null),
 		       fi.ROR = REPLACE(fi.ROR,'''',null),
 		       fi.LEVERAGE = REPLACE(fi.LEVERAGE,'''',null),
+		       fi.EXERCISE_DATE_METHOD = REPLACE(fi.EXERCISE_DATE_METHOD,'''',null),
 		       fi.ACTIVE = REPLACE(fi.ACTIVE,'''',null),
 		       fi.`STATUS` = REPLACE(fi.`STATUS`,'''',null)
 	</update>
