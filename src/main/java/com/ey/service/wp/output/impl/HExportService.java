@@ -1,5 +1,7 @@
 package com.ey.service.wp.output.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +56,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         dataMap.put("H400", this.getH400Data(fundId, periodStr));
         dataMap.put("H500", this.getH500Data(fundId, periodStr));
         dataMap.put("H800", this.getH800Data(fundId, periodStr));
+        dataMap.put("H10000", this.getH10000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H);
     }
@@ -411,6 +414,14 @@ public class HExportService extends BaseExportService implements HExportManager{
         interestTest.put("count", interestTestMetaDataList.size());
         //========process dataMap for interestTest view end========
         
+        //========process dataMap for intestSummary view end========
+        @SuppressWarnings("unchecked")
+        Map<String,Object> intestSummaryMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH800IntestSummaryData", queryMap);
+        if(intestSummaryMetaData == null) {
+            intestSummaryMetaData = new HashMap<>();
+        }
+        //========process dataMap for intestSummary view end========
+        
         //========process dataMap for interestDetail view begin========
         Map<String, Object> interestDetail = new HashMap<String,Object>();
         List<Map<String, Object>> headLists = new ArrayList<>();
@@ -452,8 +463,217 @@ public class HExportService extends BaseExportService implements HExportManager{
         
         result.put("main", main);
         result.put("interestTest", interestTest);
+        result.put("intestSummary", intestSummaryMetaData);
         result.put("interestDetail", interestDetail);
         result.put("intRiskPeriod", intRiskPeriod);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H10000的数据
+     * @author Dai Zong 2017年12月15日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH10000Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        //========process dataMap for note view begin========
+        @SuppressWarnings("unchecked")
+        Map<String,Object> noteMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectHNoteAData", queryMap);
+        if(noteMetaData == null) {
+            noteMetaData = new HashMap<>();
+        }
+        //========process dataMap for note view end========
+        
+        //========process dataMap for TFA view begin========
+        Map<String, Object> TFA = new HashMap<String,Object>();
+        Map<String, Object> exchange = new HashMap<String,Object>();
+        Map<String, Object> bank = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> tfaMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000TFAData", queryMap);
+        if(tfaMetaDataList == null) {
+            tfaMetaDataList = new ArrayList<>();
+        }
+        for(Map<String,Object> map : tfaMetaDataList) {
+            if("交易所市场".equals(map.get("subItem"))) {
+                exchange = map;
+            }else if("银行间市场".equals(map.get("subItem"))) {
+                bank = map;
+            }
+        }
+        TFA.put("exchange", exchange);
+        TFA.put("bank", bank);
+        //========process dataMap for TFA view end========
+        
+        //========process dataMap for derivative view begin========
+        Map<String, Object> derivative = new HashMap<String,Object>();
+        Map<String, Object> item1 = new HashMap<String,Object>();
+        Map<String, Object> item2 = new HashMap<String,Object>();
+        Map<String, Object> item3 = new HashMap<String,Object>();
+        Map<String, Object> item4 = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> derivativeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000DerivativeData", queryMap);
+        if(derivativeMetaDataList == null) {
+            derivativeMetaDataList = new ArrayList<>();
+        }
+        for(Map<String,Object> map : derivativeMetaDataList) {
+            if("利率衍生工具".equals(map.get("item"))) {
+                item1 = map;
+            }else if("货币衍生工具".equals(map.get("item"))) {
+                item2 = map;
+            }else if("权益衍生工具".equals(map.get("item"))) {
+                item3 = map;
+            }else if("其他衍生工具".equals(map.get("item"))) {
+                item4 = map;
+            }
+        }
+        derivative.put("item1", item1);
+        derivative.put("item2", item2);
+        derivative.put("item3", item3);
+        derivative.put("item4", item4);
+        //========process dataMap for derivative view end========
+        
+        //========process dataMap for futures view begin========
+        Map<String, Object> futures = new HashMap<String,Object>();
+        item1 = new HashMap<String,Object>();
+        item2 = new HashMap<String,Object>();
+        item3 = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> futuresMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FuturesData", queryMap);
+        if(futuresMetaDataList == null) {
+            futuresMetaDataList = new ArrayList<>();
+        }
+        for(Map<String,Object> map : futuresMetaDataList) {
+            if("股指期货".equals(map.get("item"))) {
+                item1 = map;
+            }else if("国债期货".equals(map.get("item"))) {
+                item2 = map;
+            }else if("黄金延期合约".equals(map.get("item"))) {
+                item3 = map;
+            }
+        }
+        futures.put("item1", item1);
+        futures.put("item2", item2);
+        futures.put("item3", item3);
+        //========process dataMap for futures view end========
+        
+        //========process dataMap for rmcfs view begin========
+        Map<String, Object> rmcfs = new HashMap<String,Object>();
+        item1 = new HashMap<String,Object>();
+        item2 = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> rmcfsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000RmcfsData", queryMap);
+        if(rmcfsMetaDataList == null) {
+            rmcfsMetaDataList = new ArrayList<>();
+        }
+        for(Map<String,Object> map : rmcfsMetaDataList) {
+            if("交易所市场".equals(map.get("item"))) {
+                item1 = map;
+            }else if("银行间市场".equals(map.get("item"))) {
+                item2 = map;
+            }
+        }
+        rmcfs.put("item1", item1);
+        rmcfs.put("item2", item2);
+        //========process dataMap for rmcfs view end========
+        
+        //========process dataMap for interestDetail view begin========
+        Map<String, Object> interestDetail = new HashMap<String,Object>();
+        Map<String, Object> current = new HashMap<String,Object>();
+        Map<String, Object> last = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> currentInterestDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000InterestDetailData", queryMap);
+        if(currentInterestDetailMetaDataList == null) {
+            currentInterestDetailMetaDataList = new ArrayList<>();
+        }
+        current.put("list", currentInterestDetailMetaDataList);
+        current.put("count", currentInterestDetailMetaDataList.size());
+        
+        Map<String, Object> lastQueryMap = new HashMap<String,Object>(); 
+        queryMap.forEach((k,v) -> {
+            lastQueryMap.put(k, v);
+        });
+        lastQueryMap.put("period", (Integer.parseInt(String.valueOf(lastQueryMap.get("period")).substring(0, 4)) - 1) + "1231");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> lastInterestDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000InterestDetailData", lastQueryMap);
+        if(lastInterestDetailMetaDataList == null) {
+            lastInterestDetailMetaDataList = new ArrayList<>();
+        }
+        
+        SimpleDateFormat sdfin = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfout = new SimpleDateFormat("yyyy年MM月dd日");
+        String returnDays = currentInterestDetailMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("returnDay"));
+        }).filter(item -> {
+            return !"null".equals(item) && !StringUtils.EMPTY.equals(item);
+        }).map(item -> {
+            try {
+                return sdfout.format(sdfin.parse(item));
+            } catch (ParseException e) {
+                return StringUtils.EMPTY;
+            }
+        }).distinct().collect(Collectors.joining("、"));
+        
+        last.put("list", lastInterestDetailMetaDataList);
+        last.put("count", lastInterestDetailMetaDataList.size());
+        
+        interestDetail.put("current", current);
+        interestDetail.put("last", last);
+        interestDetail.put("returnDays", returnDays);
+        //========process dataMap for interestDetail view end========
+        
+        //========process dataMap for fairValues view begin========
+        Map<String, Object> fairValues = new HashMap<String,Object>();
+        item1 = new HashMap<String,Object>();
+        item2 = new HashMap<String,Object>();
+        item3 = new HashMap<String,Object>();
+        item4 = new HashMap<String,Object>();
+        Map<String,Object> item5 = new HashMap<String,Object>();
+        Map<String,Object> item6 = new HashMap<String,Object>();
+        Map<String,Object> item7 = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> fairValuesMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FairValuesData", queryMap);
+        if(fairValuesMetaDataList == null) {
+            fairValuesMetaDataList = new ArrayList<>();
+        }
+        for(Map<String,Object> map : fairValuesMetaDataList) {
+            if("股票投资".equals(map.get("item"))) {
+                item1 = map;
+            }else if("债券投资".equals(map.get("item"))) {
+                item2 = map;
+            }else if("资产支持证券投资".equals(map.get("item"))) {
+                item3 = map;
+            }else if("基金投资".equals(map.get("item"))) {
+                item4 = map;
+            }else if("贵金属投资".equals(map.get("item"))) {
+                item5 = map;
+            }else if("其他".equals(map.get("item"))) {
+                item6 = map;
+            }else if("权证投资".equals(map.get("item"))) {
+                item7 = map;
+            }
+        }
+        fairValues.put("item1", item1);
+        fairValues.put("item2", item2);
+        fairValues.put("item3", item3);
+        fairValues.put("item4", item4);
+        fairValues.put("item5", item5);
+        fairValues.put("item6", item6);
+        fairValues.put("item7", item7);
+        //========process dataMap for fairValues view end========
+        
+        result.put("note", noteMetaData);
+        result.put("TFA", TFA);
+        result.put("derivative", derivative);
+        result.put("futures", futures);
+        result.put("rmcfs", rmcfs);
+        result.put("interestDetail", interestDetail);
+        result.put("fairValues", fairValues);
         return result;
     }
     

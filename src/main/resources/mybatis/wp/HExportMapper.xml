@@ -182,6 +182,21 @@
         AND H800IT.PERIOD = #{period}
     </select>
     
+    <select id="selectH800IntestSummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800IS.ACCRUED_INTEREST_EY AS accruedInterestEy,
+		    H800IS.ACCRUED_INTEREST_CLIENT AS accruedInterestClient,
+		    H800IS.DIFF AS diff 
+		FROM
+		    wp_h800_intest_summary H800IS
+		WHERE 
+            1 = 1
+        AND H800IS.STATUS = 'Y'
+        AND H800IS.FUND_ID = #{fundId}
+        AND H800IS.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectH800InterestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H800ID.ACCOUNT_NUM as accountNum,
@@ -213,6 +228,129 @@
         AND H800EP.STATUS = 'Y'
         AND H800EP.FUND_ID = #{fundId}
         AND H800EP.PERIOD = #{period}
+    </select>
+    
+    <select id="selectHNoteAData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    HN.PAR_VALUE_LAST AS parValueLast,
+		    HN.MKT_VALUE AS mktValue,
+		    HN.VALUATION_PRICE_TOTAL AS valuationPriceTotal,
+		    HN.SI_END_BAL AS siEndBal 
+		FROM
+		    wp_h_note HN
+		WHERE 
+            1 = 1
+        AND HN.STATUS = 'Y'
+        AND HN.FUND_ID = #{fundId}
+        AND HN.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
+    <select id="selectH10000TFAData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000T.ITEM AS item,
+		    H10000T.SUB_ITEM AS subItem,
+		    H10000T.COST AS cost,
+		    H10000T.MKT_VALUE AS mktValue,
+		    H10000T.APPRECIATION AS appreciation,
+		    H10000T.DIVIATON AS diviaton,
+		    H10000T.COST_LAST AS costLast,
+		    H10000T.MKT_VALUE_LAST AS mktValueLast,
+		    H10000T.APPRECIATION_LAST AS appreciationLast,
+		    H10000T.DIVIATON_EY_LAST AS diviatonEyLast 
+		FROM
+		    wp_h10000_tfa H10000T
+		WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        AND H10000T.ITEM = '债券'
+    </select>
+    
+    <select id="selectH10000DerivativeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000D.ITEM AS item,
+		    H10000D.AMOUNT AS amount,
+		    H10000D.ASSET AS asset,
+		    H10000D.LIABILITIES AS liabilities,
+		    H10000D.AMOUNT_LAST AS amountLast,
+		    H10000D.ASSET_LAST AS assetLast,
+		    H10000D.LIABILITIES_LAST AS liabilitiesLast 
+		FROM
+		    wp_h10000_derivative H10000D
+		WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH10000FuturesData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000F.ITEM AS item,
+		    H10000F.QUANTITY AS quantity,
+		    H10000F.COST AS cost,
+		    H10000F.MKT_VALUE AS mktValue 
+		FROM
+		    wp_h10000_futures H10000F
+		WHERE 
+            1 = 1
+        AND H10000F.STATUS = 'Y'
+        AND H10000F.FUND_ID = #{fundId}
+        AND H10000F.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH10000RmcfsData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000R.ITEM AS item,
+		    H10000R.BAL_CURRENT AS balCurrent,
+		    H10000R.BUY_OUT_CURRENT AS buyOutCurrent,
+		    H10000R.BAL_LAST AS balLast,
+		    H10000R.BUY_OUT_LAST AS buyOutLast 
+		FROM
+		    wp_h10000_rmcfs H10000R
+		WHERE 
+            1 = 1
+        AND H10000R.STATUS = 'Y'
+        AND H10000R.FUND_ID = #{fundId}
+        AND H10000R.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH10000InterestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800ID.ACCOUNT_DES AS accountDes,
+		    H800ID.BOND_CODE AS bondCode,
+		    H800ID.BOND_NAME AS bondName,
+		    H800ID.RETURN_DAY AS returnDay,
+		    H800ID.PRICE AS price,
+		    H800ID.QUANTITY AS quantity,
+		    H800ID.AMOUNT AS amount,
+		    H800ID.REDUCE_AMT AS reduceAmt 
+		FROM
+		    wp_h800_intest_detail H800ID
+		WHERE 
+            1 = 1
+		AND H800ID.STATUS = 'Y'
+        AND H800ID.FUND_ID = #{fundId}
+        AND H800ID.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH10000FairValuesData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000FV.EY_ACCOUNT_NUM AS eyAccountNum,
+		    H10000FV.ITEM AS item,
+		    H10000FV.AMOUNT_CURRENT AS amountCurrent,
+		    H10000FV.AMOUNT_LAST AS amountLast 
+		FROM
+		    wp_h10000_fair_values H10000FV
+        WHERE 
+            1 = 1
+		AND H10000FV.STATUS = 'Y'
+        AND H10000FV.FUND_ID = #{fundId}
+        AND H10000FV.PERIOD = #{period}
+        ORDER BY
+            H10000FV.SORT
     </select>
     
 </mapper>

@@ -5682,7 +5682,7 @@
     <Cell ss:StyleID="s235"/>
     <Cell ss:StyleID="s234"/>
     <Cell ss:Index="15" ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.interestTest.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s114"><Data ss:Type="Number">99999</Data></Cell>
+    <Cell ss:StyleID="s114"><Data ss:Type="Number">${(H800.intestSummary.accruedInterestClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s114" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
    </Row>
@@ -5859,9 +5859,7 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="H10000">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s163" ss:DefaultColumnWidth="54.75"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s163" ss:DefaultColumnWidth="54.75" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s163" ss:AutoFitWidth="0" ss:Width="76.5"/>
    <Column ss:StyleID="s163" ss:AutoFitWidth="0" ss:Width="139.5"/>
    <Column ss:StyleID="s163" ss:AutoFitWidth="0" ss:Width="107.25"/>
@@ -5920,9 +5918,9 @@
    <Row ss:StyleID="s155">
     <Cell ss:StyleID="s162"/>
    </Row>
+   <#if extraFundInfo.mf != 'Y'>
    <Row ss:AutoFitHeight="0" ss:Height="14.25">
-    <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s377"><Data
-      ss:Type="String">项目</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s377"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="2" ss:StyleID="s365"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
    </Row>
    <Row>
@@ -5934,80 +5932,77 @@
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String">H300</Data></Cell>
     <Cell ss:MergeAcross="1" ss:StyleID="m2372032629800"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R11C6"><Data ss:Type="Number">400000.12</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R13C6"><Data ss:Type="Number">493698.72000000003</Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">93698.600000000035</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R11C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R13C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:MergeAcross="1" ss:StyleID="m2372032629880"><Data ss:Type="String">贵金属投资-金交所黄金合约</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R[36]C[2]"><Data ss:Type="Number">500000.15</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R[38]C[1]"><Data ss:Type="Number">618665.9</Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">118665.75</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R47C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R49C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s164"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:MergeDown="2" ss:StyleID="m2372032629840"><Data ss:Type="String">债券</Data></Cell>
     <Cell ss:StyleID="s165"><Data ss:Type="String">交易所市场</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1244</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.exchange.cost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.exchange.mktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s165"><Data ss:Type="String">银行间市场</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1244</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.bank.cost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.bank.mktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.25">
     <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s165"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">2468</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">2488</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="15">
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s166"><Data ss:Type="String">资产支持证券</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R25C6"><Data ss:Type="Number">400000.12</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R27C6"><Data ss:Type="Number">494192.31999999995</Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">94192.199999999953</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R25C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R27C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s166"><Data ss:Type="String">基金</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R32C6"><Data ss:Type="Number">400000.12</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R34C6"><Data ss:Type="Number">494093.6</Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">94093.479999999981</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R32C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R34C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s166"><Data ss:Type="String">其他</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R54C6"><Data ss:Type="Number">500000.15</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R56C6"><Data ss:Type="Number">618665.9</Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">118665.75</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R54C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R56C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:MergeAcross="1" ss:StyleID="m2372032623792"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data
-      ss:Type="Number">2202468.66</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data
-      ss:Type="Number">2721804.44</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data
-      ss:Type="Number">519335.77999999997</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
@@ -6018,7 +6013,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币XXX元，公允价值为人民币XXXX元。</Data></Cell>
+    <Cell ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币${(H10000.note.parValueLast)?string(',###.##')}元，公允价值为人民币${(H10000.note.mktValue)?string(',###.##')}元。</Data></Cell>
     <Cell ss:StyleID="s106"/>
     <Cell ss:StyleID="s195"/>
     <Cell ss:StyleID="s195"/>
@@ -6047,8 +6042,7 @@
    </Row>
    <Row/>
    <Row>
-    <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s377"><Data
-      ss:Type="String">项目</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s377"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="2" ss:StyleID="s365"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
    <Row>
@@ -6057,94 +6051,76 @@
     <Cell ss:StyleID="s184"><Data ss:Type="String">估值增值</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032623732"><Data
-      ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R11C8"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R13C8"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032623732"><Data ss:Type="String">股票</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R11C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R13C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032623712"><Data
-      ss:Type="String">贵金属投资-金交所黄金合约</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1244</Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032623712"><Data ss:Type="String">贵金属投资-金交所黄金合约</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R47C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R49C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s164"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:MergeDown="2" ss:StyleID="m2372032623752"><Data
-      ss:Type="String">债券</Data></Cell>
+    <Cell ss:Index="2" ss:MergeDown="2" ss:StyleID="m2372032623752"><Data ss:Type="String">债券</Data></Cell>
     <Cell ss:StyleID="s165"><Data ss:Type="String">交易所市场</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1244</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.exchange.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.exchange.mktValueLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s165"><Data ss:Type="String">银行间市场</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">1244</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.bank.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.bank.mktValueLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">10</Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s165"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">2468</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">2488</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s166"><Data ss:Type="String">资产支持证券</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R25C8"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R27C8"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R25C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R27C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s166"><Data ss:Type="String">基金</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R32C8"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R34C8"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R32C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R34C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s166"><Data ss:Type="String">其他</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R54C8"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R56C8"><Data ss:Type="Number">234567</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R54C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H!R56C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032623772"><Data
-      ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data
-      ss:Type="Number">941970</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data
-      ss:Type="Number">942000</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data
-      ss:Type="Number">30</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032623772"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
     <Cell><Data ss:Type="String">  </Data></Cell>
    </Row>
+   <#else>
    <Row>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="3" ss:StyleID="s219"/>
-    <Cell ss:StyleID="s218"/>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="2" ss:StyleID="s367"><Data
-      ss:Type="String">项目</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="2" ss:StyleID="s367"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="3" ss:StyleID="s264"><Data ss:Type="String">本期末</Data></Cell>
    </Row>
    <Row>
@@ -6162,41 +6138,41 @@
     <Cell ss:StyleID="s296"><Data ss:Type="String">H300/H500</Data></Cell>
     <Cell ss:MergeDown="3" ss:StyleID="s216"><Data ss:Type="String">债券</Data></Cell>
     <Cell ss:StyleID="s216"><Data ss:Type="String">交易所市场</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">123123</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">123123123</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">1231</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">0.23</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.exchange.cost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.exchange.mktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.exchange.appreciation!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.exchange.diviaton!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s216"><Data ss:Type="String">银行间市场</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">12312</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">12312312</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">213123</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">-2.3300000000000001E-2</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.bank.cost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.bank.mktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.bank.appreciation!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.bank.diviaton!0)?string('0.######')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s323"><Data ss:Type="String">请手动补充</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">1231231</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">1312312</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">12312312</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">4.0000000000000003E-5</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s216"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">1366666</Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">136747747</Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">12526666</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">-4.0000000000000003E-5</Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币XXX元，公允价值为人民币XXXX元。</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币${(H10000.note.parValueLast)?string(',###.##')}元，公允价值为人民币${(H10000.note.mktValue)?string(',###.##')}元。</Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
    <Row>
@@ -6206,13 +6182,11 @@
     <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="2" ss:StyleID="s367"><Data
-      ss:Type="String">项目</Data></Cell>
+    <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="2" ss:StyleID="s367"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="3" ss:StyleID="s264"><Data ss:Type="String">本期末</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="4" ss:MergeAcross="3" ss:StyleID="s373"><Data
-      ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:Index="4" ss:MergeAcross="3" ss:StyleID="s373"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="4" ss:StyleID="s264"><Data ss:Type="String">摊余成本</Data></Cell>
@@ -6223,33 +6197,34 @@
    <Row>
     <Cell ss:Index="2" ss:MergeDown="3" ss:StyleID="s216"><Data ss:Type="String">债券</Data></Cell>
     <Cell ss:StyleID="s216"><Data ss:Type="String">交易所市场</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">123123</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">123123123</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">1231</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">0.23</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.exchange.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.exchange.mktValueLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.exchange.appreciationLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.exchange.diviatonEyLast!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s216"><Data ss:Type="String">银行间市场</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">12312</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">12312312</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">213123</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">-2.3300000000000001E-2</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.bank.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.bank.mktValueLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.bank.appreciationLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.bank.diviatonEyLast!0)?string('0.######')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s323"><Data ss:Type="String">请手动补充</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">1231231</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">1312312</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">12312312</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">4.0000000000000003E-5</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s216"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">1366666</Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">136747747</Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">12526666</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">-4.0000000000000003E-5</Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number"></Data></Cell>
    </Row>
+   </#if>
    <Row>
     <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
@@ -6281,96 +6256,44 @@
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String">H300</Data></Cell>
     <Cell ss:StyleID="s169"><Data ss:Type="String">利率衍生工具</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.asset!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.liabilities!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s170"/>
     <Cell ss:StyleID="s53"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s171"/>
-    <Cell ss:StyleID="s53"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">货币衍生工具</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s171"/>
-    <Cell ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.asset!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.liabilities!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s170"/>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">权益衍生工具</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.asset!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.liabilities!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s170"/>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s171"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">其他衍生工具</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s175"><Data ss:Type="String">注</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.asset!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.liabilities!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0>注</#if></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s168"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-9]C:R[-1]C)"><Data ss:Type="Number">11106</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-9]C:R[-1]C)"><Data ss:Type="Number">11106</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-9]C:R[-1]C)"><Data ss:Type="Number">11106</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s170"/>
     <Cell ss:StyleID="s52"/>
    </Row>
@@ -6401,86 +6324,40 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">利率衍生工具</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.assetLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.liabilitiesLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s170"/>
     <Cell ss:StyleID="s53"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s171"/>
-    <Cell ss:StyleID="s53"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">货币衍生工具</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s171"/>
-    <Cell ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.assetLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.liabilitiesLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s170"/>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">权益衍生工具</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.assetLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.liabilitiesLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s170"/>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s171"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s169"/>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-   </Row>
-   <Row>
     <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">其他衍生工具</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s170"/>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.assetLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.liabilitiesLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if H10000.derivative.item4.assetLast?? && H10000.derivative.item4.assetLast != 0>注</#if></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s168"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-9]C:R[-1]C)"><Data ss:Type="Number">11106</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-9]C:R[-1]C)"><Data ss:Type="Number">11106</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-9]C:R[-1]C)"><Data ss:Type="Number">11106</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s170"/>
     <Cell ss:StyleID="s52"/>
    </Row>
@@ -6505,27 +6382,27 @@
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String">H400</Data></Cell>
     <Cell ss:StyleID="s217"><Data ss:Type="String">股指期货合约</Data></Cell>
-    <Cell ss:StyleID="s259"><Data ss:Type="Number">17276</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">1400000.4200000002</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">1730635.6400000001</Data></Cell>
-    <Cell ss:StyleID="s267" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">330635.21999999997</Data></Cell>
+    <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item1.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item1.cost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item1.mktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s217"><Data ss:Type="String">国债期货合约</Data></Cell>
-    <Cell ss:StyleID="s259"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">100000.03</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s267" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">-100000.03</Data></Cell>
+    <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item2.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item2.cost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item2.mktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s217"><Data ss:Type="String">黄金现货延期交收合约</Data></Cell>
-    <Cell ss:StyleID="s259"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267"/>
+    <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item3.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item3.cost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item3.mktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
@@ -6533,7 +6410,7 @@
     <Cell ss:StyleID="s259"/>
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[-3]C:R[-2]C)"><Data ss:Type="Number">230635.18999999997</Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[-3]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
@@ -6541,7 +6418,7 @@
     <Cell ss:StyleID="s259"/>
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267" ss:Formula="=R[-1]C"><Data ss:Type="Number">230635.18999999997</Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=R[-1]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
@@ -6549,7 +6426,7 @@
     <Cell ss:StyleID="s259"/>
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="6" ss:StyleID="s52"/>
@@ -6578,21 +6455,21 @@
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String">H800</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">交易所市场</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item1.balCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item1.buyOutCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s176"><Data ss:Type="String">银行间市场</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item2.balCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item2.buyOutCurrent!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">2468</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">2468</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s174">
     <Cell ss:Index="2" ss:StyleID="s177"/>
@@ -6609,18 +6486,18 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">交易所市场</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item1.balLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item1.buyOutLast!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">银行间市场</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item2.balLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item2.buyOutLast!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">2468</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">2468</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row/>
    <Row>
@@ -6648,18 +6525,22 @@
     <Cell ss:StyleID="s294"><Data ss:Type="String">或再质押总额</Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
+   <#if H10000.interestDetail.current.count != 0>
+   <#list H10000.interestDetail.current.list as item>
    <Row>
-    <Cell ss:StyleID="s296"><Data ss:Type="String">H800</Data></Cell>
-    <Cell ss:StyleID="s175"><Data ss:Type="String">R042</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="Number">11698188</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="String">16闽稀土SCP001</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="DateTime">2017-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s181"><Data ss:Type="Number">99.85</Data></Cell>
-    <Cell ss:StyleID="s262"><Data ss:Type="Number">400000</Data></Cell>
-    <Cell ss:StyleID="s181"><Data ss:Type="Number">39940000</Data></Cell>
-    <Cell ss:StyleID="s181"><Data ss:Type="String">-</Data></Cell>
+    <Cell ss:StyleID="s296"><Data ss:Type="String"><#if item_index == 0>H800</#if></Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String">${item.accountDes!}</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">${item.bondName!}</Data></Cell>
+    <Cell ss:StyleID="s180"><#if item.returnDay??><Data ss:Type="DateTime">${item.returnDay!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.price!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s262"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.reduceAmt!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s182"><Data ss:Type="String">合计</Data></Cell>
@@ -6667,13 +6548,13 @@
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s77"/>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-1]C:R[-1]C)"><Data ss:Type="Number">39940000</Data></Cell>
-    <Cell ss:StyleID="s273"><Data ss:Type="String">-</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s273" ss:Formula="=SUM(R[${(-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row ss:StyleID="s189">
-    <Cell ss:Index="2"><Data ss:Type="String">注：债券为净价估值，买入返售为全价交易，2016年12月31日买断式逆回购交易债券全价估值总额为人民币40,372,000.00 元。</Data></Cell>
+    <Cell ss:Index="2"><Data ss:Type="String">注：债券为净价估值，买入返售为全价交易，${H10000.interestDetail.returnDays!}买断式逆回购交易债券全价估值总额为人民币${(H10000.note.valuationPriceTotal)?string(',###.##')} 元。</Data></Cell>
     <Cell ss:StyleID="s190"/>
     <Cell ss:StyleID="s190"/>
     <Cell ss:StyleID="s190"/>
@@ -6712,25 +6593,29 @@
     <Cell ss:Index="8" ss:StyleID="s294"><Data ss:Type="String">总额</Data></Cell>
     <Cell ss:StyleID="s294"><Data ss:Type="String">或再质押总额</Data></Cell>
    </Row>
+   <#if H10000.interestDetail.last.count != 0>
+   <#list H10000.interestDetail.last.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s175"><Data ss:Type="String">R042</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="Number">11698188</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="String">16闽稀土SCP001</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="DateTime">2017-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s181"><Data ss:Type="Number">99.85</Data></Cell>
-    <Cell ss:StyleID="s262"><Data ss:Type="Number">400000</Data></Cell>
-    <Cell ss:StyleID="s181"><Data ss:Type="Number">39940000</Data></Cell>
-    <Cell ss:StyleID="s181"><Data ss:Type="String">-</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s175"><Data ss:Type="String">${item.accountDes!}</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">${item.bondName!}</Data></Cell>
+    <Cell ss:StyleID="s180"><#if item.returnDay??><Data ss:Type="DateTime">${item.returnDay!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.price!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s262"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.reduceAmt!0)?string('0.##')}</Data></Cell>
    </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-1]C:R[-1]C)"><Data ss:Type="Number">39940000</Data></Cell>
-    <Cell ss:StyleID="s274"/>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s273" ss:Formula="=SUM(R[${(-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row/>
    <Row/>
@@ -6747,86 +6632,84 @@
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String">H300</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">1.交易性金融资产</Data></Cell>
-    <Cell ss:StyleID="s275" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number">7404</Data></Cell>
-    <Cell ss:StyleID="s275" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number">7404</Data></Cell>
+    <Cell ss:StyleID="s275" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s275" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">——股票投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item1.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item1.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">——债券投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item2.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item2.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">——资产支持证券投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item3.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item3.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">——基金投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item4.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item4.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">——贵金属投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item5.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item5.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">——其他</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item6.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item6.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">2.衍生工具</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number">2468</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number">2468</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">——权证投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item7.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item7.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">……</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">3.其他</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">1234</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[-11]C,R[-4]C,R[-1]C)"><Data
-      ss:Type="Number">11106</Data></Cell>
-    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[-11]C,R[-4]C,R[-1]C)"><Data
-      ss:Type="Number">11106</Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[-11]C,R[-4]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[-11]C,R[-4]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row/>
    <Row>
@@ -6853,15 +6736,15 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s147"><Data ss:Type="String">一层次</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-120]C[2]"><Data ss:Type="Number">370459.13999999996</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R34C5"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s147"><Data ss:Type="String">二层次</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-120]C[2]"><Data ss:Type="Number">741806.76</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R35C5"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s147"><Data ss:Type="String">三层次</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-120]C[2]"><Data ss:Type="Number">1605569.7400000002</Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H300!R36C5"><Data ss:Type="Number"></Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
