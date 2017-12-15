@@ -90,7 +90,7 @@
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.PERIOD}</td>
-											<td class='center'>${var.BONG_CODE}</td>
+											<td class='center'>${var.BOND_CODE}</td>
 											<td class='center'>${var.BOND_NAME}</td>
 											<td class='center'>${var.FULL_NAME}</td>
 											<td class='center'>${var.MARKET}</td>

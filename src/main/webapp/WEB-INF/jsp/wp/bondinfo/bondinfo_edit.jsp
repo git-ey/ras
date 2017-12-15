@@ -35,7 +35,7 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
 								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券代码:</td>
-								<td><input type="text" name="BONG_CODE" id="BONG_CODE" value="${pd.BONG_CODE}" maxlength="60" title="债券代码" style="width:98%;"/></td>
+								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="60" title="债券代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券简称:</td>
 								<td><input type="text" name="BOND_NAME" id="BOND_NAME" value="${pd.BOND_NAME}" maxlength="120" title="债券简称" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券全称:</td>
@@ -166,14 +166,14 @@
 				$("#PERIOD").focus();
 			return false;
 			}
-			if($("#BONG_CODE").val()==""){
-				$("#BONG_CODE").tips({
+			if($("#BOND_CODE").val()==""){
+				$("#BOND_CODE").tips({
 					side:3,
 		            msg:'请输入债券代码',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#BONG_CODE").focus();
+				$("#BOND_CODE").focus();
 			return false;
 			}
 			if($("#BOND_NAME").val()==""){
