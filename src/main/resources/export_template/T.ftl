@@ -6811,8 +6811,7 @@
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="148.5"/>
    <Column ss:StyleID="s75" ss:Width="96.75"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="108.75" ss:Span="1"/>
-   <Column ss:Index="5" ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="95.25"
-    ss:Span="1"/>
+   <Column ss:Index="5" ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="95.25" ss:Span="1"/>
    <Column ss:Index="7" ss:StyleID="s120" ss:AutoFitWidth="0" ss:Width="126.75"/>
    <Column ss:StyleID="s120" ss:AutoFitWidth="0" ss:Width="138"/>
    <Column ss:StyleID="s120" ss:Width="119.25"/>
@@ -7017,7 +7016,11 @@
     <Cell ss:StyleID="s349"><Data ss:Type="String">T30X</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="DateTime">${inner.bonusDate!}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="DateTime">${inner.registrationDate!}T00:00:00.000</Data></Cell>
+    <#if extraFundInfo.lof == 'Y'>
     <Cell ss:StyleID="s210"><Data ss:Type="DateTime">${inner.listedDividendDate!}T00:00:00.000</Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s210"><Data ss:Type="String">N/A</Data></Cell>
+    </#if>
     <Cell ss:StyleID="s210"><Data ss:Type="DateTime">${inner.unlistedDividendDate!}T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s219"><Data ss:Type="Number">${(inner.bonus!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s218"><Data ss:Type="Number">${(inner.fundBeforeAlt!0)?string('0.##')}</Data></Cell>

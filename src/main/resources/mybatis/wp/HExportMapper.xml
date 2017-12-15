@@ -165,7 +165,7 @@
 		    H800IT.ATTR4 AS shortName,
 		    H800IT.ATTR5 AS market,
 		    H800IT.ATTR2 AS subtype,
-		    H800IT.`INDEX` AS `index`,
+		    H800IT.EYINDEX AS `index`,
 		    H800IT.END_BALANCE_CNY AS endBalanceCny,
 		    H800IT.FIRST_ACCOUNT_DAY AS firstAccountDay,
 		    H800IT.DUE_ACCOUNT_DAY AS dueAccountDay,

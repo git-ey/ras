@@ -145,7 +145,7 @@
 		    V500DS.THX_DATE AS thxDate,
 		    V500DS.UNIT_NETVALUE AS unitNetvalue,
 		    V500DS.DIVIDENT AS divident,
-		    V500DS.INDEX AS `index` 
+		    V500DS.INDEX_QTY AS `index` 
 		FROM
 		    wp_v500_detail_slope V500DS
 	    where
