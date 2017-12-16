@@ -33,11 +33,15 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">表项:</td>
-								<td><input type="text" name="BTCODE" id="BTCODE" value="${pd.BTCODE}" maxlength="255" placeholder="这里输入表项" title="表项" style="width:98%;"/></td>
+								<td><input type="text" name="BTCODE" id="BTCODE" value="${pd.BTCODE}" maxlength="255" title="表项" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">表项名称:</td>
-								<td><input type="text" name="DESCRIPSION" id="DESCRIPSION" value="${pd.DESCRIPSION}" maxlength="255" placeholder="这里输入表项名称" title="表项名称" style="width:98%;"/></td>
+								<td><input type="text" name="DESCRIPSION" id="DESCRIPSION" value="${pd.DESCRIPSION}" maxlength="255" title="表项名称" style="width:98%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">客户项名称:</td>
+								<td><input type="text" name="BT_DSE_CLIENT" id="BT_DSE_CLIENT" value="${pd.BT_DSE_CLIENT}" maxlength="255" title="客户项名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">来源表:</td>
@@ -59,11 +63,11 @@
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">披露名称:</td>
-								<td><input type="text" name="REVEAL_ITEM" id="REVEAL_ITEM" value="${pd.REVEAL_ITEM}" maxlength="255" placeholder="这里输入披露名称" title="披露名称" style="width:98%;"/></td>
+								<td><input type="text" name="REVEAL_ITEM" id="REVEAL_ITEM" value="${pd.REVEAL_ITEM}" maxlength="255" title="披露名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">EY科目代码:</td>
-								<td><input type="text" name="EY_ACCOUNT_NUM" id="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM}" maxlength="255" placeholder="这里输入EY科目代码" title="EY科目代码" style="width:98%;"/></td>
+								<td><input type="text" name="EY_ACCOUNT_NUM" id="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM}" maxlength="255" title="EY科目代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

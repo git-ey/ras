@@ -109,6 +109,7 @@ public class PlmappingService implements PlmappingManager{
 				pd.put("PLMAPPING_ID", UuidUtil.get32UUID());
 				pd.put("PLCODE", map.get("PLCODE"));
 				pd.put("DESCRIPSION", map.get("DESCRIPSION"));
+				pd.put("PL_DSE_CLIENT", map.get("PL_DSE_CLIENT"));
 				pd.put("SOURCETABLE", map.get("SOURCETABLE"));
 				pd.put("REVEAL_ITEM", map.get("REVEAL_ITEM"));
 				pd.put("EY_ACCOUNT_NUM", map.get("EY_ACCOUNT_NUM"));

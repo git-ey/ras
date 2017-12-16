@@ -76,6 +76,7 @@
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">表项</th>
 									<th class="center">表项名称</th>
+									<th class="center">客户项名称</th>
 									<th class="center">来源表</th>
 									<th class="center">披露名称</th>
 									<th class="center">EY科目代码</th>
@@ -96,6 +97,7 @@
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.BTCODE}</td>
 											<td class='center'>${var.DESCRIPSION}</td>
+											<td class='center'>${var.BT_DSE_CLIENT}</td>
 											<td class='center'>${var.SOURCETABLE}</td>
 											<td class='center'>${var.REVEAL_ITEM}</td>
 											<td class='center'>${var.EY_ACCOUNT_NUM}</td>
@@ -272,7 +274,7 @@
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>bsmapping/goAdd.do';
 			 diag.Width = 450;
-			 diag.Height = 355;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -333,7 +335,7 @@
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>bsmapping/goEdit.do?BSMAPPING_ID='+Id;
 			 diag.Width = 450;
-			 diag.Height = 355;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 

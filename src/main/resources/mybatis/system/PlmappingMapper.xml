@@ -10,7 +10,8 @@
 	<!-- 字段 -->
 	<sql id="Field">
 		PLCODE,	
-		DESCRIPSION,	
+		DESCRIPSION,
+		PL_DSE_CLIENT,
 		SOURCETABLE,	
 		REVEAL_ITEM,	
 		EY_ACCOUNT_NUM,	
@@ -20,7 +21,8 @@
 	<!-- 字段值 -->
 	<sql id="FieldValue">
 		#{PLCODE},	
-		#{DESCRIPSION},	
+		#{DESCRIPSION},
+		#{PL_DSE_CLIENT},
 		#{SOURCETABLE},	
 		#{REVEAL_ITEM},	
 		#{EY_ACCOUNT_NUM},	
@@ -48,7 +50,8 @@
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
 		     #{pd.PLCODE},	
-		     #{pd.DESCRIPSION},	
+		     #{pd.DESCRIPSION},
+		     #{pd.PL_DSE_CLIENT},
 		     #{pd.SOURCETABLE},	
 		     #{pd.REVEAL_ITEM},	
 		     #{pd.EY_ACCOUNT_NUM},	
@@ -72,6 +75,7 @@
 		set 
 			PLCODE = #{PLCODE},
 			DESCRIPSION = #{DESCRIPSION},
+			PL_DSE_CLIENT = #{PL_DSE_CLIENT},
 			SOURCETABLE = #{SOURCETABLE},
 			REVEAL_ITEM = #{REVEAL_ITEM},
 			EY_ACCOUNT_NUM = #{EY_ACCOUNT_NUM},
@@ -104,7 +108,8 @@
 					DESCRIPSION LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
 					EY_ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				
+				     or
+				    PL_DSE_CLIENT LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
 		</if>
 	    <if test="pd.SOURCETABLE != null and pd.SOURCETABLE != ''">

@@ -40,6 +40,10 @@
 								<td><input type="text" name="DESCRIPSION" id="DESCRIPSION" value="${pd.DESCRIPSION}" maxlength="255" placeholder="这里输入表项名称" title="表项名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">客户项名称:</td>
+								<td><input type="text" name="PL_DSE_CLIENT" id="PL_DSE_CLIENT" value="${pd.PL_DSE_CLIENT}" maxlength="255" title="客户项名称" style="width:98%;"/></td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">来源表:</td>
 								<td>
 								<select class="chosen-select form-control" name="SOURCETABLE" id="SOURCETABLE" data-placeholder="请选择" style="width:49%;">

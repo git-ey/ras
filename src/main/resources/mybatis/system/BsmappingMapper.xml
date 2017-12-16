@@ -10,8 +10,9 @@
 	<!-- 字段 -->
 	<sql id="Field">
 		BTCODE,	
-		DESCRIPSION,	
-		SOURCETABLE,	
+		DESCRIPSION,
+		BT_DSE_CLIENT,
+		SOURCETABLE,
 		REVEAL_ITEM,	
 		EY_ACCOUNT_NUM,	
 		BSMAPPING_ID
@@ -20,7 +21,8 @@
 	<!-- 字段值 -->
 	<sql id="FieldValue">
 		#{BTCODE},	
-		#{DESCRIPSION},	
+		#{DESCRIPSION},
+		#{BT_DSE_CLIENT},
 		#{SOURCETABLE},	
 		#{REVEAL_ITEM},	
 		#{EY_ACCOUNT_NUM},	
@@ -49,6 +51,7 @@
          (
 		     #{pd.BTCODE},	
 		     #{pd.DESCRIPSION},	
+		     #{pd.BT_DSE_CLIENT},
 		     #{pd.SOURCETABLE},	
 		     #{pd.REVEAL_ITEM},	
 		     #{pd.EY_ACCOUNT_NUM},	
@@ -72,6 +75,7 @@
 		set 
 			BTCODE = #{BTCODE},
 			DESCRIPSION = #{DESCRIPSION},
+			BT_DSE_CLIENT = #{BT_DSE_CLIENT},
 			SOURCETABLE = #{SOURCETABLE},
 			REVEAL_ITEM = #{REVEAL_ITEM},
 			EY_ACCOUNT_NUM = #{EY_ACCOUNT_NUM},
@@ -104,6 +108,8 @@
 					DESCRIPSION LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
 					EY_ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				     or
+				    BT_DSE_CLIENT LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
 		</if>
 		<if test="pd.SOURCETABLE != null and pd.SOURCETABLE != ''">
