@@ -200,7 +200,7 @@ public class ReportService implements ReportManager {
 			infoMap.put("CURRENT_INIT_DATE", dateFrom);
 		}
 		// 本期截止日&&本期截止日来源
-		if (dateTo == null) {
+		if (dateTo == null || dateTo.getTime() > periodDate.getTime()) {
 			infoMap.put("CURRENT_END_DATE", periodDate);
 			infoMap.put("CURRENT_END_SOURCE", "资产负债表日");
 
