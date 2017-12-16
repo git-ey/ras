@@ -262,7 +262,7 @@ public class ReportService implements ReportManager {
 		String period = pd.getString("PERIOD");
 
 		// 此次导出的基金集合
-		List<PageData> funds = this.listReportFund(pd);
+		List<PageData> funds = listReportFund(pd);
 
 		// 报告导出模板根路径
 		String reportTempRootPath = configService.findByCode(REP_TEMP_PATH);

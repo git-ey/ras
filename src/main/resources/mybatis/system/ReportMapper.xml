@@ -156,7 +156,7 @@
 	</select>
 	
 	<!-- 报告导出基金范围列表 -->
-	<select id="listReportFund" parameterType="page" resultType="pd">
+	<select id="listReportFund" parameterType="pd" resultType="pd">
 		select sf.FUND_CODE,	
 		       sf.FIRM_CODE,	
 		       sf.SHORT_NAME,	
@@ -170,18 +170,18 @@
 		       sf.DATE_TO,	
 		       sf.DATE_TRANSFORM
 		from sys_fund_info sf
-		where sf.FIRM_CODE = #{pd.FIRM_CODE}
-		<if test="pd.FUND_ID != null and pd.FUND_ID != ''">
-		    and sf.FUND_ID = #{pd.FUND_ID}
+		where sf.FIRM_CODE = #{FIRM_CODE}
+		<if test="FUND_ID != null and FUND_ID != ''">
+		    and sf.FUND_ID = #{FUND_ID}
 		</if>
-		<if test="pd.MF != null and pd.MF != ''">
-		    and sf.MF = #{pd.MF}
+		<if test="MF != null and MF != ''">
+		    and sf.MF = #{MF}
 		</if>
-		<if test="pd.ETF != null and pd.ETF != ''">
-		    and sf.ETF = #{pd.ETF}
+		<if test="ETF != null and ETF != ''">
+		    and sf.ETF = #{ETF}
 		</if>
-		<if test="pd.STRUCTURED != null and pd.STRUCTURED != ''">
-		    and sf.STRUCTURED = #{pd.STRUCTURED}
+		<if test="STRUCTURED != null and STRUCTURED != ''">
+		    and sf.STRUCTURED = #{STRUCTURED}
 		</if>
 	</select>
 	
