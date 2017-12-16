@@ -6775,9 +6775,7 @@
   </DataValidation>
  </Worksheet>
  <Worksheet ss:Name="H11000">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s63" ss:DefaultColumnWidth="54"
-   ss:DefaultRowHeight="13.5">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s63" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="102.75"/>
    <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="97.5"/>
    <Column ss:StyleID="s63" ss:Width="96.75"/>
@@ -6955,330 +6953,25 @@
     <Cell ss:StyleID="s308"/>
     <Cell ss:StyleID="s213"/>
    </Row>
+   <#list H11000.additian.list as item>
+   <#if item.code??>
    <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">000783</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">长江证券</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-07-29T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-08-01T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10.56</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10.23</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">514942</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5437787.5199999996</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5267856.66</Data></Cell>
-    <Cell ss:StyleID="s213"/>
+    <Cell ss:StyleID="s213"><Data ss:Type="String">${item.type!}</Data></Cell>
+    <Cell ss:StyleID="s215"><Data ss:Type="String">${item.code!}</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">${item.name!}</Data></Cell>
+    <Cell ss:StyleID="s243"><#if item.subscribeDate??><Data ss:Type="DateTime">${item.subscribeDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s243"><#if item.liftingDate??><Data ss:Type="DateTime">${item.liftingDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
+    <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.subscribePrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s278"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s168"><Data ss:Type="String">${item.remark!}</Data></Cell>
    </Row>
+   <#else>
    <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">000807</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">云铝股份</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-11-18T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-11-21T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5.2</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5.39</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">1368665</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">7117058</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">7377104.3499999996</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">002099</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">海翔药业</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-09-19T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-09-20T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10.28</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">8.48</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">2479144</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">25485600.32</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">21023141.120000001</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">002206</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">海利得</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-07-15T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-07-18T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">16.899999999999999</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">17.95</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">591716</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10000000.4</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10621302.199999999</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">002239</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">奥特佳</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-11-15T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-11-16T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">15.15</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">15.22</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">660066</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">9999999.9000000004</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10046204.52</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">002414</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">高德红外</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-09-27T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-10-09T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">25.6</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">22.78</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">1502231</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">38457113.600000001</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">34220822.18</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">002640</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">跨境通</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-09-14T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-09-20T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">14.81</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">15.82</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">678595</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10049991.949999999</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10735372.9</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">002840</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">华统股份</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="String">${(period-1)?string('0')}-12-29</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-10T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">6.55</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">6.55</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">1814</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">11881.7</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">11881.7</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">300310</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">宜通世纪</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-04-18T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-04-18T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">32.85</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">23.27</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">221005</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">7260014.25</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5142786.3499999996</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">300310</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">宜通世纪</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-04-18T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-04-18T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券-转增</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">23.27</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">132603</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">3085671.8100000005</Data></Cell>
-    <Cell ss:StyleID="s168"><Data ss:Type="String">注</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">300353</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">东土科技</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-07-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-07-11T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">16.8</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">15.19</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">892857</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">14999997.6</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">13562497.83</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">300586</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">美联新材</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-26T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">9.3000000000000007</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">9.3000000000000007</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">1006</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">9355.7999999999993</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">9355.7999999999993</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">300587</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">天铁股份</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-28T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-05T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">14.11</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">14.11</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">1438</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">20290.18</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">20290.18</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">300588</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">熙菱信息</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-27T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-05T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">4.9400000000000004</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">4.9400000000000004</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">1380</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">6817.2</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">6817.2</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">603021</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">山东华鹏</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-07-01T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-06-30T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">35.68</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">43.15</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">28027</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">1000003.36</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">1209365.05</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">603032</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">德新交运</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-27T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-05T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5.81</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5.81</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">1628</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">9458.68</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">9458.68</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">603035</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">常熟汽饰</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-27T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-05T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10.44</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10.44</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">2316</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">24179.040000000001</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">24179.040000000001</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">603186</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">华正新材</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="String">${(period-1)?string('0')}-12-26</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-03T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5.37</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5.37</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">1874</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10063.379999999999</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10063.379999999999</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">603228</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">景旺电子</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-28T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-06T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">23.16</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">23.16</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">3491</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">80851.56</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">80851.56</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">603266</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">天龙股份</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-30T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-10T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">14.63</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">14.63</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">1562</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">22852.06</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">22852.06</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">603601</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">再升科技</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-05-16T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-05-15T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">30</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">15.14</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">347724</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">10431720</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">5264541.3600000003</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">603601</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">再升科技</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="String">${(period-1)?string('0')}-05-16</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-05-15T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购非公开发行证券-转增</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">15.14</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">417269</Data></Cell>
-    <Cell ss:StyleID="s309"/>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">6317452.6600000001</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">603689</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">皖天然气</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-30T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-10T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">认购新发证券</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">7.87</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">7.87</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">4818</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">37917.660000000003</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">37917.660000000003</Data></Cell>
-    <Cell ss:StyleID="s213"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">债券</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="String">${item.type!}</Data></Cell>
     <Cell ss:StyleID="s198"><Data ss:Type="String">无</Data></Cell>
     <Cell ss:StyleID="s310"/>
     <Cell ss:StyleID="s310"/>
@@ -7291,20 +6984,8 @@
     <Cell ss:StyleID="s311"/>
     <Cell ss:StyleID="s213"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">其他</Data></Cell>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">无</Data></Cell>
-    <Cell ss:StyleID="s310"/>
-    <Cell ss:StyleID="s310"/>
-    <Cell ss:StyleID="s310"/>
-    <Cell ss:StyleID="s310"/>
-    <Cell ss:StyleID="s311"/>
-    <Cell ss:StyleID="s311"/>
-    <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s311"/>
-    <Cell ss:StyleID="s311"/>
-    <Cell ss:StyleID="s213"/>
-   </Row>
+   </#if>
+   </#list>
    <Row>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
@@ -7377,84 +7058,31 @@
     <Cell ss:Index="10" ss:StyleID="s320"><Data ss:Type="String">成本总额</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">估值总额</Data></Cell>
    </Row>
+   <#if H11000.suspension.count != 0>
+   <#list H11000.suspension.list as item>
    <Row>
-    <Cell ss:StyleID="s298"><Data ss:Type="String">H10</Data></Cell>
-    <Cell ss:StyleID="s251"><Data ss:Type="String">000547</Data></Cell>
-    <Cell ss:StyleID="s252"><Data ss:Type="String">航天发展</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-04-19T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s227"><Data ss:Type="String">重大事项停牌</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">15.36</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-03T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">16.899999999999999</Data></Cell>
-    <Cell ss:StyleID="s249"><Data ss:Type="Number">803979</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">17123561.41</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">12349117.439999999</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s297"/>
-    <Cell ss:StyleID="s251"><Data ss:Type="String">002239</Data></Cell>
-    <Cell ss:StyleID="s252"><Data ss:Type="String">奥特佳</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-10-18T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s227"><Data ss:Type="String">重大事项停牌</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">15.69</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-02-07T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">14.12</Data></Cell>
-    <Cell ss:StyleID="s249"><Data ss:Type="Number">869000</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">13899681</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">13634610</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s297"/>
-    <Cell ss:StyleID="s251"><Data ss:Type="String">002635</Data></Cell>
-    <Cell ss:StyleID="s252"><Data ss:Type="String">安洁科技</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-11-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s227"><Data ss:Type="String">重大事项停牌</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">36.4</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-02-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">33.5</Data></Cell>
-    <Cell ss:StyleID="s249"><Data ss:Type="Number">79002</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">2576163.31</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">2875672.8</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s297"/>
-    <Cell ss:StyleID="s251"><Data ss:Type="String">300065</Data></Cell>
-    <Cell ss:StyleID="s252"><Data ss:Type="String">海兰信</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s227"><Data ss:Type="String">重大事项停牌</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">35.89</Data></Cell>
+    <Cell ss:StyleID="s298"><Data ss:Type="String"><#if item_index == 0>H10</#if></Data></Cell>
+    <Cell ss:StyleID="s251"><Data ss:Type="String">${item.stockCode!}</Data></Cell>
+    <Cell ss:StyleID="s252"><Data ss:Type="String">${item.stockName!}</Data></Cell>
+    <Cell ss:StyleID="s243"><#if item.suspensionDate??><Data ss:Type="DateTime">${item.suspensionDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s227"><Data ss:Type="String">${item.suspensionInfo!}</Data></Cell>
+    <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
+    <#if item.resumptionDate?? && item.resumptionDate != ''>
+    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${item.resumptionDate!}</Data></Cell>
+    <#else>
     <Cell ss:StyleID="s243"><Data ss:Type="String">未知</Data></Cell>
-    <Cell ss:StyleID="s281"><Data ss:Type="String">未知</Data></Cell>
-    <Cell ss:StyleID="s249"><Data ss:Type="Number">72000</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">2538932.4</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">2584080</Data></Cell>
+    </#if>
+    <#if item.resmpationOpenPrice??>
+    <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.resmpationOpenPrice!0)?string('0.##')}</Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s280"><Data ss:Type="String">未知</Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s249"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s279"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s279"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s297"/>
-    <Cell ss:StyleID="s251"><Data ss:Type="String">300150</Data></Cell>
-    <Cell ss:StyleID="s252"><Data ss:Type="String">世纪瑞尔</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-11-08T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s227"><Data ss:Type="String">重大事项停牌</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">9.9700000000000006</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-03-21T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">10.97</Data></Cell>
-    <Cell ss:StyleID="s249"><Data ss:Type="Number">1553500</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">18414769.41</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">15488395</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s297"/>
-    <Cell ss:StyleID="s251"><Data ss:Type="String">300271</Data></Cell>
-    <Cell ss:StyleID="s252"><Data ss:Type="String">华宇软件</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-19T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s227"><Data ss:Type="String">重大事项停牌</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">17.45</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="String">未知</Data></Cell>
-    <Cell ss:StyleID="s281"><Data ss:Type="String">未知</Data></Cell>
-    <Cell ss:StyleID="s249"><Data ss:Type="Number">484588</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">10197927.789999999</Data></Cell>
-    <Cell ss:StyleID="s279"><Data ss:Type="Number">8456060.5999999996</Data></Cell>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s312"/>
@@ -7546,40 +7174,31 @@
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
    </Row>
+   <#if H11000.saleIn.count != 0>
+   <#list H11000.saleIn.list as item>
    <Row>
-    <Cell ss:StyleID="s298"><Data ss:Type="String">P600</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="String">041658046</Data></Cell>
-    <Cell ss:StyleID="s254"><Data ss:Type="String">16京能洁CP002</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">99.34</Data></Cell>
-    <Cell ss:StyleID="s250"><Data ss:Type="Number">220000</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">21854800</Data></Cell>
+    <Cell ss:StyleID="s298"><Data ss:Type="String"><#if item_index == 0>P600</#if></Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s254"><Data ss:Type="String">${item.bondName!}</Data></Cell>
+    <Cell ss:StyleID="s243"><#if item.returnDay??><Data ss:Type="DateTime">${item.returnDay!}</Data></#if></Cell>
+    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(item.price!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s250"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s297"/>
-    <Cell ss:StyleID="s253"><Data ss:Type="String">041652022</Data></Cell>
-    <Cell ss:StyleID="s254"><Data ss:Type="String">16鄂能源CP001</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="DateTime">2017-01-04T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">99.36</Data></Cell>
-    <Cell ss:StyleID="s250"><Data ss:Type="Number">210000</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">20865600</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s297"/>
     <Cell ss:StyleID="s71"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s253"/>
     <Cell ss:StyleID="s253"/>
     <Cell ss:StyleID="s316"/>
-    <Cell ss:StyleID="s250" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">430000</Data></Cell>
-    <Cell ss:StyleID="s282" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">42720400</Data></Cell>
+    <Cell ss:StyleID="s250" ss:Formula="=SUM(R[${(-H11000.saleIn.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s282" ss:Formula="=SUM(R[${(-H11000.saleIn.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
@@ -7639,7 +7258,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s299"/>
-    <Cell><Data ss:Type="String">截至本报告期末_年_月_日止，基金从事证券交易所债券正回购交易形成的卖出回购证券款余额XXXX元，于_年_月_日（先后）到期。该类交易要求本基金在回购期内持有的</Data></Cell>
+    <Cell><Data ss:Type="String">截至本报告期末${period?string('0')}年${month?string('00')}月${day?string('00')}日止，基金从事证券交易所债券正回购交易形成的卖出回购证券款余额${(H10000.note.siEndBal!0)?string(',###.##')}元，于${H11000.noteDates!}（先后）到期。该类交易要求本基金在回购期内持有的</Data></Cell>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
