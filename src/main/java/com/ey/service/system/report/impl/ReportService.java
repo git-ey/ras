@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.service.system.config.ConfigManager;
 import com.ey.service.system.dictionaries.DictionariesManager;
 import com.ey.service.system.report.ReportManager;
 import com.ey.util.DateUtil;
@@ -28,12 +29,16 @@ public class ReportService implements ReportManager {
 	private DaoSupport dao;
 	@Resource(name = "dictionariesService")
 	private DictionariesManager dictionariesManager;
+	@Resource(name = "configService")
+	private ConfigManager configService;
 
 	private final String CONTRACT_BEGIN_DATE = "合同生效日";
 
 	private final String TRANSFORM_DATE = "转型日";
 
 	private final String BALANCE_SHEET_DATE = "资产负债表日";
+
+	private final String REP_TEMP_PATH = "REP_TEMP_PATH";
 
 	/**
 	 * 新增
@@ -139,6 +144,19 @@ public class ReportService implements ReportManager {
 	}
 
 	/**
+	 * 根据报告导出参数获取基金
+	 * 
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PageData> listReportFund(PageData pd) throws Exception {
+		return (List<PageData>) dao.findForList("ReportMapper.listReportFund", pd);
+	}
+
+	/**
 	 * 获取报告日期信息
 	 * 
 	 * @param period
@@ -238,8 +256,73 @@ public class ReportService implements ReportManager {
 	 * @param pd
 	 */
 	public void exportReport(PageData pd) throws Exception {
+		Map<String, Object> dateMap = Maps.newHashMap();
+		// 根据参数获取基金信息
+		// 期间
+		String period = pd.getString("PERIOD");
+
+		// 此次导出的基金集合
+		List<PageData> funds = this.listReportFund(pd);
+
+		// 报告导出模板根路径
+		String reportTempRootPath = configService.findByCode(REP_TEMP_PATH);
+		
+		// 报告导出路径
+		String reportOutBoundPath = pd.getString("OUTBOND_PATH");
+
 		// 根据配置代码获取信息
 		PageData p1 = dictionariesManager.findByCode(pd.getString("P1"));
+		PageData p2 = dictionariesManager.findByCode(pd.getString("P2"));
+		PageData p3 = dictionariesManager.findByCode(pd.getString("P3"));
+		PageData p4 = dictionariesManager.findByCode(pd.getString("P4"));
+		PageData p5 = dictionariesManager.findByCode(pd.getString("P5"));
+		// 英文名用于存文件名关键字
+		String p1TempName = p1.getString("NAME_EN");
+		String p2TempName = p2.getString("NAME_EN");
+		String p3TempName = p3.getString("NAME_EN");
+		String p4TempName = p4.getString("NAME_EN");
+		String p5TempName = p5.getString("NAME_EN");
+
+		// 模板一期、二期关键字
+		String tempNameKey = "_YOY";
+
+		// 遍历处理基金导出
+		for (PageData pfund : funds) {
+			// 获取日期信息
+			dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"),
+					(Date) pfund.get("DATE_TRANSFORM"));
+			// -------获取报告模板地址-------//
+			// 如果 本期起始日来源 为 “资产负债表日”取YOY,否则取Y
+			if (dateMap.get("CURRENT_INIT_SOURCE").equals("资产负债表日")) {
+				tempNameKey = "_YOY";
+			} else {
+				tempNameKey = "_Y";
+			}
+			// P1
+			p1TempName = p1TempName + tempNameKey + ".ftl";
+			// P2
+			// 如果选择此种规则，则按照基金区分模板
+			if (pd.getString("P2").equals("P2_FSO_BF")) {
+				p2TempName = p2TempName + tempNameKey + "_" + pfund.getString("FUND_ID") + ".docx";
+			} else {
+				p2TempName = p2TempName + tempNameKey + ".docx";
+			}
+			// P3
+			p3TempName = p3TempName + tempNameKey + ".ftl";
+			// P4
+			p4TempName = p4TempName + tempNameKey + ".ftl";
+			// P5
+			// 如果选择此种规则，则按照基金区分模板
+			if (pd.getString("P5").equals("P5_FSO_BF")) {
+				p5TempName = p5TempName + tempNameKey + "_" + pfund.getString("FUND_ID") + ".docx";
+			} else {
+				p5TempName = p5TempName + tempNameKey + ".docx";
+			}
+			
+			// 一段一段的整合报告
+
+		}
+
 
 		// 设置消息
 		pd.put("RESULT", "S");

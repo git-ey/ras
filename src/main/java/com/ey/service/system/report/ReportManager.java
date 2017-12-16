@@ -85,6 +85,14 @@ public interface ReportManager {
 	 * @throws Exception
 	 */
 	public List<PageData> listParagraphAll(PageData pd) throws Exception;
+	
+	/**
+	 * 根据报告导出参数获取基金
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 */
+	public List<PageData> listReportFund(PageData pd) throws Exception;
 
 	/**
 	 * 运行报告导出程序
