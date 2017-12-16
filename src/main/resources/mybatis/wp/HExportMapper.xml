@@ -353,4 +353,79 @@
             H10000FV.SORT
     </select>
     
+    <select id="selectH11000AdditianData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000A.TYPE AS type,
+		    H11000A.`CODE` AS `code`,
+		    H11000A.`NAME` AS `name`,
+		    DATE_FORMAT( H11000A.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
+		    DATE_FORMAT( H11000A.LIFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS liftingDate,
+		    H11000A.RESTRICT_TYPE AS restrictType,
+		    H11000A.SUBSCRIBE_PRICE AS subscribePrice,
+		    H11000A.UNIT_PRICE AS unitPrice,
+		    H11000A.QUANTITY AS quantity,
+		    H11000A.TOTAL_COST AS totalCost,
+		    H11000A.MKT_VALUE_CLIENT AS mktValueClient 
+		FROM
+		    wp_h11000_additian H11000A
+		WHERE 
+            1 = 1
+        AND H11000A.STATUS = 'Y'
+        AND H11000A.FUND_ID = #{fundId}
+        AND H11000A.PERIOD = #{period}
+        ORDER BY
+            H11000A.`CODE`
+    </select>
+    
+    <select id="selectH11000SuspensionData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000S.STOCK_CODE AS stockCode,
+		    H11000S.STOCK_NAME AS stockName,
+		    DATE_FORMAT(H11000S.SUSPENSION_DATE, '%Y-%m-%dT00:00:00.000') AS suspensionDate,
+		    H11000S.SUSPENSION_INFO AS suspensionInfo,
+		    H11000S.UNIT_PRICE AS unitPrice,
+		    DATE_FORMAT(H11000S.RESUMPTION_DATE, '%Y-%m-%dT00:00:00.000') AS resumptionDate,
+		    H11000S.RESMPATION_OPEN_PRICE AS resmpationOpenPrice,
+		    H11000S.QUANTITY AS quantity,
+		    H11000S.TOTAL_COST AS totalCost,
+		    H11000S.MKT_VALUE_CLIENT AS mktValueClient 
+		FROM
+		    wp_h11000_suspension H11000S
+        WHERE 
+            1 = 1
+		AND H11000S.STATUS = 'Y'
+        AND H11000S.FUND_ID = #{fundId}
+        AND H11000S.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH11000SaleInData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000SI.BOND_CODE AS bondCode,
+		    H11000SI.BOND_NAME AS bondName,
+		    DATE_FORMAT( H11000SI.RETURN_DAY, '%Y-%m-%dT00:00:00.000' ) AS returnDay,
+		    H11000SI.PRICE AS price,
+		    H11000SI.QUANTITY AS quantity,
+		    H11000SI.AMOUNT AS amount 
+		FROM
+		    wp_h11000_sale_in H11000SI
+        WHERE 
+            1 = 1
+		AND H11000SI.STATUS = 'Y'
+        AND H11000SI.FUND_ID = #{fundId}
+        AND H11000SI.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH11000NoteData" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT
+		    P600T.DUE_ACCOUNT_DAY AS dueAccountDay 
+		FROM
+		    wp_p600_test P600T 
+		WHERE
+		    1 = 1 
+	    AND P600T.`STATUS` = 'Y' 
+	    AND P600T.BUY_OUT_BOND = 'Note 1' 
+        AND P600T.FUND_ID = #{fundId}
+        AND P600T.PERIOD = #{period}
+    </select>
+    
 </mapper>

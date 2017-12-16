@@ -57,6 +57,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         dataMap.put("H500", this.getH500Data(fundId, periodStr));
         dataMap.put("H800", this.getH800Data(fundId, periodStr));
         dataMap.put("H10000", this.getH10000Data(fundId, periodStr));
+        dataMap.put("H11000", this.getH11000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H);
     }
@@ -674,6 +675,105 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("rmcfs", rmcfs);
         result.put("interestDetail", interestDetail);
         result.put("fairValues", fairValues);
+        return result;
+    }
+    
+    /**
+     * 处理sheet页H11000的数据
+     * @author Dai Zong 2017年12月16日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getH11000Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        //========process dataMap for additian view begin========
+        Map<String, Object> additian = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> additianMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000AdditianData", queryMap);
+        if(additianMetaDataList == null) {
+            additianMetaDataList = new ArrayList<>();
+        }
+        if(additianMetaDataList.size() > 1) {
+            for(int i=1 ; i< additianMetaDataList.size(); i++) {
+                Map<String,Object> mapNow = additianMetaDataList.get(i);
+                Map<String,Object> mapBefore = additianMetaDataList.get(i-1);
+                if(mapNow != null && mapBefore != null && mapNow.get("code") != null && mapNow.get("code").equals(mapBefore.get("code"))) {
+                    mapNow.put("remark", "注");
+                }
+            }
+        }
+        List<String> existCode = additianMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("type"));
+        }).distinct().collect(Collectors.toList());
+        if(!existCode.contains("股票")) {
+            Map<String, Object> temp = new HashMap<String,Object>();
+            temp.put("type", "股票");
+            additianMetaDataList.add(temp);
+        }
+        if(!existCode.contains("债券")) {
+            Map<String, Object> temp = new HashMap<String,Object>();
+            temp.put("type", "债券");
+            additianMetaDataList.add(temp);
+        }
+        if(!existCode.contains("其他")) {
+            Map<String, Object> temp = new HashMap<String,Object>();
+            temp.put("type", "其他");
+            additianMetaDataList.add(temp);
+        }
+        additian.put("list", additianMetaDataList);
+        additian.put("count", additianMetaDataList.size());
+        //========process dataMap for additian view end========
+        
+        //========process dataMap for suspension view begin========
+        Map<String, Object> suspension = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> suspensionMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000SuspensionData", queryMap);
+        if(suspensionMetaDataList == null) {
+            suspensionMetaDataList = new ArrayList<>();
+        }
+        suspension.put("list", suspensionMetaDataList);
+        suspension.put("count", suspensionMetaDataList.size());
+        //========process dataMap for suspension view end========
+        
+        //========process dataMap for saleIn view begin========
+        Map<String, Object> saleIn = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> saleInMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000SaleInData", queryMap);
+        if(saleInMetaDataList == null) {
+            saleInMetaDataList = new ArrayList<>();
+        }
+        saleIn.put("list", saleInMetaDataList);
+        saleIn.put("count", saleInMetaDataList.size());
+        //========process dataMap for saleIn view end========
+        
+        //========process dataMap for noteDates view begin========
+        @SuppressWarnings("unchecked")
+        List<String> noteDataList = (List<String>)this.dao.findForList("HExportMapper.selectH11000NoteData", queryMap);
+        if(noteDataList == null) {
+            noteDataList = new ArrayList<>();
+        }
+        SimpleDateFormat sdfin = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfout = new SimpleDateFormat("yyyy年MM月dd日");
+        String noteDates = noteDataList.stream().filter(item -> {
+            return item != null  && !StringUtils.EMPTY.equals(item);
+        }).map(item -> {
+            try {
+                return sdfout.format(sdfin.parse(item));
+            } catch (ParseException e) {
+                return StringUtils.EMPTY;
+            }
+        }).distinct().collect(Collectors.joining("、"));
+        //========process dataMap for noteDates view end========
+    
+        result.put("additian", additian);
+        result.put("suspension", suspension);
+        result.put("saleIn", saleIn);
+        result.put("noteDates", noteDates);
         return result;
     }
     
