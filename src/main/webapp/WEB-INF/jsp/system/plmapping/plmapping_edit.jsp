@@ -124,16 +124,6 @@
 				$("#DESCRIPSION").focus();
 			return false;
 			}
-			if($("#EY_ACCOUNT_NUM").val()==""){
-				$("#EY_ACCOUNT_NUM").tips({
-					side:3,
-		            msg:'请输入EY科目代码',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#EY_ACCOUNT_NUM").focus();
-			return false;
-			}
 			$("#Form").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();
