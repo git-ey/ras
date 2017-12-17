@@ -60,6 +60,7 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
+									<th class="center">期间</th>
 									<th class="center">来源</th>
 									<th class="center">股票代码</th>
 									<th class="center">股票简称</th>
@@ -79,6 +80,7 @@
 												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.BETA_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
+											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.SOURCE}</td>
 											<td class='center'>${var.STOCK_CODE}</td>
 											<td class='center'>${var.STOCK_NAME}</td>
@@ -256,7 +258,7 @@
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>beta/goAdd.do';
 			 diag.Width = 500;
-			 diag.Height = 400;
+			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -294,7 +296,7 @@
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>beta/goEdit.do?BETA_ID='+Id;
 			 diag.Width = 500;
-			 diag.Height = 400;
+			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 

@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.service.system.beta.BetaManager;
 import com.ey.util.AppUtil;
 import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
-import com.ey.service.system.beta.BetaManager;
 
 /** 
  * 说明： BETA系数导入
@@ -98,6 +100,7 @@ public class BetaService implements BetaManager{
 			if (null != map.get("STOCK_CODE")) {
 				PageData pd = new PageData();
 				pd.put("BETA_ID", UuidUtil.get32UUID());
+				pd.put("PERIOD", map.get("PERIOD"));
 				pd.put("SOURCE", map.get("SOURCE"));
 				pd.put("STOCK_CODE", map.get("STOCK_CODE"));
 				pd.put("BETA", map.get("BETA"));

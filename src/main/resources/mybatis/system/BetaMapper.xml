@@ -9,6 +9,7 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
+	    PERIOD,
 		SOURCE,	
 		STOCK_CODE,	
 		BETA,
@@ -19,6 +20,7 @@
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
+	    #{PERIOD},
 		#{SOURCE},	
 		#{STOCK_CODE},	
 		#{BETA},
@@ -51,6 +53,7 @@
 		update
 		<include refid="tableName"></include>
 		set 
+		    PERIOD = #{PERIOD},
 			SOURCE = #{SOURCE},
 			STOCK_CODE = #{STOCK_CODE},
 			BETA = #{BETA},
@@ -84,6 +87,8 @@
 					SOURCE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				     or 
 					STOCK_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					 or 
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
 		</if>
 	</select>
@@ -116,6 +121,7 @@
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
+        #{pd.PERIOD},
 		#{pd.SOURCE},	
 		#{pd.STOCK_CODE},	
 		#{pd.BETA},
