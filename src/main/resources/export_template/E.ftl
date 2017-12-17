@@ -2801,12 +2801,20 @@
    </Row>
    <Row ss:StyleID="s91">
     <Cell ss:Index="2" ss:StyleID="s105"><Data ss:Type="String">申购款（代销）</Data></Cell>
+    <#if extraFundInfo.dealerSeperate == 'Y'>
     <Cell ss:StyleID="s147" ss:Formula="=SUMIFS(C[1],C[-2],&quot;申购&quot;)-R[1]C"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s147"><Data ss:Type="Number">0</Data></Cell>
+    </#if>
     <Cell ss:StyleID="s101"><Data ss:Type="String">&lt;E410&gt;</Data></Cell>
    </Row>
    <Row ss:StyleID="s91">
     <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">申购款（直销）</Data></Cell>
+    <#if extraFundInfo.dealerSeperate == 'Y'>
     <Cell ss:StyleID="s148" ss:Formula="=SUMIFS(C4,C1,&quot;申购&quot;,C2,&quot;${E41X.dealerName!}&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s148"><Data ss:Type="Number">0</Data></Cell>
+    </#if>
     <Cell ss:StyleID="s103"><Data ss:Type="String">&lt;E410&gt;</Data></Cell>
    </Row>
    <Row ss:StyleID="s91">
