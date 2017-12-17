@@ -538,28 +538,34 @@ public class UExportService extends BaseExportService implements UExportManager 
         if(U10000StocksMetaDataList == null) {
             U10000StocksMetaDataList = new ArrayList<>(); 
         }
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000StocksSummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryMap);
+        if(U10000StocksSummaryMetaDataList == null) {
+            U10000StocksSummaryMetaDataList = new ArrayList<>(); 
+        }
+        U10000StocksMetaDataList.addAll(U10000StocksSummaryMetaDataList);
         for(Map<String,Object> map : U10000StocksMetaDataList) {
-            if ("股票投资收益——买卖股票差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+            if ("股票投资收益——买卖股票差价收入".equals(map.get("item")) && "STOCKS".equals(map.get("type"))) {
                 stocks.put("S1", map);
-            } else if ("股票投资收益——赎回差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+            } else if ("股票投资收益——赎回差价收入".equals(map.get("item")) && "STOCKS".equals(map.get("type"))) {
                 stocks.put("S2", map);
-            } else if ("卖出股票成交总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("卖出股票成交总额".equals(map.get("item")) && "STOCKS_BS".equals(map.get("type"))) {
                 stocks.put("S3", map);
-            } else if ("减：卖出股票成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("减：卖出股票成本总额".equals(map.get("item")) && "STOCKS_BS".equals(map.get("type"))) {
                 stocks.put("S4", map);
-            } else if ("赎回基金份额对价总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+            } else if ("赎回基金份额对价总额".equals(map.get("item")) && "STOCKS_R".equals(map.get("type"))) {
                 stocks.put("S5", map);
-            } else if ("减：现金支付赎回款总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+            } else if ("减：现金支付赎回款总额".equals(map.get("item")) && "STOCKS_R".equals(map.get("type"))) {
                 stocks.put("S6", map);
-            } else if ("减：卖出股票成本总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+            } else if ("减：卖出股票成本总额".equals(map.get("item")) && "STOCKS_R".equals(map.get("type"))) {
                 stocks.put("S7", map);
-            } else if ("申购基金份额总额".equals(map.get("item")) && "G".equals(map.get("column"))) {
+            } else if ("申购基金份额总额".equals(map.get("item")) && "STOCKS_P".equals(map.get("type"))) {
                 stocks.put("S8", map);
-            } else if ("减：现金支付申购款总额".equals(map.get("item")) && "G".equals(map.get("column"))) {
+            } else if ("减：现金支付申购款总额".equals(map.get("item")) && "STOCKS_P".equals(map.get("type"))) {
                 stocks.put("S9", map);
-            } else if ("减：申购股票成本总额".equals(map.get("item")) && "G".equals(map.get("column"))) {
+            } else if ("减：申购股票成本总额".equals(map.get("item")) && "STOCKS_P".equals(map.get("type"))) {
                 stocks.put("S10", map);
-            } else if ("其他".equals(map.get("item")) && "G".equals(map.get("column"))) {
+            } else if ("其他".equals(map.get("item")) && "STOCKS_P".equals(map.get("type"))) {
                 stocks.put("S11", map);
             }
         }
@@ -575,9 +581,9 @@ public class UExportService extends BaseExportService implements UExportManager 
             U10000FundMetaDataList = new ArrayList<>(); 
         }
         for(Map<String,Object> map : U10000FundMetaDataList) {
-            if ("卖出/赎回基金成交总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            if ("卖出/赎回基金成交总额".equals(map.get("item")) && "FUND".equals(map.get("type"))) {
                 fund.put("S1", map);
-            } else if ("减：卖出/赎回基金成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("减：卖出/赎回基金成本总额".equals(map.get("item")) && "FUND".equals(map.get("type"))) {
                 fund.put("S2", map);
             }
         }
@@ -605,33 +611,33 @@ public class UExportService extends BaseExportService implements UExportManager 
             U10000BondMetaDataList = new ArrayList<>(); 
         }
         for(Map<String,Object> map : U10000BondMetaDataList) {
-            if ("债券投资收益——买卖债券（、债转股及债券到期兑付）差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+            if ("债券投资收益——买卖债券（、债转股及债券到期兑付）差价收入".equals(map.get("item")) && "BOND".equals(map.get("type"))) {
                 bond.put("S1", map);
-            } else if ("债券投资收益——赎回差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+            } else if ("债券投资收益——赎回差价收入".equals(map.get("item")) && "BOND".equals(map.get("type"))) {
                 bond.put("S2", map);
-            } else if ("卖出债券（、债转股及债券到期兑付）成交金额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("卖出债券（、债转股及债券到期兑付）成交金额".equals(map.get("item")) && "BOND_BS".equals(map.get("type"))) {
                 bond.put("S3", map);
-            } else if ("减：卖出债券（、债转股及债券到期兑付）成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("减：卖出债券（、债转股及债券到期兑付）成本总额".equals(map.get("item")) && "BOND_BS".equals(map.get("type"))) {
                 bond.put("S4", map);
-            } else if ("减：应收利息总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("减：应收利息总额".equals(map.get("item")) && "BOND_BS".equals(map.get("type"))) {
                 bond.put("S5", map);
-            } else if ("赎回基金份额对价总额".equals(map.get("item")) && "I".equals(map.get("column"))) {
+            } else if ("赎回基金份额对价总额".equals(map.get("item")) && "BOND_R".equals(map.get("type"))) {
                 bond.put("S6", map);
-            } else if ("减：现金支付赎回款总额".equals(map.get("item")) && "I".equals(map.get("column"))) {
+            } else if ("减：现金支付赎回款总额".equals(map.get("item")) && "BOND_R".equals(map.get("type"))) {
                 bond.put("S7", map);
-            } else if ("减：赎回债券成本总额".equals(map.get("item")) && "I".equals(map.get("column"))) {
+            } else if ("减：赎回债券成本总额".equals(map.get("item")) && "BOND_R".equals(map.get("type"))) {
                 bond.put("S8", map);
-            } else if ("减：赎回债券应收利息总额".equals(map.get("item")) && "I".equals(map.get("column"))) {
+            } else if ("减：赎回债券应收利息总额".equals(map.get("item")) && "BOND_R".equals(map.get("type"))) {
                 bond.put("S9", map);
-            } else if ("申购基金份额对价总额".equals(map.get("item")) && "J".equals(map.get("column"))) {
+            } else if ("申购基金份额对价总额".equals(map.get("item")) && "BOND_P".equals(map.get("type"))) {
                 bond.put("S10", map);
-            } else if ("减：现金支付申购款总额".equals(map.get("item")) && "J".equals(map.get("column"))) {
+            } else if ("减：现金支付申购款总额".equals(map.get("item")) && "BOND_P".equals(map.get("type"))) {
                 bond.put("S11", map);
-            } else if ("减：申购债券成本总额".equals(map.get("item")) && "J".equals(map.get("column"))) {
+            } else if ("减：申购债券成本总额".equals(map.get("item")) && "BOND_P".equals(map.get("type"))) {
                 bond.put("S12", map);
-            } else if ("减：申购债券应收利息总额".equals(map.get("item")) && "J".equals(map.get("column"))) {
+            } else if ("减：申购债券应收利息总额".equals(map.get("item")) && "BOND_P".equals(map.get("type"))) {
                 bond.put("S13", map);
-            } else if ("其他".equals(map.get("item")) && "J".equals(map.get("column"))) {
+            } else if ("其他".equals(map.get("item")) && "BOND_P".equals(map.get("type"))) {
                 bond.put("S14", map);
             }
         }
@@ -648,11 +654,11 @@ public class UExportService extends BaseExportService implements UExportManager 
             U10000AbsMetaDataList = new ArrayList<>(); 
         }
         for(Map<String,Object> map : U10000AbsMetaDataList) {
-            if ("卖出资产支持证券成交总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            if ("卖出资产支持证券成交总额".equals(map.get("item")) && "ABS".equals(map.get("type"))) {
                 abs.put("S1", map);
-            } else if ("减：卖出资产支持证券成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("减：卖出资产支持证券成本总额".equals(map.get("item")) && "ABS".equals(map.get("type"))) {
                 abs.put("S2", map);
-            } else if ("减：应收利息总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("减：应收利息总额".equals(map.get("item")) && "ABS".equals(map.get("type"))) {
                 abs.put("S3", map);
             }
         }
@@ -677,27 +683,27 @@ public class UExportService extends BaseExportService implements UExportManager 
             U10000GoldMetaDataList = new ArrayList<>(); 
         }
         for(Map<String,Object> map : U10000GoldMetaDataList) {
-            if ("贵金属投资收益——买卖贵金属差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+            if ("贵金属投资收益——买卖贵金属差价收入".equals(map.get("item")) && "GOLD".equals(map.get("type"))) {
                 gold.put("S1", map);
-            } else if ("贵金属投资收益——赎回差价收入".equals(map.get("item")) && "SUM".equals(map.get("column"))) {
+            } else if ("贵金属投资收益——赎回差价收入".equals(map.get("item")) && "GOLD".equals(map.get("type"))) {
                 gold.put("S2", map);
-            } else if ("卖出贵金属成交总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("卖出贵金属成交总额".equals(map.get("item")) && "GOLD_BS".equals(map.get("type"))) {
                 gold.put("S3", map);
-            } else if ("减：卖出贵金属成本总额".equals(map.get("item")) && "B".equals(map.get("column"))) {
+            } else if ("减：卖出贵金属成本总额".equals(map.get("item")) && "GOLD_BS".equals(map.get("type"))) {
                 gold.put("S4", map);
-            } else if ("赎回贵金属份额对价总额".equals(map.get("item")) && "E".equals(map.get("column"))) {
+            } else if ("赎回贵金属份额对价总额".equals(map.get("item")) && "GOLD_R".equals(map.get("type"))) {
                 gold.put("S5", map);
-            } else if ("减：现金支付赎回款总额".equals(map.get("item")) && "E".equals(map.get("column"))) {
+            } else if ("减：现金支付赎回款总额".equals(map.get("item")) && "GOLD_R".equals(map.get("type"))) {
                 gold.put("S6", map);
-            } else if ("减：赎回贵金属成本总额".equals(map.get("item")) && "E".equals(map.get("column"))) {
+            } else if ("减：赎回贵金属成本总额".equals(map.get("item")) && "GOLD_R".equals(map.get("type"))) {
                 gold.put("S7", map);
-            } else if ("申购贵金属份额总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+            } else if ("申购贵金属份额总额".equals(map.get("item")) && "GOLD_P".equals(map.get("type"))) {
                 gold.put("S8", map);
-            } else if ("减：现金支付申购款总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+            } else if ("减：现金支付申购款总额".equals(map.get("item")) && "GOLD_P".equals(map.get("type"))) {
                 gold.put("S9", map);
-            } else if ("减：申购贵金属成本总额".equals(map.get("item")) && "F".equals(map.get("column"))) {
+            } else if ("减：申购贵金属成本总额".equals(map.get("item")) && "GOLD_P".equals(map.get("type"))) {
                 gold.put("S10", map);
-            } else if ("其他".equals(map.get("item")) && "F".equals(map.get("column"))) {
+            } else if ("其他".equals(map.get("item")) && "GOLD_P".equals(map.get("type"))) {
                 gold.put("S11", map);
             }
 

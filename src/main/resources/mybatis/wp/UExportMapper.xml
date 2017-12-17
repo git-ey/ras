@@ -238,7 +238,7 @@
     
     <select id="selectU10000ImportData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
-		    U10000RI.COLUMN_NUM as 'column',
+		    U10000RI.U10000_TYPE AS type,
 		    U10000RI.ITEM as item,
 		    U10000RI.AMOUNT_CURRENT as amountCurrent,
 		    U10000RI.AMOUNT_LAST as amountLast
@@ -247,11 +247,27 @@
 		where
 		    1 = 1
 		AND U10000RI.status = 'Y'
-		AND U10000RI.U10000_TYPE = #{type}
+		AND U10000RI.U10000_TYPE LIKE CONCAT(#{type},'%')
 		and U10000RI.FUND_ID = #{fundId}
         and U10000RI.PERIOD = #{period}
         order by
             U10000RI.SORT
+    </select>
+    
+     <select id="selectU10000ImportSummaryData" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    U10000RIS.TYPE AS type,
+		    U10000RIS.ITEM AS item,
+		    U10000RIS.AMOUNT_CURRENT AS amountCurrent,
+		    U10000RIS.AMOUNT_LAST AS amountLast 
+		FROM
+		    wp_u10000_r_ipt_summary U10000RIS 
+		WHERE
+		    1 = 1 
+	    AND U10000RIS.`STATUS` = 'Y' 
+	    AND U10000RIS.TYPE = #{type}
+	    AND U10000RIS.FUND_ID = #{fundId}
+	    AND U10000RIS.PERIOD = #{period}
     </select>
     
     <select id="selectU10000DividendData" parameterType="java.util.Map" resultType="java.util.Map"> 
