@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.service.wp.output.IExportManager;
@@ -307,12 +308,138 @@ public class IExportService extends BaseExportService implements IExportManager{
         bankThx.put("count", bankThxMetaDataList.size());
         //========process dataMap for bankThx view end========
         
+        //========process dataMap for mgerHoldFund view begin========
+        Map<String, Object> mgerHoldFund = new HashMap<String,Object>();
+        String[] sorts = {"1", "2", "3", "4", "5", "6", "7"};
+        Map<String,Object> resultMap = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mgerHoldFundMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIMgerHoldFundData", queryMap);
+        if(mgerHoldFundMetaDataList == null) {
+            mgerHoldFundMetaDataList = new ArrayList<>();
+        }
+        levelNames = mgerHoldFundMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        groups = mgerHoldFundMetaDataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return String.valueOf(map.get("sort"));
+        }, Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return String.valueOf(map.get("level"));
+        })));
+        for(String sort : sorts) {
+            Map<String, Object> item = new HashMap<>();
+            Map<String, List<Map<String, Object>>> oneItemMap = groups.get(sort);
+            if(oneItemMap == null) {
+                oneItemMap = new HashMap<>();
+            }
+            List<Map<String, Object>> levelList = new ArrayList<>();
+            for(String levelName : levelNames) {
+                List<Map<String, Object>> tempList2 = oneItemMap.get(levelName);
+                if(CollectionUtils.isNotEmpty(tempList2)) {
+                    levelList.add(tempList2.get(0));
+                }else {
+                    levelList.add(new HashMap<>());
+                }
+            }
+            if(CollectionUtils.isNotEmpty(levelList)) {
+                item.put("itemName", levelList.get(0).get("item"));
+                item.put("firstCol", levelList.get(0));
+            }else {
+                item.put("itemName", StringUtils.EMPTY);
+                item.put("firstCol", new HashMap<>());
+            }
+            item.put("levels", levelList);
+            item.put("count", levelList.size());
+            
+            resultMap.put(sort, item);
+        }
+        mgerHoldFund.put("levelNames", levelNames);
+        mgerHoldFund.put("levelCount", levelNames.size());
+        for(String sort : sorts) {
+            mgerHoldFund.put("item" + sort, resultMap.get(sort));
+        }
+        
+        //========process dataMap for mgerHoldFund view end========
+        
+        //========process dataMap for unmgerHoldFund view begin========
+        Map<String, Object> unmgerHoldFund = new HashMap<String,Object>();
+        List<Map<String,Object>> resultList = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> unmgerHoldFundMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIUnmgerHoldFundData", queryMap);
+        if(unmgerHoldFundMetaDataList == null) {
+            unmgerHoldFundMetaDataList = new ArrayList<>();
+        }
+        levelNames = unmgerHoldFundMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        Map<String, List<Map<String, Object>>> groups2 = unmgerHoldFundMetaDataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return String.valueOf(map.get("level"));
+        }));
+        Integer lineOffset = 0;
+        Integer lastLineCout = 0;
+        for(String levelName :levelNames) {
+            Map<String,Object> result2 = new HashMap<>();
+            List<Map<String, Object>> levelList = groups2.get(levelName);
+            if(levelList == null) {
+                levelList = new ArrayList<>();
+            }
+            result2.put("list", levelList);
+            result2.put("count", levelList.size());
+            result2.put("levelName", levelName);
+            lineOffset += lastLineCout;
+            lastLineCout = levelList.size();
+            result2.put("offset", lineOffset);
+            resultList.add(result2);
+        }
+        unmgerHoldFund.put("levels", resultList);
+        unmgerHoldFund.put("levelsCount", resultList.size());
+        //========process dataMap for unmgerHoldFund view end========
+        
+        //========process dataMap for bank view begin========
+        Map<String, Object> bank = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> bankMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIBankData", queryMap);
+        if(bankMetaDataList == null) {
+            bankMetaDataList = new ArrayList<>();
+        }
+        bank.put("list", bankMetaDataList);
+        bank.put("count", bankMetaDataList.size());
+        //========process dataMap for bank view end========
+
+        //========process dataMap for underWrite view begin========
+        Map<String, Object> underWrite = new HashMap<String,Object>();
+        Map<String, Object> current2 = new HashMap<String,Object>();
+        Map<String, Object> last2 = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> underWriteCurrentMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIUnderWriteData", queryMap);
+        if(underWriteCurrentMetaDataList == null) {
+            underWriteCurrentMetaDataList = new ArrayList<>();
+        }
+        current2.put("list", underWriteCurrentMetaDataList);
+        current2.put("count", underWriteCurrentMetaDataList.size());
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> underWriteLastMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIUnderWriteData", lastQueryMap);
+        if(underWriteLastMetaDataList == null) {
+            underWriteLastMetaDataList = new ArrayList<>();
+        }
+        last2.put("list", underWriteLastMetaDataList);
+        last2.put("count", underWriteLastMetaDataList.size());
+        underWrite.put("current", current2);
+        underWrite.put("last", last2);
+        //========process dataMap for underWrite view end========
+        
         result.put("fundRelatedParty", fundRelatedParty);
         result.put("rp", rp);
         result.put("transaction", transaction);
         result.put("manageFee", manageFee);
         result.put("salesFee", salesFee);
         result.put("bankThx", bankThx);
+        result.put("mgerHoldFund", mgerHoldFund);
+        result.put("bank", bank);
+        result.put("underWrite", underWrite);
+        result.put("unmgerHoldFund", unmgerHoldFund);
         return result;
     }
     

@@ -1728,9 +1728,9 @@
    <Row ss:Height="27">
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">关联方名称</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">当期佣金</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="String">占当期佣金&#10;总量的比例</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">占当期佣金&#10;总量的比例</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">期末应付佣金余额</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="String">占期末应付佣金&#10;总额的比例</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">占期末应付佣金&#10;总额的比例</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
@@ -1770,9 +1770,9 @@
    <Row ss:Height="27">
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">关联方名称</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">当期佣金</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="String">占当期佣金&#10;总量的比例</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">占当期佣金&#10;总量的比例</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">期末应付佣金余额</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="String">占期末应付佣金&#10;总额的比例</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">占期末应付佣金&#10;总额的比例</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
@@ -2310,6 +2310,7 @@
    <Row>
     <Cell ss:Index="10" ss:StyleID="s122"/>
    </Row>
+   <#if extraFundInfo.structured == 'N'>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.1 报告期内基金管理人运用固有资金投资本基金的情况</Data></Cell>
     <Cell ss:Index="5" ss:StyleID="s122"/>
@@ -2328,58 +2329,101 @@
    </Row>
    <Row ss:Height="27">
     <Cell ss:StyleID="s173"><Data ss:Type="String">IIXXX</Data></Cell>
-    <Cell ss:StyleID="s204"><Data ss:Type="String">期初持有的基金份额/【新基金：】基金合同生效日（_年_月_日）持有的基金份额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s204"><Data ss:Type="String">${I.mgerHoldFund.item1.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item1.count == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <#list I.mgerHoldFund.item1.levels as level>
+    <#if level_index == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">期间申购/买入总份额(注)</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item2.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item2.count == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <#list I.mgerHoldFund.item2.levels as level>
+    <#if level_index == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">期间因拆分变动份额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item3.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item3.count == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <#list I.mgerHoldFund.item3.levels as level>
+    <#if level_index == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">减：期间赎回/卖出总份额(注)</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item4.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item4.count == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <#list I.mgerHoldFund.item4.levels as level>
+    <#if level_index == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">期末持有的基金份额</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data
-      ss:Type="Number">2462426</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data
-      ss:Type="Number">2462426</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item5.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s216"><Data ss:Type="String">期末持有的基金份额占基金总份额比例</Data></Cell>
-    <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">0.23</Data></Cell>
+    <Cell ss:StyleID="s216"><Data ss:Type="String">${I.mgerHoldFund.item6.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item6.count == 0>
+    <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <#list I.mgerHoldFund.item6.levels as level>
+    <#if level_index == 0>
+    <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s214"><Data ss:Type="String">T300</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">基金总份额</Data></Cell>
-    <Cell ss:StyleID="s205"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="String">${I.mgerHoldFund.item7.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s205"><Data ss:Type="Number">${(I.mgerHoldFund.item7.firstCol.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s210"/>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
@@ -2389,8 +2433,7 @@
     <Cell ss:Index="5" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <Row/>
-   <Row/>
+   <#else>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.1 报告期内基金管理人运用固有资金投资本基金的情况</Data></Cell>
@@ -2418,8 +2461,11 @@
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s217"/>
-    <Cell ss:MergeAcross="1" ss:StyleID="s252"><Data ss:Type="String">X级基金</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s252"><Data ss:Type="String">X级基金</Data></Cell>
+    <#if I.mgerHoldFund.levelCount != 0>
+    <#list I.mgerHoldFund.levelNames as levelName>
+    <Cell ss:MergeAcross="1" ss:StyleID="s252"><Data ss:Type="String">${levelName!}基金</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2428,10 +2474,12 @@
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s134"><Data ss:Type="String">项目</Data></Cell>
+    <#if I.mgerHoldFund.levelCount != 0>
+    <#list I.mgerHoldFund.levelNames as levelName>
     <Cell ss:StyleID="s130"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
     <Cell ss:StyleID="s130"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
-    <Cell ss:StyleID="s130"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
-    <Cell ss:StyleID="s130"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s116"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2439,11 +2487,13 @@
    </Row>
    <Row ss:Height="27" ss:StyleID="s119">
     <Cell ss:StyleID="s173"><Data ss:Type="String">IIXXX</Data></Cell>
-    <Cell ss:StyleID="s204"><Data ss:Type="String">期初持有的基金份额/【新基金：】基金合同生效日（_年_月_日）持有的基金份额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s204"><Data ss:Type="String">${I.mgerHoldFund.item1.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item1.count != 0>
+    <#list I.mgerHoldFund.item1.levels as level>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2451,11 +2501,13 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">期间申购/买入总份额(注)</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item2.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item2.count != 0>
+    <#list I.mgerHoldFund.item2.levels as level>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2463,11 +2515,13 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">期间因拆分变动份额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item3.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item3.count != 0>
+    <#list I.mgerHoldFund.item3.levels as level>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2475,11 +2529,13 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">减：期间赎回/卖出总份额(注)</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item4.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item4.count != 0>
+    <#list I.mgerHoldFund.item4.levels as level>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2487,15 +2543,13 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">期末持有的基金份额</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data
-      ss:Type="Number">2462426</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data
-      ss:Type="Number">2462426</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data
-      ss:Type="Number">2462426</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data
-      ss:Type="Number">2462426</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item5.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item5.count != 0>
+    <#list I.mgerHoldFund.item5.levels as level>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2503,11 +2557,17 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="String">期末持有的基金份额占基金总份额比例</Data></Cell>
-    <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">0.23</Data></Cell>
-    <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">0.23</Data></Cell>
+    <Cell ss:StyleID="s203"><Data ss:Type="String">${I.mgerHoldFund.item6.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item6.count != 0>
+    <#list I.mgerHoldFund.item6.levels as level>
+    <#if extraFundInfo.levelShare == 'Y'>
+    <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C[${(-2*level_index)?string('0')}]"><Data ss:Type="Number"></Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2515,11 +2575,18 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s214"><Data ss:Type="String">T300</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">基金总份额/各级基金相应总份额</Data></Cell>
-    <Cell ss:StyleID="s205"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s215"><Data ss:Type="String">${I.mgerHoldFund.item7.itemName!}</Data></Cell>
+    <#if extraFundInfo.levelShare == 'Y'>
+    <#if I.mgerHoldFund.item7.count != 0>
+    <#list I.mgerHoldFund.item7.levels as level>
+    <Cell ss:StyleID="s205"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s210"/>
-    <Cell ss:StyleID="s205"><Data ss:Type="Number">1231213</Data></Cell>
+    </#list>
+    </#if>
+    <#else>
+    <Cell ss:StyleID="s205"><Data ss:Type="Number">${(I.mgerHoldFund.item7.firstCol.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s210"/>
+    </#if>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2530,8 +2597,10 @@
     <Cell ss:Index="5" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   </#if>
    <Row/>
    <Row/>
+   <#if extraFundInfo.structured == 'N'>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.2 报告期末除基金管理人之外的其他关联方投资本基金的情况</Data></Cell>
    </Row>
@@ -2560,43 +2629,39 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.unmgerHoldFund.levelsCount != 0>
+   <#list I.unmgerHoldFund.levels as level>
+   <#if level_index == 0>
+   <#if level.count != 0>
+   <#list level.list as item>
    <Row>
-    <Cell ss:StyleID="s168"><Data ss:Type="String">IIXXX</Data></Cell>
-    <Cell ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[-8]C[-1]"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">0.23</Data></Cell>
+    <Cell ss:StyleID="s168"><Data ss:Type="String"><#if item_index == 0>IIXXX</#if></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.share!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[${(-8-item_index)?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.shareLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(item.rateLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[-9]C[-1]"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">0.23</Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
+   </#list>
+   </#if>
+   </#if>
+   </#list>
+   </#if>
+   <#else>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.2 报告期末除基金管理人之外的其他关联方投资本基金的情况</Data></Cell>
    </Row>
+   <#if I.unmgerHoldFund.levelsCount != 0>
+   <#list I.unmgerHoldFund.levels as level>
    <Row>
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s217"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s252"><Data ss:Type="String">X级</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s252"><Data ss:Type="String">${level.levelName!}</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
@@ -2625,79 +2690,27 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if level.count != 0>
+   <#list level.list as item>
    <Row>
-    <Cell ss:StyleID="s168"><Data ss:Type="String">IIXXX</Data></Cell>
-    <Cell ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[-10]C[-1]"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">0.23</Data></Cell>
+    <Cell ss:StyleID="s168"><Data ss:Type="String"><#if item_index == 0>IIXXX</#if></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.share!0)?string('0.##')}</Data></Cell>
+    <#if extraFundInfo.levelShare == 'Y'>
+    <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[${(-10-5*level_index-level.offset-item_index)?string('0')}]C[${(-1+2*level_index)?string('0')}]"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[${(-10-5*level_index-level.offset-item_index)?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.shareLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(item.rateLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[-11]C[-1]"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">0.23</Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s217"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s252"><Data ss:Type="String">X级</Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s135"/>
-    <Cell ss:MergeAcross="1" ss:StyleID="s130"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s130"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
-    <Cell ss:StyleID="s116"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s199"><Data ss:Type="String">关联方名称</Data></Cell>
-    <Cell ss:StyleID="s135"><Data ss:Type="String">持有的</Data></Cell>
-    <Cell ss:StyleID="s135"><Data ss:Type="String">持有的基金份额</Data></Cell>
-    <Cell ss:StyleID="s135"><Data ss:Type="String">持有的</Data></Cell>
-    <Cell ss:StyleID="s135"><Data ss:Type="String">持有的基金份额</Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row ss:Height="27">
-    <Cell ss:Index="2" ss:StyleID="s195"/>
-    <Cell ss:StyleID="s195"><Data ss:Type="String">基金份额</Data></Cell>
-    <Cell ss:StyleID="s218"><Data ss:Type="String">占基金/占各级基金相应总份额的比例</Data></Cell>
-    <Cell ss:StyleID="s195"><Data ss:Type="String">基金份额</Data></Cell>
-    <Cell ss:StyleID="s195"><Data ss:Type="String">占基金总份额的比例</Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s168"><Data ss:Type="String">IIXXX</Data></Cell>
-    <Cell ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[-17]C[1]"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">0.23</Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[-18]C[1]"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">0.23</Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
+   </#list>
+   </#if>
+   </#list>
+   </#if>
+   </#if>
    <Row>
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
@@ -2731,25 +2744,20 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.bank.count != 0>
+   <#list I.bank.list as item>
    <Row>
-    <Cell ss:StyleID="s167"><Data ss:Type="String">C300/U300</Data></Cell>
-    <Cell ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="String"><#if item_index == 0>C300/U300</#if></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.bankBalCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.interestIncomeCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.bankBalLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.interestIncomeLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s177"/>
     <Cell ss:StyleID="s177"/>
@@ -2795,27 +2803,25 @@
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.underWrite.current.count != 0>
+   <#list I.underWrite.current.list as item>
    <Row>
+    <#if item_index == 0>
     <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s134"><Data ss:Type="String" x:Ticked="1">000123</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="Number">234342</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <#else>
+    <Cell/>
+    </#if>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
+    <Cell ss:StyleID="s134"><Data ss:Type="String">${item.stockCode!}</Data></Cell>
+    <Cell ss:StyleID="s196"><Data ss:Type="String">${item.stockName!}</Data></Cell>
+    <Cell ss:StyleID="s196"><Data ss:Type="String">${item.distibution!}</Data></Cell>
+    <Cell ss:StyleID="s211"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s134"><Data ss:Type="String" x:Ticked="1">000123</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="Number">234342</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s98"/>
     <Cell ss:Index="6" ss:StyleID="s177"/>
@@ -2848,26 +2854,21 @@
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.underWrite.last.count != 0>
+   <#list I.underWrite.last.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s134"><Data ss:Type="String" x:Ticked="1">000123</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="Number">234342</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
+    <Cell/>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
+    <Cell ss:StyleID="s134"><Data ss:Type="String">${item.stockCode!}</Data></Cell>
+    <Cell ss:StyleID="s196"><Data ss:Type="String">${item.stockName!}</Data></Cell>
+    <Cell ss:StyleID="s196"><Data ss:Type="String">${item.distibution!}</Data></Cell>
+    <Cell ss:StyleID="s211"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s134"><Data ss:Type="String" x:Ticked="1">000123</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">硕鼠硕鼠</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="Number">234342</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">1231213</Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="6" ss:StyleID="s177"/>
     <Cell ss:StyleID="s177"/>

@@ -117,5 +117,73 @@
         AND IBT.FUND_ID = #{fundId}
         AND IBT.PERIOD = #{period}
     </select>
+    
+    <select id="selectIMgerHoldFundData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IMHF.`LEVEL` AS `level`,
+		    IMHF.SORT AS sort,
+		    IMHF.ITEM AS item,
+		    IMHF.AMOUNT AS amount,
+		    IMHF.AMOUNT_LAST AS amountLast 
+		FROM
+		    wp_i_mger_hold_fund IMHF 
+		WHERE
+		    1 = 1  
+		AND IMHF.STATUS = 'Y'
+        AND IMHF.FUND_ID = #{fundId}
+        AND IMHF.PERIOD = #{period}
+        ORDER BY
+            IMHF.SORT
+    </select>
+    
+    <select id="selectIUnmgerHoldFundData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IUHF.`LEVEL` AS `level`,
+		    IUHF.PARTY_SHORT_NAME AS partyShortName,
+		    IUHF.`SHARE` AS `share`,
+		    IUHF.RATE AS rate,
+		    IUHF.SHARE_LAST AS shareLast,
+		    IUHF.RATE_LAST AS rateLast 
+		FROM
+		    wp_i_unmger_hold_fund IUHF 
+		WHERE
+		    1 = 1 
+		AND IUHF.STATUS = 'Y'
+        AND IUHF.FUND_ID = #{fundId}
+        AND IUHF.PERIOD = #{period}
+    </select>
+    
+    <select id="selectIBankData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IB.PARTY_SHORT_NAME AS partyShortName,
+		    IB.BANK_BAL_CURRENT AS bankBalCurrent,
+		    IB.INTEREST_INCOME_CURRENT AS interestIncomeCurrent,
+		    IB.BANK_BAL_LAST AS bankBalLast,
+		    IB.INTEREST_INCOME_LAST AS interestIncomeLast 
+		FROM
+		    wp_i_bank IB 
+		WHERE
+		    1 = 1 
+		AND IB.STATUS = 'Y'
+        AND IB.FUND_ID = #{fundId}
+        AND IB.PERIOD = #{period}
+    </select>
+    
+    <select id="selectIUnderWriteData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IU.PARTY_SHORT_NAME AS partyShortName,
+		    IU.STOCK_CODE AS stockCode,
+		    IU.STOCK_NAME AS stockName,
+		    IU.DISTIBUTION AS distibution,
+		    IU.QUANTITY AS quantity,
+		    IU.AMOUNT AS amount 
+		FROM
+		    wp_i_underwrite IU 
+		WHERE
+		    1 = 1 
+		AND IU.STATUS = 'Y'
+        AND IU.FUND_ID = #{fundId}
+        AND IU.PERIOD = #{period}
+    </select>
 
 </mapper>
