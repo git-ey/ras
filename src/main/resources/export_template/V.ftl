@@ -2638,37 +2638,37 @@
    <Row>
     <Cell ss:StyleID="s104"><Data ss:Type="String">N</Data></Cell>
     <Cell ss:StyleID="s102"><Data ss:Type="String">应付利润</Data></Cell>
-    <#if V300.detail.attr23.count != 0>
-    <#list V300.detail.attr23.list as item>
+    <#if V300.detail.attr24.count != 0>
+    <#list V300.detail.attr24.list as item>
     <Cell ss:StyleID="s284"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
     </#list>
     </#if>
-    <Cell ss:StyleID="s280" ss:Formula="=SUM(RC[${(-V300.detail.attr23.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s280" ss:Formula="=SUM(RC[${(-V300.detail.attr24.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="${(6+V300.intRistPeriodsCount)?string('0')}" ss:StyleID="s102"><Data ss:Type="String">应付利润</Data></Cell>
-    <#if V300.detail.attr23.count != 0>
-    <#list V300.detail.attr23.list as item>
+    <#if V300.detail.attr24.count != 0>
+    <#list V300.detail.attr24.list as item>
     <Cell ss:StyleID="s194"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
     </#list>
     </#if>
-    <Cell ss:StyleID="s260" ss:Formula="=SUM(RC[${(-V300.detail.attr23.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s260" ss:Formula="=SUM(RC[${(-V300.detail.attr24.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s104"><Data ss:Type="String">P10000</Data></Cell>
     <Cell ss:StyleID="s102"><Data ss:Type="String">其他负债</Data></Cell>
-    <#if V300.detail.attr23.count != 0>
-    <#list V300.detail.attr23.list as item>
+    <#if V300.detail.attr25.count != 0>
+    <#list V300.detail.attr25.list as item>
     <Cell ss:StyleID="s284"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
     </#list>
     </#if>
-    <Cell ss:StyleID="s280" ss:Formula="=SUM(RC[${(-V300.detail.attr23.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s280" ss:Formula="=SUM(RC[${(-V300.detail.attr25.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s67"><Data ss:Type="String">control</Data></Cell>
     <Cell ss:Index="${(6+V300.intRistPeriodsCount)?string('0')}" ss:StyleID="s102"><Data ss:Type="String">其他负债</Data></Cell>
-    <#if V300.detail.attr23.count != 0>
-    <#list V300.detail.attr23.list as item>
+    <#if V300.detail.attr25.count != 0>
+    <#list V300.detail.attr25.list as item>
     <Cell ss:StyleID="s194"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
     </#list>
     </#if>
-    <Cell ss:StyleID="s260" ss:Formula="=SUM(RC[${(-V300.detail.attr23.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s260" ss:Formula="=SUM(RC[${(-V300.detail.attr25.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s67"><Data ss:Type="String">control</Data></Cell>
    </Row>
    <Row ss:StyleID="s65">
@@ -3054,7 +3054,7 @@
     <Cell ss:StyleID="s153"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
     <Cell ss:StyleID="s112"><Data ss:Type="String">${item.bondName!}</Data></Cell>
     <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.marketValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=IF(R${(28+V400.detailCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(28+V400.detailCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s203" ss:Formula="=IF(R${(25+V400.hypothesisCount+V400.detailCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(25+V400.hypothesisCount+V400.detailCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s85"><Data ss:Type="Number">${(item.duration!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
@@ -3663,7 +3663,7 @@
     <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">${item.bondName!}</Data></Cell>
     <Cell ss:StyleID="s220"><Data ss:Type="Number">${(item.marketValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(36+V400.detailCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(36+V400.detailCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(33+V400.hypothesisCount+V400.detailCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(33+V400.hypothesisCount+V400.detailCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s222"><Data ss:Type="Number">${(item.duration!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s222"><Data ss:Type="Number">${(item.convexity!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s216"/>
