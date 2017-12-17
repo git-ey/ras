@@ -12125,7 +12125,7 @@
    <Row/>
    <#if U10000.ETF != 'Y'>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12 股票投资收益——买卖股票差价收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12 股票投资收益</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s195"><Data ss:Type="String">项目</Data></Cell>
@@ -12428,7 +12428,7 @@
    </Row>
    <#if U10000.ETF != 'Y'>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14 债券投资收益——买卖债券差价收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14 债券投资收益</Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
@@ -12769,39 +12769,8 @@
     <Cell ss:StyleID="s208"/>
    </Row>
    <Row/>
-   <Row ss:StyleID="s194">
-    <Cell ss:Index="2" ss:StyleID="s210"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
-    <Cell ss:StyleID="s196"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s93">
-    <Cell ss:Index="2" ss:StyleID="s197"/>
-    <Cell ss:StyleID="s198"/>
-    <Cell ss:StyleID="s198"/>
-   </Row>
    <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="String">卖出贵金属成交总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S3.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">减：卖出贵金属成本总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S4.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">买卖贵金属差价收入</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s203"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
+    <Cell ss:Index="2"><Data ss:Type="String">无</Data></Cell>
     <Cell ss:StyleID="s214"/>
     <Cell ss:StyleID="s214"/>
    </Row>
