@@ -1,5 +1,121 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="IExportMapper">
+  
+    <select id="selectIFundRelatedPartyData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    sfrp.PARTY_FULL_NAME AS partyFullName,
+		    sfrp.RELATIONSHIP AS relationship 
+		FROM
+		    SYS_FUND_RELATED_PARTY sfrp 
+		WHERE
+		    1 = 1 
+		    AND sfrp.FUND_ID = #{fundId}
+		    AND sfrp.ACTIVE = 'Y'
+    </select>
+    
+    <select id="selectIRpData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IRP.RP_NAME AS rpName,
+		    IRP.RELATIONSHIP AS relationship 
+		FROM
+		    wp_i_rp IRP 
+		WHERE
+		    1 = 1 
+		AND IRP.STATUS = 'Y'
+        AND IRP.FUND_ID = #{fundId}
+        AND IRP.PERIOD = #{period}
+        ORDER BY
+            IRP.SORT
+    </select>
+    
+    <select id="selectITransactionData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IT.PARTY_SHORT_NAME AS partyShortName,
+		    IT.AMOUNT_CURRENT AS amountCurrent,
+		    IT.RATE_CURRENT AS rateCurrent,
+		    IT.AMOUNT_LAST AS amountLast,
+		    IT.RATE_LAST AS rateLast 
+		FROM
+		    wp_i_transaction IT 
+		WHERE
+		    1 = 1 
+		AND IT.STATUS = 'Y'
+        AND IT.FUND_ID = #{fundId}
+        AND IT.PERIOD = #{period}
+        AND IT.TYPE = #{type}
+    </select>
+    
+    <select id="selectN500RelatedData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    N500R.RELEATED_PARTY AS relatedParty,
+		    N500R.COMMISSION AS commission,
+		    N500R.PROPORTION_TOTAL AS proportionTotal,
+		    N500R.END_BALANCE AS endBalance,
+		    N500R.PROPORTION_BALANCE AS proportionBalance 
+		FROM
+		    wp_n500_related N500R
+		WHERE
+		    1 = 1 
+		AND N500R.STATUS = 'Y'
+        AND N500R.FUND_ID = #{fundId}
+        AND N500R.PERIOD = #{period}
+    </select>
+    
+    <select id="selectIManageFeeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IMF.TPYE AS tpye,
+		    IMF.ITEM AS item,
+		    IMF.AMOUNT_CURRENT AS amountCurrent,
+		    IMF.AMOUNT_LAST AS amountLast 
+		FROM
+		    wp_i_mge_fee IMF 
+		WHERE
+		    1 = 1
+		AND IMF.STATUS = 'Y'
+        AND IMF.FUND_ID = #{fundId}
+        AND IMF.PERIOD = #{period}
+    </select>
+    
+    <select id="selectISalesFeeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    ISF.`LEVEL` AS `level`,
+		    ISF.PARTY_SHORT_NAME AS partyShortName,
+		    ISF.SALES_COMMISION_AMT AS salesCommisionAmt,
+		    ISF.SALES_COMMISION_BAL AS salesCommisionBal,
+		    ISF.SALES_COMMISION_AMT_LAST AS salesCommisionAmtLast,
+		    ISF.SALES_COMMISION_BAL_LAST AS salesCommisionBalLast 
+		FROM
+		    wp_i_sales_fee ISF 
+		WHERE
+		    1 = 1 
+		AND ISF.STATUS = 'Y'
+        AND ISF.FUND_ID = #{fundId}
+        AND ISF.PERIOD = #{period}
+    </select>
+    
+    <select id="selectIBankThxData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IBT.PARTY_SHORT_NAME AS partyShortName,
+		    IBT.BUY_BOND_AMT_RP AS buyBondAmtRp,
+		    IBT.SELL_BOND_AMT_RP AS sellBondAmtRp,
+		    IBT.ANTI_REPO_AMT_RP AS antiRepoAmtRp,
+		    IBT.ANTI_REPO_INT_RP AS antiRepoIntRp,
+		    IBT.SELL_REPO_AMT_RP AS sellRepoAmtRp,
+		    IBT.SELL_REPO_INT_RP AS sellRepoIntRp,
+		    IBT.BUY_BOND_AMT_LAST AS buyBondAmtLast,
+		    IBT.SELL_BOND_AMT_LAST AS sellBondAmtLast,
+		    IBT.ANTI_REPO_AMT_LAST AS antiRepoAmtLast,
+		    IBT.ANTI_REPO_INT_LAST AS antiRepoIntLast,
+		    IBT.SELL_REPO_AMT_LAST AS sellRepoAmtLast,
+		    IBT.SELL_REPO_INT_LAST AS sellRepoIntLast 
+		FROM
+		    wp_i_bank_thx IBT 
+		WHERE
+		    1 = 1 
+		AND IBT.STATUS = 'Y'
+        AND IBT.FUND_ID = #{fundId}
+        AND IBT.PERIOD = #{period}
+    </select>
 
 </mapper>
