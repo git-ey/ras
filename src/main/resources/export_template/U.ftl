@@ -3963,6 +3963,19 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
+  <!-- 黄底黑字居左带表格边框 -->
+  <Style ss:ID="s10090">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+   <NumberFormat/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="U">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s78" ss:DefaultRowHeight="13.5">
@@ -12140,15 +12153,15 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">卖出股票成交总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S3.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S4.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">减：卖出股票成本总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S4.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S5.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12202,8 +12215,8 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">股票投资收益——申购差价收入</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S3.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12238,15 +12251,15 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">卖出股票成交总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S3.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S4.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">减：卖出股票成本总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S4.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S5.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12282,22 +12295,22 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">赎回基金份额对价总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S5.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S6.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">减：现金支付赎回款总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S6.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S7.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S7.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">减：卖出股票成本总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S7.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S7.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S8.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S8.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12333,29 +12346,29 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">申购基金份额总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S8.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S8.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S9.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S9.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">减：现金支付申购款总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S9.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S9.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="String">减：申购股票成本总额</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S10.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S10.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="String">减：申购股票成本总额</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S11.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S11.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
+    <Cell ss:StyleID="s10090"><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S12.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.stocks.S12.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12447,22 +12460,22 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">卖出债券（、债转股及债券到期兑付）成交金额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S3.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S4.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：卖出债券（、债转股及债券到期兑付）成本总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S4.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S5.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：应收利息总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S5.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S6.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12519,8 +12532,8 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">债券投资收益——申购差价收入</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S3.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12555,22 +12568,22 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">卖出债券（、债转股及债券到期兑付）成交金额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S3.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S4.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：卖出债券（、债转股及债券到期兑付）成本总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S4.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S5.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：应收利息总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S5.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S6.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12606,29 +12619,29 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">赎回基金份额对价总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S6.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S7.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S7.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：现金支付赎回款总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S7.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S7.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">减：赎回债券成本总额</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S8.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S8.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">减：赎回债券应收利息总额</Data></Cell>
+    <Cell ss:StyleID="s215"><Data ss:Type="String">减：赎回债券成本总额</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S9.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S9.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
+    <Cell ss:StyleID="s215"><Data ss:Type="String">减：赎回债券应收利息总额</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S10.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S10.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12664,36 +12677,36 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">申购基金份额对价总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S10.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S10.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S11.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S11.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：现金支付申购款总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S11.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S11.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">减：申购债券成本总额</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S12.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S12.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">减：申购债券应收利息总额</Data></Cell>
+    <Cell ss:StyleID="s215"><Data ss:Type="String">减：申购债券成本总额</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S13.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S13.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s215"><Data ss:Type="String">减：申购债券应收利息总额</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S14.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S14.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
+    <Cell ss:StyleID="s10090"><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S15.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.bond.S15.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12816,8 +12829,8 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">贵金属投资收益——申购差价收入</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S3.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12852,15 +12865,15 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">卖出贵金属成交总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S3.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S4.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：卖出贵金属成本总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S4.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S5.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12896,22 +12909,22 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">赎回贵金属份额对价总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S5.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S6.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：现金支付赎回款总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S6.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S7.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S7.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：赎回贵金属成本总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S7.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S7.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S8.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S8.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12947,29 +12960,29 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">申购贵金属份额总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S8.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S8.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S9.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S9.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s215"><Data ss:Type="String">减：现金支付申购款总额</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S9.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S9.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">减：申购贵金属成本总额</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S10.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S10.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s215"><Data ss:Type="String">减：申购贵金属成本总额</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S11.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S11.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
+    <Cell ss:StyleID="s10090"><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S12.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.gold.S12.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12991,7 +13004,7 @@
     <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.17 . 衍生工具收益</Data></Cell>
    </Row>
    <Row>
-    <Cell><Data ss:Type="String">7.4.7.17.1 衍生工具收益——买卖权证差价收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.17.1 衍生工具收益——买卖权证差价收入</Data></Cell>
    </Row>
    <Row/>
    <Row>
@@ -13034,7 +13047,7 @@
     <Cell ss:Index="3" ss:StyleID="s93"/>
    </Row>
    <Row>
-    <Cell><Data ss:Type="String">7.4.7.17.2 衍生工具收益——其他投资收益</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.17.2 衍生工具收益——其他投资收益</Data></Cell>
    </Row>
    <Row/>
    <Row>
@@ -13047,13 +13060,17 @@
     <Cell ss:StyleID="s198"/>
     <Cell ss:StyleID="s198"/>
    </Row>
+   <#if U10000.di_other_count != 0>
+   <#list U10000.di_other_list as item>
    <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="String">减：卖出权证成本总额</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.di.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(U10000.di.S3.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String"><#if item_index == 0>U310</#if></Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.S3.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s216"/>
    </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s93"/>
    </Row>
