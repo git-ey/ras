@@ -157,6 +157,17 @@ public class ReportService implements ReportManager {
 	}
 
 	/**
+	 * 获取日期年月日
+	 * 
+	 * @param date
+	 * @return
+	 */
+	private String getDateStr(Date date) {
+		return DateUtil.getDateTimeStr(date, "yyyy") + "年" + DateUtil.getDateTimeStr(date, "MM") + "月"
+				+ DateUtil.getDateTimeStr(date, "dd");
+	}
+
+	/**
 	 * 获取报告日期信息
 	 * 
 	 * @param period
@@ -176,38 +187,49 @@ public class ReportService implements ReportManager {
 		Date yearFirstDate = DateUtil.fomatDate(year + "0101", "yyyyMMdd");
 		// 期间日期
 		Date periodDate = DateUtil.fomatDate(period, "yyyyMMdd");
+		
 		// 本期资产负债表日
 		infoMap.put("CURRENT_BS_DATE", periodDate);
+		
 		// 本期年
 		infoMap.put("CURRENT_YEAR", year);
-		// 本期年度
-		infoMap.put("CURRENT_PERIOD", year + "年度");
+		
 		// 本期起始日来源&&本期起始日文本
 		if (dateFrom.getTime() >= yearFirstDate.getTime() && dateFrom != dateTransform) {
 			infoMap.put("CURRENT_INIT_SOURCE", CONTRACT_BEGIN_DATE);
-			infoMap.put("CURRENT_INIT_TEXT", "基金合同生效日");
+			infoMap.put("CURRENT_INIT_TEXT", "（基金合同生效日）");
 		} else if (dateFrom.getTime() >= yearFirstDate.getTime() && dateFrom == dateTransform) {
 			infoMap.put("CURRENT_INIT_SOURCE", TRANSFORM_DATE);
-			infoMap.put("CURRENT_INIT_TEXT", "基金转型日");
+			infoMap.put("CURRENT_INIT_TEXT", "（基金合同转型日）");
 		} else {
 			infoMap.put("CURRENT_INIT_SOURCE", BALANCE_SHEET_DATE);
 			infoMap.put("CURRENT_INIT_TEXT", "");
 		}
+		
 		// 本期起始日
 		if (infoMap.get("CURRENT_INIT_SOURCE").equals(BALANCE_SHEET_DATE)) {
 			infoMap.put("CURRENT_INIT_DATE", yearFirstDate);
 		} else {
 			infoMap.put("CURRENT_INIT_DATE", dateFrom);
 		}
+		
 		// 本期截止日&&本期截止日来源
 		if (dateTo == null || dateTo.getTime() > periodDate.getTime()) {
 			infoMap.put("CURRENT_END_DATE", periodDate);
 			infoMap.put("CURRENT_END_SOURCE", "资产负债表日");
-
 		} else {
 			infoMap.put("CURRENT_END_DATE", dateTo);
 			infoMap.put("CURRENT_END_SOURCE", "合同终止日");
 		}
+
+		// 本期年度
+		if (infoMap.get("CURRENT_INIT_DATE") == yearFirstDate && infoMap.get("CURRENT_END_DATE") == dateTo) {
+			infoMap.put("CURRENT_PERIOD", year + "年度");
+		} else {
+			infoMap.put("CURRENT_PERIOD", this.getDateStr((Date) infoMap.get("CURRENT_INIT_DATE"))
+					+ infoMap.get("CURRENT_INIT_TEXT") + "至" + this.getDateStr((Date) infoMap.get("CURRENT_END_DATE")));
+		}
+
 		// 本期截止日文本
 		infoMap.put("CURRENT_END_TXT", "");
 		return infoMap;
@@ -266,7 +288,7 @@ public class ReportService implements ReportManager {
 
 		// 报告导出模板根路径
 		String reportTempRootPath = configService.findByCode(REP_TEMP_PATH);
-		
+
 		// 报告导出路径
 		String reportOutBoundPath = pd.getString("OUTBOND_PATH");
 
@@ -318,11 +340,10 @@ public class ReportService implements ReportManager {
 			} else {
 				p5TempName = p5TempName + tempNameKey + ".docx";
 			}
-			
+
 			// 一段一段的整合报告
 
 		}
-
 
 		// 设置消息
 		pd.put("RESULT", "S");
