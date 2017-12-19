@@ -13066,7 +13066,7 @@
     <Cell ss:StyleID="s75"><Data ss:Type="String"><#if item_index == 0>U310</#if></Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">${item.item!}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.S3.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s216"/>
    </Row>
    </#list>

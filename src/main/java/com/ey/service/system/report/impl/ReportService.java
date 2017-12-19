@@ -13,6 +13,7 @@ import com.ey.entity.Page;
 import com.ey.service.system.config.ConfigManager;
 import com.ey.service.system.dictionaries.DictionariesManager;
 import com.ey.service.system.report.ReportManager;
+import com.ey.service.wp.output.ReportExportManager;
 import com.ey.util.DateUtil;
 import com.ey.util.PageData;
 import com.google.common.collect.Maps;
@@ -31,6 +32,8 @@ public class ReportService implements ReportManager {
 	private DictionariesManager dictionariesManager;
 	@Resource(name = "configService")
 	private ConfigManager configService;
+    @Resource(name = "reportExportService")
+    private ReportExportManager reportExportService;
 
 	private final String CONTRACT_BEGIN_DATE = "合同生效日";
 
@@ -306,7 +309,7 @@ public class ReportService implements ReportManager {
 		String p5TempName = p5.getString("NAME_EN");
 
 		// 模板一期、二期关键字
-		String tempNameKey = "_YOY";
+		String tempNameKey;
 
 		// 遍历处理基金导出
 		for (PageData pfund : funds) {
@@ -325,9 +328,9 @@ public class ReportService implements ReportManager {
 			// P2
 			// 如果选择此种规则，则按照基金区分模板
 			if (pd.getString("P2").equals("P2_FSO_BF")) {
-				p2TempName = p2TempName + tempNameKey + "_" + pfund.getString("FUND_ID") + ".docx";
+				p2TempName = p2TempName + tempNameKey + "_" + pfund.getString("FUND_ID") + ".xml";
 			} else {
-				p2TempName = p2TempName + tempNameKey + ".docx";
+				p2TempName = p2TempName + tempNameKey + ".xml";
 			}
 			// P3
 			p3TempName = p3TempName + tempNameKey + ".ftl";
@@ -342,7 +345,14 @@ public class ReportService implements ReportManager {
 			}
 
 			// 一段一段的整合报告
-
+			System.out.println(dateMap);
+			System.out.println(p1TempName);
+			System.out.println(p2TempName);
+			System.out.println(p3TempName);
+			System.out.println(p4TempName);
+			System.out.println(p5TempName);
+			System.out.println(reportTempRootPath);
+			System.out.println(reportOutBoundPath);
 		}
 
 		// 设置消息
