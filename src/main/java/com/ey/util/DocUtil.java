@@ -11,7 +11,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTBody;
-import org.w3c.dom.Node;
 
 /**
  * doc文档处理工具类
@@ -47,7 +46,7 @@ public class DocUtil {
 		try(XWPFDocument xwpfDocument = new XWPFDocument(opcPackage)){
 		    
 		    CTBody ctBody = xwpfDocument.getDocument().getBody();
-		    Node domNode = xwpfDocument.getDocument().getDomNode();
+//		    Node domNode = xwpfDocument.getDocument().getDomNode();
 		    bodyXmlStr = ctBody.xmlText();
 		    
 		    return bodyXmlStr;
@@ -83,7 +82,7 @@ public class DocUtil {
 	public static void main(String[] args) {
 		
 		try {
-			String str = getXml2003Content("D:\\EY_Report_Template\\P2_FSO_DEF.xml", "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
+			String str = getXml2003Content("D:\\EY_Report_Template\\P4_FSO_DEF.xml", "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
 			System.out.println(str);
 		} catch (Exception e) {
 			e.printStackTrace();

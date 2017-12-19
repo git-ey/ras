@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -135,13 +136,37 @@ public class ReportExportService implements ReportExportManager {
         Map<String,Object> partName = (Map<String,Object>)exportParam.get("partName");
         content.put("P1", this.processP1(exportParam, partName));
         content.put("P2", this.processP2(exportParam, partName));
+        content.put("P3", this.processP3(exportParam, partName));
+        content.put("P4", this.processP4(exportParam, partName));
+        content.put("P5", this.processP5(exportParam, partName));
     }
     
     private String processP1(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException, TemplateException{
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P1")));
     }
     
-    private String processP2(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException, TemplateException{
-        return DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P2")), "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
+    private String processP2(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException{
+        String xml2003Content = DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P2")), "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
+        if(StringUtils.isEmpty(xml2003Content)) {
+            throw new IOException("Can not get content from P2 template");
+        }
+        return xml2003Content;
     }
+    
+    private String processP3(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException, TemplateException{
+        return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
+    }
+    
+    private String processP4(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException{
+        String xml2003Content = DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P4")), "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
+        if(StringUtils.isEmpty(xml2003Content)) {
+            throw new IOException("Can not get content from P4 template");
+        }
+        return xml2003Content;
+    }
+    
+    private String processP5(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException, TemplateException{
+        return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P5")));
+    }
+    
 }

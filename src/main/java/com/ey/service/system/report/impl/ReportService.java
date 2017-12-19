@@ -331,21 +331,21 @@ public class ReportService implements ReportManager {
 			// P2
 			// 如果选择此种规则，则按照基金区分模板
 			if (pd.getString("P2").equals("P2_FSO_BF")) {
-				p2TempName = p2TempName + tempNameKey + "_" + pfund.getString("FUND_ID") + ".xml";
+				p2TempName = p2TempName + "_" + pfund.getString("FUND_ID") + ".xml";
 			} else {
 				p2TempName = p2TempName + ".xml";
 			}
 			// P3
 			p3TempName = p3TempName + tempNameKey + ".ftl";
 			// P4
-			p4TempName = p4TempName + tempNameKey + ".ftl";
-			// P5
 			// 如果选择此种规则，则按照基金区分模板
-			if (pd.getString("P5").equals("P5_FSO_BF")) {
-				p5TempName = p5TempName + tempNameKey + "_" + pfund.getString("FUND_ID") + ".xml";
+			if (pd.getString("P4").equals("P4_FSO_BF")) {
+			    p4TempName = p4TempName + "_" + pfund.getString("FUND_ID") + ".xml";
 			} else {
-				p5TempName = p5TempName + ".xml";
+			    p4TempName = p4TempName + ".xml";
 			}
+			// P5
+			p5TempName = p5TempName + tempNameKey + ".ftl";
 
 			// 一段一段的整合报告
 			exportParam.put("dateInfo", dateMap);
