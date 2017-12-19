@@ -48,8 +48,6 @@ public class DocUtil {
 		    
 		    CTBody ctBody = xwpfDocument.getDocument().getBody();
 		    Node domNode = xwpfDocument.getDocument().getDomNode();
-		    System.out.println(domNode.getTextContent());
-		    
 		    bodyXmlStr = ctBody.xmlText();
 		    
 		    return bodyXmlStr;
