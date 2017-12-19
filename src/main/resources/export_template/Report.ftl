@@ -4991,12 +4991,12 @@
     </w:docPr>
     <w:body>
         <!-- P1 -->
-        ${P1!}
+        ${content.P1!}
         <!-- 7.4 报表附注 -->
         <wx:sect>
             <wx:sub-section>
                 <!-- P2 -->
-                ${P2!}
+                ${content.P2!}
                 <!-- P3 -->
                 <wx:sub-section>
                     <w:p wsp:rsidR="009D6255" wsp:rsidRPr="005C680C" wsp:rsidRDefault="009D6255" wsp:rsidP="00AA12FD">

@@ -334,7 +334,7 @@ public class ExportController extends BaseController {
         this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);   
         this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);   
         this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);   
-        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, pd);
+//        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, pd);
         
         final String zipFileName = fileIdentifier + ".zip";
         final String zipFileFullName = resourcePath + zipFileName;

@@ -1,6 +1,7 @@
 package com.ey.service.system.report.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import com.ey.service.system.report.ReportManager;
 import com.ey.service.wp.output.ReportExportManager;
 import com.ey.util.DateUtil;
 import com.ey.util.PageData;
+import com.ey.util.fileexport.Constants;
 import com.google.common.collect.Maps;
 
 /**
@@ -313,6 +315,7 @@ public class ReportService implements ReportManager {
 
 		// 遍历处理基金导出
 		for (PageData pfund : funds) {
+		    Map<String, Object> exportParam = new HashMap<>();
 			// 获取日期信息
 			dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"),
 					(Date) pfund.get("DATE_TRANSFORM"));
@@ -330,7 +333,7 @@ public class ReportService implements ReportManager {
 			if (pd.getString("P2").equals("P2_FSO_BF")) {
 				p2TempName = p2TempName + tempNameKey + "_" + pfund.getString("FUND_ID") + ".xml";
 			} else {
-				p2TempName = p2TempName + tempNameKey + ".xml";
+				p2TempName = p2TempName + ".xml";
 			}
 			// P3
 			p3TempName = p3TempName + tempNameKey + ".ftl";
@@ -339,20 +342,27 @@ public class ReportService implements ReportManager {
 			// P5
 			// 如果选择此种规则，则按照基金区分模板
 			if (pd.getString("P5").equals("P5_FSO_BF")) {
-				p5TempName = p5TempName + tempNameKey + "_" + pfund.getString("FUND_ID") + ".docx";
+				p5TempName = p5TempName + tempNameKey + "_" + pfund.getString("FUND_ID") + ".xml";
 			} else {
-				p5TempName = p5TempName + tempNameKey + ".docx";
+				p5TempName = p5TempName + ".xml";
 			}
 
 			// 一段一段的整合报告
-			System.out.println(dateMap);
-			System.out.println(p1TempName);
-			System.out.println(p2TempName);
-			System.out.println(p3TempName);
-			System.out.println(p4TempName);
-			System.out.println(p5TempName);
-			System.out.println(reportTempRootPath);
-			System.out.println(reportOutBoundPath);
+			exportParam.put("dateInfo", dateMap);
+			exportParam.put("PEROID", period);
+			exportParam.put("FUND_ID", pfund.getString("FUND_ID"));
+			
+			Map<String,Object> partName = new HashMap<>();
+			partName.put("P1", p1TempName);
+			partName.put("P2", p2TempName);
+			partName.put("P3", p3TempName);
+			partName.put("P4", p4TempName);
+			partName.put("P5", p5TempName);
+			exportParam.put("partName", partName);
+			exportParam.put("reportTempRootPath", reportTempRootPath);
+			exportParam.put("reportOutBoundPath", reportOutBoundPath);
+			
+			this.reportExportService.doExport(reportOutBoundPath, Constants.EXPORT_AIM_FILE_NAME_REPORT, exportParam);
 		}
 
 		// 设置消息

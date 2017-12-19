@@ -6013,7 +6013,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币${(H10000.note.parValueLast)?string(',###.##')}元，公允价值为人民币${(H10000.note.mktValue)?string(',###.##')}元。</Data></Cell>
+    <Cell ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币${(H10000.note.parValueLast!0)?string(',###.##')}元，公允价值为人民币${(H10000.note.mktValue!0)?string(',###.##')}元。</Data></Cell>
     <Cell ss:StyleID="s106"/>
     <Cell ss:StyleID="s195"/>
     <Cell ss:StyleID="s195"/>
@@ -6172,7 +6172,7 @@
     <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币${(H10000.note.parValueLast)?string(',###.##')}元，公允价值为人民币${(H10000.note.mktValue)?string(',###.##')}元。</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币${(H10000.note.parValueLast!0)?string(',###.##')}元，公允价值为人民币${(H10000.note.mktValue!0)?string(',###.##')}元。</Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
    <Row>
@@ -6554,7 +6554,7 @@
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row ss:StyleID="s189">
-    <Cell ss:Index="2"><Data ss:Type="String">注：债券为净价估值，买入返售为全价交易，${H10000.interestDetail.returnDays!}买断式逆回购交易债券全价估值总额为人民币${(H10000.note.valuationPriceTotal)?string(',###.##')} 元。</Data></Cell>
+    <Cell ss:Index="2"><Data ss:Type="String">注：债券为净价估值，买入返售为全价交易，${H10000.interestDetail.returnDays!}买断式逆回购交易债券全价估值总额为人民币${(H10000.note.valuationPriceTotal!0)?string(',###.##')} 元。</Data></Cell>
     <Cell ss:StyleID="s190"/>
     <Cell ss:StyleID="s190"/>
     <Cell ss:StyleID="s190"/>

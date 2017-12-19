@@ -1,7 +1,6 @@
 package com.ey.service.wp.output.impl;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
 import com.ey.service.wp.output.ReportExportManager;
+import com.ey.util.DocUtil;
 import com.ey.util.PageData;
 import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
@@ -84,54 +84,64 @@ public class ReportExportService implements ReportExportManager {
      * @return
      * @throws Exception
      */
-    private String generateFileContent(PageData pd, Map<String, String> fundInfo) throws Exception {
+    private String generateFileContent(Map<String,Object> exportParam, Map<String, String> fundInfo) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
+        Map<String, Object> content = new HashMap<String, Object>();
         
-        String fundId = pd.getString("FUND_ID");
-        String periodStr = pd.getString("PEROID");
+        String fundId = String.valueOf(exportParam.get("FUND_ID"));
+        String periodStr = String.valueOf(exportParam.get("PEROID"));
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
         
-        dataMap.put("period", period);
-        dataMap.put("month", month);
-        dataMap.put("day", day);
-        dataMap.put("fundId", fundId);
-        this.processParts(dataMap, pd);
+        exportParam.put("period", period);
+        exportParam.put("month", month);
+        exportParam.put("day", day);
+        exportParam.put("fundId", fundId);
+        this.processParts(exportParam, content);
+        
+        exportParam.forEach((k,v) -> {
+            dataMap.put(k, v);
+        });
+        dataMap.put("content", content);
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_REPORT);
     }
     
     @Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, PageData pd) throws Exception {
-        String fundId = pd.getString("FUND_ID");
-        String periodStr = pd.getString("PEROID");
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, Map<String,Object> exportParam) throws Exception {
+        String fundId = String.valueOf(exportParam.get("FUND_ID"));
+        String periodStr = String.valueOf(exportParam.get("PEROID"));
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String fileStr = this.generateFileContent(pd, fundInfo);
+        String fileStr = this.generateFileContent(exportParam, fundInfo);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_REPORT, fundInfo), fileStr);
         return true;
     }
 
     @Override
-    public boolean doExport(String folederName, String fileName, PageData pd) throws Exception {
-        String fundId = pd.getString("FUND_ID");
-        String periodStr = pd.getString("PEROID");
+    public boolean doExport(String folederName, String fileName, Map<String,Object> exportParam) throws Exception {
+        String fundId = String.valueOf(exportParam.get("FUND_ID"));
+        String periodStr = String.valueOf(exportParam.get("PEROID"));
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String fileStr = this.generateFileContent(pd, fundInfo);
+        String fileStr = this.generateFileContent(exportParam, fundInfo);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), fileStr);
         return true;
     }
     
-    private void processParts(Map<String, Object> dataMap, PageData pd) throws Exception{
-        String templateNameP1 = "P1_FSO_DEF_YOY.ftl";
-        dataMap.put("P1", this.processP1(templateNameP1, pd));
+    private void processParts(Map<String, Object> exportParam, Map<String,Object> content) throws Exception{
+        @SuppressWarnings("unchecked")
+        Map<String,Object> partName = (Map<String,Object>)exportParam.get("partName");
+        content.put("P1", this.processP1(exportParam, partName));
+        content.put("P2", this.processP2(exportParam, partName));
     }
     
-    private String processP1(String templateName, PageData pd) throws IOException, TemplateException, URISyntaxException {
-        Map<String,Object> dataMap = new HashMap<>();
-        //Map<String, Object> queryMap = this.createBaseQueryMap(pd);
-        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.REPORT_TEMPLATES_FOLDER_PATH, templateName);
+    private String processP1(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException, TemplateException{
+        return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P1")));
+    }
+    
+    private String processP2(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException, TemplateException{
+        return DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P2")), "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
     }
 }

@@ -158,6 +158,7 @@
 	<!-- 报告导出基金范围列表 -->
 	<select id="listReportFund" parameterType="pd" resultType="pd">
 		select sf.FUND_CODE,	
+		       sf.FUND_ID,
 		       sf.FIRM_CODE,	
 		       sf.SHORT_NAME,	
 		       sf.FULL_NAME,	
