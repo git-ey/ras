@@ -788,9 +788,9 @@ public class UExportService extends BaseExportService implements UExportManager 
             U10000DividendMetaDataList = new ArrayList<>(); 
         }
         for(Map<String,Object> map : U10000DividendMetaDataList) {
-            if("股票投资产生的股利收益".equals(map.get("item"))) {
+            if("股票".equals(map.get("item"))) {
                 dividend.put("S1", map);
-            }else if("基金投资产生的股利收益".equals(map.get("item"))) {
+            }else if("基金".equals(map.get("item"))) {
                 dividend.put("S2", map);
             }
         }
