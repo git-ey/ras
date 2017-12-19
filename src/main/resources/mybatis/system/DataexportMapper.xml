@@ -18,7 +18,7 @@
         (SELECT COUNT(*) FROM wp_c c where c.FUND_ID = sfi.FUND_ID AND c.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) CFLAG,
         (SELECT COUNT(*) FROM wp_e e where e.FUND_ID = sfi.FUND_ID AND e.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) EFLAG,
         (SELECT COUNT(*) FROM wp_g g where g.FUND_ID = sfi.FUND_ID AND g.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) GFLAG,
-        (SELECT COUNT(*) FROM wp_h h where h.FUND_ID = sfi.FUND_ID AND h.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) HFALG,
+        (SELECT COUNT(*) FROM wp_h h where h.FUND_ID = sfi.FUND_ID AND h.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) HFLAG,
         (SELECT COUNT(*) FROM wp_n n where n.FUND_ID = sfi.FUND_ID AND n.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) NFLAG,
         (SELECT COUNT(*) FROM wp_p p where p.FUND_ID = sfi.FUND_ID AND p.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) PFLAG,
         (SELECT COUNT(*) FROM wp_t t where t.FUND_ID = sfi.FUND_ID AND t.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) TFLAG,
