@@ -106,6 +106,10 @@ public class StockLimitInfoService implements StockLimitInfoManager{
 				pd.put("SUBSCRIBE_DATE", map.get("SUBSCRIBE_DATE"));
 				pd.put("SUBSCRIBE_PRICE", map.get("SUBSCRIBE_PRICE"));
 				pd.put("LEFTING_DATE", map.get("LEFTING_DATE"));
+				pd.put("SUSPENSION_DATE", map.get("SUSPENSION_DATE"));
+				pd.put("SUSPENSION_INFO", "SUSPENSION_INFO");
+				pd.put("RESUMPTION_DATE", "RESUMPTION_DATE");
+				pd.put("RESMPATION_OPEN_PRICE", "RESMPATION_OPEN_PRICE");
 				pd.put("CREATOR", map.get("CREATOR"));
 				pd.put("REVIEWER", map.get("REVIEWER"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
