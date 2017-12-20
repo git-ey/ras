@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.service.wp.bondlimitinfo.BondLimitInfoManager;
 import com.ey.util.AppUtil;
 import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
-import com.ey.service.wp.bondlimitinfo.BondLimitInfoManager;
 
 /** 
  * 说明： 债券流通受限信息
@@ -112,9 +114,9 @@ public class BondLimitInfoService implements BondLimitInfoManager{
 				pd.put("SUBSCRIBE_PRICE", map.get("SUBSCRIBE_PRICE"));
 				pd.put("LIFTING_DATE", map.get("LIFTING_DATE"));
 				pd.put("SUSPENSION_DATE", map.get("SUSPENSION_DATE"));
-				pd.put("SUSPENSION_INFO", "SUSPENSION_INFO");
-				pd.put("RESUMPTION_DATE", "RESUMPTION_DATE");
-				pd.put("RESMPATION_OPEN_PRICE", "RESMPATION_OPEN_PRICE");
+				pd.put("SUSPENSION_INFO", map.get("SUSPENSION_INFO"));
+				pd.put("RESUMPTION_DATE", map.get("RESUMPTION_DATE"));
+				pd.put("RESMPATION_OPEN_PRICE", map.get("RESMPATION_OPEN_PRICE"));
 				pd.put("CREATOR", "CREATOR");
 				pd.put("REVIEWER", "REVIEWER");
 				pds.add(pd);
