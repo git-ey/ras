@@ -186,4 +186,42 @@
 		</if>
 	</select>
 	
+	<!-- 报告需要的基金额外信息 -->
+	<!-- daigaokuo@hotmail.com -->
+	<!-- 2017-12-20 -->
+	<select id="selectReportExtendInfo" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    sm.FULL_NAME AS mgrFullName,
+		    sfs.SIGNOFF_1 as signOff1,
+		    sfs.SIGNOFF_2 as signOff2
+		FROM
+		    sys_fund_info sfi
+	    LEFT JOIN sys_mgrcompany sm ON sm.COMPANY_CODE = sfi.FIRM_CODE 
+	    LEFT JOIN sys_fund_signoff sfs ON sfs.FUND_ID = sfi.FUND_ID
+		WHERE
+		    1 = 1 
+	    AND sfi.ACTIVE = 'Y' 
+	    AND sm.ACTIVE = sfi.ACTIVE
+	    AND sfs.ACTIVE = 'Y'
+	    AND sfi.FUND_ID = #{fundId}
+	    AND sfs.PERIOD = #{period}
+	    LIMIT 1
+	</select>
+	
+	<!-- BS数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-20 -->
+    <select id="selectBsData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    eb.BSCODE as bsCode,
+		    IF(eb.BEG_BALANCE = 0, null, eb.BEG_BALANCE) as beginBalance,
+		    IF(eb.END_BALANCE = 0, null, eb.END_BALANCE) as endBalance
+		FROM
+		    ey_bs eb 
+		WHERE
+		    1 = 1 
+		AND eb.FUND_ID = #{fundId}
+		AND eb.PERIOD = #{period}
+    </select>
+	
 </mapper>

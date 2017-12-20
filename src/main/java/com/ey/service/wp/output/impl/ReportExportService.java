@@ -1,6 +1,7 @@
 package com.ey.service.wp.output.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.service.wp.output.ReportExportManager;
 import com.ey.util.DocUtil;
-import com.ey.util.PageData;
 import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
 import com.ey.util.fileexport.FreeMarkerUtils;
@@ -35,22 +35,6 @@ public class ReportExportService implements ReportExportManager {
      */
     @Resource(name = "daoSupport")
     protected DaoSupport dao;
-    
-    /**
-     * 构建基本查询Map
-     * @author Dai Zong 2017年9月12日
-     * 
-     * @param pd
-     * @return
-     */
-    protected Map<String,Object> createBaseQueryMap(PageData pd){
-        String fundId = pd.getString("FUND_ID");
-        String periodStr = pd.getString("PEROID");
-        Map<String, Object> res = new HashMap<String,Object>();
-        res.put("fundId", fundId);
-        res.put("period", periodStr);
-        return res;
-    }
     
     /**
      * 根据基金ID获取基金信息
@@ -99,11 +83,23 @@ public class ReportExportService implements ReportExportManager {
         exportParam.put("month", month);
         exportParam.put("day", day);
         exportParam.put("fundId", fundId);
-        this.processParts(exportParam, content);
+        exportParam.put("fundInfo", fundInfo);
+
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        @SuppressWarnings("unchecked")
+        Map<String,Object> reportExtendInfo = (Map<String,Object>)this.dao.findForObject("ReportMapper.selectReportExtendInfo", queryMap);
+        if(reportExtendInfo == null) {
+            reportExtendInfo = new HashMap<>(); 
+        }
+        
+        exportParam.put("reportExtendInfo", reportExtendInfo);
+        exportParam.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
+        
         
         exportParam.forEach((k,v) -> {
             dataMap.put(k, v);
         });
+        this.processParts(exportParam, content, queryMap);
         dataMap.put("content", content);
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_REPORT);
@@ -131,17 +127,250 @@ public class ReportExportService implements ReportExportManager {
         return true;
     }
     
-    private void processParts(Map<String, Object> exportParam, Map<String,Object> content) throws Exception{
+    private void processParts(Map<String, Object> exportParam, Map<String,Object> content, Map<String,Object> queryParam) throws Exception{
         @SuppressWarnings("unchecked")
         Map<String,Object> partName = (Map<String,Object>)exportParam.get("partName");
-        content.put("P1", this.processP1(exportParam, partName));
+        content.put("P1", this.processP1(exportParam, partName, queryParam));
         content.put("P2", this.processP2(exportParam, partName));
-        content.put("P3", this.processP3(exportParam, partName));
+        content.put("P3", this.processP3(exportParam, partName, queryParam));
         content.put("P4", this.processP4(exportParam, partName));
-        content.put("P5", this.processP5(exportParam, partName));
+        content.put("P5", this.processP5(exportParam, partName, queryParam));
     }
     
-    private String processP1(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException, TemplateException{
+    private String processP1(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws Exception{
+        Map<String,Object> P1 = new HashMap<>();
+        //====================↓BS↓====================
+        Map<String,Object> BS = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> BsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("ReportMapper.selectBsData", queryParam);
+        if(BsMetaDataList == null) {
+            BsMetaDataList = new ArrayList<>(); 
+        }
+        Map<String,Object> A01 = new HashMap<>();
+        Map<String,Object> A02 = new HashMap<>();
+        Map<String,Object> A03 = new HashMap<>();
+        Map<String,Object> A04 = new HashMap<>();
+        Map<String,Object> A05 = new HashMap<>();
+        Map<String,Object> A06 = new HashMap<>();
+        Map<String,Object> A07 = new HashMap<>();
+        Map<String,Object> A08 = new HashMap<>();
+        Map<String,Object> A09 = new HashMap<>();
+        Map<String,Object> A10 = new HashMap<>();
+        Map<String,Object> A11 = new HashMap<>();
+        Map<String,Object> A12 = new HashMap<>();
+        Map<String,Object> A13 = new HashMap<>();
+        Map<String,Object> A14 = new HashMap<>();
+        Map<String,Object> A15 = new HashMap<>();
+        Map<String,Object> A16 = new HashMap<>();
+        Map<String,Object> A17 = new HashMap<>();
+        Map<String,Object> B01 = new HashMap<>();
+        Map<String,Object> B02 = new HashMap<>();
+        Map<String,Object> B03 = new HashMap<>();
+        Map<String,Object> B04 = new HashMap<>();
+        Map<String,Object> B05 = new HashMap<>();
+        Map<String,Object> B06 = new HashMap<>();
+        Map<String,Object> B07 = new HashMap<>();
+        Map<String,Object> B08 = new HashMap<>();
+        Map<String,Object> B09 = new HashMap<>();
+        Map<String,Object> B10 = new HashMap<>();
+        Map<String,Object> B11 = new HashMap<>();
+        Map<String,Object> B12 = new HashMap<>();
+        Map<String,Object> B13 = new HashMap<>();
+        Map<String,Object> B14 = new HashMap<>();
+        Map<String,Object> B15 = new HashMap<>();
+        Map<String,Object> C01 = new HashMap<>();
+        Map<String,Object> C02 = new HashMap<>();
+        Map<String,Object> SUM1 = new HashMap<>();
+        Map<String,Object> SUM2 = new HashMap<>();
+        Map<String,Object> SUM3 = new HashMap<>();
+        Map<String,Object> SUM4 = new HashMap<>();
+
+        Double sum1current = 0d;
+        Double sum1last = 0d;
+        Double sum2current = 0d;
+        Double sum2last = 0d;
+        Double sum3current = 0d;
+        Double sum3last = 0d;
+        
+        for(Map<String,Object> map : BsMetaDataList) {
+            if ("A01".equals(map.get("bsCode"))) {
+                A01 = map;
+                sum1current += Double.parseDouble(String.valueOf(A01.get("beginBalance")==null?0:A01.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A01.get("endBalance")==null?0:A01.get("endBalance")));
+            } else if ("A02".equals(map.get("bsCode"))) {
+                A02 = map;
+                sum1current += Double.parseDouble(String.valueOf(A02.get("beginBalance")==null?0:A02.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A02.get("endBalance")==null?0:A02.get("endBalance")));
+            } else if ("A03".equals(map.get("bsCode"))) {
+                A03 = map;
+                sum1current += Double.parseDouble(String.valueOf(A03.get("beginBalance")==null?0:A03.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A03.get("endBalance")==null?0:A03.get("endBalance")));
+            } else if ("A04".equals(map.get("bsCode"))) {
+                A04 = map;
+            } else if ("A05".equals(map.get("bsCode"))) {
+                A05 = map;
+                sum1current += Double.parseDouble(String.valueOf(A05.get("beginBalance")==null?0:A05.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A05.get("endBalance")==null?0:A05.get("endBalance")));
+            } else if ("A06".equals(map.get("bsCode"))) {
+                A06 = map;
+                sum1current += Double.parseDouble(String.valueOf(A06.get("beginBalance")==null?0:A06.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A06.get("endBalance")==null?0:A06.get("endBalance")));
+            } else if ("A07".equals(map.get("bsCode"))) {
+                A07 = map;
+                sum1current += Double.parseDouble(String.valueOf(A07.get("beginBalance")==null?0:A07.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A07.get("endBalance")==null?0:A07.get("endBalance")));
+            } else if ("A08".equals(map.get("bsCode"))) {
+                A08 = map;
+                sum1current += Double.parseDouble(String.valueOf(A08.get("beginBalance")==null?0:A08.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A08.get("endBalance")==null?0:A08.get("endBalance")));
+            } else if ("A09".equals(map.get("bsCode"))) {
+                A09 = map;
+                sum1current += Double.parseDouble(String.valueOf(A09.get("beginBalance")==null?0:A09.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A09.get("endBalance")==null?0:A09.get("endBalance")));
+            } else if ("A10".equals(map.get("bsCode"))) {
+                A10 = map;
+                sum1current += Double.parseDouble(String.valueOf(A10.get("beginBalance")==null?0:A10.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A10.get("endBalance")==null?0:A10.get("endBalance")));
+            } else if ("A11".equals(map.get("bsCode"))) {
+                A11 = map;
+                sum1current += Double.parseDouble(String.valueOf(A11.get("beginBalance")==null?0:A11.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A11.get("endBalance")==null?0:A11.get("endBalance")));
+            } else if ("A12".equals(map.get("bsCode"))) {
+                A12 = map;
+                sum1current += Double.parseDouble(String.valueOf(A12.get("beginBalance")==null?0:A12.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A12.get("endBalance")==null?0:A12.get("endBalance")));
+            } else if ("A13".equals(map.get("bsCode"))) {
+                A13 = map;
+                sum1current += Double.parseDouble(String.valueOf(A13.get("beginBalance")==null?0:A13.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A13.get("endBalance")==null?0:A13.get("endBalance")));
+            } else if ("A14".equals(map.get("bsCode"))) {
+                A14 = map;
+                sum1current += Double.parseDouble(String.valueOf(A14.get("beginBalance")==null?0:A14.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A14.get("endBalance")==null?0:A14.get("endBalance")));
+            } else if ("A15".equals(map.get("bsCode"))) {
+                A15 = map;
+                sum1current += Double.parseDouble(String.valueOf(A15.get("beginBalance")==null?0:A15.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A15.get("endBalance")==null?0:A15.get("endBalance")));
+            } else if ("A17".equals(map.get("bsCode"))) {
+                A17 = map;
+                sum1current += Double.parseDouble(String.valueOf(A17.get("beginBalance")==null?0:A17.get("beginBalance")));
+                sum1last += Double.parseDouble(String.valueOf(A17.get("endBalance")==null?0:A17.get("endBalance")));
+            } else if ("B01".equals(map.get("bsCode"))) {
+                B01 = map;
+                sum2current += Double.parseDouble(String.valueOf(B01.get("beginBalance")==null?0:B01.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B01.get("endBalance")==null?0:B01.get("endBalance")));
+            } else if ("B02".equals(map.get("bsCode"))) {
+                B02 = map;
+                sum2current += Double.parseDouble(String.valueOf(B02.get("beginBalance")==null?0:B02.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B02.get("endBalance")==null?0:B02.get("endBalance")));
+            } else if ("B03".equals(map.get("bsCode"))) {
+                B03 = map;
+                sum2current += Double.parseDouble(String.valueOf(B03.get("beginBalance")==null?0:B03.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B03.get("endBalance")==null?0:B03.get("endBalance")));
+            } else if ("B04".equals(map.get("bsCode"))) {
+                B04 = map;
+                sum2current += Double.parseDouble(String.valueOf(B04.get("beginBalance")==null?0:B04.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B04.get("endBalance")==null?0:B04.get("endBalance")));
+            } else if ("B05".equals(map.get("bsCode"))) {
+                B05 = map;
+                sum2current += Double.parseDouble(String.valueOf(B05.get("beginBalance")==null?0:B05.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B05.get("endBalance")==null?0:B05.get("endBalance")));
+            } else if ("B06".equals(map.get("bsCode"))) {
+                B06 = map;
+                sum2current += Double.parseDouble(String.valueOf(B06.get("beginBalance")==null?0:B06.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B06.get("endBalance")==null?0:B06.get("endBalance")));
+            } else if ("B07".equals(map.get("bsCode"))) {
+                B07 = map;
+                sum2current += Double.parseDouble(String.valueOf(B07.get("beginBalance")==null?0:B07.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B07.get("endBalance")==null?0:B07.get("endBalance")));
+            } else if ("B08".equals(map.get("bsCode"))) {
+                B08 = map;
+                sum2current += Double.parseDouble(String.valueOf(B08.get("beginBalance")==null?0:B08.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B08.get("endBalance")==null?0:B08.get("endBalance")));
+            } else if ("B09".equals(map.get("bsCode"))) {
+                B09 = map;
+                sum2current += Double.parseDouble(String.valueOf(B09.get("beginBalance")==null?0:B09.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B09.get("endBalance")==null?0:B09.get("endBalance")));
+            } else if ("B10".equals(map.get("bsCode"))) {
+                B10 = map;
+                sum2current += Double.parseDouble(String.valueOf(B10.get("beginBalance")==null?0:B10.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B10.get("endBalance")==null?0:B10.get("endBalance")));
+            } else if ("B11".equals(map.get("bsCode"))) {
+                B11 = map;
+                sum2current += Double.parseDouble(String.valueOf(B11.get("beginBalance")==null?0:B11.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B11.get("endBalance")==null?0:B11.get("endBalance")));
+            } else if ("B12".equals(map.get("bsCode"))) {
+                B12 = map;
+                sum2current += Double.parseDouble(String.valueOf(B12.get("beginBalance")==null?0:B12.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B12.get("endBalance")==null?0:B12.get("endBalance")));
+            } else if ("B13".equals(map.get("bsCode"))) {
+                B13 = map;
+                sum2current += Double.parseDouble(String.valueOf(B13.get("beginBalance")==null?0:B13.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B13.get("endBalance")==null?0:B13.get("endBalance")));
+            } else if ("B15".equals(map.get("bsCode"))) {
+                B15 = map;
+                sum2current += Double.parseDouble(String.valueOf(B15.get("beginBalance")==null?0:B15.get("beginBalance")));
+                sum2last += Double.parseDouble(String.valueOf(B15.get("endBalance")==null?0:B15.get("endBalance")));
+            } else if ("C01".equals(map.get("bsCode"))) {
+                C01 = map;
+                sum3current += Double.parseDouble(String.valueOf(C01.get("beginBalance")==null?0:C01.get("beginBalance")));
+                sum3last += Double.parseDouble(String.valueOf(C01.get("endBalance")==null?0:C01.get("endBalance")));
+            } else if ("C02".equals(map.get("bsCode"))) {
+                C02 = map;
+                sum3current += Double.parseDouble(String.valueOf(C02.get("beginBalance")==null?0:C02.get("beginBalance")));
+                sum3last += Double.parseDouble(String.valueOf(C02.get("endBalance")==null?0:C02.get("endBalance")));
+            }
+        }
+        SUM1.put("beginBalance", sum1current);
+        SUM1.put("endBalance", sum1last);
+        SUM2.put("beginBalance", sum2current);
+        SUM2.put("endBalance", sum2last);
+        SUM3.put("beginBalance", sum3current);
+        SUM3.put("endBalance", sum3last);
+        SUM4.put("beginBalance", sum2current + sum3current);
+        SUM4.put("endBalance", sum2last + sum3last);
+        BS.put("A01", A01);
+        BS.put("A02", A02);
+        BS.put("A03", A03);
+        BS.put("A04", A04);
+        BS.put("A05", A05);
+        BS.put("A06", A06);
+        BS.put("A07", A07);
+        BS.put("A08", A08);
+        BS.put("A09", A09);
+        BS.put("A10", A10);
+        BS.put("A11", A11);
+        BS.put("A12", A12);
+        BS.put("A13", A13);
+        BS.put("A14", A14);
+        BS.put("A15", A15);
+        BS.put("A16", A16);
+        BS.put("A17", A17);
+        BS.put("B01", B01);
+        BS.put("B02", B02);
+        BS.put("B03", B03);
+        BS.put("B04", B04);
+        BS.put("B05", B05);
+        BS.put("B06", B06);
+        BS.put("B07", B07);
+        BS.put("B08", B08);
+        BS.put("B09", B09);
+        BS.put("B10", B10);
+        BS.put("B11", B11);
+        BS.put("B12", B12);
+        BS.put("B13", B13);
+        BS.put("B14", B14);
+        BS.put("B15", B15);
+        BS.put("C01", C01);
+        BS.put("C02", C02);
+        BS.put("SUM1", SUM1);
+        BS.put("SUM2", SUM2);
+        BS.put("SUM3", SUM3);
+        BS.put("SUM4", SUM4);
+        //====================↑BS↑====================
+        
+        P1.put("BS", BS);
+        exportParam.put("P1", P1);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P1")));
     }
     
@@ -153,7 +382,7 @@ public class ReportExportService implements ReportExportManager {
         return xml2003Content;
     }
     
-    private String processP3(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException, TemplateException{
+    private String processP3(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws IOException, TemplateException{
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
     }
     
@@ -165,8 +394,66 @@ public class ReportExportService implements ReportExportManager {
         return xml2003Content;
     }
     
-    private String processP5(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException, TemplateException{
+    private String processP5(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws IOException, TemplateException{
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P5")));
+    }
+    
+    /**
+     * 构建基本查询Map
+     * @author Dai Zong 2017年9月12日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     */
+    private Map<String,Object> createBaseQueryMap(String fundId, String periodStr){
+        Map<String, Object> res = new HashMap<String,Object>();
+        res.put("fundId", fundId);
+        res.put("period", periodStr);
+        return res;
+    }
+    
+    /**
+     * 获取基金额外属性
+     * @author Dai Zong 2017年12月2日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getExtraFundInfo(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectExtraFundInfo", queryMap);
+        if(fundInfo == null) {
+            fundInfo = new HashMap<>();
+        }
+        
+        Integer startYear = 2000, startMonth = 01, startDay = 01;
+        if(fundInfo.get("dateFrom") != null) {
+            String[] splits = String.valueOf(fundInfo.get("dateFrom")).split("-");
+            try {
+                if(splits.length == 1) {
+                    startYear = Integer.parseInt(splits[0]);
+                }else if(splits.length == 2) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                }else if(splits.length >= 3) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                    startDay = Integer.parseInt(splits[2]);
+                }
+            }catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        fundInfo.put("startYear", startYear);
+        fundInfo.put("startMonth", startMonth);
+        fundInfo.put("startDay", startDay);
+        return fundInfo;
     }
     
 }

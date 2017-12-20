@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +14,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTBody;
+
+import com.ey.util.fileexport.FreeMarkerUtils;
 
 /**
  * doc文档处理工具类
@@ -82,8 +87,13 @@ public class DocUtil {
 	public static void main(String[] args) {
 		
 		try {
-			String str = getXml2003Content("D:\\EY_Report_Template\\P4_FSO_DEF.xml", "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
-			System.out.println(str);
+			/*String str = getXml2003Content("D:\\EY_Report_Template\\P4_FSO_DEF.xml", "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
+			System.out.println(str);*/
+		    Map<String,Object> a = new HashMap<>();
+		    Calendar ca = Calendar.getInstance();
+		    ca.set(2017, 11, 01);
+		    a.put("data", null);
+		    System.out.println(FreeMarkerUtils.processTemplateToStrUseAbsPath(a, "D:\\", "test.ftl"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
