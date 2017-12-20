@@ -12133,7 +12133,7 @@
    <Row>
     <Cell ss:Index="2" ss:StyleID="s93"><Data ss:Type="String">control</Data></Cell>
     <Cell ss:StyleID="s204"/>
-    <Cell ss:StyleID="s205"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s204"/>
    </Row>
    <Row/>
    <#if U10000.ETF != 'Y'>
@@ -12174,7 +12174,7 @@
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s208"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s208"/>
    </Row>
    <Row ss:StyleID="s93">
     <Cell ss:Index="2" ss:StyleID="s209"/>
@@ -12228,7 +12228,7 @@
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s208"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s208"/>
    </Row>
    <Row ss:StyleID="s93">
     <Cell ss:Index="2" ss:StyleID="s209"/>
@@ -12272,7 +12272,7 @@
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s208"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s208"/>
    </Row>
    <Row ss:StyleID="s93">
     <Cell ss:Index="2" ss:StyleID="s209"/>
@@ -12323,7 +12323,7 @@
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s208"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s208"/>
    </Row>
    <Row ss:StyleID="s93">
     <Cell ss:Index="2" ss:StyleID="s209"/>
@@ -12381,7 +12381,7 @@
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s208"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s208"/>
    </Row>
    <Row ss:StyleID="s93">
     <Cell ss:Index="2" ss:StyleID="s209"/>
@@ -12432,7 +12432,7 @@
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
     <Cell ss:StyleID="s208"/>
-    <Cell ss:StyleID="s214"/>
+    <Cell ss:StyleID="s208"/>
    </Row>
    <Row ss:StyleID="s93">
     <Cell ss:Index="2" ss:StyleID="s209"/>
@@ -13040,8 +13040,8 @@
    </Row>
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
-    <Cell ss:StyleID="s208"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s208"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s214"/>
+    <Cell ss:StyleID="s214"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s93"/>
@@ -13073,6 +13073,8 @@
    </#if>
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
+    <Cell ss:StyleID="s214"/>
+    <Cell ss:StyleID="s214"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s93"/>
@@ -13117,8 +13119,8 @@
    </Row>
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
-    <Cell ss:StyleID="s208"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s208"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s214"/>
+    <Cell ss:StyleID="s214"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s93"/>
