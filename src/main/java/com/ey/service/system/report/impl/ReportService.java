@@ -1,5 +1,7 @@
 package com.ey.service.system.report.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -168,8 +170,8 @@ public class ReportService implements ReportManager {
 	 * @return
 	 */
 	private String getDateStr(Date date) {
-		return DateUtil.getDateTimeStr(date, "yyyy") + "年" + DateUtil.getDateTimeStr(date, "MM") + "月"
-				+ DateUtil.getDateTimeStr(date, "dd");
+	    DateFormat df = new SimpleDateFormat("yyyy月M日d日");
+		return df.format(date);
 	}
 
 	/**
@@ -186,6 +188,7 @@ public class ReportService implements ReportManager {
 	public Map<String, Object> getDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform)
 			throws Exception {
 		Map<String, Object> infoMap = Maps.newHashMap();
+		
 		// 年
 		String year = period.substring(0, 4);
 		// 年第一天
@@ -237,6 +240,16 @@ public class ReportService implements ReportManager {
 
 		// 本期截止日文本
 		infoMap.put("CURRENT_END_TXT", "");
+		
+		// 正文/表格时间段-当期
+		String currentPeriod = String.valueOf(infoMap.get("CURRENT_PERIOD"));
+		if(currentPeriod.indexOf("年度") > 0) {
+		    infoMap.put("TXT_PERIOD_CURRENT", currentPeriod);
+		    infoMap.put("TABLE_PERIOD_CURRENT", String.valueOf("CURRENT_INIT_DATE") + "至" + this.getDateStr((Date)infoMap.get("CURRENT_END_DATE")));
+		}else {
+		    infoMap.put("TXT_PERIOD_CURRENT", currentPeriod + "止期间");
+		    infoMap.put("TABLE_PERIOD_CURRENT", currentPeriod);
+		}
 		return infoMap;
 	}
 
@@ -274,6 +287,10 @@ public class ReportService implements ReportManager {
 		infoMap.put("LAST_END_SOURCE", lastInfoMap.get("CURRENT_END_SOURCE"));
 		// 上期截止日文本
 		infoMap.put("LAST_END_TXT", lastInfoMap.get("CURRENT_END_TXT"));
+		// 正文时间段-上期
+		infoMap.put("TXT_PERIOD_LAST", lastInfoMap.get("TXT_PERIOD_CURRENT"));
+		// 表格时间段-上期
+		infoMap.put("TABLE_PERIOD_LAST", lastInfoMap.get("TABLE_PERIOD_CURRENT"));
 		return infoMap;
 	}
 
@@ -284,6 +301,7 @@ public class ReportService implements ReportManager {
 	 */
 	public void exportReport(PageData pd) throws Exception {
 		Map<String, Object> dateMap = Maps.newHashMap();
+		Map<String, Object> dateMapLast = Maps.newHashMap();
 		// 根据参数获取基金信息
 		// 期间
 		String period = pd.getString("PERIOD");
@@ -317,8 +335,8 @@ public class ReportService implements ReportManager {
 		for (PageData pfund : funds) {
 		    Map<String, Object> exportParam = new HashMap<>();
 			// 获取日期信息
-			dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"),
-					(Date) pfund.get("DATE_TRANSFORM"));
+			dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
+			dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
 			// -------获取报告模板地址-------//
 			// 如果 本期起始日来源 为 “资产负债表日”取YOY,否则取Y
 			if (dateMap.get("CURRENT_INIT_SOURCE").equals("资产负债表日")) {
@@ -349,6 +367,7 @@ public class ReportService implements ReportManager {
 
 			// 一段一段的整合报告
 			exportParam.put("dateInfo", dateMap);
+			exportParam.put("lastDateInfo", dateMapLast);
 			exportParam.put("PEROID", period);
 			exportParam.put("FUND_ID", pfund.getString("FUND_ID"));
 			
