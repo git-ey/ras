@@ -40,12 +40,23 @@
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">账龄名称:</td>
 								<td><input type="text" name="NAME" id="NAME" value="${pd.NAME}" maxlength="60" title="账龄名称" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">同一日期归属上期:</td>
-								<td><input type="text" name="PREV_RANGE" id="PREV_RANGE" value="${pd.PREV_RANGE}" maxlength="480" title="说明" style="width:98%;"/></td>
+                                <td style="width:100px;text-align: right;padding-top: 13px;">计算方法:</td>
+								<td>
+								    <select class="chosen-select form-control" name="METHOD" id="METHOD" data-placeholder="请选择" style="width:49%;">
+								        <option value="" ></option>
+								        <option value="加天" <c:if test="${pd.METHOD == '加天'}">selected</c:if>>加天</option>
+								        <option value="加月" <c:if test="${pd.METHOD == '加月'}">selected</c:if>>加月</option>
+								        <option value="加至月末" <c:if test="${pd.METHOD == '加至月末'}">selected</c:if>>加至月末</option>
+								    </select>
+								</td>								
 							</tr>
 							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">同一日期归属上期:</td>
+								<td><input type="text" name="PREV_RANGE" id="PREV_RANGE" value="${pd.PREV_RANGE}" maxlength="480" title="说明" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
 								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" title="说明" style="width:98%;"/></td>
+							</tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">

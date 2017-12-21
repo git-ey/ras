@@ -1,32 +1,42 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="TermHeadMapper">
+<mapper namespace="H12Mapper">
 	
 	<!--表名 -->
 	<sql id="tableName">
-		SYS_TERM_HEAD
+		WP_H12
 	</sql>
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		TERMHEAD_ID,	
-		TERM_TYPE,	
-		NAME,
-		METHOD,
-		PREV_RANGE,
-		DESCRIPTION,	
-		ACTIVE
+		PERIOD,	
+		FIRM_CODE,	
+		TRX_STATUS,	
+		STOCK_CODE,	
+		STOCK_NAME,	
+		LOMD_SOURCE,	
+		LOMD,	
+		VAL_TYPE_REF,	
+		VAL_TYPE_NAME,	
+		VAL_PRICE_REF,	
+		VAL_PRICE,	
+		H12_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{TERMHEAD_ID},	
-		#{TERM_TYPE},
-		#{PREV_RANGE},
-		#{NAME},
-		#{METHOD},
-		#{DESCRIPTION},	
-		#{ACTIVE}
+		#{PERIOD},	
+		#{FIRM_CODE},	
+		#{TRX_STATUS},	
+		#{STOCK_CODE},	
+		#{STOCK_NAME},	
+		#{LOMD_SOURCE},	
+		#{LOMD},	
+		#{VAL_TYPE_REF},	
+		#{VAL_TYPE_NAME},	
+		#{VAL_PRICE_REF},	
+		#{VAL_PRICE},	
+		#{H12_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -45,7 +55,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			TERMHEAD_ID = #{TERMHEAD_ID}
+			H12_ID = #{H12_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -53,14 +63,20 @@
 		update
 		<include refid="tableName"></include>
 		set 
-			TERM_TYPE = #{TERM_TYPE},
-			NAME = #{NAME},
-			METHOD = #{METHOD},
-			PREV_RANGE = #{PREV_RANGE},
-			DESCRIPTION = #{DESCRIPTION},
-			ACTIVE = #{ACTIVE}
+			LOMD_SOURCE = #{LOMD_SOURCE},
+			LOMD = #{LOMD},
+			VAL_TYPE_REF = #{VAL_TYPE_REF},
+			VAL_TYPE_NAME = #{VAL_TYPE_NAME},
+			<if test="VAL_PRICE_REF != null and VAL_PRICE_REF != ''">
+			VAL_PRICE_REF = #{VAL_PRICE_REF},
+			</if>
+			<if test="VAL_PRICE != null and VAL_PRICE != ''">
+			VAL_PRICE = #{VAL_PRICE},
+			</if>
+			VAL_PRICE = #{VAL_PRICE},
+		H12_ID = H12_ID
 		where 
-		TERMHEAD_ID = #{TERMHEAD_ID}
+		H12_ID = #{H12_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -70,7 +86,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			TERMHEAD_ID = #{TERMHEAD_ID}
+			H12_ID = #{H12_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -84,11 +100,11 @@
 			and
 				(
 				    <!-- 根据需求自己加检索条件 -->
-					TERMHEAD_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
-					TERM_TYPE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-					 or 
-					NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					FIRM_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				     or 
+					STOCK_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
 		</if>
 	</select>
@@ -106,7 +122,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			TERMHEAD_ID in
+			H12_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>
