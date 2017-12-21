@@ -2680,7 +2680,7 @@
     <Cell ss:StyleID="s97"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-成本[MMF：-摊余成本]</Data></Cell>
+    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1"><#if extraFundInfo.mf != 'Y'>-成本<#else>-摊余成本</#if></Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
     <Cell ss:StyleID="s186" ss:Formula="=H300!R[-5]C[1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr4.drAmountAdj!0)?string('0.##')}</Data></Cell>
@@ -2703,7 +2703,7 @@
     <Cell ss:StyleID="s97"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值[MMF：-影子定价]</Data></Cell>
+    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1"><#if extraFundInfo.mf != 'Y'>-公允价值<#else>-影子定价</#if></Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
     <Cell ss:StyleID="s186" ss:Formula="=H300!R[-7]C[3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.drAmountAdj!0)?string('0.##')}</Data></Cell>
@@ -2725,7 +2725,7 @@
     <Cell ss:StyleID="s57"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s41"><Data ss:Type="String">债券投资估值增值[MMF：债券投资偏离金额]</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>债券投资估值增值<#else>债券投资偏离金额</#if></Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
     <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr6.drAmountAdj!0)?string('0.##')}</Data></Cell>
@@ -2783,7 +2783,7 @@
     <Cell ss:StyleID="s97"/>
    </Row>
    <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值[MMF：-影子定价]</Data></Cell>
+    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1"><#if extraFundInfo.mf != 'Y'>-公允价值<#else>-影子定价</#if></Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
     <Cell ss:StyleID="s186" ss:Formula="=H300!R[-11]C[3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.drAmountAdj!0)?string('0.##')}</Data></Cell>
@@ -2805,7 +2805,7 @@
     <Cell ss:StyleID="s57"/>
    </Row>
    <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"><Data ss:Type="String">资产支持持证券投资估值增值[MMF：资产支持证券投资偏离金额]</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>资产支持持证券投资估值增值<#else>资产支持证券投资偏离金额</#if></Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
     <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr9.drAmountAdj!0)?string('0.##')}</Data></Cell>
@@ -3175,7 +3175,7 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String">-账面余额</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H800</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H800!R[-42]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H800!R${(13+H800.main.count!0)?string('0')}C7"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.drAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.crAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
@@ -3748,7 +3748,7 @@
     <#if H300.interestRatePeriod.count != 0>
     <#list H300.interestRatePeriod.list as item>
     <#if item == '不计息'>
-    <Cell ss:StyleID="s125" ss:Formula="=R18C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=R12C6"><Data ss:Type="Number"></Data></Cell>
     <#else>
     <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
     </#if>
@@ -4177,8 +4177,8 @@
     <Cell ss:StyleID="s204"/>
     <Cell ss:StyleID="s204"/>
    </Row>
-   <#if H300.related.H400.count != 0>
-   <#list H300.related.H400.list as item>
+   <#if H400.main.count != 0>
+   <#list H400.main.list as item>
    <Row>
     <Cell ss:StyleID="s60"><Data ss:Type="String">${item.type!}</Data></Cell>
     <Cell ss:StyleID="s255"><Data ss:Type="String">${item.accountNum!}</Data></Cell>
@@ -4502,9 +4502,9 @@
     <Cell ss:Index="10"><Data ss:Type="String">利率风险敞口合计</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="15.75">
-    <Cell ss:Index="3" ss:StyleID="s232"><Data ss:Type="String">成本</Data></Cell>
-    <Cell ss:StyleID="s232"><Data ss:Type="String">公允价值</Data></Cell>
-    <Cell ss:StyleID="s232"><Data ss:Type="String">估值增值</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>成本<#else>摊余成本</#if></Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>公允价值<#else>影子定价</#if></Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>估值增值<#else>偏离金额</#if></Data></Cell>
     <#if extraFundInfo.interestSensitivity == 'Y'>
     <Cell ss:Index="13"><Data ss:Type="String">可交换债券</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C6:C6,RC[-1],C11:C11)"><Data ss:Type="Number"></Data></Cell>
@@ -4672,8 +4672,8 @@
     <Cell><Data ss:Type="String">L=K*A</Data></Cell>
     <Cell><Data ss:Type="String">M=L-J</Data></Cell>
    </Row>
-   <#if H300.related.H500.count != 0>
-   <#list H300.related.H500.list as item>
+   <#if H500.main.count != 0>
+   <#list H500.main.list as item>
    <Row>
     <Cell ss:StyleID="s60"><Data ss:Type="String">${item.type!}</Data></Cell>
     <Cell ss:StyleID="s255"><Data ss:Type="String">${item.accountNum!}</Data></Cell>
@@ -4759,6 +4759,7 @@
     <Cell ss:StyleID="s60"/>
     <Cell ss:StyleID="s60"/>
    </Row>
+   <#if extraFundInfo.mf == 'Y'>
    <Row>
     <Cell><Data ss:Type="String">偏离度测试：</Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s60"/>
@@ -4857,6 +4858,7 @@
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s79"/>
    </Row>
+   </#if>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -6286,7 +6288,7 @@
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.asset!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.liabilities!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0>注</#if></Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0 && H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0 && H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0>注</#if></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
@@ -6351,7 +6353,7 @@
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.assetLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.liabilitiesLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if H10000.derivative.item4.assetLast?? && H10000.derivative.item4.assetLast != 0>注</#if></Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0 && H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0 && H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0>注</#if></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s168"><Data ss:Type="String">合计</Data></Cell>
@@ -6367,6 +6369,7 @@
    <Row>
     <Cell ss:Index="6" ss:StyleID="s52"/>
    </Row>
+   <#if H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0 && H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0 && H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0>
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">其他衍生工具具体如下：</Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s52"/>
@@ -6436,6 +6439,7 @@
     <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
    <Row/>
+   </#if>
    <Row>
     <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.4 . 买入返售金融资产</Data></Cell>
    </Row>

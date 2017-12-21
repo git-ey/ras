@@ -294,6 +294,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         Map<String,Object> H400 = new HashMap<>();
         Map<String,Object> H500 = new HashMap<>();
         
+        queryMap.put("related", "Y");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H400MetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH400MainData", queryMap);
         if(H400MetaDataList == null) {
@@ -304,6 +305,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         if(H500MetaDataList == null) {
             H500MetaDataList = new ArrayList<>();
         }
+        queryMap.remove("related");
         
         H400.put("list", H400MetaDataList);
         H400.put("count", H400MetaDataList.size());
@@ -333,6 +335,16 @@ public class HExportService extends BaseExportService implements HExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
+        Map<String, Object> main = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH400MainData", queryMap);
+        if(mainMetaDataList == null) {
+            mainMetaDataList = new ArrayList<>();
+        }
+        main.put("list", mainMetaDataList);
+        main.put("count", mainMetaDataList.size());
+        result.put("main", main);
+        
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH400OptionData", queryMap);
         if(metaDataList == null) {
@@ -356,6 +368,16 @@ public class HExportService extends BaseExportService implements HExportManager{
     private Map<String,Object> getH500Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String, Object> main = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH500MainData", queryMap);
+        if(mainMetaDataList == null) {
+            mainMetaDataList = new ArrayList<>();
+        }
+        main.put("list", mainMetaDataList);
+        main.put("count", mainMetaDataList.size());
+        result.put("main", main);
         
         Map<String,Object> interestRatePeriod = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -500,9 +522,9 @@ public class HExportService extends BaseExportService implements HExportManager{
             tfaMetaDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : tfaMetaDataList) {
-            if("交易所市场".equals(map.get("subItem"))) {
+            if("交易所".equals(map.get("subItem"))) {
                 exchange = map;
-            }else if("银行间市场".equals(map.get("subItem"))) {
+            }else if("银行间".equals(map.get("subItem"))) {
                 bank = map;
             }
         }

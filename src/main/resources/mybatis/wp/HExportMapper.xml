@@ -76,6 +76,9 @@
 		where 
             1 = 1
         and H400M.STATUS = 'Y'
+        <if test="related != null and related != ''">
+            AND H400M.RELEATED = #{related}
+        </if>
         and H400M.FUND_ID = #{fundId}
         and H400M.PERIOD = #{period}
     </select>
@@ -122,6 +125,9 @@
         where 
             1 = 1
         and H500M.STATUS = 'Y'
+        <if test="related != null and related != ''">
+            AND H500M.RELEATED = #{related}
+        </if>
         and H500M.FUND_ID = #{fundId}
         and H500M.PERIOD = #{period}
     </select>
