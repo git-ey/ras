@@ -2,6 +2,7 @@ package com.ey.service.wp.output.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -369,7 +370,212 @@ public class ReportExportService implements ReportExportManager {
         BS.put("SUM4", SUM4);
         //====================↑BS↑====================
         
+        //====================↓PL↓====================
+        Map<String,Object> PL = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> PlMetaDataList = (List<Map<String,Object>>)this.dao.findForList("ReportMapper.selectPlData", queryParam);
+        if(PlMetaDataList == null) {
+            PlMetaDataList = new ArrayList<>(); 
+        }
+        Map<String,Object> D01 = new HashMap<>();
+        Map<String,Object> D02 = new HashMap<>();
+        Map<String,Object> D03 = new HashMap<>();
+        Map<String,Object> D04 = new HashMap<>();
+        Map<String,Object> D05 = new HashMap<>();
+        Map<String,Object> D06 = new HashMap<>();
+        Map<String,Object> D07 = new HashMap<>();
+        Map<String,Object> D08 = new HashMap<>();
+        Map<String,Object> D09 = new HashMap<>();
+        Map<String,Object> D10 = new HashMap<>();
+        Map<String,Object> D11 = new HashMap<>();
+        Map<String,Object> D12 = new HashMap<>();
+        Map<String,Object> D13 = new HashMap<>();
+        Map<String,Object> D14 = new HashMap<>();
+        Map<String,Object> D15 = new HashMap<>();
+        Map<String,Object> D16 = new HashMap<>();
+        Map<String,Object> D17 = new HashMap<>();
+        Map<String,Object> D18 = new HashMap<>();
+        Map<String,Object> D19 = new HashMap<>();
+        Map<String,Object> D20 = new HashMap<>();
+        Map<String,Object> D21 = new HashMap<>();
+        Map<String,Object> D22 = new HashMap<>();
+        Map<String,Object> D23 = new HashMap<>();
+        Map<String,Object> D24 = new HashMap<>();
+        SUM1 = new HashMap<>();
+        SUM2 = new HashMap<>();
+        
+        sum1current = new Double(0d);
+        sum1last = new Double(0d);
+        sum2current = new Double(0d);
+        sum2last = new Double(0d);
+        
+        for(Map<String,Object> map : PlMetaDataList) {
+            if ("D01".equals(map.get("plCode"))) {
+                D01 = map;
+                sum1current += Double.parseDouble(String.valueOf(D01.get("periodAcct")==null?0:D01.get("periodAcct")));
+                sum1last += Double.parseDouble(String.valueOf(D01.get("lastPeriodAcct")==null?0:D01.get("lastPeriodAcct")));
+            } else if ("D02".equals(map.get("plCode"))) {
+                D02 = map;
+            } else if ("D03".equals(map.get("plCode"))) {
+                D03 = map;
+            } else if ("D04".equals(map.get("plCode"))) {
+                D04 = map;
+            } else if ("D05".equals(map.get("plCode"))) {
+                D05 = map;
+            } else if ("D06".equals(map.get("plCode"))) {
+                D06 = map;
+            } else if ("D07".equals(map.get("plCode"))) {
+                D07 = map;
+                sum1current += Double.parseDouble(String.valueOf(D07.get("periodAcct")==null?0:D07.get("periodAcct")));
+                sum1last += Double.parseDouble(String.valueOf(D07.get("lastPeriodAcct")==null?0:D07.get("lastPeriodAcct")));
+            } else if ("D08".equals(map.get("plCode"))) {
+                D08 = map;
+            } else if ("D09".equals(map.get("plCode"))) {
+                D09 = map;
+            } else if ("D10".equals(map.get("plCode"))) {
+                D10 = map;
+            } else if ("D11".equals(map.get("plCode"))) {
+                D11 = map;
+            } else if ("D12".equals(map.get("plCode"))) {
+                D12 = map;
+            } else if ("D13".equals(map.get("plCode"))) {
+                D13 = map;
+            } else if ("D14".equals(map.get("plCode"))) {
+                D14 = map;
+            } else if ("D15".equals(map.get("plCode"))) {
+                D15 = map;
+                sum1current += Double.parseDouble(String.valueOf(D15.get("periodAcct")==null?0:D15.get("periodAcct")));
+                sum1last += Double.parseDouble(String.valueOf(D15.get("lastPeriodAcct")==null?0:D15.get("lastPeriodAcct")));
+            } else if ("D16".equals(map.get("plCode"))) {
+                D16 = map;
+                sum1current += Double.parseDouble(String.valueOf(D16.get("periodAcct")==null?0:D16.get("periodAcct")));
+                sum1last += Double.parseDouble(String.valueOf(D16.get("lastPeriodAcct")==null?0:D16.get("lastPeriodAcct")));
+            } else if ("D17".equals(map.get("plCode"))) {
+                D17 = map;
+                sum1current += Double.parseDouble(String.valueOf(D17.get("periodAcct")==null?0:D17.get("periodAcct")));
+                sum1last += Double.parseDouble(String.valueOf(D17.get("lastPeriodAcct")==null?0:D17.get("lastPeriodAcct")));
+            } else if ("D18".equals(map.get("plCode"))) {
+                D18 = map;
+                sum2current += Double.parseDouble(String.valueOf(D18.get("periodAcct")==null?0:D18.get("periodAcct")));
+                sum2last += Double.parseDouble(String.valueOf(D18.get("lastPeriodAcct")==null?0:D18.get("lastPeriodAcct")));
+            } else if ("D19".equals(map.get("plCode"))) {
+                D19 = map;
+                sum2current += Double.parseDouble(String.valueOf(D19.get("periodAcct")==null?0:D19.get("periodAcct")));
+                sum2last += Double.parseDouble(String.valueOf(D19.get("lastPeriodAcct")==null?0:D19.get("lastPeriodAcct")));
+            } else if ("D20".equals(map.get("plCode"))) {
+                D20 = map;
+                sum2current += Double.parseDouble(String.valueOf(D20.get("periodAcct")==null?0:D20.get("periodAcct")));
+                sum2last += Double.parseDouble(String.valueOf(D20.get("lastPeriodAcct")==null?0:D20.get("lastPeriodAcct")));
+            } else if ("D21".equals(map.get("plCode"))) {
+                D21 = map;
+                sum2current += Double.parseDouble(String.valueOf(D21.get("periodAcct")==null?0:D21.get("periodAcct")));
+                sum2last += Double.parseDouble(String.valueOf(D21.get("lastPeriodAcct")==null?0:D21.get("lastPeriodAcct")));
+            } else if ("D22".equals(map.get("plCode"))) {
+                D22 = map;
+                sum2current += Double.parseDouble(String.valueOf(D22.get("periodAcct")==null?0:D22.get("periodAcct")));
+                sum2last += Double.parseDouble(String.valueOf(D22.get("lastPeriodAcct")==null?0:D22.get("lastPeriodAcct")));
+            } else if ("D23".equals(map.get("plCode"))) {
+                D23 = map;
+                sum2current += Double.parseDouble(String.valueOf(D23.get("periodAcct")==null?0:D23.get("periodAcct")));
+                sum2last += Double.parseDouble(String.valueOf(D23.get("lastPeriodAcct")==null?0:D23.get("lastPeriodAcct")));
+            } else if ("D24".equals(map.get("plCode"))) {
+                D24 = map;
+                sum2current += Double.parseDouble(String.valueOf(D24.get("periodAcct")==null?0:D24.get("periodAcct")));
+                sum2last += Double.parseDouble(String.valueOf(D24.get("lastPeriodAcct")==null?0:D24.get("lastPeriodAcct")));
+            }
+        }
+        
+        SUM1.put("periodAcct", sum1current);
+        SUM1.put("lastPeriodAcct", sum1last);
+        SUM2.put("periodAcct", sum2current);
+        SUM2.put("lastPeriodAcct", sum2last);
+        
+        PL.put("D01", D01);
+        PL.put("D02", D02);
+        PL.put("D03", D03);
+        PL.put("D04", D04);
+        PL.put("D05", D05);
+        PL.put("D06", D06);
+        PL.put("D07", D07);
+        PL.put("D08", D08);
+        PL.put("D09", D09);
+        PL.put("D10", D10);
+        PL.put("D11", D11);
+        PL.put("D12", D12);
+        PL.put("D13", D13);
+        PL.put("D14", D14);
+        PL.put("D15", D15);
+        PL.put("D16", D16);
+        PL.put("D17", D17);
+        PL.put("D18", D18);
+        PL.put("D19", D19);
+        PL.put("D20", D20);
+        PL.put("D21", D21);
+        PL.put("D22", D22);
+        PL.put("D23", D23);
+        PL.put("D24", D24);
+        PL.put("SUM1", SUM1);
+        PL.put("SUM2", SUM2);
+
+        //====================↑PL↑====================
+        
+        //====================↓T500↓====================
+        Map<String,Object> T500 = new HashMap<>();
+        String periodStr = String.valueOf(queryParam.get("period"));
+        String oldPeriodStr = StringUtils.EMPTY;
+        try {
+            oldPeriodStr = String.valueOf(Long.parseLong(periodStr.substring(0, 4))-1)+"1231";
+        }catch (Exception e) {
+            oldPeriodStr = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)-1)+"1231";
+        }
+        Map<String, Object> oldQueryParam = this.createBaseQueryMap(String.valueOf(queryParam.get("fundId")), oldPeriodStr);
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT500MainData", queryParam);
+        if(mainMetaDataList == null) {
+            mainMetaDataList = new ArrayList<>();
+        }
+        Map<String,Map<String,Object>> mainContainer = new HashMap<>();
+        for(Map<String,Object> map : mainMetaDataList) {
+            mainContainer.put(String.valueOf(map.get("type")), map);
+        }
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mainOldMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT500MainData", oldQueryParam);
+        if(mainOldMetaDataList == null) {
+            mainOldMetaDataList = new ArrayList<>();
+        }
+        Map<String,Map<String,Object>> mainOldContainer = new HashMap<>();
+        for(Map<String,Object> map : mainOldMetaDataList) {
+            mainOldContainer.put(String.valueOf(map.get("type")), map);
+        }
+        for(int i=1 ; i<=7 ; i++) {
+            String tag = "attr" + i;
+            Map<String,Object> temp = new HashMap<>();
+            if(mainContainer.get("实收基金") != null) {
+                temp.put("SS", mainContainer.get("实收基金").get(tag));
+            }
+            if(mainContainer.get("利润分配") != null) {
+                temp.put("WFP", mainContainer.get("利润分配").get(tag));
+            }
+            if(mainContainer.get("所有者权益合计") != null) {
+                temp.put("SYZ", mainContainer.get("所有者权益合计").get(tag));
+            }
+            if(mainOldContainer.get("实收基金") != null) {
+                temp.put("SSOLD", mainOldContainer.get("实收基金").get(tag));
+            }
+            if(mainOldContainer.get("利润分配") != null) {
+                temp.put("WFPOLD", mainOldContainer.get("利润分配").get(tag));
+            }
+            if(mainOldContainer.get("所有者权益合计") != null) {
+                temp.put("SYZOLD", mainOldContainer.get("所有者权益合计").get(tag));
+            }
+            T500.put(tag, temp);
+        }
+        //====================↑T500↑====================
+        
         P1.put("BS", BS);
+        P1.put("PL", PL);
+        P1.put("T500", T500);
         exportParam.put("P1", P1);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P1")));
     }

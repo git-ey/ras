@@ -223,5 +223,21 @@
 		AND eb.FUND_ID = #{fundId}
 		AND eb.PERIOD = #{period}
     </select>
+    
+    <!-- PL数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-20 -->
+    <select id="selectPlData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    EP.PLCODE AS plCode,
+			IF( EP.PERIOD_ACCT = 0, NULL, EP.PERIOD_ACCT ) AS periodAcct,
+			IF( EP.PERIOD_ACCT = 0, NULL, EP.LAST_PERIOD_ACCT ) AS lastPeriodAcct 
+		FROM
+		    ey_pl EP 
+		WHERE
+		    1 = 1 
+	    AND EP.FUND_ID = #{fundId}
+	    AND EP.PERIOD = #{period}
+    </select>
 	
 </mapper>

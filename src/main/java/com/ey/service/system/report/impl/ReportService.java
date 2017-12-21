@@ -349,7 +349,7 @@ public class ReportService implements ReportManager {
 			// P2
 			// 如果选择此种规则，则按照基金区分模板
 			if (pd.getString("P2").equals("P2_FSO_BF")) {
-				p2TempName = p2TempName + "_" + pfund.getString("FUND_ID") + ".xml";
+				p2TempName = p2TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
 			} else {
 				p2TempName = p2TempName + ".xml";
 			}
@@ -358,7 +358,7 @@ public class ReportService implements ReportManager {
 			// P4
 			// 如果选择此种规则，则按照基金区分模板
 			if (pd.getString("P4").equals("P4_FSO_BF")) {
-			    p4TempName = p4TempName + "_" + pfund.getString("FUND_ID") + ".xml";
+			    p4TempName = p4TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
 			} else {
 			    p4TempName = p4TempName + ".xml";
 			}

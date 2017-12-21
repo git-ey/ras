@@ -33,31 +33,31 @@
         <o:Version>15</o:Version>
     </o:DocumentProperties>
     <o:CustomDocumentProperties>
-        <o:客户全称 dt:dt="string">富国天合稳健优选混合型证券投资基金</o:客户全称>
-        <o:客户简称 dt:dt="string">富国天合稳健优选混合型证券投资基金</o:客户简称>
-        <o:审计年度 dt:dt="string">2016</o:审计年度>
-        <o:审计年度大写 dt:dt="string">二〇一六</o:审计年度大写>
+        <o:客户全称 dt:dt="string">${fundInfo.fundFullName!}</o:客户全称>
+        <o:客户简称 dt:dt="string">${fundInfo.fundShortName!}</o:客户简称>
+        <o:审计年度 dt:dt="string">${(period)?string('0')}</o:审计年度>
+        <o:审计年度大写 dt:dt="string"></o:审计年度大写>
         <o:会计制度 dt:dt="string">企业会计制度</o:会计制度>
         <o:事务所名 dt:dt="string">安永华明会计师事务所</o:事务所名>
-        <o:审计截止日 dt:dt="string">2016-12-31</o:审计截止日>
-        <o:编制人 dt:dt="string">[zxr]</o:编制人>
-        <o:复核人 dt:dt="string">[fhr]</o:复核人>
+        <o:审计截止日 dt:dt="string"></o:审计截止日>
+        <o:编制人 dt:dt="string"></o:编制人>
+        <o:复核人 dt:dt="string"></o:复核人>
         <o:编制日期 dt:dt="string">xxxx-xx-xx</o:编制日期>
         <o:复核日期 dt:dt="string">xxxx-xx-xx</o:复核日期>
-        <o:报告文号 dt:dt="string">安永华明（2017）审字第60467606_B11号</o:报告文号>
-        <o:基金管理公司名称 dt:dt="string">富国基金管理有限公司</o:基金管理公司名称>
-        <o:签字CPA1 dt:dt="string">朱宝钦</o:签字CPA1>
-        <o:签字CPA2 dt:dt="string">濮晓达</o:签字CPA2>
+        <o:报告文号 dt:dt="string">安永华明（XXXX）审字第XXXXXXXX_BXX号</o:报告文号>
+        <o:基金管理公司名称 dt:dt="string">${fundInfo.companyShortName!}</o:基金管理公司名称>
+        <o:签字CPA1 dt:dt="string"></o:签字CPA1>
+        <o:签字CPA2 dt:dt="string"></o:签字CPA2>
         <o:报告日期 dt:dt="string">2017年3月12日</o:报告日期>
         <o:本报告期文字表述 dt:dt="string">2016年1月1日至2016年12月31日</o:本报告期文字表述>
         <o:上年度 dt:dt="string">2015</o:上年度>
-        <o:报告截止日基金份额净值 dt:dt="string">1.1785</o:报告截止日基金份额净值>
-        <o:报告截止日基金份额总额 dt:dt="string">2,121,786,806.23</o:报告截止日基金份额总额>
+        <o:报告截止日基金份额净值 dt:dt="string"></o:报告截止日基金份额净值>
+        <o:报告截止日基金份额总额 dt:dt="string"></o:报告截止日基金份额总额>
         <o:上年度可比期间 dt:dt="string">2015年1月1日至2015年12月31日</o:上年度可比期间>
         <o:基金批准文号 dt:dt="string">XXX(XX(XX号文《关于同意[XX]的批复》</o:基金批准文号>
         <o:基金合同生效日期 dt:dt="string">XX年XX月XX日</o:基金合同生效日期>
         <o:首次设立募集规模 dt:dt="string">XX份</o:首次设立募集规模>
-        <o:基金形式 dt:dt="string">契约型开放式</o:基金形式>
+        <o:基金形式 dt:dt="string"></o:基金形式>
         <o:基金管理信息 dt:dt="string">本基金的基金管理人为XX，注册登记机构为XX，基金托管人为XX</o:基金管理信息>
         <o:投资范围比较基准等披露信息 dt:dt="string">XXXXX（投资范围、比较基准）</o:投资范围比较基准等披露信息>
         <o:基金管理费计提方法 dt:dt="string">按前一日基金资产净值的XXX的年费率逐日计提</o:基金管理费计提方法>
@@ -71,7 +71,7 @@
         <o:其他重要的会计政策和会计估计 dt:dt="string">XXXX</o:其他重要的会计政策和会计估计>
         <o:其他重要的会计政策和会计估计2 dt:dt="string">YYYY</o:其他重要的会计政策和会计估计2>
         <o:财务报表批准日期 dt:dt="string">2017年X月XX日</o:财务报表批准日期>
-        <o:附注表头年度信息 dt:dt="string">2016年度</o:附注表头年度信息>
+        <o:附注表头年度信息 dt:dt="string">${(period)?string('0')}年度</o:附注表头年度信息>
     </o:CustomDocumentProperties>
     <w:fonts>
         <w:defaultFonts w:ascii="Calibri" w:fareast="宋体" w:h-ansi="Calibri" w:cs="Times New Roman"/>
