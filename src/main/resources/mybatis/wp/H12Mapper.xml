@@ -107,6 +107,9 @@
 					STOCK_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
 		</if>
+        <if test="pd.PERIOD != null and pd.PERIOD != ''">
+			and PERIOD = #{pd.PERIOD}
+		</if>		
 	</select>
 	
 	<!-- 列表(全部) -->
