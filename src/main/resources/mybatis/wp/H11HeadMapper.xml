@@ -116,6 +116,7 @@
         <if test="pd.PERIOD != null and pd.PERIOD != ''">
 			and PERIOD = #{pd.PERIOD}
 		</if>
+		order by PERIOD,FIRM_CODE,STOCK_CODE ASC
 	</select>
 	
 	<!-- 列表(全部) -->
