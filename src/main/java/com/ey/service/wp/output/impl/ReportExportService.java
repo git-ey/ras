@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import com.ey.util.DocUtil;
 import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
 import com.ey.util.fileexport.FreeMarkerUtils;
+import com.google.common.collect.Lists;
 
 import freemarker.template.TemplateException;
 
@@ -138,6 +140,16 @@ public class ReportExportService implements ReportExportManager {
         content.put("P5", this.processP5(exportParam, partName, queryParam));
     }
     
+    /**
+     * 处理Part1
+     * @author Dai Zong 2017年12月20日
+     * 
+     * @param exportParam
+     * @param partName
+     * @param queryParam
+     * @return
+     * @throws Exception
+     */
     private String processP1(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws Exception{
         Map<String,Object> P1 = new HashMap<>();
         //====================↓BS↓====================
@@ -580,6 +592,15 @@ public class ReportExportService implements ReportExportManager {
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P1")));
     }
     
+    /**
+     * 处理Part2
+     * @author Dai Zong 2017年12月20日
+     * 
+     * @param exportParam
+     * @param partName
+     * @return
+     * @throws IOException
+     */
     private String processP2(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException{
         String xml2003Content = DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P2")), "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
         if(StringUtils.isEmpty(xml2003Content)) {
@@ -588,10 +609,30 @@ public class ReportExportService implements ReportExportManager {
         return xml2003Content;
     }
     
+    /**
+     * 处理Part3
+     * @author Dai Zong 2017年12月22日
+     * 
+     * @param exportParam
+     * @param partName
+     * @param queryParam
+     * @return
+     * @throws IOException
+     * @throws TemplateException
+     */
     private String processP3(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws IOException, TemplateException{
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
     }
     
+    /**
+     * 处理Part4
+     * @author Dai Zong 2017年12月22日
+     * 
+     * @param exportParam
+     * @param partName
+     * @return
+     * @throws IOException
+     */
     private String processP4(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException{
         String xml2003Content = DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P4")), "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
         if(StringUtils.isEmpty(xml2003Content)) {
@@ -600,7 +641,678 @@ public class ReportExportService implements ReportExportManager {
         return xml2003Content;
     }
     
-    private String processP5(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws IOException, TemplateException{
+    /**
+     * 处理Part5
+     * @author Dai Zong 2017年12月22日
+     * 
+     * @param exportParam
+     * @param partName
+     * @param queryParam
+     * @return
+     * @throws Exception 
+     */
+    private String processP5(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws Exception{
+        Map<String,Object> P5 = new HashMap<>();
+        
+        //====================↓V300↓====================
+        Map<String,Object> V300 = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<String> V300IntRistPeriodsDataList = (List<String>)this.dao.findForList("VExportMapper.selectV300IntRiskPeriodData", queryParam);
+        if(V300IntRistPeriodsDataList == null) {
+            V300IntRistPeriodsDataList = new ArrayList<>(); 
+        }
+        
+        List<Integer> emptyList = Lists.newArrayList();
+        for(int i=0 ; i<V300IntRistPeriodsDataList.size(); i++) {
+            emptyList.add(0);
+        }
+        
+        Map<String, Object> detail = new HashMap<String,Object>();
+        
+        Map<String, Object> attr1 = new HashMap<String, Object>();
+        attr1.put("list", emptyList);
+        attr1.put("count", 0);
+        Map<String, Object> attr2 = new HashMap<String, Object>();
+        attr2.put("list", emptyList);
+        attr2.put("count", 0);
+        Map<String, Object> attr3 = new HashMap<String, Object>();
+        attr3.put("list", emptyList);
+        attr3.put("count", 0);
+        Map<String, Object> attr4 = new HashMap<String, Object>();
+        attr4.put("list", emptyList);
+        attr4.put("count", 0);
+        Map<String, Object> attr5 = new HashMap<String, Object>();
+        attr5.put("list", emptyList);
+        attr5.put("count", 0);
+        Map<String, Object> attr6 = new HashMap<String, Object>();
+        attr6.put("list", emptyList);
+        attr6.put("count", 0);
+        Map<String, Object> attr7 = new HashMap<String, Object>();
+        attr7.put("list", emptyList);
+        attr7.put("count", 0);
+        Map<String, Object> attr8 = new HashMap<String, Object>();
+        attr8.put("list", emptyList);
+        attr8.put("count", 0);
+        Map<String, Object> attr9 = new HashMap<String, Object>();
+        attr9.put("list", emptyList);
+        attr9.put("count", 0);
+        Map<String, Object> attr10 = new HashMap<String, Object>();
+        attr10.put("list", emptyList);
+        attr10.put("count", 0);
+        Map<String, Object> attr11 = new HashMap<String, Object>();
+        attr11.put("list", emptyList);
+        attr11.put("count", 0);
+        Map<String, Object> attr12 = new HashMap<String, Object>();
+        attr12.put("list", emptyList);
+        attr12.put("count", 0);
+        Map<String, Object> attr13 = new HashMap<String, Object>();
+        attr13.put("list", emptyList);
+        attr13.put("count", 0);
+        Map<String, Object> attr14 = new HashMap<String, Object>();
+        attr14.put("list", emptyList);
+        attr14.put("count", 0);
+        Map<String, Object> attr15 = new HashMap<String, Object>();
+        attr15.put("list", emptyList);
+        attr15.put("count", 0);
+        Map<String, Object> attr16 = new HashMap<String, Object>();
+        attr16.put("list", emptyList);
+        attr16.put("count", 0);
+        Map<String, Object> attr17 = new HashMap<String, Object>();
+        attr17.put("list", emptyList);
+        attr17.put("count", 0);
+        Map<String, Object> attr18 = new HashMap<String, Object>();
+        attr18.put("list", emptyList);
+        attr18.put("count", 0);
+        Map<String, Object> attr19 = new HashMap<String, Object>();
+        attr19.put("list", emptyList);
+        attr19.put("count", 0);
+        Map<String, Object> attr20 = new HashMap<String, Object>();
+        attr20.put("list", emptyList);
+        attr20.put("count", 0);
+        Map<String, Object> attr21 = new HashMap<String, Object>();
+        attr21.put("list", emptyList);
+        attr21.put("count", 0);
+        Map<String, Object> attr22 = new HashMap<String, Object>();
+        attr22.put("list", emptyList);
+        attr22.put("count", 0);
+        Map<String, Object> attr23 = new HashMap<String, Object>();
+        attr23.put("list", emptyList);
+        attr23.put("count", 0);
+        Map<String, Object> attr24 = new HashMap<String, Object>();
+        attr24.put("list", emptyList);
+        attr24.put("count", 0);
+        Map<String, Object> attr25 = new HashMap<String, Object>();
+        attr25.put("list", emptyList);
+        attr25.put("count", 0);
+        Map<String, Object> sum1 = new HashMap<String, Object>();
+        sum1.put("list", emptyList);
+        sum1.put("count", 0);
+        Map<String, Object> sum2 = new HashMap<String, Object>();
+        sum2.put("list", emptyList);
+        sum2.put("count", 0);
+        Map<String, Object> sum = new HashMap<String, Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V300MetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV300Data", queryParam);
+        if(V300MetaDataList == null) {
+            V300MetaDataList = new ArrayList<>(); 
+        }
+        
+        Map<String, List<Map<String, Object>>> groups = V300MetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
+            return String.valueOf(item.get("type"));
+        }));
+        
+        final List<String> V300IntRistPeriodsDataListFinal = V300IntRistPeriodsDataList;
+        List<Map<String,Double>> sum1List = new ArrayList<>();
+        List<Map<String,Double>> sum2List = new ArrayList<>();
+        for(@SuppressWarnings("unused") String intRistPeriod : V300IntRistPeriodsDataList) {
+            Map<String,Double> temp1 = new HashMap<>();
+            Map<String,Double> temp2 = new HashMap<>();
+            sum1List.add(temp1);
+            sum2List.add(temp2);
+        }
+        groups.forEach((type,list) -> {
+            Map<String,Map<String,Object>> tempMap = new HashMap<>();
+            for(Map<String,Object> map : list) {
+                tempMap.put(String.valueOf(map.get("intRiskPeriod")), map);
+            }
+            List<Map<String,Object>> tempList = new ArrayList<>();
+            for(String period :V300IntRistPeriodsDataListFinal) {
+                if(tempMap.get(period) != null) {
+                   tempList.add(tempMap.get(period));
+                }else {
+                    tempList.add(new HashMap<>());
+                }
+            }
+            list = tempList;
+            int count = list.size();
+            Double lineAmountSum;
+            Double lineAmountLastSum;
+            switch (type) {
+                case "银行存款":
+                    attr1.put("list", list);
+                    attr1.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr1.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr1.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "结算备付金":
+                    attr2.put("list", list);
+                    attr2.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr2.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr2.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "存出保证金":
+                    attr3.put("list", list);
+                    attr3.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr3.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr3.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "交易性金融资产":
+                    attr4.put("list", list);
+                    attr4.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr4.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr4.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "衍生金融资产":
+                    attr5.put("list", list);
+                    attr5.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr5.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr5.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "买入返售金融资产":
+                    attr6.put("list", list);
+                    attr6.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr6.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr6.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应收证券清算款":
+                    attr7.put("list", list);
+                    attr7.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr7.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr7.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应收利息":
+                    attr8.put("list", list);
+                    attr8.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr8.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr8.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应收股利":
+                    attr9.put("list", list);
+                    attr9.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr9.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr9.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应收申购款":
+                    attr10.put("list", list);
+                    attr10.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr10.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr10.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "其他资产":
+                    attr11.put("list", list);
+                    attr11.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum1List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr11.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr11.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "短期借款":
+                    attr12.put("list", list);
+                    attr12.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr12.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr12.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "交易性金融负债":
+                    attr13.put("list", list);
+                    attr13.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr13.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr13.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "衍生金融负债":
+                    attr14.put("list", list);
+                    attr14.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr14.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr14.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "卖出回购金融资产款":
+                    attr15.put("list", list);
+                    attr15.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr15.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr15.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应付证券清算款":
+                    attr16.put("list", list);
+                    attr16.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr16.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr16.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应付赎回款":
+                    attr17.put("list", list);
+                    attr17.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr17.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr17.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应付管理人报酬":
+                    attr18.put("list", list);
+                    attr18.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr18.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr18.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应付托管费":
+                    attr19.put("list", list);
+                    attr19.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr19.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr19.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应付销售服务费":
+                    attr20.put("list", list);
+                    attr20.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr20.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr20.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应付交易费用":
+                    attr21.put("list", list);
+                    attr21.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr21.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr21.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应付税费":
+                    attr22.put("list", list);
+                    attr22.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr22.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr22.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应付利息":
+                    attr23.put("list", list);
+                    attr23.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr23.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr23.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "应付利润":
+                    attr24.put("list", list);
+                    attr24.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr24.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr24.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                case "其他负债":
+                    attr25.put("list", list);
+                    attr25.put("count", count);
+                    lineAmountSum = new Double(0d);
+                    lineAmountLastSum = new Double(0d);
+                    for(int i = 0 ; i < list.size() ; i++) {
+                        Map<String,Object> map = list.get(i);
+                        Map<String, Double> sumMap = sum2List.get(i);
+                        Double temp1 = map.get("amount") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amount")));
+                        Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
+                        lineAmountSum += temp1;
+                        lineAmountLastSum +=temp2;
+                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
+                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                    }
+                    attr25.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
+                    attr25.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
+                    break;
+                default:
+                    break;
+            }
+        });
+        
+        Double sum1LineAmountSum = new Double(0d);
+        Double sum1LineAmountLastSum = new Double(0d);
+        for(Map<String,Double> sum1Map : sum1List) {
+            sum1LineAmountSum += sum1Map.get("amount");
+            sum1LineAmountLastSum += sum1Map.get("amountLast");
+        }
+        Double sum2LineAmountSum = new Double(0d);
+        Double sum2LineAmountLastSum = new Double(0d);
+        for(Map<String,Double> sum2Map : sum2List) {
+            sum2LineAmountSum += sum2Map.get("amount");
+            sum2LineAmountLastSum += sum2Map.get("amountLast");
+        }
+        sum1.put("list", sum1List);
+        sum1.put("count", sum1List.size());
+        sum1.put("lineAmountSum", sum1LineAmountSum);
+        sum1.put("lineAmountLastSum",sum1LineAmountLastSum);
+        sum2.put("list", sum2List);
+        sum2.put("count", sum2List.size());
+        sum2.put("lineAmountSum", sum2LineAmountSum);
+        sum2.put("lineAmountLastSum",sum2LineAmountLastSum);
+        List<Map<String,Object>> sumList = new ArrayList<>();
+        for(int i = 0 ; i < V300IntRistPeriodsDataList.size() ; i++) {
+            Map<String,Object> temp = new HashMap<>();
+            Map<String, Double> sum11 = sum1List.get(i);
+            Map<String, Double> sum22 = sum2List.get(i);
+            temp.put("amount", (sum11.get("amount")==null?0:sum11.get("amount")) - (sum22.get("amount")==null?0:sum22.get("amount")));
+            temp.put("amountLast", (sum11.get("amountLast")==null?0:sum11.get("amountLast")) - (sum22.get("amountLast")==null?0:sum22.get("amountLast")));
+            sumList.add(temp);
+        }
+        sum.put("list", sumList);
+        sum.put("count", V300IntRistPeriodsDataList.size());
+        sum.put("lineAmountSum", (sum1.get("lineAmountSum")==null ? 0 :Double.parseDouble(String.valueOf(sum1.get("lineAmountSum")))) - (sum2.get("lineAmountSum")==null ? 0 :Double.parseDouble(String.valueOf(sum2.get("lineAmountSum")))));
+        sum.put("lineAmountLastSum", Double.parseDouble(String.valueOf(sum1.get("lineAmountLastSum"))) - Double.parseDouble(String.valueOf(sum2.get("lineAmountLastSum"))));
+        
+        detail.put("attr1", attr1);
+        detail.put("attr2", attr2);
+        detail.put("attr3", attr3);
+        detail.put("attr4", attr4);
+        detail.put("attr5", attr5);
+        detail.put("attr6", attr6);
+        detail.put("attr7", attr7);
+        detail.put("attr8", attr8);
+        detail.put("attr9", attr9);
+        detail.put("attr10", attr10);
+        detail.put("attr11", attr11);
+        detail.put("attr12", attr12);
+        detail.put("attr13", attr13);
+        detail.put("attr14", attr14);
+        detail.put("attr15", attr15);
+        detail.put("attr16", attr16);
+        detail.put("attr17", attr17);
+        detail.put("attr18", attr18);
+        detail.put("attr19", attr19);
+        detail.put("attr20", attr20);
+        detail.put("attr21", attr21);
+        detail.put("attr22", attr22);
+        detail.put("attr23", attr23);
+        detail.put("attr24", attr24);
+        detail.put("attr25", attr25);
+        detail.put("sum1", sum1);
+        detail.put("sum2", sum2);
+        detail.put("sum", sum);
+        
+        V300.put("intRistPeriods", V300IntRistPeriodsDataList);
+        V300.put("intRistPeriodsCount", V300IntRistPeriodsDataList.size());
+        V300.put("detail", detail);
+        //====================↑V300↑====================
+        P5.put("V300", V300);
+        exportParam.put("P5", P5);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P5")));
     }
     

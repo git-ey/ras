@@ -6,8 +6,8 @@
         SELECT
 		    V300.TYPE as type,
 		    V300.INT_RISK_PERIOD as intRiskPeriod,
-		    V300.AMOUNT as amount,
-		    V300.AMOUNT_LAST_CNY as amountLast,
+		    IF(V300.AMOUNT = 0, null, V300.AMOUNT) as amount,
+		    IF(V300.AMOUNT_LAST_CNY = 0, null, V300.AMOUNT_LAST_CNY) as amountLast,
 		    V300.SORT as sort
 		FROM
 		    wp_v300 V300 
