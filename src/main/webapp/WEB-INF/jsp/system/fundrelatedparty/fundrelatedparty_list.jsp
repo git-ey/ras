@@ -60,6 +60,7 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center">基金ID</th>
+									<th class="center">排序</th>
 									<th class="center">关联方ID</th>
 									<th class="center">关联方名称</th>
 									<th class="center">关联方简称1</th>
@@ -84,6 +85,7 @@
 												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.FUNDRELATEDPARTY_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center'>${var.FUND_ID}</td>
+											<td class='center'>${var.SORT}</td>
 											<td class='center'>${var.PARTY_ID}</td>
 											<td class='center'>${var.PARTY_FULL_NAME}</td>
 											<td class='center'>${var.PARTY_SHORT_NAME_1}</td>

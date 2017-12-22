@@ -9,7 +9,8 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		FUND_ID,	
+		FUND_ID,
+		SORT,
 		PARTY_FULL_NAME,	
 		PARTY_SHORT_NAME_1,	
 		PARTY_SHORT_NAME_2,	
@@ -27,6 +28,7 @@
 	<!-- 字段值 -->
 	<sql id="FieldValue">
 		#{FUND_ID},	
+		#{SORT},
 		#{PARTY_FULL_NAME},	
 		#{PARTY_SHORT_NAME_1},	
 		#{PARTY_SHORT_NAME_2},	
@@ -66,6 +68,7 @@
 		<include refid="tableName"></include>
 		set 
 			FUND_ID = #{FUND_ID},
+			SORT = #{SORT},
 			PARTY_FULL_NAME = #{PARTY_FULL_NAME},
 			PARTY_SHORT_NAME_1 = #{PARTY_SHORT_NAME_1},
 			PARTY_SHORT_NAME_2 = #{PARTY_SHORT_NAME_2},
@@ -140,7 +143,8 @@
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
-		#{pd.FUND_ID},	
+		#{pd.FUND_ID},
+		#{pd.SORT},
 		#{pd.PARTY_FULL_NAME},	
 		#{pd.PARTY_SHORT_NAME_1},	
 		#{pd.PARTY_SHORT_NAME_2},	

@@ -34,7 +34,13 @@
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
 								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" title="基金ID" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">关联方名称:</td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">排序号:</td>
+								<td><input type="number" name="SORT" id="SORT" value="${pd.SORT}" maxlength="240" title="排序号" style="width:49%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">关联方ID:</td>
+								<td><input type="text" name="PARTY_ID" id="PARTY_ID" value="${pd.PARTY_ID}" maxlength="255" title="关联方ID" style="width:98%;"/></td>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">关联方名称:</td>
 								<td><input type="text" name="PARTY_FULL_NAME" id="PARTY_FULL_NAME" value="${pd.PARTY_FULL_NAME}" maxlength="240" title="关联方名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
@@ -65,10 +71,6 @@
 								    <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-							</tr>
-							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">关联方ID:</td>
-								<td><input type="text" name="PARTY_ID" id="PARTY_ID" value="${pd.PARTY_ID}" maxlength="255" title="关联方ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">
