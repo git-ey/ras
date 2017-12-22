@@ -170,13 +170,13 @@
     <select id="selectT500MainData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    T500.TYPE AS type,
-		    T500.ATTR1 AS attr1,
-		    T500.ATTR2 AS attr2,
-		    T500.ATTR3 AS attr3,
-		    T500.ATTR4 AS attr4,
-		    T500.ATTR5 AS attr5,
-		    T500.ATTR6 AS attr6,
-		    T500.ATTR7 AS attr7
+		    IF(T500.ATTR1 = 0, null, T500.ATTR1) AS attr1,
+		    IF(T500.ATTR2 = 0, null, T500.ATTR2) AS attr2,
+		    IF(T500.ATTR3 = 0, null, T500.ATTR3) AS attr3,
+		    IF(T500.ATTR4 = 0, null, T500.ATTR4) AS attr4,
+		    IF(T500.ATTR5 = 0, null, T500.ATTR5) AS attr5,
+		    IF(T500.ATTR6 = 0, null, T500.ATTR6) AS attr6,
+		    IF(T500.ATTR7 = 0, null, T500.ATTR7) AS attr7
 		FROM
 		    wp_t500 T500 
 		WHERE

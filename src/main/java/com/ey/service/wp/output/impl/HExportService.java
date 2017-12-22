@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -309,7 +310,6 @@ public class HExportService extends BaseExportService implements HExportManager{
         
         H400.put("list", H400MetaDataList);
         H400.put("count", H400MetaDataList.size());
-        H400.put("noteFlag", H400MetaDataList.stream().filter(item -> {return "期货".equals(item.get("type"));}).count()==0 ? "N" : "Y");
         H500.put("list", H500MetaDataList);
         H500.put("count", H500MetaDataList.size());
         related.put("H400", H400);
@@ -343,6 +343,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         main.put("list", mainMetaDataList);
         main.put("count", mainMetaDataList.size());
+        main.put("noteFlag", mainMetaDataList.stream().filter(item -> {return "期货".equals(item.get("type"));}).count()==0 ? "N" : "Y");
         result.put("main", main);
         
         @SuppressWarnings("unchecked")
@@ -503,6 +504,11 @@ public class HExportService extends BaseExportService implements HExportManager{
      */
     private Map<String,Object> getH10000Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> lastQueryMap = new HashMap<String,Object>(); 
+        queryMap.forEach((k,v) -> {
+            lastQueryMap.put(k, v);
+        });
+        lastQueryMap.put("period", (Integer.parseInt(String.valueOf(lastQueryMap.get("period")).substring(0, 4)) - 1) + "1231");
         Map<String, Object> result = new HashMap<String,Object>();
         //========process dataMap for note view begin========
         @SuppressWarnings("unchecked")
@@ -530,6 +536,10 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         TFA.put("exchange", exchange);
         TFA.put("bank", bank);
+        Object diviatonEyCurrent = this.dao.findForObject("HExportMapper.selectH10000TFADiviatonSumData", queryMap);
+        Object diviatonEyLast = this.dao.findForObject("HExportMapper.selectH10000TFADiviatonSumData", lastQueryMap);
+        TFA.put("diviatonEyCurrent", diviatonEyCurrent);
+        TFA.put("diviatonEyLast", diviatonEyLast);
         //========process dataMap for TFA view end========
         
         //========process dataMap for derivative view begin========
@@ -602,7 +612,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         rmcfs.put("item1", item1);
         rmcfs.put("item2", item2);
-        //========process dataMap for rmcfs view end========
+        //========********************process dataMap for rmcfs view end========
         
         //========process dataMap for interestDetail view begin========
         Map<String, Object> interestDetail = new HashMap<String,Object>();
@@ -617,11 +627,6 @@ public class HExportService extends BaseExportService implements HExportManager{
         current.put("list", currentInterestDetailMetaDataList);
         current.put("count", currentInterestDetailMetaDataList.size());
         
-        Map<String, Object> lastQueryMap = new HashMap<String,Object>(); 
-        queryMap.forEach((k,v) -> {
-            lastQueryMap.put(k, v);
-        });
-        lastQueryMap.put("period", (Integer.parseInt(String.valueOf(lastQueryMap.get("period")).substring(0, 4)) - 1) + "1231");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> lastInterestDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000InterestDetailData", lastQueryMap);
         if(lastInterestDetailMetaDataList == null) {
@@ -659,26 +664,33 @@ public class HExportService extends BaseExportService implements HExportManager{
         Map<String,Object> item5 = new HashMap<String,Object>();
         Map<String,Object> item6 = new HashMap<String,Object>();
         Map<String,Object> item7 = new HashMap<String,Object>();
+        List<Map<String,Object>> toolList = new ArrayList<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> fairValuesMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FairValuesData", queryMap);
         if(fairValuesMetaDataList == null) {
             fairValuesMetaDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : fairValuesMetaDataList) {
-            if("股票投资".equals(map.get("item"))) {
-                item1 = map;
-            }else if("债券投资".equals(map.get("item"))) {
-                item2 = map;
-            }else if("资产支持证券投资".equals(map.get("item"))) {
-                item3 = map;
-            }else if("基金投资".equals(map.get("item"))) {
-                item4 = map;
-            }else if("贵金属投资".equals(map.get("item"))) {
-                item5 = map;
-            }else if("其他".equals(map.get("item"))) {
-                item6 = map;
-            }else if("权证投资".equals(map.get("item"))) {
-                item7 = map;
+            if(Pattern.matches("^3.*$", String.valueOf(map.get("eyAccountNum")))){
+                //科目代码3开头的动态输出
+                toolList.add(map);
+            }else {
+                //其他项目静态输出
+                if("股票投资".equals(map.get("item"))) {
+                    item1 = map;
+                }else if("债券投资".equals(map.get("item"))) {
+                    item2 = map;
+                }else if("资产支持证券投资".equals(map.get("item"))) {
+                    item3 = map;
+                }else if("基金投资".equals(map.get("item"))) {
+                    item4 = map;
+                }else if("贵金属投资".equals(map.get("item"))) {
+                    item5 = map;
+                }else if("其他".equals(map.get("item"))) {
+                    item6 = map;
+                }else if("权证投资".equals(map.get("item"))) {
+                    item7 = map;
+                }
             }
         }
         fairValues.put("item1", item1);
@@ -688,6 +700,8 @@ public class HExportService extends BaseExportService implements HExportManager{
         fairValues.put("item5", item5);
         fairValues.put("item6", item6);
         fairValues.put("item7", item7);
+        fairValues.put("toolList", toolList);
+        fairValues.put("toolCount", toolList.size());
         //========process dataMap for fairValues view end========
         
         result.put("note", noteMetaData);
@@ -698,6 +712,10 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("interestDetail", interestDetail);
         result.put("fairValues", fairValues);
         return result;
+    }
+    
+    public static void main(String args[]) {
+        System.out.println(Pattern.compile("^3").matcher("31234").find());
     }
     
     /**

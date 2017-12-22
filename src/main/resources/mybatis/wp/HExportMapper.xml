@@ -274,6 +274,18 @@
         AND H10000T.ITEM = '债券'
     </select>
     
+    <select id="selectH10000TFADiviatonSumData" parameterType="java.util.Map" resultType="java.lang.Object">
+	    SELECT
+		    H500MD.DIVIATON_EY AS diviatonEy 
+		FROM
+		    wp_h500_mmf_diviaton H500MD 
+		WHERE
+		  1 = 1
+	    AND H500MD.FUND_ID = #{fundId}
+	    AND H500MD.PERIOD = #{period}
+	    LIMIT 1
+    </select>
+    
     <select id="selectH10000DerivativeData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H10000D.ITEM AS item,

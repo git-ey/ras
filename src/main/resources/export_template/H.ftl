@@ -4264,7 +4264,7 @@
     <Cell ss:Index="20" ss:StyleID="s201"/>
     <Cell ss:StyleID="s201"/>
    </Row>
-   <#if H300.related.H400.noteFlag == 'Y'>
+   <#if H400.main.noteFlag == 'Y'>
    <Row>
     <Cell ss:StyleID="s141"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">估值单价的测试请见<B><Font html:Color="#FF0000">H-XX旗下基金</Font></B><Font>底稿。</Font></ss:Data></Cell>
@@ -6168,7 +6168,7 @@
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.diviatonEyCurrent!0)?string('0.######')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="7" ss:StyleID="s52"/>
@@ -6224,7 +6224,7 @@
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.diviatonEyLast!0)?string('0.######')}</Data></Cell>
    </Row>
    </#if>
    <Row>
@@ -6288,7 +6288,7 @@
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.asset!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.liabilities!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0 && H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0 && H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0>注</#if></Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if (H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0) || (H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0) || (H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0)>注</#if></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
@@ -6353,7 +6353,7 @@
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.assetLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.liabilitiesLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0 && H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0 && H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0>注</#if></Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String"><#if (H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0) || (H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0) || (H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0)>注</#if></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s168"><Data ss:Type="String">合计</Data></Cell>
@@ -6369,7 +6369,7 @@
    <Row>
     <Cell ss:Index="6" ss:StyleID="s52"/>
    </Row>
-   <#if H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0 && H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0 && H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0>
+   <#if (H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0) || (H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0) || (H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0)>
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">其他衍生工具具体如下：</Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s52"/>
@@ -6384,7 +6384,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String">H400</Data></Cell>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">股指期货合约</Data></Cell>
+    <Cell ss:StyleID="s217"><Data ss:Type="String">股指期货</Data></Cell>
     <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item1.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item1.cost!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item1.mktValue!0)?string('0.##')}</Data></Cell>
@@ -6393,7 +6393,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">国债期货合约</Data></Cell>
+    <Cell ss:StyleID="s217"><Data ss:Type="String">国债期货</Data></Cell>
     <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item2.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item2.cost!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item2.mktValue!0)?string('0.##')}</Data></Cell>
@@ -6401,7 +6401,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">黄金现货延期交收合约</Data></Cell>
+    <Cell ss:StyleID="s217"><Data ss:Type="String">黄金延期合约</Data></Cell>
     <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item3.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item3.cost!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item3.mktValue!0)?string('0.##')}</Data></Cell>
@@ -6684,8 +6684,8 @@
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s185"><Data ss:Type="String">2.衍生工具</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[${(1+H10000.fairValues.toolCount)?string('0')}]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[${(1+H10000.fairValues.toolCount)?string('0')}]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
@@ -6695,13 +6695,17 @@
     <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item7.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
+   <#if H10000.fairValues.toolCount != 0>
+   <#list H10000.fairValues.toolList as item>
    <Row>
     <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">……</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">——${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">3.其他</Data></Cell>
@@ -6712,8 +6716,8 @@
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[-11]C,R[-4]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[-11]C,R[-4]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[${(-10-H10000.fairValues.toolCount)?string('0')}]C,R[${(-3-H10000.fairValues.toolCount)?string('0')}]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[${(-10-H10000.fairValues.toolCount)?string('0')}]C,R[${(-3-H10000.fairValues.toolCount)?string('0')}]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row/>
    <Row>
