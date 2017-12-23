@@ -1,4 +1,4 @@
-package com.ey.service.system.bond.impl;
+package com.ey.service.system.thirdpartystdname.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +10,19 @@ import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.service.system.bond.BondManager;
+import com.ey.service.system.thirdpartystdname.ThirdPartyStdNameManager;
 import com.ey.util.AppUtil;
 import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
 
 /** 
- * 说明： 证券信息
+ * 说明： 第三方名称
  * 创建人：andychen
- * 创建时间：2017-08-28
+ * 创建时间：2017-12-23
  * @version
  */
-@Service("bondService")
-public class BondService implements BondManager{
+@Service("thirdpartystdnameService")
+public class ThirdPartyStdNameService implements ThirdPartyStdNameManager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
@@ -31,65 +31,58 @@ public class BondService implements BondManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    public void save(PageData pd)throws Exception{
-		dao.save("BondMapper.save", pd);
+	public void save(PageData pd)throws Exception{
+		dao.save("ThirdPartyStdNameMapper.save", pd);
 	}
 	
 	/**删除
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    public void delete(PageData pd)throws Exception{
-		dao.delete("BondMapper.delete", pd);
+	public void delete(PageData pd)throws Exception{
+		dao.delete("ThirdPartyStdNameMapper.delete", pd);
 	}
 	
 	/**修改
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    public void edit(PageData pd)throws Exception{
-		dao.update("BondMapper.edit", pd);
+	public void edit(PageData pd)throws Exception{
+		dao.update("ThirdPartyStdNameMapper.edit", pd);
 	}
 	
 	/**列表
 	 * @param page
 	 * @throws Exception
 	 */
-	@Override
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
-		return (List<PageData>)dao.findForList("BondMapper.datalistPage", page);
+		return (List<PageData>)dao.findForList("ThirdPartyStdNameMapper.datalistPage", page);
 	}
 	
 	/**列表(全部)
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
-		return (List<PageData>)dao.findForList("BondMapper.listAll", pd);
+		return (List<PageData>)dao.findForList("ThirdPartyStdNameMapper.listAll", pd);
 	}
 	
 	/**通过id获取数据
 	 * @param pd
 	 * @throws Exception
 	 */
-	@Override
-    public PageData findById(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("BondMapper.findById", pd);
+	public PageData findById(PageData pd)throws Exception{
+		return (PageData)dao.findForObject("ThirdPartyStdNameMapper.findById", pd);
 	}
 	
 	/**批量删除
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
-	@Override
-    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
-		dao.delete("BondMapper.deleteAll", ArrayDATA_IDS);
+	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+		dao.delete("ThirdPartyStdNameMapper.deleteAll", ArrayDATA_IDS);
 	}
 	
 	/**批量新增
@@ -102,19 +95,16 @@ public class BondService implements BondManager{
 		List<PageData> pds = new ArrayList<PageData>();
 		for (Map<String, Object> map : maps) {
 			PageData pd = new PageData();
-			pd.put("BONDINFO_ID", UuidUtil.get32UUID());
-			pd.put("PERIOD", map.get("PERIOD"));
-			pd.put("DATA_SOURCE", map.get("DATA_SOURCE"));
-			pd.put("BOND_CODE", map.get("BOND_CODE"));
-			pd.put("SHORT_NAME", map.get("SHORT_NAME"));
+			pd.put("THIRDPARTYSTDNAME_ID", UuidUtil.get32UUID());
+			pd.put("TYPE", map.get("TYPE"));
 			pd.put("FULL_NAME", map.get("FULL_NAME"));
-			pd.put("BOND_TYPE", map.get("BOND_TYPE"));
-			pd.put("MARKET", map.get("MARKET"));
-			pd.put("MARKET_TYPE", map.get("MARKET_TYPE"));
+			pd.put("SHORT_NAME", map.get("SHORT_NAME"));
+			pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
+			pd.put("STATUS", null == map.get("STATUS") ? "Y" : map.get("STATUS"));
 			pds.add(pd);
 			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
 				// 批量插入
-				dao.save("BondMapper.saveBatch", pds);
+				dao.save("ThirdPartyStdNameMapper.saveBatch", pds);
 				// 清空集合
 				pds.clear();
 			}
@@ -123,7 +113,7 @@ public class BondService implements BondManager{
 		// 处理最后剩余数量
 		if (pds.size() > 0) {
 			// 批量插入
-			dao.save("BondMapper.saveBatch", pds);
+			dao.save("ThirdPartyStdNameMapper.saveBatch", pds);
 		}
 	}
 	

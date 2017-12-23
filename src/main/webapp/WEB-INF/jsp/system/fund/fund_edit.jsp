@@ -208,6 +208,7 @@
 								</td>
 							</tr>
 							<tr>
+							    <!-- 
 							    <td style="width:110px;text-align: right;padding-top: 13px;">U底稿行集:</td>
 								<td>
 								    <select class="chosen-select form-control" name="U_ROW_SET" id="U_ROW_SET" data-placeholder="请U底稿行集" style="vertical-align:top;width: 98%;">
@@ -217,8 +218,11 @@
 									    </c:forEach>
 								  	</select>
 								</td>
-								<td style="width:110px;text-align: right;padding-top: 13px;">风险变量:</td>
-								<td><input type="number" name="RISK_VARIABLE" id="RISK_VARIABLE" value="${pd.RISK_VARIABLE}" maxlength="32" title="风险变量" style="width:49%;"/></td>
+								 -->
+								 <td style="width:110px;text-align: right;padding-top: 13px;">利率风险变量:</td>
+								<td><input type="number" name="RISK_VARIABLE" id="RISK_VARIABLE" value="${pd.RISK_VARIABLE}" maxlength="32" title="利率风险变量" style="width:49%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">价格风险变量:</td>
+								<td><input type="number" name="PRICE_VARIABLE" id="PRICE_VARIABLE" value="${pd.PRICE_VARIABLE}" maxlength="32" title="价格风险变量" style="width:49%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性方法:</td>
 								<td>
 								    <select class="chosen-select form-control" name="INTEREST_SENSTVT_METHOD" id="INTEREST_SENSTVT_METHOD" data-placeholder="请选择" style="width:98%;">

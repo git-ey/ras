@@ -38,6 +38,7 @@
 		DEALER_SEPERATE,
 		U_ROW_SET,
 		RISK_VARIABLE,
+		PRICE_VARIABLE,
 		INTEREST_SENSTVT_METHOD,
 		INTEREST_SENSTVT_SOURSE,
 		PRICE_SENSTVT_METHOD,
@@ -90,6 +91,7 @@
 		#{DEALER_SEPERATE},
 		#{U_ROW_SET},
 		#{RISK_VARIABLE},
+		#{PRICE_VARIABLE},
 		#{INTEREST_SENSTVT_METHOD},
 		#{INTEREST_SENSTVT_SOURSE},
 		#{PRICE_SENSTVT_METHOD},
@@ -172,6 +174,9 @@
 		    <if test="RISK_VARIABLE != null and RISK_VARIABLE != ''">
 			RISK_VARIABLE = #{RISK_VARIABLE},
 			</if>
+			<if test="PRICE_VARIABLE != null and PRICE_VARIABLE != ''">
+			PRICE_VARIABLE = #{PRICE_VARIABLE},
+			</if>
 		    INTEREST_SENSTVT_METHOD = #{INTEREST_SENSTVT_METHOD},
 		    INTEREST_SENSTVT_SOURSE = #{INTEREST_SENSTVT_SOURSE},
 		    PRICE_SENSTVT_METHOD = #{PRICE_SENSTVT_METHOD},
@@ -242,6 +247,7 @@
 		       sf.DEALER_SEPERATE,
 		       sf.U_ROW_SET,
 		       sf.RISK_VARIABLE,
+		       sf.PRICE_VARIABLE,
 		       sf.INTEREST_SENSTVT_METHOD,
 		       sf.INTEREST_SENSTVT_SOURSE,
 		       sf.PRICE_SENSTVT_METHOD,
@@ -347,43 +353,61 @@
 	<!-- 批量新增-->
 	<insert id="saveBatch" parameterType="java.util.List">
 		insert into 
-	    <include refid="tableName"></include>
+	        <include refid="tableName"></include>
 		(
-	     FUND_ID,
-		 FUND_CODE,	
-		 FIRM_CODE,	
-		 SHORT_NAME,	
-		 FULL_NAME,	
-		 FULL_NAME_ORIGINAL,	
-		 TA_NAME,	
-		 FIN_SYSTEM,	
-		 STRUCTURED,	
-		 SHHK,	
-		 QD,	
-		 MF,	
-		 DATE_FROM,	
-		 DATE_TO,	
-		 ACTIVE,	
-		 STATUS
+	        <include refid="Field"></include>
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
-         #{pd.FUND_ID},
-		 #{pd.FUND_CODE},	
-		 #{pd.FIRM_CODE},	
-		 #{pd.SHORT_NAME},	
-		 #{pd.FULL_NAME},	
-		 #{pd.FULL_NAME_ORIGINAL},	
-		 #{pd.TA_NAME},	
-		 #{pd.FIN_SYSTEM},	
-		 #{pd.STRUCTURED},	
-		 #{pd.SHHK},	
-		 #{pd.QD},	
-		 #{pd.MF},	
-		 #{pd.DATE_FROM},	
-		 ${pd.DATE_TO},	
-		 #{pd.ACTIVE},	
-		 #{pd.STATUS}
+        #{pd.FUND_CODE},	
+		#{pd.FIRM_CODE},	
+		#{pd.SHORT_NAME},	
+		#{pd.FULL_NAME},	
+		#{pd.FULL_NAME_ORIGINAL},	
+		#{pd.LEDGER_NUM},	
+		#{pd.TA_NAME},	
+		#{pd.FIN_SYSTEM},	
+		#{pd.STRUCTURED},	
+		#{pd.GUARANTEED},	
+		#{pd.CLOSED},	
+		#{pd.SHHK},	
+		#{pd.QD},	
+		#{pd.MF},	
+		#{pd.IDX},	
+		#{pd.LOF},	
+		#{pd.ETF},	
+		#{pd.FOF},	
+		#{pd.UNIT},	
+		#{pd.DATE_FROM},	
+		#{pd.DATE_TO},	
+		#{pd.DATE_TRANSFORM},
+		#{pd.DEPOSIT_TERM_PERIOD},
+		#{pd.INTEREST_RATE_PERIOD},	
+		#{pd.OTHER_LIABILITIES},
+		#{pd.DIRECT_DEALER_NAME},
+		#{pd.DEALER_SEPERATE},
+		#{pd.U_ROW_SET},
+		#{pd.RISK_VARIABLE},
+		#{pd.PRICE_VARIABLE},
+		#{pd.INTEREST_SENSTVT_METHOD},
+		#{pd.INTEREST_SENSTVT_SOURSE},
+		#{pd.PRICE_SENSTVT_METHOD},
+		#{pd.PRICE_SENSTVT_INDEX},
+		#{pd.INDEX_SOURSE},
+		#{pd.PRICE_SENSTVT_BETA},
+		#{pd.BETA_SOURSE},
+		#{pd.INTEREST_SENSITIVITY},
+		#{pd.PRICE_SENSITIVITY},
+		#{pd.LEVEL_SHARE},
+		#{pd.NAV_ROUND},
+		#{pd.COMPOUND},
+		#{pd.ROR_BASELINE},
+		#{pd.ROR},
+		#{pd.LEVERAGE},
+		#{pd.EXERCISE_DATE_METHOD},
+		#{pd.ACTIVE},	
+		#{pd.STATUS},	
+		#{pd.FUND_ID}
          )
          </foreach >
 	</insert>
@@ -439,6 +463,7 @@
 		       fi.EXERCISE_DATE_METHOD = REPLACE(fi.EXERCISE_DATE_METHOD,'''',null),
 		       fi.ACTIVE = REPLACE(fi.ACTIVE,'''',null),
 		       fi.`STATUS` = REPLACE(fi.`STATUS`,'''',null)
+		  WHERE 1 = 0
 	</update>
 
 </mapper>

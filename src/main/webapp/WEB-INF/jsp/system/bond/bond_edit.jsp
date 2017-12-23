@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="bond/${msg }.do" name="Form" id="Form" method="post">
+					    <input type="hidden" name="BONDINFO_ID" id="BONDINFO_ID" value="${pd.BONDINFO_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
@@ -37,10 +38,10 @@
 								<td><input type="text" name="DATA_SOURCE" id="DATA_SOURCE" value="${pd.DATA_SOURCE}" maxlength="20" placeholder="这里输入数据来源" title="数据来源" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">证券代码:</td>
-								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="30" placeholder="这里输入证券代码" title="证券代码" style="width:98%;"/></td>
-								<td style="width:75px;text-align: right;padding-top: 13px;">证券简称:</td>
-								<td><input type="text" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="120" placeholder="这里输入证券简称" title="证券简称" style="width:98%;"/></td>
+								<td style="width:75px;text-align: right;padding-top: 13px;">债券代码:</td>
+								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="30" placeholder="这里输入债券代码" title="债券代码" style="width:98%;"/></td>
+								<td style="width:75px;text-align: right;padding-top: 13px;">债券简称:</td>
+								<td><input type="text" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="120" placeholder="这里输入债券简称" title="债券简称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">债券全称:</td>
@@ -112,7 +113,7 @@
 			if($("#BOND_CODE").val()==""){
 				$("#BOND_CODE").tips({
 					side:3,
-		            msg:'请输入证券代码',
+		            msg:'请输入债券代码',
 		            bg:'#AE81FF',
 		            time:2
 		        });
@@ -122,7 +123,7 @@
 			if($("#SHORT_NAME").val()==""){
 				$("#SHORT_NAME").tips({
 					side:3,
-		            msg:'请输入证券简称',
+		            msg:'请输入债券简称',
 		            bg:'#AE81FF',
 		            time:2
 		        });

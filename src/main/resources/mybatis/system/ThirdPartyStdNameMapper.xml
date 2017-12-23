@@ -1,36 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="BondMapper">
+<mapper namespace="ThirdPartyStdNameMapper">
 	
 	<!--表名 -->
 	<sql id="tableName">
-		SYS_BOND_INFO
+		sys_thirdparty_std_name
 	</sql>
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		PERIOD,	
-		DATA_SOURCE,	
-		BOND_CODE,	
-		SHORT_NAME,	
+		TYPE,	
 		FULL_NAME,	
-		BOND_TYPE,	
-		MARKET,	
-		MARKET_TYPE,
-		BONDINFO_ID
+		SHORT_NAME,	
+		ACTIVE,	
+		STATUS,	
+		THIRDPARTYSTDNAME_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{PERIOD},	
-		#{DATA_SOURCE},	
-		#{BOND_CODE},	
-		#{SHORT_NAME},	
+		#{TYPE},	
 		#{FULL_NAME},	
-		#{BOND_TYPE},	
-		#{MARKET},	
-		#{MARKET_TYPE},
-		#{BONDINFO_ID}
+		#{SHORT_NAME},	
+		#{ACTIVE},	
+		#{STATUS},	
+		#{THIRDPARTYSTDNAME_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -49,7 +43,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BONDINFO_ID = #{BONDINFO_ID}
+			THIRDPARTYSTDNAME_ID = #{THIRDPARTYSTDNAME_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -57,16 +51,13 @@
 		update
 		<include refid="tableName"></include>
 		set 
-			PERIOD = #{PERIOD},
-			DATA_SOURCE = #{DATA_SOURCE},
-			BOND_CODE = #{BOND_CODE},
-			SHORT_NAME = #{SHORT_NAME},
+			TYPE = #{TYPE},
 			FULL_NAME = #{FULL_NAME},
-			BOND_TYPE = #{BOND_TYPE},
-			MARKET = #{MARKET},
-			MARKET_TYPE = #{MARKET_TYPE}
+			SHORT_NAME = #{SHORT_NAME},
+			ACTIVE = #{ACTIVE},
+		THIRDPARTYSTDNAME_ID = THIRDPARTYSTDNAME_ID
 		where 
-		BONDINFO_ID = #{BONDINFO_ID}
+		THIRDPARTYSTDNAME_ID = #{THIRDPARTYSTDNAME_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -76,7 +67,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			BONDINFO_ID = #{BONDINFO_ID}
+			THIRDPARTYSTDNAME_ID = #{THIRDPARTYSTDNAME_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -89,16 +80,12 @@
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-				<!-- 根据需求自己加检索条件 -->
-					BOND_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				<!--	根据需求自己加检索条件
+					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
-					SHORT_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				     or 
-					FULL_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				-->
 				)
-		</if>
-		<if test="pd.PERIOD != null and pd.PERIOD != ''">
-		    and PERIOD = #{pd.PERIOD}
 		</if>
 	</select>
 	
@@ -115,7 +102,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BONDINFO_ID in
+			THIRDPARTYSTDNAME_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>
@@ -130,15 +117,12 @@
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
-		#{pd.PERIOD},	
-		#{pd.DATA_SOURCE},	
-		#{pd.BOND_CODE},	
-		#{pd.SHORT_NAME},	
+		#{pd.TYPE},	
 		#{pd.FULL_NAME},	
-		#{pd.BOND_TYPE},	
-		#{pd.MARKET},	
-		#{pd.MARKET_TYPE},
-		#{pd.BONDINFO_ID}
+		#{pd.SHORT_NAME},	
+		#{pd.ACTIVE},	
+		#{pd.STATUS},	
+		#{pd.THIRDPARTYSTDNAME_ID}
          )
          </foreach >
 	</insert>

@@ -22,9 +22,9 @@
 	<sql id="FieldValue">
 		#{TERMHEAD_ID},	
 		#{TERM_TYPE},
-		#{PREV_RANGE},
 		#{NAME},
 		#{METHOD},
+		#{PREV_RANGE},
 		#{DESCRIPTION},	
 		#{ACTIVE}
 	</sql>

@@ -172,6 +172,17 @@ public class BaseController {
 	protected final static String SFRI_IMPORT_TEMPLATE_CODE = "SFRI";	
 	
 	/**
+	 * TPS第三方名称导入模版代码
+	 */
+	protected final static String TPS_IMPORT_TEMPLATE_CODE = "TPS";		
+	
+	/**
+	 * SBI债券信息导入模版代码
+	 */
+	protected final static String SBI_IMPORT_TEMPLATE_CODE = "SBI";			
+	
+	
+	/**
 	 * new PageData对象
 	 * 
 	 * @return

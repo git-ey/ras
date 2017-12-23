@@ -31,7 +31,7 @@
 						<div class="col-xs-12">
 							
 						<!-- 检索  -->
-						<form action="bond/list.do" method="post" name="Form" id="Form">
+						<form action="thirdpartystdname/list.do" method="post" name="Form" id="Form">
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -42,14 +42,10 @@
 										</span>
 									</div>
 								</td>
-								<td style="vertical-align:top;padding-left:10px;">
-								 	<input class="nav-search-input" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" type="text" placeholder="期间" title="期间"/>
-								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
 								<c:if test="${QX.FromExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="ace-icon fa fa-cloud-upload bigger-110 nav-search-icon blue"></i></a></td></c:if>
-								<td style="padding-left:2px;text-align:right;width:90%;"></td>
 							</tr>
 						</table>
 						<!-- 检索  -->
@@ -61,14 +57,10 @@
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
-									<th class="center">期间</th>
-									<th class="center">数据来源</th>
-									<th class="center">债券代码</th>
-									<th class="center">债券简称</th>
-									<th class="center">债券全称</th>
-									<th class="center">债券类型</th>
-									<th class="center">上市市场</th>
-									<th class="center">市场类型</th>
+									<th class="center">类型</th>
+									<th class="center">全称</th>
+									<th class="center">简称</th>
+									<th class="center">启用</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -81,29 +73,25 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.BONDINFO_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.THIRDPARTYSTDNAME_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
-											<td class='center'>${var.PERIOD}</td>
-											<td class='center'>${var.DATA_SOURCE}</td>
-											<td class='center'>${var.BOND_CODE}</td>
-											<td class='center'>${var.SHORT_NAME}</td>
+											<td class='center'>${var.TYPE}</td>
 											<td class='center'>${var.FULL_NAME}</td>
-											<td class='center'>${var.BOND_TYPE}</td>
-											<td class='center'>${var.MARKET}</td>
-											<td class='center'>${var.MARKET_TYPE}</td>
+											<td class='center'>${var.SHORT_NAME}</td>
+											<td class='center'>${var.ACTIVE}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.BONDINFO_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.THIRDPARTYSTDNAME_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.BONDINFO_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.THIRDPARTYSTDNAME_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -117,7 +105,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.BONDINFO_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.THIRDPARTYSTDNAME_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -126,7 +114,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.BONDINFO_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.THIRDPARTYSTDNAME_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -263,8 +251,8 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>bond/goAdd.do';
-			 diag.Width = 600;
+			 diag.URL = '<%=basePath%>thirdpartystdname/goAdd.do';
+			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -287,7 +275,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>bond/delete.do?BONDINFO_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>thirdpartystdname/delete.do?THIRDPARTYSTDNAME_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -301,8 +289,8 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>bond/goEdit.do?BONDINFO_ID='+Id;
-			 diag.Width = 600;
+			 diag.URL = '<%=basePath%>thirdpartystdname/goEdit.do?THIRDPARTYSTDNAME_ID='+Id;
+			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -345,7 +333,7 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>bond/deleteAll.do?tm='+new Date().getTime(),
+								url: '<%=basePath%>thirdpartystdname/deleteAll.do?tm='+new Date().getTime(),
 						    	data: {DATA_IDS:str},
 								dataType:'json',
 								//beforeSend: validateData,
@@ -367,8 +355,8 @@
 			 top.jzts();
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
-			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>bond/goUploadExcel.do';
+			 diag.Title ="EXCEL 导入到数据库";
+			 diag.URL = '<%=basePath%>thirdpartystdname/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -385,7 +373,12 @@
 			 diag.show();
 		};
 		
+		//导出excel
+		function toExcel(){
+			window.location.href='<%=basePath%>thirdpartystdname/excel.do';
+		}
 	</script>
+
 
 </body>
 </html>

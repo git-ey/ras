@@ -1,4 +1,4 @@
-package com.ey.service.system.bond;
+package com.ey.service.system.thirdpartystdname;
 
 import java.util.List;
 import java.util.Map;
@@ -7,12 +7,12 @@ import com.ey.entity.Page;
 import com.ey.util.PageData;
 
 /** 
- * 说明： 证券信息接口
+ * 说明： 第三方名称接口
  * 创建人：andychen
- * 创建时间：2017-08-28
+ * 创建时间：2017-12-23
  * @version
  */
-public interface BondManager{
+public interface ThirdPartyStdNameManager{
 
 	/**新增
 	 * @param pd

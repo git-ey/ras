@@ -1,4 +1,4 @@
-package com.ey.controller.system.bond;
+package com.ey.controller.system.thirdpartystdname;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -24,31 +24,29 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
-import com.ey.service.system.bond.BondManager;
-import com.ey.service.system.dataexport.DataexportManager;
 import com.ey.service.system.loger.LogerManager;
+import com.ey.service.system.thirdpartystdname.ThirdPartyStdNameManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
 import com.ey.util.FileDownload;
 import com.ey.util.Jurisdiction;
+import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
 import com.ey.util.PathUtil;
 import com.ey.util.fileimport.MapResult;
 
 /** 
- * 说明：证券信息
+ * 说明：第三方名称
  * 创建人：andychen
- * 创建时间：2017-08-28
+ * 创建时间：2017-12-23
  */
 @Controller
-@RequestMapping(value="/bond")
-public class BondController extends BaseController {
+@RequestMapping(value="/thirdpartystdname")
+public class ThirdPartyStdNameController extends BaseController {
 	
-	String menuUrl = "bond/list.do"; //菜单地址(权限用)
-	@Resource(name="bondService")
-	private BondManager bondService;
-	@Resource(name="dataexportService")
-	private DataexportManager dataexportService;
+	String menuUrl = "thirdpartystdname/list.do"; //菜单地址(权限用)
+	@Resource(name="thirdpartystdnameService")
+	private ThirdPartyStdNameManager thirdpartystdnameService;
 	@Resource(name = "logService")
 	private LogerManager logManager;
 	
@@ -58,12 +56,14 @@ public class BondController extends BaseController {
 	 */
 	@RequestMapping(value="/save")
 	public ModelAndView save() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"新增Bond");
+		logBefore(logger, Jurisdiction.getUsername()+"新增ThirdPartyStdName");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		bondService.save(pd);
+		pd.put("THIRDPARTYSTDNAME_ID", this.get32UUID());	//主键
+		pd.put("STATUS", "");	//状态
+		thirdpartystdnameService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -75,11 +75,11 @@ public class BondController extends BaseController {
 	 */
 	@RequestMapping(value="/delete")
 	public void delete(PrintWriter out) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"删除Bond");
+		logBefore(logger, Jurisdiction.getUsername()+"删除ThirdPartyStdName");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		bondService.delete(pd);
+		thirdpartystdnameService.delete(pd);
 		out.write("success");
 		out.close();
 	}
@@ -90,12 +90,12 @@ public class BondController extends BaseController {
 	 */
 	@RequestMapping(value="/edit")
 	public ModelAndView edit() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"修改Bond");
+		logBefore(logger, Jurisdiction.getUsername()+"修改ThirdPartyStdName");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		bondService.edit(pd);
+		thirdpartystdnameService.edit(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -107,7 +107,7 @@ public class BondController extends BaseController {
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView list(Page page) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"列表Bond");
+		logBefore(logger, Jurisdiction.getUsername()+"列表ThirdPartyStdName");
 		//if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限(无权查看时页面会有提示,如果不注释掉这句代码就无法进入列表页面,所以根据情况是否加入本句代码)
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
@@ -117,10 +117,8 @@ public class BondController extends BaseController {
 			pd.put("keywords", keywords.trim());
 		}
 		page.setPd(pd);
-		List<PageData>	varList = bondService.list(page);	//列出Bond列表
-		List<PageData> periodList = dataexportService.listPeriod(pd);
-		mv.setViewName("system/bond/bond_list");
-		mv.addObject("periodList", periodList);
+		List<PageData>	varList = thirdpartystdnameService.list(page);	//列出ThirdPartyStdName列表
+		mv.setViewName("system/thirdpartystdname/thirdpartystdname_list");
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
@@ -136,7 +134,7 @@ public class BondController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		mv.setViewName("system/bond/bond_edit");
+		mv.setViewName("system/thirdpartystdname/thirdpartystdname_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -151,8 +149,8 @@ public class BondController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd = bondService.findById(pd);	//根据ID读取
-		mv.setViewName("system/bond/bond_edit");
+		pd = thirdpartystdnameService.findById(pd);	//根据ID读取
+		mv.setViewName("system/thirdpartystdname/thirdpartystdname_edit");
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;
@@ -165,7 +163,7 @@ public class BondController extends BaseController {
 	@RequestMapping(value="/deleteAll")
 	@ResponseBody
 	public Object deleteAll() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"批量删除Bond");
+		logBefore(logger, Jurisdiction.getUsername()+"批量删除ThirdPartyStdName");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return null;} //校验权限
 		PageData pd = new PageData();		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -174,7 +172,7 @@ public class BondController extends BaseController {
 		String DATA_IDS = pd.getString("DATA_IDS");
 		if(null != DATA_IDS && !"".equals(DATA_IDS)){
 			String ArrayDATA_IDS[] = DATA_IDS.split(",");
-			bondService.deleteAll(ArrayDATA_IDS);
+			thirdpartystdnameService.deleteAll(ArrayDATA_IDS);
 			pd.put("msg", "ok");
 		}else{
 			pd.put("msg", "no");
@@ -184,7 +182,6 @@ public class BondController extends BaseController {
 		return AppUtil.returnObject(pd, map);
 	}
 	
-	
 	/**打开上传EXCEL页面
 	 * @return
 	 * @throws Exception
@@ -192,7 +189,7 @@ public class BondController extends BaseController {
 	@RequestMapping(value="/goUploadExcel")
 	public ModelAndView goUploadExcel()throws Exception{
 		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("system/bond/uploadexcel");
+		mv.setViewName("system/thirdpartystdname/uploadexcel");
 		return mv;
 	}
 	
@@ -202,7 +199,7 @@ public class BondController extends BaseController {
 	 */
 	@RequestMapping(value="/downExcel")
 	public void downExcel(HttpServletResponse response) throws Exception{
-		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Sys_Bond_Info.xlsx", "Sys_Bond_Info.xlsx");
+		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Thirdparty_Stdname.xlsx", "Thirdparty_Stdname.xlsx");
 	}
 	
 	/**
@@ -215,17 +212,53 @@ public class BondController extends BaseController {
 	@RequestMapping(value = "/readExcel")
 	public ModelAndView readExcel(@RequestParam(value = "excel", required = false) MultipartFile file)
 			throws Exception {
-		logManager.save(Jurisdiction.getUsername(), "从EXCEL导入债券信息到数据库");
+		logManager.save(Jurisdiction.getUsername(), "从EXCEL导入第三方名称到数据库");
 		ModelAndView mv = this.getModelAndView();
 		if (!Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
 			return null;
 		}
-		MapResult mapResult = readExcel(file, SBI_IMPORT_TEMPLATE_CODE);
+		MapResult mapResult = readExcel(file, TPS_IMPORT_TEMPLATE_CODE);
 		/* 存入数据库操作====================================== */
 		List<Map> maps = mapResult.getResult();
-		bondService.saveBatch(maps);
+		thirdpartystdnameService.saveBatch(maps);
 		mv.addObject("msg", "success");
 		mv.setViewName("save_result");
+		return mv;
+	}
+	
+	 /**导出到excel
+	 * @param
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/excel")
+	public ModelAndView exportExcel() throws Exception{
+		logBefore(logger, Jurisdiction.getUsername()+"导出ThirdPartyStdName到excel");
+		if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
+		ModelAndView mv = new ModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		Map<String,Object> dataMap = new HashMap<String,Object>();
+		List<String> titles = new ArrayList<String>();
+		titles.add("类型");	//1
+		titles.add("全称");	//2
+		titles.add("简称");	//3
+		titles.add("启用");	//4
+		titles.add("状态");	//5
+		dataMap.put("titles", titles);
+		List<PageData> varOList = thirdpartystdnameService.listAll(pd);
+		List<PageData> varList = new ArrayList<PageData>();
+		for(int i=0;i<varOList.size();i++){
+			PageData vpd = new PageData();
+			vpd.put("var1", varOList.get(i).getString("TYPE"));	    //1
+			vpd.put("var2", varOList.get(i).getString("FULL_NAME"));	    //2
+			vpd.put("var3", varOList.get(i).getString("SHORT_NAME"));	    //3
+			vpd.put("var4", varOList.get(i).getString("ACTIVE"));	    //4
+			vpd.put("var5", varOList.get(i).getString("STATUS"));	    //5
+			varList.add(vpd);
+		}
+		dataMap.put("varList", varList);
+		ObjectExcelView erv = new ObjectExcelView();
+		mv = new ModelAndView(erv,dataMap);
 		return mv;
 	}
 	
