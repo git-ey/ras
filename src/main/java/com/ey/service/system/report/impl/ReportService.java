@@ -201,6 +201,7 @@ public class ReportService implements ReportManager {
 		
 		// 本期年
 		infoMap.put("CURRENT_YEAR", year);
+		infoMap.put("CURRENT_YEAR_NUM", Integer.parseInt(year));
 		
 		// 本期起始日来源&&本期起始日文本
 		if (dateFrom.getTime() >= yearFirstDate.getTime() && dateFrom != dateTransform) {
@@ -273,6 +274,7 @@ public class ReportService implements ReportManager {
 		infoMap.put("LAST_BS_DATE", lastInfoMap.get("CURRENT_BS_DATE"));
 		// 上期年
 		infoMap.put("LAST_YEAR", lastInfoMap.get("CURRENT_YEAR"));
+		infoMap.put("LAST_YEAR_NUM", lastInfoMap.get("CURRENT_YEAR_NUM"));
 		// 上期年度
 		infoMap.put("LAST_PERIOD", lastInfoMap.get("CURRENT_PERIOD"));
 		// 上期起始日
