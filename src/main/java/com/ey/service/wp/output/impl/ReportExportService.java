@@ -25,8 +25,6 @@ import com.ey.util.fileexport.FileExportUtils;
 import com.ey.util.fileexport.FreeMarkerUtils;
 import com.google.common.collect.Lists;
 
-import freemarker.template.TemplateException;
-
 /**
  * @name GExportService
  * @description 底稿输出服务--Report
@@ -131,6 +129,15 @@ public class ReportExportService implements ReportExportManager {
         return true;
     }
     
+    /**
+     * 处理报告各个组件
+     * @author Dai Zong 2017年12月20日
+     * 
+     * @param exportParam
+     * @param content
+     * @param queryParam
+     * @throws Exception
+     */
     private void processParts(Map<String, Object> exportParam, Map<String,Object> content, Map<String,Object> queryParam) throws Exception{
         @SuppressWarnings("unchecked")
         Map<String,Object> partName = (Map<String,Object>)exportParam.get("partName");
@@ -618,11 +625,271 @@ public class ReportExportService implements ReportExportManager {
      * @param partName
      * @param queryParam
      * @return
-     * @throws IOException
-     * @throws TemplateException
+     * @throws Exception 
      */
-    private String processP3(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws IOException, TemplateException{
+    private String processP3(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws Exception{
+        Map<String,Object> P3 = new HashMap<>();
+        
+        P3.put("sec1", this.processP3Sec1(queryParam));
+        
+        exportParam.put("P3", P3);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
+    }
+    
+    private Map<String,Object> processP3Sec1(Map<String,Object> queryParam) throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        String FundId = String.valueOf(queryParam.get("fundId"));
+        String Period = String.valueOf(queryParam.get("period"));
+        String PeriodLast = (Integer.parseInt(Period.substring(0, 4)) - 1) + "1231";
+        Map<String, Object> queryParamLast = this.createBaseQueryMap(FundId, PeriodLast);
+        //====================↓C10000↓====================
+        Map<String,Object> C10000 = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> C10000MetaDataList = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC10000DataForReport", queryParam);
+        if(C10000MetaDataList == null) {
+            C10000MetaDataList = new ArrayList<>(); 
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> C10000SumMetaData = (Map<String,Object>)this.dao.findForObject("CExportMapper.selectC10000SumDataForReport", queryParam);
+        if(C10000SumMetaData == null) {
+            C10000SumMetaData = new HashMap<>();
+        }
+        C10000MetaDataList.add(C10000SumMetaData);
+        C10000.put("list", C10000MetaDataList);
+        C10000.put("count", C10000MetaDataList.size());
+        //====================↑C10000↑====================
+        
+        //====================↓H10000↓====================
+        Map<String,Object> H10000 = new HashMap<>();
+        //--------------------↓H10000.tfa↓--------------------
+        Map<String,Object> tfa = new HashMap<>();
+        
+        Map<String,Object> item1 = new HashMap<>();
+        Map<String,Object> item2 = new HashMap<>();
+        Map<String,Object> item3 = new HashMap<>();
+        Map<String,Object> item4 = new HashMap<>();
+        Map<String,Object> item5 = new HashMap<>();
+        Map<String,Object> item6 = new HashMap<>();
+        Map<String,Object> item7 = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H10000BondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000TFAData", queryParam);
+        if(H10000BondDataList == null) {
+            H10000BondDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : H10000BondDataList) {
+            if("交易所".equals(map.get("subItem"))) {
+                item3 = map;
+            }else if("银行间".equals(map.get("subItem"))){
+                item4 = map;
+            }
+        }
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H10000NotBondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000TFANotBondDataForReport", queryParam);
+        if(H10000NotBondDataList == null) {
+            H10000NotBondDataList = new ArrayList<>(); 
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H10000BondSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000TFABondSumDataForReport", queryParam);
+        if(H10000BondSumData == null) {
+            H10000BondSumData = new HashMap<>();
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H10000SumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000TFASumDataForReport", queryParam);
+        if(H10000SumData == null) {
+            H10000SumData = new HashMap<>();
+        }
+        for(Map<String,Object> map : H10000NotBondDataList) {
+            if("股票".equals(map.get("item"))) {
+                item1 = map;
+            }else if("贵金属投资-金交所黄金合约".equals(map.get("item"))){
+                item2 = map;
+            }else if("资产支持性证券投资".equals(map.get("item"))){
+                item5 = map;
+            }else if("基金投资".equals(map.get("item"))){
+                item6 = map;
+            }else if("其他".equals(map.get("item"))){
+                item7 = map;
+            }
+        }
+        tfa.put("item1", item1);
+        tfa.put("item2", item2);
+        tfa.put("item3", item3);
+        tfa.put("item4", item4);
+        tfa.put("item5", item5);
+        tfa.put("item6", item6);
+        tfa.put("item7", item7);
+        tfa.put("sumBond", H10000BondSumData);
+        tfa.put("sum", H10000SumData);
+        tfa.put("bondCount", H10000BondDataList.size());
+        tfa.put("otherCount", H10000NotBondDataList.size());
+        
+        tfa.put("tfa", tfa);
+        H10000.put("tfa", tfa);
+        //--------------------↑H10000.tfa↑--------------------
+        //--------------------↓H10000.derivative↓--------------------
+        Map<String,Object> derivative = new HashMap<>();
+        
+        item1 = new HashMap<>();
+        item2 = new HashMap<>();
+        item3 = new HashMap<>();
+        item4 = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H10000DerivativeDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000DerivativeData", queryParam);
+        if(H10000DerivativeDataList == null) {
+            H10000DerivativeDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : H10000DerivativeDataList) {
+            if("利率衍生工具".equals(map.get("item"))) {
+                item1 = map;
+            }else if("货币衍生工具".equals(map.get("item"))){
+                item2 = map;
+            }else if("权益衍生工具".equals(map.get("item"))){
+                item3 = map;
+            }else if("其他衍生工具".equals(map.get("item"))){
+                item4 = map;
+            }
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H10000DerivativeSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000DerivativeSumDataForReport", queryParam);
+        if(H10000DerivativeSumData == null) {
+            H10000DerivativeSumData = new HashMap<>(); 
+        }
+        derivative.put("item1", item1);
+        derivative.put("item2", item2);
+        derivative.put("item3", item3);
+        derivative.put("item4", item4);
+        derivative.put("sum", H10000DerivativeSumData);
+        derivative.put("count", H10000DerivativeDataList.size());
+        H10000.put("derivative", derivative);
+        //--------------------↑H10000.derivative↑--------------------
+        //--------------------↓H10000.futures↓--------------------
+        Map<String,Object> futures = new HashMap<>();
+        item1 = new HashMap<>();
+        item2 = new HashMap<>();
+        item3 = new HashMap<>();
+        item4 = new HashMap<>();
+        item5 = new HashMap<>();
+        item6 = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H10000futuresDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FuturesData", queryParam);
+        if(H10000futuresDataList == null) {
+            H10000futuresDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : H10000futuresDataList) {
+            if("股指期货".equals(map.get("item"))) {
+                item1 = map;
+            }else if("国债期货".equals(map.get("item"))){
+                item2 = map;
+            }else if("黄金延期合约".equals(map.get("item"))){
+                item3 = map;
+            }
+        }
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H10000futuresLastDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FuturesData", queryParamLast);
+        if(H10000futuresLastDataList == null) {
+            H10000futuresLastDataList = new ArrayList<>(); 
+        }
+        for(Map<String,Object> map : H10000futuresLastDataList) {
+            if("股指期货".equals(map.get("item"))) {
+                item4 = map;
+            }else if("国债期货".equals(map.get("item"))){
+                item5 = map;
+            }else if("黄金延期合约".equals(map.get("item"))){
+                item6 = map;
+            }
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H10000futuresSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FuturesSumDataForReport", queryParam);
+        if(H10000futuresSumData == null) {
+            H10000futuresSumData = new HashMap<>(); 
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H10000futuresSumLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FuturesSumDataForReport", queryParam);
+        if(H10000futuresSumLastData == null) {
+            H10000futuresSumLastData = new HashMap<>(); 
+        }
+        
+        futures.put("item1", item1);
+        futures.put("item2", item2);
+        futures.put("item3", item3);
+        futures.put("item1Last ", item4);
+        futures.put("item2Last ", item5);
+        futures.put("item3Last ", item6);
+        futures.put("sum", H10000futuresSumData);
+        futures.put("sumLast", H10000futuresSumLastData);
+        H10000.put("futures", futures);
+        //--------------------↑H10000.futures↑--------------------
+        //--------------------↓H10000.rmcfs↓--------------------
+        Map<String, Object> rmcfs = new HashMap<String,Object>();
+        item1 = new HashMap<String,Object>();
+        item2 = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> rmcfsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000RmcfsData", queryParam);
+        if(rmcfsMetaDataList == null) {
+            rmcfsMetaDataList = new ArrayList<>();
+        }
+        for(Map<String,Object> map : rmcfsMetaDataList) {
+            if("交易所市场".equals(map.get("item"))) {
+                item1 = map;
+            }else if("银行间市场".equals(map.get("item"))) {
+                item2 = map;
+            }
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H10000rmcfsSumLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000RmcfsSumDataForReport", queryParam);
+        if(H10000rmcfsSumLastData == null) {
+            H10000rmcfsSumLastData = new HashMap<>(); 
+        }
+        
+        rmcfs.put("item1", item1);
+        rmcfs.put("item2", item2);
+        rmcfs.put("sum", H10000rmcfsSumLastData);
+        rmcfs.put("count", rmcfsMetaDataList.size());
+        H10000.put("rmcfs", rmcfs);
+        //--------------------↑H10000.rmcfs↑--------------------
+        //====================↑H10000↑====================
+        
+        //====================↓H800↓====================
+        Map<String,Object> H800 = new HashMap<>();
+        //--------------------↓H800.intestDetail↓--------------------
+        Map<String,Object> intestDetail = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H800intestDetailCurrentDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH800InterestDetailDataForReport", queryParam);
+        if(H800intestDetailCurrentDataList == null) {
+            H800intestDetailCurrentDataList = new ArrayList<>();
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H800intestDetailCurrentSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH800InterestDetailSumDataForReport", queryParam);
+        if(H800intestDetailCurrentSumData == null) {
+            H800intestDetailCurrentSumData = new HashMap<>(); 
+        }
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H800intestDetailLastDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH800InterestDetailDataForReport", queryParamLast);
+        if(H800intestDetailLastDataList == null) {
+            H800intestDetailLastDataList = new ArrayList<>();
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H800intestDetailLastSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH800InterestDetailSumDataForReport", queryParamLast);
+        if(H800intestDetailLastSumData == null) {
+            H800intestDetailLastSumData = new HashMap<>(); 
+        }
+        
+        intestDetail.put("listCurrent", H800intestDetailCurrentDataList);
+        intestDetail.put("sumCurrent", H800intestDetailCurrentSumData);
+        intestDetail.put("countCurrent", H800intestDetailCurrentDataList.size());
+        intestDetail.put("listLast", H800intestDetailLastDataList);
+        intestDetail.put("sumLast", H800intestDetailLastSumData);
+        intestDetail.put("countLast", H800intestDetailLastDataList.size());
+        H800.put("intestDetail", intestDetail);
+        //--------------------↑H800.intestDetail↑--------------------
+        //====================↑H800↑====================
+        result.put("C10000", C10000);
+        result.put("H10000", H10000);
+        result.put("H800", H800);
+        return result;
     }
     
     /**
