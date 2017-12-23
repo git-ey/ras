@@ -371,6 +371,20 @@
             H10000FV.SORT
     </select>
     
+    <select id="selectH10000ThreeLevelData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000TL.THREE_LEVEL as threeLevel,
+		    IF(H10000TL.AMOUNT_CURRENT = 0, null, H10000TL.AMOUNT_CURRENT) as amountCurrent,
+		    IF(H10000TL.AMOUNT_LAST = 0, null, H10000TL.AMOUNT_LAST) as amountLast
+		FROM
+		    wp_h10000_three_level H10000TL
+		WHERE
+		    1 = 1
+		and H10000TL.`STATUS` = 'Y'
+		and H10000TL.FUND_ID = #{fundId}
+		and H10000TL.PERIOD = #{period}
+    </select>
+    
     <select id="selectH11000AdditianData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H11000A.TYPE AS type,

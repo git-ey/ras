@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
@@ -653,6 +654,10 @@ public class ReportExportService implements ReportExportManager {
      */
     private String processP5(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws Exception{
         Map<String,Object> P5 = new HashMap<>();
+        String FundId = String.valueOf(queryParam.get("fundId"));
+        String Period = String.valueOf(queryParam.get("period"));
+        String PeriodLast = (Integer.parseInt(Period.substring(0, 4)) - 1) + "1231";
+        Map<String, Object> queryParamLast = this.createBaseQueryMap(FundId, PeriodLast);
         
         //====================↓V300↓====================
         Map<String,Object> V300 = new HashMap<>();
@@ -771,7 +776,9 @@ public class ReportExportService implements ReportExportManager {
             sum1List.add(temp1);
             sum2List.add(temp2);
         }
-        groups.forEach((type,list) -> {
+        for(Entry<String, List<Map<String, Object>>> entry : groups.entrySet()) {
+            String type = entry.getKey();
+            List<Map<String, Object>> list = entry.getValue();
             Map<String,Map<String,Object>> tempMap = new HashMap<>();
             for(Map<String,Object> map : list) {
                 tempMap.put(String.valueOf(map.get("intRiskPeriod")), map);
@@ -1242,7 +1249,7 @@ public class ReportExportService implements ReportExportManager {
                 default:
                     break;
             }
-        });
+        }
         
         Double sum1LineAmountSum = new Double(0d);
         Double sum1LineAmountLastSum = new Double(0d);
@@ -1311,7 +1318,146 @@ public class ReportExportService implements ReportExportManager {
         V300.put("intRistPeriodsCount", V300IntRistPeriodsDataList.size());
         V300.put("detail", detail);
         //====================↑V300↑====================
+        
+        //====================↓V400↓====================
+        Map<String,Object> V400 = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400FundInfoData", queryParam);
+        if(fundInfo == null) {
+            fundInfo = new HashMap<>();
+        }
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V400HypothesisDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400HypothesisDataForReport", queryParam);
+        if(V400HypothesisDataList == null) {
+            V400HypothesisDataList = new ArrayList<>(); 
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> summaryCurrent = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400SummaryData", queryParam);
+        if(summaryCurrent == null) {
+            summaryCurrent = new HashMap<>(); 
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> summaryLast = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400SummaryData", queryParamLast);
+        if(summaryLast == null) {
+            summaryLast = new HashMap<>(); 
+        }
+        
+        V400.put("fundInfo", fundInfo);
+        V400.put("hypothesis", V400HypothesisDataList);
+        V400.put("hypothesisCount", V400HypothesisDataList.size());
+        V400.put("summaryCurrent", summaryCurrent);
+        V400.put("summaryLast", summaryLast);
+        //====================↑V400↑====================
+        
+        //====================↓V500↓====================
+        Map<String, Object> V500 = new HashMap<String,Object>();
+        
+        Map<String, Object> riskExposure = new HashMap<String,Object>();
+        attr1 = new HashMap<String,Object>();
+        attr2 = new HashMap<String,Object>();
+        attr3 = new HashMap<String,Object>();
+        attr4 = new HashMap<String,Object>();
+        attr5 = new HashMap<String,Object>();
+        attr6 = new HashMap<String,Object>();
+        sum = new HashMap<String,Object>();
+        Double netValue = 0D;
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V500riskExposureMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500riskExposureData", queryParam);
+        if(CollectionUtils.isEmpty(V500riskExposureMetaDataList)) {
+            V500riskExposureMetaDataList = new ArrayList<>(); 
+        }else {
+            netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValue")));
+        }
+        Map<String,Map<String,Object>> temp = new HashMap<>();
+        for(Map<String,Object> map : V500riskExposureMetaDataList) {
+            temp.put(String.valueOf(map.get("item")), map);
+        }
+        for(Entry<String, Map<String,Object>> entry : temp.entrySet()) {
+            if ("交易性金融资产-股票投资".equals(entry.getKey())) {
+                attr1 = entry.getValue();
+            } else if ("交易性金融资产-基金投资".equals(entry.getKey())) {
+                attr2 = entry.getValue();
+            } else if ("交易性金融资产-债券投资".equals(entry.getKey())) {
+                attr3 = entry.getValue();
+            } else if ("交易性金融资产-贵金属投资".equals(entry.getKey())) {
+                attr4 = entry.getValue();
+            } else if ("衍生金融资产-权证投资".equals(entry.getKey())) {
+                attr5 = entry.getValue();
+            } else if ("其他".equals(entry.getKey())) {
+                attr6 = entry.getValue();
+            }
+        }
+        riskExposure.put("attr1", attr1);
+        riskExposure.put("attr2", attr2);
+        riskExposure.put("attr3", attr3);
+        riskExposure.put("attr4", attr4);
+        riskExposure.put("attr5", attr5);
+        riskExposure.put("attr6", attr6);
+        riskExposure.put("netValue", netValue);
+        @SuppressWarnings("unchecked")
+        Map<String,Object> V500riskExposureSumMetaDataList = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV500riskExposureSumData", queryParam);
+        if(V500riskExposureSumMetaDataList != null) {
+            sum = V500riskExposureSumMetaDataList;
+        }
+        riskExposure.put("sum", sum);
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V500HypothesisDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500HypothesisDataForReport", queryParam);
+        if(V500HypothesisDataList == null) {
+            V500HypothesisDataList = new ArrayList<>(); 
+        }
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> summaryCurrent2 = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV500SummaryData", queryParam);
+        if(summaryCurrent2 == null) {
+            summaryCurrent2 = new HashMap<>(); 
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> summaryLast2 = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV500SummaryData", queryParamLast);
+        if(summaryLast2 == null) {
+            summaryLast2 = new HashMap<>(); 
+        }
+        
+        V500.put("riskExposure", riskExposure);
+        V500.put("hypothesis", V500HypothesisDataList);
+        V500.put("hypothesisCount", V500HypothesisDataList.size());
+        V500.put("summaryCurrent", summaryCurrent2);
+        V500.put("summaryLast", summaryLast2);
+        //====================↑V500↑====================        
+        
+        //====================↓H10000↓====================   
+        Map<String,Object> H10000 = new HashMap<>();
+        Map<String,Object> threeLevel = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H10000ThreeLevelMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelData", queryParam);
+        if(H10000ThreeLevelMetaDataList == null) {
+            H10000ThreeLevelMetaDataList = new ArrayList<>(); 
+        }
+        Map<String,Object> level1 = new HashMap<>();
+        Map<String,Object> level2 = new HashMap<>();
+        Map<String,Object> level3 = new HashMap<>();
+        for(Map<String,Object> map : H10000ThreeLevelMetaDataList) {
+            if("一层次".equals(String.valueOf(map.get("threeLevel")))) {
+                level1 = map;
+            }else if("二层次".equals(String.valueOf(map.get("threeLevel")))) {
+                level2 = map;
+            }else if("三层次".equals(String.valueOf(map.get("threeLevel")))) {
+                level3 = map;
+            }
+        }
+        threeLevel.put("level1", level1);
+        threeLevel.put("level2", level2);
+        threeLevel.put("level3", level3);
+        
+        H10000.put("threeLevel", threeLevel);
+        //====================↑H10000↑====================        
+        
         P5.put("V300", V300);
+        P5.put("V400", V400);
+        P5.put("V500", V500);
+        P5.put("H10000", H10000);
         exportParam.put("P5", P5);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P5")));
     }
