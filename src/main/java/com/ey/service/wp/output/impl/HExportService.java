@@ -612,7 +612,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         rmcfs.put("item1", item1);
         rmcfs.put("item2", item2);
-        //========********************process dataMap for rmcfs view end========
+        //========process dataMap for rmcfs view end========
         
         //========process dataMap for interestDetail view begin========
         Map<String, Object> interestDetail = new HashMap<String,Object>();

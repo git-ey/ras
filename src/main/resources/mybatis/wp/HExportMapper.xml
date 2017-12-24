@@ -224,6 +224,42 @@
         AND H800IT.PERIOD = #{period}
     </select>
     
+    <select id="selectH800InterestDetailDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H800ID.BOND_CODE as bondCode,
+            H800ID.BOND_NAME as bondName,
+            H800ID.RETURN_DAY as returnDay,
+            IF(H800ID.PRICE = 0, null, H800ID.PRICE) as price,
+            IF(H800ID.AMOUNT = 0, null, H800ID.AMOUNT) as amount,
+            IF(H800ID.QUANTITY = 0, null, H800ID.QUANTITY) as quantity,
+            IF(H800ID.REDUCE_AMT = 0, null, H800ID.REDUCE_AMT) as reduceAmt
+        FROM
+            wp_h800_interest_test H800IT
+        INNER JOIN wp_h800_intest_detail H800ID ON H800ID.HEAD_ID = H800IT.HEAD_ID AND H800ID.ACCOUNT_NUM = H800IT.ACCOUNT_NUM AND H800ID.`STATUS` = 'Y'
+        WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH800InterestDetailSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H800ID.PRICE) = 0, null, SUM(H800ID.PRICE)) as price,
+            IF(SUM(H800ID.AMOUNT) = 0, null, SUM(H800ID.AMOUNT)) as amount,
+            IF(SUM(H800ID.QUANTITY) = 0, null, SUM(H800ID.QUANTITY)) as quantity,
+            IF(SUM(H800ID.REDUCE_AMT) = 0, null, SUM(H800ID.REDUCE_AMT)) as reduceAmt
+        FROM
+            wp_h800_interest_test H800IT
+        INNER JOIN wp_h800_intest_detail H800ID ON H800ID.HEAD_ID = H800IT.HEAD_ID AND H800ID.ACCOUNT_NUM = H800IT.ACCOUNT_NUM AND H800ID.`STATUS` = 'Y'
+        WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectH800IntRiskPeriodData" parameterType="java.util.Map" resultType="java.lang.String">
 		SELECT DISTINCT
 		    H800EP.INT_RISK_PERIOD AS intRiskPeriod 
@@ -256,14 +292,14 @@
 		SELECT
 		    H10000T.ITEM AS item,
 		    H10000T.SUB_ITEM AS subItem,
-		    H10000T.COST AS cost,
-		    H10000T.MKT_VALUE AS mktValue,
-		    H10000T.APPRECIATION AS appreciation,
-		    H10000T.DIVIATON AS diviaton,
-		    H10000T.COST_LAST AS costLast,
-		    H10000T.MKT_VALUE_LAST AS mktValueLast,
-		    H10000T.APPRECIATION_LAST AS appreciationLast,
-		    H10000T.DIVIATON_EY_LAST AS diviatonEyLast 
+		    IF(H10000T.COST = 0, null, H10000T.COST) AS cost,
+		    IF(H10000T.MKT_VALUE = 0, null, H10000T.MKT_VALUE) AS mktValue,
+		    IF(H10000T.APPRECIATION = 0, null, H10000T.APPRECIATION) AS appreciation,
+		    IF(H10000T.DIVIATON = 0, null, H10000T.DIVIATON) AS diviaton,
+		    IF(H10000T.COST_LAST = 0, null, H10000T.COST_LAST) AS costLast,
+		    IF(H10000T.MKT_VALUE_LAST = 0, null, H10000T.MKT_VALUE_LAST) AS mktValueLast,
+		    IF(H10000T.APPRECIATION_LAST = 0, null, H10000T.APPRECIATION_LAST) AS appreciationLast,
+		    IF(H10000T.DIVIATON_EY_LAST = 0, null, H10000T.DIVIATON_EY_LAST) AS diviatonEyLast 
 		FROM
 		    wp_h10000_tfa H10000T
 		WHERE 
@@ -272,6 +308,69 @@
         AND H10000T.FUND_ID = #{fundId}
         AND H10000T.PERIOD = #{period}
         AND H10000T.ITEM = '债券'
+    </select>
+    
+    <select id="selectH10000TFABondSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000T.COST) = 0, null, SUM(H10000T.COST)) AS cost,
+            IF(SUM(H10000T.MKT_VALUE) = 0, null, SUM(H10000T.MKT_VALUE)) AS mktValue,
+            IF(SUM(H10000T.APPRECIATION) = 0, null, SUM(H10000T.APPRECIATION)) AS appreciation,
+            IF(SUM(H10000T.DIVIATON) = 0, null, SUM(H10000T.DIVIATON)) AS diviaton,
+            IF(SUM(H10000T.COST_LAST) = 0, null, SUM(H10000T.COST_LAST)) AS costLast,
+            IF(SUM(H10000T.MKT_VALUE_LAST) = 0, null, SUM(H10000T.MKT_VALUE_LAST)) AS mktValueLast,
+            IF(SUM(H10000T.APPRECIATION_LAST) = 0, null, SUM(H10000T.APPRECIATION_LAST)) AS appreciationLast,
+            IF(SUM(H10000T.DIVIATON_EY_LAST) = 0, null, SUM(H10000T.DIVIATON_EY_LAST)) AS diviatonEyLast 
+        FROM
+            wp_h10000_tfa H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        AND H10000T.ITEM = '债券'
+        LIMIT 1
+    </select>
+    
+    <select id="selectH10000TFANotBondDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H10000T.ITEM AS item,
+            H10000T.SUB_ITEM AS subItem,
+            IF(H10000T.COST = 0, null, H10000T.COST) AS cost,
+            IF(H10000T.MKT_VALUE = 0, null, H10000T.MKT_VALUE) AS mktValue,
+            IF(H10000T.APPRECIATION = 0, null, H10000T.APPRECIATION) AS appreciation,
+            IF(H10000T.DIVIATON = 0, null, H10000T.DIVIATON) AS diviaton,
+            IF(H10000T.COST_LAST = 0, null, H10000T.COST_LAST) AS costLast,
+            IF(H10000T.MKT_VALUE_LAST = 0, null, H10000T.MKT_VALUE_LAST) AS mktValueLast,
+            IF(H10000T.APPRECIATION_LAST = 0, null, H10000T.APPRECIATION_LAST) AS appreciationLast,
+            IF(H10000T.DIVIATON_EY_LAST = 0, null, H10000T.DIVIATON_EY_LAST) AS diviatonEyLast 
+        FROM
+            wp_h10000_tfa H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        AND H10000T.ITEM != '债券'
+    </select>
+    
+    <select id="selectH10000TFASumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000T.COST) = 0, null, SUM(H10000T.COST)) AS cost,
+            IF(SUM(H10000T.MKT_VALUE) = 0, null, SUM(H10000T.MKT_VALUE)) AS mktValue,
+            IF(SUM(H10000T.APPRECIATION) = 0, null, SUM(H10000T.APPRECIATION)) AS appreciation,
+            IF(SUM(H10000T.DIVIATON) = 0, null, SUM(H10000T.DIVIATON)) AS diviaton,
+            IF(SUM(H10000T.COST_LAST) = 0, null, SUM(H10000T.COST_LAST)) AS costLast,
+            IF(SUM(H10000T.MKT_VALUE_LAST) = 0, null, SUM(H10000T.MKT_VALUE_LAST)) AS mktValueLast,
+            IF(SUM(H10000T.APPRECIATION_LAST) = 0, null, SUM(H10000T.APPRECIATION_LAST)) AS appreciationLast,
+            IF(SUM(H10000T.DIVIATON_EY_LAST) = 0, null, SUM(H10000T.DIVIATON_EY_LAST)) AS diviatonEyLast 
+        FROM
+            wp_h10000_tfa H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        LIMIT 1
     </select>
     
     <select id="selectH10000TFADiviatonSumData" parameterType="java.util.Map" resultType="java.lang.Object">
@@ -289,12 +388,13 @@
     <select id="selectH10000DerivativeData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H10000D.ITEM AS item,
-		    H10000D.AMOUNT AS amount,
-		    H10000D.ASSET AS asset,
-		    H10000D.LIABILITIES AS liabilities,
-		    H10000D.AMOUNT_LAST AS amountLast,
-		    H10000D.ASSET_LAST AS assetLast,
-		    H10000D.LIABILITIES_LAST AS liabilitiesLast 
+		    IF(H10000D.AMOUNT = 0, null, H10000D.AMOUNT) AS amount,
+		    IF(H10000D.ASSET = 0, null, H10000D.ASSET) AS asset,
+		    IF(H10000D.LIABILITIES = 0, null, H10000D.LIABILITIES) AS liabilities,
+		    IF(H10000D.AMOUNT_LAST = 0, null, H10000D.AMOUNT_LAST) AS amountLast,
+		    IF(H10000D.ASSET_LAST = 0, null, H10000D.ASSET_LAST) AS assetLast,
+		    IF(H10000D.LIABILITIES_LAST = 0, null, H10000D.LIABILITIES_LAST) AS liabilitiesLast,
+		    IF(H10000D.ITEM = '其他衍生工具' AND ((H10000D.AMOUNT is not null and H10000D.AMOUNT != 0) OR (H10000D.ASSET is not null and H10000D.ASSET != 0) OR (H10000D.LIABILITIES is not null and H10000D.LIABILITIES != 0)), 'Y', 'N') AS remarkFlag
 		FROM
 		    wp_h10000_derivative H10000D
 		WHERE 
@@ -304,12 +404,31 @@
         AND H10000D.PERIOD = #{period}
     </select>
     
+    <select id="selectH10000DerivativeSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000D.AMOUNT) = 0, null, SUM(H10000D.AMOUNT)) AS amount,
+            IF(SUM(H10000D.ASSET) = 0, null, SUM(H10000D.ASSET)) AS asset,
+            IF(SUM(H10000D.LIABILITIES) = 0, null, SUM(H10000D.LIABILITIES)) AS liabilities,
+            IF(SUM(H10000D.AMOUNT_LAST) = 0, null, SUM(H10000D.AMOUNT_LAST)) AS amountLast,
+            IF(SUM(H10000D.ASSET_LAST) = 0, null, SUM(H10000D.ASSET_LAST)) AS assetLast,
+            IF(SUM(H10000D.LIABILITIES_LAST) = 0, null, SUM(H10000D.LIABILITIES_LAST)) AS liabilitiesLast
+        FROM
+            wp_h10000_derivative H10000D
+        WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectH10000FuturesData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-		    H10000F.ITEM AS item,
-		    H10000F.QUANTITY AS quantity,
-		    H10000F.COST AS cost,
-		    H10000F.MKT_VALUE AS mktValue 
+            H10000F.ITEM AS item,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.QUANTITY) AS quantity,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.COST) AS cost,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.MKT_VALUE) AS mktValue,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.APPRECIATION) as appreciation
 		FROM
 		    wp_h10000_futures H10000F
 		WHERE 
@@ -319,13 +438,29 @@
         AND H10000F.PERIOD = #{period}
     </select>
     
+        <select id="selectH10000FuturesSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.QUANTITY)) AS quantity,
+		    IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.COST)) AS cost,
+		    IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.MKT_VALUE)) AS mktValue,
+		    IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.APPRECIATION)) as appreciation
+        FROM
+            wp_h10000_futures H10000F
+        WHERE 
+            1 = 1
+        AND H10000F.STATUS = 'Y'
+        AND H10000F.FUND_ID = #{fundId}
+        AND H10000F.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectH10000RmcfsData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H10000R.ITEM AS item,
-		    H10000R.BAL_CURRENT AS balCurrent,
-		    H10000R.BUY_OUT_CURRENT AS buyOutCurrent,
-		    H10000R.BAL_LAST AS balLast,
-		    H10000R.BUY_OUT_LAST AS buyOutLast 
+		    IF(H10000R.BAL_CURRENT = 0, null, H10000R.BAL_CURRENT) AS balCurrent,
+		    IF(H10000R.BUY_OUT_CURRENT = 0, null, H10000R.BUY_OUT_CURRENT) AS buyOutCurrent,
+		    IF(H10000R.BAL_LAST = 0, null, H10000R.BAL_LAST) AS balLast,
+		    IF(H10000R.BUY_OUT_LAST = 0, null, H10000R.BUY_OUT_LAST) AS buyOutLast
 		FROM
 		    wp_h10000_rmcfs H10000R
 		WHERE 
@@ -333,6 +468,22 @@
         AND H10000R.STATUS = 'Y'
         AND H10000R.FUND_ID = #{fundId}
         AND H10000R.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH10000RmcfsSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000R.BAL_CURRENT) = 0, null, SUM(H10000R.BAL_CURRENT)) AS balCurrent,
+            IF(SUM(H10000R.BUY_OUT_CURRENT) = 0, null, SUM(H10000R.BUY_OUT_CURRENT)) AS buyOutCurrent,
+            IF(SUM(H10000R.BAL_LAST) = 0, null, SUM(H10000R.BAL_LAST)) AS balLast,
+            IF(SUM(H10000R.BUY_OUT_LAST) = 0, null, SUM(H10000R.BUY_OUT_LAST)) AS buyOutLast
+        FROM
+            wp_h10000_rmcfs H10000R
+        WHERE 
+            1 = 1
+        AND H10000R.STATUS = 'Y'
+        AND H10000R.FUND_ID = #{fundId}
+        AND H10000R.PERIOD = #{period}
+        LIMIT 1
     </select>
     
     <select id="selectH10000InterestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
