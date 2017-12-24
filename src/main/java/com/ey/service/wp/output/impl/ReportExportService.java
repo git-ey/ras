@@ -636,6 +636,14 @@ public class ReportExportService implements ReportExportManager {
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
     }
     
+    /**
+     * 处理Part3 第一部分
+     * @author Dai Zong 2017年12月23日
+     * 
+     * @param queryParam
+     * @return
+     * @throws Exception
+     */
     private Map<String,Object> processP3Sec1(Map<String,Object> queryParam) throws Exception{
         Map<String,Object> result = new HashMap<>();
         String FundId = String.valueOf(queryParam.get("fundId"));
@@ -886,9 +894,89 @@ public class ReportExportService implements ReportExportManager {
         H800.put("intestDetail", intestDetail);
         //--------------------↑H800.intestDetail↑--------------------
         //====================↑H800↑====================
+        
+        //====================↓E300↓====================
+        Map<String, Object> E300 = new HashMap<>();
+        //--------------------↓E300.disc↓--------------------
+        Map<String, Object> disc = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> E300DiscDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE300DiscData", queryParam);
+        if(E300DiscDataList == null) {
+            E300DiscDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> E300DiscSumData = (Map<String,Object>)this.dao.findForObject("EExportMapper.selectE300DiscSumDataForReport", queryParam);
+        if(E300DiscSumData == null) {
+            E300DiscSumData = new HashMap<>(); 
+        }
+        disc.put("list", E300DiscDataList);
+        disc.put("count", E300DiscDataList.size());
+        disc.put("sum", E300DiscSumData);
+        //--------------------↑E300.disc↑--------------------
+        E300.put("disc", disc);
+        //====================↑E300↑====================
+        
+        //====================↓G10000↓====================
+        Map<String, Object> G10000 = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> G10000DataList = (List<Map<String,Object>>)this.dao.findForList("GExportMapper.selectG10000Data", queryParam);
+        if(G10000DataList == null) {
+            G10000DataList = new ArrayList<>();
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> G10000SumData = (Map<String,Object>)this.dao.findForObject("GExportMapper.selectG10000SUmDataForReport", queryParam);
+        if(G10000SumData == null) {
+            G10000SumData = new HashMap<>(); 
+        }
+        
+        G10000.put("list", G10000DataList);
+        G10000.put("count", G10000DataList.size());
+        G10000.put("sum", G10000SumData);
+        //====================↑G10000↑====================
+        
+        //====================↓N10000↓====================
+        Map<String, Object> N10000 = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> N10000DataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN10000Data", queryParam);
+        if(N10000DataList == null) {
+            N10000DataList = new ArrayList<>();
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> N10000SumData = (Map<String,Object>)this.dao.findForObject("NExportMapper.selectN10000SumDataForReport", queryParam);
+        if(N10000SumData == null) {
+            N10000SumData = new HashMap<>(); 
+        }
+        
+        N10000.put("list", N10000DataList);
+        N10000.put("count", N10000DataList.size());
+        N10000.put("sum", N10000SumData);
+        //====================↑N10000↑====================
+        
+        //====================↓P10000↓====================
+        Map<String, Object> P10000 = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P10000DataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP10000Data", queryParam);
+        if(P10000DataList == null) {
+            P10000DataList = new ArrayList<>();
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> P10000SumData = (Map<String,Object>)this.dao.findForObject("PExportMapper.selectP10000SumDataForReport", queryParam);
+        if(P10000SumData == null) {
+            P10000SumData = new HashMap<>(); 
+        }
+        
+        P10000.put("list", P10000DataList);
+        P10000.put("count", P10000DataList.size());
+        P10000.put("sum", P10000SumData);
+        //====================↑G10000↑====================
+        
         result.put("C10000", C10000);
         result.put("H10000", H10000);
         result.put("H800", H800);
+        result.put("E300", E300);
+        result.put("G10000", G10000);
+        result.put("N10000", N10000);
+        result.put("P10000", P10000);
         return result;
     }
     
