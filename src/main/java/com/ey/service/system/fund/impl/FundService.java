@@ -63,6 +63,7 @@ public class FundService implements FundManager{
 			pd.put("IDX", map.get("IDX"));
 			pd.put("LOF", map.get("LOF"));
 			pd.put("ETF", map.get("ETF"));
+			pd.put("ETF_CONNECTION", map.get("ETF_CONNECTION"));
 			pd.put("FOF", map.get("FOF"));
 			pd.put("UNIT", map.get("UNIT"));
 			pd.put("DATE_FROM", map.get("DATE_FROM"));
