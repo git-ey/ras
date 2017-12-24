@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.service.wp.output.ReportExportManager;
 import com.ey.util.DocUtil;
+import com.ey.util.StringUtil;
 import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
 import com.ey.util.fileexport.FreeMarkerUtils;
@@ -970,6 +971,266 @@ public class ReportExportService implements ReportExportManager {
         P10000.put("sum", P10000SumData);
         //====================↑G10000↑====================
         
+        //====================↓T11000↓====================
+        Map<String, Object> T11000 = new HashMap<>();
+        //--------------------↓T11000.P4104↓--------------------
+        Map<String, Object> P4104 = new HashMap<>();
+        List<Map<String, Object>> levels = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> p4104MetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT11000P4104Data", queryParam);
+        if(p4104MetaDataList == null) {
+            p4104MetaDataList = new ArrayList<>();
+        }
+        List<String> levelNames = p4104MetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        Map<String, Map<String, List<Map<String, Object>>>> groups = p4104MetaDataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return String.valueOf(map.get("level"));
+        }, Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return String.valueOf(map.get("type"));
+        })));
+        for(String levelName : levelNames) {
+            Map<String, List<Map<String, Object>>> innerMap = groups.get(levelName);
+            Map<String,Object> level = new HashMap<>();
+            level.put("levelName",  levelName);
+            Map<String,Object> levelQueryMap = new HashMap<>();
+            levelQueryMap.put("fundId", queryParam.get("fundId"));
+            levelQueryMap.put("level", levelName);
+            level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
+            if(innerMap == null) {
+                innerMap = new HashMap<>();
+            }
+            for(int i=1 ; i<=7 ; i++) {
+                Map<String,Object> temp = new HashMap<>();
+                String tag = "attr" + i;
+                temp.put("realized", CollectionUtils.isEmpty(innerMap.get("已实现"))?null:innerMap.get("已实现").get(0).get(tag));
+                temp.put("unrealized", CollectionUtils.isEmpty(innerMap.get("未实现"))?null:innerMap.get("未实现").get(0).get(tag));
+                temp.put("profitSum", CollectionUtils.isEmpty(innerMap.get("未分配利润合计"))?null:innerMap.get("未分配利润合计").get(0).get(tag));
+                level.put(tag, temp);
+            }
+            levels.add(level);
+        }
+        
+        P4104.put("levels", levels);
+        P4104.put("levelCount", levels.size());
+        //--------------------↑T11000.P4104↑--------------------
+        T11000.put("P4104", P4104);
+        //====================↑T10000↑====================
+        
+        //====================↓U10000↓====================
+        Map<String, Object> U10000 = new HashMap<>();
+        //--------------------↓U10000.interest↓--------------------
+        Map<String, Object> interest = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000IntDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000InterestData", queryParam);
+        if(U10000IntDataList == null) {
+            U10000IntDataList = new ArrayList<>();
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> U10000IntSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000InterestSumDataForReport", queryParam);
+        if(U10000IntSumData == null) {
+            U10000IntSumData = new HashMap<>(); 
+        }
+        
+        interest.put("list", U10000IntDataList);
+        interest.put("count", U10000IntDataList.size());
+        interest.put("sum", U10000IntSumData);
+        //--------------------↑U10000.interest↑--------------------
+        //--------------------↓U10000.import↓--------------------
+        Map<String, Object> importData = new HashMap<>();
+        
+        Map<String, Object> STOCKS_BS = new HashMap<>();
+        Map<String, Object> STOCKS = new HashMap<>();
+        Map<String, Object> STOCKS_R = new HashMap<>();
+        Map<String, Object> STOCKS_P = new HashMap<>();
+        Map<String, Object> FUND = new HashMap<>();
+        Map<String, Object> BOND_BS = new HashMap<>();
+        Map<String, Object> BOND = new HashMap<>();
+        Map<String, Object> BOND_R = new HashMap<>();
+        Map<String, Object> BOND_P = new HashMap<>();
+        Map<String, Object> ABS = new HashMap<>();
+        Map<String, Object> GOLD_BS = new HashMap<>();
+        Map<String, Object> GOLD = new HashMap<>();
+        Map<String, Object> GOLD_R = new HashMap<>();
+        Map<String, Object> GOLD_P = new HashMap<>();
+        Map<String, Object> DI_WARRANT = new HashMap<>();
+        Map<String, Object> DI_OTHER = new HashMap<>();
+        
+        queryParam.put("type", "STOCKS_BS");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000StocksBsDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000StocksBsDataList == null) {
+            U10000StocksBsDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "STOCKS");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000StocksSummaryDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryParam);
+        if(U10000StocksSummaryDataList == null) {
+            U10000StocksSummaryDataList = new ArrayList<>(); 
+        }
+        String[] pair;
+        for(Map<String,Object> map : U10000StocksSummaryDataList) {
+            pair = StringUtil.splitStringPair(String.valueOf(map.get("item")), "——", true);
+            map.put("item_a", pair[0]);
+            map.put("item_b", pair[1]);
+        }
+        queryParam.put("type", "STOCKS_R");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000StocksRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000StocksRDataList == null) {
+            U10000StocksRDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "STOCKS_P");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000StocksPDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000StocksPDataList == null) {
+            U10000StocksPDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "FUND");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000FUNDDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000FUNDDataList == null) {
+            U10000FUNDDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "BOND_BS");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000BondBsDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000BondBsDataList == null) {
+            U10000BondBsDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "BOND");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000BondSummaryDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryParam);
+        if(U10000BondSummaryDataList == null) {
+            U10000BondSummaryDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "BOND_R");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000BondRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000BondRDataList == null) {
+            U10000BondRDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "BOND_P");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000BondPDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000BondPDataList == null) {
+            U10000BondPDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "ABS");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000ABSDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000ABSDataList == null) {
+            U10000ABSDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "GOLD_BS");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000GoldBsDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000GoldBsDataList == null) {
+            U10000GoldBsDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "GOLD");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000GoldSummaryDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryParam);
+        if(U10000GoldSummaryDataList == null) {
+            U10000GoldSummaryDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "GOLD_R");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000GoldRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000GoldRDataList == null) {
+            U10000GoldRDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "GOLD_P");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000GoldPDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000GoldPDataList == null) {
+            U10000GoldPDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "DI_WARRANT");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000diWarrantDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000diWarrantDataList == null) {
+            U10000diWarrantDataList = new ArrayList<>(); 
+        }
+        queryParam.put("type", "DI_OTHER");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000diOtherDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000diOtherDataList == null) {
+            U10000diOtherDataList = new ArrayList<>(); 
+        }
+        queryParam.remove("type");
+        
+        STOCKS_BS.put("list", U10000StocksBsDataList);
+        STOCKS_BS.put("count", U10000StocksBsDataList.size());
+        
+        STOCKS.put("list", U10000StocksSummaryDataList);
+        STOCKS.put("count", U10000StocksSummaryDataList.size());
+        
+        STOCKS_R.put("list", U10000StocksRDataList);
+        STOCKS_R.put("count", U10000StocksRDataList.size());
+        
+        STOCKS_P.put("list", U10000StocksPDataList);
+        STOCKS_P.put("count", U10000StocksPDataList.size());
+        
+        FUND.put("list", U10000FUNDDataList);
+        FUND.put("count", U10000FUNDDataList.size());
+        
+        BOND_BS.put("list", U10000BondBsDataList);
+        BOND_BS.put("count", U10000BondBsDataList.size());
+        
+        BOND.put("list", U10000BondSummaryDataList);
+        BOND.put("count", U10000BondSummaryDataList.size());
+        
+        BOND_R.put("list", U10000BondRDataList);
+        BOND_R.put("count", U10000BondRDataList.size());
+        
+        BOND_P.put("list", U10000BondPDataList);
+        BOND_P.put("count", U10000BondPDataList.size());
+        
+        ABS.put("list", U10000ABSDataList);
+        ABS.put("count", U10000ABSDataList.size());
+        
+        GOLD_BS.put("list", U10000GoldBsDataList);
+        GOLD_BS.put("count", U10000GoldBsDataList.size());
+        
+        GOLD.put("list", U10000GoldSummaryDataList);
+        GOLD.put("count", U10000GoldSummaryDataList.size());
+        
+        GOLD_R.put("list", U10000GoldRDataList);
+        GOLD_R.put("count", U10000GoldRDataList.size());
+        
+        GOLD_P.put("list", U10000GoldPDataList);
+        GOLD_P.put("count", U10000GoldPDataList.size());
+        
+        DI_WARRANT.put("list", U10000diWarrantDataList);
+        DI_WARRANT.put("count", U10000diWarrantDataList.size());
+        
+        DI_OTHER.put("list", U10000diOtherDataList);
+        DI_OTHER.put("count", U10000diOtherDataList.size());
+        
+        importData.put("STOCKS_BS", STOCKS_BS);
+        importData.put("STOCKS", STOCKS);
+        importData.put("STOCKS_R", STOCKS_BS);
+        importData.put("STOCKS_P", STOCKS_P);
+        importData.put("FUND", FUND);
+        importData.put("BOND_BS", BOND_BS);
+        importData.put("BOND", BOND);
+        importData.put("BOND_R", BOND_BS);
+        importData.put("BOND_P", BOND_P);
+        importData.put("ABS", ABS);
+        importData.put("GOLD_BS", GOLD_BS);
+        importData.put("GOLD", GOLD);
+        importData.put("GOLD_R", GOLD_BS);
+        importData.put("GOLD_P", GOLD_P);
+        importData.put("DI_WARRANT", DI_WARRANT);
+        importData.put("DI_OTHER", DI_OTHER);
+        //--------------------↑U10000.import↑--------------------
+        U10000.put("interest", interest);
+        U10000.put("importData", importData);
+        //====================↑U10000↑====================
+        
         result.put("C10000", C10000);
         result.put("H10000", H10000);
         result.put("H800", H800);
@@ -977,6 +1238,8 @@ public class ReportExportService implements ReportExportManager {
         result.put("G10000", G10000);
         result.put("N10000", N10000);
         result.put("P10000", P10000);
+        result.put("T11000", T11000);
+        result.put("U10000", U10000);
         return result;
     }
     

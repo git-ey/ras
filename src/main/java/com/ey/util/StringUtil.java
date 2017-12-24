@@ -1,5 +1,7 @@
 package com.ey.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * 字符串相关方法
  *
@@ -78,5 +80,40 @@ public class StringUtil {
 	       }      
 	      return "";      
 	   } 
+	
+	/**
+     * 字符串拆成2段
+     * @author Dai Zong 2017年12月24日
+     * 
+     * @param src 源
+     * @param splitor 分隔符
+     * @param frontCut 在分隔符 (true 前)/ (false 后) 截断
+     * @return 包含前后两段元素的String[](length一定为2)
+     */
+    public static String[] splitStringPair(String src,  String splitor, boolean frontCut) {
+        src = (src == null ? StringUtils.EMPTY : src);
+        splitor = (splitor == null ? StringUtils.SPACE : splitor);
+        int splitIndex = src.indexOf(splitor);
+        String A,B;
+        if(frontCut) {
+            if(splitIndex < 0) {
+                A = StringUtils.EMPTY;
+                B = src;
+            }else {
+                A = src.substring(0, splitIndex);
+                B = src.substring(splitIndex);
+            }
+        }else {
+            if(splitIndex <= 0) {
+                A = src;
+                B = StringUtils.EMPTY;
+            }else {
+                A = src.substring(0, splitIndex + 1);
+                B = src.substring(splitIndex + 1);
+            }
+        }
+        return new String[] {A, B};
+    }
+
 	
 }

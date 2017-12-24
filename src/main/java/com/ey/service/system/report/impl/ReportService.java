@@ -19,6 +19,7 @@ import com.ey.service.system.report.ReportManager;
 import com.ey.service.wp.output.ReportExportManager;
 import com.ey.util.DateUtil;
 import com.ey.util.PageData;
+import com.ey.util.StringUtil;
 import com.ey.util.fileexport.Constants;
 import com.google.common.collect.Maps;
 
@@ -170,7 +171,7 @@ public class ReportService implements ReportManager {
 	 * @return
 	 */
 	private String getDateStr(Date date) {
-	    DateFormat df = new SimpleDateFormat("yyyy月M日d日");
+	    DateFormat df = new SimpleDateFormat("yyyy年M月d日");
 		return df.format(date);
 	}
 
@@ -251,6 +252,10 @@ public class ReportService implements ReportManager {
 		    infoMap.put("TXT_PERIOD_CURRENT", currentPeriod + "止期间");
 		    infoMap.put("TABLE_PERIOD_CURRENT", currentPeriod);
 		}
+		String tablePeriodCurrent = String.valueOf(infoMap.get("TABLE_PERIOD_CURRENT"));
+		String[] pair = StringUtil.splitStringPair(tablePeriodCurrent, "至", false);
+		infoMap.put("TABLE_PERIOD_CURRENT_A", pair[0]);
+		infoMap.put("TABLE_PERIOD_CURRENT_B", pair[1]);
 		return infoMap;
 	}
 
@@ -293,9 +298,13 @@ public class ReportService implements ReportManager {
 		infoMap.put("TXT_PERIOD_LAST", lastInfoMap.get("TXT_PERIOD_CURRENT"));
 		// 表格时间段-上期
 		infoMap.put("TABLE_PERIOD_LAST", lastInfoMap.get("TABLE_PERIOD_CURRENT"));
+		// 表格时间段-上期-A
+        infoMap.put("TABLE_PERIOD_LAST_A", lastInfoMap.get("TABLE_PERIOD_CURRENT_A"));
+        // 表格时间段-上期-B
+        infoMap.put("TABLE_PERIOD_LAST_B", lastInfoMap.get("TABLE_PERIOD_CURRENT_B"));
 		return infoMap;
 	}
-
+	
 	/**
 	 * 运行报告导出程序
 	 * 
