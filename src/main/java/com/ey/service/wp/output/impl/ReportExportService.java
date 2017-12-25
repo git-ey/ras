@@ -633,6 +633,7 @@ public class ReportExportService implements ReportExportManager {
         
         P3.put("sec1", this.processP3Sec1(queryParam));
         P3.put("sec2", this.processP3Sec2(queryParam));
+        P3.put("sec3", this.processP3Sec3(queryParam));
         
         exportParam.put("P3", P3);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
@@ -1418,6 +1419,43 @@ public class ReportExportService implements ReportExportManager {
         //====================↑T11000↑====================
         
         result.put("T11000", T11000);
+        return result;
+    }
+    
+    
+    /**
+     * 处理Part3 第三部分
+     * @author Dai Zong 2017年12月25日
+     * 
+     * @param queryParam
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> processP3Sec3(Map<String,Object> queryParam) throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        //====================↓relatedParty↓====================
+        Map<String,Object> relatedParty = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> relatedPartyDataList = (List<Map<String,Object>>)this.dao.findForList("FundRelatedPartyMapper.selectRelatedPartyDataForReport", queryParam);
+        if(relatedPartyDataList == null) {
+            relatedPartyDataList = new ArrayList<>(); 
+        }
+        relatedParty.put("list", relatedPartyDataList);
+        relatedParty.put("count", relatedPartyDataList.size());
+        //====================↑relatedParty↑====================
+        
+        //====================↓IRP↓====================
+        Map<String,Object> IRP = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> IRPDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIRpData", queryParam);
+        if(IRPDataList == null) {
+            IRPDataList = new ArrayList<>(); 
+        }
+        IRP.put("list", IRPDataList);
+        IRP.put("count", IRPDataList.size());
+        //====================↑IRP↑====================
+        result.put("relatedParty", relatedParty);
+        result.put("IRP", IRP);
         return result;
     }
     

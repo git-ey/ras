@@ -161,4 +161,21 @@
          </foreach >
 	</insert>
 	
+	<!-- 关联方数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-26 -->
+    <select id="selectRelatedPartyDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    sfrp.PARTY_FULL_NAME AS partyFullName,
+		    sfrp.RELATIONSHIP AS relationship 
+		FROM
+		    sys_fund_related_party sfrp 
+		WHERE
+		    1 = 1 
+		AND sfrp.ACTIVE = 'Y' 
+		AND sfrp.FUND_ID = #{fundId}
+		ORDER BY
+		    sfrp.SORT
+    </select>
+	
 </mapper>
