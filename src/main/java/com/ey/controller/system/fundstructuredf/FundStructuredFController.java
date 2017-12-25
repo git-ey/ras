@@ -1,4 +1,4 @@
-package com.ey.controller.system.fundstructured;
+package com.ey.controller.system.fundstructuredf;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
-import com.ey.service.system.fundstructured.FundStructuredManager;
+import com.ey.service.system.fundstructuredf.FundStructuredFManager;
 import com.ey.service.system.loger.LogerManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
@@ -36,17 +36,17 @@ import com.ey.util.PathUtil;
 import com.ey.util.fileimport.MapResult;
 
 /** 
- * 说明：基金分级信息
+ * 说明：基金分级信息表_假分级
  * 创建人：andychen
- * 创建时间：2017-12-02
+ * 创建时间：2017-12-25
  */
 @Controller
-@RequestMapping(value="/fundstructured")
-public class FundStructuredController extends BaseController {
+@RequestMapping(value="/fundstructuredf")
+public class FundStructuredFController extends BaseController {
 	
-	String menuUrl = "fundstructured/list.do"; //菜单地址(权限用)
-	@Resource(name="fundstructuredService")
-	private FundStructuredManager fundstructuredService;
+	String menuUrl = "fundstructuredf/list.do"; //菜单地址(权限用)
+	@Resource(name="fundstructuredfService")
+	private FundStructuredFManager fundstructuredfService;
 	@Resource(name = "logService")
 	private LogerManager logManager;
 	
@@ -56,13 +56,13 @@ public class FundStructuredController extends BaseController {
 	 */
 	@RequestMapping(value="/save")
 	public ModelAndView save() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"新增FundStructured");
+		logBefore(logger, Jurisdiction.getUsername()+"新增FundStructuredF");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("FUNDSTRUCTURED_ID", this.get32UUID());	//主键
-		fundstructuredService.save(pd);
+		pd.put("FUNDSTRUCTUREDF_ID", this.get32UUID());	//主键
+		fundstructuredfService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -74,11 +74,11 @@ public class FundStructuredController extends BaseController {
 	 */
 	@RequestMapping(value="/delete")
 	public void delete(PrintWriter out) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"删除FundStructured");
+		logBefore(logger, Jurisdiction.getUsername()+"删除FundStructuredF");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		fundstructuredService.delete(pd);
+		fundstructuredfService.delete(pd);
 		out.write("success");
 		out.close();
 	}
@@ -89,12 +89,12 @@ public class FundStructuredController extends BaseController {
 	 */
 	@RequestMapping(value="/edit")
 	public ModelAndView edit() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"修改FundStructured");
+		logBefore(logger, Jurisdiction.getUsername()+"修改FundStructuredF");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		fundstructuredService.edit(pd);
+		fundstructuredfService.edit(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -106,7 +106,7 @@ public class FundStructuredController extends BaseController {
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView list(Page page) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"列表FundStructured");
+		logBefore(logger, Jurisdiction.getUsername()+"列表FundStructuredF");
 		//if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限(无权查看时页面会有提示,如果不注释掉这句代码就无法进入列表页面,所以根据情况是否加入本句代码)
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
@@ -116,8 +116,8 @@ public class FundStructuredController extends BaseController {
 			pd.put("keywords", keywords.trim());
 		}
 		page.setPd(pd);
-		List<PageData>	varList = fundstructuredService.list(page);	//列出FundStructured列表
-		mv.setViewName("system/fundstructured/fundstructured_list");
+		List<PageData>	varList = fundstructuredfService.list(page);	//列出FundStructuredF列表
+		mv.setViewName("system/fundstructuredf/fundstructuredf_list");
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
@@ -133,7 +133,7 @@ public class FundStructuredController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		mv.setViewName("system/fundstructured/fundstructured_edit");
+		mv.setViewName("system/fundstructuredf/fundstructuredf_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -148,8 +148,8 @@ public class FundStructuredController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd = fundstructuredService.findById(pd);	//根据ID读取
-		mv.setViewName("system/fundstructured/fundstructured_edit");
+		pd = fundstructuredfService.findById(pd);	//根据ID读取
+		mv.setViewName("system/fundstructuredf/fundstructuredf_edit");
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;
@@ -162,7 +162,7 @@ public class FundStructuredController extends BaseController {
 	@RequestMapping(value="/deleteAll")
 	@ResponseBody
 	public Object deleteAll() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"批量删除FundStructured");
+		logBefore(logger, Jurisdiction.getUsername()+"批量删除FundStructuredF");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return null;} //校验权限
 		PageData pd = new PageData();		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -171,7 +171,7 @@ public class FundStructuredController extends BaseController {
 		String DATA_IDS = pd.getString("DATA_IDS");
 		if(null != DATA_IDS && !"".equals(DATA_IDS)){
 			String ArrayDATA_IDS[] = DATA_IDS.split(",");
-			fundstructuredService.deleteAll(ArrayDATA_IDS);
+			fundstructuredfService.deleteAll(ArrayDATA_IDS);
 			pd.put("msg", "ok");
 		}else{
 			pd.put("msg", "no");
@@ -190,7 +190,7 @@ public class FundStructuredController extends BaseController {
 	@RequestMapping(value = "/goUploadExcel")
 	public ModelAndView goUploadExcel() throws Exception {
 		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("system/fundstructured/uploadexcel");
+		mv.setViewName("system/fundstructuredf/uploadexcel");
 		return mv;
 	}
 
@@ -202,8 +202,8 @@ public class FundStructuredController extends BaseController {
 	 */
 	@RequestMapping(value = "/downExcel")
 	public void downExcel(HttpServletResponse response) throws Exception {
-		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Fund_Structured.xlsx",
-				"Fund_Structured.xlsx");
+		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Fund_StructuredF.xlsx",
+				"Fund_StructuredF.xlsx");
 	}
 
 	/**
@@ -216,15 +216,15 @@ public class FundStructuredController extends BaseController {
 	@RequestMapping(value = "/readExcel")
 	public ModelAndView readExcel(@RequestParam(value = "excel", required = false) MultipartFile file)
 			throws Exception {
-		logManager.save(Jurisdiction.getUsername(), "从EXCEL导入基金分级信息到数据库");
+		logManager.save(Jurisdiction.getUsername(), "从EXCEL导入基金分级信息假分级到数据库");
 		ModelAndView mv = this.getModelAndView();
 		if (!Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
 			return null;
 		}
-		MapResult mapResult = readExcel(file, SFS_IMPORT_TEMPLATE_CODE);
+		MapResult mapResult = readExcel(file, SFSF_IMPORT_TEMPLATE_CODE);
 		/* 存入数据库操作====================================== */
 		List<Map> maps = mapResult.getResult();
-		fundstructuredService.saveBatch(maps);
+		fundstructuredfService.saveBatch(maps);
 		mv.addObject("msg", "success");
 		mv.setViewName("save_result");
 		return mv;
@@ -236,7 +236,7 @@ public class FundStructuredController extends BaseController {
 	 */
 	@RequestMapping(value="/excel")
 	public ModelAndView exportExcel() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"导出FundStructured到excel");
+		logBefore(logger, Jurisdiction.getUsername()+"导出FundStructuredF到excel");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
 		ModelAndView mv = new ModelAndView();
 		PageData pd = new PageData();
@@ -244,11 +244,14 @@ public class FundStructuredController extends BaseController {
 		Map<String,Object> dataMap = new HashMap<String,Object>();
 		List<String> titles = new ArrayList<String>();
 		titles.add("基金ID");	//1
-		titles.add("分级基金代码");	//2
-		titles.add("分级基金简称");	//3
+		titles.add("假分级基金代码");	//2
+		titles.add("假分级基金简称");	//3
 		titles.add("第几级");	//4
+		titles.add("类型");	//5
+		titles.add("启用");	//6
+		titles.add("状态");	//7
 		dataMap.put("titles", titles);
-		List<PageData> varOList = fundstructuredService.listAll(pd);
+		List<PageData> varOList = fundstructuredfService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
 		for(int i=0;i<varOList.size();i++){
 			PageData vpd = new PageData();
@@ -256,6 +259,9 @@ public class FundStructuredController extends BaseController {
 			vpd.put("var2", varOList.get(i).getString("FUND_CODE"));	    //2
 			vpd.put("var3", varOList.get(i).getString("SHORT_NAME"));	    //3
 			vpd.put("var4", varOList.get(i).getString("LEVEL"));	    //4
+			vpd.put("var5", varOList.get(i).getString("FTYPE"));	    //5
+			vpd.put("var6", varOList.get(i).getString("ACTIVE"));	    //6
+			vpd.put("var7", varOList.get(i).getString("STATUS"));	    //7
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

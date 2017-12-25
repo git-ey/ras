@@ -147,6 +147,11 @@ public class BaseController {
 	protected final static String SFS_IMPORT_TEMPLATE_CODE = "SFS";
 	
 	/**
+	 * SFSF基金分级信息假分级导入模版代码
+	 */
+	protected final static String SFSF_IMPORT_TEMPLATE_CODE = "SFSF";
+	
+	/**
 	 * SFR基金申赎规则导入模版代码
 	 */
 	protected final static String SFR_IMPORT_TEMPLATE_CODE = "SFR";
