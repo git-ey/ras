@@ -509,8 +509,8 @@
 		SELECT
 		    H10000FV.EY_ACCOUNT_NUM AS eyAccountNum,
 		    H10000FV.ITEM AS item,
-		    H10000FV.AMOUNT_CURRENT AS amountCurrent,
-		    H10000FV.AMOUNT_LAST AS amountLast 
+		    IF(H10000FV.AMOUNT_CURRENT = 0, null, H10000FV.AMOUNT_CURRENT) AS amountCurrent,
+		    IF(H10000FV.AMOUNT_LAST = 0, null, H10000FV.AMOUNT_LAST) AS amountLast 
 		FROM
 		    wp_h10000_fair_values H10000FV
         WHERE 
@@ -520,6 +520,21 @@
         AND H10000FV.PERIOD = #{period}
         ORDER BY
             H10000FV.SORT
+    </select>
+    
+    <select id="selectH10000FairValuesSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000FV.AMOUNT_CURRENT) = 0, null, SUM(H10000FV.AMOUNT_CURRENT)) AS amountCurrent,
+            IF(SUM(H10000FV.AMOUNT_LAST) = 0, null, SUM(H10000FV.AMOUNT_LAST)) AS amountLast 
+        FROM
+            wp_h10000_fair_values H10000FV
+        WHERE 
+            1 = 1
+        AND H10000FV.STATUS = 'Y'
+        AND H10000FV.ITEM IN ('交易性金融资产', '衍生工具', '其他')
+        AND H10000FV.FUND_ID = #{fundId}
+        AND H10000FV.PERIOD = #{period}
+        LIMIT 1
     </select>
     
     <select id="selectH10000ThreeLevelData" parameterType="java.util.Map" resultType="java.util.Map">

@@ -289,8 +289,8 @@
     <select id="selectU10000DividendData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000RD.ITEM as item,
-            U10000RD.AMOUNT_CURRENT as amountCurrent,
-            U10000RD.AMOUNT_LAST as amountLast
+            IF(U10000RD.AMOUNT_CURRENT = 0, null, U10000RD.AMOUNT_CURRENT) as amountCurrent,
+            IF(U10000RD.AMOUNT_LAST = 0, null, U10000RD.AMOUNT_LAST) as amountLast
         FROM
             wp_u10000_r_dividend U10000RD
         where 
@@ -305,8 +305,8 @@
     <select id="selectU10000OtherRData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000RO.ITEM as item,
-            U10000RO.AMOUNT_CURRENT as amountCurrent,
-            U10000RO.AMOUNT_LAST as amountLast
+            IF(U10000RO.AMOUNT_CURRENT = 0, null, U10000RO.AMOUNT_CURRENT) as amountCurrent,
+            IF(U10000RO.AMOUNT_LAST = 0, null, U10000RO.AMOUNT_LAST) as amountLast
         FROM
             wp_u10000_r_other U10000RO
         where 
@@ -321,8 +321,8 @@
     <select id="selectU10000TrxFeeData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000CTF.ITEM as item,
-            U10000CTF.AMOUNT_CURRENT as amountCurrent,
-            U10000CTF.AMOUNT_LAST as amountLast
+            IF(U10000CTF.AMOUNT_CURRENT = 0, null, U10000CTF.AMOUNT_CURRENT) as amountCurrent,
+            IF(U10000CTF.AMOUNT_LAST = 0, null, U10000CTF.AMOUNT_LAST) as amountLast
         FROM
             wp_u10000_c_trx_fee U10000CTF
         where 
@@ -337,8 +337,8 @@
     <select id="selectU10000OtherCData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000CO.ITEM as item,
-            U10000CO.AMOUNT_CURRENT as amountCurrent,
-            U10000CO.AMOUNT_LAST as amountLast
+            IF(U10000CO.AMOUNT_CURRENT = 0, null, U10000CO.AMOUNT_CURRENT) as amountCurrent,
+            IF(U10000CO.AMOUNT_LAST = 0, null, U10000CO.AMOUNT_LAST) as amountLast
         FROM
             wp_u10000_c_other U10000CO
         where 

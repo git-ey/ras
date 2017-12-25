@@ -859,6 +859,25 @@ public class ReportExportService implements ReportExportManager {
         rmcfs.put("count", rmcfsMetaDataList.size());
         H10000.put("rmcfs", rmcfs);
         //--------------------↑H10000.rmcfs↑--------------------
+        //--------------------↓H10000.fairValues↓--------------------
+        Map<String, Object> fairValues = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H10000FairValuesDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FairValuesData", queryParam);
+        if(H10000FairValuesDataList == null) {
+            H10000FairValuesDataList = new ArrayList<>();
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H10000FairValuesSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FairValuesSumDataForReport", queryParam);
+        if(H10000FairValuesSumData == null) {
+            H10000FairValuesSumData = new HashMap<>(); 
+        }
+        
+        fairValues.put("list", H10000FairValuesDataList);
+        fairValues.put("count", H10000FairValuesDataList.size());
+        fairValues.put("sum", H10000FairValuesSumData);
+        H10000.put("fairValues", fairValues);
+        //--------------------↑H10000.fairValues↑--------------------
         //====================↑H10000↑====================
         
         //====================↓H800↓====================
@@ -971,6 +990,41 @@ public class ReportExportService implements ReportExportManager {
         P10000.put("sum", P10000SumData);
         //====================↑G10000↑====================
         
+        //====================↓T10000↓====================
+        Map<String, Object> T10000 = new HashMap<>();
+        
+        List<Map<String, Object>> levels1 = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> T10000DataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT10000DataForReport", queryParam);
+        if(T10000DataList == null) {
+            T10000DataList = new ArrayList<>();
+        }
+        List<String> levelNames1 = T10000DataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        Map<String, List<Map<String, Object>>> groups1 = T10000DataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return String.valueOf(map.get("level"));
+        }));
+        for(String levelName : levelNames1) {
+            Map<String,Object> level = new HashMap<>();
+            level.put("levelName", levelName);
+            List<Map<String, Object>> levelDatas = groups1.get(levelName);
+            if(levelDatas == null) {
+                levelDatas = new ArrayList<>();
+            }
+            level.put("list", levelDatas);
+            level.put("count", levelDatas.size());
+            Map<String,Object> levelQueryMap = new HashMap<>();
+            levelQueryMap.put("fundId", queryParam.get("fundId"));
+            levelQueryMap.put("level", levelName);
+            level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
+            levels1.add(level);
+        }
+        T10000.put("levels", levels1);
+        T10000.put("levelCount", levels1.size());
+        //====================↑T10000↑====================
+        
         //====================↓T11000↓====================
         Map<String, Object> T11000 = new HashMap<>();
         //--------------------↓T11000.P4104↓--------------------
@@ -1017,7 +1071,7 @@ public class ReportExportService implements ReportExportManager {
         P4104.put("levelCount", levels.size());
         //--------------------↑T11000.P4104↑--------------------
         T11000.put("P4104", P4104);
-        //====================↑T10000↑====================
+        //====================↑T11000↑====================
         
         //====================↓U10000↓====================
         Map<String, Object> U10000 = new HashMap<>();
@@ -1227,8 +1281,56 @@ public class ReportExportService implements ReportExportManager {
         importData.put("DI_WARRANT", DI_WARRANT);
         importData.put("DI_OTHER", DI_OTHER);
         //--------------------↑U10000.import↑--------------------
+        //--------------------↓U10000.dividend↓--------------------
+        Map<String,Object> dividend = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000DividendDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000DividendData", queryParam);
+        if(U10000DividendDataList == null) {
+            U10000DividendDataList = new ArrayList<>(); 
+        }
+        dividend.put("list", U10000DividendDataList);
+        dividend.put("count", U10000DividendDataList.size());
+        //--------------------↑U10000.dividend↑--------------------
+        //--------------------↓U10000.other_r↓--------------------
+        Map<String,Object> other_r = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000OtherRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherRData", queryParam);
+        if(U10000OtherRDataList == null) {
+            U10000OtherRDataList = new ArrayList<>(); 
+        }
+        other_r.put("list", U10000OtherRDataList);
+        other_r.put("count", U10000OtherRDataList.size());
+        //--------------------↑U10000.other_r↑--------------------
+        //--------------------↓U10000.trxFee↓--------------------
+        Map<String,Object> trxFee = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000TrxFeeDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000TrxFeeData", queryParam);
+        if(U10000TrxFeeDataList == null) {
+            U10000TrxFeeDataList = new ArrayList<>(); 
+        }
+        trxFee.put("list", U10000TrxFeeDataList);
+        trxFee.put("count", U10000TrxFeeDataList.size());
+        //--------------------↑U10000.trxFee↑--------------------
+        //--------------------↓U10000.dividend↓--------------------
+        Map<String,Object> other_c = new HashMap<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000OtherCDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherCData", queryParam);
+        if(U10000OtherCDataList == null) {
+            U10000OtherCDataList = new ArrayList<>(); 
+        }
+        other_c.put("list", U10000OtherCDataList);
+        other_c.put("count", U10000OtherCDataList.size());
+        //--------------------↑U10000.dividend↑--------------------
         U10000.put("interest", interest);
         U10000.put("importData", importData);
+        U10000.put("dividend", dividend);
+        U10000.put("other_r", other_r);
+        U10000.put("trxFee", trxFee);
+        U10000.put("other_c", other_c);
         //====================↑U10000↑====================
         
         result.put("C10000", C10000);
@@ -1238,6 +1340,7 @@ public class ReportExportService implements ReportExportManager {
         result.put("G10000", G10000);
         result.put("N10000", N10000);
         result.put("P10000", P10000);
+        result.put("T10000", T10000);
         result.put("T11000", T11000);
         result.put("U10000", U10000);
         return result;
