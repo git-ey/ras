@@ -35,8 +35,8 @@
     <select id="selectG10000Data" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    G10000.ITEM as item,
-		    G10000.BEGIN_BALANCE as beginBalance,
-		    G10000.END_BALANCE as endBalance
+		    IF(G10000.BEGIN_BALANCE = 0, null, G10000.BEGIN_BALANCE) as beginBalance,
+		    IF(G10000.BEGIN_BALANCE = 0, null, G10000.END_BALANCE) as endBalance
 		FROM
 		    wp_g10000 G10000
 		WHERE
@@ -46,4 +46,19 @@
         and G10000.PERIOD = #{period}
         ORDER BY G10000.SORT
     </select>
+    
+    <select id="selectG10000SUmDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(G10000.BEGIN_BALANCE) = 0, null, SUM(G10000.BEGIN_BALANCE)) as beginBalance,
+            IF(SUM(G10000.BEGIN_BALANCE) = 0, null, SUM(G10000.END_BALANCE)) as endBalance
+        FROM
+            wp_g10000 G10000
+        WHERE
+            1 = 1
+        and G10000.STATUS = 'Y'
+        and G10000.FUND_ID = #{fundId}
+        and G10000.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
 </mapper>

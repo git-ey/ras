@@ -133,4 +133,20 @@
          </foreach >
 	</insert>
 	
+	<!-- 查询分级名称 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-20 -->
+    <select id="selectLevelNameData" parameterType="java.util.Map" resultType="java.lang.String">
+	    SELECT
+		    sfs.SHORT_NAME AS shortName 
+		FROM
+		    sys_fund_structured sfs 
+		WHERE
+		    1 = 1 
+	    AND sfs.ACTIVE = 'Y' 
+	    AND sfs.FUND_ID = #{fundId}
+	    AND sfs.`LEVEL` = #{level}
+	    LIMIT 1
+    </select>
+	
 </mapper>

@@ -207,8 +207,8 @@
     <select id="selectN10000Data" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
 		    N10000.ITEM as item,
-		    N10000.BEGIN_BALANCE as beginBalance,
-		    N10000.END_BALANCE as endBalance
+		    IF(N10000.BEGIN_BALANCE = 0, null, N10000.BEGIN_BALANCE) as beginBalance,
+		    IF(N10000.END_BALANCE = 0, null, N10000.END_BALANCE) as endBalance
 		FROM
 		    wp_n10000 AS N10000
         where 
@@ -218,4 +218,19 @@
         and N10000.PERIOD = #{period}
         ORDER BY N10000.SORT
     </select>
+    
+    <select id="selectN10000SumDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            IF(SUM(N10000.BEGIN_BALANCE) = 0, null, SUM(N10000.BEGIN_BALANCE)) as beginBalance,
+            IF(SUM(N10000.END_BALANCE) = 0, null, SUM(N10000.END_BALANCE)) as endBalance
+        FROM
+            wp_n10000 AS N10000
+        where 
+            1 = 1
+        and N10000.STATUS = 'Y'
+        and N10000.FUND_ID = #{fundId}
+        and N10000.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
 </mapper>

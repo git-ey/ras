@@ -223,8 +223,8 @@
     <select id="selectU10000InterestData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000RI.ITEM as item,
-            U10000RI.AMOUNT_CURRENT as amountCurrent,
-            U10000RI.AMOUNT_LAST as amountLast
+            IF(U10000RI.AMOUNT_CURRENT = 0, null, U10000RI.AMOUNT_CURRENT) as amountCurrent,
+            IF(U10000RI.AMOUNT_LAST = 0, null, U10000RI.AMOUNT_LAST) as amountLast
         FROM
             wp_u10000_r_interest U10000RI
         where 
@@ -236,12 +236,26 @@
             U10000RI.SORT
     </select>
     
+    <select id="selectU10000InterestSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            IF(SUM(U10000RI.AMOUNT_CURRENT) = 0, null, SUM(U10000RI.AMOUNT_CURRENT)) as amountCurrent,
+            IF(SUM(U10000RI.AMOUNT_LAST) = 0, null, SUM(U10000RI.AMOUNT_LAST)) as amountLast
+        FROM
+            wp_u10000_r_interest U10000RI
+        where 
+            1 = 1
+        and U10000RI.STATUS = 'Y'
+        and U10000RI.FUND_ID = #{fundId}
+        and U10000RI.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectU10000ImportData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
 		    U10000RI.U10000_TYPE AS type,
 		    U10000RI.ITEM as item,
-		    U10000RI.AMOUNT_CURRENT as amountCurrent,
-		    U10000RI.AMOUNT_LAST as amountLast
+		    IF(U10000RI.AMOUNT_CURRENT = 0, null, U10000RI.AMOUNT_CURRENT) as amountCurrent,
+		    IF(U10000RI.AMOUNT_LAST = 0, null, U10000RI.AMOUNT_LAST) as amountLast
 		from
 		    wp_u10000_r_import U10000RI
 		where
@@ -258,8 +272,8 @@
 		SELECT
 		    U10000RIS.TYPE AS type,
 		    U10000RIS.ITEM AS item,
-		    U10000RIS.AMOUNT_CURRENT AS amountCurrent,
-		    U10000RIS.AMOUNT_LAST AS amountLast 
+		    IF(U10000RIS.AMOUNT_CURRENT = 0, null, U10000RIS.AMOUNT_CURRENT) AS amountCurrent,
+		    IF(U10000RIS.AMOUNT_LAST = 0, null, U10000RIS.AMOUNT_LAST) AS amountLast 
 		FROM
 		    wp_u10000_r_ipt_summary U10000RIS 
 		WHERE
@@ -268,6 +282,8 @@
 	    AND U10000RIS.TYPE = #{type}
 	    AND U10000RIS.FUND_ID = #{fundId}
 	    AND U10000RIS.PERIOD = #{period}
+	    ORDER BY
+	       U10000RIS.SORT
     </select>
     
     <select id="selectU10000DividendData" parameterType="java.util.Map" resultType="java.util.Map"> 

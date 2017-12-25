@@ -40,8 +40,8 @@
     <select id="selectE300DiscData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
 		    E300D.ITEM as item,
-		    E300D.END_BALANCE as endBalance,
-		    E300D.BEGIN_BALANCE as beginBalance
+		    IF(E300D.END_BALANCE = 0, null, E300D.END_BALANCE) as endBalance,
+		    IF(E300D.BEGIN_BALANCE = 0, null, E300D.BEGIN_BALANCE) as beginBalance
 		FROM
 		    wp_e300_dis E300D
         where 
@@ -51,6 +51,20 @@
         and E300D.PERIOD = #{period}
         ORDER BY
             E300D.SORT
+    </select>
+    
+    <select id="selectE300DiscSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(E300D.END_BALANCE) = 0, null, SUM(E300D.END_BALANCE)) as endBalance,
+            IF(SUM(E300D.BEGIN_BALANCE) = 0, null, SUM(E300D.BEGIN_BALANCE)) as beginBalance
+        FROM
+            wp_e300_dis E300D
+        where 
+            1 = 1
+        and E300D.STATUS = 'Y'
+        and E300D.FUND_ID = #{fundId}
+        and E300D.PERIOD = #{period}
+        LIMIT 1
     </select>
     
     <select id="selectE400Data" parameterType="java.util.Map" resultType="java.util.Map">

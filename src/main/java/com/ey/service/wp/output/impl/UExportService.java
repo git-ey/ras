@@ -746,7 +746,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         di.put("S1", new HashMap<String,Object>());
         di.put("S2", new HashMap<String,Object>());
 //        di.put("S3", new HashMap<String,Object>());
-        queryMap.put("type", "DI_WARRAMT");
+        queryMap.put("type", "DI_WARRANT");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000DiWarrantMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000DiWarrantMetaDataList == null) {
