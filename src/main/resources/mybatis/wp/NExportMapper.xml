@@ -204,6 +204,22 @@
         and N800N.PERIOD = #{period}
     </select>
     
+    <select id="selectN800DisDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            N800D.`LEVEL` as `level`,
+            IF(N800D.ITEM1 = 0, null, N800D.ITEM1) as item1,
+            IF(N800D.ITEM2 = 0, null, N800D.ITEM2) as item2,
+            IF(N800D.ITEM3 = 0, null, N800D.ITEM3) as item3,
+            IF(N800D.ITEM4 = 0, null, N800D.ITEM4) as item4
+        FROM
+            wp_n800_dis N800D
+        where 
+            1 = 1
+        and N800D.STATUS = 'Y'
+        and N800D.FUND_ID = #{fundId}
+        and N800D.PERIOD = #{period}
+    </select>
+    
     <select id="selectN10000Data" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
 		    N10000.ITEM as item,

@@ -632,6 +632,7 @@ public class ReportExportService implements ReportExportManager {
         Map<String,Object> P3 = new HashMap<>();
         
         P3.put("sec1", this.processP3Sec1(queryParam));
+        P3.put("sec2", this.processP3Sec2(queryParam));
         
         exportParam.put("P3", P3);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
@@ -1343,6 +1344,80 @@ public class ReportExportService implements ReportExportManager {
         result.put("T10000", T10000);
         result.put("T11000", T11000);
         result.put("U10000", U10000);
+        return result;
+    }
+    
+    /**
+     * 处理Part3 第二部分
+     * @author Dai Zong 2017年12月25日
+     * 
+     * @param queryParam
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> processP3Sec2(Map<String,Object> queryParam) throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        
+        //====================↓T11000↓====================
+        Map<String,Object> T11000 = new HashMap<>();
+        //--------------------↓T11000.main↓--------------------
+        Map<String,Object> main = new HashMap<>(); 
+        List<Map<String,Object>> levels = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> T11000DataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT11000MainData", queryParam);
+        if(T11000DataList == null) {
+            T11000DataList = new ArrayList<>(); 
+        }
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> N800DisDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN800DisDataForReport", queryParam);
+        if(N800DisDataList == null) {
+            N800DisDataList = new ArrayList<>(); 
+        }
+        List<String> levelNames = T11000DataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        List<String> levelNamesN800Dis = N800DisDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        for(String levelNameN800Dis : levelNamesN800Dis) {
+            if(!levelNames.contains(levelNameN800Dis)) {
+                levelNames.add(levelNameN800Dis);
+            }
+        }
+        Map<String, List<Map<String, Object>>> groupsT11000 = T11000DataList.stream().collect(Collectors.groupingBy(item -> {
+            return String.valueOf(item.get("level"));
+        }));
+        Map<String, List<Map<String, Object>>> groupsN800Dis = N800DisDataList.stream().collect(Collectors.groupingBy(item -> {
+            return String.valueOf(item.get("level"));
+        }));
+        for(String levelName : levelNames) {
+            Map<String,Object> level = new HashMap<>();
+            List<Map<String, Object>> list_t = groupsT11000.get(levelName);
+            if(list_t == null) {
+                list_t = new ArrayList<>();
+            }
+            List<Map<String, Object>> list_n = groupsN800Dis.get(levelName);
+            if(list_n == null) {
+                list_n = new ArrayList<>();
+            }
+            level.put("levelName", levelName);
+            Map<String,Object> levelQueryMap = new HashMap<>();
+            levelQueryMap.put("fundId", queryParam.get("fundId"));
+            levelQueryMap.put("level", levelName);
+            level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
+            level.put("list_t", list_t);
+            level.put("count_t", list_t.size());
+            level.put("list_n", list_n);
+            level.put("count_n", list_n.size());
+            levels.add(level);
+        }
+        main.put("levels", levels);
+        main.put("levelCount", levels.size());
+        //--------------------↑T11000.main↑--------------------
+        T11000.put("main", main);
+        //====================↑T11000↑====================
+        
+        result.put("T11000", T11000);
         return result;
     }
     
