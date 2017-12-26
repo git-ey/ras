@@ -33,10 +33,10 @@
     <select id="selectITransactionData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    IT.PARTY_SHORT_NAME AS partyShortName,
-		    IT.AMOUNT_CURRENT AS amountCurrent,
-		    IT.RATE_CURRENT AS rateCurrent,
-		    IT.AMOUNT_LAST AS amountLast,
-		    IT.RATE_LAST AS rateLast 
+		    IF(IT.AMOUNT_CURRENT = 0, null, IT.AMOUNT_CURRENT) AS amountCurrent,
+		    IF(IT.RATE_CURRENT = 0, null, IT.RATE_CURRENT) AS rateCurrent,
+		    IF(IT.AMOUNT_LAST = 0, null, IT.AMOUNT_LAST) AS amountLast,
+		    IF(IT.RATE_LAST = 0, null, IT.RATE_LAST) AS rateLast 
 		FROM
 		    wp_i_transaction IT 
 		WHERE
@@ -45,15 +45,17 @@
         AND IT.FUND_ID = #{fundId}
         AND IT.PERIOD = #{period}
         AND IT.TYPE = #{type}
+        ORDER BY
+            IT.SORT
     </select>
     
     <select id="selectN500RelatedData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    N500R.RELEATED_PARTY AS relatedParty,
-		    N500R.COMMISSION AS commission,
-		    N500R.PROPORTION_TOTAL AS proportionTotal,
-		    N500R.END_BALANCE AS endBalance,
-		    N500R.PROPORTION_BALANCE AS proportionBalance 
+		    IF(N500R.COMMISSION = 0, null, N500R.COMMISSION) AS commission,
+		    IF(N500R.PROPORTION_TOTAL = 0, null, N500R.PROPORTION_TOTAL) AS proportionTotal,
+		    IF(N500R.END_BALANCE = 0, null, N500R.END_BALANCE) AS endBalance,
+		    IF(N500R.PROPORTION_BALANCE = 0, null, N500R.PROPORTION_BALANCE) AS proportionBalance 
 		FROM
 		    wp_n500_related N500R
 		WHERE
@@ -67,8 +69,8 @@
 		SELECT
 		    IMF.TPYE AS tpye,
 		    IMF.ITEM AS item,
-		    IMF.AMOUNT_CURRENT AS amountCurrent,
-		    IMF.AMOUNT_LAST AS amountLast 
+		    IF(IMF.AMOUNT_CURRENT = 0, null, IMF.AMOUNT_CURRENT) AS amountCurrent,
+		    IF(IMF.AMOUNT_LAST = 0, null, IMF.AMOUNT_LAST) AS amountLast 
 		FROM
 		    wp_i_mge_fee IMF 
 		WHERE
@@ -76,21 +78,41 @@
 		AND IMF.STATUS = 'Y'
         AND IMF.FUND_ID = #{fundId}
         AND IMF.PERIOD = #{period}
+        ORDER BY
+            IMF.SORT
     </select>
     
     <select id="selectISalesFeeData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    ISF.`LEVEL` AS `level`,
 		    ISF.PARTY_SHORT_NAME AS partyShortName,
-		    ISF.SALES_COMMISION_AMT AS salesCommisionAmt,
-		    ISF.SALES_COMMISION_BAL AS salesCommisionBal,
-		    ISF.SALES_COMMISION_AMT_LAST AS salesCommisionAmtLast,
-		    ISF.SALES_COMMISION_BAL_LAST AS salesCommisionBalLast 
+		    IF(ISF.SALES_COMMISION_AMT = 0, null, ISF.SALES_COMMISION_AMT) AS salesCommisionAmt,
+		    IF(ISF.SALES_COMMISION_BAL = 0, null, ISF.SALES_COMMISION_BAL) AS salesCommisionBal,
+		    IF(ISF.SALES_COMMISION_AMT_LAST = 0, null, ISF.SALES_COMMISION_AMT_LAST) AS salesCommisionAmtLast,
+		    IF(ISF.SALES_COMMISION_BAL_LAST = 0, null, ISF.SALES_COMMISION_BAL_LAST) AS salesCommisionBalLast 
 		FROM
 		    wp_i_sales_fee ISF 
 		WHERE
 		    1 = 1 
 		AND ISF.STATUS = 'Y'
+        AND ISF.FUND_ID = #{fundId}
+        AND ISF.PERIOD = #{period}
+        ORDER BY
+            ISF.SORT
+    </select>
+    
+    <select id="selectISalesFeeSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            ISF.`LEVEL` AS `level`,
+            IF(SUM(ISF.SALES_COMMISION_AMT) = 0, null, SUM(ISF.SALES_COMMISION_AMT)) AS salesCommisionAmt,
+            IF(SUM(ISF.SALES_COMMISION_BAL) = 0, null, SUM(ISF.SALES_COMMISION_BAL)) AS salesCommisionBal,
+            IF(SUM(ISF.SALES_COMMISION_AMT_LAST) = 0, null, SUM(ISF.SALES_COMMISION_AMT_LAST)) AS salesCommisionAmtLast,
+            IF(SUM(ISF.SALES_COMMISION_BAL_LAST) = 0, null, SUM(ISF.SALES_COMMISION_BAL_LAST)) AS salesCommisionBalLast 
+        FROM
+            wp_i_sales_fee ISF 
+        WHERE
+            1 = 1 
+        AND ISF.STATUS = 'Y'
         AND ISF.FUND_ID = #{fundId}
         AND ISF.PERIOD = #{period}
     </select>

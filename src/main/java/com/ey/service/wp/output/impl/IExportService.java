@@ -198,7 +198,7 @@ public class IExportService extends BaseExportService implements IExportManager{
         });
         lastQueryMap.put("period", (Integer.parseInt(String.valueOf(lastQueryMap.get("period")).substring(0, 4)) - 1) + "1231");
         @SuppressWarnings("unchecked")
-        List<Map<String,Object>> n500RelatedLastMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectN500RelatedData", queryMap);
+        List<Map<String,Object>> n500RelatedLastMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectN500RelatedData", lastQueryMap);
         if(n500RelatedLastMetaDataList == null) {
             n500RelatedLastMetaDataList = new ArrayList<>();
         }
@@ -270,10 +270,15 @@ public class IExportService extends BaseExportService implements IExportManager{
             String partyShortName = entry.getKey();
             Map<String, List<Map<String, Object>>> levelMap = entry.getValue();
             
+            Double salesCommisionAmtSum = new Double(0d);
+            Double salesCommisionAmtLastSum = new Double(0d);
             for(String levelName : levelNames) {
                 List<Map<String, Object>> oneLevelList = levelMap.get(levelName);
                 if(CollectionUtils.isNotEmpty(oneLevelList)) {
-                    levelDataList.add(oneLevelList.get(0));
+                    Map<String, Object> temp = oneLevelList.get(0);
+                    levelDataList.add(temp);
+                    salesCommisionAmtSum += (temp.get("salesCommisionAmt")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmt"))));
+                    salesCommisionAmtLastSum += (temp.get("salesCommisionAmtLast")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmtLast"))));
                 }
             }
             
@@ -289,6 +294,8 @@ public class IExportService extends BaseExportService implements IExportManager{
             middleMap.put("count", levelDataList.size());
             middleMap.put("salesCommisionBal", one.get("salesCommisionBal"));
             middleMap.put("salesCommisionBalLast", one.get("salesCommisionBalLast"));
+            middleMap.put("salesCommisionAmtSum", salesCommisionAmtSum);
+            middleMap.put("salesCommisionAmtLastSum", salesCommisionAmtLastSum);
             salesFeeResultList.add(middleMap);
         }
         salesFee.put("levelNames", levelNames);
