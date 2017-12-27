@@ -183,10 +183,10 @@
     <select id="selectIBankData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    IB.PARTY_SHORT_NAME AS partyShortName,
-		    IB.BANK_BAL_CURRENT AS bankBalCurrent,
-		    IB.INTEREST_INCOME_CURRENT AS interestIncomeCurrent,
-		    IB.BANK_BAL_LAST AS bankBalLast,
-		    IB.INTEREST_INCOME_LAST AS interestIncomeLast 
+		    IF(IB.BANK_BAL_CURRENT = 0, null, IB.BANK_BAL_CURRENT) AS bankBalCurrent,
+		    IF(IB.INTEREST_INCOME_CURRENT = 0, null, IB.INTEREST_INCOME_CURRENT) AS interestIncomeCurrent,
+		    IF(IB.BANK_BAL_LAST = 0, null, IB.BANK_BAL_LAST) AS bankBalLast,
+		    IF(IB.INTEREST_INCOME_LAST = 0, null, IB.INTEREST_INCOME_LAST) AS interestIncomeLast 
 		FROM
 		    wp_i_bank IB 
 		WHERE
@@ -194,6 +194,8 @@
 		AND IB.STATUS = 'Y'
         AND IB.FUND_ID = #{fundId}
         AND IB.PERIOD = #{period}
+        ORDER BY
+            IB.SORT
     </select>
     
     <select id="selectIUnderWriteData" parameterType="java.util.Map" resultType="java.util.Map">
@@ -202,8 +204,8 @@
 		    IU.STOCK_CODE AS stockCode,
 		    IU.STOCK_NAME AS stockName,
 		    IU.DISTIBUTION AS distibution,
-		    IU.QUANTITY AS quantity,
-		    IU.AMOUNT AS amount 
+		    IF(IU.QUANTITY = 0, null, IU.QUANTITY) AS quantity,
+		    IF(IU.AMOUNT = 0, null, IU.AMOUNT) AS amount 
 		FROM
 		    wp_i_underwrite IU 
 		WHERE
@@ -211,6 +213,8 @@
 		AND IU.STATUS = 'Y'
         AND IU.FUND_ID = #{fundId}
         AND IU.PERIOD = #{period}
+        ORDER BY
+            IU.SORT
     </select>
 
 </mapper>

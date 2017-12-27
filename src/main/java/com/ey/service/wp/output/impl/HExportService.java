@@ -738,33 +738,24 @@ public class HExportService extends BaseExportService implements HExportManager{
         if(additianMetaDataList == null) {
             additianMetaDataList = new ArrayList<>();
         }
-        if(additianMetaDataList.size() > 1) {
-            for(int i=1 ; i< additianMetaDataList.size(); i++) {
-                Map<String,Object> mapNow = additianMetaDataList.get(i);
-                Map<String,Object> mapBefore = additianMetaDataList.get(i-1);
-                if(mapNow != null && mapBefore != null && mapNow.get("code") != null && mapNow.get("code").equals(mapBefore.get("code"))) {
-                    mapNow.put("remark", "注");
-                }
-            }
-        }
-        List<String> existCode = additianMetaDataList.stream().map(item -> {
-            return String.valueOf(item.get("type"));
-        }).distinct().collect(Collectors.toList());
-        if(!existCode.contains("股票")) {
-            Map<String, Object> temp = new HashMap<String,Object>();
-            temp.put("type", "股票");
-            additianMetaDataList.add(temp);
-        }
-        if(!existCode.contains("债券")) {
-            Map<String, Object> temp = new HashMap<String,Object>();
-            temp.put("type", "债券");
-            additianMetaDataList.add(temp);
-        }
-        if(!existCode.contains("其他")) {
-            Map<String, Object> temp = new HashMap<String,Object>();
-            temp.put("type", "其他");
-            additianMetaDataList.add(temp);
-        }
+//        List<String> existCode = additianMetaDataList.stream().map(item -> {
+//            return String.valueOf(item.get("type"));
+//        }).distinct().collect(Collectors.toList());
+//        if(!existCode.contains("股票")) {
+//            Map<String, Object> temp = new HashMap<String,Object>();
+//            temp.put("type", "股票");
+//            additianMetaDataList.add(temp);
+//        }
+//        if(!existCode.contains("债券")) {
+//            Map<String, Object> temp = new HashMap<String,Object>();
+//            temp.put("type", "债券");
+//            additianMetaDataList.add(temp);
+//        }
+//        if(!existCode.contains("其他")) {
+//            Map<String, Object> temp = new HashMap<String,Object>();
+//            temp.put("type", "其他");
+//            additianMetaDataList.add(temp);
+//        }
         additian.put("list", additianMetaDataList);
         additian.put("count", additianMetaDataList.size());
         //========process dataMap for additian view end========

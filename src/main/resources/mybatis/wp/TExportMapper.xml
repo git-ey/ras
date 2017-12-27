@@ -142,6 +142,27 @@
         ORDER BY T310.SEQ
     </select>
     
+    <select id="selectT310DataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T310.`LEVEL` as `level`,
+            T310.SEQ as seq,
+            T310.REGISTRATION_DATE as registrationDate,
+            T310.LISTED_DIVIDEND_DATE as listedDividendDate,
+            T310.UNLISTED_DIVIDEND_DATE as unlistedDividendDate,
+            IF(T310.BONUS = 0, null, T310.BONUS) as bonus,
+            IF(T310.CASH = 0, null, T310.CASH) as cash,
+            IF(T310.REINVEST_AMOUNT = 0, null, T310.REINVEST_AMOUNT) as reinvestAmount,
+            IF(T310.PROFIT_EY = 0, null, T310.PROFIT_EY) as profitEy
+        FROM
+            wp_t310 T310
+        WHERE
+            1 = 1
+        and T310.STATUS = 'Y'
+        and T310.FUND_ID = #{fundId}
+        and T310.PERIOD = #{period}
+        ORDER BY T310.SEQ
+    </select>
+    
     <select id="selectT400Data" parameterType="java.util.Map" resultType="java.util.Map"> 
 		SELECT
 		    T400.`LEVEL` as `level`,
@@ -294,5 +315,20 @@
         AND T11000.PERIOD = #{period}
         ORDER BY T11000.SEQ
     </select>
-
+    
+    <select id="selectT11000MainCountDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            count(0)
+        FROM
+            wp_t11000 T11000
+        WHERE
+            1 = 1
+        AND T11000.STATUS = 'Y'
+        AND T11000.FUND_ID = #{fundId}
+        AND T11000.PERIOD = #{period}
+        <if test="level != null and level != '' and level != 'null'">
+            AND T11000.`LEVEL` = #{level}
+        </if>
+    </select>
+    
 </mapper>

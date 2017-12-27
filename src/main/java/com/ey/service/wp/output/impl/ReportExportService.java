@@ -1,6 +1,8 @@
 package com.ey.service.wp.output.impl;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -635,6 +637,8 @@ public class ReportExportService implements ReportExportManager {
         P3.put("sec2", this.processP3Sec2(queryParam));
         P3.put("sec3", this.processP3Sec3(queryParam));
         P3.put("sec4", this.processP3Sec4(queryParam));
+        P3.put("sec5", this.processP3Sec5(queryParam));
+        P3.put("sec6", this.processP3Sec6(queryParam));
         
         exportParam.put("P3", P3);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
@@ -1370,37 +1374,19 @@ public class ReportExportService implements ReportExportManager {
         if(T11000DataList == null) {
             T11000DataList = new ArrayList<>(); 
         }
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> N800DisDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN800DisDataForReport", queryParam);
-        if(N800DisDataList == null) {
-            N800DisDataList = new ArrayList<>(); 
-        }
         List<String> levelNames = T11000DataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
         }).distinct().collect(Collectors.toList());
-        List<String> levelNamesN800Dis = N800DisDataList.stream().map(item -> {
-            return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
-        for(String levelNameN800Dis : levelNamesN800Dis) {
-            if(!levelNames.contains(levelNameN800Dis)) {
-                levelNames.add(levelNameN800Dis);
-            }
-        }
+        
         Map<String, List<Map<String, Object>>> groupsT11000 = T11000DataList.stream().collect(Collectors.groupingBy(item -> {
             return String.valueOf(item.get("level"));
         }));
-        Map<String, List<Map<String, Object>>> groupsN800Dis = N800DisDataList.stream().collect(Collectors.groupingBy(item -> {
-            return String.valueOf(item.get("level"));
-        }));
+        
         for(String levelName : levelNames) {
             Map<String,Object> level = new HashMap<>();
             List<Map<String, Object>> list_t = groupsT11000.get(levelName);
             if(list_t == null) {
                 list_t = new ArrayList<>();
-            }
-            List<Map<String, Object>> list_n = groupsN800Dis.get(levelName);
-            if(list_n == null) {
-                list_n = new ArrayList<>();
             }
             level.put("levelName", levelName);
             Map<String,Object> levelQueryMap = new HashMap<>();
@@ -1409,8 +1395,6 @@ public class ReportExportService implements ReportExportManager {
             level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
             level.put("list_t", list_t);
             level.put("count_t", list_t.size());
-            level.put("list_n", list_n);
-            level.put("count_n", list_n.size());
             levels.add(level);
         }
         main.put("levels", levels);
@@ -1461,7 +1445,7 @@ public class ReportExportService implements ReportExportManager {
     
     /**
      * 处理Part3 第四部分
-     * @author Dai Zong 2017年12月2日
+     * @author Dai Zong 2017年12月26日
      * 
      * @param queryParam
      * @return
@@ -1730,14 +1714,213 @@ public class ReportExportService implements ReportExportManager {
         unmgerHoldFund.put("levels", resultList);
         unmgerHoldFund.put("levelsCount", resultList.size());
         //--------------------↑I.unmgerHoldFund↑--------------------
+        //--------------------↓I.bank↓--------------------
+        Map<String, Object> bank = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> IBankDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIBankData", queryParam);
+        if(IBankDataList == null) {
+            IBankDataList = new ArrayList<>();
+        }
+        bank.put("list", IBankDataList);
+        bank.put("count", IBankDataList.size());
+        //--------------------↑I.bank↑--------------------
+        //--------------------↓I.underWrite↓--------------------
+        Map<String, Object> underWrite = new HashMap<String,Object>();
+        Map<String, Object> current2 = new HashMap<String,Object>();
+        Map<String, Object> last2 = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> underWriteCurrentMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIUnderWriteData", queryParam);
+        if(underWriteCurrentMetaDataList == null) {
+            underWriteCurrentMetaDataList = new ArrayList<>();
+        }
+        current2.put("list", underWriteCurrentMetaDataList);
+        current2.put("count", underWriteCurrentMetaDataList.size());
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> underWriteLastMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIUnderWriteData", queryParamLast);
+        if(underWriteLastMetaDataList == null) {
+            underWriteLastMetaDataList = new ArrayList<>();
+        }
+        last2.put("list", underWriteLastMetaDataList);
+        last2.put("count", underWriteLastMetaDataList.size());
+        underWrite.put("current", current2);
+        underWrite.put("last", last2);
+        //--------------------↑I.underWrite↑--------------------
+        
         I.put("transaction", transaction);
         I.put("manageFee", manageFee);
         I.put("salesFee", salesFee);
         I.put("bankThx", bankThx);
         I.put("mgerHoldFund", mgerHoldFund);
         I.put("unmgerHoldFund", unmgerHoldFund);
+        I.put("bank", bank);
+        I.put("underWrite", underWrite);
         //====================↑I↑====================
         result.put("I", I);
+        return result;
+    }
+    
+    /**
+     * 处理Part3 第五部分
+     * @author Dai Zong 2017年12月27日
+     * 
+     * @param queryParam
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> processP3Sec5(Map<String,Object> queryParam) throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        //====================↓T310↓====================
+        Map<String,Object> T310 = new HashMap<>();
+        List<Map<String,Object>> levels = new ArrayList<>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> T310DataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT310DataForReport", queryParam);
+        if(T310DataList == null) {
+            T310DataList = new ArrayList<>(); 
+        }
+        List<String> levelNames= T310DataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        Map<String, List<Map<String, Object>>> groupsT310 = T310DataList.stream().collect(Collectors.groupingBy(item -> {
+            return String.valueOf(item.get("level"));
+        }));
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> N800DisDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN800DisDataForReport", queryParam);
+        if(N800DisDataList == null) {
+            N800DisDataList = new ArrayList<>(); 
+        }
+        List<String> levelNamesN800Dis = N800DisDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        for(String levelNameN800Dis : levelNamesN800Dis) {
+            if(!levelNames.contains(levelNameN800Dis)) {
+                levelNames.add(levelNameN800Dis);
+            }
+        }
+        Map<String, List<Map<String, Object>>> groupsN800Dis = N800DisDataList.stream().collect(Collectors.groupingBy(item -> {
+            return String.valueOf(item.get("level"));
+        }));
+        for(String levelName : levelNames) {
+            Map<String,Object> level = new HashMap<>();
+            List<Map<String, Object>> list_t = groupsT310.get(levelName);
+            if(list_t == null) {
+                list_t = new ArrayList<>();
+            }
+            List<Map<String, Object>> list_n = groupsN800Dis.get(levelName);
+            if(list_n == null) {
+                list_n = new ArrayList<>();
+            }
+            level.put("list_t", list_t);
+            level.put("count_t", list_t.size());
+            level.put("list_n", list_n);
+            level.put("count_n", list_n.size());
+            Map<String,Object> levelQueryMap = new HashMap<>();
+            levelQueryMap.put("fundId", queryParam.get("fundId"));
+            levelQueryMap.put("period", queryParam.get("period"));
+            levelQueryMap.put("level", levelName);
+            level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
+            level.put("T11000Count", this.dao.findForObject("TExportMapper.selectT11000MainCountDataForReport", levelQueryMap));
+            levels.add(level);
+        }
+        T310.put("levels", levels);
+        T310.put("levelCount", levels.size());
+        //====================↑T310↑====================
+        
+        result.put("T310", T310);
+        return result;
+    }
+    
+    /**
+     * 处理Part3 第六部分
+     * @author Dai Zong 2017年12月27日
+     * 
+     * @param queryParam
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> processP3Sec6(Map<String,Object> queryParam) throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        //====================↓H11000↓====================
+        Map<String,Object> H11000 = new HashMap<>();
+        //--------------------↓H11000.additian↓--------------------
+        Map<String,Object> additian = new HashMap<>();
+        List<Map<String,Object>> stocksList = new ArrayList<>();
+        List<Map<String,Object>> bondList = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> additianDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000AdditianDataForReport", queryParam);
+        if(additianDataList == null) {
+            additianDataList = new ArrayList<>();
+        }
+        for(Map<String,Object> map : additianDataList) {
+            if("股票".equals(map.get("type"))) {
+                stocksList.add(map);
+            }else if("债券".equals(map.get("type"))) {
+                bondList.add(map);
+            }
+        }
+        additian.put("stocksList", stocksList);
+        additian.put("stocksCount", stocksList.size());
+        additian.put("bondList", bondList);
+        additian.put("bondCount", bondList.size());
+        //--------------------↑H11000.additian↑--------------------
+        //--------------------↓H11000.suspension↓--------------------
+        Map<String, Object> suspension = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> suspensionMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000SuspensionDataForReport", queryParam);
+        if(suspensionMetaDataList == null) {
+            suspensionMetaDataList = new ArrayList<>();
+        }
+        suspension.put("list", suspensionMetaDataList);
+        suspension.put("count", suspensionMetaDataList.size());
+        //--------------------↑H11000.suspension↑--------------------
+        //--------------------↓H11000.saleIn↓--------------------
+        Map<String, Object> saleIn = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> saleInMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000SaleInDataForReport", queryParam);
+        if(saleInMetaDataList == null) {
+            saleInMetaDataList = new ArrayList<>();
+        }
+        saleIn.put("list", saleInMetaDataList);
+        saleIn.put("count", saleInMetaDataList.size());
+        @SuppressWarnings("unchecked")
+        Map<String,Object> saleInSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH11000SaleInSumDataForReport", queryParam);
+        if(saleInSumData == null) {
+            saleInSumData = new HashMap<>();
+        }
+        saleIn.put("sum", saleInSumData);
+        saleIn.put("P600BankSum", this.dao.findForObject("PExportMapper.selectP600BankSumDataForReport", queryParam));
+        //--------------------↑H11000.saleIn↑--------------------
+        //--------------------↓H11000.note↓--------------------
+        @SuppressWarnings("unchecked")
+        Map<String,Object> noteData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectHNoteAData", queryParam);
+        if(noteData == null) {
+            noteData = new HashMap<>();
+        }
+        @SuppressWarnings("unchecked")
+        List<String> noteDataList = (List<String>)this.dao.findForList("HExportMapper.selectH11000NoteData", queryParam);
+        if(noteDataList == null) {
+            noteDataList = new ArrayList<>();
+        }
+        SimpleDateFormat sdfin = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfout = new SimpleDateFormat("yyyy年MM月dd日");
+        String noteDates = noteDataList.stream().filter(item -> {
+            return item != null  && !StringUtils.EMPTY.equals(item);
+        }).map(item -> {
+            try {
+                return sdfout.format(sdfin.parse(item));
+            } catch (ParseException e) {
+                return StringUtils.EMPTY;
+            }
+        }).distinct().collect(Collectors.joining("、"));
+        noteData.put("noteDates", noteDates);
+        //--------------------↑H11000.note↑--------------------
+        
+        H11000.put("additian", additian);
+        H11000.put("suspension", suspension);
+        H11000.put("saleIn", saleIn);
+        H11000.put("note", noteData);
+        //====================↑H11000↑====================
+        result.put("H11000", H11000);
         return result;
     }
     

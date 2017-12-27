@@ -124,6 +124,20 @@
         and P600.PERIOD = #{period}
     </select>
     
+        <select id="selectP600BankSumDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+            IF(SUM(P600.END_BALANCE_CNY) = 0, null, SUM(P600.END_BALANCE_CNY)) as endBalance
+        FROM
+            wp_p600 P600
+        where 
+            1 = 1
+        and P600.STATUS = 'Y'
+        and P600.ATTR5 = '银行间'
+        and P600.FUND_ID = #{fundId}
+        and P600.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectP600TestData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
 		    P600T.ATTR3 as `code`,
