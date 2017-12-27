@@ -95,6 +95,7 @@ public class FundRelatedPartyService implements FundRelatedPartyManager{
 				pd.put("FUNDRELATEDPARTY_ID", UuidUtil.get32UUID());
 				pd.put("FUND_ID", map.get("FUND_ID"));
 				pd.put("PARTY_ID", map.get("PARTY_ID"));
+				pd.put("SORT", map.get("SORT"));
 				pd.put("PARTY_FULL_NAME", map.get("PARTY_FULL_NAME"));
 				pd.put("PARTY_SHORT_NAME_1", map.get("PARTY_SHORT_NAME_1"));
 				pd.put("PARTY_SHORT_NAME_2", map.get("PARTY_SHORT_NAME_2"));
