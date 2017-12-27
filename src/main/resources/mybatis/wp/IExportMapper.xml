@@ -33,10 +33,10 @@
     <select id="selectITransactionData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    IT.PARTY_SHORT_NAME AS partyShortName,
-		    IT.AMOUNT_CURRENT AS amountCurrent,
-		    IT.RATE_CURRENT AS rateCurrent,
-		    IT.AMOUNT_LAST AS amountLast,
-		    IT.RATE_LAST AS rateLast 
+		    IF(IT.AMOUNT_CURRENT = 0, null, IT.AMOUNT_CURRENT) AS amountCurrent,
+		    IF(IT.RATE_CURRENT = 0, null, IT.RATE_CURRENT) AS rateCurrent,
+		    IF(IT.AMOUNT_LAST = 0, null, IT.AMOUNT_LAST) AS amountLast,
+		    IF(IT.RATE_LAST = 0, null, IT.RATE_LAST) AS rateLast 
 		FROM
 		    wp_i_transaction IT 
 		WHERE
@@ -45,15 +45,17 @@
         AND IT.FUND_ID = #{fundId}
         AND IT.PERIOD = #{period}
         AND IT.TYPE = #{type}
+        ORDER BY
+            IT.SORT
     </select>
     
     <select id="selectN500RelatedData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    N500R.RELEATED_PARTY AS relatedParty,
-		    N500R.COMMISSION AS commission,
-		    N500R.PROPORTION_TOTAL AS proportionTotal,
-		    N500R.END_BALANCE AS endBalance,
-		    N500R.PROPORTION_BALANCE AS proportionBalance 
+		    IF(N500R.COMMISSION = 0, null, N500R.COMMISSION) AS commission,
+		    IF(N500R.PROPORTION_TOTAL = 0, null, N500R.PROPORTION_TOTAL) AS proportionTotal,
+		    IF(N500R.END_BALANCE = 0, null, N500R.END_BALANCE) AS endBalance,
+		    IF(N500R.PROPORTION_BALANCE = 0, null, N500R.PROPORTION_BALANCE) AS proportionBalance 
 		FROM
 		    wp_n500_related N500R
 		WHERE
@@ -67,8 +69,8 @@
 		SELECT
 		    IMF.TPYE AS tpye,
 		    IMF.ITEM AS item,
-		    IMF.AMOUNT_CURRENT AS amountCurrent,
-		    IMF.AMOUNT_LAST AS amountLast 
+		    IF(IMF.AMOUNT_CURRENT = 0, null, IMF.AMOUNT_CURRENT) AS amountCurrent,
+		    IF(IMF.AMOUNT_LAST = 0, null, IMF.AMOUNT_LAST) AS amountLast 
 		FROM
 		    wp_i_mge_fee IMF 
 		WHERE
@@ -76,16 +78,18 @@
 		AND IMF.STATUS = 'Y'
         AND IMF.FUND_ID = #{fundId}
         AND IMF.PERIOD = #{period}
+        ORDER BY
+            IMF.SORT
     </select>
     
     <select id="selectISalesFeeData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    ISF.`LEVEL` AS `level`,
 		    ISF.PARTY_SHORT_NAME AS partyShortName,
-		    ISF.SALES_COMMISION_AMT AS salesCommisionAmt,
-		    ISF.SALES_COMMISION_BAL AS salesCommisionBal,
-		    ISF.SALES_COMMISION_AMT_LAST AS salesCommisionAmtLast,
-		    ISF.SALES_COMMISION_BAL_LAST AS salesCommisionBalLast 
+		    IF(ISF.SALES_COMMISION_AMT = 0, null, ISF.SALES_COMMISION_AMT) AS salesCommisionAmt,
+		    IF(ISF.SALES_COMMISION_BAL = 0, null, ISF.SALES_COMMISION_BAL) AS salesCommisionBal,
+		    IF(ISF.SALES_COMMISION_AMT_LAST = 0, null, ISF.SALES_COMMISION_AMT_LAST) AS salesCommisionAmtLast,
+		    IF(ISF.SALES_COMMISION_BAL_LAST = 0, null, ISF.SALES_COMMISION_BAL_LAST) AS salesCommisionBalLast 
 		FROM
 		    wp_i_sales_fee ISF 
 		WHERE
@@ -93,23 +97,41 @@
 		AND ISF.STATUS = 'Y'
         AND ISF.FUND_ID = #{fundId}
         AND ISF.PERIOD = #{period}
+        ORDER BY
+            ISF.SORT
+    </select>
+    
+    <select id="selectISalesFeeSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            ISF.`LEVEL` AS `level`,
+            IF(SUM(ISF.SALES_COMMISION_AMT) = 0, null, SUM(ISF.SALES_COMMISION_AMT)) AS salesCommisionAmt,
+            IF(SUM(ISF.SALES_COMMISION_BAL) = 0, null, SUM(ISF.SALES_COMMISION_BAL)) AS salesCommisionBal,
+            IF(SUM(ISF.SALES_COMMISION_AMT_LAST) = 0, null, SUM(ISF.SALES_COMMISION_AMT_LAST)) AS salesCommisionAmtLast,
+            IF(SUM(ISF.SALES_COMMISION_BAL_LAST) = 0, null, SUM(ISF.SALES_COMMISION_BAL_LAST)) AS salesCommisionBalLast 
+        FROM
+            wp_i_sales_fee ISF 
+        WHERE
+            1 = 1 
+        AND ISF.STATUS = 'Y'
+        AND ISF.FUND_ID = #{fundId}
+        AND ISF.PERIOD = #{period}
     </select>
     
     <select id="selectIBankThxData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    IBT.PARTY_SHORT_NAME AS partyShortName,
-		    IBT.BUY_BOND_AMT_RP AS buyBondAmtRp,
-		    IBT.SELL_BOND_AMT_RP AS sellBondAmtRp,
-		    IBT.ANTI_REPO_AMT_RP AS antiRepoAmtRp,
-		    IBT.ANTI_REPO_INT_RP AS antiRepoIntRp,
-		    IBT.SELL_REPO_AMT_RP AS sellRepoAmtRp,
-		    IBT.SELL_REPO_INT_RP AS sellRepoIntRp,
-		    IBT.BUY_BOND_AMT_LAST AS buyBondAmtLast,
-		    IBT.SELL_BOND_AMT_LAST AS sellBondAmtLast,
-		    IBT.ANTI_REPO_AMT_LAST AS antiRepoAmtLast,
-		    IBT.ANTI_REPO_INT_LAST AS antiRepoIntLast,
-		    IBT.SELL_REPO_AMT_LAST AS sellRepoAmtLast,
-		    IBT.SELL_REPO_INT_LAST AS sellRepoIntLast 
+		    IF(IBT.BUY_BOND_AMT_RP = 0, null, IBT.BUY_BOND_AMT_RP) AS buyBondAmtRp,
+		    IF(IBT.SELL_BOND_AMT_RP = 0, null, IBT.SELL_BOND_AMT_RP) AS sellBondAmtRp,
+		    IF(IBT.ANTI_REPO_AMT_RP = 0, null, IBT.ANTI_REPO_AMT_RP) AS antiRepoAmtRp,
+		    IF(IBT.ANTI_REPO_INT_RP = 0, null, IBT.ANTI_REPO_INT_RP) AS antiRepoIntRp,
+		    IF(IBT.SELL_REPO_AMT_RP = 0, null, IBT.SELL_REPO_AMT_RP) AS sellRepoAmtRp,
+		    IF(IBT.SELL_REPO_INT_RP = 0, null, IBT.SELL_REPO_INT_RP) AS sellRepoIntRp,
+		    IF(IBT.BUY_BOND_AMT_LAST = 0, null, IBT.BUY_BOND_AMT_LAST) AS buyBondAmtLast,
+		    IF(IBT.SELL_BOND_AMT_LAST = 0, null, IBT.SELL_BOND_AMT_LAST) AS sellBondAmtLast,
+		    IF(IBT.ANTI_REPO_AMT_LAST = 0, null, IBT.ANTI_REPO_AMT_LAST) AS antiRepoAmtLast,
+		    IF(IBT.ANTI_REPO_INT_LAST = 0, null, IBT.ANTI_REPO_INT_LAST) AS antiRepoIntLast,
+		    IF(IBT.SELL_REPO_AMT_LAST = 0, null, IBT.SELL_REPO_AMT_LAST) AS sellRepoAmtLast,
+		    IF(IBT.SELL_REPO_INT_LAST = 0, null, IBT.SELL_REPO_INT_LAST) AS sellRepoIntLast 
 		FROM
 		    wp_i_bank_thx IBT 
 		WHERE
@@ -117,6 +139,8 @@
 		AND IBT.STATUS = 'Y'
         AND IBT.FUND_ID = #{fundId}
         AND IBT.PERIOD = #{period}
+        ORDER BY
+            IBT.SORT
     </select>
     
     <select id="selectIMgerHoldFundData" parameterType="java.util.Map" resultType="java.util.Map">
@@ -124,8 +148,8 @@
 		    IMHF.`LEVEL` AS `level`,
 		    IMHF.SORT AS sort,
 		    IMHF.ITEM AS item,
-		    IMHF.AMOUNT AS amount,
-		    IMHF.AMOUNT_LAST AS amountLast 
+		    IF(IMHF.AMOUNT = 0, null, IMHF.AMOUNT) AS amount,
+		    IF(IMHF.AMOUNT_LAST = 0, null, IMHF.AMOUNT_LAST) AS amountLast 
 		FROM
 		    wp_i_mger_hold_fund IMHF 
 		WHERE
@@ -141,10 +165,10 @@
 		SELECT
 		    IUHF.`LEVEL` AS `level`,
 		    IUHF.PARTY_SHORT_NAME AS partyShortName,
-		    IUHF.`SHARE` AS `share`,
-		    IUHF.RATE AS rate,
-		    IUHF.SHARE_LAST AS shareLast,
-		    IUHF.RATE_LAST AS rateLast 
+		    IF(IUHF.`SHARE` = 0, null, IUHF.`SHARE`) AS `share`,
+		    IF(IUHF.RATE = 0, null, IUHF.RATE) AS rate,
+		    IF(IUHF.SHARE_LAST = 0, null, IUHF.SHARE_LAST) AS shareLast,
+		    IF(IUHF.RATE_LAST = 0, null, IUHF.RATE_LAST) AS rateLast 
 		FROM
 		    wp_i_unmger_hold_fund IUHF 
 		WHERE
@@ -152,6 +176,8 @@
 		AND IUHF.STATUS = 'Y'
         AND IUHF.FUND_ID = #{fundId}
         AND IUHF.PERIOD = #{period}
+        ORDER BY
+            IUHF.SORT
     </select>
     
     <select id="selectIBankData" parameterType="java.util.Map" resultType="java.util.Map">

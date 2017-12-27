@@ -634,6 +634,7 @@ public class ReportExportService implements ReportExportManager {
         P3.put("sec1", this.processP3Sec1(queryParam));
         P3.put("sec2", this.processP3Sec2(queryParam));
         P3.put("sec3", this.processP3Sec3(queryParam));
+        P3.put("sec4", this.processP3Sec4(queryParam));
         
         exportParam.put("P3", P3);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
@@ -1422,7 +1423,6 @@ public class ReportExportService implements ReportExportManager {
         return result;
     }
     
-    
     /**
      * 处理Part3 第三部分
      * @author Dai Zong 2017年12月25日
@@ -1457,6 +1457,308 @@ public class ReportExportService implements ReportExportManager {
         result.put("relatedParty", relatedParty);
         result.put("IRP", IRP);
         return result;
+    }
+    
+    /**
+     * 处理Part3 第四部分
+     * @author Dai Zong 2017年12月2日
+     * 
+     * @param queryParam
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> processP3Sec4(Map<String,Object> queryParam) throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        
+        Map<String,Object> queryParamLast= new HashMap<>();
+        queryParam.forEach((k,v) -> {
+            queryParamLast.put(k, v);
+        });
+        queryParamLast.put("period", (Integer.parseInt(String.valueOf(queryParamLast.get("period")).substring(0, 4)) - 1) + "1231");
+        
+        //====================↓I↓====================
+        Map<String,Object> I = new HashMap<>();
+        //--------------------↓I.transaction↓--------------------
+        Map<String, Object> transaction = new HashMap<String,Object>();
+        Map<String, Object> stock = new HashMap<String,Object>();
+        Map<String, Object> bond = new HashMap<String,Object>();
+        Map<String, Object> warrant = new HashMap<String,Object>();
+        Map<String, Object> repo = new HashMap<String,Object>();
+        Map<String, Object> fund = new HashMap<String,Object>();
+        
+        List<Map<String, Object>> tempList = null;
+        tempList = this.selectITransactionDataList(queryParam, "STOCK");
+        stock.put("list", tempList);
+        stock.put("count", tempList.size());
+        tempList = this.selectITransactionDataList(queryParam, "BOND");
+        bond.put("list", tempList);
+        bond.put("count", tempList.size());
+        tempList = this.selectITransactionDataList(queryParam, "WARRANT");
+        warrant.put("list", tempList);
+        warrant.put("count", tempList.size());
+        tempList = this.selectITransactionDataList(queryParam, "REPO");
+        repo.put("list", tempList);
+        repo.put("count", tempList.size());
+        tempList = this.selectITransactionDataList(queryParam, "FUND");
+        fund.put("list", tempList);
+        fund.put("count", tempList.size());
+        
+        transaction.put("stock", stock);
+        transaction.put("bond", bond);
+        transaction.put("warrant", warrant);
+        transaction.put("repo", repo);
+        transaction.put("fund", fund);
+        
+        Map<String, Object> related = new HashMap<String,Object>();
+        Map<String, Object> current = new HashMap<String,Object>();
+        Map<String, Object> last = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> n500RelatedCurrentMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectN500RelatedData", queryParam);
+        if(n500RelatedCurrentMetaDataList == null) {
+            n500RelatedCurrentMetaDataList = new ArrayList<>();
+        }
+        current.put("list", n500RelatedCurrentMetaDataList);
+        current.put("count", n500RelatedCurrentMetaDataList.size());
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> n500RelatedLastMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectN500RelatedData", queryParamLast);
+        if(n500RelatedLastMetaDataList == null) {
+            n500RelatedLastMetaDataList = new ArrayList<>();
+        }
+        last.put("list", n500RelatedLastMetaDataList);
+        last.put("count", n500RelatedLastMetaDataList.size());
+        related.put("current", current);
+        related.put("last", last);
+        transaction.put("related", related);
+        //--------------------↑I.transaction↑--------------------
+        //--------------------↓I.manageFee↓--------------------
+        Map<String, Object> manageFee = new HashMap<String,Object>();
+        
+        List<Map<String, Object>> manage = new ArrayList<>();
+        List<Map<String, Object>> trustee = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> manageFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIManageFeeData", queryParam);
+        if(manageFeeMetaDataList == null) {
+            manageFeeMetaDataList = new ArrayList<>();
+        }
+        for(Map<String,Object> map : manageFeeMetaDataList) {
+            if("MANAGE".equals(map.get("tpye"))) {
+                manage.add(map);
+            }else if("TRUSTEE".equals(map.get("tpye"))) {
+                trustee.add(map);
+            }
+        }
+        
+        manageFee.put("manageList", manage);
+        manageFee.put("manageCount", manage.size());
+        manageFee.put("trusteeList", trustee);
+        manageFee.put("trusteeCount", trustee.size());
+        //--------------------↑I.manageFee↑--------------------
+        //--------------------↓I.salesFee↓--------------------
+        Map<String, Object> salesFee = new HashMap<String,Object>();
+        //普通数据
+        List<Map<String, Object>> salesFeeResultList = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> salesFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectISalesFeeData", queryParam);
+        if(salesFeeMetaDataList == null) {
+            salesFeeMetaDataList = new ArrayList<>();
+        }
+        List<String> levelNames = salesFeeMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        Map<String, Map<String, List<Map<String, Object>>>> groups = salesFeeMetaDataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String, Object> map = (Map<String, Object>)item;
+            return String.valueOf(map.get("partyShortName"));
+        }, Collectors.groupingBy(item -> {
+            Map<String, Object> map = (Map<String, Object>)item;
+            return String.valueOf(map.get("level"));
+        })));
+        for(Entry<String, Map<String, List<Map<String, Object>>>> entry : groups.entrySet()) {
+            Map<String, Object> middleMap = new HashMap<String,Object>();
+            List<Map<String,Object>> levelDataList = new ArrayList<>();
+            
+            String partyShortName = entry.getKey();
+            Map<String, List<Map<String, Object>>> levelMap = entry.getValue();
+            
+            Double salesCommisionAmtSum = new Double(0d);
+            Double salesCommisionAmtLastSum = new Double(0d);
+            for(String levelName : levelNames) {
+                List<Map<String, Object>> oneLevelList = levelMap.get(levelName);
+                if(CollectionUtils.isNotEmpty(oneLevelList)) {
+                    Map<String, Object> temp = oneLevelList.get(0);
+                    levelDataList.add(temp);
+                    salesCommisionAmtSum += (temp.get("salesCommisionAmt")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmt"))));
+                    salesCommisionAmtLastSum += (temp.get("salesCommisionAmtLast")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmtLast"))));
+                }
+            }
+            
+            Map<String, Object> one = null;
+            if(CollectionUtils.isNotEmpty(levelDataList)) {
+                one = levelDataList.get(0);
+            }else {
+                one = new HashMap<>();
+            }
+            
+            middleMap.put("partyShortName", partyShortName);
+            middleMap.put("leves", levelDataList);
+            middleMap.put("count", levelDataList.size());
+            middleMap.put("salesCommisionBal", one.get("salesCommisionBal"));
+            middleMap.put("salesCommisionBalLast", one.get("salesCommisionBalLast"));
+            middleMap.put("salesCommisionAmtSum", salesCommisionAmtSum.doubleValue() == 0d?null:salesCommisionAmtSum);
+            middleMap.put("salesCommisionAmtLastSum", salesCommisionAmtLastSum.doubleValue() == 0d?null:salesCommisionAmtLastSum);
+            salesFeeResultList.add(middleMap);
+        }
+        //汇总数据
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> salesFeeSumDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectISalesFeeSumDataForReport", queryParam);
+        if(salesFeeSumDataList == null) {
+            salesFeeSumDataList = new ArrayList<>();
+        }
+        {
+            Map<String, Object> sumMap = new HashMap<>();
+            List<Map<String, Object>> levelDataSumList = new ArrayList<>();
+            Map<String, List<Map<String, Object>>> levelMap = salesFeeSumDataList.stream().collect(Collectors.groupingBy(item -> {
+                return String.valueOf(item.get("level"));
+            }));
+            
+            Double salesCommisionAmtSum = new Double(0d);
+            Double salesCommisionAmtLastSum = new Double(0d);
+            for(String levelName : levelNames) {
+                List<Map<String, Object>> oneLevelList = levelMap.get(levelName);
+                if(CollectionUtils.isNotEmpty(oneLevelList)) {
+                    Map<String, Object> temp = oneLevelList.get(0);
+                    levelDataSumList.add(temp);
+                    salesCommisionAmtSum += (temp.get("salesCommisionAmt")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmt"))));
+                    salesCommisionAmtLastSum += (temp.get("salesCommisionAmtLast")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmtLast"))));
+                }
+            }
+            
+            Map<String, Object> one = null;
+            if(CollectionUtils.isNotEmpty(levelDataSumList)) {
+                one = levelDataSumList.get(0);
+            }else {
+                one = new HashMap<>();
+            }
+            
+            sumMap.put("partyShortName", "合计");
+            sumMap.put("leves", levelDataSumList);
+            sumMap.put("count", levelDataSumList.size());
+            sumMap.put("salesCommisionBal", one.get("salesCommisionBal"));
+            sumMap.put("salesCommisionBalLast", one.get("salesCommisionBalLast"));
+            sumMap.put("salesCommisionAmtSum", salesCommisionAmtSum.doubleValue() == 0d?null:salesCommisionAmtSum);
+            sumMap.put("salesCommisionAmtLastSum", salesCommisionAmtLastSum.doubleValue() == 0d?null:salesCommisionAmtLastSum);
+            salesFeeResultList.add(sumMap);
+        }
+        salesFee.put("levelNames", levelNames);
+        salesFee.put("levelCount", levelNames.size());
+        salesFee.put("list", salesFeeResultList);
+        salesFee.put("count", salesFeeResultList.size());
+        //--------------------↑I.salesFee↑--------------------
+        //--------------------↓I.bankThx↓--------------------
+        Map<String, Object> bankThx = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> bankThxDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIBankThxData", queryParam);
+        if(bankThxDataList == null) {
+            bankThxDataList = new ArrayList<>();
+        }
+        bankThx.put("list", bankThxDataList);
+        bankThx.put("count", bankThxDataList.size());
+        //--------------------↑I.bankThx↑--------------------
+        //--------------------↓I.mgerHoldFund↓--------------------
+        Map<String, Object> mgerHoldFund = new HashMap<String,Object>();
+        List<Map<String,Object>> levels = new ArrayList<>(); 
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> mgerHoldFundDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIMgerHoldFundData", queryParam);
+        if(mgerHoldFundDataList == null) {
+            mgerHoldFundDataList = new ArrayList<>();
+        }
+        levelNames = mgerHoldFundDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        Map<String, List<Map<String, Object>>> groups2 = mgerHoldFundDataList.stream().collect(Collectors.groupingBy(item -> {
+            return String.valueOf(item.get("level"));
+        }));
+        for(String levelName : levelNames) {
+            Map<String, Object> level = new HashMap<String,Object>();
+            List<Map<String, Object>> levelList = groups2.get(levelName);
+            if(levelList == null) {
+                levelList = new ArrayList<>();
+            }
+            
+            Map<String,Object> levelQueryMap = new HashMap<>();
+            levelQueryMap.put("fundId", queryParam.get("fundId"));
+            levelQueryMap.put("level", levelName);
+            level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
+            level.put("levelFakeFullName", this.dao.findForObject("FundStructuredMapper.selectFakeLevelNameData", levelQueryMap));
+            level.put("list", levelList);
+            level.put("count", levelList.size());
+            levels.add(level);
+        }
+        mgerHoldFund.put("levels", levels);
+        mgerHoldFund.put("levelsCount", levels.size());
+        //--------------------↑I.mgerHoldFund↑--------------------
+        //--------------------↓I.unmgerHoldFund↓--------------------
+        Map<String, Object> unmgerHoldFund = new HashMap<String,Object>();
+        List<Map<String,Object>> resultList = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> unmgerHoldFundMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIUnmgerHoldFundData", queryParam);
+        if(unmgerHoldFundMetaDataList == null) {
+            unmgerHoldFundMetaDataList = new ArrayList<>();
+        }
+        levelNames = unmgerHoldFundMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("level"));
+        }).distinct().collect(Collectors.toList());
+        groups2 = unmgerHoldFundMetaDataList.stream().collect(Collectors.groupingBy(item -> {
+            Map<String,Object> map = (Map<String,Object>)item;
+            return String.valueOf(map.get("level"));
+        }));
+        for(String levelName :levelNames) {
+            Map<String,Object> result2 = new HashMap<>();
+            List<Map<String, Object>> levelList = groups2.get(levelName);
+            if(levelList == null) {
+                levelList = new ArrayList<>();
+            }
+            result2.put("list", levelList);
+            result2.put("count", levelList.size());
+            Map<String,Object> levelQueryMap = new HashMap<>();
+            levelQueryMap.put("fundId", queryParam.get("fundId"));
+            levelQueryMap.put("level", levelName);
+            result2.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
+            result2.put("levelFakeFullName", this.dao.findForObject("FundStructuredMapper.selectFakeLevelNameData", levelQueryMap));
+            resultList.add(result2);
+        }
+        unmgerHoldFund.put("levels", resultList);
+        unmgerHoldFund.put("levelsCount", resultList.size());
+        //--------------------↑I.unmgerHoldFund↑--------------------
+        I.put("transaction", transaction);
+        I.put("manageFee", manageFee);
+        I.put("salesFee", salesFee);
+        I.put("bankThx", bankThx);
+        I.put("mgerHoldFund", mgerHoldFund);
+        I.put("unmgerHoldFund", unmgerHoldFund);
+        //====================↑I↑====================
+        result.put("I", I);
+        return result;
+    }
+    
+    /**
+     * 查询I表交易信息
+     * @author Dai Zong 2017年12月16日
+     * 
+     * @param queryMap 基本查询Map
+     * @param type 交易类型
+     * @return I表交易信息
+     * @throws Exception
+     */
+    private List<Map<String,Object>> selectITransactionDataList(Map<String, Object> queryMap, String type) throws Exception{
+        queryMap.put("type", type);
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectITransactionData", queryMap);
+        if(metaDataList == null) {
+            metaDataList = new ArrayList<>();
+        }
+        queryMap.remove("type");
+        return metaDataList;
     }
     
     /**
