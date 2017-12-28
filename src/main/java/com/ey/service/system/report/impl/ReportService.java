@@ -215,7 +215,7 @@ public class ReportService implements ReportManager {
 		
 		// 本期起始日来源&&本期起始日文本
 		if(DateUtils.truncatedCompareTo(dateFrom, yearFirstDate, Calendar.DATE) >= 0) {
-		    if(DateUtils.truncatedEquals(dateFrom, dateTransform, Calendar.DATE)) {
+		    if(dateTransform != null && DateUtils.truncatedEquals(dateFrom, dateTransform, Calendar.DATE)) {
 		        infoMap.put("CURRENT_INIT_SOURCE", TRANSFORM_DATE);
 		        infoMap.put("CURRENT_INIT_TEXT", "（基金合同转型日）");
 		    }else {
@@ -361,15 +361,15 @@ public class ReportService implements ReportManager {
 			dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
 			dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
 			
-			
-			String[] a = {"CURRENT_YEAR","CURRENT_YEAR_NUM","CURRENT_INIT_DATE","CURRENT_INIT_TEXT","CURRENT_INIT_SOURCE","CURRENT_PERIOD","CURRENT_BS_DATE","CURRENT_END_DATE","CURRENT_END_TXT","CURRENT_END_SOURCE","TXT_PERIOD_CURRENT","TABLE_PERIOD_CURRENT","TABLE_PERIOD_CURRENT_A","TABLE_PERIOD_CURRENT_B"};
-			String[] b = {"LAST_YEAR","LAST_YEAR_NUM","LAST_INIT_DATE","LAST_INIT_TEXT","LAST_INIT_SOURCE","LAST_PERIOD","LAST_BS_DATE","LAST_END_DATE","LAST_END_TXT","LAST_END_SOURCE","TXT_PERIOD_LAST","TABLE_PERIOD_LAST","TABLE_PERIOD_LAST_A","TABLE_PERIOD_LAST_B"};
-			for(String at : a) {
-			    System.out.println(at + " = " + dateMap.get(at));
-			}
-			for(String bt : b) {
-			    System.out.println(bt + " = " + dateMapLast.get(bt));
-			}
+//			日期DEBUG程序
+//			String[] a = {"CURRENT_YEAR","CURRENT_YEAR_NUM","CURRENT_INIT_DATE","CURRENT_INIT_TEXT","CURRENT_INIT_SOURCE","CURRENT_PERIOD","CURRENT_BS_DATE","CURRENT_END_DATE","CURRENT_END_TXT","CURRENT_END_SOURCE","TXT_PERIOD_CURRENT","TABLE_PERIOD_CURRENT","TABLE_PERIOD_CURRENT_A","TABLE_PERIOD_CURRENT_B"};
+//			String[] b = {"LAST_YEAR","LAST_YEAR_NUM","LAST_INIT_DATE","LAST_INIT_TEXT","LAST_INIT_SOURCE","LAST_PERIOD","LAST_BS_DATE","LAST_END_DATE","LAST_END_TXT","LAST_END_SOURCE","TXT_PERIOD_LAST","TABLE_PERIOD_LAST","TABLE_PERIOD_LAST_A","TABLE_PERIOD_LAST_B"};
+//			for(String at : a) {
+//			    System.out.println(at + " = " + dateMap.get(at));
+//			}
+//			for(String bt : b) {
+//			    System.out.println(bt + " = " + dateMapLast.get(bt));
+//			}
 			
 			// -------获取报告模板地址-------//
 			// 如果 本期起始日来源 为 “资产负债表日”取YOY,否则取Y

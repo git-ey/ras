@@ -1137,6 +1137,13 @@ public class ReportExportService implements ReportExportManager {
             map.put("item_a", pair[0]);
             map.put("item_b", pair[1]);
         }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> U10000StocksSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryParam);
+        if(U10000StocksSummarySumData == null) {
+            U10000StocksSummarySumData = new HashMap<>();
+        }
+        U10000StocksSummarySumData.put("item_a", U10000StocksSummarySumData.get("item"));
+        U10000StocksSummaryDataList.add(U10000StocksSummarySumData);
         queryParam.put("type", "STOCKS_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
@@ -1167,6 +1174,12 @@ public class ReportExportService implements ReportExportManager {
         if(U10000BondSummaryDataList == null) {
             U10000BondSummaryDataList = new ArrayList<>(); 
         }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> U10000BondSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryParam);
+        if(U10000BondSummarySumData == null) {
+            U10000BondSummarySumData = new HashMap<>();
+        }
+        U10000BondSummaryDataList.add(U10000BondSummarySumData);
         queryParam.put("type", "BOND_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
@@ -1197,6 +1210,12 @@ public class ReportExportService implements ReportExportManager {
         if(U10000GoldSummaryDataList == null) {
             U10000GoldSummaryDataList = new ArrayList<>(); 
         }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> U10000GoldSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryParam);
+        if(U10000GoldSummarySumData == null) {
+            U10000GoldSummarySumData = new HashMap<>();
+        }
+        U10000GoldSummaryDataList.add(U10000GoldSummarySumData);
         queryParam.put("type", "GOLD_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
@@ -1296,6 +1315,12 @@ public class ReportExportService implements ReportExportManager {
         if(U10000DividendDataList == null) {
             U10000DividendDataList = new ArrayList<>(); 
         }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> U10000DividendSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000DividendSumDataForReport", queryParam);
+        if(U10000DividendSumData == null) {
+            U10000DividendSumData = new HashMap<>();
+        }
+        U10000DividendDataList.add(U10000DividendSumData);
         dividend.put("list", U10000DividendDataList);
         dividend.put("count", U10000DividendDataList.size());
         //--------------------↑U10000.dividend↑--------------------
@@ -1307,6 +1332,12 @@ public class ReportExportService implements ReportExportManager {
         if(U10000OtherRDataList == null) {
             U10000OtherRDataList = new ArrayList<>(); 
         }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> U10000OtherRSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000OtherRSumDataForReport", queryParam);
+        if(U10000OtherRSumData == null) {
+            U10000OtherRSumData = new HashMap<>();
+        }
+        U10000OtherRDataList.add(U10000OtherRSumData);
         other_r.put("list", U10000OtherRDataList);
         other_r.put("count", U10000OtherRDataList.size());
         //--------------------↑U10000.other_r↑--------------------
@@ -1318,10 +1349,16 @@ public class ReportExportService implements ReportExportManager {
         if(U10000TrxFeeDataList == null) {
             U10000TrxFeeDataList = new ArrayList<>(); 
         }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> U10000TrxFeeSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000TrxFeeSumDataForReport", queryParam);
+        if(U10000TrxFeeSumData == null) {
+            U10000TrxFeeSumData = new HashMap<>();
+        }
+        U10000TrxFeeDataList.add(U10000TrxFeeSumData);
         trxFee.put("list", U10000TrxFeeDataList);
         trxFee.put("count", U10000TrxFeeDataList.size());
         //--------------------↑U10000.trxFee↑--------------------
-        //--------------------↓U10000.dividend↓--------------------
+        //--------------------↓U10000.other_c↓--------------------
         Map<String,Object> other_c = new HashMap<>();
         
         @SuppressWarnings("unchecked")
@@ -1329,9 +1366,15 @@ public class ReportExportService implements ReportExportManager {
         if(U10000OtherCDataList == null) {
             U10000OtherCDataList = new ArrayList<>(); 
         }
-        other_c.put("list", U10000OtherCDataList);
+        @SuppressWarnings("unchecked")
+        Map<String,Object> U10000OtherCSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000OtherCSumData", queryParam);
+        if(U10000OtherCSumData == null) {
+            U10000OtherCSumData = new HashMap<>();
+        }
+        U10000OtherCDataList.add(U10000OtherCSumData);
+        other_c.put("list", U10000OtherCDataList); 
         other_c.put("count", U10000OtherCDataList.size());
-        //--------------------↑U10000.dividend↑--------------------
+        //--------------------↑U10000.other_c↑--------------------
         U10000.put("interest", interest);
         U10000.put("importData", importData);
         U10000.put("dividend", dividend);
@@ -2573,14 +2616,14 @@ public class ReportExportService implements ReportExportManager {
         Double sum1LineAmountSum = new Double(0d);
         Double sum1LineAmountLastSum = new Double(0d);
         for(Map<String,Double> sum1Map : sum1List) {
-            sum1LineAmountSum += sum1Map.get("amount");
-            sum1LineAmountLastSum += sum1Map.get("amountLast");
+            sum1LineAmountSum += (sum1Map.get("amount") == null ? 0 : sum1Map.get("amount"));
+            sum1LineAmountLastSum += (sum1Map.get("amountLast") == null ? 0 : sum1Map.get("amountLast"));
         }
         Double sum2LineAmountSum = new Double(0d);
         Double sum2LineAmountLastSum = new Double(0d);
         for(Map<String,Double> sum2Map : sum2List) {
-            sum2LineAmountSum += sum2Map.get("amount");
-            sum2LineAmountLastSum += sum2Map.get("amountLast");
+            sum2LineAmountSum += (sum2Map.get("amount") == null ? 0 : sum2Map.get("amount"));
+            sum2LineAmountLastSum += (sum2Map.get("amountLast") == null ? 0 : sum2Map.get("amountLast"));
         }
         sum1.put("list", sum1List);
         sum1.put("count", sum1List.size());
