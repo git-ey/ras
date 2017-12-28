@@ -158,7 +158,9 @@
 			ETF = #{ETF},
 			ETF_CONNECTION = #{ETF_CONNECTION},
 			FOF = #{FOF},
+			<if test="UNIT != null and UNIT != ''">
 			UNIT = #{UNIT},
+			</if>
 			<if test="DATE_FROM != null and DATE_FROM != ''">
 			DATE_FROM = #{DATE_FROM},
 			</if>
