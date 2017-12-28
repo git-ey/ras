@@ -2750,25 +2750,17 @@ public class ReportExportService implements ReportExportManager {
         Map<String,Object> threeLevel = new HashMap<>();
         
         @SuppressWarnings("unchecked")
-        List<Map<String,Object>> H10000ThreeLevelMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelData", queryParam);
-        if(H10000ThreeLevelMetaDataList == null) {
-            H10000ThreeLevelMetaDataList = new ArrayList<>(); 
+        Map<String,Object> H10000ThreeLevelCurrentData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000ThreeLevelData", queryParam);
+        if(H10000ThreeLevelCurrentData == null) {
+            H10000ThreeLevelCurrentData = new HashMap<>(); 
         }
-        Map<String,Object> level1 = new HashMap<>();
-        Map<String,Object> level2 = new HashMap<>();
-        Map<String,Object> level3 = new HashMap<>();
-        for(Map<String,Object> map : H10000ThreeLevelMetaDataList) {
-            if("一层次".equals(String.valueOf(map.get("threeLevel")))) {
-                level1 = map;
-            }else if("二层次".equals(String.valueOf(map.get("threeLevel")))) {
-                level2 = map;
-            }else if("三层次".equals(String.valueOf(map.get("threeLevel")))) {
-                level3 = map;
-            }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> H10000ThreeLevelLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000ThreeLevelData", queryParamLast);
+        if(H10000ThreeLevelLastData == null) {
+            H10000ThreeLevelLastData = new HashMap<>(); 
         }
-        threeLevel.put("level1", level1);
-        threeLevel.put("level2", level2);
-        threeLevel.put("level3", level3);
+        threeLevel.put("current", H10000ThreeLevelCurrentData);
+        threeLevel.put("last", H10000ThreeLevelLastData);
         
         H10000.put("threeLevel", threeLevel);
         //====================↑H10000↑====================        

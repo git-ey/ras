@@ -531,7 +531,7 @@
         WHERE 
             1 = 1
         AND H10000FV.STATUS = 'Y'
-        AND H10000FV.ITEM IN ('交易性金融资产', '衍生工具', '其他')
+        AND H10000FV.ITEM IN ('1.交易性金融资产', '2.衍生工具', '3.其他')
         AND H10000FV.FUND_ID = #{fundId}
         AND H10000FV.PERIOD = #{period}
         LIMIT 1
@@ -539,9 +539,9 @@
     
     <select id="selectH10000ThreeLevelData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-		    H10000TL.THREE_LEVEL as threeLevel,
-		    IF(H10000TL.AMOUNT_CURRENT = 0, null, H10000TL.AMOUNT_CURRENT) as amountCurrent,
-		    IF(H10000TL.AMOUNT_LAST = 0, null, H10000TL.AMOUNT_LAST) as amountLast
+		    IF(H10000TL.LEVEL1 = 0, null, H10000TL.LEVEL1) as level1,
+		    IF(H10000TL.LEVEL2 = 0, null, H10000TL.LEVEL2) as level2,
+		    IF(H10000TL.LEVEL3 = 0, null, H10000TL.LEVEL3) as level3
 		FROM
 		    wp_h10000_three_level H10000TL
 		WHERE
@@ -549,6 +549,7 @@
 		and H10000TL.`STATUS` = 'Y'
 		and H10000TL.FUND_ID = #{fundId}
 		and H10000TL.PERIOD = #{period}
+		LIMIT 1
     </select>
     
     <select id="selectH11000AdditianData" parameterType="java.util.Map" resultType="java.util.Map">
