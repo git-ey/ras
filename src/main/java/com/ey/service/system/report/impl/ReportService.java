@@ -2,6 +2,7 @@ package com.ey.service.system.report.impl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -174,6 +177,10 @@ public class ReportService implements ReportManager {
 	    DateFormat df = new SimpleDateFormat("yyyy年M月d日");
 		return df.format(date);
 	}
+	
+	public static void main(String[] args) {
+	    
+	}
 
 	/**
 	 * 获取报告日期信息
@@ -194,6 +201,8 @@ public class ReportService implements ReportManager {
 		String year = period.substring(0, 4);
 		// 年第一天
 		Date yearFirstDate = DateUtil.fomatDate(year + "0101", "yyyyMMdd");
+		// 年最后一天
+		Date yearLastDate = DateUtil.fomatDate(year + "1231", "yyyyMMdd");
 		// 期间日期
 		Date periodDate = DateUtil.fomatDate(period, "yyyyMMdd");
 		
@@ -205,15 +214,17 @@ public class ReportService implements ReportManager {
 		infoMap.put("CURRENT_YEAR_NUM", Integer.parseInt(year));
 		
 		// 本期起始日来源&&本期起始日文本
-		if (dateFrom.getTime() >= yearFirstDate.getTime() && dateFrom != dateTransform) {
-			infoMap.put("CURRENT_INIT_SOURCE", CONTRACT_BEGIN_DATE);
-			infoMap.put("CURRENT_INIT_TEXT", "（基金合同生效日）");
-		} else if (dateFrom.getTime() >= yearFirstDate.getTime() && dateFrom == dateTransform) {
-			infoMap.put("CURRENT_INIT_SOURCE", TRANSFORM_DATE);
-			infoMap.put("CURRENT_INIT_TEXT", "（基金合同转型日）");
+		if(DateUtils.truncatedCompareTo(dateFrom, yearFirstDate, Calendar.DATE) >= 0) {
+		    if(dateTransform != null && DateUtils.truncatedEquals(dateFrom, dateTransform, Calendar.DATE)) {
+		        infoMap.put("CURRENT_INIT_SOURCE", TRANSFORM_DATE);
+		        infoMap.put("CURRENT_INIT_TEXT", "（基金合同转型日）");
+		    }else {
+		        infoMap.put("CURRENT_INIT_SOURCE", CONTRACT_BEGIN_DATE);
+		        infoMap.put("CURRENT_INIT_TEXT", "（基金合同生效日）");
+		    }
 		} else {
 			infoMap.put("CURRENT_INIT_SOURCE", BALANCE_SHEET_DATE);
-			infoMap.put("CURRENT_INIT_TEXT", "");
+			infoMap.put("CURRENT_INIT_TEXT", "资产负债表日");
 		}
 		
 		// 本期起始日
@@ -224,7 +235,7 @@ public class ReportService implements ReportManager {
 		}
 		
 		// 本期截止日&&本期截止日来源
-		if (dateTo == null || dateTo.getTime() > periodDate.getTime()) {
+		if (dateTo == null || DateUtils.truncatedCompareTo(dateTo, periodDate, Calendar.DATE) > 0) {
 			infoMap.put("CURRENT_END_DATE", periodDate);
 			infoMap.put("CURRENT_END_SOURCE", "资产负债表日");
 		} else {
@@ -233,7 +244,8 @@ public class ReportService implements ReportManager {
 		}
 
 		// 本期年度
-		if (infoMap.get("CURRENT_INIT_DATE") == yearFirstDate && infoMap.get("CURRENT_END_DATE") == dateTo) {
+		if(DateUtils.truncatedEquals((Date)infoMap.get("CURRENT_INIT_DATE"), yearFirstDate, Calendar.DATE) 
+		        && DateUtils.truncatedEquals((Date)infoMap.get("CURRENT_END_DATE"), yearLastDate, Calendar.DATE)) {
 			infoMap.put("CURRENT_PERIOD", year + "年度");
 		} else {
 			infoMap.put("CURRENT_PERIOD", this.getDateStr((Date) infoMap.get("CURRENT_INIT_DATE"))
@@ -241,13 +253,13 @@ public class ReportService implements ReportManager {
 		}
 
 		// 本期截止日文本
-		infoMap.put("CURRENT_END_TXT", "");
+		infoMap.put("CURRENT_END_TXT", StringUtils.EMPTY);
 		
 		// 正文/表格时间段-当期
 		String currentPeriod = String.valueOf(infoMap.get("CURRENT_PERIOD"));
 		if(currentPeriod.indexOf("年度") > 0) {
 		    infoMap.put("TXT_PERIOD_CURRENT", currentPeriod);
-		    infoMap.put("TABLE_PERIOD_CURRENT", String.valueOf("CURRENT_INIT_DATE") + "至" + this.getDateStr((Date)infoMap.get("CURRENT_END_DATE")));
+		    infoMap.put("TABLE_PERIOD_CURRENT", this.getDateStr((Date) infoMap.get("CURRENT_INIT_DATE")) + "至" + this.getDateStr((Date)infoMap.get("CURRENT_END_DATE")));
 		}else {
 		    infoMap.put("TXT_PERIOD_CURRENT", currentPeriod + "止期间");
 		    infoMap.put("TABLE_PERIOD_CURRENT", currentPeriod);
@@ -348,6 +360,17 @@ public class ReportService implements ReportManager {
 			// 获取日期信息
 			dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
 			dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
+			
+//			日期DEBUG程序
+//			String[] a = {"CURRENT_YEAR","CURRENT_YEAR_NUM","CURRENT_INIT_DATE","CURRENT_INIT_TEXT","CURRENT_INIT_SOURCE","CURRENT_PERIOD","CURRENT_BS_DATE","CURRENT_END_DATE","CURRENT_END_TXT","CURRENT_END_SOURCE","TXT_PERIOD_CURRENT","TABLE_PERIOD_CURRENT","TABLE_PERIOD_CURRENT_A","TABLE_PERIOD_CURRENT_B"};
+//			String[] b = {"LAST_YEAR","LAST_YEAR_NUM","LAST_INIT_DATE","LAST_INIT_TEXT","LAST_INIT_SOURCE","LAST_PERIOD","LAST_BS_DATE","LAST_END_DATE","LAST_END_TXT","LAST_END_SOURCE","TXT_PERIOD_LAST","TABLE_PERIOD_LAST","TABLE_PERIOD_LAST_A","TABLE_PERIOD_LAST_B"};
+//			for(String at : a) {
+//			    System.out.println(at + " = " + dateMap.get(at));
+//			}
+//			for(String bt : b) {
+//			    System.out.println(bt + " = " + dateMapLast.get(bt));
+//			}
+			
 			// -------获取报告模板地址-------//
 			// 如果 本期起始日来源 为 “资产负债表日”取YOY,否则取Y
 			if (dateMap.get("CURRENT_INIT_SOURCE").equals("资产负债表日")) {

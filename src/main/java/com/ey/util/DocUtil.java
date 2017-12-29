@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -90,9 +89,8 @@ public class DocUtil {
 			/*String str = getXml2003Content("D:\\EY_Report_Template\\P4_FSO_DEF.xml", "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
 			System.out.println(str);*/
 		    Map<String,Object> a = new HashMap<>();
-		    Calendar ca = Calendar.getInstance();
-		    ca.set(2017, 11, 01);
-		    a.put("data", null);
+		    a.put("a", new Double(0.01));
+		    a.put("b", new Double(100000.0199));
 		    System.out.println(FreeMarkerUtils.processTemplateToStrUseAbsPath(a, "D:\\", "test.ftl"));
 		} catch (Exception e) {
 			e.printStackTrace();

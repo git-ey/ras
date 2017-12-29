@@ -286,6 +286,23 @@
 	       U10000RIS.SORT
     </select>
     
+    <select id="selectU10000ImportSummarySumDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U10000RIS.TYPE AS type,
+            '合计' AS item,
+            IF(SUM(U10000RIS.AMOUNT_CURRENT) = 0, null, SUM(U10000RIS.AMOUNT_CURRENT)) AS amountCurrent,
+            IF(SUM(U10000RIS.AMOUNT_LAST) = 0, null, SUM(U10000RIS.AMOUNT_LAST)) AS amountLast 
+        FROM
+            wp_u10000_r_ipt_summary U10000RIS 
+        WHERE
+            1 = 1 
+        AND U10000RIS.`STATUS` = 'Y' 
+        AND U10000RIS.TYPE = #{type}
+        AND U10000RIS.FUND_ID = #{fundId}
+        AND U10000RIS.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
     <select id="selectU10000DividendData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000RD.ITEM as item,
@@ -300,6 +317,21 @@
         and U10000RD.PERIOD = #{period}
         order by
             U10000RD.SORT
+    </select>
+    
+    <select id="selectU10000DividendSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            '合计' as item,
+            IF(SUM(U10000RD.AMOUNT_CURRENT) = 0, null, SUM(U10000RD.AMOUNT_CURRENT)) as amountCurrent,
+            IF(SUM(U10000RD.AMOUNT_LAST) = 0, null, SUM(U10000RD.AMOUNT_LAST)) as amountLast
+        FROM
+            wp_u10000_r_dividend U10000RD
+        where 
+            1 = 1
+        and U10000RD.STATUS = 'Y'
+        and U10000RD.FUND_ID = #{fundId}
+        and U10000RD.PERIOD = #{period}
+        limit 1
     </select>
     
     <select id="selectU10000OtherRData" parameterType="java.util.Map" resultType="java.util.Map"> 
@@ -318,6 +350,21 @@
             U10000RO.SORT
     </select>
     
+    <select id="selectU10000OtherRSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            '合计' as item,
+            IF(SUM(U10000RO.AMOUNT_CURRENT) = 0, null, SUM(U10000RO.AMOUNT_CURRENT)) as amountCurrent,
+            IF(SUM(U10000RO.AMOUNT_LAST) = 0, null, SUM(U10000RO.AMOUNT_LAST)) as amountLast
+        FROM
+            wp_u10000_r_other U10000RO
+        where 
+            1 = 1
+        and U10000RO.STATUS = 'Y'
+        and U10000RO.FUND_ID = #{fundId}
+        and U10000RO.PERIOD = #{period}
+        limit 1
+    </select>
+    
     <select id="selectU10000TrxFeeData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000CTF.ITEM as item,
@@ -332,6 +379,21 @@
         and U10000CTF.PERIOD = #{period}
         order by
             U10000CTF.SORT
+    </select>
+    
+    <select id="selectU10000TrxFeeSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            '合计' as item,
+            IF(SUM(U10000CTF.AMOUNT_CURRENT) = 0, null, SUM(U10000CTF.AMOUNT_CURRENT)) as amountCurrent,
+            IF(SUM(U10000CTF.AMOUNT_LAST) = 0, null, SUM(U10000CTF.AMOUNT_LAST)) as amountLast
+        FROM
+            wp_u10000_c_trx_fee U10000CTF
+        where 
+            1 = 1
+        and U10000CTF.STATUS = 'Y'
+        and U10000CTF.FUND_ID = #{fundId}
+        and U10000CTF.PERIOD = #{period}
+        LIMIT 1
     </select>
     
     <select id="selectU10000OtherCData" parameterType="java.util.Map" resultType="java.util.Map"> 
@@ -349,4 +411,20 @@
         order by
             U10000CO.SORT
     </select>
+    
+    <select id="selectU10000OtherCSumData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            '合计' as item,
+            IF(SUM(U10000CO.AMOUNT_CURRENT) = 0, null, SUM(U10000CO.AMOUNT_CURRENT)) as amountCurrent,
+            IF(SUM(U10000CO.AMOUNT_LAST) = 0, null, SUM(U10000CO.AMOUNT_LAST)) as amountLast
+        FROM
+            wp_u10000_c_other U10000CO
+        where 
+            1 = 1
+        and U10000CO.STATUS = 'Y'
+        and U10000CO.FUND_ID = #{fundId}
+        and U10000CO.PERIOD = #{period}
+        limit 1
+    </select>
+    
 </mapper>

@@ -231,7 +231,7 @@
 		SELECT
 		    EP.PLCODE AS plCode,
 			IF( EP.PERIOD_ACCT = 0, NULL, EP.PERIOD_ACCT ) AS periodAcct,
-			IF( EP.PERIOD_ACCT = 0, NULL, EP.LAST_PERIOD_ACCT ) AS lastPeriodAcct 
+			IF( EP.LAST_PERIOD_ACCT = 0, NULL, EP.LAST_PERIOD_ACCT ) AS lastPeriodAcct 
 		FROM
 		    ey_pl EP 
 		WHERE
