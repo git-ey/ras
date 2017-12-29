@@ -59,6 +59,7 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">货基:</td>
 								<td>
 								    <select class="chosen-select form-control" name="MF" id="MF" data-placeholder="请选择" style="width:49%;">
+								        <option value=""></option>
 								        <option value="N" <c:if test="${pd.MF == 'N'}">selected</c:if>>否</option>
 								        <option value="Y" <c:if test="${pd.MF == 'Y'}">selected</c:if>>是</option>
 								    </select>
@@ -66,6 +67,7 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">ETF:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ETF" id="ETF" data-placeholder="请选择" style="width:49%;">
+								        <option value=""></option>
 								        <option value="N" <c:if test="${pd.ETF == 'N'}">selected</c:if>>否</option>
 								        <option value="Y" <c:if test="${pd.ETF == 'Y'}">selected</c:if>>是</option>
 								    </select>
@@ -73,6 +75,7 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">分级:</td>
 								<td>
 								    <select class="chosen-select form-control" name="STRUCTURED" id="STRUCTURED" data-placeholder="请选择" style="width:49%;">
+								        <option value=""></option>
 								        <option value="N" <c:if test="${pd.STRUCTURED == 'N'}">selected</c:if>>N-不分级</option>
 								        <option value="T" <c:if test="${pd.STRUCTURED == 'T'}">selected</c:if>>T-真分级</option>
 								        <option value="F" <c:if test="${pd.STRUCTURED == 'F'}">selected</c:if>>F-假分级</option>
@@ -183,6 +186,7 @@
 				$("#FIRM_CODE").focus();
 			return false;
 			}
+			<!--
 			if($("#MF").val()==""){
 				$("#MF").tips({
 					side:3,
@@ -213,6 +217,7 @@
 				$("#STRUCTURED").focus();
 			return false;
 			}
+			-->
 			if($("#P1").val()==""){
 				$("#P1").tips({
 					side:3,
