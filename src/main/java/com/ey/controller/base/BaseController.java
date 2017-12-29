@@ -177,6 +177,11 @@ public class BaseController {
 	protected final static String SFRI_IMPORT_TEMPLATE_CODE = "SFRI";	
 	
 	/**
+	 * SFA基金券商信息导入模版代码
+	 */
+	protected final static String SFA_IMPORT_TEMPLATE_CODE = "SFA";	
+	
+	/**
 	 * TPS第三方名称导入模版代码
 	 */
 	protected final static String TPS_IMPORT_TEMPLATE_CODE = "TPS";		
