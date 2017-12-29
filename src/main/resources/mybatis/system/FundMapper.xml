@@ -273,10 +273,10 @@
 		       sf.ACTIVE,	
 		       sf.STATUS,	
 		       sf.FUND_ID,
-		       sm.SHORT_NAME COMPANY_SHORT_NAME 
-		from sys_fund_info sf,sys_mgrcompany sm
-		where 1=1
-		  and sf.firm_code = sm.company_code
+		       IFNULL(sm.SHORT_NAME,sf.firm_code) COMPANY_SHORT_NAME 
+		from sys_fund_info sf
+		left on sys_mgrcompany sm
+		where sf.firm_code = sm.company_code
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
