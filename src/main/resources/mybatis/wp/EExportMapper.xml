@@ -67,6 +67,18 @@
         LIMIT 1
     </select>
     
+    <select id="checkIfE300DiscHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            SUM(IFNULL(E300D.END_BALANCE, 0)) + SUM(IFNULL(E300D.BEGIN_BALANCE, 0))
+        FROM
+            wp_e300_dis E300D
+        where 
+            1 = 1
+        and E300D.STATUS = 'Y'
+        and E300D.FUND_ID = #{fundId}
+        and E300D.PERIOD = #{period}
+    </select>
+    
     <select id="selectE400Data" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    E400.ATTR1 AS detailName,

@@ -249,4 +249,16 @@
         LIMIT 1
     </select>
     
+    <select id="checkIfN10000HasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer"> 
+        SELECT
+            SUM(IFNULL(N10000.END_BALANCE, 0)) + SUM(IFNULL(N10000.BEGIN_BALANCE, 0))
+        FROM
+            wp_n10000 AS N10000
+        where 
+            1 = 1
+        and N10000.STATUS = 'Y'
+        and N10000.FUND_ID = #{fundId}
+        and N10000.PERIOD = #{period}
+    </select>
+    
 </mapper>

@@ -373,6 +373,18 @@
         LIMIT 1
     </select>
     
+    <select id="checkIfH10000TFAHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            SUM(IFNULL(H10000T.COST, 0)) + SUM(IFNULL(H10000T.COST_LAST, 0))
+        FROM
+            wp_h10000_tfa H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+    </select>
+    
     <select id="selectH10000TFADiviatonSumData" parameterType="java.util.Map" resultType="java.lang.Object">
 	    SELECT
 		    H500MD.DIVIATON_EY AS diviatonEy 
@@ -420,6 +432,18 @@
         AND H10000D.FUND_ID = #{fundId}
         AND H10000D.PERIOD = #{period}
         LIMIT 1
+    </select>
+    
+    <select id="checkIfH10000DerivativeHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            SUM(IFNULL(H10000D.AMOUNT, 0)) + SUM(IFNULL(H10000D.AMOUNT_LAST, 0))
+        FROM
+            wp_h10000_derivative H10000D
+        WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
     </select>
     
     <select id="selectH10000FuturesData" parameterType="java.util.Map" resultType="java.util.Map">
@@ -486,6 +510,18 @@
         LIMIT 1
     </select>
     
+    <select id="checkIfH10000RmcfsHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            SUM(IFNULL(H10000R.BAL_CURRENT, 0)) + SUM(IFNULL(H10000R.BAL_LAST, 0))
+        FROM
+            wp_h10000_rmcfs H10000R
+        WHERE 
+            1 = 1
+        AND H10000R.STATUS = 'Y'
+        AND H10000R.FUND_ID = #{fundId}
+        AND H10000R.PERIOD = #{period}
+    </select>
+    
     <select id="selectH10000InterestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H800ID.ACCOUNT_DES AS accountDes,
@@ -535,6 +571,18 @@
         AND H10000FV.FUND_ID = #{fundId}
         AND H10000FV.PERIOD = #{period}
         LIMIT 1
+    </select>
+    
+    <select id="checkIfH10000FairValuesHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer"> 
+        SELECT
+            SUM(IFNULL(H10000FV.AMOUNT_CURRENT, 0)) + SUM(IFNULL(H10000FV.AMOUNT_LAST, 0))
+        FROM
+            wp_h10000_fair_values H10000FV
+        WHERE 
+            1 = 1
+        AND H10000FV.STATUS = 'Y'
+        AND H10000FV.FUND_ID = #{fundId}
+        AND H10000FV.PERIOD = #{period}
     </select>
     
     <select id="selectH10000ThreeLevelData" parameterType="java.util.Map" resultType="java.util.Map">

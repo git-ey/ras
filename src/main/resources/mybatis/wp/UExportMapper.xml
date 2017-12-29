@@ -334,6 +334,18 @@
         limit 1
     </select>
     
+    <select id="checkIfU10000DividendHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer"> 
+        SELECT
+            SUM(IFNULL(U10000RD.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000RD.AMOUNT_LAST, 0))
+        FROM
+            wp_u10000_r_dividend U10000RD
+        where 
+            1 = 1
+        and U10000RD.STATUS = 'Y'
+        and U10000RD.FUND_ID = #{fundId}
+        and U10000RD.PERIOD = #{period}
+    </select>
+    
     <select id="selectU10000OtherRData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000RO.ITEM as item,
@@ -363,6 +375,18 @@
         and U10000RO.FUND_ID = #{fundId}
         and U10000RO.PERIOD = #{period}
         limit 1
+    </select>
+    
+    <select id="checkIfU10000OtherRHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">  
+        SELECT
+            SUM(IFNULL(U10000RO.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000RO.AMOUNT_LAST, 0))
+        FROM
+            wp_u10000_r_other U10000RO
+        where 
+            1 = 1
+        and U10000RO.STATUS = 'Y'
+        and U10000RO.FUND_ID = #{fundId}
+        and U10000RO.PERIOD = #{period}
     </select>
     
     <select id="selectU10000TrxFeeData" parameterType="java.util.Map" resultType="java.util.Map"> 
@@ -396,6 +420,18 @@
         LIMIT 1
     </select>
     
+    <select id="checkIfU10000TrxFeeHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">  
+        SELECT
+            SUM(IFNULL(U10000CTF.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000CTF.AMOUNT_LAST, 0))
+        FROM
+            wp_u10000_c_trx_fee U10000CTF
+        where 
+            1 = 1
+        and U10000CTF.STATUS = 'Y'
+        and U10000CTF.FUND_ID = #{fundId}
+        and U10000CTF.PERIOD = #{period}
+    </select>
+    
     <select id="selectU10000OtherCData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000CO.ITEM as item,
@@ -425,6 +461,18 @@
         and U10000CO.FUND_ID = #{fundId}
         and U10000CO.PERIOD = #{period}
         limit 1
+    </select>
+    
+    <select id="checkIfU10000OtherCHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer"> 
+        SELECT
+            SUM(IFNULL(U10000CO.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000CO.AMOUNT_LAST, 0))
+        FROM
+            wp_u10000_c_other U10000CO
+        where 
+            1 = 1
+        and U10000CO.STATUS = 'Y'
+        and U10000CO.FUND_ID = #{fundId}
+        and U10000CO.PERIOD = #{period}
     </select>
     
 </mapper>
