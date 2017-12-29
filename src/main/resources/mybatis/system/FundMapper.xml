@@ -275,8 +275,8 @@
 		       sf.FUND_ID,
 		       IFNULL(sm.SHORT_NAME,sf.firm_code) COMPANY_SHORT_NAME 
 		from sys_fund_info sf
-		left on sys_mgrcompany sm
-		where sf.firm_code = sm.company_code
+		left join sys_mgrcompany sm
+		 on sf.firm_code = sm.company_code
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
