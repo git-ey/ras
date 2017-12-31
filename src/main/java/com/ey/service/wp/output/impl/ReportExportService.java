@@ -96,8 +96,20 @@ public class ReportExportService implements ReportExportManager {
         if(reportExtendInfo == null) {
             reportExtendInfo = new HashMap<>(); 
         }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> fundControl = (Map<String,Object>)this.dao.findForObject("ReportMapper.selectFundControlData", queryMap);
+        if(fundControl == null) {
+            fundControl = new HashMap<>(); 
+        }
+        @SuppressWarnings("unchecked")
+        Map<String,Object> reportContent = (Map<String,Object>)this.dao.findForObject("ReportMapper.selectReportContentData", queryMap);
+        if(reportContent == null) {
+            reportContent = new HashMap<>(); 
+        }
         
         exportParam.put("reportExtendInfo", reportExtendInfo);
+        exportParam.put("fundControl", fundControl);
+        exportParam.put("reportContent", reportContent);
         exportParam.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
         
         
@@ -1568,6 +1580,11 @@ public class ReportExportService implements ReportExportManager {
         last.put("count", n500RelatedLastMetaDataList.size());
         related.put("current", current);
         related.put("last", last);
+        Double dataSumCheckCurrent = (Double)this.dao.findForObject("IExportMapper.checkIfN500RelatedHasDataForReport", queryParam);
+        Double dataSumCheckLast = (Double)this.dao.findForObject("IExportMapper.checkIfN500RelatedHasDataForReport", queryParamLast);
+        Double dataSumCheck = (dataSumCheckCurrent == null ? 0 : dataSumCheckCurrent) + (dataSumCheckLast == null ? 0 : dataSumCheckLast);
+        related.put("dataSumCheck", dataSumCheck);
+        
         transaction.put("related", related);
         //--------------------↑I.transaction↑--------------------
         //--------------------↓I.manageFee↓--------------------
@@ -1735,6 +1752,7 @@ public class ReportExportService implements ReportExportManager {
         }
         mgerHoldFund.put("levels", levels);
         mgerHoldFund.put("levelsCount", levels.size());
+        mgerHoldFund.put("dataSumCheck", this.dao.findForObject("IExportMapper.checkIfIMgerHoldFundHasDataForReport", queryParam));
         //--------------------↑I.mgerHoldFund↑--------------------
         //--------------------↓I.unmgerHoldFund↓--------------------
         Map<String, Object> unmgerHoldFund = new HashMap<String,Object>();

@@ -249,7 +249,7 @@
         LIMIT 1
     </select>
     
-    <select id="checkIfN10000HasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer"> 
+    <select id="checkIfN10000HasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
         SELECT
             SUM(IFNULL(N10000.END_BALANCE, 0)) + SUM(IFNULL(N10000.BEGIN_BALANCE, 0))
         FROM

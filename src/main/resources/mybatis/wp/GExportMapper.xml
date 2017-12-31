@@ -61,7 +61,7 @@
         LIMIT 1
     </select>
     
-    <select id="checkIfG10000HasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+    <select id="checkIfG10000HasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
         SELECT
             SUM(IFNULL(G10000.END_BALANCE, 0)) + SUM(IFNULL(G10000.BEGIN_BALANCE, 0))
         FROM

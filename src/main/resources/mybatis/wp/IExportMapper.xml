@@ -65,6 +65,18 @@
         AND N500R.PERIOD = #{period}
     </select>
     
+    <select id="checkIfN500RelatedHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(IFNULL(N500R.commission, 0)) + SUM(IFNULL(N500R.end_balance, 0)) 
+        FROM
+            wp_n500_related N500R
+        WHERE
+            1 = 1 
+        AND N500R.STATUS = 'Y'
+        AND N500R.FUND_ID = #{fundId}
+        AND N500R.PERIOD = #{period}
+    </select>
+    
     <select id="selectIManageFeeData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    IMF.TPYE AS tpye,
@@ -159,6 +171,19 @@
         AND IMHF.PERIOD = #{period}
         ORDER BY
             IMHF.SORT
+    </select>
+    
+    <select id="checkIfIMgerHoldFundHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(IFNULL(IMHF.AMOUNT, 0)) + SUM(IFNULL(IMHF.AMOUNT_LAST, 0))
+        FROM
+            wp_i_mger_hold_fund IMHF 
+        WHERE
+            1 = 1  
+        AND IMHF.STATUS = 'Y'
+        AND IMHF.ITEM != '基金总份额'
+        AND IMHF.FUND_ID = #{fundId}
+        AND IMHF.PERIOD = #{period}
     </select>
     
     <select id="selectIUnmgerHoldFundData" parameterType="java.util.Map" resultType="java.util.Map">
