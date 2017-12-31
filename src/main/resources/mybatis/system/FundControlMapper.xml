@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FundControlMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_FUND_CONTROL
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		FUND_ID,	
+		STOCK_ALL,	
+		STOCK_BS,	
+		STOCK_R,	
+		STOCK_P,	
+		BOND_ALL,	
+		BOND_BS,	
+		BOND_R,	
+		BOND_P,	
+		GOLD_ALL,	
+		GOLD_BS,	
+		GOLD_R,	
+		GOLD_P,	
+		RISK_S_INT,	
+		RISK_S_PRICE,	
+		RISK_E_PRICE,	
+		ACTIVE,	
+		FUNDCONTROL_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{FUND_ID},	
+		#{STOCK_ALL},	
+		#{STOCK_BS},	
+		#{STOCK_R},	
+		#{STOCK_P},	
+		#{BOND_ALL},	
+		#{BOND_BS},	
+		#{BOND_R},	
+		#{BOND_P},	
+		#{GOLD_ALL},	
+		#{GOLD_BS},	
+		#{GOLD_R},	
+		#{GOLD_P},	
+		#{RISK_S_INT},	
+		#{RISK_S_PRICE},	
+		#{RISK_E_PRICE},	
+		#{ACTIVE},	
+		#{FUNDCONTROL_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			FUNDCONTROL_ID = #{FUNDCONTROL_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			FUND_ID = #{FUND_ID},
+			STOCK_ALL = #{STOCK_ALL},
+			STOCK_BS = #{STOCK_BS},
+			STOCK_R = #{STOCK_R},
+			STOCK_P = #{STOCK_P},
+			BOND_ALL = #{BOND_ALL},
+			BOND_BS = #{BOND_BS},
+			BOND_R = #{BOND_R},
+			BOND_P = #{BOND_P},
+			GOLD_ALL = #{GOLD_ALL},
+			GOLD_BS = #{GOLD_BS},
+			GOLD_R = #{GOLD_R},
+			GOLD_P = #{GOLD_P},
+			RISK_S_INT = #{RISK_S_INT},
+			RISK_S_PRICE = #{RISK_S_PRICE},
+			RISK_E_PRICE = #{RISK_E_PRICE},
+			ACTIVE = #{ACTIVE},
+		FUNDCONTROL_ID = FUNDCONTROL_ID
+		where 
+		FUNDCONTROL_ID = #{FUNDCONTROL_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			FUNDCONTROL_ID = #{FUNDCONTROL_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			FUNDCONTROL_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.FUND_ID},	
+		#{pd.STOCK_ALL},	
+		#{pd.STOCK_BS},	
+		#{pd.STOCK_R},	
+		#{pd.STOCK_P},	
+		#{pd.BOND_ALL},	
+		#{pd.BOND_BS},	
+		#{pd.BOND_R},	
+		#{pd.BOND_P},	
+		#{pd.GOLD_ALL},	
+		#{pd.GOLD_BS},	
+		#{pd.GOLD_R},	
+		#{pd.GOLD_P},	
+		#{pd.RISK_S_INT},	
+		#{pd.RISK_S_PRICE},	
+		#{pd.RISK_E_PRICE},	
+		#{pd.ACTIVE},	
+		#{pd.FUNDCONTROL_ID}
+         )
+         </foreach >
+	</insert>	
+	
+</mapper>

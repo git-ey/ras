@@ -189,7 +189,17 @@ public class BaseController {
 	/**
 	 * SBI债券信息导入模版代码
 	 */
-	protected final static String SBI_IMPORT_TEMPLATE_CODE = "SBI";			
+	protected final static String SBI_IMPORT_TEMPLATE_CODE = "SBI";		
+	
+	/**
+	 * SRC报告文本信息表导入模版代码
+	 */
+	protected final static String SRC_IMPORT_TEMPLATE_CODE = "SRC";	
+	
+	/**
+	 * SFC报告章节控制表导入模版代码
+	 */
+	protected final static String SFC_IMPORT_TEMPLATE_CODE = "SFC";	
 	
 	
 	/**
