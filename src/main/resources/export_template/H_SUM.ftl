@@ -2393,7 +2393,7 @@
     <Cell ss:StyleID="s47"><Data ss:Type="String">d</Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">e</Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">f</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">g=d-e</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">g=d-e+1</Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">h=f-e</Data></Cell>
     <Cell ss:Index="27" ss:StyleID="s65"/>
     <Cell ss:Index="33" ss:StyleID="s65"/>
@@ -2409,7 +2409,7 @@
     <Cell ss:StyleID="s37"><Data ss:Type="String">${item.market!}</Data></Cell>
     <Cell ss:StyleID="s37"><Data ss:Type="String">${item.subType!}</Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s104"><Data ss:Type="Number">${(item.parValueLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s124"><Data ss:Type="Number">${(item.couponRate!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s124"><Data ss:Type="Number">${(item.couponRate!0)?string('0.######')}</Data></Cell>
     <Cell><Data ss:Type="String">${item.interestMode!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.paymentMethod!}</Data></Cell>
     <Cell><Data ss:Type="Number">${(item.paymentTimesYear!0)?string('0.##')}</Data></Cell>
@@ -2420,7 +2420,7 @@
     <Cell ss:Index="18" ss:StyleID="s103"><#if item.valDate??><Data ss:Type="DateTime">${item.valDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s103"><#if item.payDateLast??><Data ss:Type="DateTime">${item.payDateLast!}</Data></#if></Cell>
     <Cell ss:StyleID="s103"><#if item.payDateNext??><Data ss:Type="DateTime">${item.payDateNext!}</Data></#if></Cell>
-    <Cell ss:Formula="=RC[-3]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Formula="=RC[-3]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Formula="=RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s157"
@@ -2617,7 +2617,7 @@
     <Cell ss:StyleID="s47"><Data ss:Type="String">d</Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">e</Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">f</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">g=d-e</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">g=d-e+1</Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">h=f-e</Data></Cell>
     <Cell ss:Index="27" ss:StyleID="s65"/>
     <Cell ss:Index="33" ss:StyleID="s65"/>
@@ -2644,7 +2644,7 @@
     <Cell ss:Index="18" ss:StyleID="s103"><#if item.valDate??><Data ss:Type="DateTime">${item.valDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s103"><#if item.payDateLast??><Data ss:Type="DateTime">${item.payDateLast!}</Data></#if></Cell>
     <Cell ss:StyleID="s103"><#if item.payDateNext??><Data ss:Type="DateTime">${item.payDateNext!}</Data></#if></Cell>
-    <Cell ss:Formula="=RC[-3]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Formula="=RC[-3]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Formula="=RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s155"

@@ -2,12 +2,14 @@ package com.ey.service.wp.output.impl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +17,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import com.ey.service.system.report.ReportManager;
 import com.ey.service.wp.output.TExportManager;
 import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
@@ -27,6 +30,9 @@ import com.ey.util.fileexport.FreeMarkerUtils;
  */
 @Service("tExportService")
 public class TExportService extends BaseExportService implements TExportManager{
+    
+    @Resource(name = "reportService")
+    private ReportManager reportService;
     
     /**
      * 生成文件内容
@@ -226,6 +232,15 @@ public class TExportService extends BaseExportService implements TExportManager{
         Map<String, Object> note2 = new HashMap<>();
         List<Map<String,Object>> note1ItemList = new ArrayList<>();
         List<Map<String,Object>> note2ItemList = new ArrayList<>();
+        String note3Flag = "N";
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> fundDateInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectFundDateInfo", queryMap);
+        Map<String, Object> dateInfo = this.reportService.getDateInfo(periodStr, (Date)fundDateInfo.get("dateFrom"), (Date)fundDateInfo.get("dateTo"), (Date)fundDateInfo.get("dateTransform"));
+        if("合同生效日".equals(dateInfo.get("CURRENT_INIT_SOURCE"))) {
+            note3Flag = "Y";
+        }
+        
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> noteMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT300NoteData", queryMap);
         if(noteMetaDataList == null) {
@@ -258,6 +273,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         note2.put("levelDataCount", note2ItemList.size());
         note.put("note1", note1);
         note.put("note2", note2);
+        note.put("note3Flag", note3Flag);
         //========process dataMap for note view end========
         
         //========process dataMap for raise view begin========

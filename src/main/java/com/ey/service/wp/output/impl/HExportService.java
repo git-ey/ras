@@ -671,24 +671,29 @@ public class HExportService extends BaseExportService implements HExportManager{
             fairValuesMetaDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : fairValuesMetaDataList) {
-            if(Pattern.matches("^3.*$", String.valueOf(map.get("eyAccountNum")))){
-                //科目代码3开头的动态输出
+            int sort = 0;
+            if(String.valueOf(map.get("sort")) != null) {
+                sort = Integer.parseInt(String.valueOf(map.get("sort")));
+            }
+//            if(Pattern.matches("^3.*$", String.valueOf(map.get("eyAccountNum")))){
+            if(sort >= 22 && sort <= 29){
+                //sort值在22 ~ 29的item动态输出
                 toolList.add(map);
             }else {
                 //其他项目静态输出
-                if("股票投资".equals(map.get("item"))) {
+                if(sort == 11) {
                     item1 = map;
-                }else if("债券投资".equals(map.get("item"))) {
+                }else if(sort == 12) {
                     item2 = map;
-                }else if("资产支持证券投资".equals(map.get("item"))) {
+                }else if(sort == 13) {
                     item3 = map;
-                }else if("基金投资".equals(map.get("item"))) {
+                }else if(sort == 14) {
                     item4 = map;
-                }else if("贵金属投资".equals(map.get("item"))) {
+                }else if(sort == 15) {
                     item5 = map;
-                }else if("其他".equals(map.get("item"))) {
+                }else if(sort == 16) {
                     item6 = map;
-                }else if("权证投资".equals(map.get("item"))) {
+                }else if(sort == 21) {
                     item7 = map;
                 }
             }

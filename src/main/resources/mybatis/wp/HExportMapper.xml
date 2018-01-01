@@ -543,6 +543,7 @@
     
     <select id="selectH10000FairValuesData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
+		    H10000FV.SORT as sort,
 		    H10000FV.EY_ACCOUNT_NUM AS eyAccountNum,
 		    H10000FV.ITEM AS item,
 		    IF(H10000FV.AMOUNT_CURRENT = 0, null, H10000FV.AMOUNT_CURRENT) AS amountCurrent,

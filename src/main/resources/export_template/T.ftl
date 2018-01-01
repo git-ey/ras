@@ -3683,7 +3683,7 @@
    <Row/>
    <Row>
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s279"><Data ss:Type="DateTime"><#if extraFundInfo.startYear == period>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s279"><Data ss:Type="DateTime"><#if T300.note.note3Flag == 'Y'>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期借方</Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期贷方</Data></Cell>
     <Cell ss:StyleID="s279"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
@@ -3730,7 +3730,7 @@
    </#if>
    <Row>
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 2</Data></Cell>
     <Cell ss:StyleID="s340"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell ss:StyleID="s87"/>
@@ -3777,9 +3777,9 @@
    </#if>
    <Row>
     <Cell ss:StyleID="s87"/>
-    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></#if></Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></#if></Data></Cell>
     <Cell ss:StyleID="s57"/>
     <Cell ss:StyleID="s76"/>
    </Row>
@@ -3999,7 +3999,7 @@
     <Cell ss:StyleID="s107"/>
     <Cell ss:StyleID="s76"/>
    </Row>
-   <#if extraFundInfo.startYear == period>
+   <#if T300.note.note3Flag == 'Y'>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s112"/>
     <Cell ss:StyleID="s71"/>
@@ -4219,7 +4219,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s279"><Data ss:Type="DateTime"><#if extraFundInfo.startYear == period>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s279"><Data ss:Type="DateTime"><#if T300.note.note3Flag == 'Y'>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期借方</Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期贷方</Data></Cell>
     <Cell ss:StyleID="s279"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
@@ -4287,7 +4287,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 2</Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell ss:StyleID="s94"/>
@@ -4348,9 +4348,9 @@
    <Row>
     <Cell ss:StyleID="s87"/>
     <Cell ss:StyleID="s91"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 4<#else>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
@@ -4560,7 +4560,7 @@
     <Cell ss:StyleID="s107"/>
     <Cell ss:StyleID="s76"/>
    </Row>
-   <#if extraFundInfo.startYear == period>
+   <#if T300.note.note3Flag == 'Y'>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s112"/>
     <Cell ss:StyleID="s71"/>
@@ -4790,7 +4790,7 @@
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s314"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s279"><Data ss:Type="DateTime"><#if extraFundInfo.startYear == period>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
+    <Cell ss:StyleID="s279"><Data ss:Type="DateTime"><#if T300.note.note3Flag == 'Y'>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期借方</Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期贷方</Data></Cell>
     <Cell ss:StyleID="s279"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
@@ -4852,7 +4852,7 @@
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s314"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 2</Data></Cell>
     <Cell ss:StyleID="s340"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell ss:StyleID="s266"/>
@@ -4914,7 +4914,7 @@
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s317"/>
@@ -4978,7 +4978,7 @@
    </Row>
    <Row ss:StyleID="s73">
     <Cell ss:StyleID="s295"><Data ss:Type="String">本期基金收益分配转份额数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N700</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
     <Cell ss:StyleID="s329"><Data ss:Type="Number">${(T300.note.note1.item2!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">B</Data></Cell>
     <Cell ss:StyleID="s178"/>
@@ -5076,7 +5076,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s295"><Data ss:Type="String">应付收益中赎回转出数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N700</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
     <Cell ss:StyleID="s333"><Data ss:Type="Number">${(T300.note.note2.item3!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">G</Data></Cell>
     <Cell ss:StyleID="s179"/>
@@ -5087,7 +5087,7 @@
    </Row>
    <Row ss:StyleID="s70">
     <Cell ss:StyleID="s335"><Data ss:Type="String">应付收益中转出数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N700</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
     <Cell ss:StyleID="s333"><Data ss:Type="Number">${(T300.note.note2.item4!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">H</Data></Cell>
     <Cell ss:StyleID="s318"/>
@@ -5128,7 +5128,7 @@
     <Cell ss:StyleID="s300"/>
     <Cell ss:StyleID="s183"/>
    </Row>
-   <#if extraFundInfo.startYear == period>
+   <#if T300.note.note3Flag == 'Y'>
    <Row>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -5383,7 +5383,7 @@
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s314"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s279"><Data ss:Type="DateTime"><#if extraFundInfo.startYear == period>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
+    <Cell ss:StyleID="s279"><Data ss:Type="DateTime"><#if T300.note.note3Flag == 'Y'>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期借方</Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期贷方</Data></Cell>
     <Cell ss:StyleID="s279"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
@@ -5512,7 +5512,7 @@
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s144"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 2</Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell ss:StyleID="s317"/>
@@ -5612,7 +5612,7 @@
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s144"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s317"/>
@@ -5686,7 +5686,7 @@
    </Row>
    <Row ss:StyleID="s73">
     <Cell ss:StyleID="s295"><Data ss:Type="String">本期基金收益分配转份额数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N700</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
     <Cell ss:StyleID="s329"><Data ss:Type="Number">${(T300.note.note1.item2!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">B</Data></Cell>
     <Cell ss:StyleID="s178"/>
@@ -5834,7 +5834,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s295"><Data ss:Type="String">应付收益中赎回转出数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N700</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
     <Cell ss:StyleID="s333"><Data ss:Type="Number">${(T300.note.note2.item3!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">G</Data></Cell>
     <Cell ss:StyleID="s179"/>
@@ -5846,7 +5846,7 @@
    </Row>
    <Row ss:StyleID="s70">
     <Cell ss:StyleID="s335"><Data ss:Type="String">应付收益中转出数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N700</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
     <Cell ss:StyleID="s333"><Data ss:Type="Number">${(T300.note.note2.item4!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">H</Data></Cell>
     <Cell ss:StyleID="s318"/>
@@ -5931,7 +5931,7 @@
     <Cell ss:StyleID="s300"/>
     <Cell ss:StyleID="s177"/>
    </Row>
-   <#if extraFundInfo.startYear == period>
+   <#if T300.note.note3Flag == 'Y'>
    <Row>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -6273,7 +6273,7 @@
    <Row ss:Height="13.5" ss:StyleID="s75">
     <Cell ss:StyleID="s314"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s279"><Data ss:Type="DateTime"><#if extraFundInfo.startYear == period>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
+    <Cell ss:StyleID="s279"><Data ss:Type="DateTime"><#if T300.note.note3Flag == 'Y'>${extraFundInfo.startYear?string('0')}-${extraFundInfo.startMonth?string('00')}-${extraFundInfo.startDay?string('00')}T00:00:00.000<#else>${(period-1)?string('0')}-12-31T00:00:00.000</#if></Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期借方</Data></Cell>
     <Cell ss:StyleID="s188"><Data ss:Type="String">本期贷方</Data></Cell>
     <Cell ss:StyleID="s279"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
@@ -6325,7 +6325,7 @@
    <Row ss:Height="13.5" ss:StyleID="s75">
     <Cell ss:StyleID="s314"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 2</Data></Cell>
     <Cell ss:StyleID="s340"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell ss:StyleID="s266"/>
@@ -6377,7 +6377,7 @@
    <Row ss:Height="13.5" ss:StyleID="s75">
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if extraFundInfo.startYear == period>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s317"/>
@@ -6639,7 +6639,7 @@
     <Cell ss:StyleID="s67"/>
     <Cell ss:StyleID="s67"/>
    </Row>
-   <#if extraFundInfo.startYear == period>
+   <#if T300.note.note3Flag == 'Y'>
    <Row ss:AutoFitHeight="0" ss:Height="12">
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s65"/>
@@ -9168,7 +9168,7 @@
     <Cell ss:StyleID="s371"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s382"><Data ss:Type="String">母基金</Data></Cell>
+    <Cell ss:StyleID="s382"><Data ss:Type="String">${T500.f_test.mother.levelName!}</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s369"><Data ss:Type="Number">${(T500.f_test.mother.units!0)?string('0.############')}</Data></Cell>
     <Cell ss:StyleID="s392" ss:Formula="=R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s385"><Data ss:Type="String" x:Ticked="1">NAV</Data></Cell>
@@ -9177,7 +9177,7 @@
     <Cell ss:StyleID="s395"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s382"><Data ss:Type="String">稳健型</Data></Cell>
+    <Cell ss:StyleID="s382"><Data ss:Type="String">${T500.f_test.steady.levelName!}</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s369"><Data ss:Type="Number">${(T500.f_test.steady.units!0)?string('0.############')}</Data></Cell>
     <Cell ss:StyleID="s392" ss:Formula="=ROUND((1+R[-9]C[-2])^R[-7]C[-2],R19C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s385"><Data ss:Type="String" x:Ticked="1">NAV1=(1+a)^c</Data></Cell>
@@ -9186,7 +9186,7 @@
     <Cell ss:StyleID="s395"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s382"><Data ss:Type="String">进取型</Data></Cell>
+    <Cell ss:StyleID="s382"><Data ss:Type="String">${T500.f_test.enterprise.levelName!}</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s369"><Data ss:Type="Number">${(T500.f_test.enterprise.units!0)?string('0.############')}</Data></Cell>
     <Cell ss:StyleID="s392" ss:Formula="=ROUND(R[-9]C[-2]*R[-2]C-R[-1]C,R19C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s385"><Data ss:Type="String" x:Ticked="1">NAV2=b*NAV-NAV1</Data></Cell>
@@ -9520,7 +9520,7 @@
     <Cell ss:StyleID="s371"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s382"><Data ss:Type="String">母基金</Data></Cell>
+    <Cell ss:StyleID="s382"><Data ss:Type="String">${T500.f_test.mother.levelName!}</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s369"><Data ss:Type="Number">${(T500.f_test.mother.units!0)?string('0.############')}</Data></Cell>
     <Cell ss:StyleID="s392" ss:Formula="=R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s385"><Data ss:Type="String" x:Ticked="1">NAV</Data></Cell>
@@ -9529,7 +9529,7 @@
     <Cell ss:StyleID="s395"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s382"><Data ss:Type="String">稳健型</Data></Cell>
+    <Cell ss:StyleID="s382"><Data ss:Type="String">${T500.f_test.steady.levelName!}</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s369"><Data ss:Type="Number">${(T500.f_test.steady.units!0)?string('0.############')}</Data></Cell>
     <Cell ss:StyleID="s392" ss:Formula="=ROUND(1+R[-9]C[-2]*R[-7]C[-2],R19C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s385"><Data ss:Type="String" x:Ticked="1">NAV1=1+a*c</Data></Cell>
@@ -9538,7 +9538,7 @@
     <Cell ss:StyleID="s395"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s382"><Data ss:Type="String">进取型</Data></Cell>
+    <Cell ss:StyleID="s382"><Data ss:Type="String">${T500.f_test.enterprise.levelName!}</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s369"><Data ss:Type="Number">${(T500.f_test.enterprise.units!0)?string('0.############')}</Data></Cell>
     <Cell ss:StyleID="s392" ss:Formula="=ROUND(R[-9]C[-2]*R[-2]C-R[-1]C,R19C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s385"><Data ss:Type="String" x:Ticked="1">NAV2=b*NAV-NAV1</Data></Cell>
@@ -10413,8 +10413,8 @@
     <#else>
     <#list T300.main.dataFor10000.dr as item>
     <#if item_index == 0>
-    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.unit!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(-1*(item.unit!0))?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(-1*(item.amount!0))?string('0.##')}</Data></Cell>
     </#if>
     </#list>
     </#if>
@@ -10595,8 +10595,8 @@
     <Cell ss:Index="2" ss:StyleID="s398"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
     <#if T300.main.dataFor10000.levelsCount != 0>
     <#list T300.main.dataFor10000.dr as item>
-    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(-(item.unit!0))?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(-(item.amount!0))?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(-1*(item.unit!0))?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s182"><Data ss:Type="Number">${(-1*(item.amount!0))?string('0.##')}</Data></Cell>
     </#list>
     </#if>
     <Cell ss:StyleID="s230"/>
@@ -10766,6 +10766,9 @@
     <#if inner.sumFlag == 'Y'>
     <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <#elseif outer.item == '本期赎回（以"-"填列）'>
+    <Cell ss:StyleID="s312"><Data ss:Type="Number">${(-1*(inner.units!0))?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s312"><Data ss:Type="Number">${(-1*(inner.amount!0))?string('0.##')}</Data></Cell>
     <#else>
     <Cell ss:StyleID="s312"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s312"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>
@@ -10938,6 +10941,9 @@
     <#if inner.sumFlag == 'Y'>
     <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s312" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <#elseif outer.item == '本期赎回（以"-"填列）'>
+    <Cell ss:StyleID="s312"><Data ss:Type="Number">${(-1*(inner.units!0))?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s312"><Data ss:Type="Number">${(-1*(inner.amount!0))?string('0.##')}</Data></Cell>
     <#else>
     <Cell ss:StyleID="s312"><Data ss:Type="Number">${(inner.units!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s312"><Data ss:Type="Number">${(inner.amount!0)?string('0.##')}</Data></Cell>

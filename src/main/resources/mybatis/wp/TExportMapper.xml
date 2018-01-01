@@ -44,6 +44,20 @@
 		LIMIT 1
     </select>
     
+    <select id="selectFundDateInfo" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IFNULL(sfi.DATE_FROM, SYSDATE()) as dateFrom,
+            sfi.DATE_TO as dateTo,
+            sfi.DATE_TRANSFORM as dateTransform
+        FROM
+            SYS_FUND_INFO sfi
+        WHERE
+            1 = 1
+        AND sfi.ACTIVE = 'Y'
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+    
     <select id="selectT300MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             T300.`LEVEL` as `level`,
@@ -232,9 +246,11 @@
 		    T500F.DATE_TYPE as dateType,
 		    IFNULL(DATE_FORMAT(T500F.DATE_FROM,'%Y-%m-%d'),'2000-01-01') as dateFrom,
 		    T500F.UNITS as units,
-		    T500F.NAV_CLIENT as navClient
+		    T500F.NAV_CLIENT as navClient,
+            sfsf.SHORT_NAME as levelName
 		FROM
 		    wp_t500_ftest T500F 
+	    LEFT JOIN sys_fund_structured_f sfsf ON sfsf.FUND_ID = T500F.FUND_ID AND sfsf.FTYPE = T500F.ITEM AND sfsf.`ACTIVE` = 'Y'
 		WHERE
 		    1 = 1
         and T500F.STATUS = 'Y'

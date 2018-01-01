@@ -4696,7 +4696,7 @@
     <Cell ss:StyleID="s143" ss:Formula="=RC[-2]-RC[-10]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-8]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.unitInterestAt!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.unitInterestAt!0)?string('0.############')}</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-15]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-10]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="26" ss:StyleID="s60"><Data ss:Type="String">${item.releated!}</Data></Cell>
