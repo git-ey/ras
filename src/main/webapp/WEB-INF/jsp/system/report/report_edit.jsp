@@ -35,7 +35,7 @@
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">资产负债表日:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" maxlength="30" title="资产负债表日" style="width:98%;"/></td>
+								<td><input type="text" name="PERIOD" id="PERIOD" maxlength="30" title="资产负债表日" placeholder="yyyymmdd" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">管理公司:</td>
 								<td>
 								    <select class="chosen-select form-control" name="FIRM_CODE" id="FIRM_CODE" data-placeholder="请选择公司" style="vertical-align:top;width: 98%;">
