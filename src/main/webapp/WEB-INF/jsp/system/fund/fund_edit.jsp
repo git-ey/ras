@@ -143,10 +143,10 @@
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">ETF联接</td>
 								<td>
-								    <select class="chosen-select form-control" name="ETFCONNECTION" id="ETFCONNECTION" data-placeholder="请选择" style="width:49%;">
+								    <select class="chosen-select form-control" name="ETF_CONNECTION" id="ETF_CONNECTION" data-placeholder="请选择" style="width:49%;">
 								    <option value=""></option>
-								    <option value="Y" <c:if test="${pd.ETFCONNECTION == 'Y'}">selected</c:if>>是</option>
-								    <option value="N" <c:if test="${pd.ETFCONNECTION == 'N'}">selected</c:if>>否</option>
+								    <option value="Y" <c:if test="${pd.ETF_CONNECTION == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.ETF_CONNECTION == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">FOF:</td>
@@ -280,10 +280,11 @@
 							</tr>
 							<tr>
 							    <td style="width:110px;text-align: right;padding-top: 13px;">单位净值有效位数:</td>
-								<td><input type="number" name="NAV_ROUND" id="NAV_ROUND" value="${pd.NAV_ROUND==null ? 4 : pd.NAV_ROUND}" maxlength="32" title="单位净值有效位数" style="width:49%;"/></td>
+								<td><input type="number" name="NAV_ROUND" id="NAV_ROUND" value="${pd.NAV_ROUND}" maxlength="32" title="单位净值有效位数" style="width:49%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-复利计算:</td>
 								<td>
 								    <select class="chosen-select form-control" name="COMPOUND" id="COMPOUND" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
 								    <option value="复利" <c:if test="${pd.COMPOUND == '复利'}">selected</c:if>>复利</option>
 								    <option value="单利" <c:if test="${pd.COMPOUND == '单利'}">selected</c:if>>单利</option>
 								    </select>
@@ -291,14 +292,15 @@
 								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-约定年基准收益率:</td>
 								<td><input type="text" name="ROR_BASELINE" id="ROR_BASELINE" value="${pd.ROR_BASELINE}" maxlength="240" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-本期收益率:</td>
-								<td><input type="number" name="ROR" id="ROR" value="${pd.ROR==null ? 4.5 : pd.ROR}" maxlength="32" title="假分级-本期收益率" style="width:49%;"/></td>
+								<td><input type="number" name="ROR" id="ROR" value="${pd.ROR}" maxlength="32" title="假分级-本期收益率" style="width:49%;"/></td>
 							</tr>
 							<tr>
 							    <td style="width:110px;text-align: right;padding-top: 13px;">假分级-杠杆比:</td>
-								<td><input type="number" name="LEVERAGE" id="LEVERAGE" value="${pd.LEVERAGE==null ? 2 : pd.LEVERAGE}" maxlength="32" title="假分级-杠杆比" style="width:49%;"/></td>
+								<td><input type="number" name="LEVERAGE" id="LEVERAGE" value="${pd.LEVERAGE}" maxlength="32" title="假分级-杠杆比" style="width:49%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">递进利率行权起始日口径:</td>
 								<td>
 								    <select class="chosen-select form-control" name="EXERCISE_DATE_METHOD" id="EXERCISE_DATE_METHOD" data-placeholder="请选择" style="width:98%;">
+								    <option value=""></option>
 								    <option value="下一付息日" <c:if test="${pd.COMPOUND == '下一付息日'}">selected</c:if>>下一付息日</option>
 								    <option value="到期日" <c:if test="${pd.COMPOUND == '到期日'}">selected</c:if>>到期日</option>
 								    </select>
@@ -390,16 +392,6 @@
 		            time:2
 		        });
 				$("#FULL_NAME").focus();
-			return false;
-			}
-			if($("#FIN_SYSTEM").val()==""){
-				$("#FIN_SYSTEM").tips({
-					side:3,
-		            msg:'请输入财务系统',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#FIN_SYSTEM").focus();
 			return false;
 			}
 			if($("#STRUCTURED").val()==""){
