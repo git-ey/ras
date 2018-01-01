@@ -373,7 +373,7 @@
         LIMIT 1
     </select>
     
-    <select id="checkIfH10000TFAHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+    <select id="checkIfH10000TFAHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
         SELECT
             SUM(IFNULL(H10000T.COST, 0)) + SUM(IFNULL(H10000T.COST_LAST, 0))
         FROM
@@ -434,7 +434,7 @@
         LIMIT 1
     </select>
     
-    <select id="checkIfH10000DerivativeHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+    <select id="checkIfH10000DerivativeHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
         SELECT
             SUM(IFNULL(H10000D.AMOUNT, 0)) + SUM(IFNULL(H10000D.AMOUNT_LAST, 0))
         FROM
@@ -510,7 +510,7 @@
         LIMIT 1
     </select>
     
-    <select id="checkIfH10000RmcfsHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+    <select id="checkIfH10000RmcfsHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
         SELECT
             SUM(IFNULL(H10000R.BAL_CURRENT, 0)) + SUM(IFNULL(H10000R.BAL_LAST, 0))
         FROM
@@ -573,7 +573,7 @@
         LIMIT 1
     </select>
     
-    <select id="checkIfH10000FairValuesHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer"> 
+    <select id="checkIfH10000FairValuesHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
         SELECT
             SUM(IFNULL(H10000FV.AMOUNT_CURRENT, 0)) + SUM(IFNULL(H10000FV.AMOUNT_LAST, 0))
         FROM

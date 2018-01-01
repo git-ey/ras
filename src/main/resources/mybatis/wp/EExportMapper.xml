@@ -67,7 +67,7 @@
         LIMIT 1
     </select>
     
-    <select id="checkIfE300DiscHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+    <select id="checkIfE300DiscHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
         SELECT
             SUM(IFNULL(E300D.END_BALANCE, 0)) + SUM(IFNULL(E300D.BEGIN_BALANCE, 0))
         FROM

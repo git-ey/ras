@@ -334,7 +334,7 @@
         limit 1
     </select>
     
-    <select id="checkIfU10000DividendHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer"> 
+    <select id="checkIfU10000DividendHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
         SELECT
             SUM(IFNULL(U10000RD.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000RD.AMOUNT_LAST, 0))
         FROM
@@ -377,7 +377,7 @@
         limit 1
     </select>
     
-    <select id="checkIfU10000OtherRHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">  
+    <select id="checkIfU10000OtherRHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">  
         SELECT
             SUM(IFNULL(U10000RO.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000RO.AMOUNT_LAST, 0))
         FROM
@@ -420,7 +420,7 @@
         LIMIT 1
     </select>
     
-    <select id="checkIfU10000TrxFeeHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">  
+    <select id="checkIfU10000TrxFeeHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">  
         SELECT
             SUM(IFNULL(U10000CTF.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000CTF.AMOUNT_LAST, 0))
         FROM
@@ -463,7 +463,7 @@
         limit 1
     </select>
     
-    <select id="checkIfU10000OtherCHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer"> 
+    <select id="checkIfU10000OtherCHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
         SELECT
             SUM(IFNULL(U10000CO.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000CO.AMOUNT_LAST, 0))
         FROM

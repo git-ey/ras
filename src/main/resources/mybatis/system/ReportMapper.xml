@@ -212,32 +212,98 @@
     <!-- daigaokuo@hotmail.com -->
     <!-- 2017-12-20 -->
     <select id="selectBsData" parameterType="java.util.Map" resultType="java.util.Map">
-		SELECT
-		    eb.BSCODE as bsCode,
-		    IF(eb.BEG_BALANCE = 0, null, eb.BEG_BALANCE) as beginBalance,
-		    IF(eb.END_BALANCE = 0, null, eb.END_BALANCE) as endBalance
-		FROM
-		    ey_bs eb 
-		WHERE
-		    1 = 1 
-		AND eb.FUND_ID = #{fundId}
-		AND eb.PERIOD = #{period}
+        SELECT
+            wb.BTCODE as bsCode,
+            IF(wb.BEGIN_BALANCE_EY = 0, null, wb.BEGIN_BALANCE_EY) as beginBalance,
+            IF(wb.END_BALANCE_EY = 0, null, wb.END_BALANCE_EY) as endBalance
+        FROM
+            wp_bs wb 
+        WHERE
+            1 = 1 
+        AND wb.FUND_ID = #{fundId}
+        AND wb.PERIOD = #{period}
     </select>
     
     <!-- PL数据 -->
     <!-- daigaokuo@hotmail.com -->
     <!-- 2017-12-20 -->
     <select id="selectPlData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            WP.BSCODE AS plCode,
+            IF( WP.AMOUNT_CURRENT_EY = 0, NULL, WP.AMOUNT_CURRENT_EY ) AS periodAcct,
+            IF( WP.AMOUNT_LAST_EY = 0, NULL, WP.AMOUNT_LAST_EY ) AS lastPeriodAcct 
+        FROM
+            wp_pl WP 
+        WHERE
+            1 = 1 
+        AND WP.FUND_ID = #{fundId}
+        AND WP.PERIOD = #{period}
+    </select>
+    
+    <!-- fundControl数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-31 -->
+    <select id="selectFundControlData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-		    EP.PLCODE AS plCode,
-			IF( EP.PERIOD_ACCT = 0, NULL, EP.PERIOD_ACCT ) AS periodAcct,
-			IF( EP.LAST_PERIOD_ACCT = 0, NULL, EP.LAST_PERIOD_ACCT ) AS lastPeriodAcct 
+			IFNULL(sfc.STOCK_ALL, 'N') AS stockAll,
+			IFNULL(sfc.STOCK_BS, 'N') AS stockBs,
+			IFNULL(sfc.STOCK_R, 'N') AS stockR,
+			IFNULL(sfc.STOCK_P, 'N') AS stockP,
+			IFNULL(sfc.BOND_ALL, 'N') AS bondAll,
+			IFNULL(sfc.BOND_BS, 'N') AS bondBs,
+			IFNULL(sfc.BOND_R, 'N') AS bondR,
+			IFNULL(sfc.BOND_P, 'N') AS bondP,
+			IFNULL(sfc.GOLD_ALL, 'N') AS goldAll,
+			IFNULL(sfc.GOLD_BS, 'N') AS goldBs,
+			IFNULL(sfc.GOLD_R, 'N') AS goldR,
+			IFNULL(sfc.GOLD_P, 'N') AS goldP,
+			IFNULL(sfc.RISK_S_INT, 'N') AS riskSInt,
+			IFNULL(sfc.RISK_S_PRICE, 'N') AS riskSPrice,
+			IFNULL(sfc.RISK_E_PRICE, 'N') AS riskEPrice
 		FROM
-		    ey_pl EP 
+		    sys_fund_control sfc 
 		WHERE
 		    1 = 1 
-	    AND EP.FUND_ID = #{fundId}
-	    AND EP.PERIOD = #{period}
+		AND sfc.ACTIVE = 'Y'
+		AND sfc.FUND_ID = #{fundId}
+		LIMIT 1
+    </select>
+    
+    <!-- reportContent数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-31 -->
+    <select id="selectReportContentData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IFNULL( src.FS_ATTR1, 'N' ) AS FS_ATTR1,
+		    IFNULL( src.FS_ATTR2, 'N' ) AS FS_ATTR2,
+		    IFNULL( src.FS_ATTR3, 'N' ) AS FS_ATTR3,
+		    IFNULL( src.COMISSION_NOTE, 'N' ) AS COMISSION_NOTE,
+		    IFNULL( src.MF_ATTR1, 'N' ) AS MF_ATTR1,
+		    IFNULL( src.MF_ATTR2, 'N' ) AS MF_ATTR2,
+		    IFNULL( src.MF_ATTR3, 'N' ) AS MF_ATTR3,
+		    IFNULL( src.MF_ATTR4, 'N' ) AS MF_ATTR4,
+		    IFNULL( src.MF_ATTR5, 'N' ) AS MF_ATTR5,
+		    IFNULL( src.CF_ATTR1, 'N' ) AS CF_ATTR1,
+		    IFNULL( src.CF_ATTR2, 'N' ) AS CF_ATTR2,
+		    IFNULL( src.CF_ATTR3, 'N' ) AS CF_ATTR3,
+		    IFNULL( src.CF_ATTR4, 'N' ) AS CF_ATTR4,
+		    IFNULL( src.CF_ATTR5, 'N' ) AS CF_ATTR5,
+		    IFNULL( src.IR_ATTR1, 'N' ) AS IR_ATTR1,
+		    IFNULL( src.IR_UP, 'N' ) AS IR_UP,
+		    IFNULL( src.IR_DOWN, 'N' ) AS IR_DOWN,
+		    IFNULL( src.PR_UP, 'N' ) AS PR_UP,
+		    IFNULL( src.PR_DOWN, 'N' ) AS PR_DOWN,
+		    IFNULL( src.PR_ATTR1, 'N' ) AS PR_ATTR1,
+		    IFNULL( src.PR_ATTR2, 'N' ) AS PR_ATTR2,
+		    IFNULL( src.PR_ATTR3, 'N' ) AS PR_ATTR3,
+		    IFNULL( src.FV_ATTR1, 'N' ) AS FV_ATTR1 
+		FROM
+		    sys_report_content src 
+		WHERE
+		    1 = 1 
+		AND src.ACTIVE = 'Y' 
+		AND src.FUND_ID = #{fundId}
+		LIMIT 1
     </select>
 	
 </mapper>
