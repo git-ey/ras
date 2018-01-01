@@ -4233,9 +4233,9 @@
     <Cell ss:StyleID="s147"/>
     <Cell ss:StyleID="s75"/>
     <Cell ss:StyleID="s75"/>
-    <Cell ss:Index="16" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H300.related.H400.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="16" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H400.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
-    <Cell ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H300.related.H400.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H400.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
     <Cell ss:StyleID="s203"/>
     <Cell ss:StyleID="s203"/>
@@ -4741,12 +4741,12 @@
     <Cell ss:StyleID="s60"/>
     <Cell ss:StyleID="s60"/>
     <Cell ss:Index="16" ss:StyleID="s146"/>
-    <Cell ss:Index="18" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H300.related.H500.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="18" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H500.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
-    <Cell ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H300.related.H500.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H500.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
     <Cell ss:StyleID="s146"/>
-    <Cell ss:Index="24" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H300.related.H500.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="24" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H500.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row>
@@ -6384,7 +6384,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String">H400</Data></Cell>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">股指期货</Data></Cell>
+    <Cell ss:StyleID="s217"><Data ss:Type="String">股指期货合约</Data></Cell>
     <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item1.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item1.cost!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item1.mktValue!0)?string('0.##')}</Data></Cell>
@@ -6393,7 +6393,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">国债期货</Data></Cell>
+    <Cell ss:StyleID="s217"><Data ss:Type="String">国债期货合约</Data></Cell>
     <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item2.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item2.cost!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item2.mktValue!0)?string('0.##')}</Data></Cell>
@@ -6401,7 +6401,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">黄金延期合约</Data></Cell>
+    <Cell ss:StyleID="s217"><Data ss:Type="String">黄金现货延期交收合约</Data></Cell>
     <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item3.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item3.cost!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item3.mktValue!0)?string('0.##')}</Data></Cell>

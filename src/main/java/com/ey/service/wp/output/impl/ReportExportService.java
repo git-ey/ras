@@ -713,11 +713,11 @@ public class ReportExportService implements ReportExportManager {
             H10000futuresDataList = new ArrayList<>(); 
         }
         for(Map<String,Object> map : H10000futuresDataList) {
-            if("股指期货".equals(map.get("item"))) {
+            if("股指期货合约".equals(map.get("item"))) {
                 item1 = map;
-            }else if("国债期货".equals(map.get("item"))){
+            }else if("国债期货合约".equals(map.get("item"))){
                 item2 = map;
-            }else if("黄金延期合约".equals(map.get("item"))){
+            }else if("黄金现货延期交收合约".equals(map.get("item"))){
                 item3 = map;
             }
         }
@@ -727,11 +727,11 @@ public class ReportExportService implements ReportExportManager {
             H10000futuresLastDataList = new ArrayList<>(); 
         }
         for(Map<String,Object> map : H10000futuresLastDataList) {
-            if("股指期货".equals(map.get("item"))) {
+            if("股指期货合约".equals(map.get("item"))) {
                 item4 = map;
-            }else if("国债期货".equals(map.get("item"))){
+            }else if("国债期货合约".equals(map.get("item"))){
                 item5 = map;
-            }else if("黄金延期合约".equals(map.get("item"))){
+            }else if("黄金现货延期交收合约".equals(map.get("item"))){
                 item6 = map;
             }
         }
@@ -741,7 +741,7 @@ public class ReportExportService implements ReportExportManager {
             H10000futuresSumData = new HashMap<>(); 
         }
         @SuppressWarnings("unchecked")
-        Map<String,Object> H10000futuresSumLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FuturesSumDataForReport", queryParam);
+        Map<String,Object> H10000futuresSumLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FuturesSumDataForReport", queryParamLast);
         if(H10000futuresSumLastData == null) {
             H10000futuresSumLastData = new HashMap<>(); 
         }

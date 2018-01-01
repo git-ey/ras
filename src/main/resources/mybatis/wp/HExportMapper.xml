@@ -465,9 +465,9 @@
         <select id="selectH10000FuturesSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.QUANTITY)) AS quantity,
-		    IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.COST)) AS cost,
-		    IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.MKT_VALUE)) AS mktValue,
-		    IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.APPRECIATION)) as appreciation
+		    IF(SUM(H10000F.COST) = 0, null, SUM(H10000F.COST)) AS cost,
+		    IF(SUM(H10000F.MKT_VALUE) = 0, null, SUM(H10000F.MKT_VALUE)) AS mktValue,
+		    IF(SUM(H10000F.APPRECIATION) = 0, null, SUM(H10000F.APPRECIATION)) as appreciation
         FROM
             wp_h10000_futures H10000F
         WHERE 
