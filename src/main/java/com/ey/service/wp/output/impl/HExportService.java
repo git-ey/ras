@@ -581,11 +581,11 @@ public class HExportService extends BaseExportService implements HExportManager{
             futuresMetaDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : futuresMetaDataList) {
-            if("股指期货".equals(map.get("item"))) {
+            if("股指期货合约".equals(map.get("item"))) {
                 item1 = map;
-            }else if("国债期货".equals(map.get("item"))) {
+            }else if("国债期货合约".equals(map.get("item"))) {
                 item2 = map;
-            }else if("黄金延期合约".equals(map.get("item"))) {
+            }else if("黄金现货延期交收合约".equals(map.get("item"))) {
                 item3 = map;
             }
         }
