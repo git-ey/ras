@@ -32,50 +32,50 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:120px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="30" placeholder="这里输入基金代码" title="基金代码" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">股票投资收益构成:</td>
-								<td><input type="text" name="STOCK_ALL" id="STOCK_ALL" value="${pd.STOCK_ALL}" maxlength="30" placeholder="这里输入股票投资收益构成" title="股票投资收益构成" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">股票买卖差价收入:</td>
-								<td><input type="text" name="STOCK_BS" id="STOCK_BS" value="${pd.STOCK_BS}" maxlength="30" placeholder="这里输入股票买卖差价收入" title="股票买卖差价收入" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">基金代码:</td>
+								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="30" title="基金代码" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">股票投资收益构成:</td>
+								<td><input type="text" name="STOCK_ALL" id="STOCK_ALL" value="${pd.STOCK_ALL}" maxlength="30" title="股票投资收益构成" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">股票买卖差价收入:</td>
+								<td><input type="text" name="STOCK_BS" id="STOCK_BS" value="${pd.STOCK_BS}" maxlength="30" title="股票买卖差价收入" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:120px;text-align: right;padding-top: 13px;">股票赎回差价收入:</td>
-								<td><input type="text" name="STOCK_R" id="STOCK_R" value="${pd.STOCK_R}" maxlength="30" placeholder="这里输入股票赎回差价收入" title="股票赎回差价收入" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">股票申购差价收入:</td>
-								<td><input type="text" name="STOCK_P" id="STOCK_P" value="${pd.STOCK_P}" maxlength="30" placeholder="这里输入股票申购差价收入" title="股票申购差价收入" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">债券投资收益构成:</td>
-								<td><input type="text" name="BOND_ALL" id="BOND_ALL" value="${pd.BOND_ALL}" maxlength="30" placeholder="这里输入债券投资收益构成" title="债券投资收益构成" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">股票赎回差价收入:</td>
+								<td><input type="text" name="STOCK_R" id="STOCK_R" value="${pd.STOCK_R}" maxlength="30" title="股票赎回差价收入" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">股票申购差价收入:</td>
+								<td><input type="text" name="STOCK_P" id="STOCK_P" value="${pd.STOCK_P}" maxlength="30" title="股票申购差价收入" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">债券投资收益构成:</td>
+								<td><input type="text" name="BOND_ALL" id="BOND_ALL" value="${pd.BOND_ALL}" maxlength="30" title="债券投资收益构成" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:120px;text-align: right;padding-top: 13px;">债券买卖差价收入:</td>
-								<td><input type="text" name="BOND_BS" id="BOND_BS" value="${pd.BOND_BS}" maxlength="30" placeholder="这里输入债券买卖差价收入" title="债券买卖差价收入" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">债券赎回差价收入:</td>
-								<td><input type="text" name="BOND_R" id="BOND_R" value="${pd.BOND_R}" maxlength="30" placeholder="这里输入债券赎回差价收入" title="债券赎回差价收入" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">债券申购差价收入:</td>
-								<td><input type="text" name="BOND_P" id="BOND_P" value="${pd.BOND_P}" maxlength="30" placeholder="这里输入债券申购差价收入" title="债券申购差价收入" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">债券买卖差价收入:</td>
+								<td><input type="text" name="BOND_BS" id="BOND_BS" value="${pd.BOND_BS}" maxlength="30" title="债券买卖差价收入" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">债券赎回差价收入:</td>
+								<td><input type="text" name="BOND_R" id="BOND_R" value="${pd.BOND_R}" maxlength="30" title="债券赎回差价收入" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">债券申购差价收入:</td>
+								<td><input type="text" name="BOND_P" id="BOND_P" value="${pd.BOND_P}" maxlength="30" title="债券申购差价收入" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:120px;text-align: right;padding-top: 13px;">贵金属投资收益构成:</td>
-								<td><input type="text" name="GOLD_ALL" id="GOLD_ALL" value="${pd.GOLD_ALL}" maxlength="30" placeholder="这里输入贵金属投资收益构成" title="贵金属投资收益构成" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">贵金属买卖差价收入:</td>
-								<td><input type="text" name="GOLD_BS" id="GOLD_BS" value="${pd.GOLD_BS}" maxlength="30" placeholder="这里输入贵金属买卖差价收入" title="贵金属买卖差价收入" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">贵金属赎回差价收入:</td>
-								<td><input type="text" name="GOLD_R" id="GOLD_R" value="${pd.GOLD_R}" maxlength="30" placeholder="这里输入贵金属赎回差价收入" title="贵金属赎回差价收入" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">贵金属投资收益构成:</td>
+								<td><input type="text" name="GOLD_ALL" id="GOLD_ALL" value="${pd.GOLD_ALL}" maxlength="30" title="贵金属投资收益构成" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">贵金属买卖差价收入:</td>
+								<td><input type="text" name="GOLD_BS" id="GOLD_BS" value="${pd.GOLD_BS}" maxlength="30" title="贵金属买卖差价收入" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">贵金属赎回差价收入:</td>
+								<td><input type="text" name="GOLD_R" id="GOLD_R" value="${pd.GOLD_R}" maxlength="30" title="贵金属赎回差价收入" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:120px;text-align: right;padding-top: 13px;">贵金属申购差价收入:</td>
-								<td><input type="text" name="GOLD_P" id="GOLD_P" value="${pd.GOLD_P}" maxlength="30" placeholder="这里输入贵金属申购差价收入" title="贵金属申购差价收入" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">利率风险敏感性:</td>
-								<td><input type="text" name="RISK_S_INT" id="RISK_S_INT" value="${pd.RISK_S_INT}" maxlength="30" placeholder="这里输入利率风险敏感性" title="利率风险敏感性" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">价格风险敏感性:</td>
-								<td><input type="text" name="RISK_S_PRICE" id="RISK_S_PRICE" value="${pd.RISK_S_PRICE}" maxlength="30" placeholder="这里输入价格风险敏感性" title="价格风险敏感性" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">贵金属申购差价收入:</td>
+								<td><input type="text" name="GOLD_P" id="GOLD_P" value="${pd.GOLD_P}" maxlength="30" title="贵金属申购差价收入" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">利率风险敏感性:</td>
+								<td><input type="text" name="RISK_S_INT" id="RISK_S_INT" value="${pd.RISK_S_INT}" maxlength="30" title="利率风险敏感性" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">价格风险敏感性:</td>
+								<td><input type="text" name="RISK_S_PRICE" id="RISK_S_PRICE" value="${pd.RISK_S_PRICE}" maxlength="30" title="价格风险敏感性" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:120px;text-align: right;padding-top: 13px;">价格风险敞口:</td>
-								<td><input type="text" name="RISK_E_PRICE" id="RISK_E_PRICE" value="${pd.RISK_E_PRICE}" maxlength="30" placeholder="这里输入价格风险敞口" title="价格风险敞口" style="width:98%;"/></td>
-								<td style="width:120px;text-align: right;padding-top: 13px;">启用:</td>
-								<td><input type="text" name="ACTIVE" id="ACTIVE" value="${pd.ACTIVE}" maxlength="10" placeholder="这里输入启用" title="启用" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">价格风险敞口:</td>
+								<td><input type="text" name="RISK_E_PRICE" id="RISK_E_PRICE" value="${pd.RISK_E_PRICE}" maxlength="30" title="价格风险敞口" style="width:98%;"/></td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">启用:</td>
+								<td><input type="text" name="ACTIVE" id="ACTIVE" value="${pd.ACTIVE}" maxlength="10" title="启用" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

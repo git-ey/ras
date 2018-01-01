@@ -64,6 +64,16 @@
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金代码:</td>
 								<td><input type="text" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="240" title="基金代码" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">其他关联交易关联方:</td>
+								<td>
+								    <select class="chosen-select form-control" name="RELATED_FLAG" id="RELATED_FLAG" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
+								    <option value="Y" <c:if test="${pd.RELATED_FLAG == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.RELATED_FLAG == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
@@ -135,66 +145,6 @@
 		            time:2
 		        });
 				$("#PARTY_SHORT_NAME_1").focus();
-			return false;
-			}
-			if($("#PARTY_SHORT_NAME_2").val()==""){
-				$("#PARTY_SHORT_NAME_2").tips({
-					side:3,
-		            msg:'请输入关联方简称2',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#PARTY_SHORT_NAME_2").focus();
-			return false;
-			}
-			if($("#PARTY_SHORT_NAME_3").val()==""){
-				$("#PARTY_SHORT_NAME_3").tips({
-					side:3,
-		            msg:'请输入关联方简称3',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#PARTY_SHORT_NAME_3").focus();
-			return false;
-			}
-			if($("#RELATIONSHIP").val()==""){
-				$("#RELATIONSHIP").tips({
-					side:3,
-		            msg:'请输入备注7',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#RELATIONSHIP").focus();
-			return false;
-			}
-			if($("#STOCK_CODE").val()==""){
-				$("#STOCK_CODE").tips({
-					side:3,
-		            msg:'请输入股票代码',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#STOCK_CODE").focus();
-			return false;
-			}
-			if($("#BOND_CODE").val()==""){
-				$("#BOND_CODE").tips({
-					side:3,
-		            msg:'请输入债券代码',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#BOND_CODE").focus();
-			return false;
-			}
-			if($("#FUND_CODE").val()==""){
-				$("#FUND_CODE").tips({
-					side:3,
-		            msg:'请输入基金代码',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#FUND_CODE").focus();
 			return false;
 			}
 			if($("#ACTIVE").val()==""){

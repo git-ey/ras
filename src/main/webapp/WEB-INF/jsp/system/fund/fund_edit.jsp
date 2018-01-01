@@ -85,8 +85,9 @@
 								<td>
 								    <select class="chosen-select form-control" name="CLOSED" id="CLOSED" data-placeholder="请选择" style="width:49%;">
 								    <option value=""></option>
-								    <option value="Y" <c:if test="${pd.CLOSED == 'Y'}">selected</c:if>>是</option>
-								    <option value="N" <c:if test="${pd.CLOSED == 'N'}">selected</c:if>>否</option>
+								    <option value="CLOSED" <c:if test="${pd.CLOSED == 'CLOSED'}">selected</c:if>>封闭基金</option>
+								    <option value="OPEN" <c:if test="${pd.CLOSED == 'OPEN'}">selected</c:if>>开放基金</option>
+								    <option value="PERIOD" <c:if test="${pd.CLOSED == 'PERIOD'}">selected</c:if>>定期开放</option>
 								    </select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">沪港:</td>

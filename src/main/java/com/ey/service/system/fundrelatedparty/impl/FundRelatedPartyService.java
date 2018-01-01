@@ -104,6 +104,7 @@ public class FundRelatedPartyService implements FundRelatedPartyManager{
 				pd.put("STOCK_CODE", map.get("STOCK_CODE"));
 				pd.put("BOND_CODE", map.get("BOND_CODE"));
 				pd.put("FUND_CODE", map.get("FUND_CODE"));
+				pd.put("RELATED_FLAG", map.get("RELATED_FLAG"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 				pds.add(pd);

@@ -67,9 +67,6 @@
 									<th class="center">关联方简称2</th>
 									<th class="center">关联方简称3</th>
 									<th class="center">与本基金的关系</th>
-									<th class="center">股票代码</th>
-									<th class="center">债券代码</th>
-									<th class="center">基金代码</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -92,9 +89,6 @@
 											<td class='center'>${var.PARTY_SHORT_NAME_2}</td>
 											<td class='center'>${var.PARTY_SHORT_NAME_3}</td>
 											<td class='center'>${var.RELATIONSHIP}</td>
-											<td class='center'>${var.STOCK_CODE}</td>
-											<td class='center'>${var.BOND_CODE}</td>
-											<td class='center'>${var.FUND_CODE}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
@@ -268,7 +262,7 @@
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>fundrelatedparty/goAdd.do';
 			 diag.Width = 700;
-			 diag.Height = 400;
+			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -306,7 +300,7 @@
 			 diag.Title ="编辑";
 			 diag.URL = '<%=basePath%>fundrelatedparty/goEdit.do?FUNDRELATEDPARTY_ID='+Id;
 			 diag.Width = 700;
-			 diag.Height = 400;
+			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 
