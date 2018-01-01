@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WorkPaperMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_WORK_PAPER
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		RUN_PARAM,	
+		OPERATOR,	
+		RUN_DATETIME,	
+		OUTBOND_PATH,	
+		RESULT,	
+		MESSAGE,	
+		WORKPAPER_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{RUN_PARAM},	
+		#{OPERATOR},	
+		#{RUN_DATETIME},	
+		#{OUTBOND_PATH},	
+		#{RESULT},	
+		#{MESSAGE},	
+		#{WORKPAPER_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			WORKPAPER_ID = #{WORKPAPER_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			RUN_PARAM = #{RUN_PARAM},
+			OPERATOR = #{OPERATOR},
+			RUN_DATETIME = #{RUN_DATETIME},
+			OUTBOND_PATH = #{OUTBOND_PATH},
+			RESULT = #{RESULT},
+			MESSAGE = #{MESSAGE},
+		WORKPAPER_ID = WORKPAPER_ID
+		where 
+		WORKPAPER_ID = #{WORKPAPER_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			WORKPAPER_ID = #{WORKPAPER_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					RUN_PARAM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					OPERATOR LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+		<if test="pd.lastStart!= null and pd.lastStart != ''">
+		    and RUN_DATETIME &gt;= #{pd.lastStart}
+		</if>
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
+		    and RUN_DATETIME &lt;= #{pd.lastEnd}
+		</if>
+		<if test="pd.RESULT != null and pd.RESULT != ''">
+		    and RESULT = #{pd.RESULT}
+		</if>
+		order by RUN_DATETIME desc
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			WORKPAPER_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+</mapper>
