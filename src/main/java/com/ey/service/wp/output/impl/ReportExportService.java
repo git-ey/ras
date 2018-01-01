@@ -741,7 +741,7 @@ public class ReportExportService implements ReportExportManager {
             H10000futuresSumData = new HashMap<>(); 
         }
         @SuppressWarnings("unchecked")
-        Map<String,Object> H10000futuresSumLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FuturesSumDataForReport", queryParam);
+        Map<String,Object> H10000futuresSumLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FuturesSumDataForReport", queryParamLast);
         if(H10000futuresSumLastData == null) {
             H10000futuresSumLastData = new HashMap<>(); 
         }

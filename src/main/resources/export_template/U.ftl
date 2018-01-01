@@ -10013,6 +10013,7 @@
     <Cell ss:StyleID="s574"/>
     <Cell ss:StyleID="s574"/>
    </Row>
+   <#if U320.finSys == 'JSZ'>
    <Row>
     <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">卖出股票清算金额</Data></Cell>
     <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C19,C1,&quot;卖出&quot;,C2,&quot;股票&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -10169,6 +10170,164 @@
     <Cell ss:StyleID="s574"/>
     <Cell ss:StyleID="s574"/>
    </Row>
+   <#else>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">卖出股票清算金额</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C18,C1,&quot;卖出&quot;,C2,&quot;股票&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s577"><Data ss:Type="String">&lt;U310&gt;</Data></Cell>
+    <Cell ss:StyleID="s519"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:Index="10" ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">卖出股票交易费用金额</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUM(SUMIFS(C10,C1,&quot;卖出&quot;,C2,&quot;股票&quot;),SUMIFS(C11,C1,&quot;卖出&quot;,C2,&quot;股票&quot;),SUMIFS(C12,C1,&quot;卖出&quot;,C2,&quot;股票&quot;),SUMIFS(C13,C1,&quot;卖出&quot;,C2,&quot;股票&quot;),SUMIFS(C9,C1,&quot;卖出&quot;,C2,&quot;股票&quot;),SUMIFS(C15,C1,&quot;卖出&quot;,C2,&quot;股票&quot;))"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s577"><Data ss:Type="String">&lt;U310&gt;</Data></Cell>
+    <Cell ss:StyleID="s519"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:Index="10" ss:StyleID="s578"/>
+    <Cell ss:StyleID="s578"/>
+    <Cell ss:StyleID="s578"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">卖出股票席位佣金</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C9,C1,&quot;卖出&quot;,C2,&quot;股票&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s577"><Data ss:Type="String">&lt;U310&gt;</Data></Cell>
+    <Cell ss:StyleID="s519"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:Index="10" ss:StyleID="s578"/>
+    <Cell ss:StyleID="s578"/>
+    <Cell ss:StyleID="s578"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s580"></Cell>
+    <Cell ss:StyleID="s574"></Cell>
+    <Cell ss:StyleID="s581"></Cell>
+    <Cell ss:StyleID="s519"></Cell>
+    <Cell ss:StyleID="s574"></Cell>
+    <Cell ss:Index="10" ss:StyleID="s574"></Cell>
+    <Cell ss:StyleID="s574"></Cell>
+    <Cell ss:StyleID="s574"></Cell>
+    <Cell ss:StyleID="s574"></Cell>
+    <Cell ss:StyleID="s574"></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">卖出债券清算金额</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C18,C1,&quot;卖出&quot;,C2,&quot;债券&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s577"><Data ss:Type="String">&lt;U310&gt;</Data></Cell>
+    <Cell ss:StyleID="s519"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:Index="10" ss:StyleID="s574"/>
+    <Cell ss:StyleID="s578"/>
+    <Cell ss:StyleID="s578"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">卖出债券交易费用金额</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUM(SUMIFS(C10,C1,&quot;卖出&quot;,C2,&quot;债券&quot;),SUMIFS(C11,C1,&quot;卖出&quot;,C2,&quot;债券&quot;),SUMIFS(C12,C1,&quot;卖出&quot;,C2,&quot;债券&quot;),SUMIFS(C13,C1,&quot;卖出&quot;,C2,&quot;债券&quot;),SUMIFS(C9,C1,&quot;卖出&quot;,C2,&quot;债券&quot;),SUMIFS(C15,C1,&quot;卖出&quot;,C2,&quot;债券&quot;))"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s577"><Data ss:Type="String">&lt;U310&gt;</Data></Cell>
+    <Cell ss:StyleID="s519"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:Index="10" ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">卖出债券应收利息金额</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C16,C1,&quot;卖出&quot;,C2,&quot;债券&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s577"><Data ss:Type="String">&lt;U310&gt;</Data></Cell>
+    <Cell ss:StyleID="s519"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:Index="10" ss:StyleID="s578"/>
+    <Cell ss:StyleID="s578"/>
+    <Cell ss:StyleID="s578"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"/>
+    <Cell ss:StyleID="s101"/>
+    <Cell ss:StyleID="s577"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:Index="10" ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"/>
+    <Cell ss:StyleID="s101"/>
+    <Cell ss:StyleID="s584"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:Index="10" ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s585"/>
+    <Cell ss:StyleID="s586"><Data ss:Type="String">上海</Data></Cell>
+    <Cell ss:StyleID="s587"/>
+    <Cell ss:StyleID="s586"><Data ss:Type="String">深圳</Data></Cell>
+    <Cell ss:StyleID="s585"/>
+    <Cell ss:Index="10" ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">股票总成交量金额</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C8,C3,R16C,C1,&quot;卖出&quot;,C2,&quot;股票&quot;)+SUMIFS(C8,C3,R16C,C1,&quot;买入&quot;,C2,&quot;股票&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s588"><Data ss:Type="String">&lt;U500&gt;</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C8,C3,R16C,C1,&quot;卖出&quot;,C2,&quot;股票&quot;)+SUMIFS(C8,C3,R16C,C1,&quot;买入&quot;,C2,&quot;股票&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s588"><Data ss:Type="String">&lt;U500&gt;</Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">股票总成交数量</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C7,C3,R16C,C1,&quot;卖出&quot;,C2,&quot;股票&quot;)+SUMIFS(C7,C3,R16C,C1,&quot;买入&quot;,C2,&quot;股票&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s588"><Data ss:Type="String">&lt;U500&gt;</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C7,C3,R16C,C1,&quot;卖出&quot;,C2,&quot;股票&quot;)+SUMIFS(C7,C3,R16C,C1,&quot;买入&quot;,C2,&quot;股票&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s588"><Data ss:Type="String">&lt;U500&gt;</Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s583"><Data ss:Type="String">卖出股票成交金额</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C8,C3,R16C,C1,&quot;卖出&quot;,C2,&quot;股票&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s588"><Data ss:Type="String">&lt;U500&gt;</Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUMIFS(C8,C3,R16C,C1,&quot;卖出&quot;,C2,&quot;股票&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s588"><Data ss:Type="String">&lt;U500&gt;</Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+    <Cell ss:StyleID="s574"/>
+   </Row>
+   </#if>
    <Row/>
    <Row/>
    <Row/>
