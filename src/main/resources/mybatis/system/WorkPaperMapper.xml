@@ -120,4 +120,32 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 获得待导出的基金信息 -->
+	<!-- Dai Zong -->
+	<!-- 2018-01-01 -->
+    <select id="selectFundInfos" parameterType="java.util.Map" resultType="com.ey.util.PageData">
+        SELECT 
+            sfi.FUND_ID,
+            sfi.SHORT_NAME,
+            smc.SHORT_NAME MGR_COMPANY,
+            (SELECT COUNT(*) FROM wp_c c where c.FUND_ID = sfi.FUND_ID AND c.PERIOD = '${PERIOD}') CFLAG,
+            (SELECT COUNT(*) FROM wp_e e where e.FUND_ID = sfi.FUND_ID AND e.PERIOD = '${PERIOD}') EFLAG,
+            (SELECT COUNT(*) FROM wp_g g where g.FUND_ID = sfi.FUND_ID AND g.PERIOD = '${PERIOD}') GFLAG,
+            (SELECT COUNT(*) FROM wp_h h where h.FUND_ID = sfi.FUND_ID AND h.PERIOD = '${PERIOD}') HFLAG,
+            (SELECT COUNT(*) FROM wp_n n where n.FUND_ID = sfi.FUND_ID AND n.PERIOD = '${PERIOD}') NFLAG,
+            (SELECT COUNT(*) FROM wp_p p where p.FUND_ID = sfi.FUND_ID AND p.PERIOD = '${PERIOD}') PFLAG,
+            (SELECT COUNT(*) FROM wp_t t where t.FUND_ID = sfi.FUND_ID AND t.PERIOD = '${PERIOD}') TFLAG,
+            (SELECT COUNT(*) FROM wp_u u where u.FUND_ID = sfi.FUND_ID AND u.PERIOD = '${PERIOD}') UFLAG,
+            (SELECT COUNT(*) FROM wp_v300 v where v.FUND_ID = sfi.FUND_ID AND v.PERIOD = '${PERIOD}') VFLAG,
+            (SELECT COUNT(*) FROM wp_i_rp i where i.FUND_ID = sfi.FUND_ID AND i.PERIOD = '${PERIOD}') IFLAG
+        FROM sys_fund_info sfi
+        LEFT JOIN sys_mgrcompany smc ON sfi.FIRM_CODE = smc.COMPANY_CODE
+        WHERE 1 = 1
+        and sfi.FIRM_CODE = #{FIRM_CODE}
+        <if test="FUND_ID != null and FUND_ID != ''">
+            and sfi.FUND_ID = #{FUND_ID}
+        </if>
+    </select>
+	
 </mapper>

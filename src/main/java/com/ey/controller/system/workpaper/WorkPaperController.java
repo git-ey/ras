@@ -72,7 +72,7 @@ public class WorkPaperController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("REPORT_ID", this.get32UUID()); // 主键
+		pd.put("WORKPAPER_ID", this.get32UUID()); // 主键
 		pd.put("OPERATOR", Jurisdiction.getUsername()); // 操作人
 		pd.put("RUN_DATETIME", Tools.date2Str(new Date()));
 		pd.put("RESULT", "R");// 运行中
