@@ -16,6 +16,7 @@ import com.ey.service.wp.output.CExportManager;
 import com.ey.service.wp.output.EExportManager;
 import com.ey.service.wp.output.GExportManager;
 import com.ey.service.wp.output.HExportManager;
+import com.ey.service.wp.output.HSumExportManager;
 import com.ey.service.wp.output.IExportManager;
 import com.ey.service.wp.output.NExportManager;
 import com.ey.service.wp.output.PExportManager;
@@ -62,6 +63,9 @@ public class WorkPaperService implements WorkPaperManager{
     // 底稿T
     @Resource(name = "tExportService")
     private TExportManager tExportService;
+    // 底稿H_SUM
+    @Resource(name = "hSumExportService")
+    private HSumExportManager hSumExportService;
     // 底稿H
     @Resource(name = "hExportService")
     private HExportManager hExportService;
@@ -165,6 +169,12 @@ public class WorkPaperService implements WorkPaperManager{
 	                logger.error("底稿导出异常: " + fundInfo.getString("FUND_ID") + " " + fundInfo.getString("PERIOD"), ex);
 	            }
 	        }
+	        try {
+	            exportPath += (periodStr + File.separatorChar + "H_SUM" + File.separatorChar) ;
+	            this.hSumExportService.doExport(exportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr);
+	        }catch (Exception ex) {
+	            logger.error("H汇总底稿导出异常: " + pd.getString("FIRM_CODE") + " " + periodStr, ex);
+            }
 	    }
 	    // 设置消息
         pd.put("RESULT", "S");
