@@ -305,6 +305,7 @@
     
     <select id="selectU10000DividendData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
+            U10000RD.SORT as sort,
             U10000RD.ITEM as item,
             IF(U10000RD.AMOUNT_CURRENT = 0, null, U10000RD.AMOUNT_CURRENT) as amountCurrent,
             IF(U10000RD.AMOUNT_LAST = 0, null, U10000RD.AMOUNT_LAST) as amountLast

@@ -109,6 +109,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         M6111.put("S4", new HashMap<String,Object>());
         M6111.put("S5", new HashMap<String,Object>());
         M6111.put("S6", new HashMap<String,Object>());
+        M6111.put("S7", new HashMap<String,Object>());
         
         result.put("KM6101", new HashMap<String,Object>());
         result.put("KM6302", new HashMap<String,Object>());
@@ -138,13 +139,15 @@ public class UExportService extends BaseExportService implements UExportManager 
                 }else if("基金投资收益".equals(map.get("item"))) {
                     M6111.put("S2", map);
                 }else if("债券投资收益".equals(map.get("item"))) {
-                    M6111.put("S3", map);                
+                    M6111.put("S3", map);
                 }else if("资产支持证券投资收益".equals(map.get("item"))) {
                     M6111.put("S4", map);
-                }else if("衍生工具收益".equals(map.get("item"))) {
+                }else if("贵金属投资收益".equals(map.get("item"))) {
                     M6111.put("S5", map);
-                }else if("股利收益".equals(map.get("item"))) {
+                }else if("衍生工具收益".equals(map.get("item"))) {
                     M6111.put("S6", map);
+                }else if("股利收益".equals(map.get("item"))) {
+                    M6111.put("S7", map);
                 }
             }else {
                 result.put("KM" + map.get("accountNum"), map);
@@ -302,6 +305,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         Map<String, Object> main = new HashMap<String,Object>();
         Map<String, Object> trade = new HashMap<String,Object>();
         Map<String, Object> bank = new HashMap<String,Object>();
+        Map<String, Object> cffe = new HashMap<String,Object>();
         Map<String, Object> KM6407 = new HashMap<String,Object>();
         Map<String, Object> KM6411 = new HashMap<String,Object>();
         
@@ -312,6 +316,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         trade.put("S5", new HashMap<String,Object>());
         bank.put("S1", new HashMap<String,Object>());
         bank.put("S2", new HashMap<String,Object>());
+        cffe.put("S1", new HashMap<String,Object>());
         KM6411.put("S1", new HashMap<String,Object>());
         KM6411.put("S2", new HashMap<String,Object>());
         
@@ -341,6 +346,10 @@ public class UExportService extends BaseExportService implements UExportManager 
                     }else if("交易手续费".equals(map.get("item"))) {
                         bank.put("S2", map);
                     }
+                }else if("中金所".equals(map.get("type"))) {
+                    if("期货交易费用".equals(map.get("item"))) {
+                        cffe.put("S1", map);
+                    }
                 }
             }else if("6411".equals(map.get("accountNum"))) {
                 if("卖出回购证券支出".equals(map.get("item"))) {
@@ -353,6 +362,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         KM6407.put("trade", trade);
         KM6407.put("bank", bank);
+        KM6407.put("cffe", cffe);
         main.put("KM6407", KM6407);
         main.put("KM6411", KM6411);
         
@@ -788,9 +798,9 @@ public class UExportService extends BaseExportService implements UExportManager 
             U10000DividendMetaDataList = new ArrayList<>(); 
         }
         for(Map<String,Object> map : U10000DividendMetaDataList) {
-            if("股票".equals(map.get("item"))) {
+            if("10".equals(String.valueOf(map.get("sort")))) {
                 dividend.put("S1", map);
-            }else if("基金".equals(map.get("item"))) {
+            }else if("20".equals(String.valueOf(map.get("sort")))) {
                 dividend.put("S2", map);
             }
         }
@@ -820,20 +830,22 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("other_r", other_r);
         
         Map<String, Object> trxFee = new HashMap<String,Object>();
-        trxFee.put("S1", new HashMap<String,Object>());
-        trxFee.put("S2", new HashMap<String,Object>());
+//        trxFee.put("S1", new HashMap<String,Object>());
+//        trxFee.put("S2", new HashMap<String,Object>());
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000TrxFeeData", queryMap);
         if(U10000TrxFeeMetaDataList == null) {
             U10000TrxFeeMetaDataList = new ArrayList<>(); 
         }
-        for(Map<String,Object> map : U10000TrxFeeMetaDataList) {
-            if("交易所市场交易费用".equals(map.get("item"))) {
-                trxFee.put("S1", map);
-            }else if("银行间市场交易费用".equals(map.get("item"))) {
-                trxFee.put("S2", map);
-            }
-        }
+//        for(Map<String,Object> map : U10000TrxFeeMetaDataList) {
+//            if("交易所市场交易费用".equals(map.get("item"))) {
+//                trxFee.put("S1", map);
+//            }else if("银行间市场交易费用".equals(map.get("item"))) {
+//                trxFee.put("S2", map);
+//            }
+//        }
+        trxFee.put("list", U10000TrxFeeMetaDataList);
+        trxFee.put("count", U10000TrxFeeMetaDataList.size());
         result.put("trxFee", trxFee);
         
         Map<String, Object> other_c = new HashMap<String,Object>();

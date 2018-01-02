@@ -4250,7 +4250,7 @@
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s373"><Data ss:Type="String">      衍生工具收益</Data></Cell>
+    <Cell ss:StyleID="s373"><Data ss:Type="String">      贵金属投资收益</Data></Cell>
     <Cell ss:StyleID="s373"/>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S5.drAmountAdj!0)?string('0.##')}</Data></Cell>
@@ -4261,13 +4261,24 @@
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s373"><Data ss:Type="String">      股利收益</Data></Cell>
+    <Cell ss:StyleID="s373"><Data ss:Type="String">      衍生工具收益</Data></Cell>
     <Cell ss:StyleID="s373"/>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S6.drAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S6.crAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S6.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:StyleID="s93">
+    <Cell ss:StyleID="s373"><Data ss:Type="String">      股利收益</Data></Cell>
+    <Cell ss:StyleID="s373"/>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S7.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S7.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S7.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6111.S7.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
@@ -11079,12 +11090,80 @@
     <Cell ss:StyleID="s117"/>
     <Cell ss:StyleID="s117"/>
    </Row>
+   <Row>
+    <Cell ss:StyleID="s177"><Data ss:Type="String">中金所交易费用</Data></Cell>
+    <Cell ss:StyleID="s545"/>
+    <Cell ss:Index="4" ss:StyleID="s78"/>
+    <Cell ss:Index="8" ss:StyleID="s104"/>
+    <Cell ss:StyleID="s104"/>
+    <Cell ss:Index="15" ss:StyleID="s104"/>
+    <Cell ss:StyleID="s115"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s181"/>
+    <Cell ss:StyleID="s545"><Data ss:Type="String">期货交易费用</Data></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">${(U500.main.KM6407.cffe.S1.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number">${(U500.main.KM6407.cffe.S1.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:Index="15" ss:StyleID="s104"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s181"/>
+    <Cell ss:StyleID="s545"/>
+    <Cell ss:StyleID="s107"/>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s120"/>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s117"/>
+    <Cell ss:Index="15" ss:StyleID="s104"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s181"/>
+    <Cell ss:StyleID="s545"><Data ss:Type="String">中金所交易费用小计</Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s108"/>
+    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s117"/>
+    <Cell ss:Index="15" ss:StyleID="s104"/>
+    <Cell ss:Index="20" ss:StyleID="s117"/>
+    <Cell ss:StyleID="s117"/>
+    <Cell ss:StyleID="s117"/>
+    <Cell ss:StyleID="s117"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s180"/>
+    <Cell ss:StyleID="s545"/>
+    <Cell ss:StyleID="s102"/>
+    <Cell ss:StyleID="s123"/>
+    <Cell ss:StyleID="s102"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s124"/>
+    <Cell ss:StyleID="s125"/>
+    <Cell ss:StyleID="s116"/>
+    <Cell ss:StyleID="s117"/>
+    <Cell ss:Index="15" ss:StyleID="s104"/>
+    <Cell ss:Index="20" ss:StyleID="s117"/>
+    <Cell ss:StyleID="s117"/>
+    <Cell ss:StyleID="s117"/>
+    <Cell ss:StyleID="s117"/>
+   </Row>
    <Row ss:Height="16.5">
     <Cell ss:StyleID="s126"><Data ss:Type="String">交易费用合计</Data></Cell>
     <Cell ss:StyleID="s545"/>
-    <Cell ss:StyleID="s127" ss:Formula="=R[-8]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s127" ss:Formula="=R[-13]C+R[-7]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s128"/>
-    <Cell ss:StyleID="s127" ss:Formula="=R[-8]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s127" ss:Formula="=R[-13]C+R[-7]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s129"/>
     <Cell ss:StyleID="s130"/>
     <Cell ss:StyleID="s131"/>
@@ -13364,6 +13443,8 @@
     <Cell ss:StyleID="s198"/>
     <Cell ss:StyleID="s198"/>
    </Row>
+   <!-- 
+   <#--
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U500</Data></Cell>
     <Cell ss:StyleID="s219"><Data ss:Type="String">交易所市场交易费用</Data></Cell>
@@ -13378,10 +13459,23 @@
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.trxFee.S2.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
+   -->
+   -->
+   <#if U10000.trxFee.count != 0>
+   <#list U10000.trxFee.list as item>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U500</Data></Cell>
+    <Cell ss:StyleID="s219"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s201"><Data ss:Type="String"><#if item_index == 0>&lt;审定财务报表&gt;</#if></Data></Cell>
+   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s206"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[${(-(U10000.trxFee.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[${(-(U10000.trxFee.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row/>
