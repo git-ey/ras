@@ -162,11 +162,13 @@ public class WorkPaperService implements WorkPaperManager{
 	    @SuppressWarnings("unchecked")
         List<PageData> fundInfos = (List<PageData>)dao.findForList("WorkPaperMapper.selectFundInfos", pd);
 	    if(CollectionUtils.isNotEmpty(fundInfos)) {
+	        String errorMsg = StringUtils.EMPTY;
 	        for(PageData fundInfo : fundInfos) {
 	            try {
 	                this.exportOneFundWorkPaper(fundInfo, exportPath, periodStr);
 	            }catch (Exception ex) {
 	                logger.error("底稿导出异常: " + fundInfo.getString("FUND_ID") + " " + fundInfo.getString("PERIOD"), ex);
+	                errorMsg += (ex.getMessage() + '\n');
 	            }
 	        }
 	        try {
@@ -174,7 +176,11 @@ public class WorkPaperService implements WorkPaperManager{
 	            this.hSumExportService.doExport(exportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr);
 	        }catch (Exception ex) {
 	            logger.error("H汇总底稿导出异常: " + pd.getString("FIRM_CODE") + " " + periodStr, ex);
+	            errorMsg += (ex.getMessage() + '\n');
             }
+	        if(errorMsg.length() != 0) {
+	            throw new Exception(errorMsg);
+	        }
 	    }
 	    // 设置消息
         pd.put("RESULT", "S");

@@ -1802,6 +1802,7 @@ public class ReportExportService implements ReportExportManager {
         }
         T310.put("levels", levels);
         T310.put("levelCount", levels.size());
+        T310.put("dataSumCheck", this.dao.findForObject("TExportMapper.checkIfT310DataHasDataForReport", queryParam));
         //====================↑T310↑====================
         
         result.put("T310", T310);

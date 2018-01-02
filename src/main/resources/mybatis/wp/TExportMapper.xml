@@ -177,6 +177,33 @@
         ORDER BY T310.SEQ
     </select>
     
+    <select id="checkIfT310DataHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+		    IFNULL(( 
+		        SELECT 
+		            SUM( IFNULL( T310.BONUS, 0 ) ) 
+		        FROM 
+		            wp_t310 T310 
+		        WHERE
+		            1 = 1
+		        AND T310.STATUS = 'Y'
+		        AND T310.FUND_ID = #{fundId}
+		        AND T310.PERIOD = #{period}
+		    ), 0) + IFNULL(( 
+		        SELECT 
+		            SUM( IFNULL( N800D.ITEM4, 0 ) ) 
+		        FROM 
+		            wp_n800_dis N800D
+		        WHERE 
+		            1 = 1
+		        AND N800D.STATUS = 'Y'
+		        AND N800D.FUND_ID = #{fundId}
+		        AND N800D.PERIOD = #{period}
+		    ), 0) as sumCheck
+		FROM
+		    DUAL
+    </select>
+    
     <select id="selectT400Data" parameterType="java.util.Map" resultType="java.util.Map"> 
 		SELECT
 		    T400.`LEVEL` as `level`,

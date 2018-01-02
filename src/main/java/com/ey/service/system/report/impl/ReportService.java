@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import com.ey.service.system.dictionaries.DictionariesManager;
 import com.ey.service.system.report.ReportManager;
 import com.ey.service.wp.output.ReportExportManager;
 import com.ey.util.DateUtil;
+import com.ey.util.Logger;
 import com.ey.util.PageData;
 import com.ey.util.StringUtil;
 import com.ey.util.fileexport.Constants;
@@ -50,6 +52,8 @@ public class ReportService implements ReportManager {
 	private final String BALANCE_SHEET_DATE = "资产负债表日";
 
 	private final String REP_TEMP_PATH = "REP_TEMP_PATH";
+	
+	private final Logger logger = Logger.getLogger(ReportService.class);
 
 	/**
 	 * 新增
@@ -355,12 +359,14 @@ public class ReportService implements ReportManager {
 		String tempNameKey;
 
 		// 遍历处理基金导出
-		for (PageData pfund : funds) {
-		    Map<String, Object> exportParam = new HashMap<>();
-			// 获取日期信息
-			dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
-			dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
-			
+		if(CollectionUtils.isNotEmpty(funds)) {
+		    String errorMsg = StringUtils.EMPTY;
+		    for (PageData pfund : funds) {
+		        Map<String, Object> exportParam = new HashMap<>();
+		        // 获取日期信息
+		        dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
+		        dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
+		        
 //			日期DEBUG程序
 //			String[] a = {"CURRENT_YEAR","CURRENT_YEAR_NUM","CURRENT_INIT_DATE","CURRENT_INIT_TEXT","CURRENT_INIT_SOURCE","CURRENT_PERIOD","CURRENT_BS_DATE","CURRENT_END_DATE","CURRENT_END_TXT","CURRENT_END_SOURCE","TXT_PERIOD_CURRENT","TABLE_PERIOD_CURRENT","TABLE_PERIOD_CURRENT_A","TABLE_PERIOD_CURRENT_B"};
 //			String[] b = {"LAST_YEAR","LAST_YEAR_NUM","LAST_INIT_DATE","LAST_INIT_TEXT","LAST_INIT_SOURCE","LAST_PERIOD","LAST_BS_DATE","LAST_END_DATE","LAST_END_TXT","LAST_END_SOURCE","TXT_PERIOD_LAST","TABLE_PERIOD_LAST","TABLE_PERIOD_LAST_A","TABLE_PERIOD_LAST_B"};
@@ -370,52 +376,62 @@ public class ReportService implements ReportManager {
 //			for(String bt : b) {
 //			    System.out.println(bt + " = " + dateMapLast.get(bt));
 //			}
-			
-			// -------获取报告模板地址-------//
-			// 如果 本期起始日来源 为 “资产负债表日”取YOY,否则取Y
-			if (dateMap.get("CURRENT_INIT_SOURCE").equals("资产负债表日")) {
-				tempNameKey = "_YOY";
-			} else {
-				tempNameKey = "_Y";
-			}
-			// P1
-			p1TempName = p1TempName + tempNameKey + ".ftl";
-			// P2
-			// 如果选择此种规则，则按照基金区分模板
-			if (pd.getString("P2").equals("P2_FSO_BF")) {
-				p2TempName = p2TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
-			} else {
-				p2TempName = p2TempName + ".xml";
-			}
-			// P3
-			p3TempName = p3TempName + tempNameKey + ".ftl";
-			// P4
-			// 如果选择此种规则，则按照基金区分模板
-			if (pd.getString("P4").equals("P4_FSO_BF")) {
-			    p4TempName = p4TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
-			} else {
-			    p4TempName = p4TempName + ".xml";
-			}
-			// P5
-			p5TempName = p5TempName + tempNameKey + ".ftl";
-
-			// 一段一段的整合报告
-			exportParam.put("dateInfo", dateMap);
-			exportParam.put("lastDateInfo", dateMapLast);
-			exportParam.put("PEROID", period);
-			exportParam.put("FUND_ID", pfund.getString("FUND_ID"));
-			
-			Map<String,Object> partName = new HashMap<>();
-			partName.put("P1", p1TempName);
-			partName.put("P2", p2TempName);
-			partName.put("P3", p3TempName);
-			partName.put("P4", p4TempName);
-			partName.put("P5", p5TempName);
-			exportParam.put("partName", partName);
-			exportParam.put("reportTempRootPath", reportTempRootPath);
-			exportParam.put("reportOutBoundPath", reportOutBoundPath);
-			
-			this.reportExportService.doExport(reportOutBoundPath, Constants.EXPORT_AIM_FILE_NAME_REPORT, exportParam);
+		        
+		        // -------获取报告模板地址-------//
+		        // 如果 本期起始日来源 为 “资产负债表日”取YOY,否则取Y
+		        if (dateMap.get("CURRENT_INIT_SOURCE").equals("资产负债表日")) {
+		            tempNameKey = "_YOY";
+		        } else {
+		            tempNameKey = "_Y";
+		        }
+		        // P1
+		        p1TempName = p1TempName + tempNameKey + ".ftl";
+		        // P2
+		        // 如果选择此种规则，则按照基金区分模板
+		        if (pd.getString("P2").equals("P2_FSO_BF")) {
+		            p2TempName = p2TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
+		        } else {
+		            p2TempName = p2TempName + ".xml";
+		        }
+		        // P3
+		        p3TempName = p3TempName + tempNameKey + ".ftl";
+		        // P4
+		        // 如果选择此种规则，则按照基金区分模板
+		        if (pd.getString("P4").equals("P4_FSO_BF")) {
+		            p4TempName = p4TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
+		        } else {
+		            p4TempName = p4TempName + ".xml";
+		        }
+		        // P5
+		        p5TempName = p5TempName + tempNameKey + ".ftl";
+		        
+		        // 一段一段的整合报告
+		        exportParam.put("dateInfo", dateMap);
+		        exportParam.put("lastDateInfo", dateMapLast);
+		        exportParam.put("PEROID", period);
+		        exportParam.put("FUND_ID", pfund.getString("FUND_ID"));
+		        
+		        Map<String,Object> partName = new HashMap<>();
+		        partName.put("P1", p1TempName);
+		        partName.put("P2", p2TempName);
+		        partName.put("P3", p3TempName);
+		        partName.put("P4", p4TempName);
+		        partName.put("P5", p5TempName);
+		        exportParam.put("partName", partName);
+		        exportParam.put("reportTempRootPath", reportTempRootPath);
+		        exportParam.put("reportOutBoundPath", reportOutBoundPath);
+		        
+		        try {
+		            this.reportExportService.doExport(reportOutBoundPath, Constants.EXPORT_AIM_FILE_NAME_REPORT, exportParam);
+		        }catch (Exception ex) {
+		            logger.error("报告导出异常: " + exportParam.toString(), ex);
+		            errorMsg += (ex.getMessage() + '\n');
+		        }
+		    }
+		    
+		    if(errorMsg.length() != 0) {
+		        throw new Exception(errorMsg);
+		    }
 		}
 
 		// 设置消息
