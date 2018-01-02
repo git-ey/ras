@@ -203,8 +203,9 @@
 								<td>
 								    <select class="chosen-select form-control" name="DEALER_SEPERATE" id="DEALER_SEPERATE" data-placeholder="请选择" style="width:49%;">
 								    <option value=""></option>
-								    <option value="Y" <c:if test="${pd.DEALER_SEPERATE == 'Y'}">selected</c:if>>是</option>
-								    <option value="N" <c:if test="${pd.DEALER_SEPERATE == 'N'}">selected</c:if>>否</option>
+								    <option value="F" <c:if test="${pd.DEALER_SEPERATE == 'F'}">selected</c:if>>F-划款规则不同</option>
+								    <option value="T" <c:if test="${pd.DEALER_SEPERATE == 'T'}">selected</c:if>>T-是否计息不同</option>
+								    <option value="N" <c:if test="${pd.DEALER_SEPERATE == 'N'}">selected</c:if>>N-均相同</option>
 								    </select>
 								</td>
 							</tr>
