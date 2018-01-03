@@ -1351,7 +1351,7 @@
     <#if line_index == 0>
     <Cell ss:StyleID="s107"><Data ss:Type="Number">${(line.unitPrice!0)?string('0.##')}</Data></Cell>
     <#else>
-    <Cell ss:StyleID="s107" ss:Formula="=ROUND(RC[-1]*R${(32+head.offset+8*head_index)?string('0')}C/R${(32+head.offset+8*head_index)?string('0')}C[-1],2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s107" ss:Formula="=ROUND(RC[-1]*R${(32+head.offset+5*head_index)?string('0')}C/R${(32+head.offset+5*head_index)?string('0')}C[-1],2)"><Data ss:Type="Number"></Data></Cell>
     </#if>
     <#if line.details.count != 0>
     <#list line.details.list as detail>
@@ -1361,7 +1361,7 @@
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s85"/>
     <#else>
-    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R${(32+head.offset+8*head_index)?string('0')}C4)*R[-1]C[-2]/R[-1]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s86" ss:Formula="=(RC4-R${(32+head.offset+5*head_index)?string('0')}C4)*R[-1]C[-2]/R[-1]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s85" ss:Formula="=IF(ABS(RC[-1])&gt;0.25%,&quot;Y&quot;,&quot;N&quot;)"><Data ss:Type="String"></Data></Cell>
     </#if>
     <Cell/>
@@ -1370,48 +1370,6 @@
    </Row>
    </#list>
    </#if>
-   <Row>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:Index="10" ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:Index="10" ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:Index="10" ss:StyleID="s108"/>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
    <Row>
     <Cell ss:StyleID="s87"/>
     <Cell ss:StyleID="s55"/>

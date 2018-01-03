@@ -4065,7 +4065,7 @@
    </Row>
    <#if T300.adj.adjFlag == 'Y'>
    <Row>
-    <Cell ss:StyleID="s103"><Data ss:Type="String">Note 4</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s112"/>
     <Cell ss:Index="6" ss:StyleID="s71"/>
     <Cell ss:StyleID="s71"/>
@@ -4349,8 +4349,8 @@
     <Cell ss:StyleID="s87"/>
     <Cell ss:StyleID="s91"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></#if></Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></#if></Data></Cell>
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
@@ -4634,7 +4634,7 @@
    </Row>
    <#if T300.adj.adjFlag == 'Y'>
    <Row>
-    <Cell ss:StyleID="s103"><Data ss:Type="String">Note 4</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s112"/>
     <Cell ss:Index="6" ss:StyleID="s71"/>
     <Cell ss:StyleID="s71"/>
@@ -8106,7 +8106,7 @@
     <Cell ss:StyleID="s176"><Data ss:Type="String">上年度末</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr1.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr1.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr1.unrealized!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s170"><Data ss:Type="String">&lt;T500&gt;</Data></Cell>
    </Row>
@@ -8130,7 +8130,7 @@
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期已实现利润</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr2.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr2.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr2.unrealized!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
@@ -8153,7 +8153,7 @@
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期未实现利润——公允价值变动收益</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr3.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr3.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr3.unrealized!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
@@ -8181,7 +8181,7 @@
     <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">其中：基金申购款</Data></Cell>
     <Cell ss:StyleID="s355"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr5.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr5.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr5.unrealized!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
@@ -8202,7 +8202,7 @@
     <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">      基金赎回款（以“-”号填列）</Data></Cell>
     <Cell ss:StyleID="s355"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr6.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr6.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr6.unrealized!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
@@ -8225,7 +8225,7 @@
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期已分配利润（以“-”号填列）</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr7.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr7.realized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr7.unrealized!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
@@ -8545,6 +8545,7 @@
     <#list T400.levels as item>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr6.realized!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr6.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s351"/>
     </#list>
     </#if>
@@ -8561,6 +8562,7 @@
     <#list T400.levels as item>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr7.realized!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr7.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s351"/>
     </#list>
     </#if>
