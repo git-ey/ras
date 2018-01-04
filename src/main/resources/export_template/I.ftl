@@ -1439,7 +1439,7 @@
    <#if I.rp.count != 0>
    <#list I.rp.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s131"><Data ss:Type="String">${item.rpName!}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s131"><Data ss:Type="String">${item.rpName!}（“${item.rpNameAbbr!}”）</Data></Cell>
     <Cell ss:StyleID="s127"><Data ss:Type="String">${item.relationship!}</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
@@ -1489,7 +1489,7 @@
    <Row ss:Height="27" ss:StyleID="s177">
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">关联方名称</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">成交金额</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="String">占当期股票&#10;成交总额的比例</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">占当期股票&#10;成交总额的比例</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="String">成交金额</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">占当期股票&#10;成交总额的比例</Data></Cell>
     <Cell ss:StyleID="s178"/>
@@ -1539,7 +1539,7 @@
    <Row ss:Height="27">
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">关联方名称</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">成交金额</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="String">占当期债券&#10;成交总额的比例</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">占当期债券&#10;成交总额的比例</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="String">成交金额</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">占当期债券&#10;成交总额的比例</Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s122"/>
@@ -1585,7 +1585,7 @@
    <Row ss:Height="27">
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">关联方名称</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">成交金额</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="String">占当期权证&#10;成交总额的比例</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">占当期权证&#10;成交总额的比例</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="String">成交金额</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">占当期权证&#10;成交总额的比例</Data></Cell>
     <Cell ss:StyleID="s122"/>
@@ -1629,7 +1629,7 @@
    <Row ss:Height="27">
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">关联方名称</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">成交金额</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="String">占当期回购&#10;成交总额的比例</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">占当期回购&#10;成交总额的比例</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="String">成交金额</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">占当期回购&#10;成交总额的比例</Data></Cell>
     <Cell ss:StyleID="s122"/>
@@ -1677,7 +1677,7 @@
    <Row ss:Height="27">
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">关联方名称</Data></Cell>
     <Cell ss:StyleID="s185"><Data ss:Type="String">成交金额</Data></Cell>
-    <Cell ss:StyleID="s180"><Data ss:Type="String">占当期基金&#10;成交总额的比例</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">占当期基金&#10;成交总额的比例</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="String">成交金额</Data></Cell>
     <Cell ss:StyleID="s134"><Data ss:Type="String">占当期基金&#10;成交总额的比例</Data></Cell>
     <Cell ss:StyleID="s122"/>
@@ -1776,8 +1776,8 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.transaction.related.current.count != 0>
-   <#list I.transaction.related.current.list as item>
+   <#if I.transaction.related.last.count != 0>
+   <#list I.transaction.related.last.list as item>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s136"><Data ss:Type="String">${item.relatedParty!}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.commission!0)?string('0.##')}</Data></Cell>
@@ -2329,7 +2329,7 @@
    </Row>
    <Row ss:Height="27">
     <Cell ss:StyleID="s173"><Data ss:Type="String">IIXXX</Data></Cell>
-    <Cell ss:StyleID="s204"><Data ss:Type="String">${I.mgerHoldFund.item1.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item1.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item1.count == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
@@ -2487,7 +2487,7 @@
    </Row>
    <Row ss:Height="27" ss:StyleID="s119">
     <Cell ss:StyleID="s173"><Data ss:Type="String">IIXXX</Data></Cell>
-    <Cell ss:StyleID="s204"><Data ss:Type="String">${I.mgerHoldFund.item1.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item1.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item1.count != 0>
     <#list I.mgerHoldFund.item1.levels as level>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>

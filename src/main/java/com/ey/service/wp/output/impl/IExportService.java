@@ -317,7 +317,7 @@ public class IExportService extends BaseExportService implements IExportManager{
         
         //========process dataMap for mgerHoldFund view begin========
         Map<String, Object> mgerHoldFund = new HashMap<String,Object>();
-        String[] sorts = {"1", "2", "3", "4", "5", "6", "7"};
+        String[] sorts = {"10", "20", "30", "40", "50", "60", "70"};
         Map<String,Object> resultMap = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> mgerHoldFundMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIMgerHoldFundData", queryMap);
@@ -364,7 +364,7 @@ public class IExportService extends BaseExportService implements IExportManager{
         mgerHoldFund.put("levelNames", levelNames);
         mgerHoldFund.put("levelCount", levelNames.size());
         for(String sort : sorts) {
-            mgerHoldFund.put("item" + sort, resultMap.get(sort));
+            mgerHoldFund.put("item" + sort.substring(0, 1), resultMap.get(sort));
         }
         
         //========process dataMap for mgerHoldFund view end========

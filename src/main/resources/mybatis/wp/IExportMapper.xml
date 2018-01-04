@@ -12,6 +12,7 @@
 		    1 = 1 
 		    AND sfrp.FUND_ID = #{fundId}
 		    AND sfrp.ACTIVE = 'Y'
+		ORDER BY sfrp.SORT
     </select>
     
     <select id="selectIRpData" parameterType="java.util.Map" resultType="java.util.Map">
