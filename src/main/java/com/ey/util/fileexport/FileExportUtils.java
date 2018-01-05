@@ -68,7 +68,7 @@ public class FileExportUtils {
             if (StringUtils.isBlank(userAgent)) {
                 fileName = URLEncoder.encode(fileName, DEF_CHARSET);
             } else {
-                if (userAgent.indexOf("MSIE") != -1) {
+                if (userAgent.indexOf("MSIE") != -1 || userAgent.contains("like Gecko")) {
                     // IE使用URLEncoder
                     fileName = URLEncoder.encode(fileName, DEF_CHARSET);
                 } else {
