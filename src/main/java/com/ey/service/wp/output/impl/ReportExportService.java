@@ -655,7 +655,8 @@ public class ReportExportService implements ReportExportManager {
         tfa.put("sum", H10000SumData);
         tfa.put("bondCount", H10000BondDataList.size());
         tfa.put("otherCount", H10000NotBondDataList.size());
-        tfa.put("dataSumCheck", this.dao.findForObject("HExportMapper.checkIfH10000TFAHasDataForReport", queryParam));
+        Object dataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000TFAHasDataForReport", queryParam);
+        tfa.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         
         tfa.put("tfa", tfa);
         H10000.put("tfa", tfa);
@@ -695,7 +696,8 @@ public class ReportExportService implements ReportExportManager {
         derivative.put("item4", item4);
         derivative.put("sum", H10000DerivativeSumData);
         derivative.put("count", H10000DerivativeDataList.size());
-        derivative.put("dataSumCheck", this.dao.findForObject("HExportMapper.checkIfH10000DerivativeHasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000DerivativeHasDataForReport", queryParam);
+        derivative.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         H10000.put("derivative", derivative);
         //--------------------↑H10000.derivative↑--------------------
         //--------------------↓H10000.futures↓--------------------
@@ -783,7 +785,8 @@ public class ReportExportService implements ReportExportManager {
         rmcfs.put("item2", item2);
         rmcfs.put("sum", H10000rmcfsSumLastData);
         rmcfs.put("count", rmcfsMetaDataList.size());
-        rmcfs.put("dataSumCheck", this.dao.findForObject("HExportMapper.checkIfH10000RmcfsHasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000RmcfsHasDataForReport", queryParam);
+        rmcfs.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         H10000.put("rmcfs", rmcfs);
         //--------------------↑H10000.rmcfs↑--------------------
         //--------------------↓H10000.fairValues↓--------------------
@@ -803,7 +806,8 @@ public class ReportExportService implements ReportExportManager {
         fairValues.put("list", H10000FairValuesDataList);
         fairValues.put("count", H10000FairValuesDataList.size());
         fairValues.put("sum", H10000FairValuesSumData);
-        fairValues.put("dataSumCheck", this.dao.findForObject("HExportMapper.checkIfH10000FairValuesHasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000FairValuesHasDataForReport", queryParam);
+        fairValues.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         H10000.put("fairValues", fairValues);
         //--------------------↑H10000.fairValues↑--------------------
         //====================↑H10000↑====================
@@ -860,7 +864,8 @@ public class ReportExportService implements ReportExportManager {
         disc.put("list", E300DiscDataList);
         disc.put("count", E300DiscDataList.size());
         disc.put("sum", E300DiscSumData);
-        disc.put("dataSumCheck", this.dao.findForObject("EExportMapper.checkIfE300DiscHasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("EExportMapper.checkIfE300DiscHasDataForReport", queryParam);
+        disc.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //--------------------↑E300.disc↑--------------------
         E300.put("disc", disc);
         //====================↑E300↑====================
@@ -881,7 +886,8 @@ public class ReportExportService implements ReportExportManager {
         G10000.put("list", G10000DataList);
         G10000.put("count", G10000DataList.size());
         G10000.put("sum", G10000SumData);
-        G10000.put("dataSumCheck", this.dao.findForObject("GExportMapper.checkIfG10000HasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("GExportMapper.checkIfG10000HasDataForReport", queryParam);
+        G10000.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //====================↑G10000↑====================
         
         //====================↓N10000↓====================
@@ -900,7 +906,8 @@ public class ReportExportService implements ReportExportManager {
         N10000.put("list", N10000DataList);
         N10000.put("count", N10000DataList.size());
         N10000.put("sum", N10000SumData);
-        N10000.put("dataSumCheck", this.dao.findForObject("NExportMapper.checkIfN10000HasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("NExportMapper.checkIfN10000HasDataForReport", queryParam);
+        N10000.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //====================↑N10000↑====================
         
         //====================↓P10000↓====================
@@ -919,7 +926,8 @@ public class ReportExportService implements ReportExportManager {
         P10000.put("list", P10000DataList);
         P10000.put("count", P10000DataList.size());
         P10000.put("sum", P10000SumData);
-        P10000.put("dataSumCheck", this.dao.findForObject("PExportMapper.checkIfP10000HasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("PExportMapper.checkIfP10000HasDataForReport", queryParam);
+        P10000.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //====================↑G10000↑====================
         
         //====================↓T10000↓====================
@@ -1248,7 +1256,8 @@ public class ReportExportService implements ReportExportManager {
         U10000DividendDataList.add(U10000DividendSumData);
         dividend.put("list", U10000DividendDataList);
         dividend.put("count", U10000DividendDataList.size());
-        dividend.put("dataSumCheck", this.dao.findForObject("UExportMapper.checkIfU10000DividendHasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("UExportMapper.checkIfU10000DividendHasDataForReport", queryParam);
+        dividend.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //--------------------↑U10000.dividend↑--------------------
         //--------------------↓U10000.other_r↓--------------------
         Map<String,Object> other_r = new HashMap<>();
@@ -1266,7 +1275,8 @@ public class ReportExportService implements ReportExportManager {
         U10000OtherRDataList.add(U10000OtherRSumData);
         other_r.put("list", U10000OtherRDataList);
         other_r.put("count", U10000OtherRDataList.size());
-        other_r.put("dataSumCheck", this.dao.findForObject("UExportMapper.checkIfU10000OtherRHasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("UExportMapper.checkIfU10000OtherRHasDataForReport", queryParam);
+        other_r.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //--------------------↑U10000.other_r↑--------------------
         //--------------------↓U10000.trxFee↓--------------------
         Map<String,Object> trxFee = new HashMap<>();
@@ -1284,7 +1294,8 @@ public class ReportExportService implements ReportExportManager {
         U10000TrxFeeDataList.add(U10000TrxFeeSumData);
         trxFee.put("list", U10000TrxFeeDataList);
         trxFee.put("count", U10000TrxFeeDataList.size());
-        trxFee.put("dataSumCheck", this.dao.findForObject("UExportMapper.checkIfU10000TrxFeeHasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("UExportMapper.checkIfU10000TrxFeeHasDataForReport", queryParam);
+        trxFee.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //--------------------↑U10000.trxFee↑--------------------
         //--------------------↓U10000.other_c↓--------------------
         Map<String,Object> other_c = new HashMap<>();
@@ -1302,7 +1313,8 @@ public class ReportExportService implements ReportExportManager {
         U10000OtherCDataList.add(U10000OtherCSumData);
         other_c.put("list", U10000OtherCDataList); 
         other_c.put("count", U10000OtherCDataList.size());
-        other_c.put("dataSumCheck", this.dao.findForObject("UExportMapper.checkIfU10000OtherCHasDataForReport", queryParam));
+        dataSumCheck = this.dao.findForObject("UExportMapper.checkIfU10000OtherCHasDataForReport", queryParam);
+        other_c.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //--------------------↑U10000.other_c↑--------------------
         U10000.put("interest", interest);
         U10000.put("importData", importData);
@@ -1657,7 +1669,8 @@ public class ReportExportService implements ReportExportManager {
         }
         mgerHoldFund.put("levels", levels);
         mgerHoldFund.put("levelsCount", levels.size());
-        mgerHoldFund.put("dataSumCheck", this.dao.findForObject("IExportMapper.checkIfIMgerHoldFundHasDataForReport", queryParam));
+        Object dataSumCheck2 = this.dao.findForObject("IExportMapper.checkIfIMgerHoldFundHasDataForReport", queryParam);
+        mgerHoldFund.put("dataSumCheck", dataSumCheck2 == null ? 0d : dataSumCheck2);
         //--------------------↑I.mgerHoldFund↑--------------------
         //--------------------↓I.unmgerHoldFund↓--------------------
         Map<String, Object> unmgerHoldFund = new HashMap<String,Object>();
@@ -1802,7 +1815,8 @@ public class ReportExportService implements ReportExportManager {
         }
         T310.put("levels", levels);
         T310.put("levelCount", levels.size());
-        T310.put("dataSumCheck", this.dao.findForObject("TExportMapper.checkIfT310DataHasDataForReport", queryParam));
+        Object dataSumCheck = this.dao.findForObject("TExportMapper.checkIfT310DataHasDataForReport", queryParam);
+        T310.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //====================↑T310↑====================
         
         result.put("T310", T310);
