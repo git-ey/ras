@@ -10467,7 +10467,7 @@
    <Row>
     <Cell ss:StyleID="s10070" ss:Formula="=IF(COUNTIF(RC[18],&quot;*卖出*&quot;)+COUNTIF(RC[18],&quot;*买入*&quot;)+COUNTIF(RC[18],&quot;*回购*&quot;)+COUNTIF(RC[18],&quot;*卖出*&quot;)+COUNTIF(RC[18],&quot;*卖出*&quot;)=1,&quot;买入&quot;,IF(COUNTIF(RC[18],&quot;*卖出*&quot;)+COUNTIF(RC[18],&quot;*买入*&quot;)+COUNTIF(RC[18],&quot;*回购*&quot;)+COUNTIF(RC[18],&quot;*卖出*&quot;)+COUNTIF(RC[18],&quot;*卖出*&quot;)=3,&quot;卖出&quot;,&quot;&quot;))"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s10070" ss:Formula="=IF(COUNTIF(RC[17],&quot;*股票*&quot;)+COUNTIF(RC[17],&quot;*券*&quot;)+COUNTIF(RC[17],&quot;*券*&quot;)=1,&quot;股票&quot;,IF(COUNTIF(RC[17],&quot;*股票*&quot;)+COUNTIF(RC[17],&quot;*券*&quot;)+COUNTIF(RC[17],&quot;*券*&quot;)=2,&quot;债券&quot;,&quot;&quot;))"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s10070" ss:Formula="=IF(LEN(RC[17])=5,&quot;上海&quot;,IF(LEN(RC[17])=6,&quot;深圳&quot;,&quot;&quot;))"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s10070" ss:Formula="=IF(LEN(RC[17])&lt;=5,&quot;上海&quot;,IF(LEN(RC[17])=6,&quot;深圳&quot;,&quot;&quot;))"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s10070"><Data ss:Type="String">${item.transactionDate!}</Data></Cell>
     <Cell ss:StyleID="s10085"><Data ss:Type="String">${item.stockCode!}</Data></Cell>
     <Cell ss:StyleID="s10085"><Data ss:Type="String">${item.stockName!}</Data></Cell>
