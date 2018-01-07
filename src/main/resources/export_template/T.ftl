@@ -8747,8 +8747,8 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
@@ -8835,8 +8835,8 @@
     <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-T!R14C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s277"/>
     <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s278"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -8961,8 +8961,8 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
@@ -9049,8 +9049,8 @@
     <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-T!R14C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s277"/>
     <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s278"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -9313,8 +9313,8 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
@@ -9401,8 +9401,8 @@
     <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-T!R14C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s277"/>
     <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s278"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -9673,8 +9673,8 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
@@ -9761,8 +9761,8 @@
     <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-T!R14C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s277"/>
     <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s278"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -10000,8 +10000,8 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
@@ -10088,8 +10088,8 @@
     <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-T!R14C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s277"/>
     <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s278"/>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s278"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
