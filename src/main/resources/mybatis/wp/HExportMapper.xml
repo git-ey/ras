@@ -6,7 +6,7 @@
         SELECT
             H.EY_ACCOUNT_NUM as accountNum,
             H.ITEM as item,
-            IFNULL(H.TYPE, 'NULL') as type,
+            IF(H.TYPE IS NULL OR H.TYPE = '', 'NULL', H.TYPE) as type,
             H.AMOUNT_ADJ_CR as crAmountAdj,
             H.AMOUNT_ADJ_DR as drAmountAdj,
             H.AMOUNT_AUDIT_LAST as amountAuditLast

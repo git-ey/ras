@@ -179,15 +179,8 @@ public class HExportService extends BaseExportService implements HExportManager{
         Map<String,Object> attr19 = CollectionUtils.isEmpty(temp.get("COST")) ? new HashMap<>() : temp.get("COST").get(0);
         Map<String,Object> attr20 = CollectionUtils.isEmpty(temp.get("MKT_VALUE")) ? new HashMap<>() : temp.get("MKT_VALUE").get(0);
         Map<String,Object> attr21 = CollectionUtils.isEmpty(temp.get("APPRECIATION")) ? new HashMap<>() : temp.get("APPRECIATION").get(0);
-        temp = groups.get("买入返售金融资产 ")==null ? new HashMap<>() : groups.get("买入返售金融资产 ");
-        Map<String,Object> attr22 = null;
-        if(CollectionUtils.isNotEmpty(temp.get("NULL"))) {
-            attr22 = temp.get("NULL").get(0);
-        }else if(CollectionUtils.isNotEmpty(temp.get(StringUtils.EMPTY))) {
-            attr22 = temp.get(StringUtils.EMPTY).get(0);
-        }else {
-            attr22 = new HashMap<>();
-        }
+        temp = groups.get("买入返售金融资产")==null ? new HashMap<>() : groups.get("买入返售金融资产");
+        Map<String,Object> attr22 = CollectionUtils.isEmpty(temp.get("NULL")) ? new HashMap<>() : temp.get("NULL").get(0);
         result.put("attr1", attr1);
         result.put("attr2", attr2);
         result.put("attr3", attr3);

@@ -6546,15 +6546,27 @@
    </#list>
    </#if>
    <Row>
+    <Cell ss:StyleID="s296"/>
+    <Cell ss:StyleID="s175"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s180"/>
+    <Cell ss:StyleID="s181"/>
+    <Cell ss:StyleID="s262"/>
+    <Cell ss:StyleID="s181"/>
+    <Cell ss:StyleID="s181"/>
+    <Cell ss:StyleID="s52"/>
+   </Row>
+   <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s182"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s273" ss:Formula="=SUM(R[${(-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s273" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s52"/>
    </Row>
    <Row ss:StyleID="s189">
@@ -6612,14 +6624,24 @@
    </#list>
    </#if>
    <Row>
+    <Cell ss:Index="2" ss:StyleID="s175"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s180"/>
+    <Cell ss:StyleID="s181"/>
+    <Cell ss:StyleID="s262"/>
+    <Cell ss:StyleID="s181"/>
+    <Cell ss:StyleID="s181"/>
+   </Row>
+   <Row>
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s273" ss:Formula="=SUM(R[${(-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s273" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row/>
    <Row/>
@@ -6699,7 +6721,7 @@
    <#list H10000.fairValues.toolList as item>
    <Row>
     <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">——${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s185"><Data ss:Type="String">${item.item!}</Data></Cell>
     <Cell ss:StyleID="s271"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s271"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s52"/>
@@ -7200,13 +7222,26 @@
    </#list>
    </#if>
    <Row>
+    <Cell ss:StyleID="s298"/>
+    <Cell ss:StyleID="s253"/>
+    <Cell ss:StyleID="s254"/>
+    <Cell ss:StyleID="s243"/>
+    <Cell ss:StyleID="s282"/>
+    <Cell ss:StyleID="s250"/>
+    <Cell ss:StyleID="s282"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+   </Row>
+   <Row>
     <Cell ss:StyleID="s297"/>
     <Cell ss:StyleID="s71"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s253"/>
     <Cell ss:StyleID="s253"/>
     <Cell ss:StyleID="s316"/>
-    <Cell ss:StyleID="s250" ss:Formula="=SUM(R[${(-H11000.saleIn.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s282" ss:Formula="=SUM(R[${(-H11000.saleIn.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s250" ss:Formula="=SUM(R[${(-1-H11000.saleIn.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s282" ss:Formula="=SUM(R[${(-1-H11000.saleIn.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
