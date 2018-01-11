@@ -166,6 +166,7 @@
     
     <select id="selectH800InterestTestData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
+		    H800IT.HEAD_ID AS headId,
 		    H800IT.ACCOUNT_NUM AS accountNum,
 		    H800IT.ATTR3 AS `code`,
 		    H800IT.ATTR4 AS shortName,
@@ -205,6 +206,7 @@
     
     <select id="selectH800InterestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
+            H800ID.HEAD_ID as headId,
 		    H800ID.ACCOUNT_NUM as accountNum,
 		    H800ID.ACCOUNT_DES as accountDes,
 		    H800ID.BOND_CODE as bondCode,

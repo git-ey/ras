@@ -447,15 +447,15 @@ public class HExportService extends BaseExportService implements HExportManager{
         if(interestDetailMetaDataList == null) {
             interestDetailMetaDataList = new ArrayList<>();
         }
-        List<String> headAccountNums = interestTestMetaDataList.stream().map(item -> {
-            return String.valueOf(item.get("accountNum"));
+        List<String> headIds = interestTestMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("headId"));
         }).distinct().collect(Collectors.toList());
         Map<Object, List<Map<String, Object>>> groups = interestDetailMetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = (Map<String,Object>)item;
-            return map.get("accountNum");
+            return map.get("headId");
         }));
-        for(String headAccountNum : headAccountNums) {
-            List<Map<String, Object>> tempList = groups.get(headAccountNum);
+        for(String headId : headIds) {
+            List<Map<String, Object>> tempList = groups.get(headId);
             if(CollectionUtils.isNotEmpty(tempList)) {
                 Map<String, Object> tempMap = new HashMap<String,Object>();
                 tempMap.put("list", tempList);
