@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -256,6 +255,9 @@ public class IExportService extends BaseExportService implements IExportManager{
         List<String> levelNames = salesFeeMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
         }).distinct().collect(Collectors.toList());
+        List<String> partyShortNames = salesFeeMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("partyShortName"));
+        }).distinct().collect(Collectors.toList());
         Map<String, Map<String, List<Map<String, Object>>>> groups = salesFeeMetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String, Object> map = (Map<String, Object>)item;
             return String.valueOf(map.get("partyShortName"));
@@ -263,23 +265,32 @@ public class IExportService extends BaseExportService implements IExportManager{
             Map<String, Object> map = (Map<String, Object>)item;
             return String.valueOf(map.get("level"));
         })));
-        for(Entry<String, Map<String, List<Map<String, Object>>>> entry : groups.entrySet()) {
+        for(String partyShortName : partyShortNames) {
+            if("null".equals(partyShortName)) {
+                continue;
+            }
+            
             Map<String, Object> middleMap = new HashMap<String,Object>();
             List<Map<String,Object>> levelDataList = new ArrayList<>();
             
-            String partyShortName = entry.getKey();
-            Map<String, List<Map<String, Object>>> levelMap = entry.getValue();
+            Map<String, List<Map<String, Object>>> levelMap = groups.get(partyShortName);
+            if(levelMap == null) {
+                levelMap = new HashMap<>();
+            }
             
             Double salesCommisionAmtSum = new Double(0d);
             Double salesCommisionAmtLastSum = new Double(0d);
             for(String levelName : levelNames) {
                 List<Map<String, Object>> oneLevelList = levelMap.get(levelName);
+                Map<String, Object> temp = null;
                 if(CollectionUtils.isNotEmpty(oneLevelList)) {
-                    Map<String, Object> temp = oneLevelList.get(0);
-                    levelDataList.add(temp);
-                    salesCommisionAmtSum += (temp.get("salesCommisionAmt")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmt"))));
-                    salesCommisionAmtLastSum += (temp.get("salesCommisionAmtLast")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmtLast"))));
+                    temp = oneLevelList.get(0);
+                }else {
+                    temp = new HashMap<>();
                 }
+                levelDataList.add(temp);
+                salesCommisionAmtSum += (temp.get("salesCommisionAmt")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmt"))));
+                salesCommisionAmtLastSum += (temp.get("salesCommisionAmtLast")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmtLast"))));
             }
             
             Map<String, Object> one = null;

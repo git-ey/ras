@@ -1439,7 +1439,7 @@
    <#if I.rp.count != 0>
    <#list I.rp.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s131"><Data ss:Type="String">${item.rpName!}（“${item.rpNameAbbr!}”）</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s131"><Data ss:Type="String">${item.rpName!}<#if item.sort?? && item.sort != 1>（“${item.rpNameAbbr!}”）</#if></Data></Cell>
     <Cell ss:StyleID="s127"><Data ss:Type="String">${item.relationship!}</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
@@ -2575,7 +2575,7 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s214"><Data ss:Type="String">T300</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">${I.mgerHoldFund.item7.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="String">${I.mgerHoldFund.item7.itemName!}</Data></Cell>
     <#if extraFundInfo.levelShare == 'Y'>
     <#if I.mgerHoldFund.item7.count != 0>
     <#list I.mgerHoldFund.item7.levels as level>
@@ -2684,7 +2684,7 @@
    <Row ss:Height="27">
     <Cell ss:Index="2" ss:StyleID="s195"/>
     <Cell ss:StyleID="s195"><Data ss:Type="String">基金份额</Data></Cell>
-    <Cell ss:StyleID="s218"><Data ss:Type="String">占基金/占各级基金相应总份额的比例</Data></Cell>
+    <Cell ss:StyleID="s195"><Data ss:Type="String"><#if extraFundInfo.levelShare != 'Y'>占基金<#else>占各级基金相应</#if>总份额的比例</Data></Cell>
     <Cell ss:StyleID="s195"><Data ss:Type="String">基金份额</Data></Cell>
     <Cell ss:StyleID="s195"><Data ss:Type="String">占基金总份额的比例</Data></Cell>
     <Cell ss:StyleID="s122"/>

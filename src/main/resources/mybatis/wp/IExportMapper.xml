@@ -19,7 +19,8 @@
 		SELECT
 		    IRP.RP_NAME AS rpName,
 		    IRP.RP_NAME_ABBR AS rpNameAbbr,
-		    IRP.RELATIONSHIP AS relationship 
+		    IRP.RELATIONSHIP AS relationship,
+		    IRP.SORT AS sort
 		FROM
 		    wp_i_rp IRP 
 		WHERE
