@@ -1990,9 +1990,19 @@
    </#list>
    </#if>
    <Row ss:StyleID="s153">
+    <Cell ss:Index="2" ss:StyleID="s154"/>
+    <Cell ss:StyleID="s207"/>
+    <Cell ss:StyleID="s207"/>
+    <Cell ss:StyleID="s105"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s152"/>
+    <Cell ss:StyleID="s152"/>
+    <Cell ss:StyleID="s152"/>
+   </Row>
+   <Row ss:StyleID="s153">
     <Cell ss:Index="2" ss:StyleID="s154"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s105"/>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s152"/>
@@ -2050,10 +2060,20 @@
    </Row>
    </#list>
    </#if>
+   <Row ss:StyleID="s153">
+    <Cell ss:Index="2" ss:StyleID="s154"/>
+    <Cell ss:StyleID="s207"/>
+    <Cell ss:StyleID="s207"/>
+    <Cell ss:StyleID="s105"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s152"/>
+    <Cell ss:StyleID="s152"/>
+    <Cell ss:StyleID="s152"/>
+   </Row>
    <Row ss:StyleID="s237">
     <Cell ss:Index="2" ss:StyleID="s154"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s105"/>
     <Cell ss:StyleID="s240"/>
     <Cell ss:StyleID="s241"/>
@@ -2107,14 +2127,24 @@
    </#list>
    </#if>
    <Row>
+    <Cell ss:Index="2" ss:StyleID="s112"/>
+    <#if I.salesFee.levelCount != 0>
+    <#list I.salesFee.levelNames as name>
+    <Cell ss:StyleID="s207"/>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s207"/>
+    <Cell ss:StyleID="s207"/>
+   </Row>
+   <Row>
     <Cell ss:Index="2" ss:StyleID="s112"><Data ss:Type="String">合计</Data></Cell>
     <#if I.salesFee.levelCount != 0>
     <#list I.salesFee.levelNames as name>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s113"/>
@@ -2158,16 +2188,26 @@
    </Row>
    </#list>
    </#if>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s112"/>
+    <#if I.salesFee.levelCount != 0>
+    <#list I.salesFee.levelNames as name>
+    <Cell ss:StyleID="s207"/>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s207"/>
+    <Cell ss:StyleID="s207"/>
+   </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s112"><Data ss:Type="String">合计</Data></Cell>
     <#if I.salesFee.levelCount != 0>
     <#list I.salesFee.levelNames as name>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2327,14 +2367,52 @@
     <Cell ss:StyleID="s116"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.mgerHoldFund.item10Flag == 'Y'>
    <Row ss:Height="27">
     <Cell ss:StyleID="s173"><Data ss:Type="String">IIXXX</Data></Cell>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item1.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item1.count == 0>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item10.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item10.count == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
     <#else>
-    <#list I.mgerHoldFund.item1.levels as level>
+    <#list I.mgerHoldFund.item10.levels as level>
+    <#if level_index == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   </#if>
+   <#if I.mgerHoldFund.item11Flag == 'Y'>
+   <Row ss:Height="27">
+    <Cell ss:StyleID="s173"><Data ss:Type="String"><#if I.mgerHoldFund.item10Flag != 'Y'>IIXXX</#if></Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item11.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item11.count == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <#list I.mgerHoldFund.item11.levels as level>
+    <#if level_index == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   </#if>
+   <Row>
+    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item20.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item20.count == 0>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <#list I.mgerHoldFund.item20.levels as level>
     <#if level_index == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
@@ -2346,12 +2424,12 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item2.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item2.count == 0>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item30.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item30.count == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
     <#else>
-    <#list I.mgerHoldFund.item2.levels as level>
+    <#list I.mgerHoldFund.item30.levels as level>
     <#if level_index == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
@@ -2363,12 +2441,12 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item3.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item3.count == 0>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item40.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item40.count == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
     <#else>
-    <#list I.mgerHoldFund.item3.levels as level>
+    <#list I.mgerHoldFund.item40.levels as level>
     <#if level_index == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
@@ -2380,40 +2458,23 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item4.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item4.count == 0>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
-    <#else>
-    <#list I.mgerHoldFund.item4.levels as level>
-    <#if level_index == 0>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
-    </#if>
-    </#list>
-    </#if>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item50.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-3-I.mgerHoldFund.dynamicCount)?string('0')}]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-3-I.mgerHoldFund.dynamicCount)?string('0')}]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item5.itemName!}</Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s216"><Data ss:Type="String">${I.mgerHoldFund.item6.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item6.count == 0>
+    <Cell ss:StyleID="s216"><Data ss:Type="String">${I.mgerHoldFund.item60.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item60.count == 0>
     <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="Number"></Data></Cell>
     <#else>
-    <#list I.mgerHoldFund.item6.levels as level>
+    <#list I.mgerHoldFund.item60.levels as level>
     <#if level_index == 0>
     <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(level.amountLast!0)?string('0.######')}</Data></Cell>
     </#if>
     </#list>
     </#if>
@@ -2422,8 +2483,8 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s214"><Data ss:Type="String">T300</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">${I.mgerHoldFund.item7.itemName!}</Data></Cell>
-    <Cell ss:StyleID="s205"><Data ss:Type="Number">${(I.mgerHoldFund.item7.firstCol.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="String">${I.mgerHoldFund.item70.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s205"><Data ss:Type="Number">${(I.mgerHoldFund.item70.firstCol.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s210"/>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
@@ -2485,11 +2546,43 @@
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
    </Row>
+   <#if I.mgerHoldFund.item10Flag == 'Y'>
    <Row ss:Height="27" ss:StyleID="s119">
     <Cell ss:StyleID="s173"><Data ss:Type="String">IIXXX</Data></Cell>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item1.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item1.count != 0>
-    <#list I.mgerHoldFund.item1.levels as level>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item10.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item10.count != 0>
+    <#list I.mgerHoldFund.item10.levels as level>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   </#if>
+   <#if I.mgerHoldFund.item11Flag == 'Y'>
+   <Row ss:Height="27" ss:StyleID="s119">
+    <Cell ss:StyleID="s173"><Data ss:Type="String"><#if I.mgerHoldFund.item10Flag != 'Y'>IIXXX</#if></Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item11.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item11.count != 0>
+    <#list I.mgerHoldFund.item11.levels as level>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   </#if>
+   <Row ss:StyleID="s119">
+    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item20.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item20.count != 0>
+    <#list I.mgerHoldFund.item20.levels as level>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
     </#list>
@@ -2501,9 +2594,9 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item2.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item2.count != 0>
-    <#list I.mgerHoldFund.item2.levels as level>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item30.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item30.count != 0>
+    <#list I.mgerHoldFund.item30.levels as level>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
     </#list>
@@ -2515,9 +2608,9 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item3.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item3.count != 0>
-    <#list I.mgerHoldFund.item3.levels as level>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item40.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item40.count != 0>
+    <#list I.mgerHoldFund.item40.levels as level>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
     </#list>
@@ -2529,11 +2622,11 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item4.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item4.count != 0>
-    <#list I.mgerHoldFund.item4.levels as level>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item50.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item50.count != 0>
+    <#list I.mgerHoldFund.item50.levels as level>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-3-I.mgerHoldFund.dynamicCount)?string('0')}]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-3-I.mgerHoldFund.dynamicCount)?string('0')}]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
     <Cell ss:StyleID="s118"/>
@@ -2543,29 +2636,15 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item5.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item5.count != 0>
-    <#list I.mgerHoldFund.item5.levels as level>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s207" ss:Formula="=SUM(R[-4]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    </#list>
-    </#if>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-   </Row>
-   <Row ss:StyleID="s119">
-    <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="String">${I.mgerHoldFund.item6.itemName!}</Data></Cell>
-    <#if I.mgerHoldFund.item6.count != 0>
-    <#list I.mgerHoldFund.item6.levels as level>
+    <Cell ss:StyleID="s203"><Data ss:Type="String">${I.mgerHoldFund.item60.itemName!}</Data></Cell>
+    <#if I.mgerHoldFund.item60.count != 0>
+    <#list I.mgerHoldFund.item60.levels as level>
     <#if extraFundInfo.levelShare == 'Y'>
     <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number"></Data></Cell>
     <#else>
     <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C[${(-2*level_index)?string('0')}]"><Data ss:Type="Number"></Data></Cell>
     </#if>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(level.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(level.amountLast!0)?string('0.######')}</Data></Cell>
     </#list>
     </#if>
     <Cell ss:StyleID="s118"/>
@@ -2575,16 +2654,16 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s214"><Data ss:Type="String">T300</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">${I.mgerHoldFund.item7.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="String">${I.mgerHoldFund.item70.itemName!}</Data></Cell>
     <#if extraFundInfo.levelShare == 'Y'>
-    <#if I.mgerHoldFund.item7.count != 0>
-    <#list I.mgerHoldFund.item7.levels as level>
+    <#if I.mgerHoldFund.item70.count != 0>
+    <#list I.mgerHoldFund.item70.levels as level>
     <Cell ss:StyleID="s205"><Data ss:Type="Number">${(level.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s210"/>
     </#list>
     </#if>
     <#else>
-    <Cell ss:StyleID="s205"><Data ss:Type="Number">${(I.mgerHoldFund.item7.firstCol.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s205"><Data ss:Type="Number">${(I.mgerHoldFund.item70.firstCol.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s210"/>
     </#if>
     <Cell ss:StyleID="s118"/>

@@ -328,13 +328,16 @@ public class IExportService extends BaseExportService implements IExportManager{
         
         //========process dataMap for mgerHoldFund view begin========
         Map<String, Object> mgerHoldFund = new HashMap<String,Object>();
-        String[] sorts = {"10", "20", "30", "40", "50", "60", "70"};
+        //String[] sorts = {"10", "20", "30", "40", "50", "60", "70"};
         Map<String,Object> resultMap = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> mgerHoldFundMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIMgerHoldFundData", queryMap);
         if(mgerHoldFundMetaDataList == null) {
             mgerHoldFundMetaDataList = new ArrayList<>();
         }
+        List<String> sorts = mgerHoldFundMetaDataList.stream().map(item -> {
+            return String.valueOf(item.get("sort"));
+        }).distinct().collect(Collectors.toList());
         levelNames = mgerHoldFundMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
         }).distinct().collect(Collectors.toList());
@@ -375,9 +378,22 @@ public class IExportService extends BaseExportService implements IExportManager{
         mgerHoldFund.put("levelNames", levelNames);
         mgerHoldFund.put("levelCount", levelNames.size());
         for(String sort : sorts) {
-            mgerHoldFund.put("item" + sort.substring(0, 1), resultMap.get(sort));
+            mgerHoldFund.put("item" + sort, resultMap.get(sort));
         }
-        
+        String item10Flag = "N";
+        String item11Flag = "N";
+        int dynamicCount = 0;
+        if(sorts.contains("10")) {
+            item10Flag = "Y";
+            dynamicCount++;
+        }
+        if(sorts.contains("11")) {
+            item11Flag = "Y";
+            dynamicCount++;
+        }
+        mgerHoldFund.put("item10Flag", item10Flag);
+        mgerHoldFund.put("item11Flag", item11Flag);
+        mgerHoldFund.put("dynamicCount", dynamicCount);
         //========process dataMap for mgerHoldFund view end========
         
         //========process dataMap for unmgerHoldFund view begin========

@@ -158,7 +158,7 @@
     </select>
     
     <select id="selectIMgerHoldFundData" parameterType="java.util.Map" resultType="java.util.Map">
-		SELECT
+        SELECT
 		    IMHF.`LEVEL` AS `level`,
 		    IMHF.SORT AS sort,
 		    IMHF.ITEM AS item,
@@ -168,11 +168,14 @@
 		    wp_i_mger_hold_fund IMHF 
 		WHERE
 		    1 = 1  
+		AND IMHF.ITEM IS NOT NULL
+		AND IMHF.ITEM != ''
 		AND IMHF.STATUS = 'Y'
-        AND IMHF.FUND_ID = #{fundId}
-        AND IMHF.PERIOD = #{period}
-        ORDER BY
-            IMHF.SORT
+		AND IMHF.FUND_ID = #{fundId}
+		AND IMHF.PERIOD = #{period}
+		ORDER BY
+		    IMHF.SORT,
+		    IF(IMHF.`LEVEL` = '母基金', '0', IMHF.`LEVEL`)
     </select>
     
     <select id="checkIfIMgerHoldFundHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
@@ -204,7 +207,8 @@
         AND IUHF.FUND_ID = #{fundId}
         AND IUHF.PERIOD = #{period}
         ORDER BY
-            IUHF.SORT
+            IUHF.SORT,
+            IF(IUHF.`LEVEL` = '母基金', '0', IUHF.`LEVEL`)
     </select>
     
     <select id="selectIBankData" parameterType="java.util.Map" resultType="java.util.Map">
