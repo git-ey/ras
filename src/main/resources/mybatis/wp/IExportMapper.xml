@@ -112,7 +112,8 @@
         AND ISF.FUND_ID = #{fundId}
         AND ISF.PERIOD = #{period}
         ORDER BY
-            ISF.SORT
+            ISF.SORT,
+            IF(ISF.`LEVEL` = '母基金', '0', ISF.`LEVEL`)
     </select>
     
     <select id="selectISalesFeeSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">

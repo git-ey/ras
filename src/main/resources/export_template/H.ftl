@@ -5658,7 +5658,7 @@
     <Cell ss:StyleID="s110"><Data ss:Type="String">${item.buyOutBond!}</Data></Cell>
     <Cell ss:Formula="=RC[-3]-RC[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s260"><#if item.valuationDay??><Data ss:Type="DateTime">${item.valuationDay!}T00:00:00.000</Data></#if></Cell>
-    <Cell ss:Formula="=RC[-1]-RC[-6]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Formula="=RC[-1]-RC[-6]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s234" ss:Formula="=(RC[-5]-RC[-8])/RC[-3]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s222"/>
     <Cell ss:StyleID="s222"/>
