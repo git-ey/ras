@@ -2387,7 +2387,7 @@
    </Row>
    </#if>
    <#if I.mgerHoldFund.item11Flag == 'Y'>
-   <Row ss:Height="27">
+   <Row>
     <Cell ss:StyleID="s173"><Data ss:Type="String"><#if I.mgerHoldFund.item10Flag != 'Y'>IIXXX</#if></Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item11.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item11.count == 0>
@@ -2563,7 +2563,7 @@
    </Row>
    </#if>
    <#if I.mgerHoldFund.item11Flag == 'Y'>
-   <Row ss:Height="27" ss:StyleID="s119">
+   <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"><Data ss:Type="String"><#if I.mgerHoldFund.item10Flag != 'Y'>IIXXX</#if></Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item11.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item11.count != 0>
