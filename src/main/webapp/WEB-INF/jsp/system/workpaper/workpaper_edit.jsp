@@ -57,6 +57,24 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">导出路径:</td>
 								<td><input type="text" name="OUTBOND_PATH" id="OUTBOND_PATH" value="${outbondPath}" maxlength="480" title="导出路径" style="width:98%;"/></td>
 							</tr>
+							<tr>	
+								<td style="width:100px;text-align: right;padding-top: 13px;">底稿类型:</td>
+								<td>
+								    <select class="chosen-select form-control" name="WP_TYPE" id="WP_TYPE" data-placeholder="请选择" style="width:49%;">
+								        <option value="C" <c:if test="${pd.WP_TYPE == 'C'}">selected</c:if>>C</option>
+								        <option value="E" <c:if test="${pd.WP_TYPE == 'E'}">selected</c:if>>E</option>
+								        <option value="G" <c:if test="${pd.WP_TYPE == 'G'}">selected</c:if>>C</option>
+								        <option value="H" <c:if test="${pd.WP_TYPE == 'H'}">selected</c:if>>H</option>
+								        <option value="H_SUM" <c:if test="${pd.WP_TYPE == 'H_SUM'}">selected</c:if>>H旗下</option>
+								        <option value="I" <c:if test="${pd.WP_TYPE == 'I'}">selected</c:if>>I</option>
+								        <option value="N" <c:if test="${pd.WP_TYPE == 'N'}">selected</c:if>>N</option>
+								        <option value="P" <c:if test="${pd.WP_TYPE == 'P'}">selected</c:if>>P</option>
+								        <option value="T" <c:if test="${pd.WP_TYPE == 'T'}">selected</c:if>>T</option>
+								        <option value="U" <c:if test="${pd.WP_TYPE == 'U'}">selected</c:if>>U</option>
+								        <option value="V" <c:if test="${pd.WP_TYPE == 'V'}">selected</c:if>>V</option>
+								    </select>
+								</td>
+							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">
 									<a class="btn btn-mini btn-primary" onclick="save();">导出</a>

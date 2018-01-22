@@ -172,8 +172,10 @@ public class WorkPaperService implements WorkPaperManager{
 	            }
 	        }
 	        try {
-	            exportPath += (periodStr + File.separatorChar + "H_SUM" + File.separatorChar) ;
-	            this.hSumExportService.doExport(exportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr);
+	        	if(null == pd.get("WP_TYPE") || "H_SUM".equals(pd.get("WP_TYPE"))){
+		            exportPath += (periodStr + File.separatorChar + "H_SUM" + File.separatorChar) ;
+		            this.hSumExportService.doExport(exportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr);
+	        	}
 	        }catch (Exception ex) {
 	            logger.error("H汇总底稿导出异常: " + pd.getString("FIRM_CODE") + " " + periodStr, ex);
 	            errorMsg += (ex.getMessage() + '\n');

@@ -77,7 +77,7 @@ public class WorkPaperController extends BaseController {
 		pd.put("RUN_DATETIME", Tools.date2Str(new Date()));
 		pd.put("RESULT", "R");// 运行中
 		// 组装运行参数
-		pd.put("RUN_PARAM", pd.getString("PERIOD") + "," + pd.getString("FIRM_CODE") + "," + pd.getString("FUND_ID"));
+		pd.put("RUN_PARAM", pd.getString("PERIOD") + "," + pd.getString("FIRM_CODE") + "," + pd.getString("FUND_ID") + "," + pd.getString("WP_TYPE"));
 		workpaperService.save(pd);
 		// 执行并发程序
 		taskExecutor.submit(new WorkPaperRunWorker(workpaperService, pd));
