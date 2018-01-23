@@ -84,6 +84,10 @@ public class WorkPaperService implements WorkPaperManager{
     private static final String PD_FIELD_UFLAG = "UFLAG";
     private static final String PD_FIELD_VFLAG = "VFLAG";
     private static final String PD_FIELD_IFLAG = "IFLAG";
+    private static final String PD_FIELD_H_SUMFLAG = "H_SUMFLAG";
+    
+    private static final String PD_FIELD_WP_TYPE = "WP_TYPE";
+    private static final String PD_FIELD_FUND_ID = "FUND_ID";
     
     private final Logger logger = Logger.getLogger(WorkPaperService.class);
 	
@@ -153,6 +157,7 @@ public class WorkPaperService implements WorkPaperManager{
 	public void exportWorkPaper(PageData pd) throws Exception {
 //		{
 //		    FIRM_CODE=FG, 
+//	        WP_TYPE=C,
 //		    PERIOD=20161231, 
 //		    OUTBOND_PATH=D:\wp\, 
 //		    FUND_ID=F100066-01
@@ -165,14 +170,14 @@ public class WorkPaperService implements WorkPaperManager{
 	        String errorMsg = StringUtils.EMPTY;
 	        for(PageData fundInfo : fundInfos) {
 	            try {
-	                this.exportOneFundWorkPaper(fundInfo, exportPath, periodStr);
+	                this.exportOneFundWorkPaper(fundInfo, exportPath, periodStr, pd.getString(PD_FIELD_WP_TYPE));
 	            }catch (Exception ex) {
 	                logger.error("底稿导出异常: " + fundInfo.getString("FUND_ID") + " " + fundInfo.getString("PERIOD"), ex);
 	                errorMsg += (ex.getMessage() + '\n');
 	            }
 	        }
 	        try {
-	        	if(null == pd.get("WP_TYPE") || "H_SUM".equals(pd.get("WP_TYPE"))){
+	        	if(StringUtils.isEmpty(pd.getString(PD_FIELD_WP_TYPE)) || PD_FIELD_H_SUMFLAG.equals(pd.getString(PD_FIELD_WP_TYPE))){
 		            exportPath += (periodStr + File.separatorChar + "H_SUM" + File.separatorChar) ;
 		            this.hSumExportService.doExport(exportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr);
 	        	}
@@ -194,41 +199,43 @@ public class WorkPaperService implements WorkPaperManager{
 	 * 
 	 * @param pd 从DataexportMapper中查询出的运行参数
 	 * @param exportPath 导出路径
+	 * @param periodStr 日期字符串
+	 * @param wpType 指定导出类型
 	 * @throws Exception
 	 */
-	private void exportOneFundWorkPaper(PageData pd, String exportPath, String periodStr) throws Exception {
-        final String fundId = pd.getString("FUND_ID");
+	private void exportOneFundWorkPaper(PageData pd, String exportPath, String periodStr, String wpType) throws Exception {
+        final String fundId = pd.getString(PD_FIELD_FUND_ID);
         final String fileIdentifier = fundId;
         exportPath += (periodStr + File.separatorChar) ;
         final String folderName = exportPath + fileIdentifier;
-        if (this.getExportFlag(pd, PD_FIELD_CFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_CFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_CFLAG.equals(wpType))) {
             this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_GFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_GFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_GFLAG.equals(wpType))) {
             this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_NFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_NFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_NFLAG.equals(wpType))) {
             this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_PFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_PFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_PFLAG.equals(wpType))) {
             this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_EFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_EFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_EFLAG.equals(wpType))) {
             this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_UFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_UFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_UFLAG.equals(wpType))) {
             this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_VFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_VFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_VFLAG.equals(wpType))) {
             this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_TFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_TFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_TFLAG.equals(wpType))) {
             this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_HFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_HFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_HFLAG.equals(wpType))) {
             this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_IFLAG)) {
+        if (this.getExportFlag(pd, PD_FIELD_IFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_IFLAG.equals(wpType))) {
             this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);
         }
 	}

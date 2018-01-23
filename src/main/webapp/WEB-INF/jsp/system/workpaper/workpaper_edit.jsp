@@ -61,17 +61,18 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">底稿类型:</td>
 								<td>
 								    <select class="chosen-select form-control" name="WP_TYPE" id="WP_TYPE" data-placeholder="请选择" style="width:49%;">
-								        <option value="C" <c:if test="${pd.WP_TYPE == 'C'}">selected</c:if>>C</option>
-								        <option value="E" <c:if test="${pd.WP_TYPE == 'E'}">selected</c:if>>E</option>
-								        <option value="G" <c:if test="${pd.WP_TYPE == 'G'}">selected</c:if>>C</option>
-								        <option value="H" <c:if test="${pd.WP_TYPE == 'H'}">selected</c:if>>H</option>
-								        <option value="H_SUM" <c:if test="${pd.WP_TYPE == 'H_SUM'}">selected</c:if>>H旗下</option>
-								        <option value="I" <c:if test="${pd.WP_TYPE == 'I'}">selected</c:if>>I</option>
-								        <option value="N" <c:if test="${pd.WP_TYPE == 'N'}">selected</c:if>>N</option>
-								        <option value="P" <c:if test="${pd.WP_TYPE == 'P'}">selected</c:if>>P</option>
-								        <option value="T" <c:if test="${pd.WP_TYPE == 'T'}">selected</c:if>>T</option>
-								        <option value="U" <c:if test="${pd.WP_TYPE == 'U'}">selected</c:if>>U</option>
-								        <option value="V" <c:if test="${pd.WP_TYPE == 'V'}">selected</c:if>>V</option>
+								        <option value="" <c:if test="${pd.WP_TYPE == ''}">selected</c:if>></option>
+								        <option value="CFLAG" <c:if test="${pd.WP_TYPE == 'C'}">selected</c:if>>C</option>
+								        <option value="EFLAG" <c:if test="${pd.WP_TYPE == 'E'}">selected</c:if>>E</option>
+								        <option value="GFLAG" <c:if test="${pd.WP_TYPE == 'G'}">selected</c:if>>C</option>
+								        <option value="HFLAG" <c:if test="${pd.WP_TYPE == 'H'}">selected</c:if>>H</option>
+								        <option value="H_SUMFLAG" <c:if test="${pd.WP_TYPE == 'H_SUM'}">selected</c:if>>H旗下</option>
+								        <option value="IFLAG" <c:if test="${pd.WP_TYPE == 'I'}">selected</c:if>>I</option>
+								        <option value="NFLAG" <c:if test="${pd.WP_TYPE == 'N'}">selected</c:if>>N</option>
+								        <option value="PFLAG" <c:if test="${pd.WP_TYPE == 'P'}">selected</c:if>>P</option>
+								        <option value="TFLAG" <c:if test="${pd.WP_TYPE == 'T'}">selected</c:if>>T</option>
+								        <option value="UFLAG" <c:if test="${pd.WP_TYPE == 'U'}">selected</c:if>>U</option>
+								        <option value="VFLAG" <c:if test="${pd.WP_TYPE == 'V'}">selected</c:if>>V</option>
 								    </select>
 								</td>
 							</tr>
