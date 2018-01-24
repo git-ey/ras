@@ -64,7 +64,7 @@
 								        <option value="" <c:if test="${pd.WP_TYPE == ''}">selected</c:if>></option>
 								        <option value="CFLAG" <c:if test="${pd.WP_TYPE == 'C'}">selected</c:if>>C</option>
 								        <option value="EFLAG" <c:if test="${pd.WP_TYPE == 'E'}">selected</c:if>>E</option>
-								        <option value="GFLAG" <c:if test="${pd.WP_TYPE == 'G'}">selected</c:if>>C</option>
+								        <option value="GFLAG" <c:if test="${pd.WP_TYPE == 'G'}">selected</c:if>>G</option>
 								        <option value="HFLAG" <c:if test="${pd.WP_TYPE == 'H'}">selected</c:if>>H</option>
 								        <option value="H_SUMFLAG" <c:if test="${pd.WP_TYPE == 'H_SUM'}">selected</c:if>>H旗下</option>
 								        <option value="IFLAG" <c:if test="${pd.WP_TYPE == 'I'}">selected</c:if>>I</option>
