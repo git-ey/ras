@@ -2416,7 +2416,7 @@
    <#if C400.main.count != 0>
    <#list C400.main.list as item>
    <Row>
-    <Cell ss:StyleID="s110"><Data ss:Type="String"><#if item_index == 0>CXX / CCxxx</#if></Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String"><#if item.confirmationNum?? && item.confirmationNum != ''>${item.confirmationNum!}<#else>CXX / CCxxx</#if></Data></Cell>
     <Cell ss:StyleID="s124"><Data ss:Type="String">${item.bankName!}</Data></Cell>
     <Cell ss:StyleID="s124"><Data ss:Type="String">${item.related!}</Data></Cell>
     <Cell ss:StyleID="s124"><Data ss:Type="Number">${(item.amount)?string('0.##')}</Data></Cell>

@@ -389,7 +389,7 @@
     
     <select id="selectH10000TFADiviatonSumData" parameterType="java.util.Map" resultType="java.lang.Object">
 	    SELECT
-		    H500MD.DIVIATON_EY AS diviatonEy 
+		    H500MD.DIVIATON_CLIENT AS diviatonClinet
 		FROM
 		    wp_h500_mmf_diviaton H500MD 
 		WHERE

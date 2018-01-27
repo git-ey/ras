@@ -79,6 +79,7 @@
     
     <select id="selectC400MainData" parameterType="java.util.Map" resultType="java.util.Map">
 		select
+		    C400.CONFIRMATION_NUM as confirmationNum,
 		    C400.BANK_NAME as bankName,
 		    C400.RELATED as related,
 		    C400.AMT as amount,
