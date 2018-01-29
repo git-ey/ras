@@ -221,10 +221,10 @@ public class ReportService implements ReportManager {
 		if(DateUtils.truncatedCompareTo(dateFrom, yearFirstDate, Calendar.DATE) >= 0) {
 		    if(dateTransform != null && DateUtils.truncatedEquals(dateFrom, dateTransform, Calendar.DATE)) {
 		        infoMap.put("CURRENT_INIT_SOURCE", TRANSFORM_DATE);
-		        infoMap.put("CURRENT_INIT_TEXT", "（基金合同转型日）");
+		        infoMap.put("CURRENT_INIT_TEXT", "基金合同转型日");
 		    }else {
 		        infoMap.put("CURRENT_INIT_SOURCE", CONTRACT_BEGIN_DATE);
-		        infoMap.put("CURRENT_INIT_TEXT", "（基金合同生效日）");
+		        infoMap.put("CURRENT_INIT_TEXT", "基金合同生效日");
 		    }
 		} else {
 			infoMap.put("CURRENT_INIT_SOURCE", BALANCE_SHEET_DATE);
@@ -253,7 +253,7 @@ public class ReportService implements ReportManager {
 			infoMap.put("CURRENT_PERIOD", year + "年度");
 		} else {
 			infoMap.put("CURRENT_PERIOD", this.getDateStr((Date) infoMap.get("CURRENT_INIT_DATE"))
-					+ infoMap.get("CURRENT_INIT_TEXT") + "至" + this.getDateStr((Date) infoMap.get("CURRENT_END_DATE")));
+					+ '（' + infoMap.get("CURRENT_INIT_TEXT") + '）' + "至" + this.getDateStr((Date) infoMap.get("CURRENT_END_DATE")));
 		}
 
 		// 本期截止日文本

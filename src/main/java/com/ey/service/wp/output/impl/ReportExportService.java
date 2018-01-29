@@ -1225,17 +1225,17 @@ public class ReportExportService implements ReportExportManager {
         
         importData.put("STOCKS_BS", STOCKS_BS);
         importData.put("STOCKS", STOCKS);
-        importData.put("STOCKS_R", STOCKS_BS);
+        importData.put("STOCKS_R", STOCKS_R);
         importData.put("STOCKS_P", STOCKS_P);
         importData.put("FUND", FUND);
         importData.put("BOND_BS", BOND_BS);
         importData.put("BOND", BOND);
-        importData.put("BOND_R", BOND_BS);
+        importData.put("BOND_R", BOND_R);
         importData.put("BOND_P", BOND_P);
         importData.put("ABS", ABS);
         importData.put("GOLD_BS", GOLD_BS);
         importData.put("GOLD", GOLD);
-        importData.put("GOLD_R", GOLD_BS);
+        importData.put("GOLD_R", GOLD_R);
         importData.put("GOLD_P", GOLD_P);
         importData.put("DI_WARRANT", DI_WARRANT);
         importData.put("DI_OTHER", DI_OTHER);
