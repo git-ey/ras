@@ -186,7 +186,7 @@
 				$("#FIRM_CODE").focus();
 			return false;
 			}
-			<!--
+			/*
 			if($("#MF").val()==""){
 				$("#MF").tips({
 					side:3,
@@ -217,7 +217,7 @@
 				$("#STRUCTURED").focus();
 			return false;
 			}
-			-->
+			*/
 			if($("#P1").val()==""){
 				$("#P1").tips({
 					side:3,

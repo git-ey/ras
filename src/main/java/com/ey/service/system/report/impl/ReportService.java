@@ -378,6 +378,11 @@ public class ReportService implements ReportManager {
 //			}
 		        
 		        // -------获取报告模板地址-------//
+		        String p1TempNameFinal = null;
+		        String p2TempNameFinal = null;
+		        String p3TempNameFinal = null;
+		        String p4TempNameFinal = null;
+		        String p5TempNameFinal = null;
 		        // 如果 本期起始日来源 为 “资产负债表日”取YOY,否则取Y
 		        if (dateMap.get("CURRENT_INIT_SOURCE").equals("资产负债表日")) {
 		            tempNameKey = "_YOY";
@@ -385,25 +390,25 @@ public class ReportService implements ReportManager {
 		            tempNameKey = "_Y";
 		        }
 		        // P1
-		        p1TempName = p1TempName + tempNameKey + ".ftl";
+		        p1TempNameFinal = p1TempName + tempNameKey + ".ftl";
 		        // P2
 		        // 如果选择此种规则，则按照基金区分模板
 		        if (pd.getString("P2").equals("P2_FSO_BF")) {
-		            p2TempName = p2TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
+		            p2TempNameFinal = p2TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
 		        } else {
-		            p2TempName = p2TempName + ".xml";
+		            p2TempNameFinal = p2TempName + ".xml";
 		        }
 		        // P3
-		        p3TempName = p3TempName + tempNameKey + ".ftl";
+		        p3TempNameFinal = p3TempName + tempNameKey + ".ftl";
 		        // P4
 		        // 如果选择此种规则，则按照基金区分模板
 		        if (pd.getString("P4").equals("P4_FSO_BF")) {
-		            p4TempName = p4TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
+		            p4TempNameFinal = p4TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
 		        } else {
-		            p4TempName = p4TempName + ".xml";
+		            p4TempNameFinal = p4TempName + ".xml";
 		        }
 		        // P5
-		        p5TempName = p5TempName + tempNameKey + ".ftl";
+		        p5TempNameFinal = p5TempName + tempNameKey + ".ftl";
 		        
 		        // 一段一段的整合报告
 		        exportParam.put("dateInfo", dateMap);
@@ -412,11 +417,11 @@ public class ReportService implements ReportManager {
 		        exportParam.put("FUND_ID", pfund.getString("FUND_ID"));
 		        
 		        Map<String,Object> partName = new HashMap<>();
-		        partName.put("P1", p1TempName);
-		        partName.put("P2", p2TempName);
-		        partName.put("P3", p3TempName);
-		        partName.put("P4", p4TempName);
-		        partName.put("P5", p5TempName);
+		        partName.put("P1", p1TempNameFinal);
+		        partName.put("P2", p2TempNameFinal);
+		        partName.put("P3", p3TempNameFinal);
+		        partName.put("P4", p4TempNameFinal);
+		        partName.put("P5", p5TempNameFinal);
 		        exportParam.put("partName", partName);
 		        exportParam.put("reportTempRootPath", reportTempRootPath);
 		        exportParam.put("reportOutBoundPath", reportOutBoundPath);
