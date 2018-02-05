@@ -172,6 +172,7 @@
 		       sf.DATE_TRANSFORM
 		from sys_fund_info sf
 		where sf.FIRM_CODE = #{FIRM_CODE}
+		and sf.`STATUS` = 'REVIEWED'
 		<if test="FUND_ID != null and FUND_ID != ''">
 		    and sf.FUND_ID = #{FUND_ID}
 		</if>
