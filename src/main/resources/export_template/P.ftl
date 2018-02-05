@@ -2749,7 +2749,7 @@
     <Cell ss:StyleID="s53"/>
    </Row>
    <Row ss:StyleID="s70">
-    <Cell ss:StyleID="s46"><Data ss:Type="String">审计费</Data></Cell>
+    <Cell ss:StyleID="s46"><Data ss:Type="String">审计费用</Data></Cell>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String">业务约定书</Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${(P400.summary.auditFee.contractAmount!0)?string('0.##')}</Data></Cell>
