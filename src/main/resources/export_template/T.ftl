@@ -7022,7 +7022,7 @@
     <Cell ss:StyleID="s210"><Data ss:Type="String">N/A</Data></Cell>
     </#if>
     <Cell ss:StyleID="s210"><Data ss:Type="DateTime">${inner.unlistedDividendDate!}T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s219"><Data ss:Type="Number">${(inner.bonus!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s219"><Data ss:Type="Number">${(inner.bonus!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s218"><Data ss:Type="Number">${(inner.fundBeforeAlt!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s218" ss:Formula="=RC[-2]*RC[-1]/10"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="Number">${(inner.profitClent!0)?string('0.##')}</Data></Cell>
@@ -7051,7 +7051,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:Index="6"><Data ss:Type="String">总计</Data></Cell>
-    <Cell ss:StyleID="s222" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s222" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s223" ss:Formula="=SUM(R[${(-(1+outer.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
@@ -11334,7 +11334,7 @@
     <Cell ss:StyleID="s234"><Data ss:Type="String">${(item.seq!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s247"><#if item.registrationDate??><Data ss:Type="DateTime">${item.registrationDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.unlistedDividendDate??><Data ss:Type="DateTime">${item.unlistedDividendDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonus!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonus!0)?string('0.#####')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.cash!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.reinvestAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.profitClent!0)?string('0.##')}</Data></Cell>
@@ -11388,7 +11388,7 @@
     <Cell ss:StyleID="s247"><#if item.registrationDate??><Data ss:Type="DateTime">${item.registrationDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.listedDividendDate??><Data ss:Type="DateTime">${item.listedDividendDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.unlistedDividendDate??><Data ss:Type="DateTime">${item.unlistedDividendDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonus!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonus!0)?string('0.#####')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.cash!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.reinvestAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.profitClent!0)?string('0.##')}</Data></Cell>
@@ -11441,7 +11441,7 @@
     <Cell ss:StyleID="s234"><Data ss:Type="String">${(item.seq!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s247"><#if item.registrationDate??><Data ss:Type="DateTime">${item.registrationDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.unlistedDividendDate??><Data ss:Type="DateTime">${item.unlistedDividendDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonus!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonus!0)?string('0.#####')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.cash!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.reinvestAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.profitClent!0)?string('0.##')}</Data></Cell>
@@ -11495,7 +11495,7 @@
     <Cell ss:StyleID="s247"><#if item.registrationDate??><Data ss:Type="DateTime">${item.registrationDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.listedDividendDate??><Data ss:Type="DateTime">${item.listedDividendDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.unlistedDividendDate??><Data ss:Type="DateTime">${item.unlistedDividendDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonus!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonus!0)?string('0.#####')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.cash!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.reinvestAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.profitClent!0)?string('0.##')}</Data></Cell>
@@ -11640,7 +11640,7 @@
     <Cell ss:StyleID="s234"><Data ss:Type="String">${(item.seq!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s247"><#if item.registrationDate??><Data ss:Type="DateTime">${item.registrationDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.registraunlistedDividendDatetionDate??><Data ss:Type="DateTime">${item.unlistedDividendDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonusUnit!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonusUnit!0)?string('0.#####')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.cashAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.reinvestAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.totalAmount!0)?string('0.##')}</Data></Cell>
@@ -11696,7 +11696,7 @@
     <Cell ss:StyleID="s247"><#if item.registrationDate??><Data ss:Type="DateTime">${item.registrationDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.listedDividendDate??><Data ss:Type="DateTime">${item.listedDividendDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.unlistedDividendDate??><Data ss:Type="DateTime">${item.unlistedDividendDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonusUnit!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonusUnit!0)?string('0.#####')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.cashAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.reinvestAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.totalAmount!0)?string('0.##')}</Data></Cell>
@@ -11762,7 +11762,7 @@
     <Cell ss:StyleID="s234"><Data ss:Type="String">${(item.seq!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s247"><#if item.registrationDate??><Data ss:Type="DateTime">${item.registrationDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.registraunlistedDividendDatetionDate??><Data ss:Type="DateTime">${item.unlistedDividendDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonusUnit!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonusUnit!0)?string('0.#####')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.cashAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.reinvestAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.totalAmount!0)?string('0.##')}</Data></Cell>
@@ -11818,7 +11818,7 @@
     <Cell ss:StyleID="s247"><#if item.registrationDate??><Data ss:Type="DateTime">${item.registrationDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.listedDividendDate??><Data ss:Type="DateTime">${item.listedDividendDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s247"><#if item.unlistedDividendDate??><Data ss:Type="DateTime">${item.unlistedDividendDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonusUnit!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s236"><Data ss:Type="Number">${(item.bonusUnit!0)?string('0.#####')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.cashAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.reinvestAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s237"><Data ss:Type="Number">${(item.totalAmount!0)?string('0.##')}</Data></Cell>

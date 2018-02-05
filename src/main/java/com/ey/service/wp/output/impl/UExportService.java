@@ -420,10 +420,10 @@ public class UExportService extends BaseExportService implements UExportManager 
             temp.put(String.valueOf(map.get("item")), map);
         }
         
-        result.put("S1", temp.get("审计费")==null?new HashMap<String,Object>():temp.get("审计费"));
+        result.put("S1", temp.get("审计费用")==null?new HashMap<String,Object>():temp.get("审计费用"));
         result.put("S2", temp.get("信息披露费")==null?new HashMap<String,Object>():temp.get("信息披露费"));
         
-        temp.remove("审计费");
+        temp.remove("审计费用");
         temp.remove("信息披露费");
         
         temp.forEach((k,v) -> {
