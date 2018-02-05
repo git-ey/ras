@@ -174,7 +174,7 @@ public class PExportService extends BaseExportService implements PExportManager{
         }
         
         for(Map<String, Object> map : P400MainMetaDataList) {
-            if("审计费".equals(map.get("detailName")) || "信息披露费".equals(map.get("detailName"))) {
+            if("审计费用".equals(map.get("detailName")) || "信息披露费".equals(map.get("detailName"))) {
                 map.put("hasV", "Y");
             }else {
                 map.put("hasV", "N");
@@ -203,7 +203,7 @@ public class PExportService extends BaseExportService implements PExportManager{
         for(Map<String, Object> map : P400SummaryMetaDataList) {
             if("上市年费".equals(map.get("item"))) {
                 annualFee4Listing = map;
-            }else if("审计费".equals(map.get("item"))) {
+            }else if("审计费用".equals(map.get("item"))) {
                 auditFee = map;
             }else if ("信息披露费".equals(map.get("item"))) {
                 subtotal = map;
