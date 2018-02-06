@@ -109,8 +109,6 @@
     
     <select id="selectP600Data" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
-		    P600.ATTR3 as code,
-		    P600.ATTR4 as shortName,
 		    P600.ATTR5 as tradeMarket,
 		    P600.ATTR2 as subType,
 		    P600.BEGIN_BALANCE_CNY as beginBalance,

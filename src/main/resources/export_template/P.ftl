@@ -3112,31 +3112,25 @@
     <Cell ss:StyleID="s174"/>
    </Row>
    <Row ss:StyleID="s168">
-    <Cell ss:MergeAcross="5" ss:StyleID="s267"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s184"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s267"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s184"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s169"><Data ss:Type="String">代码</Data></Cell>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">简称</Data></Cell>
     <Cell ss:StyleID="s169"><Data ss:Type="String">交易市场</Data></Cell>
     <Cell ss:StyleID="s169"><Data ss:Type="String"> 子类型</Data></Cell>
     <Cell ss:StyleID="s170"/>
     <Cell ss:StyleID="s170"><Data ss:Type="String">账面余额</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s170"><Data ss:Type="String">账面余额</Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s170"><Data ss:Type="String">账面余额</Data></Cell>
    </Row>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s171"><Data ss:Type="String">From 余额表</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s171"><Data ss:Type="String">From 余额表</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s185"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s171"><Data ss:Type="String">From 余额表</Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s185"><Data ss:Type="String">W/P</Data></Cell>
    </Row>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
    </Row>
    <#if P600.main.count != 0>
    <#list P600.main.list as item>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"><Data ss:Type="String">${item.code!}</Data></Cell>
-    <Cell ss:StyleID="s227"><Data ss:Type="String">${item.shortName!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.tradeMarket!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.subType!}</Data></Cell>
     <Cell ss:StyleID="s173"/>
@@ -3147,30 +3141,24 @@
    </#list>
    </#if>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
    </Row>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
+    <Cell ss:Index="4" ss:StyleID="s172" ss:Formula="=SUM(R[${(-(2+P600.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s172" ss:Formula="=SUM(R[${(-(2+P600.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s172" ss:Formula="=SUM(R[${(-(2+P600.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
-    <Cell ss:Index="6" ss:StyleID="s173"><Data ss:Type="String">^ / &lt;P&gt;</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s173"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s173"><Data ss:Type="String">^ / &lt;P&gt;</Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s173"><Data ss:Type="String">^</Data></Cell>
    </Row>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
-    <Cell ss:Index="5" ss:StyleID="s190"><Data ss:Type="String">其中：交易所</Data></Cell>
-    <Cell ss:StyleID="s234" ss:Formula="=SUMIF(R[${(-(4+P600.main.count))?string('0')}]C3:R[-3]C3,&quot;&lt;&gt;银行间&quot;,R[${(-(4+P600.main.count))?string('0')}]C6:R[-3]C6)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s190"><Data ss:Type="String">其中：交易所</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=SUMIF(R[${(-(4+P600.main.count))?string('0')}]C1:R[-3]C1,&quot;&lt;&gt;银行间&quot;,R[${(-(4+P600.main.count))?string('0')}]C4:R[-3]C4)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s168">
-    <Cell ss:StyleID="s174"/>
-    <Cell ss:Index="5" ss:StyleID="s190"><Data ss:Type="String">银行间</Data></Cell>
-    <Cell ss:StyleID="s234" ss:Formula="=SUMIF(R[${(-(5+P600.main.count))?string('0')}]C3:R[-4]C3,&quot;银行间&quot;,R[${(-(5+P600.main.count))?string('0')}]C6:R[-4]C6)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s190"><Data ss:Type="String">银行间</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=SUMIF(R[${(-(5+P600.main.count))?string('0')}]C1:R[-4]C1,&quot;银行间&quot;,R[${(-(5+P600.main.count))?string('0')}]C4:R[-4]C4)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s168">
     <Cell ss:StyleID="s231"><Data ss:Type="String">卖出回购证券应付利息测试：</Data></Cell>
@@ -3238,7 +3226,7 @@
    <Row ss:Height="14.25" ss:StyleID="s168">
     <Cell ss:StyleID="s174"/>
     <Cell ss:Index="6" ss:StyleID="s172" ss:Formula="=SUM(R[${(-(1+P600.test.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Formula="=RC[-1]=R[${(-(10+P600.test.count))?string('0')}]C[-1]"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:Formula="=RC[-1]=R[${(-(10+P600.test.count))?string('0')}]C[-3]"><Data ss:Type="Boolean"></Data></Cell>
     <Cell ss:Index="15" ss:StyleID="s172" ss:Formula="=SUM(R[${(-(1+P600.test.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s172"><Data ss:Type="Number">${(P600.summary.accruedInterestClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s172" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>

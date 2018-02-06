@@ -148,9 +148,6 @@
     
     <select id="selectH800MainData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-		    H800M.ACCOUNT_NUM AS accountNum,
-		    H800M.ATTR3 AS `code`,
-		    H800M.ATTR4 AS shortName,
 		    H800M.ATTR5 AS market,
 		    H800M.ATTR2 AS subType,
 		    H800M.END_BALANCE_CNY AS endBalanceCny,
@@ -167,7 +164,6 @@
     <select id="selectH800InterestTestData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H800IT.HEAD_ID AS headId,
-		    H800IT.ACCOUNT_NUM AS accountNum,
 		    H800IT.ATTR3 AS `code`,
 		    H800IT.ATTR4 AS shortName,
 		    H800IT.ATTR5 AS market,
