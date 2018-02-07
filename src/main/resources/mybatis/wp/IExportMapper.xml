@@ -130,6 +130,10 @@
         AND ISF.STATUS = 'Y'
         AND ISF.FUND_ID = #{fundId}
         AND ISF.PERIOD = #{period}
+        GROUP BY
+		    ISF.`LEVEL`
+		ORDER BY
+		    IF(ISF.`LEVEL` = '母基金', '0', ISF.`LEVEL`)
     </select>
     
     <select id="selectIBankThxData" parameterType="java.util.Map" resultType="java.util.Map">
