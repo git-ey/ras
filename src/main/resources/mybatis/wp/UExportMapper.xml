@@ -315,8 +315,8 @@
                 u.TYPE
             HAVING
                 (
-                    sum(u.AMOUNT_CURRENT) IS NULL
-                    AND SUM(u.AMOUNT_LAST) IS NULL
+                    sum(IFNULL(u.AMOUNT_CURRENT, 0)) = 0
+                    AND SUM(IFNULL(u.AMOUNT_LAST, 0)) = 0
                 )
         )
 	    AND U10000RIS.TYPE = #{type}

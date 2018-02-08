@@ -275,36 +275,41 @@
     <!-- 2017-12-31 -->
     <select id="selectReportContentData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-		    IFNULL( src.FS_ATTR1, 'N' ) AS FS_ATTR1,
-		    IFNULL( src.FS_ATTR2, 'N' ) AS FS_ATTR2,
-		    IFNULL( src.FS_ATTR3, 'N' ) AS FS_ATTR3,
-		    IFNULL( src.COMISSION_NOTE, 'N' ) AS COMISSION_NOTE,
-		    IFNULL( src.MF_ATTR1, 'N' ) AS MF_ATTR1,
-		    IFNULL( src.MF_ATTR2, 'N' ) AS MF_ATTR2,
-		    IFNULL( src.MF_ATTR3, 'N' ) AS MF_ATTR3,
-		    IFNULL( src.MF_ATTR4, 'N' ) AS MF_ATTR4,
-		    IFNULL( src.MF_ATTR5, 'N' ) AS MF_ATTR5,
-		    IFNULL( src.CF_ATTR1, 'N' ) AS CF_ATTR1,
-		    IFNULL( src.CF_ATTR2, 'N' ) AS CF_ATTR2,
-		    IFNULL( src.CF_ATTR3, 'N' ) AS CF_ATTR3,
-		    IFNULL( src.CF_ATTR4, 'N' ) AS CF_ATTR4,
-		    IFNULL( src.CF_ATTR5, 'N' ) AS CF_ATTR5,
-		    IFNULL( src.IR_ATTR1, 'N' ) AS IR_ATTR1,
-		    IFNULL( src.IR_UP, 'N' ) AS IR_UP,
-		    IFNULL( src.IR_DOWN, 'N' ) AS IR_DOWN,
-		    IFNULL( src.PR_UP, 'N' ) AS PR_UP,
-		    IFNULL( src.PR_DOWN, 'N' ) AS PR_DOWN,
-		    IFNULL( src.PR_ATTR1, 'N' ) AS PR_ATTR1,
-		    IFNULL( src.PR_ATTR2, 'N' ) AS PR_ATTR2,
-		    IFNULL( src.PR_ATTR3, 'N' ) AS PR_ATTR3,
-		    IFNULL( src.FV_ATTR1, 'N' ) AS FV_ATTR1 
-		FROM
-		    sys_report_content src 
-		WHERE
-		    1 = 1 
-		AND src.ACTIVE = 'Y' 
-		AND src.FUND_ID = #{fundId}
-		LIMIT 1
+            IFNULL( src.FS_ATTR1, '' ) AS FS_ATTR1,
+            IFNULL( src.FS_ATTR2, '' ) AS FS_ATTR2,
+            IFNULL( src.FS_ATTR3, '' ) AS FS_ATTR3,
+            IFNULL( src.COMISSION_NOTE, '' ) AS COMISSION_NOTE,
+            IFNULL( src.MF_ATTR1, '' ) AS MF_ATTR1,
+            IFNULL( src.MF_ATTR2, '' ) AS MF_ATTR2,
+            IFNULL( src.MF_ATTR3, '' ) AS MF_ATTR3,
+            IFNULL( src.MF_ATTR4, '' ) AS MF_ATTR4,
+            IFNULL( src.MF_ATTR5, '' ) AS MF_ATTR5,
+            IFNULL( src.CF_ATTR1, '' ) AS CF_ATTR1,
+            IFNULL( src.CF_ATTR2, '' ) AS CF_ATTR2,
+            IFNULL( src.CF_ATTR3, '' ) AS CF_ATTR3,
+            IFNULL( src.CF_ATTR4, '' ) AS CF_ATTR4,
+            IFNULL( src.CF_ATTR5, '' ) AS CF_ATTR5,
+            IFNULL( src.SF_ATTR1, '' ) AS SF_ATTR1,
+            IFNULL( src.SF_ATTR2, '' ) AS SF_ATTR2,
+            IFNULL( src.SF_ATTR3, '' ) AS SF_ATTR3,
+            IFNULL( src.SF_ATTR4, '' ) AS SF_ATTR4,
+            IFNULL( src.SF_ATTR5, '' ) AS SF_ATTR5,
+            IFNULL( src.IR_ATTR1, '' ) AS IR_ATTR1,
+            IFNULL( src.IR_UP, '' ) AS IR_UP,
+            IFNULL( src.IR_DOWN, '' ) AS IR_DOWN,
+            IFNULL( src.PR_UP, '' ) AS PR_UP,
+            IFNULL( src.PR_DOWN, '' ) AS PR_DOWN,
+            IFNULL( src.PR_ATTR1, '' ) AS PR_ATTR1,
+            IFNULL( src.PR_ATTR2, '' ) AS PR_ATTR2,
+            IFNULL( src.PR_ATTR3, '' ) AS PR_ATTR3,
+            IFNULL( src.FV_ATTR1, '' ) AS FV_ATTR1 
+        FROM
+            sys_report_content src 
+        WHERE
+            1 = 1 
+        AND src.ACTIVE = 'Y' 
+        AND src.FUND_ID = #{fundId}
+        LIMIT 1
     </select>
 	
 </mapper>

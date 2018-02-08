@@ -1439,7 +1439,7 @@
    <#if I.rp.count != 0>
    <#list I.rp.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s131"><Data ss:Type="String">${item.rpName!}<#if item.sort?? && item.sort != 1>（“${item.rpNameAbbr!}”）</#if></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s131"><Data ss:Type="String">${item.rpName!}<#--<#if item.sort?? && item.sort != 1>-->（“${item.rpNameAbbr!}”）<#--</#if>--></Data></Cell>
     <Cell ss:StyleID="s127"><Data ss:Type="String">${item.relationship!}</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>

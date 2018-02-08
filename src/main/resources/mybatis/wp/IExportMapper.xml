@@ -107,8 +107,8 @@
 		FROM
 		    wp_i_sales_fee ISF 
 		WHERE
-		    1 = 1 
-		AND ISF.STATUS = 'Y'
+            1 = 1 
+        AND ISF.STATUS = 'Y'
         AND ISF.FUND_ID = #{fundId}
         AND ISF.PERIOD = #{period}
         ORDER BY
