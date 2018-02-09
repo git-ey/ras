@@ -281,8 +281,8 @@
 		            AND SUM(u.AMOUNT_LAST) IS NULL
 		        )
 		)
-		AND U10000RI.U10000_TYPE LIKE CONCAT(#{type},'%')
-		and U10000RI.FUND_ID = #{fundId}
+        AND U10000RI.U10000_TYPE LIKE CONCAT(#{type},'%')
+        and U10000RI.FUND_ID = #{fundId}
         and U10000RI.PERIOD = #{period}
         order by
             U10000RI.SORT

@@ -1070,13 +1070,15 @@ public class ReportExportService implements ReportExportManager {
             map.put("item_a", pair[0]);
             map.put("item_b", pair[1]);
         }
-        @SuppressWarnings("unchecked")
-        Map<String,Object> U10000StocksSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryParam);
-        if(U10000StocksSummarySumData == null) {
-            U10000StocksSummarySumData = new HashMap<>();
+        if(U10000StocksSummaryDataList.size() != 0) {
+            @SuppressWarnings("unchecked")
+            Map<String,Object> U10000StocksSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryParam);
+            if(U10000StocksSummarySumData == null) {
+                U10000StocksSummarySumData = new HashMap<>();
+            }
+            U10000StocksSummarySumData.put("item_a", U10000StocksSummarySumData.get("item"));
+            U10000StocksSummaryDataList.add(U10000StocksSummarySumData);
         }
-        U10000StocksSummarySumData.put("item_a", U10000StocksSummarySumData.get("item"));
-        U10000StocksSummaryDataList.add(U10000StocksSummarySumData);
         queryParam.put("type", "STOCKS_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
@@ -1107,12 +1109,14 @@ public class ReportExportService implements ReportExportManager {
         if(U10000BondSummaryDataList == null) {
             U10000BondSummaryDataList = new ArrayList<>(); 
         }
-        @SuppressWarnings("unchecked")
-        Map<String,Object> U10000BondSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryParam);
-        if(U10000BondSummarySumData == null) {
-            U10000BondSummarySumData = new HashMap<>();
+        if(U10000BondSummaryDataList.size() != 0) {
+            @SuppressWarnings("unchecked")
+            Map<String,Object> U10000BondSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryParam);
+            if(U10000BondSummarySumData == null) {
+                U10000BondSummarySumData = new HashMap<>();
+            }
+            U10000BondSummaryDataList.add(U10000BondSummarySumData);
         }
-        U10000BondSummaryDataList.add(U10000BondSummarySumData);
         queryParam.put("type", "BOND_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
@@ -1143,12 +1147,14 @@ public class ReportExportService implements ReportExportManager {
         if(U10000GoldSummaryDataList == null) {
             U10000GoldSummaryDataList = new ArrayList<>(); 
         }
-        @SuppressWarnings("unchecked")
-        Map<String,Object> U10000GoldSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryParam);
-        if(U10000GoldSummarySumData == null) {
-            U10000GoldSummarySumData = new HashMap<>();
+        if(U10000GoldSummaryDataList.size() != 0) {
+            @SuppressWarnings("unchecked")
+            Map<String,Object> U10000GoldSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryParam);
+            if(U10000GoldSummarySumData == null) {
+                U10000GoldSummarySumData = new HashMap<>();
+            }
+            U10000GoldSummaryDataList.add(U10000GoldSummarySumData);
         }
-        U10000GoldSummaryDataList.add(U10000GoldSummarySumData);
         queryParam.put("type", "GOLD_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
