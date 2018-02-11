@@ -1052,6 +1052,7 @@ public class ReportExportService implements ReportExportManager {
         Map<String, Object> DI_WARRANT = new HashMap<>();
         Map<String, Object> DI_OTHER = new HashMap<>();
         
+        queryParam.put("reportFlag", "Y");
         queryParam.put("type", "STOCKS_BS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksBsDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
@@ -1180,6 +1181,7 @@ public class ReportExportService implements ReportExportManager {
             U10000diOtherDataList = new ArrayList<>(); 
         }
         queryParam.remove("type");
+        queryParam.remove("reportFlag");
         
         STOCKS_BS.put("list", U10000StocksBsDataList);
         STOCKS_BS.put("count", U10000StocksBsDataList.size());

@@ -169,17 +169,20 @@
     <!-- daigaokuo@hotmail.com -->
     <!-- 2017-12-26 -->
     <select id="selectRelatedPartyDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
-		SELECT
-		    sfrp.PARTY_FULL_NAME AS partyFullName,
-		    sfrp.RELATIONSHIP AS relationship 
-		FROM
-		    sys_fund_related_party sfrp 
-		WHERE
-		    1 = 1 
-		AND sfrp.ACTIVE = 'Y' 
-		AND sfrp.FUND_ID = #{fundId}
-		ORDER BY
-		    sfrp.SORT
+        SELECT
+            IR.RP_NAME AS partyFullName,
+            IR.RELATIONSHIP AS relationship,
+            IR.RP_NAME_ABBR AS rpNameAbbr,
+            IR.TRX_STATUS AS trxSatus,
+            IR.SORT AS sort
+        FROM
+            wp_i_related IR 
+        WHERE
+            1 = 1 
+            AND IR.FUND_ID = #{fundId}
+            AND IR.PERIOD = #{period}
+            AND IR.STATUS = 'Y'
+        ORDER BY IR.SORT
     </select>
 	
 </mapper>

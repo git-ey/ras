@@ -166,7 +166,7 @@
             IF(T310.BONUS = 0, null, T310.BONUS) as bonus,
             IF(T310.CASH = 0, null, T310.CASH) as cash,
             IF(T310.REINVEST_AMOUNT = 0, null, T310.REINVEST_AMOUNT) as reinvestAmount,
-            IF(T310.PROFIT_EY = 0, null, T310.PROFIT_EY) as profitEy
+            IF(T310.PROFIT_CLIENT = 0, null, T310.PROFIT_CLIENT) as profitEy
         FROM
             wp_t310 T310
         WHERE

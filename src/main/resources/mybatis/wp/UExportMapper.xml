@@ -261,26 +261,28 @@
 		where
 		    1 = 1
 		AND U10000RI.status = 'Y'
-		AND NOT EXISTS (
-		    SELECT
-		        1
-		    FROM
-		        wp_u10000_r_import u
-		    WHERE
-		        1 = 1
-		    AND u.fund_id = U10000RI.FUND_ID
-		    AND u.period = U10000RI.PERIOD
-		    AND u.u10000_type = U10000RI.U10000_TYPE
-		    GROUP BY
-		        u.PERIOD,
-		        u.FUND_ID,
-		        u.U10000_TYPE
-		    HAVING
-		        (
-		            sum(u.AMOUNT_CURRENT) IS NULL
-		            AND SUM(u.AMOUNT_LAST) IS NULL
-		        )
-		)
+		<if test='reportFlag == "Y"'>
+			AND NOT EXISTS (
+			    SELECT
+			        1
+			    FROM
+			        wp_u10000_r_import u
+			    WHERE
+			        1 = 1
+			    AND u.fund_id = U10000RI.FUND_ID
+			    AND u.period = U10000RI.PERIOD
+			    AND u.u10000_type = U10000RI.U10000_TYPE
+			    GROUP BY
+			        u.PERIOD,
+			        u.FUND_ID,
+			        u.U10000_TYPE
+			    HAVING
+			        (
+			            sum(u.AMOUNT_CURRENT) IS NULL
+			            AND SUM(u.AMOUNT_LAST) IS NULL
+			        )
+			)
+		</if>
         AND U10000RI.U10000_TYPE LIKE CONCAT(#{type},'%')
         and U10000RI.FUND_ID = #{fundId}
         and U10000RI.PERIOD = #{period}
@@ -299,26 +301,28 @@
 		WHERE
 		    1 = 1 
 	    AND U10000RIS.`STATUS` = 'Y' 
-	    AND NOT EXISTS (
-            SELECT
-                1
-            FROM
-                wp_u10000_r_ipt_summary u
-            WHERE
-                1 = 1
-            AND u.FUND_ID = U10000RIS.FUND_ID
-            AND u.PERIOD = U10000RIS.PERIOD
-            AND u.TYPE = U10000RIS.TYPE
-            GROUP BY
-                u.PERIOD,
-                u.FUND_ID,
-                u.TYPE
-            HAVING
-                (
-                    sum(IFNULL(u.AMOUNT_CURRENT, 0)) = 0
-                    AND SUM(IFNULL(u.AMOUNT_LAST, 0)) = 0
-                )
-        )
+	    <if test='reportFlag == "Y"'>
+		    AND NOT EXISTS (
+	            SELECT
+	                1
+	            FROM
+	                wp_u10000_r_ipt_summary u
+	            WHERE
+	                1 = 1
+	            AND u.FUND_ID = U10000RIS.FUND_ID
+	            AND u.PERIOD = U10000RIS.PERIOD
+	            AND u.TYPE = U10000RIS.TYPE
+	            GROUP BY
+	                u.PERIOD,
+	                u.FUND_ID,
+	                u.TYPE
+	            HAVING
+	                (
+	                    sum(IFNULL(u.AMOUNT_CURRENT, 0)) = 0
+	                    AND SUM(IFNULL(u.AMOUNT_LAST, 0)) = 0
+	                )
+	        )
+        </if>
 	    AND U10000RIS.TYPE = #{type}
 	    AND U10000RIS.FUND_ID = #{fundId}
 	    AND U10000RIS.PERIOD = #{period}

@@ -1743,6 +1743,499 @@
                 </w:pPr>
             </w:lvl>
         </w:listDef>
+        <!-- 20180211更新了部分表头 -->
+        <w:listDef w:listDefId="15">
+            <w:lsid w:val="6E3A771F"/>
+            <w:plt w:val="HybridMultilevel"/>
+            <w:tmpl w:val="0074D31A"/>
+            <w:lvl w:ilvl="0" w:tplc="10C6E810">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="(%1)"/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="1096"/>
+                    </w:tabs>
+                    <w:ind w:left="1096" w:hanging="390"/>
+                </w:pPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="黑体" w:fareast="黑体" w:hint="fareast"/>
+                </w:rPr>
+            </w:lvl>
+            <w:lvl w:ilvl="1" w:tplc="B3CE7C64">
+                <w:start w:val="7"/>
+                <w:lvlText w:val="%2．"/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="1696"/>
+                    </w:tabs>
+                    <w:ind w:left="1696" w:hanging="390"/>
+                </w:pPr>
+                <w:rPr>
+                    <w:rFonts w:hint="default"/>
+                </w:rPr>
+            </w:lvl>
+            <w:lvl w:ilvl="2" w:tplc="15E08362">
+                <w:start w:val="7"/>
+                <w:lvlText w:val="%3."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="2566"/>
+                    </w:tabs>
+                    <w:ind w:left="2566" w:hanging="360"/>
+                </w:pPr>
+                <w:rPr>
+                    <w:rFonts w:hint="default"/>
+                </w:rPr>
+            </w:lvl>
+            <w:lvl w:ilvl="3" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%4."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="3106"/>
+                    </w:tabs>
+                    <w:ind w:left="3106" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="4" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%5."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="3826"/>
+                    </w:tabs>
+                    <w:ind w:left="3826" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="5" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%6."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="4546"/>
+                    </w:tabs>
+                    <w:ind w:left="4546" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="6" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%7."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="5266"/>
+                    </w:tabs>
+                    <w:ind w:left="5266" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="7" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%8."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="5986"/>
+                    </w:tabs>
+                    <w:ind w:left="5986" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="8" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%9."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="6706"/>
+                    </w:tabs>
+                    <w:ind w:left="6706" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+        </w:listDef>
+        <w:listDef w:listDefId="16">
+            <w:lsid w:val="7937752D"/>
+            <w:plt w:val="HybridMultilevel"/>
+            <w:tmpl w:val="008E9BAA"/>
+            <w:lvl w:ilvl="0" w:tplc="D69800C6">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="(%1)"/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="420"/>
+                    </w:tabs>
+                    <w:ind w:left="420" w:hanging="420"/>
+                </w:pPr>
+                <w:rPr>
+                    <w:rFonts w:hint="fareast"/>
+                </w:rPr>
+            </w:lvl>
+            <w:lvl w:ilvl="1" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%2."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="1440" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="2" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%3."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:ind w:left="2160" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="3" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%4."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="2880" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="4" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%5."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="3600" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="5" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%6."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:ind w:left="4320" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="6" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%7."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="5040" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="7" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%8."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="5760" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="8" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%9."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:ind w:left="6480" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+        </w:listDef>
+        <w:listDef w:listDefId="17">
+            <w:lsid w:val="7EE85BF1"/>
+            <w:plt w:val="HybridMultilevel"/>
+            <w:tmpl w:val="A5CC0EDC"/>
+            <w:lvl w:ilvl="0" w:tplc="B2E6A4F6">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="(%1)"/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="1145" w:hanging="360"/>
+                </w:pPr>
+                <w:rPr>
+                    <w:rFonts w:hint="fareast"/>
+                    <w:b w:val="off"/>
+                </w:rPr>
+            </w:lvl>
+            <w:lvl w:ilvl="1" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%2."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="1865" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="2" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%3."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:ind w:left="2585" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="3" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%4."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="3305" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="4" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%5."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="4025" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="5" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%6."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:ind w:left="4745" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="6" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%7."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="5465" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="7" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%8."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="6185" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="8" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%9."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:ind w:left="6905" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+        </w:listDef>
+        <w:listDef w:listDefId="98">
+            <w:lsid w:val="3F2A6133"/><!--3F2A6132改成了3用于区分唯一性-->
+            <w:plt w:val="HybridMultilevel"/>
+            <w:tmpl w:val="83D28C00"/>
+            <w:lvl w:ilvl="0" w:tplc="7E445D70">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="(%1)"/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="1096"/>
+                    </w:tabs>
+                    <w:ind w:left="1096" w:hanging="390"/>
+                </w:pPr>
+                <w:rPr>
+                    <w:rFonts w:ascii="黑体" w:fareast="黑体" w:hint="fareast"/>
+                </w:rPr>
+            </w:lvl>
+            <w:lvl w:ilvl="1" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%2)"/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="948"/>
+                    </w:tabs>
+                    <w:ind w:left="948" w:hanging="420"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="2" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%3."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="1368"/>
+                    </w:tabs>
+                    <w:ind w:left="1368" w:hanging="420"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="3" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%4."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="1788"/>
+                    </w:tabs>
+                    <w:ind w:left="1788" w:hanging="420"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="4" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%5)"/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="2208"/>
+                    </w:tabs>
+                    <w:ind w:left="2208" w:hanging="420"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="5" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%6."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="2628"/>
+                    </w:tabs>
+                    <w:ind w:left="2628" w:hanging="420"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="6" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%7."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="3048"/>
+                    </w:tabs>
+                    <w:ind w:left="3048" w:hanging="420"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="7" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%8)"/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="3468"/>
+                    </w:tabs>
+                    <w:ind w:left="3468" w:hanging="420"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="8" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%9."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:tabs>
+                        <w:tab w:val="list" w:pos="3888"/>
+                    </w:tabs>
+                    <w:ind w:left="3888" w:hanging="420"/>
+                </w:pPr>
+            </w:lvl>
+        </w:listDef>
+        <w:listDef w:listDefId="99">
+            <w:lsid w:val="036D2EFF"/>
+            <w:plt w:val="HybridMultilevel"/>
+            <w:tmpl w:val="12E2D73A"/>
+            <w:lvl w:ilvl="0" w:tplc="8DA6B2DC">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="(%1)"/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="514" w:hanging="528"/>
+                </w:pPr>
+                <w:rPr>
+                    <w:rFonts w:hint="default"/>
+                </w:rPr>
+            </w:lvl>
+            <w:lvl w:ilvl="1" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%2."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="1066" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="2" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%3."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:ind w:left="1786" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="3" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%4."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="2506" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="4" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%5."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="3226" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="5" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%6."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:ind w:left="3946" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="6" w:tplc="0409000F" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:lvlText w:val="%7."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="4666" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="7" w:tplc="04090019" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="4"/>
+                <w:lvlText w:val="%8."/>
+                <w:lvlJc w:val="left"/>
+                <w:pPr>
+                    <w:ind w:left="5386" w:hanging="360"/>
+                </w:pPr>
+            </w:lvl>
+            <w:lvl w:ilvl="8" w:tplc="0409001B" w:tentative="on">
+                <w:start w:val="1"/>
+                <w:nfc w:val="2"/>
+                <w:lvlText w:val="%9."/>
+                <w:lvlJc w:val="right"/>
+                <w:pPr>
+                    <w:ind w:left="6106" w:hanging="180"/>
+                </w:pPr>
+            </w:lvl>
+        </w:listDef>
         <w:list w:ilfo="1">
             <w:ilst w:val="0"/>
         </w:list>
@@ -1785,6 +2278,15 @@
         <w:list w:ilfo="14">
             <w:ilst w:val="5"/>
         </w:list>
+        <!-- 更新的部分格式清单 -->
+        <w:list w:ilfo="15">
+            <w:ilst w:val="99"/>
+        </w:list>
+        <w:list w:ilfo="99">
+            <!-- 20定义为P1新补的list的格式 -->
+            <w:ilst w:val="98"/>
+        </w:list>
+        <!-- 更新结束 -->
     </w:lists>
     <w:styles>
         <w:versionOfBuiltInStylenames w:val="7"/>
@@ -4965,17 +5467,22 @@
     <w:body>
         <!-- P1 -->
         ${content.P1!}
+                
         <!-- 7.4 报表附注 -->
         <wx:sect>
             <wx:sub-section>
                 <!-- P2 -->
                 ${content.P2!}
+                                
                 <!-- P3-->
                 ${content.P3!}
+                                
                 <!-- P4 -->
                 ${content.P4!}
+                                
                 <!-- P5 -->
                 ${content.P5!}
+                        
             </wx:sub-section>
             <w:sectPr wsp:rsidR="005B3A3F" wsp:rsidRPr="0095400C" wsp:rsidSect="00836E8A">
                 <w:pgSz w:w="11906" w:h="16838"/>

@@ -4,15 +4,19 @@
   
     <select id="selectIFundRelatedPartyData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-		    sfrp.PARTY_FULL_NAME AS partyFullName,
-		    sfrp.RELATIONSHIP AS relationship 
+		    IR.RP_NAME AS partyFullName,
+		    IR.RELATIONSHIP AS relationship,
+			IR.RP_NAME_ABBR AS rpNameAbbr,
+			IR.TRX_STATUS AS trxSatus,
+			IR.SORT AS sort
 		FROM
-		    SYS_FUND_RELATED_PARTY sfrp 
+		    wp_i_related IR 
 		WHERE
 		    1 = 1 
-		    AND sfrp.FUND_ID = #{fundId}
-		    AND sfrp.ACTIVE = 'Y'
-		ORDER BY sfrp.SORT
+		    AND IR.FUND_ID = #{fundId}
+			AND IR.PERIOD = #{period}
+		    AND IR.STATUS = 'Y'
+		ORDER BY IR.SORT
     </select>
     
     <select id="selectIRpData" parameterType="java.util.Map" resultType="java.util.Map">
@@ -191,7 +195,7 @@
         WHERE
             1 = 1  
         AND IMHF.STATUS = 'Y'
-        AND IMHF.ITEM != '基金总份额'
+        AND IMHF.SORT != 70
         AND IMHF.FUND_ID = #{fundId}
         AND IMHF.PERIOD = #{period}
     </select>
