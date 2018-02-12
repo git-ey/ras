@@ -4589,7 +4589,7 @@
     </#if>
     <#if period?? && period != ''>
     <Cell ss:StyleID="s144"><Data ss:Type="String">${period!}</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[18],RC[-1],C)"><Data  ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[18],RC[-1],<#if extraFundInfo.mf != 'Y'>C<#else>C[-2]</#if>)"><Data  ss:Type="Number"></Data></Cell>
     </#if>
     <#if extraFundInfo.interestSensitivity == 'Y'>
     <#if period_index == 0>
