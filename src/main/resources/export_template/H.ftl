@@ -3778,7 +3778,7 @@
     </#if>
     <Cell ss:StyleID="s127" ss:Formula="=SUM(RC[${(-H300.interestRatePeriod.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-SUM(R[-5]C[-1]:R[-1]C[-1])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=RC[-2]-SUM(R11C6:R21C6,-R13C6,-R18C6)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=RC[-2]-SUM(<#if extraFundInfo.mf != 'Y'>R11C6:R21C6,-R13C6,-R18C6<#else>R11C4:R21C4,-R13C4,-R18C4</#if>)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s123">
     <Cell/>
@@ -4519,7 +4519,7 @@
     <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[7],C[-4],&quot;债券&quot;,C,&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="String">一层次合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),C[3])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),<#if extraFundInfo.mf != 'Y'>C[3]<#else>C[1]</#if>)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     <#elseif period_index == 1>
     <Cell ss:Index="2"><Data ss:Type="String">银行间债券</Data></Cell>
@@ -4527,7 +4527,7 @@
     <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[7],C[-3],&quot;债券&quot;,C[1],&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[7],C[-4],&quot;债券&quot;,C,&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s210"><Data ss:Type="String">二层次合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),C[3])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),<#if extraFundInfo.mf != 'Y'>C[3]<#else>C[1]</#if>)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s201"/>
     <#elseif period_index == 2>
     <Cell ss:Index="2"><Data ss:Type="String">债券合计</Data></Cell>
@@ -4535,7 +4535,7 @@
     <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;债券&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;债券&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s210"><Data ss:Type="String">三层次合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),C[3])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),<#if extraFundInfo.mf != 'Y'>C[3]<#else>C[1]</#if>)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s201"/>
     <#elseif period_index == 3>
     <Cell ss:StyleID="s101"/>

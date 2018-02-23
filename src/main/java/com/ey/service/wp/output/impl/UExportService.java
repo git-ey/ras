@@ -809,8 +809,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         Map<String, Object> other_r = new HashMap<String,Object>();
         other_r.put("S1", new HashMap<String,Object>());
         other_r.put("S2", new HashMap<String,Object>());
-        other_r.put("S3", new HashMap<String,Object>());
-        other_r.put("S4", new HashMap<String,Object>());
+        List<Map<String,Object>> SL = new ArrayList<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000OtherRMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherRData", queryMap);
         if(U10000OtherRMetaDataList == null) {
@@ -821,12 +820,12 @@ public class UExportService extends BaseExportService implements UExportManager 
                 other_r.put("S1", map);
             }else if("基金转换费收入".equals(map.get("item"))) {
                 other_r.put("S2", map);
-            }else if("印花税返还".equals(map.get("item"))) {
-                other_r.put("S3", map);
-            }else if("其他".equals(map.get("item"))) {
-                other_r.put("S4", map);
+            }else {
+                SL.add(map);
             }
         }
+        other_r.put("SL", SL);
+        other_r.put("SL_count", SL.size());
         result.put("other_r", other_r);
         
         Map<String, Object> trxFee = new HashMap<String,Object>();

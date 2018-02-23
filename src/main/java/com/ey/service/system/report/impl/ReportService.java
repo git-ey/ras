@@ -251,6 +251,9 @@ public class ReportService implements ReportManager {
 		if(DateUtils.truncatedEquals((Date)infoMap.get("CURRENT_INIT_DATE"), yearFirstDate, Calendar.DATE) 
 		        && DateUtils.truncatedEquals((Date)infoMap.get("CURRENT_END_DATE"), yearLastDate, Calendar.DATE)) {
 			infoMap.put("CURRENT_PERIOD", year + "年度");
+		} else if (infoMap.get("CURRENT_INIT_SOURCE").equals(BALANCE_SHEET_DATE)) {
+			infoMap.put("CURRENT_PERIOD", this.getDateStr((Date) infoMap.get("CURRENT_INIT_DATE"))
+					+ "至" + this.getDateStr((Date) infoMap.get("CURRENT_END_DATE")));
 		} else {
 			infoMap.put("CURRENT_PERIOD", this.getDateStr((Date) infoMap.get("CURRENT_INIT_DATE"))
 					+ '（' + infoMap.get("CURRENT_INIT_TEXT") + '）' + "至" + this.getDateStr((Date) infoMap.get("CURRENT_END_DATE")));
@@ -288,7 +291,8 @@ public class ReportService implements ReportManager {
 	@Override
 	public Map<String, Object> getLastDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform)
 			throws Exception {
-		String lastPeriod = (Integer.parseInt(period.substring(0, 4)) - 1) + period.substring(4, 8);
+		//String lastPeriod = (Integer.parseInt(period.substring(0, 4)) - 1) + period.substring(4, 8);
+		String lastPeriod = (Integer.parseInt(period.substring(0, 4)) - 1) + "1231";
 		Map<String, Object> lastInfoMap = this.getDateInfo(lastPeriod, dateFrom, dateTo, dateTransform);
 		Map<String, Object> infoMap = Maps.newHashMap();
 		// 上期资产负债表日

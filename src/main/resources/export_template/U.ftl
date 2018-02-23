@@ -13391,24 +13391,21 @@
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.other_r.S2.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s216"/>
    </Row>
+   <#if U10000.other_r.SL_count != 0>
+   <#list U10000.other_r.SL as item>
    <Row ss:StyleID="s93">
     <Cell ss:StyleID="s75"><Data ss:Type="String">U300</Data></Cell>
-    <Cell ss:StyleID="s219"><Data ss:Type="String">印花税返还</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.other_r.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.other_r.S3.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s219"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s220"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U300</Data></Cell>
-    <Cell ss:StyleID="s219"><Data ss:Type="String">其他</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.other_r.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.other_r.S4.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[${(-2-U10000.other_r.SL_count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[${(-2-U10000.other_r.SL_count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s216"/>
    </Row>
    <Row>
