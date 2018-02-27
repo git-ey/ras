@@ -1,6 +1,7 @@
 package com.ey.service.wp.output.impl;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -1361,6 +1362,7 @@ public class ReportExportService implements ReportExportManager {
         //--------------------↓T11000.main↓--------------------
         Map<String,Object> main = new HashMap<>(); 
         List<Map<String,Object>> levels = new ArrayList<>();
+        final BigDecimal zero = new BigDecimal(0);
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> T11000DataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT11000MainData", queryParam);
         if(T11000DataList == null) {
@@ -1387,6 +1389,24 @@ public class ReportExportService implements ReportExportManager {
             level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
             level.put("list_t", list_t);
             level.put("count_t", list_t.size());
+            
+            Map<String, Object> sumData = list_t.stream().reduce(new HashMap<>(), (sum, item) -> {
+                BigDecimal bonusUnit = (sum.get("bonusUnit") == null ? zero : new BigDecimal(String.valueOf(sum.get("bonusUnit")))).add(
+                        (item.get("bonusUnit") == null ? zero : new BigDecimal(String.valueOf(item.get("bonusUnit")))));
+                BigDecimal cashAmount = (sum.get("cashAmount") == null ? zero : new BigDecimal(String.valueOf(sum.get("cashAmount")))).add(
+                        (item.get("cashAmount") == null ? zero : new BigDecimal(String.valueOf(item.get("cashAmount")))));
+                BigDecimal reinvestAmount = (sum.get("reinvestAmount") == null ? zero : new BigDecimal(String.valueOf(sum.get("reinvestAmount")))).add(
+                        (item.get("reinvestAmount") == null ? zero : new BigDecimal(String.valueOf(item.get("reinvestAmount")))));
+                BigDecimal totalAmount = (sum.get("totalAmount") == null ? zero : new BigDecimal(String.valueOf(sum.get("totalAmount")))).add(
+                        (item.get("totalAmount") == null ? zero : new BigDecimal(String.valueOf(item.get("totalAmount")))));
+                sum.put("bonusUnit", (bonusUnit.doubleValue() == 0d? null : bonusUnit));
+                sum.put("cashAmount", (cashAmount.doubleValue() == 0d? null : cashAmount));
+                sum.put("reinvestAmount", (reinvestAmount.doubleValue() == 0d? null : reinvestAmount));
+                sum.put("totalAmount", (totalAmount.doubleValue() == 0d? null : totalAmount));
+                return sum;  
+            });
+            level.put("sum", sumData);
+            
             levels.add(level);
         }
         main.put("levels", levels);
@@ -1771,6 +1791,7 @@ public class ReportExportService implements ReportExportManager {
         //====================↓T310↓====================
         Map<String,Object> T310 = new HashMap<>();
         List<Map<String,Object>> levels = new ArrayList<>();
+        final BigDecimal zero = new BigDecimal(0);
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> T310DataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT310DataForReport", queryParam);
@@ -1819,6 +1840,24 @@ public class ReportExportService implements ReportExportManager {
             levelQueryMap.put("level", levelName);
             level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
             level.put("T11000Count", this.dao.findForObject("TExportMapper.selectT11000MainCountDataForReport", levelQueryMap));
+            
+            Map<String, Object> sumData = list_t.stream().reduce(new HashMap<>(), (sum, item) -> {
+                BigDecimal bonus = (sum.get("bonus") == null ? zero : new BigDecimal(String.valueOf(sum.get("bonus")))).add(
+                        (item.get("bonus") == null ? zero : new BigDecimal(String.valueOf(item.get("bonus")))));
+                BigDecimal cash = (sum.get("cash") == null ? zero : new BigDecimal(String.valueOf(sum.get("cash")))).add(
+                        (item.get("cash") == null ? zero : new BigDecimal(String.valueOf(item.get("cash")))));
+                BigDecimal reinvestAmount = (sum.get("reinvestAmount") == null ? zero : new BigDecimal(String.valueOf(sum.get("reinvestAmount")))).add(
+                        (item.get("reinvestAmount") == null ? zero : new BigDecimal(String.valueOf(item.get("reinvestAmount")))));
+                BigDecimal profitEy = (sum.get("profitEy") == null ? zero : new BigDecimal(String.valueOf(sum.get("profitEy")))).add(
+                        (item.get("profitEy") == null ? zero : new BigDecimal(String.valueOf(item.get("profitEy")))));
+                sum.put("bonus", (bonus.doubleValue() == 0d? null : bonus));
+                sum.put("cash", (cash.doubleValue() == 0d? null : cash));
+                sum.put("reinvestAmount", (reinvestAmount.doubleValue() == 0d? null : reinvestAmount));
+                sum.put("profitEy", (profitEy.doubleValue() == 0d? null : profitEy));
+                return sum;  
+            });
+            level.put("sum", sumData);
+            
             levels.add(level);
         }
         T310.put("levels", levels);
