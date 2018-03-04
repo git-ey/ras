@@ -574,7 +574,7 @@
     
     <select id="checkIfH10000FairValuesHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
         SELECT
-            SUM(IFNULL(H10000FV.AMOUNT_CURRENT, 0)) + SUM(IFNULL(H10000FV.AMOUNT_LAST, 0))
+            SUM(ABS(IFNULL(H10000FV.AMOUNT_CURRENT, 0))) + SUM(ABS(IFNULL(H10000FV.AMOUNT_LAST, 0)))
         FROM
             wp_h10000_fair_values H10000FV
         WHERE 

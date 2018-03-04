@@ -34,15 +34,8 @@
     
     <select id="selectV400FundInfoData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
-            IFNULL(sfi.INTEREST_SENSTVT_METHOD,'久期法') as interestSensitiveMethod,
-		    sfi.RISK_VARIABLE as riskVariable,
-		    sfi.INTEREST_SENSTVT_SOURSE as interestSenstvtSourse,
-		    IFNULL(sfi.INTEREST_SENSITIVITY,'N') as interestSensitivity,
-		    IFNULL(sfi.PRICE_SENSTVT_METHOD,'斜率法') as priceSensitiveMethod,
-		    IFNULL(sfi.PRICE_SENSITIVITY,'N') as priceSensitivity,
-            sfi.PRICE_SENSTVT_INDEX as priceSensitiveIndex,
-            sfi.INDEX_SOURSE as indexSourse,
-            sfi.BETA_SOURSE as betaSourse
+	        IFNULL(sfi.INT_SEN_METHOD,'久期法') as intSenMethod,
+	        IFNULL(sfi.PRI_SEN_METHOD,'Beta法') as priSenMethod
 		FROM
 		    sys_fund_info sfi 
 		WHERE
@@ -79,86 +72,85 @@
         ORDER BY sh.HYPOTHESIS_NUM
     </select>
     
-    <select id="selectV400DetailData" parameterType="java.util.Map" resultType="java.util.Map"> 
-        SELECT
-		    V400D.BOND_CODE AS bondCode,
-		    V400D.BOND_NAME AS bondName,
-		    V400D.MARKET AS market,
-		    V400D.MKT_VALUE_CNY AS marketValue,
-		    V400D.WEIGHT AS weight,
-		    V400D.DURATION AS duration,
-		    V400D.CONVEXITY AS convexity 
-		FROM
-		    wp_v400_detail V400D 
+    <select id="selectV400LineData" parameterType="java.util.Map" resultType="java.util.Map"> 
+	    SELECT
+		    V400L.TRX_CODE as trxCode,
+		    V400L.SHORT_NAME as shortName,
+		    V400L.MKT_VALUE as mktValue,
+		    V400L.CAL_RESULT as calResult
+		FROM wp_v400_line V400L
 		WHERE
-		    1 = 1
-        and V400D.STATUS = 'Y'
-        and V400D.FUND_ID = #{fundId}
-        and V400D.PERIOD = #{period}
+		     1 = 1
+		AND V400L.`STATUS` = 'Y'
+		AND V400L.FUND_ID = #{fundId}
+		AND V400L.PERIOD = #{period}
     </select>
     
-    <select id="selectV400SummaryData" parameterType="java.util.Map" resultType="java.util.Map"> 
+    <select id="selectV400TestData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
-		    IF(V400S.SUM_MKT_VALUE = 0, null, V400S.SUM_MKT_VALUE) AS sumMktValue,
-            IF(V400S.EXCHENGEABLE_BOND = 0, null, V400S.EXCHENGEABLE_BOND) AS exchengeableBond,
-            IF(V400S.INFLUENCE_CLIENT1 = 0, null, V400S.INFLUENCE_CLIENT1) as influenceClient1,
-            IF(V400S.INFLUENCE_CLIENT2 = 0, null, V400S.INFLUENCE_CLIENT2) as influenceClient2
+		    V400T.SORT as sort,
+		    V400T.INFL_LAST as inflLast,
+		    V400T.TOTAL_MKT_VALUE as totalMktValue,
+		    V400T.SEN_ASSET_EXCL as senAssetExcl,
+		    V400T.VAR_FLEX as varFlex,
+		    V400T.INFL_CURRENT_CLIENT as inflCurrentClient
 		FROM
-		    wp_v400_summary V400S
+		    wp_v400_test V400T
 		WHERE
 		    1 = 1
-        and V400S.STATUS = 'Y'
-        and V400S.FUND_ID = #{fundId}
-        and V400S.PERIOD = #{period}
-        LIMIT 1
+		AND V400T.STATUS = 'Y'
+		AND V400T.FUND_ID = #{fundId}
+		AND V400T.PERIOD = #{period}
+		ORDER BY V400T.SORT
+		LIMIT 0,2 
     </select>
     
-    <select id="selectV500InvertData" parameterType="java.util.Map" resultType="java.util.Map"> 
+    <select id="selectV500InvestData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
-		    V500I.ITEM as item,
-		    V500I.MKT_VALUE_ENTERED as marketValueEntered,
-		    V500I.PRICE_SENSITIVITY as priceSensitivity
+		    V500IV.ITEM as item,
+		    V500IV.MKT_VALUE as mktValue,
+		    V500IV.PRI_SEN_ASSET as priSenAsset
 		FROM
-		    wp_v500_invest V500I
-		where
+		    wp_v500_invest_view V500IV
+		WHERE
 		    1 = 1
-        and V500I.STATUS = 'Y'
-        and V500I.FUND_ID = #{fundId}
-        and V500I.PERIOD = #{period}
+		AND V500IV.FUND_ID = #{fundId}
+		AND V500IV.PERIOD = #{period}
+		ORDER BY
+		    V500IV.SORT    
     </select>
     
     <select id="selectV500riskExposureData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
-		    V500RE.ITEM as item,
-		    IF(V500RE.NET_VALUE = 0, null, V500RE.NET_VALUE) as netValue,
-		    IF(V500RE.NET_VALUE = 0, null,  V500RE.AMOUNT_CURRENT) as amountCurrent,
-		    IF(V500RE.NET_VALUE = 0, null,  V500RE.AMOUNT_LAST) as amountLast,
-		    IF(V500RE.NET_VALUE = 0, null,  V500RE.RATE_LAST) as rateLast,
-		    IF(V500RE.RATE_CURRENT = 0, null,  V500RE.RATE_CURRENT) as rateCurrent
+		    V500REV.ITEM as item,
+		    IF(V500REV.AMOUNT_CURRENT = 0, null,  V500REV.AMOUNT_CURRENT) as amountCurrent,
+		    IF(V500REV.AMOUNT_LAST = 0, null,  V500REV.AMOUNT_LAST) as amountLast,
+		    IF(V500REV.NET_VALUE_CURRENT = 0, null, V500REV.NET_VALUE_CURRENT) as netValueCurrent,
+		    IF(V500REV.RATIO_LAST = 0, null,  V500REV.RATIO_LAST) as ratioLast
 		FROM
-		    wp_v500_risk_exposure V500RE
-	    where
-            1 = 1
-        and V500RE.STATUS = 'Y'
-        and V500RE.FUND_ID = #{fundId}
-        and V500RE.PERIOD = #{period}
+		    wp_v500_risk_exposure_view V500REV
+		WHERE
+	        1 = 1
+		AND V500REV.STATUS = 'Y'
+        AND V500REV.FUND_ID = #{fundId}
+        AND V500REV.PERIOD = #{period}
     </select>
     
-    <select id="selectV500riskExposureSumData" parameterType="java.util.Map" resultType="java.util.Map"> 
+    <select id="selectV500riskExposureSumData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
-            IF(SUM(V500RE.NET_VALUE) = 0, null, SUM(V500RE.NET_VALUE)) as netValue,
-            IF(SUM(V500RE.AMOUNT_CURRENT) = 0, null, SUM(V500RE.AMOUNT_CURRENT)) as amountCurrent,
-            IF(SUM(V500RE.AMOUNT_LAST) = 0, null, SUM(V500RE.AMOUNT_LAST)) as amountLast,
-            IF(SUM(V500RE.RATE_LAST) = 0, null, SUM(V500RE.RATE_LAST)) as rateLast,
-            IF(SUM(V500RE.RATE_CURRENT) = 0, null, SUM(V500RE.RATE_CURRENT)) as rateCurrent
+            IF(SUM(V500REV.NET_VALUE_CURRENT) = 0, null, SUM(V500REV.NET_VALUE_CURRENT)) as netValue,
+            IF(SUM(V500REV.AMOUNT_CURRENT) = 0, null, SUM(V500REV.AMOUNT_CURRENT)) as amountCurrent,
+            IF(SUM(V500REV.AMOUNT_LAST) = 0, null, SUM(V500REV.AMOUNT_LAST)) as amountLast,
+            IF(SUM(V500REV.RATIO_LAST) = 0, null, SUM(V500REV.RATIO_LAST)) as rateLast,
+            IF(SUM(V500REV.RATIO_CURRENT) = 0, null, SUM(V500REV.RATIO_CURRENT)) as rateCurrent
         FROM
-            wp_v500_risk_exposure V500RE
+            wp_v500_risk_exposure_view V500REV
         where
             1 = 1
-        and V500RE.STATUS = 'Y'
-        and V500RE.FUND_ID = #{fundId}
-        and V500RE.PERIOD = #{period}
-        and V500RE.ITEM != '交易性金融资产-基金投资'
+        and V500REV.STATUS = 'Y'
+        and V500REV.FUND_ID = #{fundId}
+        and V500REV.PERIOD = #{period}
+        and V500REV.ITEM != '交易性金融资产-基金投资'
         LIMIT 1
     </select>
 
@@ -189,34 +181,51 @@
         ORDER BY sh.HYPOTHESIS_NUM
     </select>
     
+    <select id="selectV500TestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+	        V500T.SORT as sort,
+	        V500T.INFL_LAST as inflLast,
+	        V500T.VAR_FLEX as varFlex,
+	        V500T.INFL_CURRENT_CLIENT as inflCurrentClient
+		FROM
+	        wp_v500_test V500T
+		WHERE
+	        1 = 1
+		AND V500T.STATUS = 'Y'
+		AND V500T.FUND_ID = #{fundId}
+		AND V500T.PERIOD = #{period}
+		ORDER BY V500T.SORT
+		LIMIT 0,2
+    </select>
+    
     <select id="selectV500DetailSlopeData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
-		    V500DS.THX_DATE AS thxDate,
-		    V500DS.UNIT_NETVALUE AS unitNetvalue,
-		    V500DS.DIVIDENT AS divident,
-		    V500DS.INDEX_QTY AS `index` 
-		FROM
-		    wp_v500_detail_slope V500DS
-	    where
+            DATE_FORMAT(V500LS.TRX_DATE,'%Y-%m-%d') AS trxDate,
+            V500LS.UNIT_NET_VALUE AS unitNetValue,
+            V500LS.DIVIDEND AS dividend,
+            V500LS.CAL_RESULT AS calResult
+        FROM
+            wp_v500_line_slope V500LS
+        WHERE
             1 = 1
-        and V500DS.STATUS = 'Y'
-        and V500DS.FUND_ID = #{fundId}
-        and V500DS.PERIOD = #{period}
+        AND V500LS.`STATUS` = 'Y'
+        AND V500LS.FUND_ID = #{fundId}
+        AND V500LS.PERIOD = #{period}
     </select>
     
     <select id="selectV500DetailBetaData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
-            V500DB.STOCK_CODE as stockCode,
-			V500DB.STOCK_NAME as stockName,
-			V500DB.MKT_VALUE as mktValue,
-			V500DB.BETA as beta
-        FROM
-            wp_v500_detail_beta V500DB
-        where
-            1 = 1
-        and V500DB.STATUS = 'Y'
-        and V500DB.FUND_ID = #{fundId}
-        and V500DB.PERIOD = #{period}
+		    V500L.TRX_CODE AS trxCode,
+		    V500L.SHORT_NAME AS shortName,
+		    V500L.MKT_VALUE AS mktValue,
+		    V500L.CAL_RESULT AS calResult
+		FROM
+		    wp_v500_line V500L
+		WHERE
+		    1 = 1
+		AND V500L.`STATUS` = 'Y'
+		AND V500L.FUND_ID = #{fundId}
+		AND V500L.PERIOD = #{period}
     </select>
     
     <select id="selectV500SummaryData" parameterType="java.util.Map" resultType="java.util.Map"> 

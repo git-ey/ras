@@ -2116,6 +2116,12 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
+  <Style ss:ID="s10245" ss:Parent="s22">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat ss:Format="0"/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="V300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s56" ss:DefaultRowHeight="13.5">
@@ -2796,7 +2802,7 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <#if V400.fundInfo.interestSensitiveMethod == '久期法'>
+ <#if V400.fundInfo.intSenMethod == '久期法'>
  <Worksheet ss:Name="V400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s89" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="66"/>
@@ -2903,9 +2909,9 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(24+V400.detailCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=R[${(24+V400.detailCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(24+V400.lineCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=R[${(24+V400.lineCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(V400.test.first.inflLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
@@ -2913,9 +2919,9 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(24+V400.detailCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=R[${(24+V400.detailCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(24+V400.lineCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=R[${(24+V400.lineCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(V400.test.second.inflLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
@@ -3044,18 +3050,34 @@
     <Cell ss:StyleID="s154"/>
     <Cell ss:StyleID="s111"/>
     <Cell ss:StyleID="s113"><Data ss:Type="String">市值/利率敏感资产总市值</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="String">From ${V400.fundInfo.interestSenstvtSourse!}</Data></Cell>
+    <#if V400.oneJson.durationCount == 0>
+    <Cell ss:StyleID="s292"><Data ss:Type="String"></Data></Cell>
+    <#else>
+    <#list V400.oneJson.durationList as duration>
+    <#if duration_index == 0>
+    <Cell ss:StyleID="s292"><Data ss:Type="String">From ${duration.source!}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s113"><Data ss:Type="String">权重×久期</Data></Cell>
    </Row>
-   <#if V400.detailCount != 0>
-   <#list V400.detailList as item>
+   <#if V400.lineCount != 0>
+   <#list V400.lineList as item>
    <Row>
     <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s153"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
-    <Cell ss:StyleID="s112"><Data ss:Type="String">${item.bondName!}</Data></Cell>
-    <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.marketValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=IF(R${(25+V400.hypothesisCount+V400.detailCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(25+V400.hypothesisCount+V400.detailCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">${(item.duration!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s153"><Data ss:Type="String">${item.trxCode!}</Data></Cell>
+    <Cell ss:StyleID="s112"><Data ss:Type="String">${item.shortName!}</Data></Cell>
+    <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203" ss:Formula="=IF(R${(26+V400.hypothesisCount+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(26+V400.hypothesisCount+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <#if item.durationCount == 0>
+    <Cell ss:StyleID="s85"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <#list item.durationList as duration>
+    <#if duration_index == 0>
+    <Cell ss:StyleID="s85"><Data ss:Type="Number">${duration.value!0}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s85" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
@@ -3072,32 +3094,28 @@
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s86"><Data ss:Type="String">利率敏感资产合计</Data></Cell>
-    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[${(-1-V400.detailCount)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[${(-1-V400.lineCount)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s86"><Data ss:Type="String">组合久期</Data></Cell>
-    <Cell ss:StyleID="s210" ss:Formula="=SUM(R[${(-1-V400.detailCount)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s210" ss:Formula="=SUM(R[${(-1-V400.lineCount)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s261"><Data ss:Type="String">固定收益类投资市值</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">H500</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V400.summary.sumMktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V400.test.first.totalMktValue!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s210"/>
    </Row>
-   <#if V400.fundInfo.interestSensitivity == 'Y'>
-   <Row/>
-   <#else>
    <Row>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s261"><Data ss:Type="String">其中：利率不敏感的</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">H500</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.summary.exchengeableBond!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.first.senAssetExcl!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s115"/>
     <Cell ss:StyleID="s86"/>
     <Cell ss:StyleID="s210"/>
    </Row>
-   </#if>
    <Row>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s212"><Data ss:Type="String">固定收益品种投资完整性control</Data></Cell>
@@ -3159,9 +3177,9 @@
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s91" ss:Formula="=R[-9]C[2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s92" ss:Formula="=R[-9]C[4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.fundInfo.riskVariable!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.test.first.varFlex!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-3]*RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number"></Data>0</Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.first.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
@@ -3170,9 +3188,9 @@
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s213"/>
-    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(-V400.fundInfo.riskVariable!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.test.second.varFlex!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s282" ss:Formula="=RC[-3]*RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.second.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
@@ -3337,9 +3355,9 @@
    </Row>
    <Row ss:StyleID="s89">
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(33+V400.detailCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=R[${(33+V400.detailCount)?string('0')}]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140"/>
+    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(33+V400.lineCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=R[${(33+V400.lineCount)?string('0')}]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(V400.test.first.inflLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
@@ -3352,9 +3370,9 @@
    </Row>
    <Row ss:StyleID="s89">
     <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(33+V400.detailCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=R[${(33+V400.detailCount)?string('0')}]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140"/>
+    <Cell ss:Index="3" ss:StyleID="s291" ss:Formula="=R[${(33+V400.lineCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=R[${(33+V400.lineCount)?string('0')}]C[3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(V400.test.second.inflLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
     <Cell ss:StyleID="s83"/>
@@ -3632,45 +3650,50 @@
     <Cell ss:StyleID="s208"><Data ss:Type="String">简称</Data></Cell>
     <Cell ss:StyleID="s155"><Data ss:Type="String">市值</Data></Cell>
     <Cell ss:StyleID="s155"><Data ss:Type="String">权重</Data></Cell>
-    <Cell ss:StyleID="s155"><Data ss:Type="String">久期</Data></Cell>
-    <Cell ss:StyleID="s218"><Data ss:Type="String">凸性</Data></Cell>
-    <Cell ss:Index="11" ss:StyleID="s156"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
+    <#if V400.oneJson.durationCount != 0>
+    <#list V400.oneJson.durationList as duration>
+    <Cell ss:StyleID="s155"><Data ss:Type="String">${duration.name!}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V400.oneJson.convexityCount != 0>
+    <#list V400.oneJson.convexityList as convexity>
+    <Cell ss:StyleID="s218"><Data ss:Type="String">${convexity.name!}</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s181"><Data ss:Type="String">H500</Data></Cell>
     <Cell ss:StyleID="s154"/>
     <Cell ss:StyleID="s111"/>
     <Cell ss:StyleID="s113"><Data ss:Type="String">市值/利率敏感资产总市值</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="String">From ${V400.fundInfo.interestSenstvtSourse!}</Data></Cell>
-    <Cell ss:StyleID="s131"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
+    <#if V400.oneJson.durationCount != 0>
+    <#list V400.oneJson.durationList as duration>
+    <Cell ss:StyleID="s292"><Data ss:Type="String">From ${duration.source!}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V400.oneJson.convexityCount != 0>
+    <#list V400.oneJson.convexityList as convexity>
+    <Cell ss:StyleID="s292"><Data ss:Type="String">From ${convexity.source!}</Data></Cell>
+    </#list>
+    </#if>
    </Row>
-   <#if V400.detailCount != 0>
-   <#list V400.detailList as item>
+   <#if V400.lineCount != 0>
+   <#list V400.lineList as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">${item.bondName!}</Data></Cell>
-    <Cell ss:StyleID="s220"><Data ss:Type="Number">${(item.marketValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(33+V400.hypothesisCount+V400.detailCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(33+V400.hypothesisCount+V400.detailCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">${(item.duration!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s222"><Data ss:Type="Number">${(item.convexity!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s132"/>
+    <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">${item.trxCode!}</Data></Cell>
+    <Cell ss:StyleID="s44"><Data ss:Type="String">${item.shortName!}</Data></Cell>
+    <Cell ss:StyleID="s220"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(34+V400.hypothesisCount+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(34+V400.hypothesisCount+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <#if item.durationCount != 0>
+    <#list item.durationList as duration>
+    <Cell ss:StyleID="s222"><Data ss:Type="Number">${duration.value!0}</Data></Cell>
+    </#list>
+    </#if>
+    <#if item.convexityCount != 0>
+    <#list item.convexityList as convexity>
+    <Cell ss:StyleID="s222"><Data ss:Type="Number">${convexity.value!0}</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    </#list>
    </#if>
@@ -3679,41 +3702,55 @@
     <Cell ss:StyleID="s44"/>
     <Cell ss:StyleID="s220"/>
     <Cell ss:StyleID="s221"/>
+    <#if V400.oneJson.durationCount != 0>
+    <#list V400.oneJson.durationList as duration>
     <Cell ss:StyleID="s222"/>
+    </#list>
+    </#if>
+    <#if V400.oneJson.convexityCount != 0>
+    <#list V400.oneJson.convexityList as convexity>
     <Cell ss:StyleID="s222"/>
-    <Cell ss:Index="12" ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
+    </#list>
+    </#if>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s219"/>
     <Cell ss:StyleID="s44"/>
     <Cell ss:StyleID="s220"/>
     <Cell ss:StyleID="s220"/>
+    <#if V400.oneJson.durationCount != 0>
+    <#list V400.oneJson.durationList as duration>
     <Cell ss:StyleID="s218"><Data ss:Type="String">组合久期</Data></Cell>
+    </#list>
+    </#if>
+    <#if V400.oneJson.convexityCount != 0>
+    <#list V400.oneJson.convexityList as convexity>
     <Cell ss:StyleID="s218"><Data ss:Type="String">组合凸性</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
-    <Cell ss:Index="12" ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s86"><Data ss:Type="String">利率敏感资产合计</Data></Cell>
-    <Cell ss:StyleID="s224" ss:Formula="=SUM(R[${(-2-V400.detailCount)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s224" ss:Formula="=SUM(R[${(-2-V400.lineCount)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s224"/>
-    <Cell ss:StyleID="s225" ss:Formula="=SUMPRODUCT(R[${(-2-V400.detailCount)?string('0')}]C:R[-2]C,R[${(-2-V400.detailCount)?string('0')}]C[-1]:R[-2]C[-1])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s225" ss:Formula="=SUMPRODUCT(R[${(-2-V400.detailCount)?string('0')}]C:R[-2]C,R[${(-2-V400.detailCount)?string('0')}]C[-2]:R[-2]C[-2])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s132"/>
-    <Cell ss:StyleID="s132"/>
+    <#if V400.oneJson.durationCount != 0>
+    <#list V400.oneJson.durationList as duration>
+    <Cell ss:StyleID="s225" ss:Formula="=SUMPRODUCT(R[${(-2-V400.lineCount)?string('0')}]C:R[-2]C,R[${(-2-V400.lineCount)?string('0')}]C[-1]:R[-2]C[-1])"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
+    <#if V400.oneJson.convexityCount != 0>
+    <#list V400.oneJson.convexityList as convexity>
+    <Cell ss:StyleID="s225" ss:Formula="=SUMPRODUCT(R[${(-2-V400.lineCount)?string('0')}]C:R[-2]C,R[${(-2-V400.lineCount)?string('0')}]C[-2]:R[-2]C[-2])"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s261"><Data ss:Type="String">固定收益类投资市值</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">H500</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.summary.sumMktValue!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.first.totalMktValue!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s220"/>
     <Cell ss:Index="7" ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
@@ -3723,13 +3760,10 @@
     <Cell ss:StyleID="s132"/>
     <Cell ss:StyleID="s132"/>
    </Row>
-   <#if V400.fundInfo.interestSensitivity == 'Y'>
-   <Row/>
-   <#else>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s261"><Data ss:Type="String">其中：利率不敏感的</Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">H500</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.summary.exchengeableBond!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.first.senAssetExcl!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s220"/>
     <Cell ss:Index="7" ss:StyleID="s216"/>
     <Cell ss:StyleID="s216"/>
@@ -3739,7 +3773,6 @@
     <Cell ss:StyleID="s132"/>
     <Cell ss:StyleID="s132"/>
    </Row>
-   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s212"><Data ss:Type="String">固定收益品种投资完整性control</Data></Cell>
     <Cell ss:StyleID="s89"/>
@@ -3824,10 +3857,10 @@
     <Cell ss:Index="2" ss:StyleID="s227" ss:Formula="=R[-10]C[2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Formula="=R[-10]C[3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Formula="=R[-10]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.fundInfo.riskVariable!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.test.first.varFlex!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s228" ss:Formula="=-RC[-3]*RC[-1]+0.5*RC[-2]*(RC[-1])^2"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-1]*RC[-5]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.first.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
@@ -3836,10 +3869,10 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s227"/>
-    <Cell ss:Index="5" ss:StyleID="s76"><Data ss:Type="Number">${(-V400.fundInfo.riskVariable!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s76"><Data ss:Type="Number">${(V400.test.second.varFlex!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s228" ss:Formula="=-R[-1]C[-3]*RC[-1]+0.5*R[-1]C[-2]*(RC[-1])^2"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-1]*R[-1]C[-5]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.second.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
@@ -3873,7 +3906,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
- <#if V400.fundInfo.priceSensitiveMethod == '斜率法'>
+ <#if (V400.fundInfo.priSenMethod != 'Beta法' && V400.fundInfo.priSenMethod != '个券 Beta法')>
  <Worksheet ss:Name="V500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s74" ss:DefaultColumnWidth="55.5" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s74" ss:Width="77.25"/>
@@ -4080,45 +4113,18 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
    </Row>
+   <#if V500.invest.count != 0>
+   <#list V500.invest.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr1.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr1.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr1.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr2.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr2.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr2.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr3.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr3.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s293"><Data ss:Type="String">${V500.invest.attr3.priceSensitivity!}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
+    <#if (item.item?? && item.item == '债券投资')>
+    <Cell ss:StyleID="s293"><Data ss:Type="String">${item.priSenAsset!}</Data></Cell>
     <Cell ss:StyleID="s321"><Data ss:Type="String">Note</Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s154"><Data ss:Type="String">${item.priSenAsset!}</Data></Cell>
+    <Cell ss:StyleID="s66"/>
+    </#if>
     <Cell ss:StyleID="s66"/>
     <Cell ss:Index="9" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -4131,91 +4137,8 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr4.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr4.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr4.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr5.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr5.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr5.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr6.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr6.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr6.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr7.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr7.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr7.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr8.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr8.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr8.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s237"/>
     <Cell ss:StyleID="s282"/>
@@ -4365,12 +4288,15 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
    </Row>
+   <#if V500.riskExposure.count != 0>
+   <#list V500.riskExposure.list as item>
+   <#if (item.item?? && (item.item == '交易性金融资产-债券投资' || item.item == '其他'))>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${V500.riskExposure.attr1.item!}</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(V500.riskExposure.attr1.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(V500.riskExposure.attr1.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(V500.riskExposure.attr1.rateLast!0)?string('0.######')}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s294"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s295"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s295" ss:Formula="=ROUND(RC[-1]/R${(24+V500.invest.count+V500.riskExposure.count!0)?string('0')}C3*100,2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s296"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s297"><Data ss:Type="Number">${(item.ratioLast!0)?string('0.######')}</Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s74"/>
     <Cell ss:Index="25" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -4381,29 +4307,13 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
    </Row>
+   <#else>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${V500.riskExposure.attr2.item!}</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(V500.riskExposure.attr2.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(V500.riskExposure.attr2.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(V500.riskExposure.attr2.rateLast!0)?string('0.######')}</Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <#if V400.fundInfo.priceSensitivity == 'Y'>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s294"><Data ss:Type="String">${V500.riskExposure.attr3.item!}</Data></Cell>
-    <Cell ss:StyleID="s295"><Data ss:Type="Number">${(V500.riskExposure.attr3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s295" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s296"><Data ss:Type="Number">${(V500.riskExposure.attr3.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s297"><Data ss:Type="Number">${(V500.riskExposure.attr3.rateLast!0)?string('0.######')}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R${(24+V500.invest.count+V500.riskExposure.count!0)?string('0')}C3*100,2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(item.ratioLast!0)?string('0.######')}</Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s74"/>
     <Cell ss:Index="25" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -4415,60 +4325,14 @@
     <Cell ss:StyleID="s69"/>
    </Row>
    </#if>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${V500.riskExposure.attr4.item!}</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(V500.riskExposure.attr4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(V500.riskExposure.attr4.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(V500.riskExposure.attr4.rateLast!0)?string('0.######')}</Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${V500.riskExposure.attr5.item!}</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(V500.riskExposure.attr5.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(V500.riskExposure.attr5.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(V500.riskExposure.attr5.rateLast!0)?string('0.######')}</Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s294"><Data ss:Type="String">${V500.riskExposure.attr6.item!}</Data></Cell>
-    <Cell ss:StyleID="s295"><Data ss:Type="Number">${(V500.riskExposure.attr6.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s298" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s296"><Data ss:Type="Number">${(V500.riskExposure.attr6.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s297"><Data ss:Type="Number">${(V500.riskExposure.attr6.rateLast!0)?string('0.######')}</Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s145"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=SUM(R[<#if V400.fundInfo.priceSensitivity == 'Y'>-6<#else>-5</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s148" ss:Formula="=SUM(R[<#if V400.fundInfo.priceSensitivity == 'Y'>-6<#else>-5</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s147" ss:Formula="=SUM(R[<#if V400.fundInfo.priceSensitivity == 'Y'>-6<#else>-5</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s238" ss:Formula="=SUM(R[${(-V500.riskExposure.count!0)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R${(24+V500.invest.count+V500.riskExposure.count!0)?string('0')}C3*100,2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s148" ss:Formula="=SUM(R[${(-V500.riskExposure.count!0)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s147" ss:Formula="=SUM(R[${(-V500.riskExposure.count!0)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s74"/>
     <Cell ss:Index="25" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -4482,7 +4346,7 @@
    <Row>
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="3" ss:StyleID="s239"><Data ss:Type="String">control</Data></Cell>
-    <Cell ss:StyleID="s300" ss:Formula="=R[-1]C=SUM(R[<#if V400.fundInfo.priceSensitivity == 'Y'>-7<#else>-6</#if>]C:R[-2]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:StyleID="s300" ss:Formula="=R[-1]C=SUM(R[${(-1-V500.riskExposure.count!0)?string('0')}]C:R[-2]C)"><Data ss:Type="Boolean"></Data></Cell>
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="9" ss:StyleID="s69"/>
@@ -4695,9 +4559,9 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="3" ss:StyleID="s299" ss:Formula="=R[${(24+V500.slopeCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s308" ss:Formula="=R[${(24+V500.slopeCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s309"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s299" ss:Formula="=R[${(26+V500.slopeCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s308" ss:Formula="=R[${(26+V500.slopeCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s309"><Data ss:Type="Number">${(V500.test.first.inflLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="9" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -4712,9 +4576,9 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="3" ss:StyleID="s299" ss:Formula="=R[${(24+V500.slopeCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s308" ss:Formula="=R[${(24+V500.slopeCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s309"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s299" ss:Formula="=R[${(26+V500.slopeCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s308" ss:Formula="=R[${(26+V500.slopeCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s309"><Data ss:Type="Number">${(V500.test.second.inflLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="9" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -4983,62 +4847,135 @@
     <Cell ss:StyleID="s69"/>
    </Row>
    <Row>
+    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">年天数</Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <#if V500.slopeOneJson.indexCount != 0>
+    <#list V500.slopeOneJson.indexList as index>
+    <Cell ss:StyleID="s163"><Data ss:Type="String">基准权重</Data></Cell>
+    </#list>
+    </#if>
+    <#if V500.slopeOneJson.interestCount != 0>
+    <#list V500.slopeOneJson.interestList as interest>
+    <Cell ss:StyleID="s163"><Data ss:Type="String">基准权重</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s154"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s10245"><Data ss:Type="Number">${(V500.dayOfYear!365)?string('0')}</Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <#if V500.slopeOneJson.indexCount != 0>
+    <#list V500.slopeOneJson.indexList as index>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${index.weight!0}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V500.slopeOneJson.interestCount != 0>
+    <#list V500.slopeOneJson.interestList as interest>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${interest.weight!0}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s154"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row>
     <Cell ss:Index="2" ss:StyleID="s241"><Data ss:Type="String">日期</Data></Cell>
     <Cell ss:StyleID="s242"><Data ss:Type="String">单位净值</Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">分红</Data></Cell>
     <Cell ss:StyleID="s243"><Data ss:Type="String">每日净值增长率</Data></Cell>
-    <Cell ss:StyleID="s303"><Data ss:Type="String">${V400.fundInfo.priceSensitiveIndex!}</Data></Cell>
-    <Cell ss:StyleID="s243"><Data ss:Type="String">日收益率</Data></Cell>
+    <Cell ss:StyleID="s243"><Data ss:Type="String">基准日收益率</Data></Cell>
+    <#if V500.slopeOneJson.indexCount != 0>
+    <#list V500.slopeOneJson.indexList as index>
+    <Cell ss:StyleID="s303"><Data ss:Type="String">${index.name!}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V500.slopeOneJson.interestCount != 0>
+    <#list V500.slopeOneJson.interestList as interest>
+    <Cell ss:StyleID="s303"><Data ss:Type="String">${interest.name!}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V500.slopeOneJson.floatCount != 0>
+    <#list V500.slopeOneJson.floatList as float>
+    <Cell ss:StyleID="s303"><Data ss:Type="String">${float.name!}</Data></Cell>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s243"/>
-    <Cell ss:Index="11" ss:StyleID="s160"/>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="23" ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s241"/>
     <Cell ss:StyleID="s190"><Data ss:Type="String">From 基金网站公开披露信息</Data></Cell>
     <Cell ss:StyleID="s96"/>
     <Cell ss:StyleID="s243"/>
-    <Cell ss:StyleID="s292"><Data ss:Type="String">From ${V400.fundInfo.indexSourse!}</Data></Cell>
     <Cell ss:StyleID="s243"/>
-    <Cell ss:StyleID="s243"/>
-    <Cell ss:Index="11" ss:StyleID="s160"/>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="23" ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
+    <#if V500.slopeOneJson.indexCount != 0>
+    <#list V500.slopeOneJson.indexList as index>
+    <Cell ss:StyleID="s190"><Data ss:Type="String">From ${index.source!}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V500.slopeOneJson.interestCount != 0>
+    <#list V500.slopeOneJson.interestList as interest>
+    <Cell ss:StyleID="s190"><Data ss:Type="String">${interest.source!}</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <#if V500.slopeCount != 0>
    <#list V500.slopeList as item>
    <#if item_index == 0>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s244"><Data ss:Type="DateTime">${item.thxDate!}T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.unitNetvalue!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.divident!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s244"><#if item.trxDate??><Data ss:Type="DateTime">${item.trxDate!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.unitNetValue!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.dividend!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s77"></Cell>
-    <Cell ss:StyleID="s246"><Data ss:Type="Number">${(item.index!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s76"></Cell>
+    <Cell ss:StyleID="s77"></Cell>
+    <#if V500.slopeOneJson.indexCount != 0>
+    <#list V500.slopeOneJson.indexList as index>
+    <Cell ss:StyleID="s246"><Data ss:Type="Number">${index.value!0}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V500.slopeOneJson.interestCount != 0>
+    <#list V500.slopeOneJson.interestList as interest>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${interest.value!0}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V500.slopeOneJson.floatCount != 0>
+    <#list V500.slopeOneJson.floatList as float>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${float.value!0}</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    <#else>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s244"><Data ss:Type="DateTime">${item.thxDate!}T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.unitNetvalue!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.divident!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s244"><#if item.trxDate??><Data ss:Type="DateTime">${item.trxDate!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.unitNetValue!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.dividend!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s77" ss:Formula="=RC[-2]/(R[-1]C[-2]-RC[-1])-1"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s246"><Data ss:Type="Number">${(item.index!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=(RC[-1]/R[-1]C[-1]-1)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s77" 
+      ss:Formula="=<#if V500.slopeOneJson.indexCount != 0><#list V500.slopeOneJson.indexList as index>+(RC[${(1+index_index!0)?string('0.##')}]/R[-1]C[${(1+index_index!0)?string('0.##')}]-1)*R[${(-3-item_index!0)?string('0')}]C[${(1+index_index!0)?string('0.##')}]</#list></#if>+<#if V500.slopeOneJson.interestCount != 0><#list V500.slopeOneJson.interestList as interest>RC[${(1+V500.slopeOneJson.indexCount+interest_index!0)?string('0.##')}]/R[${(-3-item_index!0)?string('0')}]C2*(RC2-R[-1]C2)*R[${(-3-item_index!0)?string('0')}]C[${(1+V500.slopeOneJson.indexCount+interest_index!0)?string('0.##')}]</#list></#if><#if V500.slopeOneJson.floatCount != 0><#list V500.slopeOneJson.floatList as float>+RC[${(1+V500.slopeOneJson.indexCount+V500.slopeOneJson.interestCount+float_index!0)?string('0.##')}]/R[${(-3-item_index!0)?string('0')}]C2*(RC2-R[-1]C2)</#list></#if>">
+      <Data ss:Type="Number"></Data>
+    </Cell>
+    <#if V500.slopeOneJson.indexCount != 0>
+    <#list V500.slopeOneJson.indexList as index>
+    <Cell ss:StyleID="s246"><Data ss:Type="Number">${index.value!0}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V500.slopeOneJson.interestCount != 0>
+    <#list V500.slopeOneJson.interestList as interest>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${interest.value!0}</Data></Cell>
+    </#list>
+    </#if>
+    <#if V500.slopeOneJson.floatCount != 0>
+    <#list V500.slopeOneJson.floatList as float>
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">${float.value!0}</Data></Cell>
+    </#list>
+    </#if>
    </Row>
    </#if>
    </#list>
@@ -5052,14 +4989,13 @@
     <Cell ss:Index="2" ss:StyleID="s253"/>
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s239"><Data ss:Type="String">相关系数</Data></Cell>
-    <Cell ss:StyleID="s254" ss:Formula="=SLOPE(R[${(-V500.slopeCount)?string('0')}]C:R[-2]C,R[${(-V500.slopeCount)?string('0')}]C[2]:R[-2]C[2])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=SLOPE(R[${(-V500.slopeCount)?string('0')}]C:R[-2]C,R[${(-V500.slopeCount)?string('0')}]C[1]:R[-2]C[1])"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s253"/>
     <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="6" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s157"/>
-    <Cell ss:StyleID="s257"/>
+    <Cell ss:StyleID="s239"><Data ss:Type="String">相关系数</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=COVAR(R[${(-1-V500.slopeCount)?string('0')}]C:R[-3]C,R[${(-1-V500.slopeCount)?string('0')}]C[1]:R[-3]C[1])/VAR(R[${(-1-V500.slopeCount)?string('0')}]C[1]:R[-3]C[1])"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s69"/>
@@ -5089,20 +5025,20 @@
     <Cell ss:StyleID="s69"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s259" ss:Formula="=R[${(-32-V500.slopeCount-V500.hypothesisCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s259" ss:Formula="=R[${(-34-V500.slopeCount-V500.hypothesisCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s254" ss:Formula="=R[-6]C[2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(V400.fundInfo.riskVariable!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(V500.test.first.varFlex!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s310" ss:Formula="=RC[-2]*RC[-3]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V500.test.first.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(-(V400.fundInfo.riskVariable!0))?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(V500.test.second.varFlex!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s310" ss:Formula="=R[-1]C[-2]*R[-1]C[-3]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V500.test.second.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
@@ -5351,45 +5287,18 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
    </Row>
+   <#if V500.invest.count != 0>
+   <#list V500.invest.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr1.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr1.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr1.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr2.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr2.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr2.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr3.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr3.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s293"><Data ss:Type="String">${V500.invest.attr3.priceSensitivity!}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
+    <#if (item.item?? && item.item == '债券投资')>
+    <Cell ss:StyleID="s293"><Data ss:Type="String">${item.priSenAsset!}</Data></Cell>
     <Cell ss:StyleID="s321"><Data ss:Type="String">Note</Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s154"><Data ss:Type="String">${item.priSenAsset!}</Data></Cell>
+    <Cell ss:StyleID="s66"/>
+    </#if>
     <Cell ss:StyleID="s66"/>
     <Cell ss:Index="9" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -5402,91 +5311,8 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr4.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr4.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr4.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr5.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr5.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr5.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr6.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr6.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr6.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr7.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr7.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr7.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s163"><Data ss:Type="String">${V500.invest.attr8.item!}</Data></Cell>
-    <Cell ss:StyleID="s282"><Data ss:Type="Number">${(V500.invest.attr8.marketValueEntered!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s154"><Data ss:Type="String">${V500.invest.attr8.priceSensitivity!}</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:Index="9" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s237"/>
     <Cell ss:StyleID="s204"/>
@@ -5658,12 +5484,15 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
    </Row>
+   <#if V500.riskExposure.count != 0>
+   <#list V500.riskExposure.list as item>
+   <#if (item.item?? && (item.item == '交易性金融资产-债券投资' || item.item == '其他'))>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${V500.riskExposure.attr1.item!}</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(V500.riskExposure.attr1.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(V500.riskExposure.attr1.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(V500.riskExposure.attr1.rateLast!0)?string('0.######')}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s294"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s295"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s295" ss:Formula="=ROUND(RC[-1]/R${(24+V500.invest.count+V500.riskExposure.count!0)?string('0')}C3*100,2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s296"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s297"><Data ss:Type="Number">${(item.ratioLast!0)?string('0.######')}</Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s74"/>
     <Cell ss:Index="25" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -5674,29 +5503,13 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
    </Row>
+   <#else>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${V500.riskExposure.attr2.item!}</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(V500.riskExposure.attr2.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(V500.riskExposure.attr2.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(V500.riskExposure.attr2.rateLast!0)?string('0.######')}</Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <#if V400.fundInfo.priceSensitivity == 'Y'>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s294"><Data ss:Type="String">${V500.riskExposure.attr3.item!}</Data></Cell>
-    <Cell ss:StyleID="s295"><Data ss:Type="Number">${(V500.riskExposure.attr3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s295" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s296"><Data ss:Type="Number">${(V500.riskExposure.attr3.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s297"><Data ss:Type="Number">${(V500.riskExposure.attr3.rateLast!0)?string('0.######')}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R${(24+V500.invest.count+V500.riskExposure.count!0)?string('0')}C3*100,2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(item.ratioLast!0)?string('0.######')}</Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s74"/>
     <Cell ss:Index="25" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -5708,60 +5521,14 @@
     <Cell ss:StyleID="s69"/>
    </Row>
    </#if>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${V500.riskExposure.attr4.item!}</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(V500.riskExposure.attr4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(V500.riskExposure.attr4.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(V500.riskExposure.attr4.rateLast!0)?string('0.######')}</Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s144"><Data ss:Type="String">${V500.riskExposure.attr5.item!}</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="Number">${(V500.riskExposure.attr5.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s146"><Data ss:Type="Number">${(V500.riskExposure.attr5.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s147"><Data ss:Type="Number">${(V500.riskExposure.attr5.rateLast!0)?string('0.######')}</Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s294"><Data ss:Type="String">${V500.riskExposure.attr6.item!}</Data></Cell>
-    <Cell ss:StyleID="s295"><Data ss:Type="Number">${(V500.riskExposure.attr6.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s298" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s296"><Data ss:Type="Number">${(V500.riskExposure.attr6.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s297"><Data ss:Type="Number">${(V500.riskExposure.attr6.rateLast!0)?string('0.######')}</Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s74"/>
-    <Cell ss:Index="25" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s145"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=SUM(R[<#if V400.fundInfo.priceSensitivity == 'Y'>-6<#else>-5</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>38<#else>37</#if>C3*100,2)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s148" ss:Formula="=SUM(R[<#if V400.fundInfo.priceSensitivity == 'Y'>-6<#else>-5</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s147" ss:Formula="=SUM(R[<#if V400.fundInfo.priceSensitivity == 'Y'>-6<#else>-5</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s238" ss:Formula="=SUM(R[${(-V500.riskExposure.count!0)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s238" ss:Formula="=ROUND(RC[-1]/R${(24+V500.invest.count+V500.riskExposure.count!0)?string('0')}C3*100,2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s148" ss:Formula="=SUM(R[${(-V500.riskExposure.count!0)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s147" ss:Formula="=SUM(R[${(-V500.riskExposure.count!0)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s74"/>
     <Cell ss:Index="25" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -5775,7 +5542,7 @@
    <Row>
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="3" ss:StyleID="s239"><Data ss:Type="String">control</Data></Cell>
-    <Cell ss:StyleID="s300" ss:Formula="=R[-1]C=SUM(R[<#if V400.fundInfo.priceSensitivity == 'Y'>-7<#else>-6</#if>]C:R[-2]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:StyleID="s300" ss:Formula="=R[-1]C=SUM(R[${(-1-V500.riskExposure.count!0)?string('0')}]C:R[-2]C)"><Data ss:Type="Boolean"></Data></Cell>
     <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="9" ss:StyleID="s69"/>
@@ -6017,7 +5784,7 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="3" ss:StyleID="s299" ss:Formula="=R[${(23+V500.betaCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s308" ss:Formula="=R[${(23+V500.betaCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s309"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s309"><Data ss:Type="Number">${(V500.test.first.inflLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="9" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -6034,7 +5801,7 @@
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="3" ss:StyleID="s299" ss:Formula="=R[${(23+V500.betaCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s308" ss:Formula="=R[${(23+V500.betaCount)?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s309"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s309"><Data ss:Type="Number">${(V500.test.second.inflLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s69"/>
     <Cell ss:Index="9" ss:StyleID="s69"/>
     <Cell ss:StyleID="s69"/>
@@ -6298,17 +6065,33 @@
     <Cell ss:StyleID="s154"/>
     <Cell ss:StyleID="s111"/>
     <Cell ss:StyleID="s113"><Data ss:Type="String">市值/价格敏感资产总市值</Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="String">From ${V400.fundInfo.betaSourse!}</Data></Cell>
+    <#if V500.betaOneJson.betaCount == 0>
+    <Cell ss:StyleID="s292"><Data ss:Type="String">From</Data></Cell>
+    <#else>
+    <#list V500.betaOneJson.betaList as beta>
+    <#if beta_index == 0>
+    <Cell ss:StyleID="s292"><Data ss:Type="String">From ${beta.source!}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s113"><Data ss:Type="String">权重×beta</Data></Cell>
    </Row>
    <#if V500.betaCount != 0>
    <#list V500.betaList as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s265"><Data ss:Type="String">${item.stockCode!}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="String">${item.stockName!}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s265"><Data ss:Type="String">${item.trxCode!}</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="String">${item.shortName!}</Data></Cell>
     <Cell ss:StyleID="s311"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=IF(R<#if V400.fundInfo.priceSensitivity == 'Y'>${(62+V500.betaCount+V500.hypothesisCount)?string('0')}<#else>${(61+V500.betaCount+V500.hypothesisCount)?string('0')}</#if>C4&lt;&gt;0,RC[-1]/R<#if V400.fundInfo.priceSensitivity == 'Y'>${(62+V500.betaCount+V500.hypothesisCount)?string('0')}<#else>${(61+V500.betaCount+V500.hypothesisCount)?string('0')}</#if>C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s221"><Data ss:Type="Number">${(item.beta!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(48+V500.betaCount+V500.hypothesisCount+V500.invest.count+V500.riskExposure.count)?string('0')}C4&lt;&gt;0,RC[-1]/R${(48+V500.betaCount+V500.hypothesisCount+V500.invest.count+V500.riskExposure.count)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <#if item.betaCount == 0>
+    <Cell ss:StyleID="s221"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <#list item.betaList as beta>
+    <#if beta_index == 0>
+    <Cell ss:StyleID="s221"><Data ss:Type="Number">${beta.value!0}</Data></Cell>
+    </#if>
+    </#list>
+    </#if>
     <Cell ss:StyleID="s221" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
@@ -6330,7 +6113,7 @@
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s269"><Data ss:Type="String">完整性control</Data></Cell>
-    <Cell ss:Formula="=R[-1]C=SUMIF(R11C4:R19C4,&quot;Y&quot;,R11C3:R19C3)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:Formula="=R[-1]C=SUMIF(R11C4:R${(11+(V500.invest.count!0))?string('0')}C4,&quot;Y&quot;,R11C3:R${(11+(V500.invest.count!0))?string('0')}C3)"><Data ss:Type="Boolean"></Data></Cell>
    </Row>
    <Row/>
    <Row/>
@@ -6411,9 +6194,9 @@
    <Row>
     <Cell ss:Index="2" ss:StyleID="s259" ss:Formula="=R[-7]C[2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s221" ss:Formula="=R[-7]C[4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(V400.fundInfo.riskVariable!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(V500.test.first.varFlex!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s310" ss:Formula="=RC[-2]*RC[-3]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V500.test.first.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>
@@ -6421,9 +6204,9 @@
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(-(V400.fundInfo.riskVariable!0))?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="Number">${(V500.test.second.varFlex!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s310" ss:Formula="=R[-1]C[-2]*R[-1]C[-3]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V500.test.second.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s119"><Data ss:Type="String">m</Data></Cell>

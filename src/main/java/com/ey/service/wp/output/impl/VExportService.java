@@ -1,16 +1,17 @@
 package com.ey.service.wp.output.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import com.ey.service.wp.output.VExportManager;
@@ -368,23 +369,75 @@ public class VExportService extends BaseExportService implements VExportManager{
         }
         
         @SuppressWarnings("unchecked")
-        List<Map<String,Object>> V400DetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400DetailData", queryMap);
-        if(V400DetailMetaDataList == null) {
-            V400DetailMetaDataList = new ArrayList<>(); 
+        List<Map<String,Object>> V400ListMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400LineData", queryMap);
+        if(V400ListMetaDataList == null) {
+            V400ListMetaDataList = new ArrayList<>(); 
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        for(Map<String,Object> map : V400ListMetaDataList) {
+            String json = (String) map.get("calResult");
+            if(json == null || json.length() == 0) {
+                json = "{}";
+            }
+            try {
+                @SuppressWarnings("unchecked")
+                HashMap<String,Object> jsonMap = objectMapper.readValue(json, HashMap.class);
+                @SuppressWarnings("unchecked")
+                List<Map<String, Object>> durations = (List<Map<String, Object>>) jsonMap.get("duration");
+                if(durations == null) {
+                    durations = new ArrayList<>();
+                }
+                @SuppressWarnings("unchecked")
+                List<Map<String, Object>> convexitys = (List<Map<String, Object>>) jsonMap.get("convexity");
+                if(convexitys == null) {
+                    convexitys = new ArrayList<>();
+                }
+                map.put("durationList", durations);
+                map.put("durationCount", durations.size());
+                map.put("convexityList", convexitys);
+                map.put("convexityCount", convexitys.size());
+            } catch (Exception e) {
+                e.printStackTrace();
+                ArrayList<Object> empty = new ArrayList<>();
+                map.put("durationList", empty);
+                map.put("durationCount", 0);
+                map.put("convexityList", empty);
+                map.put("convexityCount", 0);
+            } finally {
+                map.remove("calResult");
+            }
         }
         
-        @SuppressWarnings("unchecked")
-        Map<String,Object> V400SummaryData = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400SummaryData", queryMap);
-        if(V400SummaryData == null) {
-            V400SummaryData = new HashMap<>(); 
+        Map<String, Object> oneJson = new HashMap<>();
+        if(V400ListMetaDataList.size() > 0) {
+            oneJson = V400ListMetaDataList.get(0);
+        }else {
+            ArrayList<Object> empty = new ArrayList<>();
+            oneJson.put("durationList", empty);
+            oneJson.put("durationCount", 0);
+            oneJson.put("convexityList", empty);
+            oneJson.put("convexityCount", 0);
         }
+        
+        Map<String,Object> V400TestData = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V400TestMetaData = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400TestData", queryMap);
+        if(V400TestMetaData == null) {
+            V400TestMetaData = new ArrayList<>(); 
+        }
+        while(V400TestMetaData.size() < 2) {
+            V400TestMetaData.add(new HashMap<>());
+        }
+        V400TestData.put("first", V400TestMetaData.get(0));
+        V400TestData.put("second", V400TestMetaData.get(1));
         
         result.put("fundInfo", fundInfo);
         result.put("hypothesis", V400HypothesisDataList);
         result.put("hypothesisCount", V400HypothesisDataList.size());
-        result.put("detailList", V400DetailMetaDataList);
-        result.put("detailCount", V400DetailMetaDataList.size());
-        result.put("summary", V400SummaryData);
+        result.put("lineList", V400ListMetaDataList);
+        result.put("lineCount", V400ListMetaDataList.size());
+        result.put("oneJson", oneJson);
+        result.put("test", V400TestData);
         
         return result;
     }
@@ -402,92 +455,26 @@ public class VExportService extends BaseExportService implements VExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
-        Map<String, Object> attr1 = new HashMap<String,Object>();
-        Map<String, Object> attr2 = new HashMap<String,Object>();
-        Map<String, Object> attr3 = new HashMap<String,Object>();
-        Map<String, Object> attr4 = new HashMap<String,Object>();
-        Map<String, Object> attr5 = new HashMap<String,Object>();
-        Map<String, Object> attr6 = new HashMap<String,Object>();
-        Map<String, Object> attr7 = new HashMap<String,Object>();
-        Map<String, Object> attr8 = new HashMap<String,Object>();
         Map<String, Object> invest = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
-        List<Map<String,Object>> V500InvertMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500InvertData", queryMap);
-        if(V500InvertMetaDataList == null) {
-            V500InvertMetaDataList = new ArrayList<>(); 
+        List<Map<String,Object>> V500InvestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500InvestData", queryMap);
+        if(V500InvestMetaDataList == null) {
+            V500InvestMetaDataList = new ArrayList<>(); 
         }
-        Map<String,Map<String,Object>> temp = new HashMap<>();
-        for(Map<String,Object> map : V500InvertMetaDataList) {
-            temp.put(String.valueOf(map.get("item")), map);
-        }
-        for(Entry<String, Map<String,Object>> entry : temp.entrySet()) {
-            if ("股票投资".equals(entry.getKey())) {
-                attr1 = entry.getValue();
-            } else if ("基金投资".equals(entry.getKey())) {
-                attr2 = entry.getValue();
-            } else if ("债券投资".equals(entry.getKey())) {
-                attr3 = entry.getValue();
-            } else if ("贵金属投资".equals(entry.getKey())) {
-                attr4 = entry.getValue();
-            } else if ("资产支持证券投资".equals(entry.getKey())) {
-                attr5 = entry.getValue();
-            } else if ("衍生金融资产-权证投资".equals(entry.getKey())) {
-                attr6 = entry.getValue();
-            } else if ("衍生金融资产-股指期货".equals(entry.getKey())) {
-                attr7 = entry.getValue();
-            } else if ("其他".equals(entry.getKey())) {
-                attr8 = entry.getValue();
-            }
-        }
-        invest.put("attr1", attr1);
-        invest.put("attr2", attr2);
-        invest.put("attr3", attr3);
-        invest.put("attr4", attr4);
-        invest.put("attr5", attr5);
-        invest.put("attr6", attr6);
-        invest.put("attr7", attr7);
-        invest.put("attr8", attr8);
+        invest.put("list", V500InvestMetaDataList);
+        invest.put("count", V500InvestMetaDataList.size());
         
         Map<String, Object> riskExposure = new HashMap<String,Object>();
-        attr1 = new HashMap<String,Object>();
-        attr2 = new HashMap<String,Object>();
-        attr3 = new HashMap<String,Object>();
-        attr4 = new HashMap<String,Object>();
-        attr5 = new HashMap<String,Object>();
-        attr6 = new HashMap<String,Object>();
         Double netValue = 0D;
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500riskExposureMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500riskExposureData", queryMap);
         if(CollectionUtils.isEmpty(V500riskExposureMetaDataList)) {
             V500riskExposureMetaDataList = new ArrayList<>(); 
         }else {
-            netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValue")));
+            netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValueCurrent")));
         }
-        temp = new HashMap<>();
-        for(Map<String,Object> map : V500riskExposureMetaDataList) {
-            temp.put(String.valueOf(map.get("item")), map);
-        }
-        for(Entry<String, Map<String,Object>> entry : temp.entrySet()) {
-            if ("交易性金融资产-股票投资".equals(entry.getKey())) {
-                attr1 = entry.getValue();
-            } else if ("交易性金融资产-基金投资".equals(entry.getKey())) {
-                attr2 = entry.getValue();
-            } else if ("交易性金融资产-债券投资".equals(entry.getKey())) {
-                attr3 = entry.getValue();
-            } else if ("交易性金融资产-贵金属投资".equals(entry.getKey())) {
-                attr4 = entry.getValue();
-            } else if ("衍生金融资产-权证投资".equals(entry.getKey())) {
-                attr5 = entry.getValue();
-            } else if ("其他".equals(entry.getKey())) {
-                attr6 = entry.getValue();
-            }
-        }
-        riskExposure.put("attr1", attr1);
-        riskExposure.put("attr2", attr2);
-        riskExposure.put("attr3", attr3);
-        riskExposure.put("attr4", attr4);
-        riskExposure.put("attr5", attr5);
-        riskExposure.put("attr6", attr6);
+        riskExposure.put("list", V500riskExposureMetaDataList);
+        riskExposure.put("count", V500riskExposureMetaDataList.size());
         riskExposure.put("netValue", netValue);
         
         @SuppressWarnings("unchecked")
@@ -496,17 +483,125 @@ public class VExportService extends BaseExportService implements VExportManager{
             V500HypothesisDataList = new ArrayList<>(); 
         }
         
+        ObjectMapper objectMapper = new ObjectMapper();
+        
         @SuppressWarnings("unchecked")
-        List<String> V500DetailSlopeMetaDataList = (List<String>)this.dao.findForList("VExportMapper.selectV500DetailSlopeData", queryMap);
+        List<Map<String,Object>> V500DetailSlopeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500DetailSlopeData", queryMap);
         if(V500DetailSlopeMetaDataList == null) {
             V500DetailSlopeMetaDataList = new ArrayList<>(); 
         }
         
+        for(Map<String,Object> map : V500DetailSlopeMetaDataList) {
+            String json = (String) map.get("calResult");
+            if(json == null || json.length() == 0) {
+                json = "{}";
+            }
+            try {
+                @SuppressWarnings("unchecked")
+                HashMap<String,Object> jsonMap = objectMapper.readValue(json, HashMap.class);
+                @SuppressWarnings("unchecked")
+                List<Map<String, Object>> index = (List<Map<String, Object>>) jsonMap.get("index");
+                if(index == null) {
+                    index = new ArrayList<>();
+                }
+                @SuppressWarnings("unchecked")
+                List<Map<String, Object>> interest = (List<Map<String, Object>>) jsonMap.get("interest");
+                if(interest == null) {
+                    interest = new ArrayList<>();
+                }
+                @SuppressWarnings("unchecked")
+                List<Map<String, Object>> floatL = (List<Map<String, Object>>) jsonMap.get("float");
+                if(floatL == null) {
+                    floatL = new ArrayList<>();
+                }
+                map.put("indexList", index);
+                map.put("indexCount", index.size());
+                map.put("interestList", interest);
+                map.put("interestCount", interest.size());
+                map.put("floatList", floatL);
+                map.put("floatCount", floatL.size());
+            } catch (Exception e) {
+                e.printStackTrace();
+                ArrayList<Object> empty = new ArrayList<>();
+                map.put("indexList", empty);
+                map.put("indexCount", 0);
+                map.put("interestList", empty);
+                map.put("interestCount", 0);
+                map.put("floatList", empty);
+                map.put("floatCount", 0);
+            } finally {
+                map.remove("calResult");
+            }
+        }
+        
+        Map<String, Object> slopeOneJson = new HashMap<>();
+        if(V500DetailSlopeMetaDataList.size() > 0) {
+            slopeOneJson = V500DetailSlopeMetaDataList.get(0);
+        }else {
+            ArrayList<Object> empty = new ArrayList<>();
+            slopeOneJson.put("indexList", empty);
+            slopeOneJson.put("indexCount", 0);
+            slopeOneJson.put("interestList", empty);
+            slopeOneJson.put("interestCount", 0);
+            slopeOneJson.put("floatList", empty);
+            slopeOneJson.put("floatCount", 0);
+        }
+        
         @SuppressWarnings("unchecked")
-        List<String> V500DetailBetaMetaDataList = (List<String>)this.dao.findForList("VExportMapper.selectV500DetailBetaData", queryMap);
+        List<Map<String,Object>> V500DetailBetaMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500DetailBetaData", queryMap);
         if(V500DetailBetaMetaDataList == null) {
             V500DetailBetaMetaDataList = new ArrayList<>(); 
         }
+        
+        for(Map<String,Object> map : V500DetailBetaMetaDataList) {
+            String json = (String) map.get("calResult");
+            if(json == null || json.length() == 0) {
+                json = "{}";
+            }
+            try {
+                @SuppressWarnings("unchecked")
+                HashMap<String,Object> jsonMap = objectMapper.readValue(json, HashMap.class);
+                @SuppressWarnings("unchecked")
+                List<Map<String, Object>> beta = (List<Map<String, Object>>) jsonMap.get("beta");
+                if(beta == null) {
+                    beta = new ArrayList<>();
+                }
+                map.put("betaList", beta);
+                map.put("betaCount", beta.size());
+            } catch (Exception e) {
+                e.printStackTrace();
+                ArrayList<Object> empty = new ArrayList<>();
+                map.put("betaList", empty);
+                map.put("betaCount", 0);
+            } finally {
+                map.remove("calResult");
+            }
+        }
+        
+        Map<String, Object> betaOneJson = new HashMap<>();
+        if(V500DetailBetaMetaDataList.size() > 0) {
+            betaOneJson = V500DetailBetaMetaDataList.get(0);
+        }else {
+            ArrayList<Object> empty = new ArrayList<>();
+            betaOneJson.put("betaList", empty);
+            betaOneJson.put("betaCount", 0);
+        }
+        
+        Map<String,Object> V500TestData = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V500TestMetaData = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500TestData", queryMap);
+        if(V500TestMetaData == null) {
+            V500TestMetaData = new ArrayList<>(); 
+        }
+        while(V500TestMetaData.size() < 2) {
+            V500TestMetaData.add(new HashMap<>());
+        }
+        V500TestData.put("first", V500TestMetaData.get(0));
+        V500TestData.put("second", V500TestMetaData.get(1));
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, Integer.parseInt(periodStr.substring(0, 4)));
+        int dayOfYear = calendar.getActualMaximum(Calendar.DAY_OF_YEAR);
         
         result.put("invest", invest);
         result.put("riskExposure", riskExposure);
@@ -514,8 +609,12 @@ public class VExportService extends BaseExportService implements VExportManager{
         result.put("hypothesisCount", V500HypothesisDataList.size());
         result.put("slopeList", V500DetailSlopeMetaDataList);
         result.put("slopeCount", V500DetailSlopeMetaDataList.size());
+        result.put("slopeOneJson", slopeOneJson);
         result.put("betaList", V500DetailBetaMetaDataList);
         result.put("betaCount", V500DetailBetaMetaDataList.size());
+        result.put("betaOneJson", betaOneJson);
+        result.put("test", V500TestData);
+        result.put("dayOfYear", dayOfYear);
         return result;
     }
 

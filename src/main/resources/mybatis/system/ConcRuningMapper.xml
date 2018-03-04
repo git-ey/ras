@@ -142,7 +142,17 @@
 		  LOG_MSG_17,
 		  LOG_MSG_18,
 		  LOG_MSG_19,
-		  LOG_MSG_20
+		  LOG_MSG_20,
+		  LOG_MSG_21,
+		  LOG_MSG_22,
+		  LOG_MSG_23,
+		  LOG_MSG_24,
+		  LOG_MSG_25,
+		  LOG_MSG_26,
+		  LOG_MSG_27,
+		  LOG_MSG_28,
+		  LOG_MSG_29,
+		  LOG_MSG_30
 		from sys_concrun_log
 	   where CONCRUNING_ID = #{CONCRUNING_ID}
 	</select>	
