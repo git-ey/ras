@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -2682,27 +2683,19 @@ public class ReportExportService implements ReportExportManager {
         Map<String,Object> V400 = new HashMap<>();
         
         @SuppressWarnings("unchecked")
-        Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400FundInfoData", queryParam);
-        if(fundInfo == null) {
-            fundInfo = new HashMap<>();
-        }
-        @SuppressWarnings("unchecked")
         List<Map<String,Object>> V400HypothesisDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400HypothesisDataForReport", queryParam);
         if(V400HypothesisDataList == null) {
             V400HypothesisDataList = new ArrayList<>(); 
         }
         @SuppressWarnings("unchecked")
-        Map<String,Object> summaryCurrent = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400SummaryData", queryParam);
-        if(summaryCurrent == null) {
-            summaryCurrent = new HashMap<>(); 
+        List<Map<String,Object>> V400TestMetaData = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400TestData", queryParam);
+        V400TestMetaData = ListUtils.emptyIfNull(V400TestMetaData);
+        while(V400TestMetaData.size() < 2) {
+            V400TestMetaData.add(new HashMap<>());
         }
-        @SuppressWarnings("unchecked")
-        Map<String,Object> summaryLast = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400SummaryData", queryParamLast);
-        if(summaryLast == null) {
-            summaryLast = new HashMap<>(); 
-        }
+        Map<String,Object> summaryCurrent = V400TestMetaData.get(0);
+        Map<String,Object> summaryLast = V400TestMetaData.get(1);
         
-        V400.put("fundInfo", fundInfo);
         V400.put("hypothesis", V400HypothesisDataList);
         V400.put("hypothesisCount", V400HypothesisDataList.size());
         V400.put("summaryCurrent", summaryCurrent);
@@ -2713,46 +2706,16 @@ public class ReportExportService implements ReportExportManager {
         Map<String, Object> V500 = new HashMap<String,Object>();
         
         Map<String, Object> riskExposure = new HashMap<String,Object>();
-        attr1 = new HashMap<String,Object>();
-        attr2 = new HashMap<String,Object>();
-        attr3 = new HashMap<String,Object>();
-        attr4 = new HashMap<String,Object>();
-        attr5 = new HashMap<String,Object>();
-        attr6 = new HashMap<String,Object>();
-        sum = new HashMap<String,Object>();
         Double netValue = 0D;
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500riskExposureMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500riskExposureData", queryParam);
         if(CollectionUtils.isEmpty(V500riskExposureMetaDataList)) {
             V500riskExposureMetaDataList = new ArrayList<>(); 
         }else {
-            netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValue")));
+            netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValueCurrent")));
         }
-        Map<String,Map<String,Object>> temp = new HashMap<>();
-        for(Map<String,Object> map : V500riskExposureMetaDataList) {
-            temp.put(String.valueOf(map.get("item")), map);
-        }
-        for(Entry<String, Map<String,Object>> entry : temp.entrySet()) {
-            if ("交易性金融资产-股票投资".equals(entry.getKey())) {
-                attr1 = entry.getValue();
-            } else if ("交易性金融资产-基金投资".equals(entry.getKey())) {
-                attr2 = entry.getValue();
-            } else if ("交易性金融资产-债券投资".equals(entry.getKey())) {
-                attr3 = entry.getValue();
-            } else if ("交易性金融资产-贵金属投资".equals(entry.getKey())) {
-                attr4 = entry.getValue();
-            } else if ("衍生金融资产-权证投资".equals(entry.getKey())) {
-                attr5 = entry.getValue();
-            } else if ("其他".equals(entry.getKey())) {
-                attr6 = entry.getValue();
-            }
-        }
-        riskExposure.put("attr1", attr1);
-        riskExposure.put("attr2", attr2);
-        riskExposure.put("attr3", attr3);
-        riskExposure.put("attr4", attr4);
-        riskExposure.put("attr5", attr5);
-        riskExposure.put("attr6", attr6);
+        riskExposure.put("list", V500riskExposureMetaDataList);
+        riskExposure.put("count", V500riskExposureMetaDataList.size());
         riskExposure.put("netValue", netValue);
         @SuppressWarnings("unchecked")
         Map<String,Object> V500riskExposureSumMetaDataList = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV500riskExposureSumData", queryParam);
@@ -2768,15 +2731,13 @@ public class ReportExportService implements ReportExportManager {
         }
         
         @SuppressWarnings("unchecked")
-        Map<String,Object> summaryCurrent2 = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV500SummaryData", queryParam);
-        if(summaryCurrent2 == null) {
-            summaryCurrent2 = new HashMap<>(); 
+        List<Map<String,Object>> V500TestMetaData = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500TestData", queryParam);
+        V500TestMetaData = ListUtils.emptyIfNull(V500TestMetaData);
+        while(V500TestMetaData.size() < 2) {
+            V500TestMetaData.add(new HashMap<>());
         }
-        @SuppressWarnings("unchecked")
-        Map<String,Object> summaryLast2 = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV500SummaryData", queryParamLast);
-        if(summaryLast2 == null) {
-            summaryLast2 = new HashMap<>(); 
-        }
+        Map<String,Object> summaryCurrent2 = V500TestMetaData.get(0);
+        Map<String,Object> summaryLast2 = V500TestMetaData.get(1);
         
         V500.put("riskExposure", riskExposure);
         V500.put("hypothesis", V500HypothesisDataList);

@@ -89,11 +89,12 @@
     <select id="selectV400TestData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
 		    V400T.SORT as sort,
-		    V400T.INFL_LAST as inflLast,
-		    V400T.TOTAL_MKT_VALUE as totalMktValue,
-		    V400T.SEN_ASSET_EXCL as senAssetExcl,
-		    V400T.VAR_FLEX as varFlex,
-		    V400T.INFL_CURRENT_CLIENT as inflCurrentClient
+		    V400T.VAR_DESC as varDesc,
+		    IF(V400T.INFL_LAST = 0, null, V400T.INFL_LAST) as inflLast,
+		    IF(V400T.TOTAL_MKT_VALUE = 0, null, V400T.TOTAL_MKT_VALUE) as totalMktValue,
+		    IF(V400T.SEN_ASSET_EXCL = 0, null, V400T.SEN_ASSET_EXCL) as senAssetExcl,
+		    IF(V400T.VAR_FLEX = 0, null, V400T.VAR_FLEX) as varFlex,
+		    IF(V400T.INFL_CURRENT_CLIENT = 0, null, V400T.INFL_CURRENT_CLIENT) as inflCurrentClient
 		FROM
 		    wp_v400_test V400T
 		WHERE
@@ -126,7 +127,8 @@
 		    IF(V500REV.AMOUNT_CURRENT = 0, null,  V500REV.AMOUNT_CURRENT) as amountCurrent,
 		    IF(V500REV.AMOUNT_LAST = 0, null,  V500REV.AMOUNT_LAST) as amountLast,
 		    IF(V500REV.NET_VALUE_CURRENT = 0, null, V500REV.NET_VALUE_CURRENT) as netValueCurrent,
-		    IF(V500REV.RATIO_LAST = 0, null,  V500REV.RATIO_LAST) as ratioLast
+		    IF(V500REV.RATIO_LAST = 0, null,  V500REV.RATIO_LAST) as ratioLast,
+		    IF(V500REV.RATIO_CURRENT = 0, null,  V500REV.RATIO_CURRENT) as ratioCurrent
 		FROM
 		    wp_v500_risk_exposure_view V500REV
 		WHERE
@@ -141,8 +143,8 @@
             IF(SUM(V500REV.NET_VALUE_CURRENT) = 0, null, SUM(V500REV.NET_VALUE_CURRENT)) as netValue,
             IF(SUM(V500REV.AMOUNT_CURRENT) = 0, null, SUM(V500REV.AMOUNT_CURRENT)) as amountCurrent,
             IF(SUM(V500REV.AMOUNT_LAST) = 0, null, SUM(V500REV.AMOUNT_LAST)) as amountLast,
-            IF(SUM(V500REV.RATIO_LAST) = 0, null, SUM(V500REV.RATIO_LAST)) as rateLast,
-            IF(SUM(V500REV.RATIO_CURRENT) = 0, null, SUM(V500REV.RATIO_CURRENT)) as rateCurrent
+            IF(SUM(V500REV.RATIO_LAST) = 0, null, SUM(V500REV.RATIO_LAST)) as ratioLast,
+            IF(SUM(V500REV.RATIO_CURRENT) = 0, null, SUM(V500REV.RATIO_CURRENT)) as ratioCurrent
         FROM
             wp_v500_risk_exposure_view V500REV
         where
@@ -184,9 +186,10 @@
     <select id="selectV500TestData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
 	        V500T.SORT as sort,
-	        V500T.INFL_LAST as inflLast,
-	        V500T.VAR_FLEX as varFlex,
-	        V500T.INFL_CURRENT_CLIENT as inflCurrentClient
+	        V500T.VAR_DESC as varDesc,
+	        IF(V500T.INFL_LAST = 0, null, V500T.INFL_LAST) as inflLast,
+	        IF(V500T.VAR_FLEX = 0, null, V500T.VAR_FLEX) as varFlex,
+	        IF(V500T.INFL_CURRENT_CLIENT = 0, null, V500T.INFL_CURRENT_CLIENT) as inflCurrentClient
 		FROM
 	        wp_v500_test V500T
 		WHERE
@@ -228,18 +231,4 @@
 		AND V500L.PERIOD = #{period}
     </select>
     
-    <select id="selectV500SummaryData" parameterType="java.util.Map" resultType="java.util.Map"> 
-		SELECT
-		    IF(V500S.INFLUENCE_CLIENT1 = 0, null, V500S.INFLUENCE_CLIENT1) as influenceClient1,
-		    IF(V500S.INFLUENCE_CLIENT2 = 0, null, V500S.INFLUENCE_CLIENT2) as influenceClient2
-		FROM
-		    wp_v500_summary V500S
-		WHERE
-		    1 = 1
-		and V500S.STATUS = 'Y'
-        and V500S.FUND_ID = #{fundId}
-        and V500S.PERIOD = #{period}
-        LIMIT 1
-    </select>
-
 </mapper>

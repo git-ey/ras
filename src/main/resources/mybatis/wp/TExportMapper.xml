@@ -30,7 +30,7 @@
 		    sfi.ROR as ror,
 		    sfi.LEVERAGE as leverage,
 		    IFNULL(sfi.LOF,'N') as lof,
-            IFNULL(sfi.INTEREST_SENSITIVITY,'N') as interestSensitivity,
+            'N' as interestSensitivity,
             IFNULL(sfi.dealer_seperate,'N') as dealerSeperate,
             IFNULL(sfi.LEVEL_SHARE,'N') as levelShare,
             IFNULL(sfi.ETF_CONNECTION,'N') as etfConnection,
