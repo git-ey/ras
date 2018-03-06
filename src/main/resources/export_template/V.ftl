@@ -2176,7 +2176,7 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s193"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s193"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:Index="${(6+V300.intRistPeriodsCount)?string('0')}" ss:StyleID="s193"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s105"><Data ss:Type="String">资 产：</Data></Cell>
@@ -2768,13 +2768,6 @@
     </#list>
     </#if>
     <Cell ss:StyleID="s107" ss:Formula="=R[-3]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="13" ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -4922,7 +4915,7 @@
     </#if>
     <#if V500.slopeOneJson.interestCount != 0>
     <#list V500.slopeOneJson.interestList as interest>
-    <Cell ss:StyleID="s190"><Data ss:Type="String">${interest.source!}</Data></Cell>
+    <Cell ss:StyleID="s190"><Data ss:Type="String">From ${interest.source!}</Data></Cell>
     </#list>
     </#if>
    </Row>
@@ -4958,7 +4951,7 @@
     <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.dividend!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s77" ss:Formula="=RC[-2]/(R[-1]C[-2]-RC[-1])-1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s77" 
-      ss:Formula="=<#if V500.slopeOneJson.indexCount != 0><#list V500.slopeOneJson.indexList as index>+(RC[${(1+index_index!0)?string('0.##')}]/R[-1]C[${(1+index_index!0)?string('0.##')}]-1)*R[${(-3-item_index!0)?string('0')}]C[${(1+index_index!0)?string('0.##')}]</#list></#if>+<#if V500.slopeOneJson.interestCount != 0><#list V500.slopeOneJson.interestList as interest>RC[${(1+V500.slopeOneJson.indexCount+interest_index!0)?string('0.##')}]/R[${(-3-item_index!0)?string('0')}]C2*(RC2-R[-1]C2)*R[${(-3-item_index!0)?string('0')}]C[${(1+V500.slopeOneJson.indexCount+interest_index!0)?string('0.##')}]</#list></#if><#if V500.slopeOneJson.floatCount != 0><#list V500.slopeOneJson.floatList as float>+RC[${(1+V500.slopeOneJson.indexCount+V500.slopeOneJson.interestCount+float_index!0)?string('0.##')}]/R[${(-3-item_index!0)?string('0')}]C2*(RC2-R[-1]C2)</#list></#if>">
+      ss:Formula="=<#if V500.slopeOneJson.indexCount != 0><#list V500.slopeOneJson.indexList as index>+(RC[${(1+index_index!0)?string('0')}]/R[-1]C[${(1+index_index!0)?string('0')}]-1)*R${(49+V500.invest.count+V500.riskExposure.count+V500.hypothesisCount!0)?string('0')}C${(7+index_index!0)?string('0')}</#list></#if><#if V500.slopeOneJson.interestCount != 0><#list V500.slopeOneJson.interestList as interest>+RC[${(1+V500.slopeOneJson.indexCount+interest_index!0)?string('0')}]/R${(49+V500.invest.count+V500.riskExposure.count+V500.hypothesisCount!0)?string('0')}C2*(RC2-R[-1]C2)*R${(49+V500.invest.count+V500.riskExposure.count+V500.hypothesisCount!0)?string('0')}C${(7+V500.slopeOneJson.indexCount+interest_index!0)?string('0')}</#list></#if><#if V500.slopeOneJson.floatCount != 0><#list V500.slopeOneJson.floatList as float>+RC[${(1+V500.slopeOneJson.indexCount+V500.slopeOneJson.interestCount+float_index!0)?string('0')}]/R${(49+V500.invest.count+V500.riskExposure.count+V500.hypothesisCount!0)?string('0')}C2*(RC2-R[-1]C2)</#list></#if>">
       <Data ss:Type="Number"></Data>
     </Cell>
     <#if V500.slopeOneJson.indexCount != 0>

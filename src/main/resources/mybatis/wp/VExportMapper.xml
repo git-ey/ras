@@ -214,6 +214,7 @@
         AND V500LS.`STATUS` = 'Y'
         AND V500LS.FUND_ID = #{fundId}
         AND V500LS.PERIOD = #{period}
+        ORDER BY V500LS.SEQ
     </select>
     
     <select id="selectV500DetailBetaData" parameterType="java.util.Map" resultType="java.util.Map"> 
