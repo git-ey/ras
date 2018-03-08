@@ -319,7 +319,7 @@
         SELECT
             sfi.FUND_ID as fundId,
             sfi.SHORT_NAME as fundShortName,
-            sfi.FULL_NAME as fundFullName,
+            IF(sfi.FULL_NAME_ORIGINAL IS NULL,sfi.FULL_NAME, CONCAT(sfi.FULL_NAME,'（原名：'，sfi.FULL_NAME_ORIGINAL,'）')) as fundFullName,
             smc.SHORT_NAME as companyShortName,
             sfi.FIRM_CODE as firmCode
         FROM
