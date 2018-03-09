@@ -3061,7 +3061,7 @@
     <Cell ss:StyleID="s153"><Data ss:Type="String">${item.trxCode!}</Data></Cell>
     <Cell ss:StyleID="s112"><Data ss:Type="String">${item.shortName!}</Data></Cell>
     <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=IF(R${(26+V400.hypothesisCount+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(26+V400.hypothesisCount+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s203" ss:Formula="=IF(R${(25+V400.hypothesisCount+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(25+V400.hypothesisCount+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <#if item.durationCount == 0>
     <Cell ss:StyleID="s85"><Data ss:Type="Number"></Data></Cell>
     <#else>
@@ -3182,7 +3182,7 @@
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s213"/>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.test.second.varFlex!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s282" ss:Formula="=RC[-3]*RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s282" ss:Formula="=R[-1]C[-3]*R[-1]C[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.second.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -3676,7 +3676,7 @@
     <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">${item.trxCode!}</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">${item.shortName!}</Data></Cell>
     <Cell ss:StyleID="s220"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(34+V400.hypothesisCount+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(34+V400.hypothesisCount+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(33+V400.hypothesisCount+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(33+V400.hypothesisCount+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <#if item.durationCount != 0>
     <#list item.durationList as duration>
     <Cell ss:StyleID="s222"><Data ss:Type="Number">${duration.value!0}</Data></Cell>
