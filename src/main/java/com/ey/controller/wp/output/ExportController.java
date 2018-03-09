@@ -112,6 +112,7 @@ public class ExportController extends BaseController {
      * @param
      * @throws Exception
      */
+    @SuppressWarnings("unchecked")
     @RequestMapping(value = "/Report")
     public void exportReport(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();

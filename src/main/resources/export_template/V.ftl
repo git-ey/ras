@@ -3054,6 +3054,11 @@
     </#if>
     <Cell ss:StyleID="s113"><Data ss:Type="String">权重×久期</Data></Cell>
    </Row>
+   <#if V400.hypothesisCount == 0 >
+    <#assign hypothesisOffset = 1>
+   <#else>
+    <#assign hypothesisOffset = V400.hypothesisCount>
+   </#if>
    <#if V400.lineCount != 0>
    <#list V400.lineList as item>
    <Row>
@@ -3061,7 +3066,7 @@
     <Cell ss:StyleID="s153"><Data ss:Type="String">${item.trxCode!}</Data></Cell>
     <Cell ss:StyleID="s112"><Data ss:Type="String">${item.shortName!}</Data></Cell>
     <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s203" ss:Formula="=IF(R${(25+V400.hypothesisCount+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(25+V400.hypothesisCount+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s203" ss:Formula="=IF(R${(25+hypothesisOffset+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(25+hypothesisOffset+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <#if item.durationCount == 0>
     <Cell ss:StyleID="s85"><Data ss:Type="Number"></Data></Cell>
     <#else>
@@ -3670,13 +3675,18 @@
     </#list>
     </#if>
    </Row>
+   <#if V400.hypothesisCount == 0 >
+    <#assign hypothesisOffset = 1>
+   <#else>
+    <#assign hypothesisOffset = V400.hypothesisCount>
+   </#if>
    <#if V400.lineCount != 0>
    <#list V400.lineList as item>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s219"><Data ss:Type="String">${item.trxCode!}</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">${item.shortName!}</Data></Cell>
     <Cell ss:StyleID="s220"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(33+V400.hypothesisCount+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(33+V400.hypothesisCount+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(33+hypothesisOffset+V400.lineCount)?string('0')}C4&lt;&gt;0,RC[-1]/R${(33+hypothesisOffset+V400.lineCount)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <#if item.durationCount != 0>
     <#list item.durationList as duration>
     <Cell ss:StyleID="s222"><Data ss:Type="Number">${duration.value!0}</Data></Cell>
@@ -4919,6 +4929,11 @@
     </#list>
     </#if>
    </Row>
+   <#if V500.hypothesisCount == 0 >
+    <#assign hypothesisOffset = 1>
+   <#else>
+    <#assign hypothesisOffset = V500.hypothesisCount>
+   </#if>
    <#if V500.slopeCount != 0>
    <#list V500.slopeList as item>
    <#if item_index == 0>
@@ -4928,18 +4943,18 @@
     <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.dividend!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s77"></Cell>
     <Cell ss:StyleID="s77"></Cell>
-    <#if V500.slopeOneJson.indexCount != 0>
-    <#list V500.slopeOneJson.indexList as index>
+    <#if item.indexCount != 0>
+    <#list item.indexList as index>
     <Cell ss:StyleID="s246"><Data ss:Type="Number">${index.value!0}</Data></Cell>
     </#list>
     </#if>
-    <#if V500.slopeOneJson.interestCount != 0>
-    <#list V500.slopeOneJson.interestList as interest>
+    <#if item.interestCount != 0>
+    <#list item.interestList as interest>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${interest.value!0}</Data></Cell>
     </#list>
     </#if>
-    <#if V500.slopeOneJson.floatCount != 0>
-    <#list V500.slopeOneJson.floatList as float>
+    <#if item.floatCount != 0>
+    <#list item.floatList as float>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${float.value!0}</Data></Cell>
     </#list>
     </#if>
@@ -4951,21 +4966,21 @@
     <Cell ss:StyleID="s245"><Data ss:Type="Number">${(item.dividend!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s77" ss:Formula="=RC[-2]/(R[-1]C[-2]-RC[-1])-1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s77" 
-      ss:Formula="=<#if V500.slopeOneJson.indexCount != 0><#list V500.slopeOneJson.indexList as index>+(RC[${(1+index_index!0)?string('0')}]/R[-1]C[${(1+index_index!0)?string('0')}]-1)*R${(48+V500.invest.count+V500.riskExposure.count+V500.hypothesisCount!0)?string('0')}C${(7+index_index!0)?string('0')}</#list></#if><#if V500.slopeOneJson.interestCount != 0><#list V500.slopeOneJson.interestList as interest>+RC[${(1+V500.slopeOneJson.indexCount+interest_index!0)?string('0')}]/R${(48+V500.invest.count+V500.riskExposure.count+V500.hypothesisCount!0)?string('0')}C2*(RC2-R[-1]C2)*R${(48+V500.invest.count+V500.riskExposure.count+V500.hypothesisCount!0)?string('0')}C${(7+V500.slopeOneJson.indexCount+interest_index!0)?string('0')}</#list></#if><#if V500.slopeOneJson.floatCount != 0><#list V500.slopeOneJson.floatList as float>+RC[${(1+V500.slopeOneJson.indexCount+V500.slopeOneJson.interestCount+float_index!0)?string('0')}]/R${(48+V500.invest.count+V500.riskExposure.count+V500.hypothesisCount!0)?string('0')}C2*(RC2-R[-1]C2)</#list></#if>">
+      ss:Formula="=<#if V500.slopeOneJson.indexCount != 0><#list V500.slopeOneJson.indexList as index>+(RC[${(1+index_index)?string('0')}]/R[-1]C[${(1+index_index)?string('0')}]-1)*R${(48+V500.invest.count+V500.riskExposure.count+hypothesisOffset)?string('0')}C${(7+index_index)?string('0')}</#list></#if><#if V500.slopeOneJson.interestCount != 0><#list V500.slopeOneJson.interestList as interest>+RC[${(1+V500.slopeOneJson.indexCount+interest_index)?string('0')}]/R${(48+V500.invest.count+V500.riskExposure.count+hypothesisOffset)?string('0')}C2*(RC2-R[-1]C2)*R${(48+V500.invest.count+V500.riskExposure.count+hypothesisOffset)?string('0')}C${(7+V500.slopeOneJson.indexCount+interest_index)?string('0')}</#list></#if><#if V500.slopeOneJson.floatCount != 0><#list V500.slopeOneJson.floatList as float>+RC[${(1+V500.slopeOneJson.indexCount+V500.slopeOneJson.interestCount+float_index)?string('0')}]/R${(48+V500.invest.count+V500.riskExposure.count+hypothesisOffset)?string('0')}C2*(RC2-R[-1]C2)</#list></#if>">
       <Data ss:Type="Number"></Data>
     </Cell>
-    <#if V500.slopeOneJson.indexCount != 0>
-    <#list V500.slopeOneJson.indexList as index>
+    <#if item.indexCount != 0>
+    <#list item.indexList as index>
     <Cell ss:StyleID="s246"><Data ss:Type="Number">${index.value!0}</Data></Cell>
     </#list>
     </#if>
-    <#if V500.slopeOneJson.interestCount != 0>
-    <#list V500.slopeOneJson.interestList as interest>
+    <#if item.interestCount != 0>
+    <#list item.interestList as interest>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${interest.value!0}</Data></Cell>
     </#list>
     </#if>
-    <#if V500.slopeOneJson.floatCount != 0>
-    <#list V500.slopeOneJson.floatList as float>
+    <#if item.floatCount != 0>
+    <#list item.floatList as float>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${float.value!0}</Data></Cell>
     </#list>
     </#if>
@@ -5018,7 +5033,7 @@
     <Cell ss:StyleID="s69"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s259" ss:Formula="=R[${(-34-V500.slopeCount-V500.hypothesisCount)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s259" ss:Formula="=R[${(-34-V500.slopeCount-hypothesisOffset)?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s254" ss:Formula="=R[-6]C[2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="Number">${(V500.test.first.varFlex!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s310" ss:Formula="=RC[-2]*RC[-3]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
@@ -6069,13 +6084,18 @@
     </#if>
     <Cell ss:StyleID="s113"><Data ss:Type="String">权重×beta</Data></Cell>
    </Row>
+   <#if V500.hypothesisCount == 0 >
+    <#assign hypothesisOffset = 1>
+   <#else>
+    <#assign hypothesisOffset = V500.hypothesisCount>
+   </#if>
    <#if V500.betaCount != 0>
    <#list V500.betaList as item>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s265"><Data ss:Type="String">${item.trxCode!}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="String">${item.shortName!}</Data></Cell>
     <Cell ss:StyleID="s311"><Data ss:Type="Number">${(item.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(48+V500.betaCount+V500.hypothesisCount+V500.invest.count+V500.riskExposure.count)?string('0')}C4&lt;&gt;0,RC[-1]/R${(48+V500.betaCount+V500.hypothesisCount+V500.invest.count+V500.riskExposure.count)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s221" ss:Formula="=IF(R${(48+V500.betaCount+hypothesisOffset+V500.invest.count+V500.riskExposure.count)?string('0')}C4&lt;&gt;0,RC[-1]/R${(48+V500.betaCount+hypothesisOffset+V500.invest.count+V500.riskExposure.count)?string('0')}C4,&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <#if item.betaCount == 0>
     <Cell ss:StyleID="s221"><Data ss:Type="Number"></Data></Cell>
     <#else>
