@@ -254,7 +254,7 @@ public class IExportService extends BaseExportService implements IExportManager{
         }
         List<String> levelNames = salesFeeMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         List<String> partyShortNames = salesFeeMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("partyShortName"));
         }).distinct().collect(Collectors.toList());
@@ -340,7 +340,7 @@ public class IExportService extends BaseExportService implements IExportManager{
         }).distinct().collect(Collectors.toList());
         levelNames = mgerHoldFundMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         groups = mgerHoldFundMetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = (Map<String,Object>)item;
             return String.valueOf(map.get("sort"));
@@ -406,7 +406,7 @@ public class IExportService extends BaseExportService implements IExportManager{
         }
         levelNames = unmgerHoldFundMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         Map<String, List<Map<String, Object>>> groups2 = unmgerHoldFundMetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = (Map<String,Object>)item;
             return String.valueOf(map.get("level"));

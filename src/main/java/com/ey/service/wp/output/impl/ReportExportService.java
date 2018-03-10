@@ -943,7 +943,7 @@ public class ReportExportService implements ReportExportManager {
         }
         List<String> levelNames1 = T10000DataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         Map<String, List<Map<String, Object>>> groups1 = T10000DataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = (Map<String,Object>)item;
             return String.valueOf(map.get("level"));
@@ -979,7 +979,7 @@ public class ReportExportService implements ReportExportManager {
         }
         List<String> levelNames = p4104MetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         Map<String, Map<String, List<Map<String, Object>>>> groups = p4104MetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = (Map<String,Object>)item;
             return String.valueOf(map.get("level"));
@@ -1371,7 +1371,7 @@ public class ReportExportService implements ReportExportManager {
         }
         List<String> levelNames = T11000DataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         
         Map<String, List<Map<String, Object>>> groupsT11000 = T11000DataList.stream().collect(Collectors.groupingBy(item -> {
             return String.valueOf(item.get("level"));
@@ -1567,7 +1567,7 @@ public class ReportExportService implements ReportExportManager {
         }
         List<String> levelNames = salesFeeMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         Map<String, Map<String, List<Map<String, Object>>>> groups = salesFeeMetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String, Object> map = (Map<String, Object>)item;
             return String.valueOf(map.get("partyShortName"));
@@ -1676,7 +1676,7 @@ public class ReportExportService implements ReportExportManager {
         }
         levelNames = mgerHoldFundDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         Map<String, List<Map<String, Object>>> groups2 = mgerHoldFundDataList.stream().collect(Collectors.groupingBy(item -> {
             return String.valueOf(item.get("level"));
         }));
@@ -1711,7 +1711,7 @@ public class ReportExportService implements ReportExportManager {
         }
         levelNames = unmgerHoldFundMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         groups2 = unmgerHoldFundMetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = (Map<String,Object>)item;
             return String.valueOf(map.get("level"));
@@ -1801,7 +1801,7 @@ public class ReportExportService implements ReportExportManager {
         }
         List<String> levelNames= T310DataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         Map<String, List<Map<String, Object>>> groupsT310 = T310DataList.stream().collect(Collectors.groupingBy(item -> {
             return String.valueOf(item.get("level"));
         }));
@@ -1812,7 +1812,7 @@ public class ReportExportService implements ReportExportManager {
         }
         List<String> levelNamesN800Dis = N800DisDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().collect(Collectors.toList());
+        }).distinct().sorted().collect(Collectors.toList());
         for(String levelNameN800Dis : levelNamesN800Dis) {
             if(!levelNames.contains(levelNameN800Dis)) {
                 levelNames.add(levelNameN800Dis);

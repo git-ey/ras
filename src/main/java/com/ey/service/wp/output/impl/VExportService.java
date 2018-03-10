@@ -471,7 +471,9 @@ public class VExportService extends BaseExportService implements VExportManager{
         if(CollectionUtils.isEmpty(V500riskExposureMetaDataList)) {
             V500riskExposureMetaDataList = new ArrayList<>(); 
         }else {
-            netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValueCurrent")));
+            if(V500riskExposureMetaDataList.get(0) != null && V500riskExposureMetaDataList.get(0).get("netValueCurrent") != null) {
+                netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValueCurrent")));
+            }
         }
         riskExposure.put("list", V500riskExposureMetaDataList);
         riskExposure.put("count", V500riskExposureMetaDataList.size());
