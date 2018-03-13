@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ey.controller.base.BaseController;
+import com.ey.service.system.report.impl.ReportService;
 import com.ey.service.wp.output.CExportManager;
 import com.ey.service.wp.output.EExportManager;
 import com.ey.service.wp.output.GExportManager;
@@ -26,7 +27,6 @@ import com.ey.service.wp.output.HSumExportManager;
 import com.ey.service.wp.output.IExportManager;
 import com.ey.service.wp.output.NExportManager;
 import com.ey.service.wp.output.PExportManager;
-import com.ey.service.wp.output.ReportExportManager;
 import com.ey.service.wp.output.TExportManager;
 import com.ey.service.wp.output.UExportManager;
 import com.ey.service.wp.output.VExportManager;
@@ -44,8 +44,8 @@ import com.ey.util.fileexport.FileExportUtils;
 @RequestMapping(value = "/wpExport")
 public class ExportController extends BaseController {
 	// 报告Report
-    @Resource(name = "reportExportService")
-    private ReportExportManager reportExportService;
+    @Resource(name = "reportService")
+    private ReportService reportService;
 	// 底稿C
 	@Resource(name = "cExportService")
 	private CExportManager cExportService;
@@ -112,16 +112,15 @@ public class ExportController extends BaseController {
      * @param
      * @throws Exception
      */
-    @SuppressWarnings("unchecked")
     @RequestMapping(value = "/Report")
     public void exportReport(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        pd.put("PEROID", periodStr);
+        pd.put("PERIOD", periodStr);
         
-        this.reportExportService.doExport(request, response, pd);
+        this.reportService.exportReport(request, response, pd);
     }
 
 	/**

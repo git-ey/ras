@@ -187,6 +187,27 @@
 		</if>
 	</select>
 	
+	<!-- 报告导出基金范围列表 -->
+    <select id="selectReportFundById" parameterType="pd" resultType="pd">
+        select sf.FUND_CODE,    
+               sf.FUND_ID,
+               sf.FIRM_CODE,    
+               sf.SHORT_NAME,   
+               sf.FULL_NAME,    
+               sf.FULL_NAME_ORIGINAL,   
+               sf.TA_NAME,
+               sf.MF,
+               sf.ETF,
+               sf.STRUCTURED,
+               sf.DATE_FROM,    
+               sf.DATE_TO,  
+               sf.DATE_TRANSFORM
+        from sys_fund_info sf
+        where sf.`STATUS` = 'REVIEWED'
+        and sf.FUND_ID = #{FUND_ID}
+        LIMIT 1
+    </select>
+	
 	<!-- 报告需要的基金额外信息 -->
 	<!-- daigaokuo@hotmail.com -->
 	<!-- 2017-12-20 -->
