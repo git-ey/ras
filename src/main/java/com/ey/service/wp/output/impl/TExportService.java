@@ -192,7 +192,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         Map<String, Object> dataFor10000 = new HashMap<>();
         List<String> levelNames = mainMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().sorted().collect(Collectors.toList());
+        }).distinct().sorted(LEVEL_COMPARATOR).collect(Collectors.toList());
         List<Map<String,Object>> begin = new ArrayList<>();
         List<Map<String,Object>> cr = new ArrayList<>();
         List<Map<String,Object>> dr = new ArrayList<>();
@@ -367,7 +367,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         }
         List<String> levelNames = metaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().sorted().collect(Collectors.toList());
+        }).distinct().sorted(LEVEL_COMPARATOR).collect(Collectors.toList());
         Map<String, List<Map<String, Object>>> groups = metaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String, Object> map = (Map<String, Object>)item;
             return String.valueOf(map.get("level"));
@@ -412,7 +412,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         
         List<String> levelNames = metaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().sorted().collect(Collectors.toList());
+        }).distinct().sorted(LEVEL_COMPARATOR).collect(Collectors.toList());
         Map<String, Map<String, List<Map<String, Object>>>> groups = metaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = (Map<String,Object>)item;
             return String.valueOf(map.get("level"));
@@ -567,7 +567,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         }
         List<String> levelNames = p4104MetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().sorted().collect(Collectors.toList());
+        }).distinct().sorted(LEVEL_COMPARATOR).collect(Collectors.toList());
         Map<String, Map<String, List<Map<String, Object>>>> groups = p4104MetaDataList.stream().collect(Collectors.groupingBy(item -> {
             Map<String,Object> map = (Map<String,Object>)item;
             return String.valueOf(map.get("level"));
@@ -606,7 +606,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         }
         List<String> levelNames2 = profitDistMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().sorted().collect(Collectors.toList());
+        }).distinct().sorted(LEVEL_COMPARATOR).collect(Collectors.toList());
         Map<String,Map<String,Object>> temp = new HashMap<>();
         for(Map<String,Object> map : profitDistMetaDataList) {
             temp.put(String.valueOf(map.get("level")) ,map);
@@ -633,7 +633,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         }));
         List<String> levelNames3 = mainMetaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
-        }).distinct().sorted().collect(Collectors.toList());
+        }).distinct().sorted(LEVEL_COMPARATOR).collect(Collectors.toList());
         for(String levelName : levelNames3) {
             Map<String, Object> temp1 = new HashMap<>();
             List<Map<String, Object>> list = groups2.get(levelName);

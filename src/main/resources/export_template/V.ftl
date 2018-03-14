@@ -2940,7 +2940,7 @@
     <Cell ss:StyleID="s116"><Data ss:Type="String">A</Data></Cell>
     <Cell ss:StyleID="s116"><Data ss:Type="String">B</Data></Cell>
     <Cell ss:StyleID="s116"><Data ss:Type="String">C</Data></Cell>
-    <Cell ss:StyleID="s116"><Data ss:Type="String">D=A*B*C</Data></Cell>
+    <Cell ss:StyleID="s116"><Data ss:Type="String">D=-A*B*C</Data></Cell>
     <Cell ss:StyleID="s116"><Data ss:Type="String">E</Data></Cell>
     <Cell ss:StyleID="s116"><Data ss:Type="String">F=D-E</Data></Cell>
     <Cell ss:StyleID="s88"/>
@@ -2950,7 +2950,7 @@
     <Cell ss:StyleID="s91" ss:Formula="=R[-9]C[2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s92" ss:Formula="=R[-9]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.test.first.varFlex!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s283" ss:Formula="=RC[-3]*RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s283" ss:Formula="=-RC[-3]*RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.first.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -2961,7 +2961,7 @@
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s213"/>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">${(V400.test.second.varFlex!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s282" ss:Formula="=R[-1]C[-3]*R[-1]C[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s282" ss:Formula="=-R[-1]C[-3]*R[-1]C[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s283"><Data ss:Type="Number">${(V400.test.second.inflCurrentClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s283" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s76" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>

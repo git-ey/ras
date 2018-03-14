@@ -1,8 +1,10 @@
 package com.ey.service.wp.output.impl;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.Resource;
 
@@ -63,5 +65,27 @@ public abstract class BaseExportService implements BaseExportManager{
         });
         return res;
     }
+	
+	private static final String MOTHER_LEVEL = "母基金";
+	private static final String A_SMALL_LAVEL = "0";
+	
+	/**
+	 * <p>基金level比较器</p>
+	 * <p>优化了母基金的排序</p>
+	 */
+	protected static final Comparator<String> LEVEL_COMPARATOR = (level1, level2) -> {
+        String a,b;
+        if(Objects.equals(MOTHER_LEVEL, level1)) {
+            a = A_SMALL_LAVEL;
+        }else {
+            a = level1;
+        }
+        if(Objects.equals(MOTHER_LEVEL, level2)) {
+            b = A_SMALL_LAVEL;
+        }else {
+            b = level2;
+        }
+        return a.compareTo(b);
+    };
 
 }
