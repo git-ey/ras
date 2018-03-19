@@ -2719,7 +2719,7 @@
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.share!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[${(-8-item_index)?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.shareLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(item.rateLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(item.rateLast!0)?string('0.########')}</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
@@ -2781,7 +2781,7 @@
     <Cell ss:StyleID="s206" ss:Formula="=RC[-1]/R[${(-10-5*level_index-level.offset-item_index)?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
     </#if>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.shareLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(item.rateLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="Number">${(item.rateLast!0)?string('0.########')}</Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
