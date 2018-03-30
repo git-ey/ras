@@ -2716,7 +2716,7 @@
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
+    <Cell ss:Index="3" ss:StyleID="s186"/>1
     <Cell ss:StyleID="s230"/>
     <Cell ss:StyleID="s229"/>
     <Cell ss:StyleID="s186"/>
@@ -3175,7 +3175,7 @@
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s81"><Data ss:Type="String">-账面余额</Data></Cell>
     <Cell ss:StyleID="s94"><Data ss:Type="String">H800</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H800!R${(13+H800.main.count!0)?string('0')}C7"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s186" ss:Formula="=H800!R${(13+H800.main.count!0)?string('0')}C4"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.drAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.crAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
