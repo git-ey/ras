@@ -4197,12 +4197,12 @@
    <Row ss:StyleID="s93">
     <Cell ss:StyleID="s377"><Data ss:Type="String">投资收益</Data></Cell>
     <Cell ss:StyleID="s373"/>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[7]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[7]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[7]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[7]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[7]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[7]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
    <Row ss:StyleID="s93">
@@ -4461,11 +4461,11 @@
    <Row>
     <Cell ss:StyleID="s377"><Data ss:Type="String">利润总额</Data></Cell>
     <Cell ss:StyleID="s373"/>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-30]C+R[-23]C+R[-15]C+R[-13]C+R[-11]C-R[-9]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-31]C+R[-24]C+R[-15]C+R[-13]C+R[-11]C-R[-9]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378"/>
     <Cell ss:StyleID="s378"/>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-30]C+R[-23]C+R[-15]C+R[-13]C+R[-11]C-R[-9]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-30]C+R[-23]C+R[-15]C+R[-13]C+R[-11]C-R[-9]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-31]C+R[-24]C+R[-15]C+R[-13]C+R[-11]C-R[-9]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-31]C+R[-24]C+R[-15]C+R[-13]C+R[-11]C-R[-9]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
