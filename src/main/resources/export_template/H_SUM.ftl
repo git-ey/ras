@@ -1530,7 +1530,7 @@
     <Cell ss:StyleID="s133"><Data ss:Type="String">From 公开市场信息</Data></Cell>
     </#if>
     <Cell ss:StyleID="s140"><Data ss:Type="Number">${(item.valPriceRef!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(item.lomd!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(item.lomd!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s142" ss:Formula="=RC[-2]*(1-RC[-1])"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
