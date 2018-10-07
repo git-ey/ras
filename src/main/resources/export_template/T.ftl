@@ -3607,7 +3607,7 @@
    <Row>
     <Cell ss:StyleID="s293"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与上年审定报表核对一致。</Font></ss:Data></Cell>
+       html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
     <Cell ss:StyleID="s293"/>
    </Row>
    <Row/>
@@ -7310,7 +7310,7 @@
    </#if>
    <#if T400.levelCount == 0>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
-    <Cell ss:StyleID="s175"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String">U900</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期未实现利润——公允价值变动收益</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number"></Data></Cell>
@@ -7321,7 +7321,7 @@
    <#list T400.levels as item>
    <#if item_index == 0>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
-    <Cell ss:StyleID="s175"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String">U900</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期未实现利润——公允价值变动收益</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr3.realized!0)?string('0.##')}</Data></Cell>
@@ -7740,7 +7740,7 @@
     </#if>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
-    <Cell ss:StyleID="s175"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String">U900</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期未实现利润——公允价值变动收益</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180" ss:Formula="=<#if T400.levelCount ==0>RC[4]<#else><#list T400.levels as inner><#if inner_index != 0>+</#if>RC[${(4+4*inner_index)?string('0')}]</#list></#if>"><Data ss:Type="Number"></Data></Cell>
@@ -8138,7 +8138,7 @@
    </#if>
    <#if T400.levelCount == 0>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
-    <Cell ss:StyleID="s175"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String">U900</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期未实现利润——公允价值变动收益</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number"></Data></Cell>
@@ -8149,7 +8149,7 @@
    <#list T400.levels as item>
    <#if item_index == 0>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
-    <Cell ss:StyleID="s175"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String">U900</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期未实现利润——公允价值变动收益</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180"><Data ss:Type="Number">${(item.attr3.realized!0)?string('0.##')}</Data></Cell>
@@ -8486,7 +8486,7 @@
     </#if>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
-    <Cell ss:StyleID="s175"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:StyleID="s175"><Data ss:Type="String">U900</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期未实现利润——公允价值变动收益</Data></Cell>
     <Cell ss:StyleID="s176"/>
     <Cell ss:StyleID="s180" ss:Formula="=<#if T400.levelCount ==0>RC[4]<#else><#list T400.levels as inner><#if inner_index != 0>+</#if>RC[${(4+4*inner_index)?string('0')}]</#list></#if>"><Data ss:Type="Number"></Data></Cell>

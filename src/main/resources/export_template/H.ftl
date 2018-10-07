@@ -2552,9 +2552,7 @@
    <Row ss:StyleID="s83">
     <Cell ss:MergeDown="1" ss:StyleID="s244"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s244"/>
-    <Cell ss:StyleID="s244"/>
-    <Cell ss:MergeAcross="1" ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${period?string('0')}/${month?string('00')}/${day?string('00')}(RMB)</Data></Cell>
-    <Cell ss:StyleID="s244"/>
+    <Cell ss:MergeAcross="3" ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${period?string('0')}/${month?string('00')}/${day?string('00')}(RMB)</Data></Cell>
     <Cell ss:StyleID="s244"/>
     <Cell ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${(period-1)?string('0')}/${month?string('00')}/${day?string('00')}</Data></Cell>
     <Cell ss:StyleID="s244"/>
@@ -3239,7 +3237,7 @@
    <Row>
     <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与上年审定报表核对一致。</Font></ss:Data></Cell>
+       html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
    </Row>
    <Row/>
    <Row/>
@@ -3420,7 +3418,7 @@
     <Cell ss:Index="10" ss:StyleID="s76"><Data ss:Type="String">B</Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">C=A-B</Data></Cell>
     </#if>
-    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;H10000&gt;</Data></Cell>
+    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;U900&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">股票</Data></Cell>
@@ -3619,7 +3617,7 @@
     <Cell ss:Index="10" ss:StyleID="s196" ss:Formula="=SUM(R[-15]C:R[-1]C)-R[-13]C-R[-4]C-R[-8]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s196" ss:Formula="=SUM(R[-15]C:R[-1]C)-R[-13]C-R[-4]C-R[-8]C"><Data ss:Type="Number"></Data></Cell>
     </#if>
-    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;U&gt;/&lt;T400&gt;</Data></Cell>
+    <Cell ss:StyleID="s53"><!--<Data ss:Type="String">&lt;U&gt;/&lt;T400&gt;</Data>--></Cell>
    </Row>
    <Row>
     <Cell ss:Index="8" ss:StyleID="s75"><Data ss:Type="String">^</Data></Cell>

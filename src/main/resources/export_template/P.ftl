@@ -2011,7 +2011,7 @@
    <Row>
     <Cell ss:StyleID="s37"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与上年审定报表核对一致。</Font></ss:Data></Cell>
+       html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s36"/>
    </Row>
    <Row>
@@ -2586,6 +2586,8 @@
     <Cell ss:StyleID="s52"/>
     <Cell ss:StyleID="s52"/>
    </Row>
+   <#--
+   <!--
    <Row>
     <Cell ss:StyleID="s55"/>
     <Cell ss:StyleID="s52"/>
@@ -2859,6 +2861,8 @@
    <Row>
     <Cell ss:StyleID="s206"/>
    </Row>
+   -->
+   -->
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <Print>
@@ -3597,7 +3601,7 @@
    </Row>
    <Row ss:StyleID="s127">
     <Cell ss:StyleID="s100"><Data ss:Type="String">测试结果：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">经检查，未发现会计期末存在重大未入账负债。</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">我们执行了上述步骤，未见异常。</Data></Cell>
     <Cell ss:StyleID="s47"/>
     <Cell ss:StyleID="s47"/>
     <Cell ss:StyleID="s47"/>
@@ -3615,7 +3619,7 @@
    </Row>
    <Row ss:StyleID="s127">
     <Cell ss:StyleID="s100"><Data ss:Type="String">测试结论：</Data></Cell>
-    <Cell ss:StyleID="s47"><Data ss:Type="String">${(period)?string('0')}年${(month)?string('0')}月${(day)?string('0')}日不存在重大未入账负债</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">经检查，我们未发现${(period)?string('0')}年${(month)?string('0')}月${(day)?string('0')}日存在重大未入账负债。</Data></Cell>
     <Cell ss:StyleID="s101"/>
     <Cell ss:StyleID="s101"/>
     <Cell ss:StyleID="s101"/>

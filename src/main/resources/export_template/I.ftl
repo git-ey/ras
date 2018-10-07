@@ -1317,6 +1317,12 @@
    </Borders>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
+  <Style ss:ID="s10095" ss:Parent="s95">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Bold="1"/>
+   <Interior/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="I">
   <Table x:FullColumns="1"
@@ -1850,7 +1856,7 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s172"><Data ss:Type="String">I200</Data></Cell>
+    <Cell ss:StyleID="s172"><Data ss:Type="String">I400</Data></Cell>
     <Cell ss:StyleID="s145"><Data ss:Type="String">其中：支付销售机构的客户维护费</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(I.manageFee.item2.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(I.manageFee.item2.amountLast!0)?string('0.##')}</Data></Cell>
@@ -2826,7 +2832,7 @@
    <#if I.bank.count != 0>
    <#list I.bank.list as item>
    <Row>
-    <Cell ss:StyleID="s167"><Data ss:Type="String"><#if item_index == 0>C300/U300</#if></Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="String"><#if item_index == 0>C300/I300</#if></Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.bankBalCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.interestIncomeCurrent!0)?string('0.##')}</Data></Cell>
@@ -3015,6 +3021,195 @@
    <Zoom>90</Zoom>
    <PageBreakZoom>100</PageBreakZoom>
    <Selected/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="I200">
+  <Table x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="192"/>
+   <Column ss:AutoFitWidth="0" ss:Width="96.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="62.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="69.75"/>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s158"/>
+    <Cell ss:StyleID="s138"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s95"><Data ss:Type="String">客户：</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
+    <Cell ss:StyleID="s160"><Data ss:Type="String">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s164"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="7" ss:StyleID="s96"><Data ss:Type="String">WP Ref.</Data></Cell>
+    <Cell ss:StyleID="s96"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s95"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s159"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s162"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s165"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s163"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="7" ss:StyleID="s111"><Data ss:Type="String">I200</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s95"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">报表附注-关联方识别的复核</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s97"/>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s10095"><Data ss:Type="String" x:Ticked="1">1.</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">我们获取基金管理人对于关联方的认定如下：</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">基金管理人</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">基金托管人</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">基金管理人的股东</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">基金管理人的股东控制的公司</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">基金管理人控制的子公司</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:Index="5" ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">基金管理人控制的结构化主体</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">我们根据企业会计准则及监管机构的要求进行复核：</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">《企业会计准则第36号-关联方披露》规定：一方控制、共同控制另一方或对另一方施加重大影响，以及两方或两方以上同受一方控制、共同控制，构成关联方。</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">《证券投资基金信息披露编报规则——第3号&lt;会计报表附注的编制及披露&gt;》规定：基金会计报表附注应披露基金管理人、基金托管人、基金管理人的股东等与基金存在重大利益关系的主要关联方的名称及关联关系。当基金与其关联方发生交易时，则应披露发生交易的所有关联方的名称及关联关系。</Data></Cell>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">经检查，我们未发现基金管理人在识别关联方的认定上存在重大不符事项。</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s10095"><Data ss:Type="String" x:Ticked="1">2.</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">我们获取了基金管理人识别出的本期存在控制关系或其他重大利害关系的关联方的具体清单，详见“7.4.9关联方关系”所附清单。</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s122"><Data ss:Type="String">我们查看了基金合同以证实基金管理人及基金托管人，询问了基金管理人并查看了公开市场信息以获悉基金管理人股权变更情况及基金管理人控制结构化主体的情况。</Data></Cell>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s121"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s122"><Data ss:Type="String">经检查，我们未发现基金管理人在具体关联方识别上存在重大不符事项。</Data></Cell>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <TabColorIndex>42</TabColorIndex>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>9</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
    <ProtectObjects>False</ProtectObjects>
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>

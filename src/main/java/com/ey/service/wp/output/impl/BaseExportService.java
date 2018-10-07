@@ -16,7 +16,7 @@ import com.ey.service.wp.output.BaseExportManager;
 
 /**
  * @name CExportService
- * @description 底稿输出服务--C
+ * @description 底稿输出基础服务
  * @author Dai Zong	2017年8月26日
  */
 @Service("baseExportService")
@@ -37,7 +37,7 @@ public abstract class BaseExportService implements BaseExportManager{
 	 * @return
 	 */
 	protected Map<String,Object> createBaseQueryMap(String fundId, String periodStr){
-	    Map<String, Object> res = new HashMap<String,Object>();
+	    Map<String, Object> res = new HashMap<>();
 	    res.put("fundId", fundId);
 	    res.put("period", periodStr);
 	    return res;
@@ -52,17 +52,15 @@ public abstract class BaseExportService implements BaseExportManager{
 	 * @throws Exception 基金ID无效
 	 */
 	protected Map<String,String> selectFundInfo(String fundId) throws Exception{
-	    Map<String, Object> query = new HashMap<String,Object>();
+	    Map<String, Object> query = new HashMap<>();
 	    query.put("fundId", fundId);
 	    @SuppressWarnings("unchecked")
         List<Map<String,Object>> resMapList = (List<Map<String,Object>>)this.dao.findForList("FundMapper.selectFundInfo", query);
         if(CollectionUtils.isEmpty(resMapList) || resMapList.size() != 1) {
             throw new Exception("基金ID " + fundId + " 无效");
         }
-        Map<String, String> res = new HashMap<String,String>();
-        resMapList.get(0).forEach((k,v) -> {
-            res.put(k, String.valueOf(v));
-        });
+        Map<String, String> res = new HashMap<>();
+        resMapList.get(0).forEach((k,v) -> res.put(k, String.valueOf(v)));
         return res;
     }
 	
@@ -74,7 +72,8 @@ public abstract class BaseExportService implements BaseExportManager{
 	 * <p>优化了母基金的排序</p>
 	 */
 	protected static final Comparator<String> LEVEL_COMPARATOR = (level1, level2) -> {
-        String a,b;
+        String a;
+        String b;
         if(Objects.equals(MOTHER_LEVEL, level1)) {
             a = A_SMALL_LAVEL;
         }else {

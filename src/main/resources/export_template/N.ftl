@@ -2334,7 +2334,7 @@
    <Row>
     <Cell ss:StyleID="s90"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与上年审定报表核对一致。</Font></ss:Data></Cell>
+       html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
     <Cell ss:StyleID="s90"/>
     <Cell ss:Index="14" ss:StyleID="s177"/>
     <Cell ss:StyleID="s177"/>
@@ -3140,7 +3140,7 @@
    </Row>
    <Row ss:StyleID="s233">
     <Cell ss:StyleID="s167"><Data ss:Type="String">测试结果：</Data></Cell>
-    <Cell ss:StyleID="s168"><Data ss:Type="String">经检查，未发现应付管理费、应付托管费以及应付销售服务费存在截止性错误的情况</Data></Cell>
+    <Cell ss:StyleID="s168"><Data ss:Type="String">我们执行了上述步骤，未见异常。</Data></Cell>
     <Cell ss:StyleID="s168"/>
     <Cell ss:StyleID="s168"/>
     <Cell ss:StyleID="s168"/>
@@ -3164,7 +3164,7 @@
    </Row>
    <Row ss:StyleID="s233">
     <Cell ss:StyleID="s167"><Data ss:Type="String">测试结论：</Data></Cell>
-    <Cell ss:StyleID="s168"><Data ss:Type="String">应付管理费、应付托管费以及应付销售服务费不存在截止性错误</Data></Cell>
+    <Cell ss:StyleID="s168"><Data ss:Type="String">经检查，我们未发现应付管理费、应付托管费以及应付销售服务费的截止性存在重大不符事项。</Data></Cell>
     <Cell ss:StyleID="s171"/>
     <Cell ss:StyleID="s171"/>
     <Cell ss:StyleID="s171"/>
@@ -3257,11 +3257,11 @@
    <Row ss:StyleID="s88">
     <Cell ss:StyleID="s119"><Data ss:Type="String">应付佣金：</Data></Cell>
     <Cell ss:StyleID="s138"/>
-    <Cell ss:StyleID="s138"><Data ss:Type="String">是否关联方</Data></Cell>
+    <Cell ss:StyleID="s138"><Data ss:Type="String">本期末关联方（Y/N）</Data></Cell>
     <Cell ss:StyleID="s237"/>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s293"><Data ss:Type="String">&lt;N510&gt;</Data></Cell>
+    <Cell ss:StyleID="s293"><!--<Data ss:Type="String">&lt;N510&gt;</Data>--></Cell>
     <Cell ss:StyleID="s238"/>
     <Cell ss:StyleID="s89"/>
    </Row>
@@ -3647,7 +3647,7 @@
    </Row>
    <Row ss:Index="7" ss:Height="14.25">
     <Cell ss:Index="3" ss:MergeAcross="4" ss:StyleID="s349"><Data ss:Type="String">成交额</Data></Cell>
-    <Cell ss:Index="9" ss:MergeAcross="2" ss:StyleID="s350"><Data ss:Type="String">实付佣金</Data></Cell>
+    <!--<Cell ss:Index="9" ss:MergeAcross="2" ss:StyleID="s350"><Data ss:Type="String">实付佣金</Data></Cell>-->
    </Row>
    <Row ss:StyleID="s287">
     <Cell><Data ss:Type="String">券商名称</Data></Cell>
@@ -3657,13 +3657,15 @@
     <Cell><Data ss:Type="String">债券</Data></Cell>
     <Cell><Data ss:Type="String">权证</Data></Cell>
     <Cell ss:StyleID="s334"><Data ss:Type="String">基金</Data></Cell>
+    <!--
     <Cell ss:Index="9" ss:StyleID="s334"><Data ss:Type="String">当期佣金</Data></Cell>
     <Cell ss:StyleID="s334"><Data ss:Type="String"></Data></Cell>
     <Cell><Data ss:Type="String">Diff.</Data></Cell>
+    -->
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s333"><Data ss:Type="String">From 席位成交量统计表</Data></Cell>
-    <Cell ss:Index="10" ss:StyleID="s289"><Data ss:Type="String">N500</Data></Cell>
+    <!--<Cell ss:Index="10" ss:StyleID="s289"><Data ss:Type="String">N500</Data></Cell>-->
    </Row>
    <Row>
    </Row>
@@ -3677,9 +3679,11 @@
     <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.bond!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.warrant!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.fund!0)?string('0.##')}</Data></Cell>
+    <!--
     <Cell ss:Index="9" ss:StyleID="s122"><Data ss:Type="Number">${(item.perEY!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.perClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s122" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    -->
    </Row>
    </#list>
    </#if>
@@ -3694,10 +3698,12 @@
     <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(2+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(2+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(2+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <!--
     <Cell ss:Index="9" ss:StyleID="s288" ss:Formula="=SUM(R[${(-(2+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(2+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s288" ss:Formula="=SUM(R[${(-(2+N510.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s292"><Data ss:Type="String">m</Data></Cell>
+    -->
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:Index="3" ss:StyleID="s289"><Data ss:Type="String">^</Data></Cell>
@@ -3705,9 +3711,11 @@
     <Cell ss:StyleID="s289"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s289"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s289"><Data ss:Type="String">^</Data></Cell>
+    <!--
     <Cell ss:Index="9" ss:StyleID="s289"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s289"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s289"><Data ss:Type="String">^</Data></Cell>
+    -->
    </Row>
    <Row>
     <Cell ss:Index="5" ss:StyleID="s289"/>

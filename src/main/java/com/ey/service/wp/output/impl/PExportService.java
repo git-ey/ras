@@ -35,7 +35,7 @@ public class PExportService extends BaseExportService implements PExportManager{
      * @throws Exception
      */
     private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
-        Map<String, Object> dataMap = new HashMap<String, Object>();
+        Map<String, Object> dataMap = new HashMap<>();
         
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
@@ -86,7 +86,7 @@ public class PExportService extends BaseExportService implements PExportManager{
      */
     private Map<String,Object> getPData(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> PMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectPData", queryMap);
@@ -107,12 +107,12 @@ public class PExportService extends BaseExportService implements PExportManager{
             }
         }
         
-        result.put("KM2241", temp.get("2241")==null?new HashMap<String,Object>():temp.get("2241"));
-        result.put("KM2501", temp.get("2501")==null?new HashMap<String,Object>():temp.get("2501"));
-        result.put("KM2204", temp.get("2204")==null?new HashMap<String,Object>():temp.get("2204"));
-        result.put("KM2202", temp.get("2202")==null?new HashMap<String,Object>():temp.get("2202"));
-        result.put("KM3003Can", temp.get("3003c")==null?new HashMap<String,Object>():temp.get("3003c"));
-        result.put("KM3003Should", temp.get("3003s")==null?new HashMap<String,Object>():temp.get("3003s"));
+        result.put("KM2241", temp.get("2241")==null?new HashMap<>():temp.get("2241"));
+        result.put("KM2501", temp.get("2501")==null?new HashMap<>():temp.get("2501"));
+        result.put("KM2204", temp.get("2204")==null?new HashMap<>():temp.get("2204"));
+        result.put("KM2202", temp.get("2202")==null?new HashMap<>():temp.get("2202"));
+        result.put("KM3003Can", temp.get("3003c")==null?new HashMap<>():temp.get("3003c"));
+        result.put("KM3003Should", temp.get("3003s")==null?new HashMap<>():temp.get("3003s"));
         
         return result;
     }
@@ -128,7 +128,7 @@ public class PExportService extends BaseExportService implements PExportManager{
      */
     private Map<String,Object> getP300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P300MetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP300Data", queryMap);
@@ -162,10 +162,10 @@ public class PExportService extends BaseExportService implements PExportManager{
      */
     private Map<String,Object> getP400Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         //========process dataMap for main view begin========
-        Map<String, Object> main = new HashMap<String,Object>();
+        Map<String, Object> main = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P400MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP400MainData", queryMap);
@@ -188,48 +188,48 @@ public class PExportService extends BaseExportService implements PExportManager{
         //========process dataMap for main view end========
         
         //========process dataMap for summary view begin========
-        Map<String, Object> summary = new HashMap<String,Object>();
-        
-        Map<String, Object> annualFee4Listing = new HashMap<String,Object>();
-        Map<String, Object> auditFee = new HashMap<String,Object>();
-        Map<String, Object> subtotal = new HashMap<String,Object>();
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> P400SummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP400SummaryData", queryMap);
-        if(P400SummaryMetaDataList == null) {
-            P400SummaryMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        for(Map<String, Object> map : P400SummaryMetaDataList) {
-            if("上市年费".equals(map.get("item"))) {
-                annualFee4Listing = map;
-            }else if("审计费用".equals(map.get("item"))) {
-                auditFee = map;
-            }else if ("信息披露费".equals(map.get("item"))) {
-                subtotal = map;
-            }
-        }
-        
-        summary.put("annualFee4Listing", annualFee4Listing);
-        summary.put("auditFee", auditFee);
-        summary.put("subtotal", subtotal);
-        
-        result.put("summary", summary);
+//        Map<String, Object> summary = new HashMap<>();
+//        
+//        Map<String, Object> annualFee4Listing = new HashMap<>();
+//        Map<String, Object> auditFee = new HashMap<>();
+//        Map<String, Object> subtotal = new HashMap<>();
+//        
+//        @SuppressWarnings("unchecked")
+//        List<Map<String,Object>> P400SummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP400SummaryData", queryMap);
+//        if(P400SummaryMetaDataList == null) {
+//            P400SummaryMetaDataList = new ArrayList<Map<String,Object>>(); 
+//        }
+//        
+//        for(Map<String, Object> map : P400SummaryMetaDataList) {
+//            if("上市年费".equals(map.get("item"))) {
+//                annualFee4Listing = map;
+//            }else if("审计费用".equals(map.get("item"))) {
+//                auditFee = map;
+//            }else if ("信息披露费".equals(map.get("item"))) {
+//                subtotal = map;
+//            }
+//        }
+//        
+//        summary.put("annualFee4Listing", annualFee4Listing);
+//        summary.put("auditFee", auditFee);
+//        summary.put("subtotal", subtotal);
+//        
+//        result.put("summary", summary);
         //========process dataMap for summary view end========
         //========process dataMap for detail view end========
-        Map<String, Object> detail = new HashMap<String,Object>();
-        
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> P400DetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP400DetailData", queryMap);
-        if(P400DetailMetaDataList == null) {
-            P400DetailMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        detail.put("list", P400DetailMetaDataList);
-        detail.put("count", P400DetailMetaDataList.size());
-        
-        result.put("detail", detail);
+//        Map<String, Object> detail = new HashMap<>();
+//        
+//        
+//        @SuppressWarnings("unchecked")
+//        List<Map<String,Object>> P400DetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP400DetailData", queryMap);
+//        if(P400DetailMetaDataList == null) {
+//            P400DetailMetaDataList = new ArrayList<Map<String,Object>>(); 
+//        }
+//        
+//        detail.put("list", P400DetailMetaDataList);
+//        detail.put("count", P400DetailMetaDataList.size());
+//        
+//        result.put("detail", detail);
         //========process dataMap for detail view end========
         
         return result;
@@ -246,7 +246,7 @@ public class PExportService extends BaseExportService implements PExportManager{
      */
     private Map<String,Object> getP500Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P500MetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP500Data", queryMap);
@@ -271,9 +271,9 @@ public class PExportService extends BaseExportService implements PExportManager{
      */
     private Map<String,Object> getP600Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         //========process dataMap for main view begin========
-        Map<String, Object> main = new HashMap<String,Object>();
+        Map<String, Object> main = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P600MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600Data", queryMap);
         if(P600MainMetaDataList == null) {
@@ -284,7 +284,7 @@ public class PExportService extends BaseExportService implements PExportManager{
         //========process dataMap for main view end========
         
         //========process dataMap for test view begin========
-        Map<String, Object> test = new HashMap<String,Object>();
+        Map<String, Object> test = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P600TestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600TestData", queryMap);
         if(P600TestMetaDataList == null) {
@@ -303,9 +303,9 @@ public class PExportService extends BaseExportService implements PExportManager{
         //========process dataMap for summary view end========
         
         //========process dataMap for testDetail view begin========
-        Map<String, Object> testDetail = new HashMap<String,Object>();
-        Map<String, Object> note2 = new HashMap<String,Object>();
-        Map<String, Object> note3 = new HashMap<String,Object>();
+        Map<String, Object> testDetail = new HashMap<>();
+        Map<String, Object> note2 = new HashMap<>();
+        Map<String, Object> note3 = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P600TestDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600TestDetailData", queryMap);
         if(P600TestDetailMetaDataList == null) {
@@ -366,7 +366,7 @@ public class PExportService extends BaseExportService implements PExportManager{
         //========process dataMap for testDetail view end========
         
         //========process dataMap for exposurePeriod view begin========
-        Map<String, Object> exposurePeriod = new HashMap<String,Object>();
+        Map<String, Object> exposurePeriod = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P600ExposurePeriodMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP600ExposurePeriodData", queryMap);
         if(P600ExposurePeriodMetaDataList == null) {
@@ -396,7 +396,7 @@ public class PExportService extends BaseExportService implements PExportManager{
      */
     private Map<String,Object> getP800Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P800MetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP800Data", queryMap);
@@ -421,7 +421,7 @@ public class PExportService extends BaseExportService implements PExportManager{
      */
     private Map<String,Object> getP10000Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> P10000MetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP10000Data", queryMap);

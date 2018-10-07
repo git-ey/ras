@@ -1493,7 +1493,7 @@
    <Row>
     <Cell ss:StyleID="s38"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与上年审定报表核对一致。</Font></ss:Data></Cell>
+       html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
     <Cell ss:StyleID="s38"/>
     <Cell ss:StyleID="s95"/>
     <Cell ss:StyleID="s96"/>
@@ -3320,6 +3320,270 @@
      <Number>0</Number>
      <ActiveRow>10</ActiveRow>
      <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="E700">
+  <Table  x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:AutoFitWidth="0" ss:Width="67.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="84"/>
+   <Column ss:AutoFitWidth="0" ss:Width="115"/>
+   <Column ss:AutoFitWidth="0" ss:Width="83.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="83.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="83.25"/>
+   <Row ss:Height="14.25" ss:StyleID="s64">
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row ss:StyleID="s64">
+    <Cell ss:StyleID="s39"><Data ss:Type="String">客户：</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s156"><Data ss:Type="String">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s157"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s158"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s49"><Data ss:Type="String">WP Ref</Data></Cell>
+    <Cell ss:StyleID="s49"/>
+   </Row>
+   <Row ss:Height="14.25" ss:StyleID="s64">
+    <Cell ss:StyleID="s39"><Data ss:Type="String">会计期末：</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s159"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s160"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s48"><Data ss:Type="String">E700</Data></Cell>
+    <Cell ss:StyleID="s48"/>
+   </Row>
+   <Row ss:StyleID="s64">
+    <Cell ss:StyleID="s39"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">坏账准备合理性测试</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">测试目的：</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">判断应收款项的坏账准备计提是否充足合理。</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">测试方法：</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">1、我们获取资产负债表日应收款项的坏账准备余额。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">2、区分不同类的应收款项，判断其坏账准备是否充足合理。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">i.对于应收利息及应收股利，查看相关交易的对手方或支付机构，根据其信用风险。评价坏账准备是否充足合理。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">ii.对于应收申购款及应收证券清算款，执行期后程序，评价坏账准备是否充足合理。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">iii.根据过往经验，判断应收款项的可收回情况。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:Index="3" ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">测试结果：</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">经检查，于资产负债表日，对于各类应收款项，该基金未计提减值准备。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s39"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">应收利息及应收股利的交易对手或支付机构均为交易所、银行或其他金融机构，信用风险低，预期未来无法收回款项的可能性很低。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">应收申购款及应收证券清算款均已于期后收讫，未发生坏账。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s39"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">该基金以前年度不存在无法收回应收款项的情况。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s39"/>
+    <Cell ss:Index="3" ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">测试结论：</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">经检查，我们未发现应收款项的坏账准备计提存在不充足不合理的情况。</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:Index="3" ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>9</ActiveRow>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

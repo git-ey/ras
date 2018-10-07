@@ -783,7 +783,7 @@
    <Row>
     <Cell ss:StyleID="s76"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与上年审定报表核对一致。</Font></ss:Data></Cell>
+       html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
@@ -972,7 +972,7 @@
     <Cell ss:StyleID="s143"><Data ss:Type="String">v</Data></Cell>
     <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1501Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;</Data></Cell>
+    <Cell ss:StyleID="s87"><!--<Data ss:Type="String">&lt;G&gt;</Data>--></Cell>
     <Cell ss:StyleID="s121"/>
    </Row>
    <Row ss:StyleID="s86">

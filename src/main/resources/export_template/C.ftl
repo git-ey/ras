@@ -1460,6 +1460,7 @@
     <Cell ss:StyleID="s72"/>
     <Cell ss:StyleID="s152"/>
    </Row>
+   <!--
    <Row ss:Height="14.25" ss:StyleID="s130">
     <Cell ss:StyleID="s146"><Data ss:Type="String">货币资金合计</Data></Cell>
     <Cell ss:StyleID="s146"/>
@@ -1484,6 +1485,7 @@
     <Cell ss:StyleID="s104"/>
     <Cell ss:StyleID="s131"/>
    </Row>
+   -->
    <Row ss:StyleID="s108">
     <Cell ss:StyleID="s132"/>
     <Cell ss:StyleID="s132"/>
@@ -1569,7 +1571,7 @@
    <Row ss:StyleID="s108">
     <Cell ss:StyleID="s139"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与上年审定报表核对一致。</Font></ss:Data></Cell>
+       html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
    </Row>
    <Row ss:StyleID="s108">
     <Cell ss:Index="2" ss:StyleID="s86"/>
@@ -1613,7 +1615,7 @@
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="115.5"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="83.25"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="95.25"/>
-   <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="65.25" ss:Span="1"/>
+   <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="83.25" ss:Span="1"/>
    <Column ss:Index="6" ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="122.25"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="42"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="63.75"/>
@@ -1695,7 +1697,7 @@
     <Cell><Data ss:Type="String">科目</Data></Cell>
     <Cell><Data ss:Type="String">类型</Data></Cell>
     <Cell><Data ss:Type="String">存放机构</Data></Cell>
-    <Cell ss:StyleID="s206"><Data ss:Type="String">关联方（Y/N）</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="String">本期末关联方（Y/N）</Data></Cell>
     <Cell><Data ss:Type="String">是否计息</Data></Cell>
     <Cell ss:StyleID="s71"><Data ss:Type="String">${(period-1)?string('0')}-12-31</Data></Cell>
     <Cell ss:Index="9" ss:StyleID="s71"><Data ss:Type="String">${period?string('0')}-${month?string('00')}-${day?string('00')}</Data></Cell>
@@ -2705,7 +2707,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s98"><Data ss:Type="String">目的：</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">确认基金是否存在期末通过利用银行账户之间转账时间差虚增资产的情况</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">针对资产负债表日的不同银行账户之间的转账，测试现金收入和现金支出是否存在截止性问题。</Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
@@ -2739,9 +2741,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s101"><Data ss:Type="String">工作步骤：</Data></Cell>
-    <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">1、获得<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">${month?string('00')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日所有银行账户的头寸表</Font></ss:Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">1、获得涵盖资产负债表日前后5天的所有银行账户的银行对账单；</Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -2758,9 +2758,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s101"/>
-    <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">2、查看<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">${month?string('00')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日是否存在银行账户之间的转账，如有，查看相应凭证</Font></ss:Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">2、查看不同银行账户之间的是否存在转账记录；</Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -2777,7 +2775,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s101"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">3、检查在途资金入账的记账凭证是否正确</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">3、若存在转账记录，检查记录金额是否准确，入账期间是否正确。</Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -2811,10 +2809,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s101"><Data ss:Type="String">结果：</Data></Cell>
-    <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">我们查看了基金${period?string('0')}年${month?string('00')}月${day?string('00')}日的头寸表，未发现<Font
-       html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font html:Color="#000000">${month?string('00')}</Font><Font>月</Font><Font
-       html:Color="#000000">${day?string('00')}</Font><Font>日银行账户之间发生转账，未发现在途资金。</Font></ss:Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">我们执行了上述步骤，未见异常。</Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s162"/>
     <Cell ss:StyleID="s162"/>
@@ -2848,9 +2843,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s101"><Data ss:Type="String">结论：</Data></Cell>
-    <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">该基金于<Font html:Color="#000000">${period?string('0')}</Font><Font>年</Font><Font
-       html:Color="#000000">${month?string('00')}</Font><Font>月</Font><Font html:Color="#000000">${day?string('00')}</Font><Font>日不存在通过利用银行账户之间转账时间差虚增资产的情况</Font></ss:Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">针对资产负债表日的不同银行账户之间的转账，经检查，我们未发现现金收入和现金支出存在截止性问题。</Data></Cell>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
     <Cell ss:StyleID="s100"/>
