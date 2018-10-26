@@ -1,81 +1,80 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<title>File Upload Example</title>
-
-		<link rel="stylesheet" href="../assets/css/bootstrap.css" />
-		<link rel="stylesheet" href="../assets/css/font-awesome.css" />
-		
-		<!-- fonts -->
-		<link rel="stylesheet" href="../assets/css/ace-fonts.css" />
-		
-		
-		<link rel="stylesheet" href="../assets/css/ace.css" />
-		<!--[if lte IE 9]>
-		  <link rel="stylesheet" href="../assets/css/ace-ie.css" />
-		<![endif]-->
-	</head>
-
-	<body>
+	<base href="<%=basePath%>">
+	<!-- jsp文件头和头部 -->
+	<%@ include file="../../system/index/top.jsp"%>
+	<link rel="stylesheet" href="static/html_UI/assets/css/bootstrap.css" />
+	<link rel="stylesheet" href="static/html_UI/assets/css/font-awesome.css" />
+	<!-- fonts -->
+	<link rel="stylesheet" href="static/html_UI/assets/css/ace-fonts.css" />
+	<link rel="stylesheet" href="static/html_UI/assets/css/ace.css" />
+	<!--[if lte IE 9]>
+	  <link rel="stylesheet" href="../assets/css/ace-ie.css" />
+	<![endif]-->
+</head>
+<body class="no-skin">
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
 	 <div class="main-container">
-	   <div class="page-content">
-	   <div class="row">
-
+	   <div id="zhongxin" style="padding-top: 13px;">
 		<div class="center" style="width:400px; margin:12px;">
 			<h3 class="header blue smaller lighter">
-				Uploading files to server
+				上传文件至服务器
 			</h3>
-			
 			<!-- our form -->
-			<form id="myform" method="post" action="file-upload.php">
+			<form id="Form" method="post" action="file/${msg}.do">
 				<input  type="file" name="avatar[]" multiple />
-				
 				<div class="hr hr-12 dotted"></div>
-				
-				<button type="submit" class="btn btn-sm btn-primary">Submit</button>
-				<button type="reset" class="btn btn-sm">Reset</button>
+				<button type="submit" class="btn btn-sm btn-primary">提交</button>
+				<button type="reset" class="btn btn-sm">重置</button>
 			</form>
 		</div>
-
-	  </div>
 	  </div>
 	 </div>
 
 		<!-- basic scripts -->
 		<!--[if !IE]> -->
 		<script type="text/javascript">
-		 window.jQuery || document.write("<script src='../assets/js/jquery.js'>"+"<"+"/script>");
+		 window.jQuery || document.write("<script src='static/html_UI/assets/js/jquery.js'>"+"<"+"/script>");
 		</script>
 		<!-- <![endif]-->
 		<!--[if IE]>
 		<script type="text/javascript">
-		 window.jQuery || document.write("<script src='../assets/js/jquery1x.js'>"+"<"+"/script>");
+		 window.jQuery || document.write("<script src='static/html_UI/assets/js/jquery1x.js'>"+"<"+"/script>");
 		</script>
 		<![endif]-->
 		
 		<!-- ace scripts -->
-		<script src="../assets/js/bootstrap.js"></script>
-		<script src="../assets/js/ace-elements.js"></script>
-		<script src="../assets/js/ace.js"></script>
+		<script src="static/html_UI/assets/js/bootstrap.js"></script>
+		<script src="static/html_UI/assets/js/ace-elements.js"></script>
+		<script src="static/html_UI/assets/js/ace.js"></script>
 				
 		<script type="text/javascript">
 			jQuery(function($) {
-				var $form = $('#myform');
+				var $form = $('#Form');
 				//you can have multiple files, or a file input with "multiple" attribute
 				var file_input = $form.find('input[type=file]');
 				var upload_in_progress = false;
 
 				file_input.ace_file_input({
 					style : 'well',
-					btn_choose : 'Select or drop files here',
+					btn_choose : '选择 或 拖拽文件',
 					btn_change: null,
 					droppable: true,
 					thumbnail: 'large',
 					
 					maxSize: 110000000,//bytes
-					allowExt: ["jpeg", "jpg", "png", "gif"],
-					allowMime: ["image/jpg", "image/jpeg", "image/png", "image/gif"],
+					//allowExt: ["jpeg", "jpg", "png", "gif"],
+					//allowMime: ["image/jpg", "image/jpeg", "image/png", "image/gif"],
 
 					before_remove: function() {
 						if(upload_in_progress)
@@ -98,12 +97,10 @@
 					//file_input.ace_file_input('reset_input');
 				});
 				
-				
 				var ie_timeout = null;//a time for old browsers uploading via iframe
 				
 				$form.on('submit', function(e) {
 					e.preventDefault();
-				
 					var files = file_input.data('ace_input_files');
 					if( !files || files.length == 0 ) return false;//no files selected
 										
@@ -129,7 +126,6 @@
 						$form.find('input[type=file]').each(function(){
 							var field_name = $(this).attr('name');
 							//for fields with "multiple" file support, field name should be something like `myfile[]`
-
 							var files = $(this).data('ace_input_files');
 							if(files && files.length > 0) {
 								for(var f = 0; f < files.length; f++) {
@@ -137,7 +133,6 @@
 								}
 							}
 						});
-	
 
 						upload_in_progress = true;
 						file_input.ace_file_input('loading', true);
@@ -149,34 +144,10 @@
 							contentType: false,//important
 							   dataType: 'json',
 							       data: formData_object
-							/**
-							,
-							xhr: function() {
-								var req = $.ajaxSettings.xhr();
-								if (req && req.upload) {
-									req.upload.addEventListener('progress', function(e) {
-										if(e.lengthComputable) {	
-											var done = e.loaded || e.position, total = e.total || e.totalSize;
-											var percent = parseInt((done/total)*100) + '%';
-											//percentage of uploaded file
-										}
-									}, false);
-								}
-								return req;
-							},
-							beforeSend : function() {
-							},
-							success : function() {
-							}*/
 						})
-
 					}
 					else {
-						//for older browsers that don't support FormData and uploading files via ajax
-						//we use an iframe to upload the form(file) without leaving the page
-
 						deferred = new $.Deferred //create a custom deferred object
-						
 						var temporary_iframe_id = 'temporary-iframe-'+(new Date()).getTime()+'-'+(parseInt(Math.random()*1000));
 						var temp_iframe = 
 								$('<iframe id="'+temporary_iframe_id+'" name="'+temporary_iframe_id+'" \
@@ -185,22 +156,15 @@
 								.insertAfter($form)
 
 						$form.append('<input type="hidden" name="temporary-iframe-id" value="'+temporary_iframe_id+'" />');
-						
 						temp_iframe.data('deferrer' , deferred);
-						//we save the deferred object to the iframe and in our server side response
-						//we use "temporary-iframe-id" to access iframe and its deferred object
-						
 						$form.attr({
 									  method: 'POST',
 									 enctype: 'multipart/form-data',
 									  target: temporary_iframe_id //important
 									});
-
 						upload_in_progress = true;
 						file_input.ace_file_input('loading', true);//display an overlay with loading icon
 						$form.get(0).submit();
-						
-						
 						//if we don't receive a response after 30 seconds, let's declare it as failed!
 						ie_timeout = setTimeout(function(){
 							ie_timeout = null;
@@ -208,9 +172,6 @@
 							deferred.reject({'status':'fail', 'message':'Timeout!'});
 						} , 30000);
 					}
-
-
-					////////////////////////////
 					//deferred callbacks, triggered by both ajax and iframe solution
 					deferred
 					.done(function(result) {//success
@@ -219,14 +180,14 @@
 						var message = '';
 						for(var i = 0; i < result.length; i++) {
 							if(result[i].status == 'OK') {
-								message += "File successfully saved. Thumbnail is: " + result[i].url
+								message += "文件保存成功" + result[i].url
 							}
 							else {
-								message += "File not saved. " + result.message;
+								message += "文件保存失败" + result.message;
 							}
 							message += "\n";
 						}
-						alert(message);
+						//alert(message);
 					})
 					.fail(function(result) {//failure
 						alert("There was an error");
@@ -240,19 +201,22 @@
 
 					deferred.promise();
 				});
-
-
 				//when "reset" button of form is hit, file field will be reset, but the custom UI won't
 				//so you should reset the ui on your own
 				$form.on('reset', function() {
 					$(this).find('input[type=file]').ace_file_input('reset_input_ui');
 				});
-
-
 				if(location.protocol == 'file:') alert("For uploading to server, you should access this page using 'http' protocal, i.e. via a webserver.");
 
 			});
 		</script>
-
-	</body>
+	<!-- /.main-content -->
+</div>
+<!-- /.main-container -->
+	<!-- 页面底部js¨ -->
+	<%@ include file="../../system/index/foot.jsp"%>
+	<script type="text/javascript">
+		$(top.hangge());
+	</script>
+</body>
 </html>
