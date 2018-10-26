@@ -180,14 +180,14 @@
 						var message = '';
 						for(var i = 0; i < result.length; i++) {
 							if(result[i].status == 'OK') {
-								message += "文件保存成功" + result[i].url
+								message += "成功：" + result[i].url
 							}
 							else {
-								message += "文件保存失败" + result.message;
+								message += "失败：" + result[i].message;
 							}
 							message += "\n";
 						}
-						//alert(message);
+						alert(message);
 					})
 					.fail(function(result) {//failure
 						alert("There was an error");
