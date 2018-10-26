@@ -72,15 +72,6 @@ public class FileController extends BaseController {
 		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
 		// 上传文件
 		upload(this.getRequest(), mapList);
-		PageData pd = new PageData();
-		pd = this.getPageData();
-		pd.put("FILE_ID", this.get32UUID()); // 主键
-		pd.put("CTIME", Tools.date2Str(new Date())); // 上传时间
-		pd.put("USERNAME", Jurisdiction.getUsername()); // 上传者
-		pd.put("DEPARTMENT_ID", Jurisdiction.getDEPARTMENT_ID()); // 部门ID
-		pd.put("FILESIZE",
-				FileUtil.getFilesize(PathUtil.getClasspath() + Const.FILEPATHFILEOA + pd.getString("FILEPATH"))); // 文件大小
-		fileService.save(pd);
 		return mapList;
 	}
 
@@ -223,6 +214,7 @@ public class FileController extends BaseController {
 	 */
 	public void upload(HttpServletRequest request, List<Map<String, String>> mapList)
 			throws ServletException, IOException {
+		Map<String,String> map = new HashMap<String,String>();
 		String savePath = PathUtil.getClasspath();
 		savePath = savePath + request.getParameter("uploadPath");
 		File f1 = new File(savePath);
@@ -237,6 +229,12 @@ public class FileController extends BaseController {
 		try {
 			fileList = upload.parseRequest(request);
 		} catch (FileUploadException ex) {
+			return;
+		}
+		if (null == fileList || fileList.isEmpty()) {
+			map.put("status", "ERR");
+			map.put("message", "未发现上传文件");
+			mapList.add(map);
 			return;
 		}
 		Iterator<FileItem> it = fileList.iterator();
@@ -266,8 +264,17 @@ public class FileController extends BaseController {
 				// File saveFile = new File(savePath + name + extName);
 				try {
 					item.write(file);
+					PageData pd = new PageData();
+					pd = this.getPageData();
+					pd.put("FILE_ID", this.get32UUID()); // 主键
+					pd.put("CTIME", Tools.date2Str(new Date())); // 上传时间
+					pd.put("USERNAME", Jurisdiction.getUsername()); // 上传者
+					pd.put("DEPARTMENT_ID", Jurisdiction.getDEPARTMENT_ID()); // 部门ID
+					pd.put("FILESIZE",
+							FileUtil.getFilesize(PathUtil.getClasspath() + Const.FILEPATHFILEOA + pd.getString("FILEPATH"))); // 文件大小
+					fileService.save(pd);
 				} catch (Exception e) {
-					e.printStackTrace();
+					map.put("status", "ERR");
 					resultMap.put("message", e.getMessage());
 				}
 			}
