@@ -4,7 +4,7 @@
 	
 	<!--表名 -->
 	<sql id="tableName">
-		SYS_TAXRATE
+		SYS_TAX_RATE
 	</sql>
 	
 	<!-- 字段 -->

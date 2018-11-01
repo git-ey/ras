@@ -32,47 +32,72 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">排序:</td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">排序:</td>
 								<td><input type="number" name="SEQ" id="SEQ" value="${pd.SEQ}" maxlength="32" placeholder="这里输入排序" title="排序" style="width:98%;"/></td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">科目类型:</td>
+								<td>
+									<select class="chosen-select form-control" name="ACCOUNT_TYPE" id="ACCOUNT_TYPE" data-placeholder="请选择" style="width:49%;">
+								        <option value="BS" <c:if test="${pd.ACCOUNT_TYPE == 'BS'}">selected</c:if>>BS</option>
+								        <option value="PL" <c:if test="${pd.ACCOUNT_TYPE == 'PL'}">selected</c:if>>PL</option>
+								    </select>
+								</td>
 							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">科目类型:</td>
-								<td><input type="text" name="ACCOUNT_TYPE" id="ACCOUNT_TYPE" value="${pd.ACCOUNT_TYPE}" maxlength="30" placeholder="这里输入科目类型" title="科目类型" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">表项:</td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">表项:</td>
 								<td><input type="text" name="AFS_CODE" id="AFS_CODE" value="${pd.AFS_CODE}" maxlength="30" placeholder="这里输入表项" title="表项" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">表项名称:</td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">表项名称:</td>
 								<td><input type="text" name="ITEM" id="ITEM" value="${pd.ITEM}" maxlength="60" placeholder="这里输入表项名称" title="表项名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">交易量是否大:</td>
-								<td><input type="text" name="VOLUME" id="VOLUME" value="${pd.VOLUME}" maxlength="10" placeholder="这里输入交易量是否大" title="交易量是否大" style="width:98%;"/></td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">交易量是否大:</td>
+								<td>
+									<select class="chosen-select form-control" name="VOLUME" id="VOLUME" data-placeholder="请选择" style="width:49%;">
+								        <option value="Y" <c:if test="${pd.VOLUME == 'Y'}">selected</c:if>>是</option>
+								        <option value="N" <c:if test="${pd.VOLUME == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">交易复杂程度是否为高:</td>
+								<td>
+									<select class="chosen-select form-control" name="COMPLEXITY" id="COMPLEXITY" data-placeholder="请选择" style="width:49%;">
+								        <option value="Y" <c:if test="${pd.COMPLEXITY == 'Y'}">selected</c:if>>是</option>
+								        <option value="N" <c:if test="${pd.COMPLEXITY == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
 							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">交易复杂程度是否为高:</td>
-								<td><input type="text" name="COMPLEXITY" id="COMPLEXITY" value="${pd.COMPLEXITY}" maxlength="10" placeholder="这里输入交易复杂程度是否为高" title="交易复杂程度是否为高" style="width:98%;"/></td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">是否包括重要判断:</td>
+								<td>
+									<select class="chosen-select form-control" name="JUDGEMENT" id="JUDGEMENT" data-placeholder="请选择" style="width:49%;">
+								        <option value="Y" <c:if test="${pd.JUDGEMENT == 'Y'}">selected</c:if>>是</option>
+								        <option value="N" <c:if test="${pd.JUDGEMENT == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">是否存在重大风险:</td>
+								<td>
+									<select class="chosen-select form-control" name="RISK" id="RISK" data-placeholder="请选择" style="width:49%;">
+								        <option value="Y" <c:if test="${pd.RISK == 'Y'}">selected</c:if>>是</option>
+								        <option value="N" <c:if test="${pd.RISK == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
 							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">是否包括重要判断:</td>
-								<td><input type="text" name="JUDGEMENT" id="JUDGEMENT" value="${pd.JUDGEMENT}" maxlength="10" placeholder="这里输入是否包括重要判断" title="是否包括重要判断" style="width:98%;"/></td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">是否为投资者重大关注科目:</td>
+								<td>
+									<select class="chosen-select form-control" name="CONCERN" id="CONCERN" data-placeholder="请选择" style="width:49%;">
+								        <option value="Y" <c:if test="${pd.CONCERN == 'Y'}">selected</c:if>>是</option>
+								        <option value="N" <c:if test="${pd.CONCERN == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">启用:</td>
+								<td>
+									<select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
+								        <option value="Y" <c:if test="${pd.ACTIVE == 'Y'}">selected</c:if>>是</option>
+								        <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
 							</tr>
 							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">是否存在重大风险:</td>
-								<td><input type="text" name="RISK" id="RISK" value="${pd.RISK}" maxlength="10" placeholder="这里输入是否存在重大风险" title="是否存在重大风险" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">是否为投资者重大关注科目:</td>
-								<td><input type="text" name="CONCERN" id="CONCERN" value="${pd.CONCERN}" maxlength="10" placeholder="这里输入是否为投资者重大关注科目" title="是否为投资者重大关注科目" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">启用:</td>
-								<td><input type="text" name="ACTIVE" id="ACTIVE" value="${pd.ACTIVE}" maxlength="10" placeholder="这里输入启用" title="启用" style="width:98%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:75px;text-align: right;padding-top: 13px;">说明:</td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">说明:</td>
 								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>
