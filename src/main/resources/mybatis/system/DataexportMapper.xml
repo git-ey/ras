@@ -24,7 +24,8 @@
         (SELECT COUNT(*) FROM wp_t t where t.FUND_ID = sfi.FUND_ID AND t.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) TFLAG,
         (SELECT COUNT(*) FROM wp_u u where u.FUND_ID = sfi.FUND_ID AND u.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) UFLAG,
         (SELECT COUNT(*) FROM wp_v300 v where v.FUND_ID = sfi.FUND_ID AND v.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) VFLAG,
-        (SELECT COUNT(*) FROM wp_i_rp i where i.FUND_ID = sfi.FUND_ID AND i.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) IFLAG
+        (SELECT COUNT(*) FROM wp_i_rp i where i.FUND_ID = sfi.FUND_ID AND i.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) IFLAG,
+        (SELECT COUNT(*) FROM wp_o o where o.FUND_ID = sfi.FUND_ID AND o.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) OFLAG
           FROM sys_fund_info sfi
      LEFT JOIN sys_mgrcompany smc
             ON sfi.FIRM_CODE = smc.COMPANY_CODE

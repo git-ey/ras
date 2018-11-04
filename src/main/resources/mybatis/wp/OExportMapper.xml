@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OExportMapper">
+    <select id="selectOData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            O.EY_ACCOUNT_NUM as accountNum,
+            O.AMOUNT_CURRENT as amountCurrent,
+            O.AMOUNT_ADJ_CR as crAmountAdj,
+            O.AMOUNT_ADJ_DR as drAmountAdj,
+            O.AMOUNT_AUDIT_LAST as amountAuditLast
+        FROM
+            wp_o O
+        where 
+            1 = 1
+        and O.STATUS = 'Y'
+        and O.FUND_ID = #{fundId}
+        and O.PERIOD = #{period}
+    </select>
+    
+    <select id="selectO300Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    O300.ATTR1 AS type,
+		    O300.ATTR2 AS subtype,
+		    O300.ATTR6 AS realizedFlag,
+		    O300.BEGIN_BALANCE_CNY AS beginBalance,
+		    O300.DR_AMOUNT_CNY AS drAmount,
+		    O300.CR_AMOUNT_CNY AS crAmount
+		FROM
+		    wp_o300 O300
+		WHERE
+		    1 = 1
+		AND O300. STATUS = 'Y'
+		AND O300.FUND_ID = #{fundId}
+		AND O300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectO310VatData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    O310V.ITEM as item,
+		    O310V.SUB_ITEM as subItem,
+		    O310V.AMOUNT as amount,
+		    O310V.TAX_RATE as taxRate,
+		    O310V.TAX_CLIENT as taxClient
+		FROM
+		    wp_o310_vat O310V
+		WHERE
+		    1 = 1
+		AND O310V. STATUS = 'Y'
+		AND O310V.FUND_ID = #{fundId}
+		AND O310V.PERIOD = #{period}
+    </select>
+    
+    <select id="selectO310ExtraData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            O310E.ITEM as item,
+            O310E.TAX_RATE as taxRate,
+            O310E.TAX_CLIENT as taxClient
+        FROM
+            wp_o310_extra O310E
+        WHERE
+            1 = 1
+        AND O310E. STATUS = 'Y'
+        AND O310E.FUND_ID = #{fundId}
+        AND O310E.PERIOD = #{period}
+    </select>
+    
+    <select id="selectO311SummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    O311S.TAXABLE_AMOUNT AS taxableAmount,
+		    O311S.NON_TAXABLE_AMOUNT AS nonTaxableAmount
+		FROM
+		    wp_o311_summary O311S
+		WHERE
+		    1 = 1
+		AND O311S. STATUS = 'Y'
+		AND O311S.FUND_ID = #{fundId}
+		AND O311S.PERIOD = #{period}
+		LIMIT 1
+    </select>
+    
+    <select id="selectO311DetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    O311D.ACCOUNT_NUM AS accountNum,
+		    O311D.ACCOUNT_NAME AS accountName,
+		    O311D.ATTR6 AS vatFlag,
+		    O311D.AMOUNT as amount
+		FROM
+		    wp_o311_detail O311D
+		WHERE
+		    1 = 1
+		AND O311D. STATUS = 'Y'
+		AND O311D.FUND_ID = #{fundId}
+		AND O311D.PERIOD = #{period}
+    </select>
+</mapper>

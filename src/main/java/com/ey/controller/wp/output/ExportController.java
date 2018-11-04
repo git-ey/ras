@@ -26,6 +26,7 @@ import com.ey.service.wp.output.HExportManager;
 import com.ey.service.wp.output.HSumExportManager;
 import com.ey.service.wp.output.IExportManager;
 import com.ey.service.wp.output.NExportManager;
+import com.ey.service.wp.output.OExportManager;
 import com.ey.service.wp.output.PExportManager;
 import com.ey.service.wp.output.TExportManager;
 import com.ey.service.wp.output.UExportManager;
@@ -79,6 +80,9 @@ public class ExportController extends BaseController {
     // 底稿I
     @Resource(name = "iExportService")
     private IExportManager iExportService;
+    // 底稿O
+    @Resource(name = "oExportService")
+    private OExportManager oExportService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -312,6 +316,22 @@ public class ExportController extends BaseController {
         this.iExportService.doExport(request, response, fundId, periodStr);
     }
     
+    /**
+     * 底稿导出--O
+     * 
+     * @param
+     * @throws Exception
+     */
+    @RequestMapping(value = "/O")
+    public void exportO(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PageData pd = this.getPageData();
+        String fundId = pd.getString("FUND_ID");
+        String periodStr = pd.getString("PEROID");
+        periodStr = this.dataCheck(fundId, periodStr);
+        
+        this.oExportService.doExport(request, response, fundId, periodStr);
+    }
+    
     @RequestMapping(value = "/download")
     public void downLoadOneFund(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();
@@ -331,9 +351,10 @@ public class ExportController extends BaseController {
         this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr);
         this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
         this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr);
-        this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);   
-        this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);   
-        this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);   
+        this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);
+        this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);
+        this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);
+        this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);  
 //        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, pd);
         
         final String zipFileName = fileIdentifier + ".zip";

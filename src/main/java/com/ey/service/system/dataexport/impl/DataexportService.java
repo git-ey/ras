@@ -38,7 +38,8 @@ public class DataexportService implements DataexportManager{
 	 * @param pd
 	 * @return
 	 */
-	@Override
+    @Override
+    @SuppressWarnings("unchecked")
     public List<PageData> listPeriod(PageData pd) throws Exception {
 		return (List<PageData>)dao.findForList("DataexportMapper.listPeriod", pd);
 	}
