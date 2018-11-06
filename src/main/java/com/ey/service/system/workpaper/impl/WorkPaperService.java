@@ -85,6 +85,8 @@ public class WorkPaperService implements WorkPaperManager{
     private static final String PD_FIELD_VFLAG = "VFLAG";
     private static final String PD_FIELD_IFLAG = "IFLAG";
     private static final String PD_FIELD_H_SUMFLAG = "H_SUMFLAG";
+    private static final String PD_FIELD_OFLAG = "OFLAG";
+    private static final String PD_FIELD_SAFLAG = "SAFLAG";
     
     private static final String PD_FIELD_WP_TYPE = "WP_TYPE";
     private static final String PD_FIELD_FUND_ID = "FUND_ID";
@@ -237,6 +239,12 @@ public class WorkPaperService implements WorkPaperManager{
         }
         if (this.getExportFlag(pd, PD_FIELD_IFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_IFLAG.equals(wpType))) {
             this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);
+        }
+        if (this.getExportFlag(pd, PD_FIELD_OFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_OFLAG.equals(wpType))) {
+            this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);
+        }
+        if (this.getExportFlag(pd, PD_FIELD_SAFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_SAFLAG.equals(wpType))) {
+            this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_SA, fundId, periodStr);
         }
 	}
 	

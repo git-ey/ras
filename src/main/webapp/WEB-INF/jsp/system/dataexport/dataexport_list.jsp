@@ -78,7 +78,7 @@
 									<th class="center">期间</th>
 									<th class="center">基金简称</th>
 									<th class="center">管理公司</th>
-									<th class="center" colspan="12">底稿</th>
+									<th class="center" colspan="13">底稿</th>
 									<th class="center">报告</th>
 									<th class="center">下载</th>
 								</tr>
@@ -176,14 +176,8 @@
                                                  <td class="center"><a class="btn btn-mini">V</a></td>
                                                </c:otherwise>
                                             </c:choose>
-                                            <c:choose>  
-                                              <c:when test="${var.OFLAG > 0 }">
-                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('O','${var.FUND_ID}','${var.PERIOD}');">O</a></td>
-                                              </c:when>
-                                               <c:otherwise>
-                                                 <td class="center"><a class="btn btn-mini">O</a></td>
-                                               </c:otherwise>
-                                            </c:choose>
+                                            <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('O','${var.FUND_ID}','${var.PERIOD}');">O</a></td>
+                                            <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('SA','${var.FUND_ID}','${var.PERIOD}');">SA</a></td>
                                             <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('Report','${var.FUND_ID}','${var.PERIOD}');">报告</a></td>
 									       <td class='center'>
                                                <a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}','${var.PERIOD}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon green"></i></a>

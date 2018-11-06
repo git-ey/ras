@@ -117,4 +117,8 @@ public interface Constants {
      * 底稿名称--O
      */
     static final String EXPORT_AIM_FILE_NAME_O = "${companyShortName}_O_${fundId}_${fundShortName}_${periodStr}.xml";
+    /**
+     * 底稿名称--SA
+     */
+    static final String EXPORT_AIM_FILE_NAME_SA = "${companyShortName}_SA_${fundId}_${fundShortName}_${periodStr}.xml";
 }

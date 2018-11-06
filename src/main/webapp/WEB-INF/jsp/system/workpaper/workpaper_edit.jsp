@@ -73,6 +73,8 @@
 								        <option value="TFLAG" <c:if test="${pd.WP_TYPE == 'T'}">selected</c:if>>T</option>
 								        <option value="UFLAG" <c:if test="${pd.WP_TYPE == 'U'}">selected</c:if>>U</option>
 								        <option value="VFLAG" <c:if test="${pd.WP_TYPE == 'V'}">selected</c:if>>V</option>
+								        <option value="OFLAG" <c:if test="${pd.WP_TYPE == 'O'}">selected</c:if>>V</option>
+								        <option value="SAFLAG" <c:if test="${pd.WP_TYPE == 'SA'}">selected</c:if>>V</option>
 								    </select>
 								</td>
 							</tr>
