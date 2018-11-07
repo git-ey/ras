@@ -30,7 +30,7 @@
           FROM sys_fund_info sfi
      LEFT JOIN sys_mgrcompany smc
             ON sfi.FIRM_CODE = smc.COMPANY_CODE
-         WHERE sfi.`STATUS` = 'REVIEWED'
+         WHERE 1 = 1 <!-- sfi.`STATUS` = 'REVIEWED' -->
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
