@@ -176,8 +176,22 @@
                                                  <td class="center"><a class="btn btn-mini">V</a></td>
                                                </c:otherwise>
                                             </c:choose>
-                                            <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('O','${var.FUND_ID}','${var.PERIOD}');">O</a></td>
-                                            <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('SA','${var.FUND_ID}','${var.PERIOD}');">SA</a></td>
+                                            <c:choose>  
+                                              <c:when test="${var.OFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('O','${var.FUND_ID}','${var.PERIOD}');">O</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">V</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>  
+                                              <c:when test="${var.SAFLAG > 0 }">
+                                                <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('SA','${var.FUND_ID}','${var.PERIOD}');">SA</a></td>
+                                              </c:when>
+                                               <c:otherwise>
+                                                 <td class="center"><a class="btn btn-mini">V</a></td>
+                                               </c:otherwise>
+                                            </c:choose>
                                             <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('Report','${var.FUND_ID}','${var.PERIOD}');">报告</a></td>
 									       <td class='center'>
                                                <a class="btn btn-light btn-xs" onclick="toDownload('${var.FUND_ID}','${var.PERIOD}');" title="导出文件"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon green"></i></a>
