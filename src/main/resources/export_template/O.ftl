@@ -811,7 +811,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">应交教育附加</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">应交教育费附加</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJJYFJ_SX.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJJYFJ_SX.drAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s79"><Data ss:Type="String">v</Data></Cell>
@@ -821,7 +821,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">应交地方教育附加</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">应交地方教育费附加</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJDFJYFJ_SX.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJDFJYFJ_SX.drAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s79"><Data ss:Type="String">v</Data></Cell>
@@ -871,7 +871,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">应交教育附加_未实现</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">应交教育费附加_未实现</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJJYFJ_WSX.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJJYFJ_WSX.drAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s79"/>
@@ -881,7 +881,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s62"/>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">应交地方教育附加_未实现</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">应交地方教育费附加_未实现</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJDFJYFJ_WSX.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJDFJYFJ_WSX.drAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s79"/>
@@ -1215,7 +1215,7 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">应交教育附加</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">应交教育费附加</Data></Cell>
     <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.EXTRA.YJJYFFJ.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R18C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O300</Data></Cell>
@@ -1227,7 +1227,7 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">应交地方教育附加</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">应交地方教育费附加</Data></Cell>
     <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.EXTRA.YJDFJYFFJ.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R18C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O300</Data></Cell>

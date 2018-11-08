@@ -154,17 +154,17 @@ public class OExportService extends BaseExportService implements OExportManager 
                 if("未实现".equals(resMap.get("realizedFlag"))) {
                     if("应交城建费附加".equals(resMap.get("subtype"))) {
                         result.put("YJFJS_YJCJFFJ_WSX", resMap);
-                    }else if("应交教育附加".equals(resMap.get("subtype"))) {
+                    }else if("应交教育费附加".equals(resMap.get("subtype"))) {
                         result.put("YJFJS_YJJYFJ_WSX", resMap);
-                    }else if("应交地方教育附加".equals(resMap.get("subtype"))) {
+                    }else if("应交地方教育费附加".equals(resMap.get("subtype"))) {
                         result.put("YJFJS_YJDFJYFJ_WSX", resMap);
                     }
                 }else {
                     if("应交城建费附加".equals(resMap.get("subtype"))) {
                         result.put("YJFJS_YJCJFFJ_SX", resMap);
-                    }else if("应交教育附加".equals(resMap.get("subtype"))) {
+                    }else if("应交教育费附加".equals(resMap.get("subtype"))) {
                         result.put("YJFJS_YJJYFJ_SX", resMap);
-                    }else if("应交地方教育附加".equals(resMap.get("subtype"))) {
+                    }else if("应交地方教育费附加".equals(resMap.get("subtype"))) {
                         result.put("YJFJS_YJDFJYFJ_SX", resMap);
                     }
                 }
