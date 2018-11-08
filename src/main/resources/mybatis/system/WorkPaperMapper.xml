@@ -129,16 +129,18 @@
             sfi.FUND_ID,
             sfi.SHORT_NAME,
             smc.SHORT_NAME MGR_COMPANY,
-            (SELECT COUNT(*) FROM wp_c c where c.FUND_ID = sfi.FUND_ID AND c.PERIOD = '${PERIOD}') CFLAG,
-            (SELECT COUNT(*) FROM wp_e e where e.FUND_ID = sfi.FUND_ID AND e.PERIOD = '${PERIOD}') EFLAG,
-            (SELECT COUNT(*) FROM wp_g g where g.FUND_ID = sfi.FUND_ID AND g.PERIOD = '${PERIOD}') GFLAG,
-            (SELECT COUNT(*) FROM wp_h h where h.FUND_ID = sfi.FUND_ID AND h.PERIOD = '${PERIOD}') HFLAG,
-            (SELECT COUNT(*) FROM wp_n n where n.FUND_ID = sfi.FUND_ID AND n.PERIOD = '${PERIOD}') NFLAG,
-            (SELECT COUNT(*) FROM wp_p p where p.FUND_ID = sfi.FUND_ID AND p.PERIOD = '${PERIOD}') PFLAG,
-            (SELECT COUNT(*) FROM wp_t t where t.FUND_ID = sfi.FUND_ID AND t.PERIOD = '${PERIOD}') TFLAG,
-            (SELECT COUNT(*) FROM wp_u u where u.FUND_ID = sfi.FUND_ID AND u.PERIOD = '${PERIOD}') UFLAG,
-            (SELECT COUNT(*) FROM wp_v300 v where v.FUND_ID = sfi.FUND_ID AND v.PERIOD = '${PERIOD}') VFLAG,
-            (SELECT COUNT(*) FROM wp_i_rp i where i.FUND_ID = sfi.FUND_ID AND i.PERIOD = '${PERIOD}') IFLAG
+            (SELECT COUNT(*) FROM sys_concrecord c where c.WP_TYPE = 'C' AND c.FUND_ID = sfi.FUND_ID AND c.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) CFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord e where e.WP_TYPE = 'E' AND e.FUND_ID = sfi.FUND_ID AND e.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) EFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord g where g.WP_TYPE = 'G' AND g.FUND_ID = sfi.FUND_ID AND g.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) GFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord h where h.WP_TYPE = 'H' AND h.FUND_ID = sfi.FUND_ID AND h.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) HFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord n where n.WP_TYPE = 'N' AND n.FUND_ID = sfi.FUND_ID AND n.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) NFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord p where p.WP_TYPE = 'P' AND p.FUND_ID = sfi.FUND_ID AND p.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) PFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord t where t.WP_TYPE = 'T' AND t.FUND_ID = sfi.FUND_ID AND t.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) TFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord u where u.WP_TYPE = 'U' AND u.FUND_ID = sfi.FUND_ID AND u.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) UFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord v where v.WP_TYPE = 'V' AND v.FUND_ID = sfi.FUND_ID AND v.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) VFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord i where i.WP_TYPE = 'I' AND i.FUND_ID = sfi.FUND_ID AND i.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) IFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord o where o.WP_TYPE = 'O' AND o.FUND_ID = sfi.FUND_ID AND o.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) OFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord sa where sa.WP_TYPE = 'SA' AND sa.FUND_ID = sfi.FUND_ID AND sa.PERIOD = IF('${PERIOD}'='',concat(YEAR(now())-1,'1231'),'${PERIOD}')) SAFLAG
         FROM sys_fund_info sfi
         LEFT JOIN sys_mgrcompany smc ON sfi.FIRM_CODE = smc.COMPANY_CODE
         WHERE 1 = 1
