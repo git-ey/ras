@@ -972,12 +972,12 @@
     <Cell ss:StyleID="s143"><Data ss:Type="String">v</Data></Cell>
     <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1501Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s87"><!--<Data ss:Type="String">&lt;G&gt;</Data>--></Cell>
+    <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;</Data></Cell>
     <Cell ss:StyleID="s121"/>
    </Row>
    <Row ss:StyleID="s86">
     <Cell ss:Index="5" ss:StyleID="s136"/>
-    <Cell ss:StyleID="s136"><Data ss:Type="String">&lt;P400&gt;</Data></Cell>
+    <Cell ss:StyleID="s136"><!--<Data ss:Type="String">&lt;P400&gt;</Data>--></Cell>
     <Cell ss:StyleID="s123"/>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s86">
