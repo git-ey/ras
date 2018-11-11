@@ -16,7 +16,7 @@
 <!-- 下拉框 -->
 <link rel="stylesheet" href="static/ace/css/chosen.css" />
 <!-- jsp文件头和头部 -->
-<%@ include file="../index/top.jsp"%>
+<%@ include file="../../system/index/top.jsp"%>
 <!-- 日期框 -->
 <link rel="stylesheet" href="static/ace/css/datepicker.css" />
 </head>
@@ -74,7 +74,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.FILE_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.file_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.NAME}${fn:substring(var.FILEPATH ,19,fn:length(var.FILEPATH))}</td>
@@ -88,12 +88,12 @@
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="下载" onclick="window.location.href='<%=basePath%>/file/download.do?FILE_ID=${var.FILE_ID}'">
+													<a class="btn btn-xs btn-success" title="下载" onclick="window.location.href='<%=basePath%>/file/download.do?file_ID=${var.file_ID}'">
 														<i class="ace-icon fa fa-cloud-download bigger-120" title="下载"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.FILE_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.file_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -107,7 +107,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="window.location.href='<%=basePath%>/file/download.do?FILE_ID=${var.FILE_ID}'" class="tooltip-success" data-rel="tooltip" title="下载">
+																<a style="cursor:pointer;" onclick="window.location.href='<%=basePath%>/file/download.do?file_ID=${var.file_ID}'" class="tooltip-success" data-rel="tooltip" title="下载">
 																	<span class="green">
 																		<i class="ace-icon fa fa-cloud-download bigger-120"></i>
 																	</span>
@@ -116,7 +116,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.FILE_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.file_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -254,8 +254,8 @@
 			 diag.Drag=true;
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>file/goAdd.do';
-			 diag.Width = 500;
-			 diag.Height = 600;
+			 diag.Width = 460;
+			 diag.Height = 290;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -278,7 +278,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>file/delete.do?FILE_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>file/delete.do?file_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						nextPage(${page.currentPage});
 					});

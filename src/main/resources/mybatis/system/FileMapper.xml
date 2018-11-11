@@ -15,7 +15,7 @@
 		BZ,	
 		USERNAME,	
 		DEPARTMENT_ID,	
-		FILESIZE,	
+		FILESIZE,
 		FILE_ID
 	</sql>
 	
@@ -57,7 +57,8 @@
 		set 
 			NAME = #{NAME},
 			FILEPATH = #{FILEPATH},
-			BZ = #{BZ}
+			BZ = #{BZ},
+		FILE_ID = FILE_ID
 		where 
 		FILE_ID = #{FILE_ID}
 	</update>
@@ -108,4 +109,5 @@
                  #{item}
 		</foreach>
 	</delete>
+	
 </mapper>
