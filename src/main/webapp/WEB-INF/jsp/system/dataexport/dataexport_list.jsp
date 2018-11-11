@@ -181,7 +181,7 @@
                                                 <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('O','${var.FUND_ID}','${var.PERIOD}');">O</a></td>
                                               </c:when>
                                                <c:otherwise>
-                                                 <td class="center"><a class="btn btn-mini">V</a></td>
+                                                 <td class="center"><a class="btn btn-mini">O</a></td>
                                                </c:otherwise>
                                             </c:choose>
                                             <c:choose>  
@@ -189,7 +189,7 @@
                                                 <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('SA','${var.FUND_ID}','${var.PERIOD}');">SA</a></td>
                                               </c:when>
                                                <c:otherwise>
-                                                 <td class="center"><a class="btn btn-mini">V</a></td>
+                                                 <td class="center"><a class="btn btn-mini">SA</a></td>
                                                </c:otherwise>
                                             </c:choose>
                                             <td class="center"><a class="btn btn-mini btn-success" onclick="wpExport('Report','${var.FUND_ID}','${var.PERIOD}');">报告</a></td>

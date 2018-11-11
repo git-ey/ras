@@ -19,6 +19,7 @@ import com.ey.service.wp.output.HExportManager;
 import com.ey.service.wp.output.HSumExportManager;
 import com.ey.service.wp.output.IExportManager;
 import com.ey.service.wp.output.NExportManager;
+import com.ey.service.wp.output.OExportManager;
 import com.ey.service.wp.output.PExportManager;
 import com.ey.service.wp.output.TExportManager;
 import com.ey.service.wp.output.UExportManager;
@@ -72,6 +73,9 @@ public class WorkPaperService implements WorkPaperManager{
     // 底稿I
     @Resource(name = "iExportService")
     private IExportManager iExportService;
+    // 底稿O
+    @Resource(name = "oExportService")
+    private OExportManager oExportService;
     
     //FLAG字段名，导出用
     private static final String PD_FIELD_CFLAG = "CFLAG";
@@ -241,11 +245,11 @@ public class WorkPaperService implements WorkPaperManager{
             this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);
         }
         if (this.getExportFlag(pd, PD_FIELD_OFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_OFLAG.equals(wpType))) {
-            this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);
+            this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_SAFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_SAFLAG.equals(wpType))) {
-            this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_SA, fundId, periodStr);
-        }
+        //if (this.getExportFlag(pd, PD_FIELD_SAFLAG) && (StringUtils.isEmpty(wpType) || PD_FIELD_SAFLAG.equals(wpType))) {
+        //    this.saExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_SA, fundId, periodStr);
+        //}
 	}
 	
 	/**
