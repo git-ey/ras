@@ -25,8 +25,7 @@
         (SELECT COUNT(*) FROM sys_concrecord u where u.WP_TYPE = 'U' AND u.FUND_ID = sfi.FUND_ID AND u.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) UFLAG,
         (SELECT COUNT(*) FROM sys_concrecord v where v.WP_TYPE = 'V' AND v.FUND_ID = sfi.FUND_ID AND v.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) VFLAG,
         (SELECT COUNT(*) FROM sys_concrecord i where i.WP_TYPE = 'I' AND i.FUND_ID = sfi.FUND_ID AND i.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) IFLAG,
-        (SELECT COUNT(*) FROM sys_concrecord o where o.WP_TYPE = 'O' AND o.FUND_ID = sfi.FUND_ID AND o.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) OFLAG,
-        (SELECT COUNT(*) FROM sys_concrecord sa where sa.WP_TYPE = 'SA' AND sa.FUND_ID = sfi.FUND_ID AND sa.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) SAFLAG
+        (SELECT COUNT(*) FROM sys_concrecord o where o.WP_TYPE = 'O' AND o.FUND_ID = sfi.FUND_ID AND o.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) OFLAG
           FROM sys_fund_info sfi
      LEFT JOIN sys_mgrcompany smc
             ON sfi.FIRM_CODE = smc.COMPANY_CODE

@@ -129,7 +129,7 @@
             sfi.FUND_ID,
             sfi.SHORT_NAME,
             smc.SHORT_NAME MGR_COMPANY,
-            (SELECT COUNT(*) FROM sys_concrecord c where c.WP_TYPE = 'C' AND c.FUND_ID = sfi.FUND_ID AND c.PERIOD = ${PERIOD}) CFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord c where c.WP_TYPE = 'C' AND c.FUND_ID = sfi.FUND_ID AND c.PERIOD = #{PERIOD}) CFLAG,
         	(SELECT COUNT(*) FROM sys_concrecord e where e.WP_TYPE = 'E' AND e.FUND_ID = sfi.FUND_ID AND e.PERIOD = #{PERIOD}) EFLAG,
         	(SELECT COUNT(*) FROM sys_concrecord g where g.WP_TYPE = 'G' AND g.FUND_ID = sfi.FUND_ID AND g.PERIOD = #{PERIOD}) GFLAG,
         	(SELECT COUNT(*) FROM sys_concrecord h where h.WP_TYPE = 'H' AND h.FUND_ID = sfi.FUND_ID AND h.PERIOD = #{PERIOD}) HFLAG,
@@ -139,15 +139,16 @@
         	(SELECT COUNT(*) FROM sys_concrecord u where u.WP_TYPE = 'U' AND u.FUND_ID = sfi.FUND_ID AND u.PERIOD = #{PERIOD}) UFLAG,
         	(SELECT COUNT(*) FROM sys_concrecord v where v.WP_TYPE = 'V' AND v.FUND_ID = sfi.FUND_ID AND v.PERIOD = #{PERIOD}) VFLAG,
         	(SELECT COUNT(*) FROM sys_concrecord i where i.WP_TYPE = 'I' AND i.FUND_ID = sfi.FUND_ID AND i.PERIOD = #{PERIOD}) IFLAG,
-        	(SELECT COUNT(*) FROM sys_concrecord o where o.WP_TYPE = 'O' AND o.FUND_ID = sfi.FUND_ID AND o.PERIOD = #{PERIOD}) OFLAG,
-        	(SELECT COUNT(*) FROM sys_concrecord sa where sa.WP_TYPE = 'SA' AND sa.FUND_ID = sfi.FUND_ID AND sa.PERIOD = #{PERIOD}) SAFLAG
+        	(SELECT COUNT(*) FROM sys_concrecord o where o.WP_TYPE = 'O' AND o.FUND_ID = sfi.FUND_ID AND o.PERIOD = #{PERIOD}) OFLAG
         FROM sys_fund_info sfi
         LEFT JOIN sys_mgrcompany smc ON sfi.FIRM_CODE = smc.COMPANY_CODE
         WHERE 1 = 1
-        and sfi.FIRM_CODE = #{FIRM_CODE}
+        <if test="FIRM_CODE != null and FIRM_CODE != ''">
+            and sfi.FIRM_CODE = #{FIRM_CODE}
+        </if>
         <if test="FUND_ID != null and FUND_ID != ''">
             and sfi.FUND_ID = #{FUND_ID}
         </if>
     </select>
-	
+    
 </mapper>

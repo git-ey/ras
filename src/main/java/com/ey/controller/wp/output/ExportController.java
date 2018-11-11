@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ey.controller.base.BaseController;
+import com.ey.dao.DaoSupport;
 import com.ey.service.system.report.impl.ReportService;
+import com.ey.service.system.workpaper.impl.WorkPaperService;
 import com.ey.service.wp.output.CExportManager;
 import com.ey.service.wp.output.EExportManager;
 import com.ey.service.wp.output.GExportManager;
@@ -28,6 +30,7 @@ import com.ey.service.wp.output.IExportManager;
 import com.ey.service.wp.output.NExportManager;
 import com.ey.service.wp.output.OExportManager;
 import com.ey.service.wp.output.PExportManager;
+import com.ey.service.wp.output.SAExportManager;
 import com.ey.service.wp.output.TExportManager;
 import com.ey.service.wp.output.UExportManager;
 import com.ey.service.wp.output.VExportManager;
@@ -44,6 +47,13 @@ import com.ey.util.fileexport.FileExportUtils;
 @Controller
 @RequestMapping(value = "/wpExport")
 public class ExportController extends BaseController {
+    
+    /**
+     * dao
+     */
+    @Resource(name = "daoSupport")
+    protected DaoSupport dao;
+    
 	// 报告Report
     @Resource(name = "reportService")
     private ReportService reportService;
@@ -83,6 +93,9 @@ public class ExportController extends BaseController {
     // 底稿O
     @Resource(name = "oExportService")
     private OExportManager oExportService;
+    // 底稿SA
+    @Resource(name = "saExportService")
+    private SAExportManager saExportService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -332,6 +345,35 @@ public class ExportController extends BaseController {
         this.oExportService.doExport(request, response, fundId, periodStr);
     }
     
+    /**
+     * 底稿导出--SA
+     * 
+     * @param
+     * @throws Exception
+     */
+    @RequestMapping(value = "/SA")
+    public void exportSA(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PageData pd = this.getPageData();
+        String fundId = pd.getString("FUND_ID");
+        String periodStr = pd.getString("PEROID");
+        String firmCode = pd.getString("FIRM_CODE");
+
+        if(StringUtils.isEmpty(periodStr) || (StringUtils.isEmpty(fundId) && StringUtils.isEmpty(firmCode))) {
+            throw new IllegalArgumentException("期间不能为空,基金ID和公司代码至少一个不能为空");
+        }
+        if(periodStr.length() > 8) {
+            periodStr = periodStr.substring(0, 8);
+        }else if(periodStr.length() < 8) {
+            periodStr = periodStr + (String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "1231").substring(periodStr.length(), 8);
+        }
+        
+        if(StringUtils.isNotEmpty(fundId)) {
+            this.saExportService.doExport(request, response, fundId, periodStr);
+        }else{
+            this.saExportService.doExport(firmCode, periodStr, request, response);
+        }
+    }
+    
     @RequestMapping(value = "/download")
     public void downLoadOneFund(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();
@@ -340,23 +382,48 @@ public class ExportController extends BaseController {
         periodStr = this.dataCheck(fundId, periodStr);
         pd.put("PEROID", periodStr);
         
+        PageData fundInfos = (PageData)this.dao.findForObject("WorkPaperMapper.selectFundInfos", pd);
+        
         final String fileIdentifier = fundId + "_" + periodStr;
         final String resourcePath = PathUtil.getWebResourcePath(request);
         final String folderName = resourcePath + fileIdentifier + "_" + String.valueOf(new Date().getTime());
         
-        this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr);
-        this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, periodStr);
-        this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, periodStr);
-        this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, periodStr);
-        this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr);
-        this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
-        this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr);
-        this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);
-        this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);
-        this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);
-        this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);  
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_CFLAG)) {
+            this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_GFLAG)) {
+            this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_NFLAG)) {
+            this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_PFLAG)) {
+            this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_EFLAG)) {
+            this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_UFLAG)) {
+            this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_VFLAG)) {
+            this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_TFLAG)) {
+            this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_HFLAG)) {
+            this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_IFLAG)) {
+            this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);
+        }
+        if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_OFLAG)) {
+            this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);
+        }
 //        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, pd);
         
+        FileExportUtils.createDir(folderName);
         final String zipFileName = fileIdentifier + ".zip";
         final String zipFileFullName = resourcePath + zipFileName;
         FileZip.zip(folderName, zipFileFullName);
@@ -369,4 +436,25 @@ public class ExportController extends BaseController {
             zipFile.delete();
         }
     }
+    
+    /**
+     * 从pd中获取是否应该输出该底稿
+     * @author Dai Zong 2018年1月2日
+     * 
+     * @param pd
+     * @param flagFeild
+     * @return
+     */
+    private boolean getExportFlag(PageData pd, String flagFeild) {
+        if(pd == null || StringUtils.isEmpty(flagFeild)) {
+            return false;
+        }
+        Object obj = pd.get(flagFeild);
+        if(obj == null) {
+            return false;
+        } else {
+            return Integer.parseInt(String.valueOf(obj)) > 0 ? true : false;
+        }
+    }
+    
 }
