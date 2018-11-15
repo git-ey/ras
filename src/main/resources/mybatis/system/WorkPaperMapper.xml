@@ -129,7 +129,7 @@
             sfi.FUND_ID,
             sfi.SHORT_NAME,
             smc.SHORT_NAME MGR_COMPANY,
-            (SELECT COUNT(*) FROM sys_concrecord c where c.WP_TYPE = 'C' AND c.STATUS='S' AND c.FUND_ID = sfi.FUND_ID AND c.PERIOD = ${PERIOD}) CFLAG,
+            (SELECT COUNT(*) FROM sys_concrecord c where c.WP_TYPE = 'C' AND c.STATUS='S' AND c.FUND_ID = sfi.FUND_ID AND c.PERIOD = #{PERIOD}) CFLAG,
         	(SELECT COUNT(*) FROM sys_concrecord e where e.WP_TYPE = 'E' AND e.STATUS='S' AND e.FUND_ID = sfi.FUND_ID AND e.PERIOD = #{PERIOD}) EFLAG,
         	(SELECT COUNT(*) FROM sys_concrecord g where g.WP_TYPE = 'G' AND g.STATUS='S' AND g.FUND_ID = sfi.FUND_ID AND g.PERIOD = #{PERIOD}) GFLAG,
         	(SELECT COUNT(*) FROM sys_concrecord h where h.WP_TYPE = 'H' AND h.STATUS='S' AND h.FUND_ID = sfi.FUND_ID AND h.PERIOD = #{PERIOD}) HFLAG,
