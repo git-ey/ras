@@ -73,7 +73,7 @@ public class FileController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("FHFILE_ID", this.get32UUID()); // 主键
+		pd.put("FILE_ID", this.get32UUID()); // 主键
 		pd.put("CTIME", Tools.date2Str(new Date())); // 上传时间
 		pd.put("USERNAME", Jurisdiction.getUsername()); // 上传者
 		pd.put("DEPARTMENT_ID", Jurisdiction.getDEPARTMENT_ID()); // 部门ID
@@ -175,7 +175,7 @@ public class FileController extends BaseController {
 			String ArrayDATA_IDS[] = DATA_IDS.split(",");
 			PageData fpd = new PageData();
 			for (int i = 0; i < ArrayDATA_IDS.length; i++) {
-				fpd.put("FHFILE_ID", ArrayDATA_IDS[i]);
+				fpd.put("FILE_ID", ArrayDATA_IDS[i]);
 				fpd = fileService.findById(fpd);
 				DelAllFile.delFolder(uploadPath + fpd.getString("FILEPATH")); // 删除物理文件
 			}

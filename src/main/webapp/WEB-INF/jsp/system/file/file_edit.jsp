@@ -13,7 +13,7 @@
 	<!-- 下拉框 -->
 	<link rel="stylesheet" href="static/ace/css/chosen.css" />
 	<!-- jsp文件头和头部 -->
-	<%@ include file="../../system/index/top.jsp"%>
+	<%@ include file="../index/top.jsp"%>
 	<script type="text/javascript" src="static/ace/js/jquery.js"></script>
 	<!-- 上传插件 -->
 	<link href="plugins/uploadify/uploadify.css" rel="stylesheet" type="text/css">
