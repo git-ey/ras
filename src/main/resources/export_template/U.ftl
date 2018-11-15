@@ -4062,7 +4062,7 @@
     <Cell ss:MergeDown="1" ss:StyleID="s556"><Data ss:Type="String">%</Data></Cell>
    </Row>
    <Row ss:StyleID="s93">
-    <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="s367"><Data ss:Type="String">未审数</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s367"><Data ss:Type="String">未审数</Data></Cell>
     <Cell ss:MergeAcross="1" ss:StyleID="s367"><Data ss:Type="String">审计调整</Data></Cell>
     <Cell ss:StyleID="s367"><Data ss:Type="String">审定数</Data></Cell>
     <Cell ss:StyleID="s367"><Data ss:Type="String">审定数</Data></Cell>
@@ -13317,7 +13317,7 @@
    </Row>
    </#if>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.${(16+U10000.diCount)?string('0')} 股利收益</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.${(17+U10000.diCount)?string('0')} 股利收益</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s93"/>
    </Row>
    <Row>
@@ -13362,7 +13362,7 @@
     <Cell ss:Index="3" ss:StyleID="s93"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.${(17+U10000.diCount)?string('0')}  其他收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.${(18+U10000.diCount)?string('0')}  其他收入</Data></Cell>
    </Row>
    <Row/>
    <Row>
@@ -13417,7 +13417,7 @@
     <Cell ss:StyleID="s93"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.${(18+U10000.diCount)?string('0')} 交易费用</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.${(19+U10000.diCount)?string('0')} 交易费用</Data></Cell>
     <Cell ss:StyleID="s93"/>
     <Cell ss:StyleID="s93"/>
     <Cell ss:StyleID="s93"/>
@@ -13476,7 +13476,7 @@
    <Row/>
    <Row/>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.${(19+U10000.diCount)?string('0')} 其他费用</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.${(20+U10000.diCount)?string('0')} 其他费用</Data></Cell>
    </Row>
    <Row/>>
    <Row>

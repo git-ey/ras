@@ -144,10 +144,12 @@
         FROM sys_fund_info sfi
         LEFT JOIN sys_mgrcompany smc ON sfi.FIRM_CODE = smc.COMPANY_CODE
         WHERE 1 = 1
-        and sfi.FIRM_CODE = #{FIRM_CODE}
+        <if test="FIRM_CODE != null and FIRM_CODE != ''">
+            and sfi.FIRM_CODE = #{FIRM_CODE}
+        </if>
         <if test="FUND_ID != null and FUND_ID != ''">
             and sfi.FUND_ID = #{FUND_ID}
         </if>
     </select>
-	
+    
 </mapper>
