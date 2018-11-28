@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,13 +36,18 @@ public class FileExportUtils {
     /**
      * 默认字符集
      */
-    private static String DEF_CHARSET = "UTF-8";
+    private static Charset DEF_CHARSET = StandardCharsets.UTF_8;
     /**
      * 默认下载文件名
      */
     private static String DEF_FILE_NAME = "file";
     
     private static Logger logger = Logger.getLogger(FileExportUtils.class);
+    
+    /**
+     * 私有化构造函数
+     */
+    private FileExportUtils() {}
     
     /**
      * 将流发送到HttpServletResponse
@@ -239,11 +246,11 @@ public class FileExportUtils {
      * @return
      * @throws UnsupportedEncodingException
      */
-    public static InputStream getInputStreamFromString(String src, String charSetName) throws UnsupportedEncodingException {
+    public static InputStream getInputStreamFromString(String src, Charset charset){
         if(src == null) {
             return null;
         }
-        return new ByteArrayInputStream(src.getBytes(charSetName));
+        return new ByteArrayInputStream(src.getBytes(charset));
     }
     
     /**
@@ -255,12 +262,7 @@ public class FileExportUtils {
      * @throws UnsupportedEncodingException
      */
     public static InputStream getInputStreamFromString(String src){
-        try {
-            return getInputStreamFromString(src, DEF_CHARSET);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return getInputStreamFromString(src, DEF_CHARSET);
     }
     
     /**

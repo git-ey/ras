@@ -1100,49 +1100,60 @@
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">基金转让</Data></Cell>
     <Cell ss:StyleID="s89"/>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.JRSPZR.JJZR.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.VAT.JRSPZR.JJZR.taxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.detail.JRSPZR.JJZR.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.detail.JRSPZR.JJZR.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"/>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.JRSPZR.JJZR.taxClient!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">m</Data></Cell>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">贵金属转让</Data></Cell>
     <Cell ss:StyleID="s89"/>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.JRSPZR.GJSZR.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.VAT.JRSPZR.GJSZR.taxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.detail.JRSPZR.GJSZR.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.detail.JRSPZR.GJSZR.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"/>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.JRSPZR.GJSZR.taxClient!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">m</Data></Cell>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">权证转让</Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">UXXX</Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.JRSPZR.QZZR.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.VAT.JRSPZR.QZZR.taxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.detail.JRSPZR.QZZR.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.detail.JRSPZR.QZZR.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s89"><Data ss:Type="String">UXXX</Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.JRSPZR.QZZR.taxClient!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">m</Data></Cell>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">期货转让</Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">UXXX</Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.JRSPZR.QHZR.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.VAT.JRSPZR.QHZR.taxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.detail.JRSPZR.QHZR.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.detail.JRSPZR.QHZR.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s89"><Data ss:Type="String">UXXX</Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.JRSPZR.QHZR.taxClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"/>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s61"><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s60" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.summary.JRSPZR.XJ.taxClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">m</Data></Cell>
+    <Cell ss:StyleID="s95"><Data ss:Type="String"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s65"><Data ss:Type="String">贷款服务</Data></Cell>
@@ -1159,11 +1170,11 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">应税利息收入</Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O311</Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.DKFW.YSLXSR.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.VAT.DKFW.YSLXSR.taxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.summary.DKFW.YSLXSR.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.summary.DKFW.YSLXSR.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.VAT.DKFW.YSLXSR.taxClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.summary.DKFW.YSLXSR.taxClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s95"><Data ss:Type="String">m</Data></Cell>
    </Row>
@@ -1184,9 +1195,9 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">应交增值税合计</Data></Cell>
     <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s86" ss:Formula="=SUM(R[-7]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s86" ss:Formula="=R[-4]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O300</Data></Cell>
-    <Cell ss:StyleID="s93" ss:Formula="=SUM(R[-7]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s93" ss:Formula="=R[-4]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s95"><Data ss:Type="String">m</Data></Cell>
    </Row>
@@ -1206,10 +1217,10 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s65"><Data ss:Type="String">应交城建费附加</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.EXTRA.YJCJFFJ.taxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.extra.YJCJFFJ.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R18C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O300</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">${(O310.EXTRA.YJCJFFJ.taxClient!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s85"><Data ss:Type="Number">${(O310.extra.YJCJFFJ.taxClient!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s95"><Data ss:Type="String">m</Data></Cell>
    </Row>
@@ -1218,10 +1229,10 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s65"><Data ss:Type="String">应交教育费附加</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.EXTRA.YJJYFFJ.taxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.extra.YJJYFFJ.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R18C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O300</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">${(O310.EXTRA.YJJYFFJ.taxClient!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s85"><Data ss:Type="Number">${(O310.extra.YJJYFFJ.taxClient!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s95"><Data ss:Type="String">m</Data></Cell>
    </Row>
@@ -1230,10 +1241,10 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s65"><Data ss:Type="String">应交地方教育费附加</Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.EXTRA.YJDFJYFFJ.taxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.extra.YJDFJYFFJ.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R18C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O300</Data></Cell>
-    <Cell ss:StyleID="s85"><Data ss:Type="Number">${(O310.EXTRA.YJDFJYFFJ.taxClient!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s85"><Data ss:Type="Number">${(O310.extra.YJDFJYFFJ.taxClient!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s95"><Data ss:Type="String">m</Data></Cell>
    </Row>

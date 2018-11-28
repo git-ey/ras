@@ -34,20 +34,35 @@
 		AND O300.PERIOD = #{period}
     </select>
     
-    <select id="selectO310VatData" parameterType="java.util.Map" resultType="java.util.Map">
+    <select id="selectO310DetailData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-		    O310V.ITEM as item,
-		    O310V.SUB_ITEM as subItem,
-		    O310V.AMOUNT as amount,
-		    O310V.TAX_RATE as taxRate,
-		    O310V.TAX_CLIENT as taxClient
+		    O310D.ITEM as item,
+		    O310D.SUB_ITEM as subItem,
+		    O310D.AMOUNT as amount,
+		    O310D.TAX_RATE as taxRate
 		FROM
-		    wp_o310_vat O310V
+		    wp_o310_detail O310D
 		WHERE
 		    1 = 1
-		AND O310V. STATUS = 'Y'
-		AND O310V.FUND_ID = #{fundId}
-		AND O310V.PERIOD = #{period}
+		AND O310D. STATUS = 'Y'
+		AND O310D.FUND_ID = #{fundId}
+		AND O310D.PERIOD = #{period}
+    </select>
+    
+    <select id="selectO310SummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            O310S.ITEM as item,
+            O310S.SUB_ITEM as subItem,
+            O310S.AMOUNT as amount,
+            O310S.TAX_RATE as taxRate,
+            O310S.TAX_CLIENT as taxClient
+        FROM
+            wp_o310_summary O310S
+        WHERE
+            1 = 1
+        AND O310S. STATUS = 'Y'
+        AND O310S.FUND_ID = #{fundId}
+        AND O310S.PERIOD = #{period}
     </select>
     
     <select id="selectO310ExtraData" parameterType="java.util.Map" resultType="java.util.Map">

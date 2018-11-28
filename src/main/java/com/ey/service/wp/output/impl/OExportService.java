@@ -189,19 +189,17 @@ public class OExportService extends BaseExportService implements OExportManager 
         Map<String, Object> result = new HashMap<String,Object>();
         
         
-        //========process dataMap for vat view begin========
-        Map<String,Object> vat = new HashMap<>();
+        //========process dataMap for detail view begin========
+        Map<String,Object> detail = new HashMap<>();
         
         Map<String,Object> item1 = new HashMap<>();
-        Map<String,Object> item2 = new HashMap<>();
         
         item1.put("JJZR", new HashMap<>());
         item1.put("GJSZR", new HashMap<>());
         item1.put("QZZR", new HashMap<>());
         item1.put("QHZR", new HashMap<>());
-        item2.put("YSLXSR", new HashMap<>());
         
-        List<Map<String,Object>> resMapList = (List<Map<String,Object>>)this.dao.findForList("OExportMapper.selectO310VatData", queryMap);
+        List<Map<String,Object>> resMapList = (List<Map<String,Object>>)this.dao.findForList("OExportMapper.selectO310DetailData", queryMap);
         if(resMapList == null) {
             resMapList = new ArrayList<>();
         }
@@ -217,6 +215,33 @@ public class OExportService extends BaseExportService implements OExportManager 
                 }else if("期货转让".equals(resMap.get("subItem"))) {
                     item1.put("QHZR", resMap);
                 }
+            }
+        }
+        
+        detail.put("JRSPZR", item1);
+        
+        result.put("detail", detail);
+        //========process dataMap for detail view end========
+        
+        //========process dataMap for summary view begin========
+        Map<String,Object> summary = new HashMap<>();
+        
+        item1 = new HashMap<>();
+        Map<String,Object> item2 = new HashMap<>();
+        
+        item1.put("XJ", new HashMap<>());
+        item2.put("YSLXSR", new HashMap<>());
+        
+        resMapList = (List<Map<String,Object>>)this.dao.findForList("OExportMapper.selectO310SummaryData", queryMap);
+        if(resMapList == null) {
+            resMapList = new ArrayList<>();
+        }
+        
+        for(Map<String, Object> resMap : resMapList) {
+            if("金融商品转让".equals(resMap.get("item"))) {
+                if("小计".equals(resMap.get("subItem"))) {
+                    item1.put("XJ", resMap);
+                }
             }else if("贷款服务".equals(resMap.get("item"))) {
                 if("应税利息收入".equals(resMap.get("subItem"))) {
                     item2.put("YSLXSR", resMap);
@@ -224,11 +249,11 @@ public class OExportService extends BaseExportService implements OExportManager 
             }
         }
         
-        vat.put("JRSPZR", item1);
-        vat.put("DKFW", item2);
+        summary.put("JRSPZR", item1);
+        summary.put("DKFW", item2);
         
-        result.put("VAT", vat);
-        //========process dataMap for vat view end========
+        result.put("summary", summary);
+        //========process dataMap for summary view end========
         
         //========process dataMap for extra view begin========
         Map<String,Object> extra = new HashMap<>();
@@ -251,7 +276,7 @@ public class OExportService extends BaseExportService implements OExportManager 
             }
         }
         
-        result.put("EXTRA", extra);
+        result.put("extra", extra);
         //========process dataMap for extra view end========
         
         return result;
