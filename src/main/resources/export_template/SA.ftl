@@ -278,63 +278,63 @@
    <#if fundInfosCount != 0>
    <#list fundInfos as fundInfo>
    <Row>
-    <Cell ss:StyleID="s41"><Data ss:Type="String">${fundInfo.fundFullName!XX基金}</Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[2]C[7]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[3]C[6]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[4]C[5]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[5]C[4]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[6]C[3]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[7]C[2]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[8]C[1]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[9]C[0]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[10]C[-1]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[11]C[-2]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[12]C[-3]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[13]C[-4]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[14]C[-5]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[15]C[-6]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[16]C[-7]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[17]C[-8]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[18]C[-9]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[19]C[-10]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[20]C[-11]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[21]C[-12]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[22]C[-13]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[23]C[-14]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[24]C[-15]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[25]C[-16]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[26]C[-17]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[27]C[-18]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[28]C[-19]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[29]C[-20]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[30]C[-21]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[31]C[-22]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[32]C[-23]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[33]C[-24]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[34]C[-25]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[35]C[-26]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[36]C[-27]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[37]C[-28]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[38]C[-29]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[39]C[-30]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[40]C[-31]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[41]C[-32]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[42]C[-33]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[43]C[-34]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[44]C[-35]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[45]C[-36]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[46]C[-37]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[47]C[-38]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[48]C[-39]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[49]C[-40]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[50]C[-41]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[51]C[-42]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[52]C[-43]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[53]C[-44]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[54]C[-45]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[55]C[-46]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s42" ss:Formula="=${fundInfo.fundFullName!XX基金}!R[56]C[-47]"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s45" ss:Formula="=${fundInfo.fundFullName!XX基金}!RC[-52]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String">${fundInfo.fundFullName!XX基金}</Data></Cell>
+    <Cell ss:StyleID="s30" ss:ArrayRange="RC:RC[54]" ss:Formula="=TRANSPOSE(${fundInfo.fundFullName!XX基金}!R4C9:R58C9)"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s46" ss:Formula="=${fundInfo.fundFullName!XX基金}!R2C5"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
