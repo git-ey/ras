@@ -73,14 +73,14 @@ public class FileExportUtils {
             // 2.设置文件头
             String userAgent = request.getHeader("User-Agent");
             if (StringUtils.isBlank(userAgent)) {
-                fileName = URLEncoder.encode(fileName, DEF_CHARSET);
+                fileName = URLEncoder.encode(fileName, DEF_CHARSET.name());
             } else {
                 if (userAgent.indexOf("MSIE") != -1 || userAgent.contains("like Gecko")) {
                     // IE使用URLEncoder
-                    fileName = URLEncoder.encode(fileName, DEF_CHARSET);
+                    fileName = URLEncoder.encode(fileName, DEF_CHARSET.name());
                 } else {
                     // FireFox使用ISO-8859-1
-                    fileName = new String(fileName.getBytes(DEF_CHARSET), "ISO-8859-1");
+                    fileName = new String(fileName.getBytes(DEF_CHARSET), StandardCharsets.ISO_8859_1);
                 }
             }
             response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);
