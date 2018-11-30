@@ -279,7 +279,7 @@
    <#list fundInfos as fundInfo>
    <Row>
     <Cell ss:StyleID="s30"><Data ss:Type="String">${fundInfo.fundFullName!XX基金}</Data></Cell>
-    <Cell ss:StyleID="s30" ss:ArrayRange="RC:RC[54]" ss:Formula="=TRANSPOSE(/'${fundInfo.fundFullName!XX基金}/'!R4C9:R58C9)"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s30" ss:ArrayRange="RC:RC[54]" ss:Formula="=TRANSPOSE('${fundInfo.fundFullName!XX基金}'!R4C9:R58C9)"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
