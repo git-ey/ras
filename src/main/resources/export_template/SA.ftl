@@ -390,7 +390,7 @@
     <Cell ss:StyleID="s35"><Data ss:Type="String">交易复杂程度是否为高</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s35"><Data ss:Type="String">是否包括重要判断</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s35"><Data ss:Type="String">是否存在重大风险</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s35"><Data ss:Type="String">是否为投资者重大关注科目</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s35"><Data ss:Type="String">是否为报表使用者重大关注科目</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s35"><Data ss:Type="String">账户类型</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:Index="12" ss:StyleID="s19"><Data ss:Type="String">Prepared by</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s20"><Data ss:Type="String">${fundInfo.FIC!}</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
