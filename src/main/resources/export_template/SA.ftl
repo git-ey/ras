@@ -229,6 +229,7 @@
    <Column ss:AutoFitWidth="0" ss:Width="88.5"/>
    <Row ss:Height="48">
     <Cell ss:StyleID="s41"/>
+    <Cell ss:StyleID="s41"/>
     <Cell ss:StyleID="s37"><Data ss:Type="String">银行存款</Data></Cell>
     <Cell ss:StyleID="s37"><Data ss:Type="String">结算备付金</Data></Cell>
     <Cell ss:StyleID="s37"><Data ss:Type="String">存出保证金</Data></Cell>
