@@ -210,10 +210,21 @@
   <Style ss:ID="s46">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
   </Style>
+  <Style ss:ID="s10062" ss:Name="Hyperlink">
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#0066CC"
+    ss:Underline="Single"/>
+  </Style>
+  <Style ss:ID="s10077" ss:Parent="s10062">
+   <Alignment ss:Vertical="Center"/>
+  </Style>
+  <Style ss:ID="s10080" ss:Parent="s10062">
+   <NumberFormat/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="Summary">
   <Table x:FullColumns="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
-   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="84"/>
+   <Column ss:AutoFitWidth="0" ss:Width="188.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="84"/>
    <Column ss:AutoFitWidth="0" ss:Width="69.75"/>
    <Column ss:AutoFitWidth="0" ss:Width="88.5"/>
    <Row ss:Height="48">
@@ -279,7 +290,8 @@
    <#list fundInfos as fundInfo>
    <Row>
     <Cell ss:StyleID="s30"><Data ss:Type="String">${fundInfo.fundFullName!XX基金}</Data></Cell>
-    <Cell ss:StyleID="s30" ss:ArrayRange="RC:RC[54]" ss:Formula="=TRANSPOSE('${fundInfo.fundFullName!XX基金}'!R4C9:R58C9)"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s10077" ss:HRef="#'${fundInfo.fundId!F000000-00}'!A1"><Data ss:Type="String">${fundInfo.fundId!F000000-00}</Data></Cell>
+    <Cell ss:StyleID="s30" ss:ArrayRange="RC:RC[54]" ss:Formula="=TRANSPOSE('${fundInfo.fundId!F000000-00}'!R4C9:R58C9)"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
@@ -334,7 +346,7 @@
     <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s30"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s46" ss:Formula="=${fundInfo.fundFullName!XX基金}!R2C5"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s46" ss:Formula="='${fundInfo.fundId!F000000-00}'!R2C5"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -359,7 +371,7 @@
  </Worksheet>
  <#if fundInfosCount != 0>
  <#list fundInfos as fundInfo>
- <Worksheet ss:Name="${fundInfo.fundFullName!XX基金}">
+ <Worksheet ss:Name="${fundInfo.fundId!F000000-00}">
   <Table x:FullColumns="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:AutoFitWidth="0" ss:Width="208.5"/>
    <Column ss:StyleID="s44" ss:AutoFitWidth="0" ss:Width="123.75"/>
@@ -371,6 +383,9 @@
    <Column ss:AutoFitWidth="0" ss:Width="97.5"/>
    <Column ss:AutoFitWidth="0" ss:Width="93.75"/>
    <Column ss:AutoFitWidth="0" ss:Width="96.75"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s10080" ss:HRef="#Summary!A1"><Data ss:Type="String">返回Summary页</Data></Cell>
+   </Row>
    <Row ss:Index="2" ss:Height="14.25">
     <Cell ss:StyleID="s28"><Data ss:Type="String">TE</Data></Cell>
     <Cell ss:StyleID="s29" ss:Formula="=ROUND(SUM(R[33]C:R[34]C)*0.5%,-3)/2"><Data ss:Type="Number"></Data></Cell>
@@ -403,7 +418,7 @@
     <Cell ss:StyleID="s36"><Data ss:Type="String">${detail.item!}</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="Number">${(detail.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s38" ss:Formula="=IF(ABS(RC[-1])&gt;R2C2,&quot;Y&quot;,&quot;N&quot;)"><Data ss:Type="String"></Data></Cell>
-    <#if (detail.amount??) && (detail.amount > 0)>
+    <#if (detail.amount??) && (detail.amount != 0)>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.volume!}</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.complexity!}</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.judgement!}</Data></Cell>
@@ -426,7 +441,7 @@
     <Cell ss:StyleID="s36"><Data ss:Type="String">${detail.item!}</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="Number">${(detail.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s38" ss:Formula="=IF(ABS(RC[-1])&gt;R2C2,&quot;Y&quot;,&quot;N&quot;)"><Data ss:Type="String"></Data></Cell>
-    <#if (detail.amount??) && (detail.amount > 0)>
+    <#if (detail.amount??) && (detail.amount != 0)>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.volume!}</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.complexity!}</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.judgement!}</Data></Cell>
@@ -449,7 +464,7 @@
     <Cell ss:StyleID="s36"><Data ss:Type="String">${detail.item!}</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="Number">${(detail.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s38" ss:Formula="=IF(ABS(RC[-1])&gt;R2C2,&quot;Y&quot;,&quot;N&quot;)"><Data ss:Type="String"></Data></Cell>
-    <#if (detail.amount??) && (detail.amount > 0)>
+    <#if (detail.amount??) && (detail.amount != 0)>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.volume!}</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.complexity!}</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.judgement!}</Data></Cell>
@@ -472,7 +487,7 @@
     <Cell ss:StyleID="s36"><Data ss:Type="String">${detail.item!}</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="Number">${(detail.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s38" ss:Formula="=IF(ABS(RC[-1])&gt;R2C2,&quot;Y&quot;,&quot;N&quot;)"><Data ss:Type="String"></Data></Cell>
-    <#if (detail.amount??) && (detail.amount > 0)>
+    <#if (detail.amount??) && (detail.amount != 0)>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.volume!}</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.complexity!}</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">${detail.judgement!}</Data></Cell>
