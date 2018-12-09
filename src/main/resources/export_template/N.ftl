@@ -2211,7 +2211,7 @@
     <Cell ss:StyleID="s97"/>
     <Cell ss:StyleID="s94"/>
    </Row>
-   <Row>
+   <!-- <Row>
     <Cell ss:StyleID="s271"><Data ss:Type="String">应交税费</Data></Cell>
     <Cell ss:StyleID="s276"><Data ss:Type="String">N700</Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="Number">${(N.KM2221.amountCurrent!0)?string('0.##')}</Data></Cell>
@@ -2234,7 +2234,7 @@
     <Cell ss:StyleID="s97"/>
     <Cell ss:StyleID="s97"/>
     <Cell ss:StyleID="s94"/>
-   </Row>
+   </Row> -->
    <Row>
     <Cell ss:StyleID="s271"><Data ss:Type="String">应付利息</Data></Cell>
     <Cell ss:StyleID="s278"><Data ss:Type="String">P600</Data></Cell>
@@ -3972,7 +3972,8 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <Worksheet ss:Name="N700">
+ <#-- 
+ <<!--Worksheet ss:Name="N700">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s148" ss:DefaultColumnWidth="47.25" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s148" ss:AutoFitWidth="0" ss:Width="97.5"/>
    <Column ss:StyleID="s148" ss:AutoFitWidth="0" ss:Width="108"/>
@@ -4104,7 +4105,7 @@
    <ProtectObjects>False</ProtectObjects>
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
- </Worksheet>
+ </Worksheet>--> -->
  <Worksheet ss:Name="N800">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s229" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s229" ss:AutoFitWidth="0" ss:Width="140.25"/>

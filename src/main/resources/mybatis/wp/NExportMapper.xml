@@ -134,7 +134,7 @@
         and N600.PERIOD = #{period}
     </select>
     
-    <select id="selectN700Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+    <!-- <select id="selectN700Data" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
 		    N700.ATTR1 as `name`,
 		    N700.BEGIN_BALANCE_CNY as beginBalance,
@@ -147,7 +147,7 @@
         and N700.STATUS = 'Y'
         and N700.FUND_ID = #{fundId}
         and N700.PERIOD = #{period}
-    </select>
+    </select> -->
     
     <select id="selectN800MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT

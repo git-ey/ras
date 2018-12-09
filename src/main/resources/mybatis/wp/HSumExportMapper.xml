@@ -209,7 +209,8 @@
 		    H30.INT_RISK_PERIOD AS intRiskPeriod,
 		    H30.INTEREST_RATE_OPTION AS interestRateOption,
 		    H30.SELL_BACK AS sellBack,
-		    H30.REDEMPTION AS redemption 
+		    H30.REDEMPTION AS redemption,
+			H30.UNIT_INTEREST_AT as unitInterestAt
 		FROM
 		    wp_h30 H30 
 		WHERE
@@ -246,7 +247,8 @@
 		    H31.INT_RISK_PERIOD AS intRiskPeriod,
 		    H31.INTEREST_RATE_OPTION AS interestRateOption,
 		    H31.SELL_BACK AS sellBack,
-		    H31.REDEMPTION AS redemption 
+		    H31.REDEMPTION AS redemption,
+			H31.UNIT_INTEREST_AT as unitInterestAt
 		FROM
 		    wp_h31 H31 
 		WHERE

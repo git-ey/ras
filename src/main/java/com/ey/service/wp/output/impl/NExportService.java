@@ -51,7 +51,7 @@ public class NExportService extends BaseExportService implements NExportManager{
         dataMap.put("N500", this.getN500Data(fundId, periodStr));
         dataMap.put("N510", this.getN510Data(fundId, periodStr));
         dataMap.put("N600", this.getN600Data(fundId, periodStr));
-        dataMap.put("N700", this.getN700Data(fundId, periodStr));
+        // dataMap.put("N700", this.getN700Data(fundId, periodStr));
         dataMap.put("N800", this.getN800Data(fundId, periodStr));
         dataMap.put("N10000", this.getN10000Data(fundId, periodStr));
         
@@ -355,30 +355,30 @@ public class NExportService extends BaseExportService implements NExportManager{
         return result;
     }
     
-    /**
-     * 处理sheet页N700的数据
-     * @author Dai Zong 2017年9月17日
-     * 
-     * @param fundId
-     * @param periodStr
-     * @return
-     * @throws Exception
-     */
-    private Map<String,Object> getN700Data(String fundId, String periodStr) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+    // /**
+    //  * 处理sheet页N700的数据
+    //  * @author Dai Zong 2017年9月17日
+    //  * 
+    //  * @param fundId
+    //  * @param periodStr
+    //  * @return
+    //  * @throws Exception
+    //  */
+    // private Map<String,Object> getN700Data(String fundId, String periodStr) throws Exception{
+    //     Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+    //     Map<String, Object> result = new HashMap<String,Object>();
         
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> N700MetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN700Data", queryMap);
-        if(N700MetaDataList == null) {
-            N700MetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
+    //     @SuppressWarnings("unchecked")
+    //     List<Map<String,Object>> N700MetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN700Data", queryMap);
+    //     if(N700MetaDataList == null) {
+    //         N700MetaDataList = new ArrayList<Map<String,Object>>(); 
+    //     }
         
-        result.put("list", N700MetaDataList);
-        result.put("count", N700MetaDataList.size());
+    //     result.put("list", N700MetaDataList);
+    //     result.put("count", N700MetaDataList.size());
         
-        return result;
-    }
+    //     return result;
+    // }
     
     /**
      * 处理sheet页N800的数据

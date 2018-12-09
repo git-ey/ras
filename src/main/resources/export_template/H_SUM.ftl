@@ -953,6 +953,15 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000" ss:Bold="1"/>
   </Style>
+  <Style ss:ID="s10181">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="H10">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s43" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -2195,7 +2204,8 @@
    <Column ss:StyleID="s43" ss:Width="67.5"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90.75"/>
    <Column ss:StyleID="s43" ss:Width="61.5"/>
-   <Column ss:StyleID="s43" ss:Width="70.5" ss:Span="2"/>
+   <Column ss:StyleID="s43" ss:Width="120" ss:Span="2"/>
+   <Column ss:StyleID="s43" ss:Width="120" ss:Span="2"/>
    <Row ss:Height="14.25"/>
    <Row>
     <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
@@ -2288,6 +2298,7 @@
     <Cell ss:MergeAcross="8" ss:StyleID="s170"><Data ss:Type="String">每单位债券/资产支持证券应收利息</Data></Cell>
     <Cell ss:Index="29" ss:MergeAcross="3" ss:StyleID="s170"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
     <Cell ss:Index="34" ss:MergeAcross="2" ss:StyleID="s170"><Data ss:Type="String">行权条款摘录（如有）</Data></Cell>
+    <Cell ss:Index="38" ss:MergeAcross="1" ss:StyleID="s10181"><Data ss:Type="String">行权条款摘录（如有）</Data></Cell>
    </Row>
    <Row ss:Height="27" ss:StyleID="s63">
     <Cell><Data ss:Type="String">基金代码</Data></Cell>
@@ -2324,6 +2335,8 @@
     <Cell ss:Index="34"><Data ss:Type="String">发行人利率选择权</Data></Cell>
     <Cell><Data ss:Type="String">回售权</Data></Cell>
     <Cell><Data ss:Type="String">赎回权</Data></Cell>
+    <Cell ss:Index="38"><Data ss:Type="String">期末应计利息（税后）</Data></Cell>
+    <Cell><Data ss:Type="String">公式diff</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s41"><Data ss:Type="String">From 估值表</Data></Cell>
@@ -2393,6 +2406,8 @@
     <Cell ss:Index="34" ss:StyleID="s40"><Data ss:Type="String">${item.interestRateOption!}</Data></Cell>
     <Cell ss:StyleID="s40"><Data ss:Type="String">${item.sellBack!}</Data></Cell>
     <Cell ss:StyleID="s40"><Data ss:Type="String">${item.redemption!}</Data></Cell>
+    <Cell ss:Index="38" ss:StyleID="s157"><Data ss:Type="Number">${(item.unitInterestAt!0)?string('0.############')}</Data></Cell>
+    <Cell ss:StyleID="s157" ss:Formula="=RC[-1]-RC[-13]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -2448,7 +2463,8 @@
    <Column ss:StyleID="s43" ss:Width="67.5"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90.75"/>
    <Column ss:StyleID="s43" ss:Width="61.5"/>
-   <Column ss:StyleID="s43" ss:Width="70.5" ss:Span="2"/>
+   <Column ss:StyleID="s43" ss:Width="120" ss:Span="2"/>
+   <Column ss:StyleID="s43" ss:Width="120" ss:Span="2"/>
    <Row ss:Height="14.25"/>
    <Row>
     <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
@@ -2512,6 +2528,7 @@
     <Cell ss:MergeAcross="8" ss:StyleID="s170"><Data ss:Type="String">每单位债券/资产支持证券应收利息</Data></Cell>
     <Cell ss:Index="29" ss:MergeAcross="3" ss:StyleID="s170"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
     <Cell ss:Index="34" ss:MergeAcross="2" ss:StyleID="s170"><Data ss:Type="String">行权条款摘录（如有）</Data></Cell>
+    <Cell ss:Index="38" ss:MergeAcross="1" ss:StyleID="s10181"><Data ss:Type="String">系统计算结果（确认diff后请删除）</Data></Cell>
    </Row>
    <Row ss:Height="27" ss:StyleID="s63">
     <Cell><Data ss:Type="String">基金代码</Data></Cell>
@@ -2548,6 +2565,8 @@
     <Cell ss:Index="34"><Data ss:Type="String">发行人利率选择权</Data></Cell>
     <Cell><Data ss:Type="String">回售权</Data></Cell>
     <Cell><Data ss:Type="String">赎回权</Data></Cell>
+    <Cell ss:Index="38"><Data ss:Type="String">期末应计利息（税后）</Data></Cell>
+    <Cell><Data ss:Type="String">公式diff</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s41"><Data ss:Type="String">From 估值表</Data></Cell>
@@ -2617,6 +2636,8 @@
     <Cell ss:Index="34" ss:StyleID="s40"><Data ss:Type="String">${item.interestRateOption!}</Data></Cell>
     <Cell ss:StyleID="s40"><Data ss:Type="String">${item.sellBack!}</Data></Cell>
     <Cell ss:StyleID="s40"><Data ss:Type="String">${item.redemption!}</Data></Cell>
+    <Cell ss:Index="38" ss:StyleID="s157"><Data ss:Type="Number">${(item.unitInterestAt!0)?string('0.############')}</Data></Cell>
+    <Cell ss:StyleID="s157" ss:Formula="=RC[-1]-RC[-13]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
