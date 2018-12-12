@@ -83,17 +83,17 @@ public class CsvImportor extends FileImportor {
 			{
 				if (idx >= startRow) {
 					line = readline.replace("\"", quotes);
-					Map<String, Object> maps = Maps.newLinkedHashMap();
-					maps.put(MapResult.IS_LINE_LEGAL_KEY, true);
+					Map<String, Object> map = Maps.newLinkedHashMap();
+					map.put(MapResult.IS_LINE_LEGAL_KEY, true);
 					String[] rowLine = line.split(delimiter);// 按照`符号分割处理
 					// 行过滤规则
 					if (configuration.getIgnoreRule() != null && isIgnoreRow(configuration.getIgnoreRule(), rowLine)) {
 						continue;
 					}
 					for (ImportConfigCell importCell : lists) {
-						setValue(maps, importCell, rowLine, rowLine.length, sb, idx, startRow, quotes);
+						setValue(map, importCell, rowLine, rowLine.length, sb, idx, startRow, quotes);
 					}
-					results.add(maps);
+					results.add(map);
 				}
 				idx++;
 			}
