@@ -56,6 +56,7 @@ public class EExportService extends BaseExportService implements EExportManager{
         
         dataMap.put("E", this.getEData(fundId, periodStr));
         dataMap.put("E300", this.getE300Data(fundId, periodStr));
+        dataMap.put("E310", this.getE310Data(fundId, periodStr));
         dataMap.put("E400", this.getE400Data(fundId, periodStr));
         dataMap.put("E410", this.getE410Data(fundId, periodStr));
         dataMap.put("E41X", this.getE41XData(fundId, periodStr));
@@ -174,33 +175,27 @@ public class EExportService extends BaseExportService implements EExportManager{
         //========process dataMap for main view begin========
         Map<String, Object> main = new HashMap<String,Object>();
         
-        List<Map<String, Object>> totalList = new ArrayList<Map<String,Object>>();
-        
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> E300MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE300MainData", queryMap);
         if(E300MainMetaDataList == null) {
             E300MainMetaDataList = new ArrayList<Map<String,Object>>(); 
         }
+        Map<String,Map<String,Object>> temp = new HashMap<>();
+        for(Map<String,Object> map : E300MainMetaDataList) {
+            temp.put(String.valueOf(map.get("item")), map);
+        }
         
-        Map<String, List<Map<String, Object>>> groupByItemRes = E300MainMetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
-            Map<String,Object> map = item;
-            return String.valueOf(map.get("item"));
-        }));
-        
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收活期存款利息", "应收活期存款利息"));
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收定期存款利息", "应收定期存款利息"));
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收其他存款利息", "应收其他存款利息"));
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收结算备付金利息", "应收结算备付金利息"));
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收债券利息", "应收债券利息"));
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收资产支持证券利息", "应收债券利息"));
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收买入返售利息", "应收买入返售证券利息"));
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收申购款利息", "应收申购款利息"));
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收黄金合约拆借孳息", "应收黄金合约拆借孳息"));
-        totalList.add(this.computeE300MainObject(groupByItemRes, "应收保证金利息", "其他"));
+        main.put("I10", this.computeE300DiscObject(temp, "应收活期存款利息"));
+        main.put("I20", this.computeE300DiscObject(temp, "应收定期存款利息"));
+        main.put("I30", this.computeE300DiscObject(temp, "应收其他存款利息"));
+        main.put("I40", this.computeE300DiscObject(temp, "应收结算备付金利息"));
+        main.put("I50", this.computeE300DiscObject(temp, "应收债券利息"));
+        main.put("I55", this.computeE300DiscObject(temp, "应收资产支持证券利息"));
+        main.put("I60", this.computeE300DiscObject(temp, "应收买入返售证券利息"));
+        main.put("I70", this.computeE300DiscObject(temp, "应收申购款利息"));
+        main.put("I80", this.computeE300DiscObject(temp, "应收黄金合约拆借孳息"));
+        main.put("I90", this.computeE300DiscObject(temp, "其他"));
 
-        main.put("totalList", totalList);
-        main.put("totalCount", E300MainMetaDataList.size());
-        
         result.put("main", main);
         //========process dataMap for main view end========
         
@@ -213,7 +208,7 @@ public class EExportService extends BaseExportService implements EExportManager{
             E300DiscMetaDataList = new ArrayList<Map<String,Object>>(); 
         }
         
-        Map<String,Map<String,Object>> temp = new HashMap<>();
+        temp = new HashMap<>();
         for(Map<String,Object> map : E300DiscMetaDataList) {
             temp.put(String.valueOf(map.get("item")), map);
         }
@@ -225,6 +220,7 @@ public class EExportService extends BaseExportService implements EExportManager{
         discList.add(this.computeE300DiscObject(temp, "应收其他存款利息"));
         discList.add(this.computeE300DiscObject(temp, "应收结算备付金利息"));
         discList.add(this.computeE300DiscObject(temp, "应收债券利息"));
+        discList.add(this.computeE300DiscObject(temp, "应收资产支持证券利息"));
         discList.add(this.computeE300DiscObject(temp, "应收买入返售证券利息"));
         discList.add(this.computeE300DiscObject(temp, "应收申购款利息"));
         discList.add(this.computeE300DiscObject(temp, "应收黄金合约拆借孳息"));
@@ -237,35 +233,6 @@ public class EExportService extends BaseExportService implements EExportManager{
         //========process dataMap for disc view end========
         
         return result;
-    }
-    
-    /**
-     * 计算E300 main的主要数据
-     * @author Dai Zong 2017年9月24日
-     * 
-     * @param groupByItemRes
-     * @param itemName
-     * @param discType
-     * @return
-     */
-    private Map<String,Object> computeE300MainObject(Map<String, List<Map<String, Object>>> groupByItemRes, String itemName, String discType) {
-        Map<String,Object> item = new HashMap<>();
-        
-        if (null == groupByItemRes.get(itemName)) {
-            item.put("item", itemName);
-            item.put("discType", discType);
-            item.put("list", new ArrayList<Map<String, Object>>());
-            item.put("count", 0);
-        } else {
-            List<Map<String, Object>> list = groupByItemRes.get(itemName);
-
-            item.put("item", itemName);
-            item.put("discType", discType);
-            item.put("list", list);
-            item.put("count", list.size());
-        }
-        
-        return item;
     }
     
     /**
@@ -285,6 +252,31 @@ public class EExportService extends BaseExportService implements EExportManager{
         }
         
         return map;
+    }
+    
+    /**
+     * 处理sheet页E310的数据
+     * @author Dai Zong 2018年12月12日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getE310Data(String fundId, String periodStr) throws Exception{
+    	Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> E310MetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE310Data", queryMap);
+        if(E310MetaDataList == null) {
+        	E310MetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        result.put("list", E310MetaDataList);
+        result.put("count", E310MetaDataList.size());
+        
+        return result;
     }
     
     /**
@@ -528,24 +520,6 @@ public class EExportService extends BaseExportService implements EExportManager{
             
             sheetList.add(temp);
         });
-//        for(Entry<Object,List<Map<String,Object>>> entry: entrySet) {
-//            Map<String,Object> temp = new HashMap<>();
-//            temp.put("trxDate", entry.getKey());
-//            temp.put("sheetNum", "E41"+(i++));
-//            List<Map<String,Object>> list = entry.getValue();
-//            if(list == null) {
-//                list = new ArrayList<>();
-//            }
-//            temp.put("list", list);
-//            temp.put("count", list.size());
-//            
-//            sheetList.add(temp);
-//        }
-//        sheetList = sheetList.stream().sorted((A,B) -> {
-//            Date d1 = (Date)A.get("trxDate");
-//            Date d2 = (Date)B.get("trxDate");
-//            return Long.compare(d1.getTime(), d2.getTime());
-//        }).collect(Collectors.toList());
         
         
         result.put("dealerFlag", dealerFlag);

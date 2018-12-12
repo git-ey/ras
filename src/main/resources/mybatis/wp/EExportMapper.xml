@@ -20,12 +20,6 @@
     <select id="selectE300MainData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    E300.ATTR1 as item, 
-		    E300.ATTR5 as discType,
-		    IF(
-		        E300.ATTR1 = '应收债券利息' OR E300.ATTR1 = '应收资产支持证券利息',
-		        E300.ATTR4,
-		        E300.ATTR2
-		    ) as detailName,
 		    E300.BEGIN_BALANCE_CNY as beginBalance,
 		    E300.END_BALANCE_CNY as endBalance
 		FROM
@@ -40,6 +34,7 @@
     <select id="selectE300DiscData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
 		    E300D.ITEM as item,
+		    E300D.SORT as sort,
 		    IF(E300D.END_BALANCE = 0, null, E300D.END_BALANCE) as endBalance,
 		    IF(E300D.BEGIN_BALANCE = 0, null, E300D.BEGIN_BALANCE) as beginBalance
 		FROM
@@ -77,6 +72,20 @@
         and E300D.STATUS = 'Y'
         and E300D.FUND_ID = #{fundId}
         and E300D.PERIOD = #{period}
+    </select>
+    
+    <select id="selectE310Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    E310.ATTR2 as item, 
+		    E310.BEGIN_BALANCE_CNY as beginBalance,
+		    E310.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_e310 E310
+        where 
+            1 = 1
+        and E310.STATUS = 'Y'
+        and E310.FUND_ID = #{fundId}
+        and E310.PERIOD = #{period}
     </select>
     
     <select id="selectE400Data" parameterType="java.util.Map" resultType="java.util.Map">
