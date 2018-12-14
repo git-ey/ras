@@ -36,7 +36,7 @@
 		SELECT
 		    G10000.ITEM as item,
 		    IF(G10000.BEGIN_BALANCE = 0, null, G10000.BEGIN_BALANCE) as beginBalance,
-		    IF(G10000.BEGIN_BALANCE = 0, null, G10000.END_BALANCE) as endBalance
+		    IF(G10000.END_BALANCE = 0, null, G10000.END_BALANCE) as endBalance
 		FROM
 		    wp_g10000 G10000
 		WHERE
@@ -50,7 +50,7 @@
     <select id="selectG10000SUmDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             IF(SUM(G10000.BEGIN_BALANCE) = 0, null, SUM(G10000.BEGIN_BALANCE)) as beginBalance,
-            IF(SUM(G10000.BEGIN_BALANCE) = 0, null, SUM(G10000.END_BALANCE)) as endBalance
+            IF(SUM(G10000.END_BALANCE) = 0, null, SUM(G10000.END_BALANCE)) as endBalance
         FROM
             wp_g10000 G10000
         WHERE
