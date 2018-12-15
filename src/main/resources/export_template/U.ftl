@@ -4506,7 +4506,7 @@
     <Cell ss:StyleID="s378" ss:Formula="=R[-4]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378"/>
     <Cell ss:StyleID="s378"/>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-34]C+R[-27]C+R[-19]C+R[-15]C-R[-13]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-4]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=R[-4]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
@@ -13510,7 +13510,7 @@
     <Cell ss:StyleID="s213" ss:Formula="=SUM(R[${(-1-U10000.other_c.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s213" ss:Formula="=SUM(R[${(-1-U10000.other_c.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row/>
+   <!--<Row/>
    <Row/>
    <Row/>
    <Row/>
@@ -13545,7 +13545,7 @@
     <Cell ss:StyleID="s70"/>
     <Cell ss:StyleID="s70"/>
     <Cell ss:StyleID="s70"/>
-   </Row>
+   </Row>-->
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <Print>
