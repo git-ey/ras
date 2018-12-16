@@ -9436,7 +9436,7 @@
    <Row/>
    <Row>
     <Cell><Data ss:Type="String">起始日（${T500.f_test.mother.dateType!}）</Data></Cell>
-    <Cell ss:StyleID="s388"><Data ss:Type="DateTime">${T500.f_test.mother.dateFrom}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s388"><#if T500.f_test.mother.dateFrom??><Data ss:Type="DateTime">${T500.f_test.mother.dateFrom}T00:00:00.000</Data></#if></Cell>
     <Cell ss:Index="4" ss:StyleID="s118"/>
     <Cell ss:StyleID="s269"/>
    </Row>
