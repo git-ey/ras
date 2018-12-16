@@ -4708,7 +4708,7 @@
     <Cell ss:StyleID="s420"/>
    </Row>
    <Row>
-    <Cell><Data ss:Type="String">资产支持性证券投资收益</Data></Cell>
+    <Cell><Data ss:Type="String">资产支持证券投资收益</Data></Cell>
     <Cell ss:StyleID="s477"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s414"><Data ss:Type="Number">${(U300.main.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s414"/>

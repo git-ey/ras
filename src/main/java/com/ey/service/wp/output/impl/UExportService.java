@@ -185,7 +185,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         main.put("S1", temp.get("股票投资收益")==null?new HashMap<String,Object>():temp.get("股票投资收益"));
         main.put("S2", temp.get("债券投资收益")==null?new HashMap<String,Object>():temp.get("债券投资收益"));
-        main.put("S3", temp.get("资产支持性证券投资收益")==null?new HashMap<String,Object>():temp.get("资产支持性证券投资收益"));
+        main.put("S3", temp.get("资产支持证券投资收益")==null?new HashMap<String,Object>():temp.get("资产支持证券投资收益"));
         main.put("S4", temp.get("基金投资收益")==null?new HashMap<String,Object>():temp.get("基金投资收益"));
         main.put("S5", temp.get("贵金属投资收益")==null?new HashMap<String,Object>():temp.get("贵金属投资收益"));
         main.put("S6", temp.get("衍生工具收益")==null?new HashMap<String,Object>():temp.get("衍生工具收益"));

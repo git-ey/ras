@@ -660,7 +660,7 @@ public class ReportExportService implements ReportExportManager {
                 item1 = map;
             }else if("贵金属投资-金交所黄金合约".equals(map.get("item"))){
                 item2 = map;
-            }else if("资产支持性证券投资".equals(map.get("item"))){
+            }else if("资产支持证券投资".equals(map.get("item"))){
                 item5 = map;
             }else if("基金投资".equals(map.get("item"))){
                 item6 = map;

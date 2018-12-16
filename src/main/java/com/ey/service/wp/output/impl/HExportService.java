@@ -159,7 +159,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         Map<String,Object> attr4 = CollectionUtils.isEmpty(temp.get("COST")) ? new HashMap<>() : temp.get("COST").get(0);
         Map<String,Object> attr5 = CollectionUtils.isEmpty(temp.get("MKT_VALUE")) ? new HashMap<>() : temp.get("MKT_VALUE").get(0);
         Map<String,Object> attr6 = CollectionUtils.isEmpty(temp.get("APPRECIATION")) ? new HashMap<>() : temp.get("APPRECIATION").get(0);
-        temp = groups.get("资产支持性证券投资")==null ? new HashMap<>() : groups.get("资产支持性证券投资");
+        temp = groups.get("资产支持证券投资")==null ? new HashMap<>() : groups.get("资产支持证券投资");
         Map<String,Object> attr7 = CollectionUtils.isEmpty(temp.get("COST")) ? new HashMap<>() : temp.get("COST").get(0);
         Map<String,Object> attr8 = CollectionUtils.isEmpty(temp.get("MKT_VALUE")) ? new HashMap<>() : temp.get("MKT_VALUE").get(0);
         Map<String,Object> attr9 = CollectionUtils.isEmpty(temp.get("APPRECIATION")) ? new HashMap<>() : temp.get("APPRECIATION").get(0);
@@ -251,7 +251,7 @@ public class HExportService extends BaseExportService implements HExportManager{
                 attr4 = map;
             }
         }
-        tempList = groups.get("资产支持性证券投资")==null ? new ArrayList<>() : groups.get("资产支持性证券投资");
+        tempList = groups.get("资产支持证券投资")==null ? new ArrayList<>() : groups.get("资产支持证券投资");
         attr5 = CollectionUtils.isEmpty(tempList) ? attr5 : tempList.get(0);
         tempList = groups.get("基金投资")==null ? new ArrayList<>() : groups.get("基金投资");
         attr6 = CollectionUtils.isEmpty(tempList) ? attr6 : tempList.get(0);
