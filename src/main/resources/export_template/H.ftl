@@ -6147,6 +6147,24 @@
     <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.diviatonEyCurrent!0)?string('0.######')}</Data></Cell>
    </Row>
    <Row>
+    <Cell ss:StyleID="s295"/>
+    <Cell ss:StyleID="s216"><Data ss:Type="String">资产支持证券</Data></Cell>
+    <Cell ss:StyleID="s216"/>
+    <Cell ss:StyleID="s289" ss:Formula="=H!R25C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=H!R27C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=H!R29C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number"><#--<!--${(H10000.TFA.diviatonEyCurrent!0)?string('0.######')}--></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s295"/>
+    <Cell ss:StyleID="s216"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s216"/>
+    <Cell ss:StyleID="s289" ss:Formula="=R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H500.diviaton.diviatonEy!0)?string('0.######')}</Data></Cell>
+   </Row>
+   <Row>
     <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
    <Row>
@@ -6201,6 +6219,24 @@
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.diviatonEyLast!0)?string('0.######')}</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s295"/>
+    <Cell ss:StyleID="s216"><Data ss:Type="String">资产支持证券</Data></Cell>
+    <Cell ss:StyleID="s216"/>
+    <Cell ss:StyleID="s289" ss:Formula="=H!R25C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=H!R27C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=H!R29C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number"><#--<!--${(H10000.TFA.diviatonEyCurrent!0)?string('0.######')}--></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s295"/>
+    <Cell ss:StyleID="s216"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s216"/>
+    <Cell ss:StyleID="s289" ss:Formula="=R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H500.diviaton.lastDiviatonEy!0)?string('0.######')}</Data></Cell>
    </Row>
    </#if>
    <Row>
@@ -6621,6 +6657,7 @@
    </Row>
    <Row/>
    <Row/>
+   <#--<!--
    <Row>
     <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.18 公允价值变动收益</Data></Cell>
    </Row>
@@ -6717,7 +6754,7 @@
     <Cell ss:StyleID="s276" ss:Formula="=SUM(R[${(-10-H10000.fairValues.toolCount)?string('0')}]C,R[${(-3-H10000.fairValues.toolCount)?string('0')}]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s276" ss:Formula="=SUM(R[${(-10-H10000.fairValues.toolCount)?string('0')}]C,R[${(-3-H10000.fairValues.toolCount)?string('0')}]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row/>
+   <Row/>-->
    <Row>
     <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.14 有助于理解和分析会计报表需要说明的其他事项</Data></Cell>
    </Row>

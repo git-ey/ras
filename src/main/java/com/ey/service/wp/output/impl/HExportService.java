@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -391,9 +390,26 @@ public class HExportService extends BaseExportService implements HExportManager{
             diviatonMetaData = new HashMap<>();
         }
         
+        Map<String, Object> lastQueryMap = this.createBaseQueryMap(fundId, this.getLastPeriodStr(periodStr));
+        @SuppressWarnings("unchecked")
+        Map<String,Object> lastDiviatonMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH500DiviatonData", lastQueryMap);
+        if(lastDiviatonMetaData == null) {
+        	lastDiviatonMetaData = new HashMap<>();
+        }
+        diviatonMetaData.put("lastDiviatonEy", lastDiviatonMetaData.get("diviatonEy"));
+        
         result.put("diviaton", diviatonMetaData);
         result.put("interestRatePeriod", interestRatePeriod);
         return result;
+    }
+    
+    /**
+     * 根据本期的PeriodStr获取上期的PeriodStr
+     * @param periodStr 本期PeriodStr
+     * @return 上期PeriodStr
+     */
+    private String getLastPeriodStr(String periodStr) {
+    	return String.valueOf(Integer.parseInt(periodStr.substring(0, 4)) - 1) + periodStr.substring(4);
     }
     
     /**
@@ -710,10 +726,6 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("interestDetail", interestDetail);
         result.put("fairValues", fairValues);
         return result;
-    }
-    
-    public static void main(String args[]) {
-        System.out.println(Pattern.compile("^3").matcher("31234").find());
     }
     
     /**

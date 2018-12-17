@@ -135,7 +135,8 @@
     <select id="selectH500DiviatonData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H500MD.NET_AMOUNT AS netAmount,
-		    H500MD.DIVIATON_CLIENT AS diviatonClient 
+		    H500MD.DIVIATON_CLIENT AS diviatonClient,
+		    H500MD.DIVIATON_EY as diviatonEy
 		FROM
 		    wp_h500_mmf_diviaton H500MD
         where 
