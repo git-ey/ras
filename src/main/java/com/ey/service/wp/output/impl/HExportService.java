@@ -545,10 +545,25 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         TFA.put("exchange", exchange);
         TFA.put("bank", bank);
-        Object diviatonEyCurrent = this.dao.findForObject("HExportMapper.selectH10000TFADiviatonSumData", queryMap);
-        Object diviatonEyLast = this.dao.findForObject("HExportMapper.selectH10000TFADiviatonSumData", lastQueryMap);
-        TFA.put("diviatonEyCurrent", diviatonEyCurrent);
-        TFA.put("diviatonEyLast", diviatonEyLast);
+        
+//        2018-12-18 偏离度合计改为直接由Excel公式计算,废弃此处代码
+//        Object diviatonEyCurrent = this.dao.findForObject("HExportMapper.selectH10000TFADiviatonSumData", queryMap);
+//        Object diviatonEyLast = this.dao.findForObject("HExportMapper.selectH10000TFADiviatonSumData", lastQueryMap);
+//        TFA.put("diviatonEyCurrent", diviatonEyCurrent);
+//        TFA.put("diviatonEyLast", diviatonEyLast);
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> H10000NotBondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000TFANotBondDataForReport", queryMap);
+        if(H10000NotBondDataList == null) {
+            H10000NotBondDataList = new ArrayList<>(); 
+        }
+        Map<String,Object> assetBackedSecuritiesInvestment = new HashMap<>();
+        for(Map<String,Object> map : H10000NotBondDataList) {
+            if("资产支持证券投资".equals(map.get("item"))){
+            	assetBackedSecuritiesInvestment = map;
+            }
+        }
+        TFA.put("assetBackedSecuritiesInvestment", assetBackedSecuritiesInvestment);
         //========process dataMap for TFA view end========
         
         //========process dataMap for derivative view begin========

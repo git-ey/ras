@@ -384,7 +384,8 @@
         AND H10000T.PERIOD = #{period}
     </select>
     
-    <select id="selectH10000TFADiviatonSumData" parameterType="java.util.Map" resultType="java.lang.Object">
+    <!-- 2018-12-18 偏离度合计改为直接由Excel公式计算,废弃此处代码 -->
+    <!--<select id="selectH10000TFADiviatonSumData" parameterType="java.util.Map" resultType="java.lang.Object">
 	    SELECT
 		    H500MD.DIVIATON_CLIENT AS diviatonClinet
 		FROM
@@ -394,7 +395,7 @@
 	    AND H500MD.FUND_ID = #{fundId}
 	    AND H500MD.PERIOD = #{period}
 	    LIMIT 1
-    </select>
+    </select>-->
     
     <select id="selectH10000DerivativeData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT

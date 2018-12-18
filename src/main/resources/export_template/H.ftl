@@ -6144,7 +6144,7 @@
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.diviatonEyCurrent!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s292" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
@@ -6153,7 +6153,7 @@
     <Cell ss:StyleID="s289" ss:Formula="=H!R25C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=H!R27C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=H!R29C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number"><#--<!--${(H10000.TFA.diviatonEyCurrent!0)?string('0.######')}--></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.assetBackedSecuritiesInvestment.diviaton!0)?string('0.######')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
@@ -6179,7 +6179,7 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="2" ss:StyleID="s367"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="3" ss:StyleID="s264"><Data ss:Type="String">本期末</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s264"><Data ss:Type="String">上年度末</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="4" ss:MergeAcross="3" ss:StyleID="s373"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
@@ -6218,7 +6218,7 @@
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.diviatonEyLast!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s292" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
@@ -6227,7 +6227,7 @@
     <Cell ss:StyleID="s289" ss:Formula="=H!R25C8"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=H!R27C8"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=H!R29C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number"><#--<!--${(H10000.TFA.diviatonEyCurrent!0)?string('0.######')}--></Data></Cell>
+    <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.assetBackedSecuritiesInvestment.diviatonEyLast!0)?string('0.######')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>

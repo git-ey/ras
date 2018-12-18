@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -46,6 +48,7 @@ public class ReportExportService implements ReportExportManager {
     protected DaoSupport dao;
     private static final String MOTHER_LEVEL = "母基金";
     private static final String A_SMALL_LAVEL = "0";
+    private static final BigDecimal ZERO = new BigDecimal(0);
     /**
      * <p>基金level比较器</p>
      * <p>优化了母基金的排序</p>
@@ -681,8 +684,29 @@ public class ReportExportService implements ReportExportManager {
         tfa.put("otherCount", H10000NotBondDataList.size());
         Object dataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000TFAHasDataForReport", queryParam);
         tfa.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
+        Map<String,Object> bondAndItem5Sum = new HashMap<>();
+        bondAndItem5Sum.put("cost", this.addNumber(item5.get("cost"), H10000BondSumData.get("cost")));
+        bondAndItem5Sum.put("mktValue", this.addNumber(item5.get("mktValue"), H10000BondSumData.get("mktValue")));
+        bondAndItem5Sum.put("appreciation", this.addNumber(item5.get("appreciation"), H10000BondSumData.get("appreciation")));
+        bondAndItem5Sum.put("costLast", this.addNumber(item5.get("costLast"), H10000BondSumData.get("costLast")));
+        bondAndItem5Sum.put("mktValueLast", this.addNumber(item5.get("mktValueLast"), H10000BondSumData.get("mktValueLast")));
+        bondAndItem5Sum.put("appreciationLast", this.addNumber(item5.get("appreciationLast"), H10000BondSumData.get("appreciationLast")));
+        tfa.put("bondAndItem5Sum", bondAndItem5Sum);
         
-        tfa.put("tfa", tfa);
+        @SuppressWarnings("unchecked")
+        Map<String,Object> diviatonMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH500DiviatonData", queryParam);
+        if(diviatonMetaData == null) {
+            diviatonMetaData = new HashMap<>();
+        }
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> lastDiviatonMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH500DiviatonData", queryParamLast);
+        if(lastDiviatonMetaData == null) {
+        	lastDiviatonMetaData = new HashMap<>();
+        }
+        diviatonMetaData.put("lastDiviatonEy", lastDiviatonMetaData.get("diviatonEy"));
+        tfa.put("diviaton", diviatonMetaData);
+        
         H10000.put("tfa", tfa);
         //--------------------↑H10000.tfa↑--------------------
         //--------------------↓H10000.derivative↓--------------------
@@ -2852,6 +2876,31 @@ public class ReportExportService implements ReportExportManager {
         fundInfo.put("startMonth", startMonth);
         fundInfo.put("startDay", startDay);
         return fundInfo;
+    }
+    
+    /**
+     * 计算map中两个对象的和<br/>
+     * 计算时null会记为0<br/>
+     * 计算后0会记为null
+     * 
+     * @param o1 对象1
+     * @param o2 对象2
+     * @return 结果
+     */
+    private BigDecimal addNumber(Object o1, Object o2) {
+    	BigDecimal d1 = null, d2 = null;
+    	String str1 = (o1 == null ?null : String.valueOf(o1)), str2 = (o2 == null ? null : String.valueOf(o2));
+    	if(NumberUtils.isParsable(str1)) {
+    		d1 = new BigDecimal(str1);
+    	}
+    	if(NumberUtils.isParsable(str2)) {
+    		d2 = new BigDecimal(str2);
+    	}
+    	BigDecimal res = ObjectUtils.defaultIfNull(d1, ZERO).add(ObjectUtils.defaultIfNull(d2, ZERO));
+    	if(res.equals(ZERO)) {
+    		res = null;
+    	}
+    	return res;
     }
     
 }
