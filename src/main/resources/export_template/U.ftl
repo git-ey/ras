@@ -4293,7 +4293,7 @@
    </Row>
    <Row ss:StyleID="s93">
     <Cell ss:StyleID="s377"><Data ss:Type="String">公允价值变动损益</Data></Cell>
-    <Cell ss:StyleID="s374"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:StyleID="s374"><Data ss:Type="String">U900</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6101.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6101.drAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6101.crAmountAdj!0)?string('0.##')}</Data></Cell>
@@ -4360,12 +4360,12 @@
    <Row>
     <Cell ss:StyleID="s377"><Data ss:Type="String">费用</Data></Cell>
     <Cell ss:StyleID="s383"/>
-    <Cell ss:StyleID="s378" ss:Formula="=R[1]C+R[2]C+R[3]C+R[4]C+R[5]C+R[7]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=R[1]C+R[2]C+R[3]C+R[4]C+R[5]C+R[7]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=R[1]C+R[2]C+R[3]C+R[4]C+R[5]C+R[7]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=R[1]C+R[2]C+R[3]C+R[4]C+R[5]C+R[7]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=R[1]C+R[2]C+R[3]C+R[4]C+R[5]C+R[7]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=R[1]C+R[2]C+R[3]C+R[4]C+R[5]C+R[7]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[8]C)-R[6]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[8]C)-R[6]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[8]C)-R[6]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[8]C)-R[6]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[8]C)-R[6]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[8]C)-R[6]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
    <Row>
@@ -4435,6 +4435,17 @@
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
    <Row>
+    <Cell ss:StyleID="s373"><Data ss:Type="String">      税金及附加</Data></Cell>
+    <Cell ss:StyleID="s374"><Data ss:Type="String">U600</Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6802.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6802.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6802.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6802.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
     <Cell ss:StyleID="s373"><Data ss:Type="String">      其他费用</Data></Cell>
     <Cell ss:StyleID="s374"><Data ss:Type="String">U600</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6605.amountCurrent!0)?string('0.##')}</Data></Cell>
@@ -4459,11 +4470,11 @@
    <Row>
     <Cell ss:StyleID="s377"><Data ss:Type="String">利润总额</Data></Cell>
     <Cell ss:StyleID="s373"/>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-31]C+R[-24]C+R[-15]C+R[-13]C+R[-11]C-R[-9]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-32]C+R[-25]C+R[-16]C+R[-14]C+R[-12]C-R[-10]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378"/>
     <Cell ss:StyleID="s378"/>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-31]C+R[-24]C+R[-15]C+R[-13]C+R[-11]C-R[-9]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-31]C+R[-24]C+R[-15]C+R[-13]C+R[-11]C-R[-9]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-32]C+R[-25]C+R[-16]C+R[-14]C+R[-12]C-R[-10]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-32]C+R[-25]C+R[-16]C+R[-14]C+R[-12]C-R[-10]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
@@ -4506,7 +4517,7 @@
     <Cell ss:StyleID="s378" ss:Formula="=R[-4]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378"/>
     <Cell ss:StyleID="s378"/>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-4]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-36]C+R[-29]C+R[-20]C+R[-16]C-R[-14]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=R[-4]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
@@ -4525,11 +4536,11 @@
    <Row>
     <Cell ss:StyleID="s377"><Data ss:Type="String">其中：本期净收益</Data></Cell>
     <Cell ss:StyleID="s373"/>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-6]C-R[-21]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-6]C-R[-22]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378"/>
     <Cell ss:StyleID="s378"/>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-6]C-R[-21]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=R[-6]C-R[-21]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-6]C-R[-22]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=R[-6]C-R[-22]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378"/>
     <Cell ss:StyleID="s379"/>
    </Row>

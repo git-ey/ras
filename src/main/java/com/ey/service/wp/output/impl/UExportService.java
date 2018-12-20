@@ -118,6 +118,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("KM6406", new HashMap<String,Object>());
         result.put("KM6407", new HashMap<String,Object>());
         result.put("KM6411", new HashMap<String,Object>());
+        result.put("KM6802", new HashMap<String,Object>());
         result.put("KM6605", new HashMap<String,Object>());
         
         for(Map<String,Object> map : UMetaDataList) {
