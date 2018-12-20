@@ -2975,8 +2975,8 @@
     <Cell ss:StyleID="s78"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s78"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s64" ss:Formula="=RC[-3]-RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="String">&lt;E410&gt;</Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="String">S/S</Data></Cell>
+    <Cell ss:StyleID="s104"/>
     <Cell ss:StyleID="s180"><Data ss:Type="String">${item.disc!}</Data></Cell>
    </Row>
    </#list>
@@ -3015,9 +3015,7 @@
    </Row>
    <Row ss:StyleID="s53">
     <Cell ss:StyleID="s61"><Data ss:Type="String">S/S 期后付款</Data></Cell>
-    <Cell ss:StyleID="s241"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">我们执行了期后付款测试，未见异常，详见 <B><Font
-        html:Color="#FF0000">&lt;E410&gt;</Font></B></ss:Data></Cell>
+    <Cell ss:StyleID="s241"><ss:Data ss:Type="String">我们查看了日交割汇总表及头寸表，检查期后划款情况，未发现存在长期应付未付款的情况。</ss:Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">

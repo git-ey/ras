@@ -1,21 +1,13 @@
 package com.ey.service.wp.output.impl;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.service.wp.output.EExportManager;
@@ -58,8 +50,6 @@ public class EExportService extends BaseExportService implements EExportManager{
         dataMap.put("E300", this.getE300Data(fundId, periodStr));
         dataMap.put("E310", this.getE310Data(fundId, periodStr));
         dataMap.put("E400", this.getE400Data(fundId, periodStr));
-        dataMap.put("E410", this.getE410Data(fundId, periodStr));
-        dataMap.put("E41X", this.getE41XData(fundId, periodStr));
         dataMap.put("E500", this.getE500Data(fundId, periodStr));
         dataMap.put("E600", this.getE600Data(fundId, periodStr));
 
@@ -300,232 +290,6 @@ public class EExportService extends BaseExportService implements EExportManager{
         
         result.put("list", E400MetaDataList);
         result.put("count", E400MetaDataList.size());
-        
-        return result;
-    }
-    
-    /**
-     * 处理sheet页E410的数据
-     * @author Dai Zong 2017年9月27日
-     * 
-     * @param fundId
-     * @param periodStr
-     * @return
-     * @throws Exception
-     */
-    private Map<String,Object> getE410Data(String fundId, String periodStr) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
-        
-        //========process dataMap for rule view begin========
-        Map<String, Object> rule = new HashMap<String,Object>();
-        
-        Map<String, Object> debitDay = new HashMap<String,Object>();
-        Map<String, Object> confirmDay = new HashMap<String,Object>();
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> E410RuleMetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE410RuleData", queryMap);
-        if(E410RuleMetaDataList == null) {
-            E410RuleMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        for(Map<String,Object> map : E410RuleMetaDataList) {
-            if("划款日".equals(map.get("type"))) {
-                debitDay = map;
-            }else if("确认日".equals(map.get("type"))) {
-                confirmDay = map;
-            }
-        }
-        
-        rule.put("debitDay", debitDay);
-        rule.put("confirmDay", confirmDay);
-        
-        result.put("rule", rule);
-        //========process dataMap for rule view end========
-        
-        //========process dataMap for trxDay view begin========
-        Map<String, Object> trxDay = new HashMap<String,Object>();
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> E410TrxDayMetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE410TrxDayData", queryMap);
-        if(E410TrxDayMetaDataList == null) {
-            E410TrxDayMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        trxDay.put("list", E410TrxDayMetaDataList);
-        trxDay.put("count", E410TrxDayMetaDataList.size());
-        
-        result.put("trxDay", trxDay);
-        //========process dataMap for trxDay view end========
-        
-        //========process dataMap for Summary view begin========
-        Map<String, Object> summary = new HashMap<String,Object>();
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> E410SummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE410SummaryData", queryMap);
-        if(E410SummaryMetaDataList == null) {
-            E410SummaryMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        int splitPoint = 0;
-        Long period = Long.parseLong(periodStr.substring(0, 4));
-        for(Map<String,Object> map : E410SummaryMetaDataList) {
-            int year = Integer.parseInt(String.valueOf(map.get("trxDate")).substring(0, 4));
-            if(year > period) {
-                splitPoint++;
-            }
-        }
-        
-        summary.put("list", E410SummaryMetaDataList);
-        summary.put("count", E410SummaryMetaDataList.size());
-        summary.put("splitPoint", splitPoint);
-        
-        result.put("summary", summary);
-        //========process dataMap for Summary view end========
-        
-        //========process dataMap for apArTest view begin========
-        Map<String, Object> apArTest = new HashMap<String,Object>();
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> E410ApArTestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE410ApArTestData", queryMap);
-        if(E410ApArTestMetaDataList == null) {
-            E410ApArTestMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        Map<String,Map<String,Object>> temp = new HashMap<>();
-        E410ApArTestMetaDataList.forEach(map -> {
-            temp.put(String.valueOf(map.get("item")), map);
-        });
-        
-        Map<String, Object> attr1 = this.computeE410ApArTestObject(temp, "申购款");
-        Map<String, Object> attr2 = this.computeE410ApArTestObject(temp, "转入款");
-        Map<String, Object> attr3 = this.computeE410ApArTestObject(temp, "赎回款");
-        Map<String, Object> attr4 = this.computeE410ApArTestObject(temp, "转出款");
-        Map<String, Object> attr5 = this.computeE410ApArTestObject(temp, "赎回费");
-        Map<String, Object> attr6 = this.computeE410ApArTestObject(temp, "转换费");
-        Map<String, Object> attr7 = this.computeE410ApArTestObject(temp, "后端申购费");
-        
-        LocalDate begin = LocalDate.of(1900, 1, 1);
-        LocalDate end = LocalDate.of(period.intValue(), 12, 31);
-        
-        apArTest.put("attr1", attr1);
-        apArTest.put("attr2", attr2);
-        apArTest.put("attr3", attr3);
-        apArTest.put("attr4", attr4);
-        apArTest.put("attr5", attr5);
-        apArTest.put("attr6", attr6);
-        apArTest.put("attr7", attr7);
-        
-        apArTest.put("periodLastDayNum", end.toEpochDay()-begin.toEpochDay()+2);
-        
-        result.put("apArTest", apArTest);
-        //========process dataMap for apArTest view end========
-        
-        //========process dataMap for periodAfterTest view begin========
-        Map<String, Object> periodAfterTest = new HashMap<String,Object>();
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> E410PeriodAfterTestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE410PeriodAfterTestData", queryMap);
-        if(E410PeriodAfterTestMetaDataList == null) {
-            E410PeriodAfterTestMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        periodAfterTest.put("list", E410PeriodAfterTestMetaDataList);
-        periodAfterTest.put("count", E410PeriodAfterTestMetaDataList.size());
-        
-        result.put("periodAfterTest", periodAfterTest);
-        //========process dataMap for periodAfterTest view end========
-        
-        return result;
-    }
-    
-    /**
-     * 计算E300 ApArTest的主要数据
-     * @author Dai Zong 2017年9月27日
-     * 
-     * @param temp
-     * @param itemName
-     * @return
-     */
-    private Map<String,Object> computeE410ApArTestObject(Map<String,Map<String,Object>> temp, String itemName) {
-        Map<String, Object> map = temp.get(itemName);
-        
-        if(map==null) {
-            map = new HashMap<String,Object>();
-            map.put("item", itemName);
-        }
-        
-        return map;
-    }
-    
-    /**
-     * 处理sheet页E41X的数据
-     * @author Dai Zong 2017年9月29日
-     * 
-     * @param fundId
-     * @param periodStr
-     * @return
-     * @throws Exception
-     */
-    private Map<String,Object> getE41XData(String fundId, String periodStr) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
-        
-        List<Map<String,Object>> sheetList = new ArrayList<>();
-        Map<String,Object> E41XdealerMetaData = null;
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> E41XdealerMetaDataList = (List<Map<String,Object>>) this.dao.findForList("EExportMapper.selectE41XDealerFlagData", queryMap);
-        if(CollectionUtils.isEmpty(E41XdealerMetaDataList)) {
-            E41XdealerMetaData = new HashMap<>();
-        }else {
-            E41XdealerMetaData = E41XdealerMetaDataList.get(0);
-        }
-        
-        String dealerFlag = StringUtils.EMPTY;
-        if(E41XdealerMetaData.get("dealerFlag") == null) {
-            dealerFlag = "N";
-        }else {
-            dealerFlag = String.valueOf(E41XdealerMetaData.get("dealerFlag"));
-        }
-        Object dealerName = E41XdealerMetaData.get("dealerName");
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> E41XDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE41XDetailData", queryMap);
-        if(E41XDetailMetaDataList == null) {
-            E41XDetailMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        Map<Object, List<Map<String, Object>>> collection = E41XDetailMetaDataList.stream().collect(Collectors.groupingBy(item -> {
-            Map<String,Object> map = item;
-            return map.get("trxDate");
-        }));
-        
-        Set<Entry<Object,List<Map<String,Object>>>> entrySet = collection.entrySet();
-        AtomicInteger i = new AtomicInteger(1);
-        entrySet.stream().sorted((A,B) -> {
-            Date d1 = (Date)A.getKey();
-            Date d2 = (Date)B.getKey();
-            return Long.compare(d1.getTime(), d2.getTime());
-        }).forEach(entry -> {
-            Map<String,Object> temp = new HashMap<>();
-            temp.put("trxDate", entry.getKey());
-            temp.put("sheetNum", "E41"+(i.getAndIncrement()));
-            List<Map<String,Object>> list = entry.getValue();
-            if(list == null) {
-                list = new ArrayList<>();
-            }
-            temp.put("list", list);
-            temp.put("count", list.size());
-            
-            sheetList.add(temp);
-        });
-        
-        
-        result.put("dealerFlag", dealerFlag);
-        result.put("dealerName", dealerName);
-        result.put("sheetList", sheetList);
-        result.put("sheetCount", sheetList.size());
         
         return result;
     }

@@ -51,7 +51,6 @@ public class NExportService extends BaseExportService implements NExportManager{
         dataMap.put("N500", this.getN500Data(fundId, periodStr));
         dataMap.put("N510", this.getN510Data(fundId, periodStr));
         dataMap.put("N600", this.getN600Data(fundId, periodStr));
-        // dataMap.put("N700", this.getN700Data(fundId, periodStr));
         dataMap.put("N800", this.getN800Data(fundId, periodStr));
         dataMap.put("N10000", this.getN10000Data(fundId, periodStr));
         

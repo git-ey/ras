@@ -2589,8 +2589,8 @@
     <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s280"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s280" ss:Formula="=RC[-3]-RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s116"><Data ss:Type="String">&lt;E410&gt;</Data></Cell>
     <Cell ss:StyleID="s117"><Data ss:Type="String">S/S</Data></Cell>
+    <Cell ss:StyleID="s116"/>
     <Cell ss:StyleID="s173"/>
     <Cell ss:StyleID="s173"/>
     <Cell ss:StyleID="s173"/>
@@ -2700,9 +2700,7 @@
    </Row>
    <Row ss:StyleID="s120">
     <Cell ss:StyleID="s110"><Data ss:Type="String">S/S 期后付款</Data></Cell>
-    <Cell ss:StyleID="s109"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">我们执行了期后付款测试，未见异常，详见 <B><Font
-        html:Color="#FF0000">&lt;E410&gt;</Font></B></ss:Data></Cell>
+    <Cell ss:StyleID="s109"><ss:Data ss:Type="String">我们查看了日交割汇总表及头寸表，检查期后划款情况，未发现存在长期应付未付款的情况。</ss:Data></Cell>
     <Cell ss:StyleID="s172"/>
     <Cell ss:StyleID="s172"/>
     <Cell ss:StyleID="s172"/>
@@ -3972,140 +3970,6 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <#-- 
- <<!--Worksheet ss:Name="N700">
-  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s148" ss:DefaultColumnWidth="47.25" ss:DefaultRowHeight="13.5">
-   <Column ss:StyleID="s148" ss:AutoFitWidth="0" ss:Width="97.5"/>
-   <Column ss:StyleID="s148" ss:AutoFitWidth="0" ss:Width="108"/>
-   <Column ss:StyleID="s148" ss:Width="94.5"/>
-   <Column ss:StyleID="s148" ss:Width="90"/>
-   <Column ss:StyleID="s148" ss:Width="76.5"/>
-   <Column ss:StyleID="s148" ss:AutoFitWidth="0" ss:Width="104.25"/>
-   <Column ss:StyleID="s148" ss:Width="50.25"/>
-   <Row ss:Height="14.25" ss:StyleID="s142">
-    <Cell ss:StyleID="s177"/>
-   </Row>
-   <Row ss:StyleID="s142">
-    <Cell ss:StyleID="s93"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
-    <Cell ss:StyleID="s146"/>
-    <Cell ss:StyleID="s282"><Data ss:Type="String">Prepared by</Data></Cell>
-    <Cell ss:StyleID="s245"><Data ss:Type="String">XX</Data></Cell>
-    <Cell ss:StyleID="s283"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s108"><Data ss:Type="String">WP Ref</Data></Cell>
-   </Row>
-   <Row ss:Height="14.25" ss:StyleID="s142">
-    <Cell ss:StyleID="s93"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s146"/>
-    <Cell ss:StyleID="s284"><Data ss:Type="String">Reviewed by</Data></Cell>
-    <Cell ss:StyleID="s226"><Data ss:Type="String">XX</Data></Cell>
-    <Cell ss:StyleID="s285"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s106"><Data ss:Type="String">N700</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s142">
-    <Cell ss:StyleID="s93"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s146"><Data ss:Type="String">应交税费</Data></Cell>
-    <Cell ss:StyleID="s146"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s153"/>
-   </Row>
-   <Row ss:StyleID="s144">
-    <Cell><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s306"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s152"><Data ss:Type="String">本期借方</Data></Cell>
-    <Cell ss:StyleID="s152"><Data ss:Type="String">本期贷方</Data></Cell>
-    <Cell ss:StyleID="s306"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s150">
-    <Cell ss:StyleID="s147"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-   </Row>
-   <#if N700.count != 0>
-   <#list N700.list as item>
-   <Row ss:StyleID="s150">
-    <Cell><Data ss:Type="String">${item.name!}</Data></Cell>
-    <Cell ss:StyleID="s146"/>
-    <Cell ss:StyleID="s118"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s118"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s118"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s280" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s295"><Data ss:Type="String">Note 1</Data></Cell>
-   </Row>
-   </#list>
-   </#if>
-   <Row ss:Height="15.75" ss:StyleID="s150">
-    <Cell ss:Index="2" ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s118"/>
-   </Row>
-   <Row ss:Height="14.25" ss:StyleID="s150">
-    <Cell ss:StyleID="s144"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s281" ss:Formula="=SUM(R[${(-(1+N700.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[${(-(1+N700.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[${(-(1+N700.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s281" ss:Formula="=SUM(R[${(-(1+N700.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;N&gt;</Data></Cell>
-   </Row>
-   <Row ss:Height="14.25" ss:StyleID="s150">
-    <Cell ss:Index="2" ss:StyleID="s105"/>
-    <Cell ss:StyleID="s114"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s114"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s114"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s114"><Data ss:Type="String">^</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s111"/>
-    <Cell ss:StyleID="s149"/>
-    <Cell ss:StyleID="s149"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s111"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">^：</Font></B><Font>加计正确。</Font></ss:Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s111"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s111"/>
-   </Row>
-   <Row ss:StyleID="s325">
-    <Cell ss:StyleID="s326"><Data ss:Type="String">Note 1</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s296"/>
-    <Cell ss:Index="4" ss:StyleID="s297"/>
-   </Row>
-  </Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <PageSetup>
-    <Header x:Margin="0.3"/>
-    <Footer x:Margin="0.3"/>
-    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
-   </PageSetup>
-   <Print>
-    <ValidPrinterInfo/>
-    <HorizontalResolution>600</HorizontalResolution>
-    <VerticalResolution>600</VerticalResolution>
-   </Print>
-   <Panes>
-    <Pane>
-     <Number>3</Number>
-     <ActiveRow>24</ActiveRow>
-     <ActiveCol>5</ActiveCol>
-    </Pane>
-   </Panes>
-   <ProtectObjects>False</ProtectObjects>
-   <ProtectScenarios>False</ProtectScenarios>
-  </WorksheetOptions>
- </Worksheet>--> -->
  <Worksheet ss:Name="N800">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s229" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s229" ss:AutoFitWidth="0" ss:Width="140.25"/>

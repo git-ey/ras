@@ -134,21 +134,6 @@
         and N600.PERIOD = #{period}
     </select>
     
-    <!-- <select id="selectN700Data" parameterType="java.util.Map" resultType="java.util.Map"> 
-        SELECT
-		    N700.ATTR1 as `name`,
-		    N700.BEGIN_BALANCE_CNY as beginBalance,
-		    N700.CR_AMOUNT_CNY as crAmount,
-		    N700.DR_AMOUNT_CNY as drAmount
-		FROM
-		    wp_n700 N700
-        where 
-            1 = 1
-        and N700.STATUS = 'Y'
-        and N700.FUND_ID = #{fundId}
-        and N700.PERIOD = #{period}
-    </select> -->
-    
     <select id="selectN800MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
 		    CONCAT(N800.ATTR1,N800.ATTR4,N800.ATTR3) as  detailName,
