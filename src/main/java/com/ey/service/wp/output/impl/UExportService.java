@@ -1,6 +1,7 @@
 package com.ey.service.wp.output.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,8 @@ public class UExportService extends BaseExportService implements UExportManager 
         dataMap.put("U500", this.getU500Data(fundId, periodStr));
         dataMap.put("U600", this.getU600Data(fundId, periodStr));
         dataMap.put("U600Test", this.getU600TestData(fundId, periodStr));
+        dataMap.put("U800", this.getU800Data(fundId, periodStr));
+        dataMap.put("U900", this.getU900Data(fundId, periodStr));
         dataMap.put("U10000", this.getU10000Data(fundId, periodStr));
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_U);
@@ -481,6 +484,118 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("fundIndexfeeRate", fundIndexfeeRate);
         
         return result;
+    }
+    
+    /**
+     * 处理sheet页U800的数据
+     * @author Dai Zong 2018年12月23日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU800Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String, Object> CJFFJ = new HashMap<>(); // 城建费附加
+        Map<String, Object> JYFJ = new HashMap<>(); // 教育附加
+        Map<String, Object> DFJYFJ = new HashMap<>(); // 地方教育附加
+        Map<String, Object> CJFFJ_WSX = new HashMap<>(); // 城建费附加_未实现
+        Map<String, Object> JYFJ_WSX = new HashMap<>(); // 教育附加_未实现
+        Map<String, Object> DFJYFJ_WSX = new HashMap<>(); // 地方教育附加_未实现
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U800Data = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU800Data", queryMap);
+        if(U800Data == null) {
+        	U800Data = Collections.emptyList();
+        }
+        
+        for(Map<String,Object> item : U800Data) {
+        	if("城建费附加".equals(item.get("itemName"))) {
+        		CJFFJ = item;
+        	} else if("教育附加".equals(item.get("itemName"))) {
+        		JYFJ = item;
+        	} else if("地方教育附加".equals(item.get("itemName"))) {
+        		DFJYFJ = item;
+        	} else if("城建费附加_未实现".equals(item.get("itemName"))) {
+        		CJFFJ_WSX = item;
+        	} else if("教育附加_未实现".equals(item.get("itemName"))) {
+        		JYFJ_WSX = item;
+        	} else if("地方教育附加_未实现".equals(item.get("itemName"))) {
+        		DFJYFJ_WSX = item;
+        	}
+        }
+        
+        result.put("CJFFJ", CJFFJ);
+        result.put("JYFJ", JYFJ);
+        result.put("DFJYFJ", DFJYFJ);
+        result.put("CJFFJ_WSX", CJFFJ_WSX);
+        result.put("JYFJ_WSX", JYFJ_WSX);
+        result.put("DFJYFJ_WSX", DFJYFJ_WSX);
+        
+        return result;
+    }
+    
+    /**
+     * 处理sheet页U900的数据
+     * @author Dai Zong 2018年12月23日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getU900Data(String fundId, String periodStr) throws Exception{
+    	Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+    	Map<String, Object> result = new HashMap<String,Object>();
+    	
+    	Map<String, Object> I1010 = new HashMap<>();// 股票投资
+    	Map<String, Object> I1020 = new HashMap<>();// 债券投资
+    	Map<String, Object> I1030 = new HashMap<>();// 资产支持证券投资
+    	Map<String, Object> I1040 = new HashMap<>();// 基金投资
+    	Map<String, Object> I1050 = new HashMap<>();// 贵金属投资
+    	Map<String, Object> I1060 = new HashMap<>();// 其他
+    	Map<String, Object> I2010 = new HashMap<>();// 权证投资
+    	Map<String, Object> I3010 = new HashMap<>();// 减：应税金融商品公允价值变动产生的预估增值税(增值税)
+    	
+    	@SuppressWarnings("unchecked")
+    	List<Map<String,Object>> U900Data = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU900Data", queryMap);
+    	if(U900Data == null) {
+    		U900Data = Collections.emptyList();
+    	}
+    	
+    	for(Map<String,Object> item : U900Data) {
+    		if("股票投资".equals(item.get("item"))) {
+    			I1010 = item;
+    		} else if("债券投资".equals(item.get("item"))) {
+    			I1020 = item;
+    		} else if("资产支持证券投资".equals(item.get("item"))) {
+    			I1030 = item;
+    		} else if("基金投资".equals(item.get("item"))) {
+    			I1040 = item;
+    		} else if("贵金属投资".equals(item.get("item"))) {
+    			I1050 = item;
+    		} else if("其他".equals(item.get("item"))) {
+    			I1060 = item;
+    		} else if("权证投资".equals(item.get("item"))) {
+    			I2010 = item;
+    		} else if("增值税".equals(item.get("item"))) {
+    			I3010 = item;
+    		}
+    	}
+    	
+    	result.put("I1010", I1010);
+    	result.put("I1020", I1020);
+    	result.put("I1030", I1030);
+    	result.put("I1040", I1040);
+    	result.put("I1050", I1050);
+    	result.put("I1060", I1060);
+    	result.put("I2010", I2010);
+    	result.put("I3010", I3010);
+    	
+    	return result;
     }
     
     /**

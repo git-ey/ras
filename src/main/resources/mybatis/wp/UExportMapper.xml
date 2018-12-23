@@ -220,6 +220,37 @@
 	    LIMIT 1
     </select>
     
+    <select id="selectU800Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+			U800.ATTR1 AS itemName,
+			U800.ATTR5 AS realizeFlag,
+			U800.AMOUNT_CURRENT_CNY AS amountCurrentCny,
+			U800.AMOUNT_LAST_CNY AS amountLastCny
+		FROM
+			wp_u800 U800
+		WHERE
+			1 = 1
+		AND U800. STATUS = 'Y'
+		AND U800.FUND_ID = #{fundId}
+		AND U800.PERIOD = #{period}
+    </select>
+    
+    <select id="selectU900Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+			U900.SORT AS sort,
+			U900.EY_ACCOUNT_NUM AS eyAccountNum,
+			U900.ITEM AS item,
+			U900.AMOUNT_CURRENT AS amountCurrent,
+			U900.AMOUNT_LAST AS amountLast
+		FROM
+			wp_u900 U900
+		WHERE
+			1 = 1
+		AND U900.STATUS = 'Y'
+		AND U900.FUND_ID = #{fundId}
+		AND U900.PERIOD = #{period}
+    </select>
+    
     <select id="selectU10000InterestData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000RI.ITEM as item,

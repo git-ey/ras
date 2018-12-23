@@ -679,59 +679,6 @@ public class HExportService extends BaseExportService implements HExportManager{
         interestDetail.put("returnDays", returnDays);
         //========process dataMap for interestDetail view end========
         
-        //========process dataMap for fairValues view begin========
-        Map<String, Object> fairValues = new HashMap<String,Object>();
-        item1 = new HashMap<String,Object>();
-        item2 = new HashMap<String,Object>();
-        item3 = new HashMap<String,Object>();
-        item4 = new HashMap<String,Object>();
-        Map<String,Object> item5 = new HashMap<String,Object>();
-        Map<String,Object> item6 = new HashMap<String,Object>();
-        Map<String,Object> item7 = new HashMap<String,Object>();
-        List<Map<String,Object>> toolList = new ArrayList<>();
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> fairValuesMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FairValuesData", queryMap);
-        if(fairValuesMetaDataList == null) {
-            fairValuesMetaDataList = new ArrayList<>();
-        }
-        for(Map<String,Object> map : fairValuesMetaDataList) {
-            int sort = 0;
-            if(String.valueOf(map.get("sort")) != null) {
-                sort = Integer.parseInt(String.valueOf(map.get("sort")));
-            }
-//            if(Pattern.matches("^3.*$", String.valueOf(map.get("eyAccountNum")))){
-            if(sort >= 22 && sort <= 29){
-                //sort值在22 ~ 29的item动态输出
-                toolList.add(map);
-            }else {
-                //其他项目静态输出
-                if(sort == 11) {
-                    item1 = map;
-                }else if(sort == 12) {
-                    item2 = map;
-                }else if(sort == 13) {
-                    item3 = map;
-                }else if(sort == 14) {
-                    item4 = map;
-                }else if(sort == 15) {
-                    item5 = map;
-                }else if(sort == 16) {
-                    item6 = map;
-                }else if(sort == 21) {
-                    item7 = map;
-                }
-            }
-        }
-        fairValues.put("item1", item1);
-        fairValues.put("item2", item2);
-        fairValues.put("item3", item3);
-        fairValues.put("item4", item4);
-        fairValues.put("item5", item5);
-        fairValues.put("item6", item6);
-        fairValues.put("item7", item7);
-        fairValues.put("toolList", toolList);
-        fairValues.put("toolCount", toolList.size());
-        //========process dataMap for fairValues view end========
         
         result.put("note", noteMetaData);
         result.put("TFA", TFA);
@@ -739,7 +686,6 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("futures", futures);
         result.put("rmcfs", rmcfs);
         result.put("interestDetail", interestDetail);
-        result.put("fairValues", fairValues);
         return result;
     }
     
@@ -756,34 +702,16 @@ public class HExportService extends BaseExportService implements HExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
-        //========process dataMap for additian view begin========
+        //========process dataMap for addition view begin========
         Map<String, Object> additian = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> additianMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000AdditianData", queryMap);
         if(additianMetaDataList == null) {
             additianMetaDataList = new ArrayList<>();
         }
-//        List<String> existCode = additianMetaDataList.stream().map(item -> {
-//            return String.valueOf(item.get("type"));
-//        }).distinct().collect(Collectors.toList());
-//        if(!existCode.contains("股票")) {
-//            Map<String, Object> temp = new HashMap<String,Object>();
-//            temp.put("type", "股票");
-//            additianMetaDataList.add(temp);
-//        }
-//        if(!existCode.contains("债券")) {
-//            Map<String, Object> temp = new HashMap<String,Object>();
-//            temp.put("type", "债券");
-//            additianMetaDataList.add(temp);
-//        }
-//        if(!existCode.contains("其他")) {
-//            Map<String, Object> temp = new HashMap<String,Object>();
-//            temp.put("type", "其他");
-//            additianMetaDataList.add(temp);
-//        }
         additian.put("list", additianMetaDataList);
         additian.put("count", additianMetaDataList.size());
-        //========process dataMap for additian view end========
+        //========process dataMap for addition view end========
         
         //========process dataMap for suspension view begin========
         Map<String, Object> suspension = new HashMap<String,Object>();
