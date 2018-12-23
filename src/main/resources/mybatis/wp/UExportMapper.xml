@@ -128,6 +128,7 @@
             U500.EY_ACCOUNT_NUM as accountNum,
             U500.ATTR1 as item,
             U500.ATTR5 as type,
+            U500.ATTR2 as subType,
             U500.AMOUNT_CURRENT_CNY as amountCurrent,
             U500.AMOUNT_LAST_CNY as amountLast
         FROM
@@ -468,6 +469,7 @@
     <select id="selectU10000TrxFeeData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U10000CTF.ITEM as item,
+            U10000CTF.SORT as sort,
             IF(U10000CTF.AMOUNT_CURRENT = 0, null, U10000CTF.AMOUNT_CURRENT) as amountCurrent,
             IF(U10000CTF.AMOUNT_LAST = 0, null, U10000CTF.AMOUNT_LAST) as amountLast
         FROM

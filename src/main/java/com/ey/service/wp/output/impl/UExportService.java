@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import com.ey.service.wp.output.UExportManager;
@@ -309,6 +310,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         Map<String, Object> main = new HashMap<String,Object>();
         Map<String, Object> trade = new HashMap<String,Object>();
         Map<String, Object> bank = new HashMap<String,Object>();
+        Map<String, Object> fundTrade = new HashMap<String,Object>();
         Map<String, Object> cffe = new HashMap<String,Object>();
         Map<String, Object> KM6407 = new HashMap<String,Object>();
         Map<String, Object> KM6411 = new HashMap<String,Object>();
@@ -320,6 +322,8 @@ public class UExportService extends BaseExportService implements UExportManager 
         trade.put("S5", new HashMap<String,Object>());
         bank.put("S1", new HashMap<String,Object>());
         bank.put("S2", new HashMap<String,Object>());
+        fundTrade.put("S1", new HashMap<String,Object>());
+        fundTrade.put("S2", new HashMap<String,Object>());
         cffe.put("S1", new HashMap<String,Object>());
         KM6411.put("S1", new HashMap<String,Object>());
         KM6411.put("S2", new HashMap<String,Object>());
@@ -332,29 +336,37 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         for(Map<String,Object> map : U500MainMetaDataList) {
             if("6407".equals(map.get("accountNum"))) {
-                if("交易所".equals(map.get("type"))) {
-                    if("股票交易费用".equals(map.get("item"))) {
-                        trade.put("S1", map);
-                    }else if("基金交易费用".equals(map.get("item"))) {
-                        trade.put("S2", map);
-                    }else if("债券交易费用".equals(map.get("item"))) {
-                        trade.put("S3", map);
-                    }else if("期货交易费用".equals(map.get("item"))) {
-                        trade.put("S4", map);
-                    }else if("资产支持证券交易费用".equals(map.get("item"))) {
-                        trade.put("S5", map);
-                    }
-                }else if("银行间".equals(map.get("type"))) {
-                    if("结算服务费".equals(map.get("item"))) {
-                        bank.put("S1", map);
-                    }else if("交易手续费".equals(map.get("item"))) {
-                        bank.put("S2", map);
-                    }
-                }else if("中金所".equals(map.get("type"))) {
-                    if("期货交易费用".equals(map.get("item"))) {
-                        cffe.put("S1", map);
-                    }
-                }
+            	if("基金交易费用".equals(map.get("item")) && map.get("type") == null) {
+            		if("申购费".equals(map.get("subType"))) {
+            			fundTrade.put("S1", map);
+            		}else if("赎回费".equals(map.get("subType"))) {
+            			fundTrade.put("S2", map);
+            		}
+            	}else {
+            		if("交易所".equals(map.get("type"))) {
+            			if("股票交易费用".equals(map.get("item"))) {
+            				trade.put("S1", map);
+            			}else if("基金交易费用".equals(map.get("item"))) {
+            				trade.put("S2", map);
+            			}else if("债券交易费用".equals(map.get("item"))) {
+            				trade.put("S3", map);
+            			}else if("期货交易费用".equals(map.get("item"))) {
+            				trade.put("S4", map);
+            			}else if("资产支持证券交易费用".equals(map.get("item"))) {
+            				trade.put("S5", map);
+            			}
+            		}else if("银行间".equals(map.get("type"))) {
+            			if("结算服务费".equals(map.get("item"))) {
+            				bank.put("S1", map);
+            			}else if("交易手续费".equals(map.get("item"))) {
+            				bank.put("S2", map);
+            			}
+            		}else if("中金所".equals(map.get("type"))) {
+            			if("期货交易费用".equals(map.get("item"))) {
+            				cffe.put("S1", map);
+            			}
+            		}
+            	}
             }else if("6411".equals(map.get("accountNum"))) {
                 if("卖出回购证券支出".equals(map.get("item"))) {
                     KM6411.put("S1", map);
@@ -366,6 +378,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         KM6407.put("trade", trade);
         KM6407.put("bank", bank);
+        KM6407.put("fundTrade", fundTrade);
         KM6407.put("cffe", cffe);
         main.put("KM6407", KM6407);
         main.put("KM6411", KM6411);
@@ -843,11 +856,13 @@ public class UExportService extends BaseExportService implements UExportManager 
                 gold.put("S2", map);
             } else if ("贵金属投资收益——申购差价收入".equals(map.get("item")) && "GOLD".equals(map.get("type"))) {
                 gold.put("S3", map);
-            //S4--S5[公共,但是非ETF的好像被干掉了]
+            //S4--S5.5[公共,但是非ETF的好像被干掉了]
             } else if ("卖出贵金属成交总额".equals(map.get("item")) && "GOLD_BS".equals(map.get("type"))) {
                 gold.put("S4", map);
             } else if ("减：卖出贵金属成本总额".equals(map.get("item")) && "GOLD_BS".equals(map.get("type"))) {
                 gold.put("S5", map);
+            }else if ("减：买卖贵金属差价收入应缴纳增值税额".equals(map.get("item")) && "GOLD_BS".equals(map.get("type"))) {
+                gold.put("S5_1", map);
             //S6--S8
             } else if ("赎回贵金属份额对价总额".equals(map.get("item")) && "GOLD_R".equals(map.get("type"))) {
                 gold.put("S6", map);
@@ -871,7 +886,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         Map<String, Object> di = new HashMap<String,Object>();
         di.put("S1", new HashMap<String,Object>());
         di.put("S2", new HashMap<String,Object>());
-//        di.put("S3", new HashMap<String,Object>());
+        di.put("S3", new HashMap<String,Object>());
         queryMap.put("type", "DI_WARRANT");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000DiWarrantMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
@@ -894,9 +909,9 @@ public class UExportService extends BaseExportService implements UExportManager 
                     di.put("S1", map);
                 } else if ("减：卖出权证成本总额".equals(map.get("item"))) {
                     di.put("S2", map);
-                } /*else if ("黄金现货延期交收合约".equals(map.get("item"))) {
+                } else if ("减：买卖权证差价收入应缴纳增值税额".equals(map.get("item"))) {
                     di.put("S3", map);
-                }*/
+                }
             }
         }
         result.put("diCount", diCount>0?1:0);
@@ -945,22 +960,26 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("other_r", other_r);
         
         Map<String, Object> trxFee = new HashMap<String,Object>();
-//        trxFee.put("S1", new HashMap<String,Object>());
-//        trxFee.put("S2", new HashMap<String,Object>());
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000TrxFeeData", queryMap);
         if(U10000TrxFeeMetaDataList == null) {
             U10000TrxFeeMetaDataList = new ArrayList<>(); 
         }
-//        for(Map<String,Object> map : U10000TrxFeeMetaDataList) {
-//            if("交易所市场交易费用".equals(map.get("item"))) {
-//                trxFee.put("S1", map);
-//            }else if("银行间市场交易费用".equals(map.get("item"))) {
-//                trxFee.put("S2", map);
-//            }
-//        }
-        trxFee.put("list", U10000TrxFeeMetaDataList);
-        trxFee.put("count", U10000TrxFeeMetaDataList.size());
+        Map<String,Map<String,Object>> mapping = new HashMap<>();
+        for(Map<String,Object> map : U10000TrxFeeMetaDataList) {
+        	mapping.put(String.valueOf(map.get("sort")), map);
+        }
+        Map<String,Object> emptyMap = new HashMap<>();
+        List<Map<String,Object>> U10000TrxFeeDataList = new ArrayList<>();
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("10"), emptyMap)); //        交易所市场交易费用	10
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("20"), emptyMap)); //        银行间市场交易费用	20
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("30"), emptyMap)); //        交易基金产生的费用	30
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("31"), emptyMap)); //        其中：申购费	31
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("32"), emptyMap)); //        赎回费	32
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("40"), emptyMap)); //        中金所交易费用	40
+        
+        trxFee.put("list", U10000TrxFeeDataList);
+        trxFee.put("count", U10000TrxFeeDataList.size());
         result.put("trxFee", trxFee);
         
         Map<String, Object> other_c = new HashMap<String,Object>();

@@ -1338,10 +1338,23 @@ public class ReportExportService implements ReportExportManager {
         Map<String,Object> trxFee = new HashMap<>();
         
         @SuppressWarnings("unchecked")
-        List<Map<String,Object>> U10000TrxFeeDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000TrxFeeData", queryParam);
-        if(U10000TrxFeeDataList == null) {
-            U10000TrxFeeDataList = new ArrayList<>(); 
+        List<Map<String,Object>> U10000TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000TrxFeeData", queryParam);
+        if(U10000TrxFeeMetaDataList == null) {
+        	U10000TrxFeeMetaDataList = new ArrayList<>(); 
         }
+        Map<String,Map<String,Object>> mapping = new HashMap<>();
+        for(Map<String,Object> map : U10000TrxFeeMetaDataList) {
+        	mapping.put(String.valueOf(map.get("sort")), map);
+        }
+        Map<String,Object> emptyMap = new HashMap<>();
+        List<Map<String,Object>> U10000TrxFeeDataList = new ArrayList<>();
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("10"), emptyMap)); //        交易所市场交易费用	10
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("20"), emptyMap)); //        银行间市场交易费用	20
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("30"), emptyMap)); //        交易基金产生的费用	30
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("31"), emptyMap)); //        其中：申购费	31
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("32"), emptyMap)); //        赎回费	32
+        U10000TrxFeeDataList.add(ObjectUtils.defaultIfNull(mapping.get("40"), emptyMap)); //        中金所交易费用	40
+        
         @SuppressWarnings("unchecked")
         Map<String,Object> U10000TrxFeeSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000TrxFeeSumDataForReport", queryParam);
         if(U10000TrxFeeSumData == null) {
