@@ -394,6 +394,7 @@ public class ReportExportService implements ReportExportManager {
         Map<String,Object> E05 = new HashMap<>();
         Map<String,Object> E06 = new HashMap<>();
         Map<String,Object> E07 = new HashMap<>();
+        Map<String,Object> E08 = new HashMap<>();
         SUM1 = new HashMap<>();
         SUM2 = new HashMap<>();
         SUM3 = new HashMap<>();
@@ -447,6 +448,8 @@ public class ReportExportService implements ReportExportManager {
                 E06 = map;
             } else if ("E07".equals(map.get("plCode"))) {
                 E07 = map;
+            } else if ("E08".equals(map.get("plCode"))) {
+                E08 = map;
             } else if ("D99".equals(map.get("plCode"))) {
                 SUM1 = map;
             } else if ("E99".equals(map.get("plCode"))) {
@@ -473,13 +476,14 @@ public class ReportExportService implements ReportExportManager {
         PL.put("D15", D15);
         PL.put("D16", D16);
         PL.put("D17", D17);
-        PL.put("D18", E01);
-        PL.put("D19", E02);
-        PL.put("D20", E03);
-        PL.put("D21", E04);
-        PL.put("D22", E05);
-        PL.put("D23", E06);
-        PL.put("D24", E07);
+        PL.put("D18", E01);// Mapping: D18 <-> E01
+        PL.put("D19", E02);// Mapping: D19 <-> E02
+        PL.put("D20", E03);// Mapping: D20 <-> E03
+        PL.put("D21", E04);// Mapping: D21 <-> E04
+        PL.put("D22", E05);// Mapping: D22 <-> E05
+        PL.put("D23", E06);// Mapping: D23 <-> E06
+        PL.put("D24", E07);// Mapping: D24 <-> E07
+        PL.put("D25", E08);// Mapping: D25 <-> E08
         PL.put("SUM1", SUM1);
         PL.put("SUM2", SUM2);
         PL.put("SUM3", SUM3);
