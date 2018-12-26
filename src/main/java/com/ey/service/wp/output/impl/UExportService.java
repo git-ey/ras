@@ -336,7 +336,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         for(Map<String,Object> map : U500MainMetaDataList) {
             if("6407".equals(map.get("accountNum"))) {
-            	if("基金交易费用".equals(map.get("item")) && map.get("type") == null) {
+            	if("基金交易费用".equals(map.get("item"))) {
             		if("申购费".equals(map.get("subType"))) {
             			fundTrade.put("S1", map);
             		}else if("赎回费".equals(map.get("subType"))) {
@@ -346,9 +346,15 @@ public class UExportService extends BaseExportService implements UExportManager 
             		if("交易所".equals(map.get("type"))) {
             			if("股票交易费用".equals(map.get("item"))) {
             				trade.put("S1", map);
-            			}else if("基金交易费用".equals(map.get("item"))) {
-            				trade.put("S2", map);
-            			}else if("债券交易费用".equals(map.get("item"))) {
+            			}
+            			/**
+            			 * 该部分金额改由U500.main.KM6407.tradefundTrade明细表示
+            			 * 暂无取值逻辑,输出默认值--空Map
+            			 */
+//            			else if("基金交易费用".equals(map.get("item"))) {
+//            				trade.put("S2", map);
+//            			}
+            			else if("债券交易费用".equals(map.get("item"))) {
             				trade.put("S3", map);
             			}else if("期货交易费用".equals(map.get("item"))) {
             				trade.put("S4", map);
@@ -829,6 +835,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         gold.put("S3", new HashMap<String,Object>());
         gold.put("S4", new HashMap<String,Object>());
         gold.put("S5", new HashMap<String,Object>());
+        gold.put("S5_1", new HashMap<String,Object>());
         gold.put("S6", new HashMap<String,Object>());
         gold.put("S7", new HashMap<String,Object>());
         gold.put("S8", new HashMap<String,Object>());
