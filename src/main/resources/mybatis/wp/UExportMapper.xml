@@ -223,8 +223,8 @@
     
     <select id="selectU800Data" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
-			IF(U800.ATTR5 = '已实现' , U800.ATTR1, CONCAT(U800.ATTR1,'_',U800.ATTR5)) AS itemName,
-			U800.ATTR5 AS realizeFlag,
+			IF(U800.ATTR6 = '已实现' , U800.ATTR1, CONCAT(U800.ATTR1,'_',U800.ATTR6)) AS itemName,
+			U800.ATTR6 AS realizeFlag,
 			U800.AMOUNT_CURRENT_CNY AS amountCurrentCny,
 			U800.AMOUNT_LAST_CNY AS amountLastCny
 		FROM

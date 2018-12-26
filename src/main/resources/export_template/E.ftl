@@ -1862,7 +1862,7 @@
    <Row ss:StyleID="s62"/>
    <Row ss:StyleID="s62">
     <Cell ss:StyleID="s165"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">S/L：</Font><Font>与明细账核对一致。</Font></B></ss:Data></Cell>
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">S/L：</Font></B><Font>与明细账核对一致。</Font></ss:Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s51"/>
@@ -1999,7 +1999,7 @@
    <Row ss:StyleID="s62"/>
    <Row ss:StyleID="s62">
     <Cell ss:StyleID="s165"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">S/L：</Font><Font>与明细账核对一致。</Font></B></ss:Data></Cell>
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">S/L：</Font></B><Font>与明细账核对一致。</Font></ss:Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s51"/>
@@ -2042,22 +2042,14 @@
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s61" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="108"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="108.75"/>
-   <Column ss:StyleID="s61" ss:Width="79.5"/>
-   <Column ss:StyleID="s62" ss:Width="61.5"/>
-   <Column ss:StyleID="s62" ss:Width="76.5"/>
-   <Column ss:StyleID="s62" ss:Width="79.5"/>
-   <Column ss:StyleID="s62" ss:Width="69.75"/>
-   <Column ss:StyleID="s61" ss:Width="30.75"/>
-   <Column ss:StyleID="s61" ss:Width="61.5"/>
-   <Column ss:StyleID="s61" ss:Width="75.75"/>
-   <Column ss:StyleID="s61" ss:Width="54.75"/>
-   <Column ss:StyleID="s61" ss:Width="56.25"/>
-   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="33.75"/>
-   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="38.25"/>
-   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="48"/>
-   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="31.5"/>
-   <Column ss:StyleID="s61" ss:Width="54.75"/>
-   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="68.25"/>
+   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="150"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="150"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="150"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="150"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="30"/>
+   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="30"/>
+   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="120"/>
+   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="120"/>
    <Row ss:Height="14.25" ss:StyleID="s64">
     <Cell ss:StyleID="s118"/>
     <Cell ss:Index="3" ss:StyleID="s80"/>
