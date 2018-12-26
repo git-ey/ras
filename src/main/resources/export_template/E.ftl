@@ -292,7 +292,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s57" ss:Parent="s19">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -1699,10 +1699,10 @@
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s61" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="90"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="150"/>
-   <Column ss:StyleID="s61" ss:Width="109.5"/>
-   <Column ss:StyleID="s62" ss:Width="79.5"/>
-   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="87.75"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="78.75"/>
+   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="50"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="150"/>
+   <Column ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="100"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="150"/>
    <Column ss:Index="8" ss:StyleID="s61" ss:AutoFitWidth="0" ss:Width="78"/>
    <Row ss:Height="14.25" ss:StyleID="s64"/>
    <Row>

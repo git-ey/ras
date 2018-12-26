@@ -4436,7 +4436,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s373"><Data ss:Type="String">      税金及附加</Data></Cell>
-    <Cell ss:StyleID="s374"><Data ss:Type="String">U600</Data></Cell>
+    <Cell ss:StyleID="s374"><Data ss:Type="String">U800</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6802.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6802.drAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6802.crAmountAdj!0)?string('0.##')}</Data></Cell>
@@ -10792,9 +10792,12 @@
    <Row>
     <Cell ss:StyleID="s181"/>
     <Cell ss:StyleID="s546"><Data ss:Type="String">基金交易费用</Data></Cell>
-    <Cell ss:StyleID="s111"><Data ss:Type="Number">${(U500.main.KM6407.trade.S2.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <!--<Cell ss:StyleID="s111"><Data ss:Type="Number">${(U500.main.KM6407.trade.S2.amountCurrent!0)?string('0.##')}</Data></Cell>-->
+    <!--vincent 修复基金交易费用的输出逻辑-->
+    <Cell ss:StyleID="s111"><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s111"><Data ss:Type="Number">${(U500.main.KM6407.trade.S2.amountLast!0)?string('0.##')}</Data></Cell>
+    <!--<Cell ss:StyleID="s111"><Data ss:Type="Number">${(U500.main.KM6407.trade.S2.amountLast!0)?string('0.##')}</Data></Cell>-->
+    <Cell ss:StyleID="s111"><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s104"/>
