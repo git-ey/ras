@@ -171,27 +171,27 @@
    <Interior/>
   </Style>
   <Style ss:ID="s40" ss:Parent="s17">
-   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s41" ss:Parent="s18">
-   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
    <NumberFormat ss:Format="Percent"/>
   </Style>
   <Style ss:ID="s42" ss:Parent="s17">
-   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s43" ss:Parent="s19">
-   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -269,7 +269,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s54" ss:Parent="s21">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
@@ -358,7 +358,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s68" ss:Parent="s19">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Underline="SingleAccounting"/>
@@ -366,7 +366,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s69" ss:Parent="s19">
-   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
@@ -397,7 +397,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s74" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
@@ -638,20 +638,20 @@
    <Interior/>
   </Style>
   <Style ss:ID="s112" ss:Parent="s22">
-   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Vertical="Bottom" />
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s113" ss:Parent="s19">
-   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Vertical="Bottom" />
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
    <Interior/>
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s114" ss:Parent="s19">
-   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Vertical="Bottom" />
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
    <Protection ss:Protected="0"/>
@@ -696,7 +696,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s122" ss:Parent="s17">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
@@ -710,7 +710,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s125" ss:Parent="s19">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Double" ss:Weight="3"/>
     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -721,7 +721,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s126" ss:Parent="s19">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -739,7 +739,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s128" ss:Parent="s19">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -1758,7 +1758,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">应收活期存款利息</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收活期存款利息</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I10.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s61"/>
@@ -1767,7 +1767,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">应收定期存款利息</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收定期存款利息</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I20.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s61"/>
@@ -1776,7 +1776,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">应收其他存款利息</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收其他存款利息</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I30.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s61"/>
@@ -1785,7 +1785,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">应收结算备付金利息</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收结算备付金利息</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I40.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">E310</Data></Cell>
@@ -1794,7 +1794,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">应收债券利息</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收债券利息</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I50.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s27"><Data ss:Type="String">HXXX</Data></Cell>
@@ -1803,7 +1803,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">应收资产支持证券利息</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收资产支持证券利息</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I55.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s27"><Data ss:Type="String">HXXX</Data></Cell>
@@ -1812,7 +1812,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">应收买入返售证券利息</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收买入返售证券利息</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I60.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s27"><Data ss:Type="String">HXXX</Data></Cell>
@@ -1821,7 +1821,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">应收申购款利息</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收申购款利息</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I70.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s61"/>
@@ -1830,7 +1830,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">应收黄金合约拆借孳息</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收黄金合约拆借孳息</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I80.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s61"/>
@@ -1839,18 +1839,20 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">其他</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s114"><Data ss:Type="Number">${(E300.main.I90.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s114"><Data ss:Type="Number">${(E300.main.I90.endBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s129"><Data ss:Type="String"></Data></Cell>
    </Row>
+   <Row>
+   </Row>
    <Row ss:Height="14.25" ss:StyleID="s62">
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s109"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s125" ss:Formula="=SUM(R[-10]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s125" ss:Formula="=SUM(R[-10]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s125" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s125" ss:Formula="=SUM(R[-11]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s129"><Data ss:Type="String"> &lt;E&gt;</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s62">
@@ -1964,7 +1966,7 @@
    <#list E310.list as item>
    <Row>
     <Cell ss:StyleID="s58"/>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">${item.item!}</Data></Cell>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s61"/>
@@ -2118,7 +2120,7 @@
    <#if E400.count != 0>
    <#list E400.list as item>
    <Row>
-    <Cell ss:StyleID="s53"><Data ss:Type="String">${item.detailName!}</Data></Cell>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">${item.detailName!}</Data></Cell>
     <Cell ss:StyleID="s47"/>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
@@ -2144,8 +2146,8 @@
     <Cell ss:StyleID="s63"/>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s64"/>
     <Cell ss:StyleID="s109"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s64"/>
     <Cell ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
