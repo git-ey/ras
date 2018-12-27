@@ -7,7 +7,7 @@ import com.ey.entity.Page;
 import com.ey.util.PageData;
 
 /** 
- * 说明： 科目属性映射1接口
+ * 说明： 科目属性映射2接口
  * 创建人：andychen
  * 创建时间：2017-11-13
  * @version

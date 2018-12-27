@@ -221,56 +221,14 @@
 								  	</select>
 								</td>
 								 -->
-								 <td style="width:110px;text-align: right;padding-top: 13px;">利率风险变量:</td>
-								<td><input type="number" name="RISK_VARIABLE" id="RISK_VARIABLE" value="${pd.RISK_VARIABLE}" maxlength="32" title="利率风险变量" style="width:49%;"/></td>
-								<td style="width:110px;text-align: right;padding-top: 13px;">价格风险变量:</td>
-								<td><input type="number" name="PRICE_VARIABLE" id="PRICE_VARIABLE" value="${pd.PRICE_VARIABLE}" maxlength="32" title="价格风险变量" style="width:49%;"/></td>
-								<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性方法:</td>
-								<td>
-								    <select class="chosen-select form-control" name="INTEREST_SENSTVT_METHOD" id="INTEREST_SENSTVT_METHOD" data-placeholder="请选择" style="width:98%;">
-								    <option value=""></option>
-								    <option value="久期法" <c:if test="${pd.INTEREST_SENSTVT_METHOD == '久期法'}">selected</c:if>>久期法</option>
-								    <option value="久期&凸性法" <c:if test="${pd.INTEREST_SENSTVT_METHOD == '久期&凸性法'}">selected</c:if>>久期&凸性法</option>
-								    </select>
-								</td>
-								<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性数据来源:</td>
-								<td><input type="text" name="INTEREST_SENSTVT_SOURSE" id="INTEREST_SENSTVT_SOURSE" value="${pd.INTEREST_SENSTVT_SOURSE}" maxlength="60" style="width:98%;"/></td>
-							</tr>
+						    </tr>
 							<tr>
-							    <td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性方法:</td>
-							    <td>
-								    <select class="chosen-select form-control" name="PRICE_SENSTVT_METHOD" id="PRICE_SENSTVT_METHOD" data-placeholder="请选择" style="width:98%;">
-								    <option value=""></option>
-								    <option value="斜率法" <c:if test="${pd.PRICE_SENSTVT_METHOD == '斜率法'}">selected</c:if>>斜率法</option>
-								    <option value="BETA" <c:if test="${pd.PRICE_SENSTVT_METHOD == 'BETA'}">selected</c:if>>BETA</option>
-								    </select>
-								</td>
-								<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性斜率法指数:</td>
-								<td><input type="text" name="PRICE_SENSTVT_INDEX" id="PRICE_SENSTVT_INDEX" value="${pd.PRICE_SENSTVT_INDEX}" maxlength="60" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">指数来源:</td>
 								<td><input type="text" name="INDEX_SOURSE" id="INDEX_SOURSE" value="${pd.INDEX_SOURSE}" maxlength="60" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性BETA:</td>
 								<td><input type="text" name="PRICE_SENSTVT_BETA" id="PRICE_SENSTVT_BETA" value="${pd.PRICE_SENSTVT_BETA}" maxlength="60" style="width:98%;"/></td>							
-							</tr>	
-							<tr>
 							    <td style="width:110px;text-align: right;padding-top: 13px;">BETA来源:</td>
 								<td><input type="text" name="BETA_SOURSE" id="BETA_SOURSE" value="${pd.BETA_SOURSE}" maxlength="60" style="width:98%;"/></td>
-							    <td style="width:110px;text-align: right;padding-top: 13px;">可转债是否利率敏感:</td>
-								<td>
-								    <select class="chosen-select form-control" name="INTEREST_SENSITIVITY" id="INTEREST_SENSITIVITY" data-placeholder="请选择" style="width:49%;">
-								    <option value=""></option>
-								    <option value="Y" <c:if test="${pd.INTEREST_SENSITIVITY == 'Y'}">selected</c:if>>是</option>
-								    <option value="N" <c:if test="${pd.INTEREST_SENSITIVITY == 'N'}">selected</c:if>>否</option>
-								    </select>
-								</td>
-								<td style="width:110px;text-align: right;padding-top: 13px;">债券是否价格敏感:</td>
-								<td>
-								    <select class="chosen-select form-control" name="PRICE_SENSITIVITY" id="PRICE_SENSITIVITY" data-placeholder="请选择" style="width:49%;">
-								    <option value=""></option>
-								    <option value="Y" <c:if test="${pd.PRICE_SENSITIVITY == 'Y'}">selected</c:if>>是</option>
-								    <option value="N" <c:if test="${pd.PRICE_SENSITIVITY == 'N'}">selected</c:if>>否</option>
-								    </select>
-								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">是否显示分级份额:</td>
 								<td>
 								    <select class="chosen-select form-control" name="LEVEL_SHARE" id="LEVEL_SHARE" data-placeholder="请选择" style="width:49%;">

@@ -16,7 +16,7 @@ import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
 
 /** 
- * 说明： 科目属性映射1
+ * 说明： 科目属性映射3
  * 创建人：andychen
  * 创建时间：2017-11-13
  * @version

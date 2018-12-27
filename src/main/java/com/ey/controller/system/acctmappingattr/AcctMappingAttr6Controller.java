@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
-import com.ey.service.system.acctmappingattr.AcctMappingAttr3Manager;
+import com.ey.service.system.acctmappingattr.AcctMappingAttr6Manager;
 import com.ey.service.system.loger.LogerManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
@@ -36,17 +36,17 @@ import com.ey.util.PathUtil;
 import com.ey.util.fileimport.MapResult;
 
 /** 
- * 说明：科目属性映射1
+ * 说明：科目属性映射6
  * 创建人：andychen
  * 创建时间：2017-11-13
  */
 @Controller
-@RequestMapping(value="/acctmappingattr3")
-public class AcctMappingAttr3Controller extends BaseController {
+@RequestMapping(value="/acctmappingattr6")
+public class AcctMappingAttr6Controller extends BaseController {
 	
-	String menuUrl = "acctmappingattr3/list.do"; //菜单地址(权限用)
-	@Resource(name="acctmappingattr3Service")
-	private AcctMappingAttr3Manager acctmappingattr3Service;
+	String menuUrl = "acctmappingattr6/list.do"; //菜单地址(权限用)
+	@Resource(name="acctmappingattr6Service")
+	private AcctMappingAttr6Manager acctmappingattr6Service;
 	@Resource(name = "logService")
 	private LogerManager logManager;
 	
@@ -56,13 +56,13 @@ public class AcctMappingAttr3Controller extends BaseController {
 	 */
 	@RequestMapping(value="/save")
 	public ModelAndView save() throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"新增AcctMappingAttr3");
+		logBefore(logger, Jurisdiction.getUsername()+"新增AcctMappingAttr1");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;} //校验权限
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("ACCTMAPPINGATTR3_ID", this.get32UUID());	//主键
-		acctmappingattr3Service.save(pd);
+		pd.put("ACCTMAPPINGATTR6_ID", this.get32UUID());	//主键
+		acctmappingattr6Service.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -78,7 +78,7 @@ public class AcctMappingAttr3Controller extends BaseController {
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		acctmappingattr3Service.delete(pd);
+		acctmappingattr6Service.delete(pd);
 		out.write("success");
 		out.close();
 	}
@@ -94,7 +94,7 @@ public class AcctMappingAttr3Controller extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		acctmappingattr3Service.edit(pd);
+		acctmappingattr6Service.edit(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -106,7 +106,7 @@ public class AcctMappingAttr3Controller extends BaseController {
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView list(Page page) throws Exception{
-		logBefore(logger, Jurisdiction.getUsername()+"列表AcctMappingAttr3");
+		logBefore(logger, Jurisdiction.getUsername()+"列表AcctMappingAttr1");
 		//if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限(无权查看时页面会有提示,如果不注释掉这句代码就无法进入列表页面,所以根据情况是否加入本句代码)
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
@@ -116,8 +116,8 @@ public class AcctMappingAttr3Controller extends BaseController {
 			pd.put("keywords", keywords.trim());
 		}
 		page.setPd(pd);
-		List<PageData>	varList = acctmappingattr3Service.list(page);	//列出AcctMappingAttr1列表
-		mv.setViewName("system/acctmappingattr/acctmappingattr3_list");
+		List<PageData>	varList = acctmappingattr6Service.list(page);	//列出AcctMappingAttr1列表
+		mv.setViewName("system/acctmappingattr/acctmappingattr6_list");
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限
@@ -133,7 +133,7 @@ public class AcctMappingAttr3Controller extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		mv.setViewName("system/acctmappingattr/acctmappingattr3_edit");
+		mv.setViewName("system/acctmappingattr/acctmappingattr6_edit");
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -148,8 +148,8 @@ public class AcctMappingAttr3Controller extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd = acctmappingattr3Service.findById(pd);	//根据ID读取
-		mv.setViewName("system/acctmappingattr/acctmappingattr3_edit");
+		pd = acctmappingattr6Service.findById(pd);	//根据ID读取
+		mv.setViewName("system/acctmappingattr/acctmappingattr6_edit");
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;
@@ -171,7 +171,7 @@ public class AcctMappingAttr3Controller extends BaseController {
 		String DATA_IDS = pd.getString("DATA_IDS");
 		if(null != DATA_IDS && !"".equals(DATA_IDS)){
 			String ArrayDATA_IDS[] = DATA_IDS.split(",");
-			acctmappingattr3Service.deleteAll(ArrayDATA_IDS);
+			acctmappingattr6Service.deleteAll(ArrayDATA_IDS);
 			pd.put("msg", "ok");
 		}else{
 			pd.put("msg", "no");
@@ -190,7 +190,7 @@ public class AcctMappingAttr3Controller extends BaseController {
 	@RequestMapping(value = "/goUploadExcel")
 	public ModelAndView goUploadExcel() throws Exception {
 		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("system/acctmappingattr/uploadexcel_attr3");
+		mv.setViewName("system/acctmappingattr/uploadexcel_attr6");
 		return mv;
 	}
 
@@ -224,7 +224,7 @@ public class AcctMappingAttr3Controller extends BaseController {
 		MapResult mapResult = readExcel(file, AMA_IMPORT_TEMPLATE_CODE);
 		/* 存入数据库操作====================================== */
 		List<Map> maps = mapResult.getResult();
-		acctmappingattr3Service.saveBatch(maps);
+		acctmappingattr6Service.saveBatch(maps);
 		mv.addObject("msg", "success");
 		mv.setViewName("save_result");
 		return mv;
@@ -247,7 +247,7 @@ public class AcctMappingAttr3Controller extends BaseController {
 		titles.add("科目属性");	//2
 		titles.add("是否启用");	//3
 		dataMap.put("titles", titles);
-		List<PageData> varOList = acctmappingattr3Service.listAll(pd);
+		List<PageData> varOList = acctmappingattr6Service.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
 		for(int i=0;i<varOList.size();i++){
 			PageData vpd = new PageData();

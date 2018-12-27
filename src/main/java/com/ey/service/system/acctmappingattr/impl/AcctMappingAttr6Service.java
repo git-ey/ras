@@ -10,19 +10,19 @@ import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
-import com.ey.service.system.acctmappingattr.AcctMappingAttr4Manager;
+import com.ey.service.system.acctmappingattr.AcctMappingAttr6Manager;
 import com.ey.util.AppUtil;
 import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
 
 /** 
- * 说明： 科目属性映射4
+ * 说明： 科目属性映射6
  * 创建人：andychen
  * 创建时间：2017-11-13
  * @version
  */
-@Service("acctmappingattr4Service")
-public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
+@Service("acctmappingattr6Service")
+public class AcctMappingAttr6Service implements AcctMappingAttr6Manager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
@@ -33,7 +33,7 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 */
 	@Override
     public void save(PageData pd)throws Exception{
-		dao.save("AcctMappingAttr4Mapper.save", pd);
+		dao.save("AcctMappingAttr6Mapper.save", pd);
 	}
 	
 	/**删除
@@ -42,7 +42,7 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 */
 	@Override
     public void delete(PageData pd)throws Exception{
-		dao.delete("AcctMappingAttr4Mapper.delete", pd);
+		dao.delete("AcctMappingAttr6Mapper.delete", pd);
 	}
 	
 	/**修改
@@ -51,7 +51,7 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 */
 	@Override
     public void edit(PageData pd)throws Exception{
-		dao.update("AcctMappingAttr4Mapper.edit", pd);
+		dao.update("AcctMappingAttr6Mapper.edit", pd);
 	}
 	
 	/**列表
@@ -61,7 +61,7 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	@Override
     @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
-		return (List<PageData>)dao.findForList("AcctMappingAttr4Mapper.datalistPage", page);
+		return (List<PageData>)dao.findForList("AcctMappingAttr6Mapper.datalistPage", page);
 	}
 	
 	/**列表(全部)
@@ -71,7 +71,7 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	@Override
     @SuppressWarnings("unchecked")
 	public List<PageData> listAll(PageData pd)throws Exception{
-		return (List<PageData>)dao.findForList("AcctMappingAttr4Mapper.listAll", pd);
+		return (List<PageData>)dao.findForList("AcctMappingAttr6Mapper.listAll", pd);
 	}
 	
 	/**通过id获取数据
@@ -80,7 +80,7 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 */
 	@Override
     public PageData findById(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("AcctMappingAttr4Mapper.findById", pd);
+		return (PageData)dao.findForObject("AcctMappingAttr6Mapper.findById", pd);
 	}
 	
 	/**批量删除
@@ -89,7 +89,7 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 	 */
 	@Override
     public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
-		dao.delete("AcctMappingAttr4Mapper.deleteAll", ArrayDATA_IDS);
+		dao.delete("AcctMappingAttr6Mapper.deleteAll", ArrayDATA_IDS);
 	}
 	
 	@Override
@@ -108,7 +108,7 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 			}
 			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
 				// 批量插入
-				dao.save("AcctMappingAttr4Mapper.saveBatch", pds);
+				dao.save("AcctMappingAttr6Mapper.saveBatch", pds);
 				// 清空集合
 				pds.clear();
 			}
@@ -116,10 +116,10 @@ public class AcctMappingAttr4Service implements AcctMappingAttr4Manager{
 		// 处理最后剩余数量
 		if (pds.size() > 0) {
 			// 批量插入
-			dao.save("AcctMappingAttr4Mapper.saveBatch", pds);
+			dao.save("AcctMappingAttr6Mapper.saveBatch", pds);
 		}
 		// 批量更新
-		dao.update("AcctMappingAttr4Mapper.updateBatch", null);
+		dao.update("AcctMappingAttr6Mapper.updateBatch", null);
 	}
 	
 }
