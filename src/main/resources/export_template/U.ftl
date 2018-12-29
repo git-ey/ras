@@ -13833,9 +13833,8 @@
    </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s206"><Data ss:Type="String">合计</Data></Cell>
-    <!-- 此处在java代码中已经补全了缺失的item所以可以直接固定输出 -->
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-6]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-6]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[${(-U10000.trxFee.count)?string('0')}]C:R[-1]C)<#if U10000.trxFee.item30Index gte 0>-R[${(-U10000.trxFee.count+U10000.trxFee.item30Index)?string('0')}]C</#if>"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[${(-U10000.trxFee.count)?string('0')}]C:R[-1]C)<#if U10000.trxFee.item30Index gte 0>-R[${(-U10000.trxFee.count+U10000.trxFee.item30Index)?string('0')}]C</#if>"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row/>
