@@ -1,6 +1,7 @@
 package com.ey.service.wp.output.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,19 +10,19 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-
 import com.ey.service.wp.output.IExportManager;
 import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
 import com.ey.util.fileexport.FreeMarkerUtils;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+
 /**
  * @name IExportService
  * @description 底稿输出服务--I
- * @author Dai Zong	2017年12月11日
+ * @author Dai Zong 2017年12月11日
  */
 @Service("iExportService")
 public class IExportService extends BaseExportService implements IExportManager{
@@ -50,6 +51,7 @@ public class IExportService extends BaseExportService implements IExportManager{
         dataMap.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
         
         dataMap.put("I", this.getIData(fundId, periodStr));
+        dataMap.put("I300", this.getI300Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_I);
     }
@@ -495,6 +497,30 @@ public class IExportService extends BaseExportService implements IExportManager{
         }
         queryMap.remove("type");
         return metaDataList;
+    }
+
+    /**
+     * 处理sheet页I300的数据
+     * @author Dai Zong 2018年12月30日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getI300Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> I300metaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectI300Data", queryMap);
+        if(I300metaDataList == null) {
+            I300metaDataList = Collections.emptyList();
+        }
+
+        result.put("list", I300metaDataList);
+        result.put("count", I300metaDataList.size());
+        return result;
     }
     
 }

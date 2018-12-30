@@ -904,6 +904,14 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
+  <Style ss:ID="s166" ss:Parent="s24">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+  </Style>
   <Style ss:ID="s167">
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
@@ -1271,6 +1279,44 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#80FD6F" ss:Pattern="Solid"/>
   </Style>
+  <Style ss:ID="s225">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+  </Style>
+  <Style ss:ID="s226">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+  </Style>
+  <Style ss:ID="s227">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11" ss:Color="#FF0000"
+    ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat/>
+  </Style>
+  <Style ss:ID="s228">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11" ss:Color="#FF0000"
+    ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat/>
+  </Style>
+  <Style ss:ID="s229" ss:Parent="s23">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s231">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+  </Style>
   <Style ss:ID="s237">
    <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
@@ -1362,8 +1408,6 @@
    <Row>
     <Cell ss:StyleID="s95"><Data ss:Type="String">科目：</Data></Cell>
     <Cell ss:StyleID="s121"><Data ss:Type="String">报表附注-关联方及交易相关</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s97"/>
@@ -3208,6 +3252,91 @@
      <Number>3</Number>
      <ActiveRow>9</ActiveRow>
      <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="I300">
+  <Table x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="53" ss:DefaultRowHeight="14">
+   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="91"/>
+   <Column ss:AutoFitWidth="0" ss:Width="63"/>
+   <Column ss:AutoFitWidth="0" ss:Width="95"/>
+   <Column ss:AutoFitWidth="0" ss:Width="50"/>
+   <Column ss:AutoFitWidth="0" ss:Width="109"/>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:StyleID="s138"/>
+    <Cell ss:StyleID="s138"/>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s95"><Data ss:Type="String">客户：</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
+    <Cell/>
+    <Cell ss:StyleID="s160"><Data ss:Type="String">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s164"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s161"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s96"><Data ss:Type="String">WP Ref.</Data></Cell>
+   </Row>
+   <Row ss:Height="15">
+    <Cell ss:StyleID="s95"><Data ss:Type="String">会计期间：</Data></Cell>
+    <Cell ss:StyleID="s159"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell/>
+    <Cell ss:StyleID="s162"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s165"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s163"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s111"><Data ss:Type="String">I300</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s95"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">报表附注-由关联方保管的银行存款产生的利息收入</Data></Cell>
+   </Row>
+   <Row ss:Index="7">
+    <Cell ss:Index="2" ss:StyleID="s225"><Data ss:Type="String">关联方名称</Data></Cell>
+    <Cell ss:StyleID="s225"/>
+    <Cell ss:StyleID="s226"><Data ss:Type="String">本期金额</Data></Cell>
+    <Cell ss:StyleID="s225"/>
+    <Cell ss:StyleID="s226"><Data ss:Type="String">利息收入类型</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s225"/>
+    <Cell ss:StyleID="s225"/>
+    <Cell ss:StyleID="s227"><Data ss:Type="String">S/L</Data></Cell>
+    <Cell ss:StyleID="s225"/>
+    <Cell ss:StyleID="s226"/>
+   </Row>
+   <#if I300.count != 0 >
+   <#list I300.list as item>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s225"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
+    <Cell ss:StyleID="s228"><Data ss:Type="String">NNXXX</Data></Cell>
+    <Cell ss:StyleID="s229"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s228"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
+    <Cell ss:StyleID="s226"><Data ss:Type="String">${item.interestSource!}</Data></Cell>
+   </Row>
+   </#list>
+   </#if>
+   <Row ss:Index="13">
+    <Cell ss:StyleID="s231"><Data ss:Type="String">定期存款利息收入明细：</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <!--<TabColorIndex>42</TabColorIndex>-->
+   <!--<Selected/>-->
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>9</ActiveRow>
+     <ActiveCol>5</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

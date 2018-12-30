@@ -257,4 +257,21 @@
             IU.SORT
     </select>
 
+	<select id="selectI300Data" parameterType="java.util.Map" resultType = "java.util.Map">
+		SELECT
+			I300.SORT AS sort,
+			I300.PARTY_SHORT_NAME AS partyShortName,
+			I300.AMOUNT AS amount,
+			I300.INTEREST_SOURCE AS interestSource
+		FROM
+			wp_i300 I300
+		WHERE
+			1 = 1
+		AND I300. STATUS = 'Y'
+		AND I300.FUND_ID = #{fundId}
+		AND I300.PERIOD = #{period}
+		ORDER BY
+			I300.SORT
+	</select>
+
 </mapper>
