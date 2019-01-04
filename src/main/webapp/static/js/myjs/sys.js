@@ -11,14 +11,14 @@ String.prototype.trim=function(){
 //=======================================系统配置
 //保存
 function save(){
-	if($("#YSYNAME").val()==""){
-		$("#YSYNAME").tips({
+	if($("#SYSNAME").val()==""){
+		$("#SYSNAME").tips({
 			side:3,
             msg:'输入系统名称',
             bg:'#AE81FF',
             time:3
         });
-		$("#YSYNAME").focus();
+		$("#SYSNAME").focus();
 		return false;
 	}
 

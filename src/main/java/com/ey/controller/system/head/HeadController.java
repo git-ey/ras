@@ -84,8 +84,9 @@ public class HeadController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("YSYNAME", Tools.readTxtFile(Const.SYSNAME));	 //读取系统名称
+		pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME));	 //读取系统名称
 		pd.put("COUNTPAGE", Tools.readTxtFile(Const.PAGE));		 //读取每页条数
+		pd.put("SKIN", Tools.readTxtFile(Const.SKIN));		     //系统默认皮肤
 		mv.setViewName("system/head/sys_edit");
 		mv.addObject("pd", pd);
 		return mv;
@@ -101,8 +102,9 @@ public class HeadController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		Tools.writeFile(Const.SYSNAME,pd.getString("YSYNAME"));	//写入系统名称
+		Tools.writeFile(Const.SYSNAME,pd.getString("SYSNAME"));	//写入系统名称
 		Tools.writeFile(Const.PAGE,pd.getString("COUNTPAGE"));	//写入每页条数
+		Tools.writeFile(Const.SKIN,pd.getString("SKIN"));	    //系统默认皮肤
 		mv.addObject("msg","OK");
 		mv.setViewName("save_result");
 		return mv;

@@ -21,8 +21,9 @@ public class Const {
 	public static final String TRUE = "T";
 	public static final String FALSE = "F";
 	public static final String LOGIN = "/login_toLogin.do";					//登录地址
-	public static final String SYSNAME = "admin/config/SYSNAME.txt";		//系统名称路径
-	public static final String PAGE	= "admin/config/PAGE.txt";				//分页条数配置路径
+	public static final String SYSNAME = "config/SYSNAME.txt";		        //系统名称路径
+	public static final String PAGE	= "config/PAGE.txt";				    //分页条数配置路径
+	public static final String SKIN	= "config/SKIN.txt";				    //皮肤设置路径
 	public static final String FILEPATHIMG = "uploadFiles/uploadImgs/";		//图片上传路径
 	public static final String FILEPATHFILE = "uploadFiles/file/";			//文件上传路径
 	public static final String FILEPATHFILEOA = "uploadFiles/uploadFile/";	//文件上传路径(oa管理)
