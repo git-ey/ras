@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,10 @@ import com.ey.service.wp.output.UExportManager;
 import com.ey.service.wp.output.VExportManager;
 import com.ey.util.Logger;
 import com.ey.util.PageData;
+import com.ey.util.VbsUtil;
+import com.ey.util.VbsUtil.Scripts;
 import com.ey.util.fileexport.Constants;
+import com.ey.util.fileexport.FileExportUtils;
 
 /** 
  * 说明： 底稿导出工作台
@@ -171,6 +175,12 @@ public class WorkPaperService implements WorkPaperManager{
 //		    FUND_ID=F100066-01
 //		}
 	    String exportPath = pd.getString("OUTBOND_PATH");
+	    String tempExportPath = exportPath;
+	    int exportPathLength = exportPath.length();
+	    if(exportPath.charAt(exportPathLength - 1) == '/' || exportPath.charAt(exportPathLength - 1) == '\\') {
+	        tempExportPath = tempExportPath.substring(0, exportPathLength - 1);
+	    }
+	    tempExportPath = tempExportPath + "_temp\\";
 	    String periodStr = pd.getString("PERIOD");
 	    @SuppressWarnings("unchecked")
         List<PageData> fundInfos = (List<PageData>)dao.findForList("WorkPaperMapper.selectFundInfos", pd);
@@ -178,7 +188,7 @@ public class WorkPaperService implements WorkPaperManager{
 	        String errorMsg = StringUtils.EMPTY;
 	        for(PageData fundInfo : fundInfos) {
 	            try {
-	                this.exportOneFundWorkPaper(fundInfo, exportPath, periodStr, pd.getString(PD_FIELD_WP_TYPE));
+	                this.exportOneFundWorkPaper(fundInfo, tempExportPath, periodStr, pd.getString(PD_FIELD_WP_TYPE));
 	            }catch (Exception ex) {
 	                logger.error("底稿导出异常: " + fundInfo.getString("FUND_ID") + " " + fundInfo.getString("PERIOD"), ex);
 	                errorMsg += (ex.getMessage() + '\n');
@@ -186,7 +196,7 @@ public class WorkPaperService implements WorkPaperManager{
 	        }
 	        try {
 	        	if(StringUtils.isEmpty(pd.getString(PD_FIELD_WP_TYPE)) || "H_SUM".equals(pd.getString(PD_FIELD_WP_TYPE))){
-		            String hSumExportPath = exportPath + (periodStr + File.separatorChar + "H_SUM" + File.separatorChar);
+		            String hSumExportPath = tempExportPath + (periodStr + File.separatorChar + "H_SUM" + File.separatorChar);
 		            this.hSumExportService.doExport(hSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr);
 	        	}
 	        }catch (Exception ex) {
@@ -195,7 +205,7 @@ public class WorkPaperService implements WorkPaperManager{
             }
 	        try {
 	            if(StringUtils.isEmpty(pd.getString(PD_FIELD_WP_TYPE)) || "SA".equals(pd.getString(PD_FIELD_WP_TYPE))){
-	                String saSumExportPath = exportPath + (periodStr + File.separatorChar + "SA" + File.separatorChar);
+	                String saSumExportPath = tempExportPath + (periodStr + File.separatorChar + "SA" + File.separatorChar);
                     this.saExportService.doExport(saSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_SA, pd.getString("FIRM_CODE"), periodStr);
                 }
 	        }catch (Exception ex) {
@@ -205,6 +215,9 @@ public class WorkPaperService implements WorkPaperManager{
 	        if(errorMsg.length() != 0) {
 	            throw new Exception(errorMsg);
 	        }
+	        FileExportUtils.createDir(exportPath);
+	        VbsUtil.callScript(Scripts.WORKPAPER_AND_REPORT_CONVERTER, tempExportPath, exportPath);
+//	        FileUtils.deleteDirectory(new File(tempExportPath));
 	    }
 	    // 设置消息
         pd.put("RESULT", "S");

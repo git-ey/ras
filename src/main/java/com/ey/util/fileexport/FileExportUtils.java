@@ -46,8 +46,11 @@ public class FileExportUtils {
     
     /**
      * 私有化构造函数
+     * @throws IllegalAccessException 
      */
-    private FileExportUtils() {}
+    private FileExportUtils() throws IllegalAccessException {
+        throw new IllegalAccessException("private constructor");
+    }
     
     /**
      * 将流发送到HttpServletResponse
@@ -221,7 +224,7 @@ public class FileExportUtils {
         }
         File dir = new File(dirName);
         if (dir.exists()) {
-            logger.error("创建目录" + dirName + "失败，目标目录已经存在");
+            logger.warn("创建目录" + dirName + "异常，目标目录已经存在");
             return false;
         }
         if (!dirName.endsWith("/")) {  

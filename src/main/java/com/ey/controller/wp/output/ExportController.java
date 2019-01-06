@@ -1,6 +1,8 @@
 package com.ey.controller.wp.output;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ey.controller.base.BaseController;
 import com.ey.dao.DaoSupport;
@@ -121,6 +124,27 @@ public class ExportController extends BaseController {
 	        periodStr = periodStr + (String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "1231").substring(periodStr.length(), 8);
 	    }
 	    return periodStr;
+	}
+	
+	@RequestMapping(value = "/test")
+	@ResponseBody
+	public void test() {
+	    new Thread(() -> {
+	        String scriptPath = this.getClass().getClassLoader().getResource("vbs/workpaperAndReportConverter.vbs").getPath();
+	        if(StringUtils.isBlank(scriptPath)) {
+	            return;
+	        }
+	        if(scriptPath.charAt(0) == '/' || scriptPath.charAt(0) == '\\') {
+	            scriptPath = scriptPath.substring(1);
+	        }
+	        System.out.println(scriptPath);
+	        try {
+                Runtime.getRuntime().exec("cmd /C " + scriptPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+	    }).start();
+	    return;
 	}
 	
 	/**

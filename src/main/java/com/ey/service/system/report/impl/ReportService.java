@@ -1,5 +1,6 @@
 package com.ey.service.system.report.impl;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
@@ -27,7 +29,10 @@ import com.ey.util.DateUtil;
 import com.ey.util.Logger;
 import com.ey.util.PageData;
 import com.ey.util.StringUtil;
+import com.ey.util.VbsUtil;
+import com.ey.util.VbsUtil.Scripts;
 import com.ey.util.fileexport.Constants;
+import com.ey.util.fileexport.FileExportUtils;
 import com.google.common.collect.Maps;
 
 /**
@@ -350,6 +355,12 @@ public class ReportService implements ReportManager {
 
         // 报告导出路径
         String reportOutBoundPath = pd.getString("OUTBOND_PATH");
+        String reportOutBoundTempPath = reportOutBoundPath;
+        int reportOutBoundPathLength = reportOutBoundPath.length();
+        if(reportOutBoundPath.charAt(reportOutBoundPathLength - 1) == '/' || reportOutBoundPath.charAt(reportOutBoundPathLength - 1) == '\\') {
+            reportOutBoundTempPath = reportOutBoundTempPath.substring(0, reportOutBoundPathLength - 1);
+        }
+        reportOutBoundTempPath = reportOutBoundTempPath + "_temp\\";
 
         // 根据配置代码获取信息
         PageData p1 = dictionariesManager.findByCode(pd.getString("P1"));
@@ -437,11 +448,10 @@ public class ReportService implements ReportManager {
                 exportParam.put("FUND_ID", pfund.getString("FUND_ID"));
                 exportParam.put("partName", partName);
                 exportParam.put("reportTempRootPath", reportTempRootPath);
-                exportParam.put("reportOutBoundPath", reportOutBoundPath);
+                exportParam.put("reportOutBoundPath", reportOutBoundTempPath);
                 // 开始导出
                 try {
-                    this.reportExportService.doExport(reportOutBoundPath, Constants.EXPORT_AIM_FILE_NAME_REPORT,
-                            exportParam);
+                    this.reportExportService.doExport(reportOutBoundTempPath, Constants.EXPORT_AIM_FILE_NAME_REPORT, exportParam);
                 } catch (Exception ex) {
                     logger.error("报告导出异常: " + exportParam.toString(), ex);
                     errorMsg += (ex.getMessage() + '\n');
@@ -451,6 +461,9 @@ public class ReportService implements ReportManager {
             if (errorMsg.length() != 0) {
                 throw new Exception(errorMsg);
             }
+            FileExportUtils.createDir(reportOutBoundPath);
+            VbsUtil.callScript(Scripts.WORKPAPER_AND_REPORT_CONVERTER, reportOutBoundTempPath, reportOutBoundPath);
+//            FileUtils.deleteDirectory(new File(reportOutBoundTempPath));
         }
 
         // 设置消息
