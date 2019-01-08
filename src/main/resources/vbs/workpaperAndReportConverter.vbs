@@ -57,20 +57,24 @@ Sub ProcessFolder(inputFolderPathStr, outputFolderPathStr)
     Dim fileSystemObject
     Dim subInputFolderPathStr
     Dim subOutputFolderPathStr
+    Dim aField
+    Dim aHeader
+    Dim aSection
 
     inputFolderPathStr = FormatFolderPath(inputFolderPathStr)
     outputFolderPathStr = FormatFolderPath(outputFolderPathStr)
 
     Set fileSystemObject = CreateObject("Scripting.FileSystemObject")
     Set folder = fileSystemObject.GetFolder(inputFolderPathStr)
-    Set excel = CreateObject("Excel.Application")
-    Set word = CreateObject("Word.Application")
+    'Set excel = CreateObject("Excel.Application")
+    'Set word = CreateObject("Word.Application")
     ' Loop through the files
     For Each file In folder.Files
         fileName = file.Name
         fileType = Right(fileName, 3)
         If  (fileType = "xls" OR fileType = "xml") Then
             ' process Excel file
+            Set excel = CreateObject("Excel.Application")
             Set workbook = excel.Workbooks.Open(file)
             fileName = outputFolderPathStr + "\" + Replace(fileName, ".xml", ".xls")
             If workbook.HasVBProject Then
@@ -79,18 +83,37 @@ Sub ProcessFolder(inputFolderPathStr, outputFolderPathStr)
                 workbook.SaveAs (fileName + "x"), 51 'xlsx
             End If
             workbook.Close False
+            set workbook = nothing
+            excel.Quit
+            set excel = nothing
         elseif fileType = "doc" Then
             ' process Word file
+            Set word = CreateObject("Word.Application")
             Set document = word.documents.open(inputFolderPathStr + "\" + fileName)
             fileName = outputFolderPathStr + "\" + Replace(fileName, ".doc", ".docx")
+            ' for update fileds in word document's Headers
+            document.TrackRevisions = False
+            document.ShowRevisions = False
+            For Each aSection in document.Sections
+                for each aHeader in aSection.Headers 
+                        for each aField in aHeader.Range.Fields
+                            aField.Update
+                        Next
+                Next
+            Next
+            document.TrackRevisions = True
+            document.ShowRevisions = True
             document.SaveAs fileName, 16 'docx
             document.Close False
+            set document = nothing
+            word.Quit
+            set word = nothing
         End If
     Next
 
     ' close Application
-    excel.Quit
-    word.Quit
+    'excel.Quit
+    'word.Quit
   
     ' Loop through the subfolders
     For Each subFolder In folder.SubFolders
