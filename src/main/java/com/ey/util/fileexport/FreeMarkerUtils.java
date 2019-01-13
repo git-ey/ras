@@ -112,7 +112,7 @@ public class FreeMarkerUtils {
     public static String processTemplateToStrUseAbsPath(Map<String, Object> templateData, String templateFolderPath, String templateFileName) throws IOException, TemplateException{
         //参数校验
         if(templateData == null){
-            templateData = new HashMap<String, Object>();
+            templateData = new HashMap<>();
         }
         if(StringUtils.isEmpty(templateFolderPath) || StringUtils.isEmpty(templateFileName)){
             throw new IllegalArgumentException("Template Folder Path or Template File Name is EMPTY!");

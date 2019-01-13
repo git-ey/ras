@@ -109,7 +109,7 @@ public class OExportService extends BaseExportService implements OExportManager 
      */
     private Map<String,Object> getO300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         result.put("YJZZS_JRSPZR_SX", new HashMap<>());
         result.put("YJZZS_DKFW_SX", new HashMap<>());
@@ -166,6 +166,8 @@ public class OExportService extends BaseExportService implements OExportManager 
                         result.put("YJFJS_YJJYFJ_SX", resMap);
                     }else if("应交地方教育费附加".equals(resMap.get("subtype"))) {
                         result.put("YJFJS_YJDFJYFJ_SX", resMap);
+                    }else if("应交附加税中转".equals(resMap.get("subtype"))) {
+                        result.put("YJFJS_YJFJSZZ_SX", resMap);
                     }
                 }
             }
