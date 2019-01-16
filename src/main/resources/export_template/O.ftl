@@ -993,7 +993,7 @@
    <Row/>
    <Row>
      <Cell ss:StyleID="s70"><Data ss:Type="String">Note</Data></Cell>
-     <Cell ss:StyleID="s10099"><Data ss:Type="String">附加税通过本科目计提，除了1月的附加税费直接借记本科目支付外，其余月份均结转至应交城建税附加、教育费附加、地方教育费附加后向税务机关缴纳。</Data></Cell>
+     <Cell ss:StyleID="s65"><Data ss:Type="String">附加税通过本科目计提，除了1月的附加税费直接借记本科目支付外，其余月份均结转至应交城建税附加、教育费附加、地方教育费附加后向税务机关缴纳。</Data></Cell>
    </Row>
    </#if>
   </Table>
