@@ -281,7 +281,8 @@
 			IFNULL(sfc.GOLD_P, 'N') AS goldP,
 			IFNULL(sfc.RISK_S_INT, 'N') AS riskSInt,
 			IFNULL(sfc.RISK_S_PRICE, 'N') AS riskSPrice,
-			IFNULL(sfc.RISK_E_PRICE, 'N') AS riskEPrice
+			IFNULL(sfc.RISK_E_PRICE, 'N') AS riskEPrice,
+			IFNULL(sfc.RISK_LOC, 'N') AS riskLoc
 		FROM
 		    sys_fund_control sfc 
 		WHERE
@@ -323,7 +324,10 @@
             IFNULL( src.PR_ATTR1, '' ) AS PR_ATTR1,
             IFNULL( src.PR_ATTR2, '' ) AS PR_ATTR2,
             IFNULL( src.PR_ATTR3, '' ) AS PR_ATTR3,
-            IFNULL( src.FV_ATTR1, '' ) AS FV_ATTR1 
+            IFNULL( src.FV_ATTR1, '' ) AS FV_ATTR1,
+            IFNULL( src.MR, '' ) AS MR,
+			IFNULL( src.IR, '' ) AS IR,
+			IFNULL( src.IR_EXP, '' ) AS IR_EXP
         FROM
             sys_report_content src 
         WHERE
