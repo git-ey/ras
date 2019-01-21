@@ -75,15 +75,17 @@ Sub ProcessFolder(inputFolderPathStr, outputFolderPathStr)
         If  (fileType = "xls" OR fileType = "xml") Then
             ' process Excel file
             Set excel = CreateObject("Excel.Application")
+            excel.Displayalerts=false
             Set workbook = excel.Workbooks.Open(file)
             fileName = outputFolderPathStr + "\" + Replace(fileName, ".xml", ".xls")
             If workbook.HasVBProject Then
                 workbook.SaveAs (fileName + "m"), 52 'xlsm
             Else
-                workbook.SaveAs (fileName + "x"), 51 'xlsx
+                workbook.SaveAs (fileName + "x") ,51 'xlsx
             End If
             workbook.Close False
             set workbook = nothing
+            excel.Displayalerts=true
             excel.Quit
             set excel = nothing
         elseif fileType = "doc" Then
@@ -109,6 +111,10 @@ Sub ProcessFolder(inputFolderPathStr, outputFolderPathStr)
             word.Quit
             set word = nothing
         End If
+        fileName = inputFolderPathStr + "\" + file.Name
+        If fileSystemObject.FileExists(fileName) Then 
+            fileSystemObject.deletefile fileName,1
+        END IF
     Next
 
     ' close Application
