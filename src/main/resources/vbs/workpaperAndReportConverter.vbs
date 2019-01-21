@@ -91,6 +91,7 @@ Sub ProcessFolder(inputFolderPathStr, outputFolderPathStr)
         elseif fileType = "doc" Then
             ' process Word file
             Set word = CreateObject("Word.Application")
+            word.Displayalerts=False
             Set document = word.documents.open(inputFolderPathStr + "\" + fileName)
             fileName = outputFolderPathStr + "\" + Replace(fileName, ".doc", ".docx")
             ' for update fileds in word document's Headers
@@ -108,6 +109,7 @@ Sub ProcessFolder(inputFolderPathStr, outputFolderPathStr)
             document.SaveAs fileName, 16 'docx
             document.Close False
             set document = nothing
+            word.Displayalerts=true
             word.Quit
             set word = nothing
         End If
