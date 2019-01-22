@@ -525,8 +525,8 @@ public class ReportExportService implements ReportExportManager {
             if(mainContainer.get("实收基金") != null) {
                 temp.put("SS", mainContainer.get("实收基金").get(tag));
             }
-            if(mainContainer.get("利润分配") != null) {
-                temp.put("WFP", mainContainer.get("利润分配").get(tag));
+            if(mainContainer.get("未分配利润") != null) {
+                temp.put("WFP", mainContainer.get("未分配利润").get(tag));
             }
             if(mainContainer.get("所有者权益合计") != null) {
                 temp.put("SYZ", mainContainer.get("所有者权益合计").get(tag));
@@ -534,8 +534,8 @@ public class ReportExportService implements ReportExportManager {
             if(mainOldContainer.get("实收基金") != null) {
                 temp.put("SSOLD", mainOldContainer.get("实收基金").get(tag));
             }
-            if(mainOldContainer.get("利润分配") != null) {
-                temp.put("WFPOLD", mainOldContainer.get("利润分配").get(tag));
+            if(mainOldContainer.get("未分配利润") != null) {
+                temp.put("WFPOLD", mainOldContainer.get("未分配利润").get(tag));
             }
             if(mainOldContainer.get("所有者权益合计") != null) {
                 temp.put("SYZOLD", mainOldContainer.get("所有者权益合计").get(tag));
