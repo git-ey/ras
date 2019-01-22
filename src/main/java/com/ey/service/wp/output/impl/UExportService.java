@@ -36,7 +36,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      * @throws Exception
      */
     private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
-        Map<String, Object> dataMap = new HashMap<String, Object>();
+        Map<String, Object> dataMap = new HashMap<>();
         
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
@@ -90,7 +90,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getUData(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> UMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectUData", queryMap);
@@ -99,30 +99,30 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         
         Map<String,Object> M6011 = new HashMap<>();
-        M6011.put("S1", new HashMap<String,Object>());
-        M6011.put("S2", new HashMap<String,Object>());
-        M6011.put("S3", new HashMap<String,Object>());
-        M6011.put("S4", new HashMap<String,Object>());
-        M6011.put("S5", new HashMap<String,Object>());
+        M6011.put("S1", new HashMap<>());
+        M6011.put("S2", new HashMap<>());
+        M6011.put("S3", new HashMap<>());
+        M6011.put("S4", new HashMap<>());
+        M6011.put("S5", new HashMap<>());
         
         Map<String,Object> M6111 = new HashMap<>();
-        M6111.put("S1", new HashMap<String,Object>());
-        M6111.put("S2", new HashMap<String,Object>());
-        M6111.put("S3", new HashMap<String,Object>());
-        M6111.put("S4", new HashMap<String,Object>());
-        M6111.put("S5", new HashMap<String,Object>());
-        M6111.put("S6", new HashMap<String,Object>());
-        M6111.put("S7", new HashMap<String,Object>());
+        M6111.put("S1", new HashMap<>());
+        M6111.put("S2", new HashMap<>());
+        M6111.put("S3", new HashMap<>());
+        M6111.put("S4", new HashMap<>());
+        M6111.put("S5", new HashMap<>());
+        M6111.put("S6", new HashMap<>());
+        M6111.put("S7", new HashMap<>());
         
-        result.put("KM6101", new HashMap<String,Object>());
-        result.put("KM6302", new HashMap<String,Object>());
-        result.put("KM6403", new HashMap<String,Object>());
-        result.put("KM6404", new HashMap<String,Object>());
-        result.put("KM6406", new HashMap<String,Object>());
-        result.put("KM6407", new HashMap<String,Object>());
-        result.put("KM6411", new HashMap<String,Object>());
-        result.put("KM6802", new HashMap<String,Object>());
-        result.put("KM6605", new HashMap<String,Object>());
+        result.put("KM6101", new HashMap<>());
+        result.put("KM6302", new HashMap<>());
+        result.put("KM6403", new HashMap<>());
+        result.put("KM6404", new HashMap<>());
+        result.put("KM6406", new HashMap<>());
+        result.put("KM6407", new HashMap<>());
+        result.put("KM6411", new HashMap<>());
+        result.put("KM6802", new HashMap<>());
+        result.put("KM6605", new HashMap<>());
         
         for(Map<String,Object> map : UMetaDataList) {
             if("6011".equals(map.get("accountNum"))) {
@@ -175,7 +175,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getU300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         Map<String, Object> main = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -187,18 +187,18 @@ public class UExportService extends BaseExportService implements UExportManager 
         for(Map<String,Object> map : U300MainMetaDataList) {
             temp.put(String.valueOf(map.get("item")), map);
         }
-        main.put("S1", temp.get("股票投资收益")==null?new HashMap<String,Object>():temp.get("股票投资收益"));
-        main.put("S2", temp.get("债券投资收益")==null?new HashMap<String,Object>():temp.get("债券投资收益"));
-        main.put("S3", temp.get("资产支持证券投资收益")==null?new HashMap<String,Object>():temp.get("资产支持证券投资收益"));
-        main.put("S4", temp.get("基金投资收益")==null?new HashMap<String,Object>():temp.get("基金投资收益"));
-        main.put("S5", temp.get("贵金属投资收益")==null?new HashMap<String,Object>():temp.get("贵金属投资收益"));
-        main.put("S6", temp.get("衍生工具收益")==null?new HashMap<String,Object>():temp.get("衍生工具收益"));
-        main.put("S7", temp.get("股利收益")==null?new HashMap<String,Object>():temp.get("股利收益"));
-        main.put("S8", temp.get("存款利息收入")==null?new HashMap<String,Object>():temp.get("存款利息收入"));
-        main.put("S9", temp.get("债券利息收入")==null?new HashMap<String,Object>():temp.get("债券利息收入"));
-        main.put("S10", temp.get("资产支持证券利息收入")==null?new HashMap<String,Object>():temp.get("资产支持证券利息收入"));
-        main.put("S11", temp.get("买入返售金融资产收入")==null?new HashMap<String,Object>():temp.get("买入返售金融资产收入"));
-        main.put("S12", temp.get("其他利息收入")==null?new HashMap<String,Object>():temp.get("其他利息收入"));
+        main.put("S1", temp.get("股票投资收益")==null?new HashMap<>():temp.get("股票投资收益"));
+        main.put("S2", temp.get("债券投资收益")==null?new HashMap<>():temp.get("债券投资收益"));
+        main.put("S3", temp.get("资产支持证券投资收益")==null?new HashMap<>():temp.get("资产支持证券投资收益"));
+        main.put("S4", temp.get("基金投资收益")==null?new HashMap<>():temp.get("基金投资收益"));
+        main.put("S5", temp.get("贵金属投资收益")==null?new HashMap<>():temp.get("贵金属投资收益"));
+        main.put("S6", temp.get("衍生工具收益")==null?new HashMap<>():temp.get("衍生工具收益"));
+        main.put("S7", temp.get("股利收益")==null?new HashMap<>():temp.get("股利收益"));
+        main.put("S8", temp.get("存款利息收入")==null?new HashMap<>():temp.get("存款利息收入"));
+        main.put("S9", temp.get("债券利息收入")==null?new HashMap<>():temp.get("债券利息收入"));
+        main.put("S10", temp.get("资产支持证券利息收入")==null?new HashMap<>():temp.get("资产支持证券利息收入"));
+        main.put("S11", temp.get("买入返售金融资产收入")==null?new HashMap<>():temp.get("买入返售金融资产收入"));
+        main.put("S12", temp.get("其他利息收入")==null?new HashMap<>():temp.get("其他利息收入"));
         
         Map<String, Object> dividend = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -210,8 +210,8 @@ public class UExportService extends BaseExportService implements UExportManager 
         for(Map<String,Object> map : U300DividendMetaDataList) {
             temp.put(String.valueOf(map.get("item")), map);
         }
-        dividend.put("S1", temp.get("股票")==null?new HashMap<String,Object>():temp.get("股票"));
-        dividend.put("S2", temp.get("基金")==null?new HashMap<String,Object>():temp.get("基金"));
+        dividend.put("S1", temp.get("股票")==null?new HashMap<>():temp.get("股票"));
+        dividend.put("S2", temp.get("基金")==null?new HashMap<>():temp.get("基金"));
         
         Map<String, Object> interest = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -223,11 +223,11 @@ public class UExportService extends BaseExportService implements UExportManager 
         for(Map<String,Object> map : U300InterestMetaDataList) {
             temp.put(String.valueOf(map.get("item")), map);
         }
-        interest.put("S1", temp.get("活期存款利息收入")==null?new HashMap<String,Object>():temp.get("活期存款利息收入"));
-        interest.put("S2", temp.get("定期存款利息收入")==null?new HashMap<String,Object>():temp.get("定期存款利息收入"));
-        interest.put("S3", temp.get("其他存款利息收入")==null?new HashMap<String,Object>():temp.get("其他存款利息收入"));
-        interest.put("S4", temp.get("结算备付金利息收入")==null?new HashMap<String,Object>():temp.get("结算备付金利息收入"));
-        interest.put("S5", temp.get("其他")==null?new HashMap<String,Object>():temp.get("其他"));
+        interest.put("S1", temp.get("活期存款利息收入")==null?new HashMap<>():temp.get("活期存款利息收入"));
+        interest.put("S2", temp.get("定期存款利息收入")==null?new HashMap<>():temp.get("定期存款利息收入"));
+        interest.put("S3", temp.get("其他存款利息收入")==null?new HashMap<>():temp.get("其他存款利息收入"));
+        interest.put("S4", temp.get("结算备付金利息收入")==null?new HashMap<>():temp.get("结算备付金利息收入"));
+        interest.put("S5", temp.get("其他")==null?new HashMap<>():temp.get("其他"));
         
         result.put("main", main);
         result.put("dividend", dividend);
@@ -246,7 +246,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getU320Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         String finSys = (String)this.dao.findForObject("UExportMapper.selectFinSys", queryMap);
         
@@ -273,7 +273,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getU400Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U400MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU400Data", queryMap);
@@ -285,10 +285,10 @@ public class UExportService extends BaseExportService implements UExportManager 
         for(Map<String,Object> map : U400MetaDataList) {
             temp.put(String.valueOf(map.get("item")), map);
         }
-        result.put("S1", temp.get("基金赎回费收入")==null?new HashMap<String,Object>():temp.get("基金赎回费收入"));
-        result.put("S2", temp.get("基金转换费收入")==null?new HashMap<String,Object>():temp.get("基金转换费收入"));
-        result.put("S3", temp.get("印花税返还收入")==null?new HashMap<String,Object>():temp.get("印花税返还收入"));
-        result.put("S4", temp.get("其他")==null?new HashMap<String,Object>():temp.get("其他"));
+        result.put("S1", temp.get("基金赎回费收入")==null?new HashMap<>():temp.get("基金赎回费收入"));
+        result.put("S2", temp.get("基金转换费收入")==null?new HashMap<>():temp.get("基金转换费收入"));
+        result.put("S3", temp.get("印花税返还收入")==null?new HashMap<>():temp.get("印花税返还收入"));
+        result.put("S4", temp.get("其他")==null?new HashMap<>():temp.get("其他"));
         
         return result;
     }
@@ -304,28 +304,28 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getU500Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
-        Map<String, Object> main = new HashMap<String,Object>();
-        Map<String, Object> trade = new HashMap<String,Object>();
-        Map<String, Object> bank = new HashMap<String,Object>();
-        Map<String, Object> fundTrade = new HashMap<String,Object>();
-        Map<String, Object> cffe = new HashMap<String,Object>();
-        Map<String, Object> KM6407 = new HashMap<String,Object>();
-        Map<String, Object> KM6411 = new HashMap<String,Object>();
+        Map<String, Object> main = new HashMap<>();
+        Map<String, Object> trade = new HashMap<>();
+        Map<String, Object> bank = new HashMap<>();
+        Map<String, Object> fundTrade = new HashMap<>();
+        Map<String, Object> cffe = new HashMap<>();
+        Map<String, Object> KM6407 = new HashMap<>();
+        Map<String, Object> KM6411 = new HashMap<>();
         
-        trade.put("S1", new HashMap<String,Object>());
-        trade.put("S2", new HashMap<String,Object>());
-        trade.put("S3", new HashMap<String,Object>());
-        trade.put("S4", new HashMap<String,Object>());
-        trade.put("S5", new HashMap<String,Object>());
-        bank.put("S1", new HashMap<String,Object>());
-        bank.put("S2", new HashMap<String,Object>());
-        fundTrade.put("S1", new HashMap<String,Object>());
-        fundTrade.put("S2", new HashMap<String,Object>());
-        cffe.put("S1", new HashMap<String,Object>());
-        KM6411.put("S1", new HashMap<String,Object>());
-        KM6411.put("S2", new HashMap<String,Object>());
+        trade.put("S1", new HashMap<>());
+        trade.put("S2", new HashMap<>());
+        trade.put("S3", new HashMap<>());
+        trade.put("S4", new HashMap<>());
+        trade.put("S5", new HashMap<>());
+        bank.put("S1", new HashMap<>());
+        bank.put("S2", new HashMap<>());
+        fundTrade.put("S1", new HashMap<>());
+        fundTrade.put("S2", new HashMap<>());
+        cffe.put("S1", new HashMap<>());
+        KM6411.put("S1", new HashMap<>());
+        KM6411.put("S2", new HashMap<>());
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U500MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU500MainData", queryMap);
@@ -359,6 +359,8 @@ public class UExportService extends BaseExportService implements UExportManager 
             				trade.put("S4", map);
             			}else if("资产支持证券交易费用".equals(map.get("item"))) {
             				trade.put("S5", map);
+            			}else if ("黄金交易手续费".equals(map.get("item"))) {
+            			    trade.put("S6", map);
             			}
             		}else if("银行间".equals(map.get("type"))) {
             			if("结算服务费".equals(map.get("item"))) {
@@ -388,7 +390,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         main.put("KM6407", KM6407);
         main.put("KM6411", KM6411);
         
-        Map<String, Object> trxFee = new HashMap<String,Object>();
+        Map<String, Object> trxFee = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U500TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU500TrxFeeData", queryMap);
         if(U500TrxFeeMetaDataList == null) {
@@ -399,10 +401,10 @@ public class UExportService extends BaseExportService implements UExportManager 
             temp.put(String.valueOf(map.get("market")), map);
         }
         
-        trxFee.put("SH", temp.get("上交所") ==null?new HashMap<String,Object>():temp.get("上交所"));
-        trxFee.put("SZ", temp.get("深交所") ==null?new HashMap<String,Object>():temp.get("深交所"));
+        trxFee.put("SH", temp.get("上交所") ==null?new HashMap<>():temp.get("上交所"));
+        trxFee.put("SZ", temp.get("深交所") ==null?new HashMap<>():temp.get("深交所"));
         
-        Map<String, Object> test = new HashMap<String,Object>();
+        Map<String, Object> test = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U500TestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU500TestData", queryMap);
         if(CollectionUtils.isNotEmpty(U500TestMetaDataList)) {
@@ -427,7 +429,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getU600Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         List<Object> list = new ArrayList<>();
         
@@ -442,8 +444,8 @@ public class UExportService extends BaseExportService implements UExportManager 
             temp.put(String.valueOf(map.get("item")), map);
         }
         
-        result.put("S1", temp.get("审计费用")==null?new HashMap<String,Object>():temp.get("审计费用"));
-        result.put("S2", temp.get("信息披露费")==null?new HashMap<String,Object>():temp.get("信息披露费"));
+        result.put("S1", temp.get("审计费用")==null?new HashMap<>():temp.get("审计费用"));
+        result.put("S2", temp.get("信息披露费")==null?new HashMap<>():temp.get("信息披露费"));
         
         temp.remove("审计费用");
         temp.remove("信息披露费");
@@ -461,14 +463,14 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         result.put("testFlag", testFlag);
         
-//        result.put("S3", temp.get("上市年费")==null?new HashMap<String,Object>():temp.get("上市年费"));
-//        result.put("S4", temp.get("分红手续费")==null?new HashMap<String,Object>():temp.get("分红手续费"));
-//        result.put("S5", temp.get("指数使用费")==null?new HashMap<String,Object>():temp.get("指数使用费"));
-//        result.put("S6", temp.get("银行划款费用")==null?new HashMap<String,Object>():temp.get("银行划款费用"));
-//        result.put("S7", temp.get("账户维护费")==null?new HashMap<String,Object>():temp.get("账户维护费"));
-//        result.put("S8", temp.get("交易费用")==null?new HashMap<String,Object>():temp.get("交易费用"));
-//        result.put("S9", temp.get("回购手续费")==null?new HashMap<String,Object>():temp.get("回购手续费"));
-//        result.put("S10", temp.get("其他")==null?new HashMap<String,Object>():temp.get("其他"));
+//        result.put("S3", temp.get("上市年费")==null?new HashMap<>():temp.get("上市年费"));
+//        result.put("S4", temp.get("分红手续费")==null?new HashMap<>():temp.get("分红手续费"));
+//        result.put("S5", temp.get("指数使用费")==null?new HashMap<>():temp.get("指数使用费"));
+//        result.put("S6", temp.get("银行划款费用")==null?new HashMap<>():temp.get("银行划款费用"));
+//        result.put("S7", temp.get("账户维护费")==null?new HashMap<>():temp.get("账户维护费"));
+//        result.put("S8", temp.get("交易费用")==null?new HashMap<>():temp.get("交易费用"));
+//        result.put("S9", temp.get("回购手续费")==null?new HashMap<>():temp.get("回购手续费"));
+//        result.put("S10", temp.get("其他")==null?new HashMap<>():temp.get("其他"));
 
         return result;
     }
@@ -484,7 +486,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getU600TestData(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         Map<String,Object> U600TestDetailData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU600TestData", queryMap);
@@ -515,7 +517,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getU800Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         Map<String, Object> CJFFJ = new HashMap<>(); // 城建费附加
         Map<String, Object> JYFJ = new HashMap<>(); // 教育附加
@@ -567,7 +569,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getU900Data(String fundId, String periodStr) throws Exception{
     	Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-    	Map<String, Object> result = new HashMap<String,Object>();
+    	Map<String, Object> result = new HashMap<>();
     	
     	Map<String, Object> I1010 = new HashMap<>();// 股票投资
     	Map<String, Object> I1020 = new HashMap<>();// 债券投资
@@ -627,7 +629,7 @@ public class UExportService extends BaseExportService implements UExportManager 
      */
     private Map<String,Object> getU10000Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
         Map<String, Object> ETF_MAP = (Map<String, Object>)this.dao.findForObject("FundMapper.selectETFFlag", queryMap);
@@ -638,12 +640,12 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         result.put("ETF", ETF);
         
-        Map<String, Object> interest = new HashMap<String,Object>();
-        interest.put("S1", new HashMap<String,Object>());
-        interest.put("S2", new HashMap<String,Object>());
-        interest.put("S3", new HashMap<String,Object>());
-        interest.put("S4", new HashMap<String,Object>());
-        interest.put("S5", new HashMap<String,Object>());
+        Map<String, Object> interest = new HashMap<>();
+        interest.put("S1", new HashMap<>());
+        interest.put("S2", new HashMap<>());
+        interest.put("S3", new HashMap<>());
+        interest.put("S4", new HashMap<>());
+        interest.put("S5", new HashMap<>());
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000InterestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000InterestData", queryMap);
         if(U10000InterestMetaDataList == null) {
@@ -664,19 +666,19 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         result.put("interest", interest);
         
-        Map<String, Object> stocks = new HashMap<String,Object>();
-        stocks.put("S1", new HashMap<String,Object>());
-        stocks.put("S2", new HashMap<String,Object>());
-        stocks.put("S3", new HashMap<String,Object>());
-        stocks.put("S4", new HashMap<String,Object>());
-        stocks.put("S5", new HashMap<String,Object>());
-        stocks.put("S6", new HashMap<String,Object>());
-        stocks.put("S7", new HashMap<String,Object>());
-        stocks.put("S8", new HashMap<String,Object>());
-        stocks.put("S9", new HashMap<String,Object>());
-        stocks.put("S10", new HashMap<String,Object>());
-        stocks.put("S11", new HashMap<String,Object>());
-        stocks.put("S12", new HashMap<String,Object>());
+        Map<String, Object> stocks = new HashMap<>();
+        stocks.put("S1", new HashMap<>());
+        stocks.put("S2", new HashMap<>());
+        stocks.put("S3", new HashMap<>());
+        stocks.put("S4", new HashMap<>());
+        stocks.put("S5", new HashMap<>());
+        stocks.put("S6", new HashMap<>());
+        stocks.put("S7", new HashMap<>());
+        stocks.put("S8", new HashMap<>());
+        stocks.put("S9", new HashMap<>());
+        stocks.put("S10", new HashMap<>());
+        stocks.put("S11", new HashMap<>());
+        stocks.put("S12", new HashMap<>());
         queryMap.put("type", "STOCKS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
@@ -722,9 +724,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         result.put("stocks", stocks);
         
-        Map<String, Object> fund = new HashMap<String,Object>();
-        fund.put("S1", new HashMap<String,Object>());
-        fund.put("S2", new HashMap<String,Object>());
+        Map<String, Object> fund = new HashMap<>();
+        fund.put("S1", new HashMap<>());
+        fund.put("S2", new HashMap<>());
         queryMap.put("type", "FUND");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000FundMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
@@ -740,22 +742,22 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         result.put("fund", fund);
         
-        Map<String, Object> bond = new HashMap<String,Object>();
-        bond.put("S1", new HashMap<String,Object>());
-        bond.put("S2", new HashMap<String,Object>());
-        bond.put("S3", new HashMap<String,Object>());
-        bond.put("S4", new HashMap<String,Object>());
-        bond.put("S5", new HashMap<String,Object>());
-        bond.put("S6", new HashMap<String,Object>());
-        bond.put("S7", new HashMap<String,Object>());
-        bond.put("S8", new HashMap<String,Object>());
-        bond.put("S9", new HashMap<String,Object>());
-        bond.put("S10", new HashMap<String,Object>());
-        bond.put("S11", new HashMap<String,Object>());
-        bond.put("S12", new HashMap<String,Object>());
-        bond.put("S13", new HashMap<String,Object>());
-        bond.put("S14", new HashMap<String,Object>());
-        bond.put("S15", new HashMap<String,Object>());
+        Map<String, Object> bond = new HashMap<>();
+        bond.put("S1", new HashMap<>());
+        bond.put("S2", new HashMap<>());
+        bond.put("S3", new HashMap<>());
+        bond.put("S4", new HashMap<>());
+        bond.put("S5", new HashMap<>());
+        bond.put("S6", new HashMap<>());
+        bond.put("S7", new HashMap<>());
+        bond.put("S8", new HashMap<>());
+        bond.put("S9", new HashMap<>());
+        bond.put("S10", new HashMap<>());
+        bond.put("S11", new HashMap<>());
+        bond.put("S12", new HashMap<>());
+        bond.put("S13", new HashMap<>());
+        bond.put("S14", new HashMap<>());
+        bond.put("S15", new HashMap<>());
         queryMap.put("type", "BOND");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
@@ -807,10 +809,10 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         result.put("bond", bond);
         
-        Map<String, Object> abs = new HashMap<String,Object>();
-        abs.put("S1", new HashMap<String,Object>());
-        abs.put("S2", new HashMap<String,Object>());
-        abs.put("S3", new HashMap<String,Object>());
+        Map<String, Object> abs = new HashMap<>();
+        abs.put("S1", new HashMap<>());
+        abs.put("S2", new HashMap<>());
+        abs.put("S3", new HashMap<>());
         queryMap.put("type", "ABS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000AbsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
@@ -828,20 +830,20 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         result.put("abs", abs);
         
-        Map<String, Object> gold = new HashMap<String,Object>();
-        gold.put("S1", new HashMap<String,Object>());
-        gold.put("S2", new HashMap<String,Object>());
-        gold.put("S3", new HashMap<String,Object>());
-        gold.put("S4", new HashMap<String,Object>());
-        gold.put("S5", new HashMap<String,Object>());
-        gold.put("S5_1", new HashMap<String,Object>());
-        gold.put("S6", new HashMap<String,Object>());
-        gold.put("S7", new HashMap<String,Object>());
-        gold.put("S8", new HashMap<String,Object>());
-        gold.put("S9", new HashMap<String,Object>());
-        gold.put("S10", new HashMap<String,Object>());
-        gold.put("S11", new HashMap<String,Object>());
-        gold.put("S12", new HashMap<String,Object>());
+        Map<String, Object> gold = new HashMap<>();
+        gold.put("S1", new HashMap<>());
+        gold.put("S2", new HashMap<>());
+        gold.put("S3", new HashMap<>());
+        gold.put("S4", new HashMap<>());
+        gold.put("S5", new HashMap<>());
+        gold.put("S5_1", new HashMap<>());
+        gold.put("S6", new HashMap<>());
+        gold.put("S7", new HashMap<>());
+        gold.put("S8", new HashMap<>());
+        gold.put("S9", new HashMap<>());
+        gold.put("S10", new HashMap<>());
+        gold.put("S11", new HashMap<>());
+        gold.put("S12", new HashMap<>());
         queryMap.put("type", "GOLD");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
@@ -889,10 +891,10 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         result.put("gold", gold);
         
-        Map<String, Object> di = new HashMap<String,Object>();
-        di.put("S1", new HashMap<String,Object>());
-        di.put("S2", new HashMap<String,Object>());
-        di.put("S3", new HashMap<String,Object>());
+        Map<String, Object> di = new HashMap<>();
+        di.put("S1", new HashMap<>());
+        di.put("S2", new HashMap<>());
+        di.put("S3", new HashMap<>());
         queryMap.put("type", "DI_WARRANT");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000DiWarrantMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
@@ -926,9 +928,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("di_other_list", U10000DiOtherMetaDataList);
         result.put("di_other_count", U10000DiOtherMetaDataList.size());
         
-        Map<String, Object> dividend = new HashMap<String,Object>();
-        dividend.put("S1", new HashMap<String,Object>());
-        dividend.put("S2", new HashMap<String,Object>());
+        Map<String, Object> dividend = new HashMap<>();
+        dividend.put("S1", new HashMap<>());
+        dividend.put("S2", new HashMap<>());
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000DividendMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000DividendData", queryMap);
         if(U10000DividendMetaDataList == null) {
@@ -943,9 +945,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         }
         result.put("dividend", dividend);
         
-        Map<String, Object> other_r = new HashMap<String,Object>();
-        other_r.put("S1", new HashMap<String,Object>());
-        other_r.put("S2", new HashMap<String,Object>());
+        Map<String, Object> other_r = new HashMap<>();
+        other_r.put("S1", new HashMap<>());
+        other_r.put("S2", new HashMap<>());
         List<Map<String,Object>> SL = new ArrayList<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000OtherRMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherRData", queryMap);
@@ -965,7 +967,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         other_r.put("SL_count", SL.size());
         result.put("other_r", other_r);
         
-        Map<String, Object> trxFee = new HashMap<String,Object>();
+        Map<String, Object> trxFee = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000TrxFeeData", queryMap);
         if(U10000TrxFeeMetaDataList == null) {
@@ -985,7 +987,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         trxFee.put("item30Index", item30Index);
         result.put("trxFee", trxFee);
         
-        Map<String, Object> other_c = new HashMap<String,Object>();
+        Map<String, Object> other_c = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000OtherCMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherCData", queryMap);
         if(U10000OtherCMetaDataList == null) {

@@ -10849,6 +10849,29 @@
     <Cell ss:StyleID="s78"/>
     <Cell ss:StyleID="s78"/>
    </Row>
+   <#if U500.main.KM6407.trade.S6?? >
+   <Row ss:StyleID="s117">
+    <Cell ss:StyleID="s182"/>
+    <Cell ss:StyleID="s546"><Data ss:Type="String">黄金交易手续费</Data></Cell>
+    <Cell ss:StyleID="s111"><Data ss:Type="Number">${(U500.main.KM6407.trade.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s112"/>
+    <Cell ss:StyleID="s111"><Data ss:Type="Number">${(U500.main.KM6407.trade.S6.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s104"/>
+    <Cell ss:StyleID="s116"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:Index="15" ss:StyleID="s104"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   </#if>
    <Row ss:StyleID="s117">
     <Cell ss:StyleID="s182"/>
     <Cell ss:StyleID="s546"/>
@@ -10873,9 +10896,9 @@
    <Row ss:StyleID="s117">
     <Cell ss:StyleID="s182"/>
     <Cell ss:StyleID="s546"><Data ss:Type="String">交易所市场交易费用小计</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-6]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[<#if U500.main.KM6407.trade.S6?? >-7<#else>-6</#if>]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-6]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[<#if U500.main.KM6407.trade.S6?? >-7<#else>-6</#if>]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s104"/>
