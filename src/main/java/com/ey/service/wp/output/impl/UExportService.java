@@ -578,7 +578,7 @@ public class UExportService extends BaseExportService implements UExportManager 
     	Map<String, Object> I1050 = new HashMap<>();// 贵金属投资
     	Map<String, Object> I1060 = new HashMap<>();// 其他
     	Map<String, Object> I2010 = new HashMap<>();// 权证投资
-    	Map<String, Object> I3010 = new HashMap<>();// 减：应税金融商品公允价值变动产生的预估增值税(增值税)
+    	Map<String, Object> I3010 = new HashMap<>();// 减：应税金融商品公允价值变动产生的预估增值税
     	
     	@SuppressWarnings("unchecked")
     	List<Map<String,Object>> U900Data = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU900Data", queryMap);
@@ -587,21 +587,21 @@ public class UExportService extends BaseExportService implements UExportManager 
     	}
     	
     	for(Map<String,Object> item : U900Data) {
-    		if("股票投资".equals(item.get("item"))) {
+    		if("——股票投资".equals(item.get("item"))) {
     			I1010 = item;
-    		} else if("债券投资".equals(item.get("item"))) {
+    		} else if("——债券投资".equals(item.get("item"))) {
     			I1020 = item;
-    		} else if("资产支持证券投资".equals(item.get("item"))) {
+    		} else if("——资产支持证券投资".equals(item.get("item"))) {
     			I1030 = item;
-    		} else if("基金投资".equals(item.get("item"))) {
+    		} else if("——基金投资".equals(item.get("item"))) {
     			I1040 = item;
-    		} else if("贵金属投资".equals(item.get("item"))) {
+    		} else if("——贵金属投资".equals(item.get("item"))) {
     			I1050 = item;
-    		} else if("其他".equals(item.get("item"))) {
+    		} else if("——其他".equals(item.get("item"))) {
     			I1060 = item;
-    		} else if("权证投资".equals(item.get("item"))) {
+    		} else if("——权证投资".equals(item.get("item"))) {
     			I2010 = item;
-    		} else if("增值税".equals(item.get("item"))) {
+    		} else if("减：应税金融商品公允价值变动产生的预估增值税".equals(item.get("item"))) {
     			I3010 = item;
     		}
     	}
