@@ -571,14 +571,19 @@ public class UExportService extends BaseExportService implements UExportManager 
     	Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
     	Map<String, Object> result = new HashMap<>();
     	
-    	Map<String, Object> I1010 = new HashMap<>();// 股票投资
-    	Map<String, Object> I1020 = new HashMap<>();// 债券投资
-    	Map<String, Object> I1030 = new HashMap<>();// 资产支持证券投资
-    	Map<String, Object> I1040 = new HashMap<>();// 基金投资
-    	Map<String, Object> I1050 = new HashMap<>();// 贵金属投资
-    	Map<String, Object> I1060 = new HashMap<>();// 其他
-    	Map<String, Object> I2010 = new HashMap<>();// 权证投资
+    	Map<String, Object> I1010 = new HashMap<>();// ——股票投资
+    	Map<String, Object> I1020 = new HashMap<>();// ——债券投资
+    	Map<String, Object> I1030 = new HashMap<>();// ——资产支持证券投资
+    	Map<String, Object> I1040 = new HashMap<>();// ——基金投资
+    	Map<String, Object> I1050 = new HashMap<>();// ——贵金属投资
+    	Map<String, Object> I1060 = new HashMap<>();// ——其他
+    	Map<String, Object> I2010 = new HashMap<>();// ——权证投资
+    	Map<String, Object> I3000 = new HashMap<>();// 3.其他
     	Map<String, Object> I3010 = new HashMap<>();// 减：应税金融商品公允价值变动产生的预估增值税
+    	// 2.衍生工具里除权证投资外其他的数据需要动态显示
+    	// since 2019-01-26
+    	// author dai zong
+    	List<Map<String,Object>> I20List = new ArrayList<>();
     	
     	@SuppressWarnings("unchecked")
     	List<Map<String,Object>> U900Data = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU900Data", queryMap);
@@ -587,22 +592,30 @@ public class UExportService extends BaseExportService implements UExportManager 
     	}
     	
     	for(Map<String,Object> item : U900Data) {
-    		if("——股票投资".equals(item.get("item"))) {
+    	    Object itemName = item.get("item");
+    		if("——股票投资".equals(itemName)) {
     			I1010 = item;
-    		} else if("——债券投资".equals(item.get("item"))) {
+    		} else if("——债券投资".equals(itemName)) {
     			I1020 = item;
-    		} else if("——资产支持证券投资".equals(item.get("item"))) {
+    		} else if("——资产支持证券投资".equals(itemName)) {
     			I1030 = item;
-    		} else if("——基金投资".equals(item.get("item"))) {
+    		} else if("——基金投资".equals(itemName)) {
     			I1040 = item;
-    		} else if("——贵金属投资".equals(item.get("item"))) {
+    		} else if("——贵金属投资".equals(itemName)) {
     			I1050 = item;
-    		} else if("——其他".equals(item.get("item"))) {
+    		} else if("——其他".equals(itemName)) {
     			I1060 = item;
-    		} else if("——权证投资".equals(item.get("item"))) {
+    		} else if("——权证投资".equals(itemName)) {
     			I2010 = item;
-    		} else if("减：应税金融商品公允价值变动产生的预估增值税".equals(item.get("item"))) {
+    		} else if("3.其他".equals(itemName)) {
+                I3000 = item;
+            } else if("减：应税金融商品公允价值变动产生的预估增值税".equals(itemName)) {
     			I3010 = item;
+    		} else if(item.get("sort") != null && ((Integer)item.get("sort")) >= 21 && ((Integer)item.get("sort")) <= 29){
+    		    // 2.衍生工具里除权证投资外其他的数据需要动态显示(21 <= sort <= 29)
+    	        // since 2019-01-26
+    	        // author dai zong
+    		    I20List.add(item);
     		}
     	}
     	
@@ -613,7 +626,10 @@ public class UExportService extends BaseExportService implements UExportManager 
     	result.put("I1050", I1050);
     	result.put("I1060", I1060);
     	result.put("I2010", I2010);
+    	result.put("I3000", I3000);
     	result.put("I3010", I3010);
+    	result.put("I20List", I20List);
+    	result.put("I20ListCount", I20List.size());
     	
     	return result;
     }

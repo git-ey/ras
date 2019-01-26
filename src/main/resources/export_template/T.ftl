@@ -6070,8 +6070,8 @@
     <Cell ss:StyleID="s124"><Data ss:Type="String">上年度末</Data></Cell>
     <#if T300.main.count != 0>
     <#list T300.main.list as item>
-    <Cell ss:StyleID="s336" ss:Formula="=R${(18+T300.main.count+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R${(12+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s336" ss:Formula="=R${(17+T300.main.count+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s336" ss:Formula="=R${(11+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
    </Row>
@@ -6079,8 +6079,8 @@
     <Cell ss:StyleID="s123"><Data ss:Type="String">本期申购</Data></Cell>
     <#if T300.main.count != 0>
     <#list T300.main.list as item>
-    <Cell ss:StyleID="s125" ss:Formula="=R${(18+T300.main.count+item_index)?string('0')}C5-R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R${(12+item_index)?string('0')}C5-R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=R${(17+T300.main.count+item_index)?string('0')}C5-R${(39+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=R${(11+item_index)?string('0')}C5-R${(39+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
    </Row>
@@ -6088,8 +6088,8 @@
     <Cell ss:StyleID="s123"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
     <#if T300.main.count != 0>
     <#list T300.main.list as item>
-    <Cell ss:StyleID="s125" ss:Formula="=-R${(18+T300.main.count+item_index)?string('0')}C4+R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R${(12+item_index)?string('0')}C4+R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=-R${(17+T300.main.count+item_index)?string('0')}C4+R${(39+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=-R${(11+item_index)?string('0')}C4+R${(39+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
    </Row>
