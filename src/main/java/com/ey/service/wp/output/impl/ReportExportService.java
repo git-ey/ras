@@ -561,7 +561,7 @@ public class ReportExportService implements ReportExportManager {
      * @throws IOException
      */
     private String processP2(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException{
-        String xml2003Content = DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P2")), "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
+        String xml2003Content = DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P2")), "<w:body><wx:sect>.*?<wx:sub-section>(.*)</wx:sub-section>", 1);
         if(StringUtils.isEmpty(xml2003Content)) {
             throw new IOException("Can not get content from P2 template");
         }
@@ -2046,7 +2046,7 @@ public class ReportExportService implements ReportExportManager {
      * @throws IOException
      */
     private String processP4(Map<String,Object> exportParam, Map<String,Object> partName) throws IOException{
-        String xml2003Content = DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P4")), "<w:body><wx:sect><wx:sub-section>(.*)</wx:sub-section>", 1);
+        String xml2003Content = DocUtil.getXml2003Content(String.valueOf(exportParam.get("reportTempRootPath")) + String.valueOf(partName.get("P4")), "<w:body><wx:sect>.*?<wx:sub-section>(.*)</wx:sub-section>", 1);
         if(StringUtils.isEmpty(xml2003Content)) {
             throw new IOException("Can not get content from P4 template");
         }
