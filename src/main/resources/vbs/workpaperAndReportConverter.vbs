@@ -88,37 +88,42 @@ Sub ProcessFolder(inputFolderPathStr, outputFolderPathStr)
             excel.Displayalerts=true
             excel.Quit
             set excel = nothing
-        elseif fileType = "doc" Then
-            ' process Word file
-            Set word = CreateObject("Word.Application")
-            word.Displayalerts=False
-            Set document = word.documents.open(inputFolderPathStr + "\" + fileName)
-            fileName = outputFolderPathStr + "\" + Replace(fileName, ".doc", ".docx")
-            ' for update fileds in word document's Headers
-            document.TrackRevisions = False
-            document.ShowRevisions = False
-            For Each aSection in document.Sections
-                for each aHeader in aSection.Headers 
-                        for each aField in aHeader.Range.Fields
-                            aField.Update
-                        Next
-                Next
-            Next
-            document.TrackRevisions = True
-            document.ShowRevisions = True
-            'document.SaveAs fileName, 16 'docx
-            'document.SaveAs2 fileName,16,,,,,,,,,,,,,,,15
-            document.SaveAs2 fileName,12,,,,,,,,,,,,,,,15
-            document.Close False
-            set document = nothing
-            word.Displayalerts=true
-            word.Quit
-            set word = nothing
+            fileName = inputFolderPathStr + "\" + file.Name
+            If fileSystemObject.FileExists(fileName) Then 
+                fileSystemObject.deletefile fileName,1
+            END IF
+        ' elseif fileType = "doc" Then
+            ' ' process Word file
+            ' Set word = CreateObject("Word.Application")
+            ' word.Displayalerts=False
+            ' Set document = word.documents.open(inputFolderPathStr + "\" + fileName)
+            ' fileName = outputFolderPathStr + "\" + Replace(fileName, ".doc", ".docx")
+            ' ' for update fileds in word document's Headers
+            ' document.TrackRevisions = False
+            ' document.ShowRevisions = False
+            ' For Each aSection in document.Sections
+            '     for each aHeader in aSection.Headers 
+            '             for each aField in aHeader.Range.Fields
+            '                 aField.Update
+            '             Next
+            '     Next
+            ' Next
+            ' document.TrackRevisions = True
+            ' document.ShowRevisions = True
+            ' 'document.SaveAs fileName, 16 'docx
+            ' 'document.SaveAs2 fileName,16,,,,,,,,,,,,,,,15
+            ' document.SaveAs2 fileName,12,,,,,,,,,,,,,,,15
+            ' document.Close False
+            ' set document = nothing
+            ' word.Displayalerts=true
+            ' word.Quit
+            ' set word = nothing
+            
         End If
-        fileName = inputFolderPathStr + "\" + file.Name
-        If fileSystemObject.FileExists(fileName) Then 
-            fileSystemObject.deletefile fileName,1
-        END IF
+        ' fileName = inputFolderPathStr + "\" + file.Name
+        ' If fileSystemObject.FileExists(fileName) Then 
+        '     fileSystemObject.deletefile fileName,1
+        ' END IF
     Next
 
     ' close Application
