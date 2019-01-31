@@ -107,7 +107,8 @@ Sub ProcessFolder(inputFolderPathStr, outputFolderPathStr)
             document.TrackRevisions = True
             document.ShowRevisions = True
             'document.SaveAs fileName, 16 'docx
-            document.SaveAs2 fileName,16,,,,,,,,,,,,,,,15
+            'document.SaveAs2 fileName,16,,,,,,,,,,,,,,,15
+            document.SaveAs2 fileName,12,,,,,,,,,,,,,,,15
             document.Close False
             set document = nothing
             word.Displayalerts=true
