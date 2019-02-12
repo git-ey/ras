@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
@@ -360,7 +359,7 @@ public class ReportService implements ReportManager {
         if(reportOutBoundPath.charAt(reportOutBoundPathLength - 1) == '/' || reportOutBoundPath.charAt(reportOutBoundPathLength - 1) == '\\') {
             reportOutBoundTempPath = reportOutBoundTempPath.substring(0, reportOutBoundPathLength - 1);
         }
-        reportOutBoundTempPath = reportOutBoundTempPath + "_temp\\";
+        reportOutBoundTempPath = reportOutBoundTempPath + "_temp" + File.separatorChar;
 
         // 根据配置代码获取信息
         PageData p1 = dictionariesManager.findByCode(pd.getString("P1"));

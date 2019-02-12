@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -100,6 +99,7 @@ public class WorkPaperService implements WorkPaperManager{
     
     private static final String PD_FIELD_WP_TYPE = "WP_TYPE";
     private static final String PD_FIELD_FUND_ID = "FUND_ID";
+    private static final String PD_FIELD_FIRM_CODE = "FIRM_CODE";
     
     private final Logger logger = Logger.getLogger(WorkPaperService.class);
 	
@@ -167,20 +167,20 @@ public class WorkPaperService implements WorkPaperManager{
 	 * @param pd
 	 */
 	public void exportWorkPaper(PageData pd) throws Exception {
-//		{
-//		    FIRM_CODE=FG, 
-//	        WP_TYPE=C,
-//		    PERIOD=20161231, 
-//		    OUTBOND_PATH=D:\wp\, 
-//		    FUND_ID=F100066-01
-//		}
+//	    pd = {
+//	        "FIRM_CODE": "FG",
+//	        "WP_TYPE": "C",
+//	        "PERIOD": "20161231",
+//	        "OUTBOND_PATH": "D:\\wp\\",
+//	        "FUND_ID": "F100066-01"
+//	    }
 	    String exportPath = pd.getString("OUTBOND_PATH");
 	    String tempExportPath = exportPath;
 	    int exportPathLength = exportPath.length();
 	    if(exportPath.charAt(exportPathLength - 1) == '/' || exportPath.charAt(exportPathLength - 1) == '\\') {
 	        tempExportPath = tempExportPath.substring(0, exportPathLength - 1);
 	    }
-	    tempExportPath = tempExportPath + "_temp\\";
+	    tempExportPath = tempExportPath + "_temp" + File.separatorChar;
 	    String periodStr = pd.getString("PERIOD");
 	    @SuppressWarnings("unchecked")
         List<PageData> fundInfos = (List<PageData>)dao.findForList("WorkPaperMapper.selectFundInfos", pd);
@@ -196,7 +196,10 @@ public class WorkPaperService implements WorkPaperManager{
 	        }
 	        try {
 	        	if(StringUtils.isEmpty(pd.getString(PD_FIELD_WP_TYPE)) || "H_SUM".equals(pd.getString(PD_FIELD_WP_TYPE))){
-		            String hSumExportPath = tempExportPath + (periodStr + File.separatorChar + "H_SUM" + File.separatorChar);
+	        	    // ↓ daigaokuo@hotmail.com 2019-02-13 ↓
+	                // [IMP] 最终输出文件夹路径中添加firm code
+		            String hSumExportPath = tempExportPath + (periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE) + File.separatorChar + "H_SUM" + File.separatorChar);
+		            // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
 		            this.hSumExportService.doExport(hSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr);
 	        	}
 	        }catch (Exception ex) {
@@ -205,7 +208,10 @@ public class WorkPaperService implements WorkPaperManager{
             }
 	        try {
 	            if(StringUtils.isEmpty(pd.getString(PD_FIELD_WP_TYPE)) || "SA".equals(pd.getString(PD_FIELD_WP_TYPE))){
-	                String saSumExportPath = tempExportPath + (periodStr + File.separatorChar + "SA" + File.separatorChar);
+	                // ↓ daigaokuo@hotmail.com 2019-02-13 ↓
+	                // [IMP] 最终输出文件夹路径中添加firm code
+	                String saSumExportPath = tempExportPath + (periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE) + File.separatorChar + "SA" + File.separatorChar);
+	                // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
                     this.saExportService.doExport(saSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_SA, pd.getString("FIRM_CODE"), periodStr);
                 }
 	        }catch (Exception ex) {
@@ -235,9 +241,12 @@ public class WorkPaperService implements WorkPaperManager{
 	 */
 	private void exportOneFundWorkPaper(PageData pd, String exportPath, String periodStr, String wpType) throws Exception {
         final String fundId = pd.getString(PD_FIELD_FUND_ID);
-        final String fileIdentifier = fundId;
+        final String firmCode = pd.getString(PD_FIELD_FIRM_CODE);
         exportPath += (periodStr + File.separatorChar) ;
-        final String folderName = exportPath + fileIdentifier;
+        // ↓ daigaokuo@hotmail.com 2019-02-13 ↓
+        // [IMP] 最终输出文件夹路径中添加firm code
+        final String folderName = exportPath + firmCode + File.separatorChar + fundId;
+        // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
         if (this.getExportFlag(pd, PD_FIELD_CFLAG) && (StringUtils.isEmpty(wpType) || "C".equals(wpType))) {
             this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr);
         }

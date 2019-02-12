@@ -1,5 +1,6 @@
 package com.ey.service.wp.output.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -167,6 +168,10 @@ public class ReportExportService implements ReportExportManager {
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
         String fileStr = this.generateFileContent(exportParam, fundInfo);
+        // ↓ daigaokuo@hotmail.com 2019-02-13 ↓
+        // [IMP] 最终输出文件夹路径中添加firm code
+        folederName += fundInfo.get("firmCode") + File.separatorChar;
+        // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), fileStr);
         return true;
     }
