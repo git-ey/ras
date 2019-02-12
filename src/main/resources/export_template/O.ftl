@@ -1364,7 +1364,7 @@
    <#if O311.detailListCount != 0>
    <#list O311.detailList as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s98"><Data ss:Type="Number">${item.accountNum!}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s65"><Data ss:Type="String">${item.accountNum!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.accountName!}</Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="String">${item.vatFlag!}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
