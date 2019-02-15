@@ -330,6 +330,7 @@
             IFNULL( src.MR, '' ) AS MR,
 			IFNULL( src.IR, '' ) AS IR,
 			IFNULL( src.IR_EXP, '' ) AS IR_EXP
+			IFNULL( src.ER, '' ) AS ER,
         FROM
             sys_report_content src 
         WHERE
