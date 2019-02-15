@@ -213,6 +213,7 @@
 		WHERE
 		    1 = 1 
 		AND IUHF.STATUS = 'Y'
+		AND IFNULL(IUHF.PARTY_SHORT_NAME,'') <> '' 
         AND IUHF.FUND_ID = #{fundId}
         AND IUHF.PERIOD = #{period}
         ORDER BY
