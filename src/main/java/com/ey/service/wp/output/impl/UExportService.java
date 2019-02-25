@@ -541,9 +541,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         		DFJYFJ = item;
         	} else if("城建费附加_未实现".equals(item.get("itemName"))) {
         		CJFFJ_WSX = item;
-        	} else if("教育附加_未实现".equals(item.get("itemName"))) {
+        	} else if("教育费附加_未实现".equals(item.get("itemName"))) {
         		JYFJ_WSX = item;
-        	} else if("地方教育附加_未实现".equals(item.get("itemName"))) {
+        	} else if("地方教育费附加_未实现".equals(item.get("itemName"))) {
         		DFJYFJ_WSX = item;
         	}
         }
