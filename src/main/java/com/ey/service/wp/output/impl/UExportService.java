@@ -535,9 +535,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         for(Map<String,Object> item : U800Data) {
         	if("城建费附加".equals(item.get("itemName"))) {
         		CJFFJ = item;
-        	} else if("教育附加".equals(item.get("itemName"))) {
+        	} else if("教育费附加".equals(item.get("itemName"))) {
         		JYFJ = item;
-        	} else if("地方教育附加".equals(item.get("itemName"))) {
+        	} else if("地方教育费附加".equals(item.get("itemName"))) {
         		DFJYFJ = item;
         	} else if("城建费附加_未实现".equals(item.get("itemName"))) {
         		CJFFJ_WSX = item;

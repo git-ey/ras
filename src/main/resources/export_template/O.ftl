@@ -922,7 +922,7 @@
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.OTHER.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.OTHER.drAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">v</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String"><#if (O300.OTHER.beginBalance!0)==0>v</#if></Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s60"><Data ss:Type="Number">${(O300.OTHER.crAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"/>
     <Cell ss:StyleID="s66" ss:Formula="=RC[-5]-RC[-4]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -1147,7 +1147,7 @@
    <Row>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">权证转让</Data></Cell>
-    <Cell ss:StyleID="s89"><Data ss:Type="String">UXXX</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String"><#if (O310.detail.JRSPZR.QZZR.amount!0)==0>UXXX</#if></Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.detail.JRSPZR.QZZR.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.detail.JRSPZR.QZZR.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
@@ -1158,7 +1158,7 @@
    <Row>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">期货转让</Data></Cell>
-    <Cell ss:StyleID="s89"><Data ss:Type="String">UXXX</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String"><#if (O310.detail.JRSPZR.QHZR.amount!0)==0>UXXX</#if></Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.detail.JRSPZR.QHZR.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.detail.JRSPZR.QHZR.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
@@ -1350,7 +1350,7 @@
    <Row>
     <Cell ss:StyleID="s94"><Data ss:Type="String">不含税收入</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=R[-3]C-SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">&lt;O300&gt;</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">&lt;O310&gt;</Data></Cell>
    </Row>
    <Row ss:Index="14" ss:Height="27">
     <Cell ss:Index="2" ss:StyleID="s81"><Data ss:Type="String">科目代码</Data></Cell>

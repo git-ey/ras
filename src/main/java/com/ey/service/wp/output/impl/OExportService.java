@@ -208,13 +208,13 @@ public class OExportService extends BaseExportService implements OExportManager 
         
         for(Map<String, Object> resMap : resMapList) {
             if("金融商品转让".equals(resMap.get("item"))) {
-                if("基金转让".equals(resMap.get("subItem"))) {
+                if("基金投资收益".equals(resMap.get("subItem"))) {
                     item1.put("JJZR", resMap);
-                }else if("贵金属转让".equals(resMap.get("subItem"))) {
+                }else if("贵金属投资收益".equals(resMap.get("subItem"))) {
                     item1.put("GJSZR", resMap);
-                }else if("权证转让".equals(resMap.get("subItem"))) {
+                }else if("权证损益".equals(resMap.get("subItem"))) {
                     item1.put("QZZR", resMap);
-                }else if("期货转让".equals(resMap.get("subItem"))) {
+                }else if("衍生工具收益".equals(resMap.get("subItem"))) {
                     item1.put("QHZR", resMap);
                 }
             }
