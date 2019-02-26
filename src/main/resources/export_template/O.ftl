@@ -1171,9 +1171,9 @@
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">小计</Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s60" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s60" ss:Formula="=MAX(0,SUM(R[-5]C:R[-1]C))"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.summary.JRSPZR.XJ.taxClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
