@@ -9067,7 +9067,8 @@
    <Row/>
    <Row>
     <Cell><Data ss:Type="String">起始日（${T500.f_test.mother.dateType!}）</Data></Cell>
-    <Cell ss:StyleID="s388"><Data ss:Type="DateTime">${T500.f_test.mother.dateFrom!period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s388"><Data ss:Type="DateTime"><#if T500.f_test.mother.dateFrom??>${T500.f_test.mother.dateFrom!}<#else>${period?string('0')}-${month?string('00')}-${day?string('00')}</#if>T00:00:00.000</Data>
+</Cell>
     <Cell ss:Index="4" ss:StyleID="s118"/>
     <Cell ss:StyleID="s269"/>
    </Row>
