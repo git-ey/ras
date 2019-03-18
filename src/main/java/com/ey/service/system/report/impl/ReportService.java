@@ -460,8 +460,17 @@ public class ReportService implements ReportManager {
             if (errorMsg.length() != 0) {
                 throw new Exception(errorMsg);
             }
-            FileExportUtils.createDir(reportOutBoundPath);
-            VbsUtil.callScript(Scripts.WORKPAPER_AND_REPORT_CONVERTER, reportOutBoundTempPath, reportOutBoundPath);
+            // ↓ daigaokuo@hotmail.com 2019-03-18 ↓
+            // [IMP] VBS脚本运行时按期间+公司代码隔离
+            String firmCode = pd.getString("FIRM_CODE");
+            /* vbs创建文件夹时不能自动创建父级,因此手工创建一个父级目录 */
+            FileExportUtils.createDir(reportOutBoundPath + File.separatorChar + firmCode);
+            VbsUtil.callScript(
+                            Scripts.WORKPAPER_AND_REPORT_CONVERTER, 
+                            reportOutBoundTempPath + File.separatorChar + firmCode, 
+                            reportOutBoundPath + File.separatorChar + firmCode
+                        );
+            // ↑ daigaokuo@hotmail.com 2019-03-18 ↑
 //            FileUtils.deleteDirectory(new File(reportOutBoundTempPath));
         }
 

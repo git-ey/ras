@@ -222,7 +222,16 @@ public class WorkPaperService implements WorkPaperManager{
 	            throw new Exception(errorMsg);
 	        }
 	        FileExportUtils.createDir(exportPath);
-	        VbsUtil.callScript(Scripts.WORKPAPER_AND_REPORT_CONVERTER, tempExportPath, exportPath);
+	        // ↓ daigaokuo@hotmail.com 2019-03-18 ↓
+            // [IMP] VBS脚本运行时按期间+公司代码隔离
+	        /* vbs创建文件夹时不能自动创建父级,因此手工创建一个父级目录 */
+	        FileExportUtils.createDir(exportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE));
+	        VbsUtil.callScript(
+	                        Scripts.WORKPAPER_AND_REPORT_CONVERTER, 
+	                        tempExportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE), 
+	                        exportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE)
+                        );
+	        // ↑ daigaokuo@hotmail.com 2019-03-18 ↑
 //	        FileUtils.deleteDirectory(new File(tempExportPath));
 	    }
 	    // 设置消息
