@@ -803,9 +803,9 @@ public class ReportExportService implements ReportExportManager {
         futures.put("item1", item1);
         futures.put("item2", item2);
         futures.put("item3", item3);
-        futures.put("item1Last ", item4);
-        futures.put("item2Last ", item5);
-        futures.put("item3Last ", item6);
+        futures.put("item1Last", item4);
+        futures.put("item2Last", item5);
+        futures.put("item3Last", item6);
         futures.put("sum", H10000futuresSumData);
         futures.put("sumLast", H10000futuresSumLastData);
         H10000.put("futures", futures);
