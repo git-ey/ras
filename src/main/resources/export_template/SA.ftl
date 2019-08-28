@@ -400,7 +400,7 @@
    </Row>
    <Row ss:Height="48">
     <Cell ss:StyleID="s30"><NamedCell ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">${(period)?string('0')}-10-31T00:00:00.000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s34"><Data ss:Type="String">是否大于TE</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s35"><Data ss:Type="String">交易量是否大</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s35"><Data ss:Type="String">交易复杂程度是否为高</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>

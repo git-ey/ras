@@ -127,6 +127,7 @@
     <select id="selectFundInfos" parameterType="java.util.Map" resultType="com.ey.util.PageData">
         SELECT 
             sfi.FUND_ID,
+            sfi.FIRM_CODE,
             sfi.SHORT_NAME,
             smc.SHORT_NAME MGR_COMPANY,
             (SELECT COUNT(*) FROM sys_concrecord c where c.WP_TYPE = 'C' AND c.STATUS='S' AND c.FUND_ID = sfi.FUND_ID AND c.PERIOD = #{PERIOD}) CFLAG,

@@ -10849,6 +10849,29 @@
     <Cell ss:StyleID="s78"/>
     <Cell ss:StyleID="s78"/>
    </Row>
+   <#if U500.main.KM6407.trade.S6?? >
+   <Row ss:StyleID="s117">
+    <Cell ss:StyleID="s182"/>
+    <Cell ss:StyleID="s546"><Data ss:Type="String">黄金交易手续费</Data></Cell>
+    <Cell ss:StyleID="s111"><Data ss:Type="Number">${(U500.main.KM6407.trade.S6.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s112"/>
+    <Cell ss:StyleID="s111"><Data ss:Type="Number">${(U500.main.KM6407.trade.S6.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s104"/>
+    <Cell ss:StyleID="s116"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:Index="15" ss:StyleID="s104"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   </#if>
    <Row ss:StyleID="s117">
     <Cell ss:StyleID="s182"/>
     <Cell ss:StyleID="s546"/>
@@ -10873,9 +10896,9 @@
    <Row ss:StyleID="s117">
     <Cell ss:StyleID="s182"/>
     <Cell ss:StyleID="s546"><Data ss:Type="String">交易所市场交易费用小计</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-6]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[<#if U500.main.KM6407.trade.S6?? >-7<#else>-6</#if>]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-6]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[<#if U500.main.KM6407.trade.S6?? >-7<#else>-6</#if>]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s104"/>
@@ -12335,9 +12358,9 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">——股票投资</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1010.amountCurrent?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1010.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1010.amountLast?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1010.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -12346,9 +12369,9 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">——债券投资</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1020.amountCurrent?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1020.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1020.amountLast?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1020.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -12357,9 +12380,9 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">——资产支持证券投资</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1030.amountCurrent?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1030.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1030.amountLast?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1030.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -12368,9 +12391,9 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">——基金投资</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1040.amountCurrent?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1040.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1040.amountLast?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1040.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -12379,9 +12402,9 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">——贵金属投资</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1050.amountCurrent?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1050.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1050.amountLast?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1050.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -12390,9 +12413,9 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">——其他</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1060.amountCurrent?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1060.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1060.amountLast?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I1060.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -12401,9 +12424,9 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">2.衍生工具</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101" ss:Formula="=SUM(R[2]C:R[1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUM(R[1]C:R[${(1+U900.I20ListCount)?string('0')}]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101" ss:Formula="=SUM(R[2]C:R[1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s101" ss:Formula="=SUM(R[1]C:R[${(1+U900.I20ListCount)?string('0')}]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -12412,31 +12435,35 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">——权证投资</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I2010.amountCurrent?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I2010.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I2010.amountLast?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I2010.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
+   <#if U900.I20ListCount != 0>
+   <#list U900.I20List as item>
    <Row>
     <Cell ss:StyleID="s225"/>
-    <Cell ss:StyleID="s413"><Data ss:Type="String">……</Data></Cell>
+    <Cell ss:StyleID="s413"><Data ss:Type="String">${item.item!}</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">3.其他</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I3000.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I3000.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -12445,9 +12472,9 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s413"><Data ss:Type="String">减：应税金融商品公允价值变动产生的预估增值税</Data></Cell>
     <Cell ss:StyleID="s386"><Data ss:Type="String">O300</Data></Cell>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I3010.amountCurrent?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I3010.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I3010.amountLast?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U900.I3010.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -12457,9 +12484,9 @@
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s225"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s430" ss:Formula="=R[-13]C+R[-6]C+R[-3]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s430" ss:Formula="=R[${(-12-U900.I20ListCount)?string('0')}]C+R[${(-5-U900.I20ListCount)?string('0')}]C+R[-3]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s233"><Data ss:Type="String">&lt;U&gt;/&lt;T400&gt;</Data></Cell>
-    <Cell ss:StyleID="s430" ss:Formula="=R[-13]C+R[-6]C+R[-3]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s430" ss:Formula="=R[${(-12-U900.I20ListCount)?string('0')}]C+R[${(-5-U900.I20ListCount)?string('0')}]C+R[-3]C-R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s223"/>
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s110" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
@@ -13702,8 +13729,8 @@
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s199"><Data ss:Type="String">2.衍生工具</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[2]C:R[1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[2]C:R[1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[1]C:R[${(1+U900.I20ListCount)?string('0')}]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[1]C:R[${(1+U900.I20ListCount)?string('0')}]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String"></Data></Cell>
    </Row>
    <Row>
@@ -13713,18 +13740,22 @@
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U900.I2010.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String"></Data></Cell>
    </Row>
+   <#if U900.I20ListCount != 0>
+   <#list U900.I20List as item>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s199"><Data ss:Type="String">……</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s199"><Data ss:Type="String">${item.item!}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String"></Data></Cell>
    </Row>
+   </#list>
+   </#if>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s199"><Data ss:Type="String">3.其他</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s213"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U900.I3000.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U900.I3000.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String"></Data></Cell>
    </Row>
    <Row>
@@ -13736,8 +13767,8 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s199"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=R[-12]C+R[-5]C+R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=R[-12]C+R[-5]C+R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=R[${(-11-U900.I20ListCount)?string('0')}]C+R[${(-4-U900.I20ListCount)?string('0')}]C+R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=R[${(-11-U900.I20ListCount)?string('0')}]C+R[${(-4-U900.I20ListCount)?string('0')}]C+R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s216"/>
    </Row>
    <Row>

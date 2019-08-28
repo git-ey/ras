@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -36,6 +37,7 @@ public class FreeMarkerUtils {
 		    synchronized (Configuration.class) {
 		        if(freeMarkerConfig == null){
 		            freeMarkerConfig = new Configuration(Configuration.VERSION_2_3_21);
+		            freeMarkerConfig.setDefaultEncoding(StandardCharsets.UTF_8.name());
 		        }
             }
 		}
@@ -71,7 +73,7 @@ public class FreeMarkerUtils {
 		freeMarkerConfig.setTemplateLoader(fileTemplateLoader);
 		//渲染
 		StringWriter writer = new StringWriter(DEF_STR_WRITER_BUF_SIZE);
-		Template template = freeMarkerConfig.getTemplate(templateFileName);
+		Template template = freeMarkerConfig.getTemplate(templateFileName, StandardCharsets.UTF_8.name());
 		template.process(templateData, writer);
 		return writer.toString();
 	}
@@ -110,7 +112,7 @@ public class FreeMarkerUtils {
     public static String processTemplateToStrUseAbsPath(Map<String, Object> templateData, String templateFolderPath, String templateFileName) throws IOException, TemplateException{
         //参数校验
         if(templateData == null){
-            templateData = new HashMap<String, Object>();
+            templateData = new HashMap<>();
         }
         if(StringUtils.isEmpty(templateFolderPath) || StringUtils.isEmpty(templateFileName)){
             throw new IllegalArgumentException("Template Folder Path or Template File Name is EMPTY!");

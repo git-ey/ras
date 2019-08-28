@@ -46,10 +46,19 @@ var jsessionid = "<%=session.getId()%>";  //勿删，uploadify兼容火狐用到
 										<table id="table_report" class="table table-striped table-bordered table-hover">
 											<tr>
 												<td style="width:76px;text-align: right;padding-top: 13px;">系统名称:</td>
-												<td><input type="text" name="YSYNAME" id="YSYNAME" value="${pd.YSYNAME }" placeholder="这里输入系统名称" style="width:90%" title="系统名称"/></td>
-											
+												<td><input type="text" name="SYSNAME" id="SYSNAME" value="${pd.SYSNAME }" placeholder="这里输入系统名称" style="width:90%" title="系统名称"/></td>
 												<td style="width:76px;text-align: right;padding-top: 13px;">每页条数:</td>
 												<td><input type="number" name="COUNTPAGE" id="COUNTPAGE" value="${pd.COUNTPAGE }" placeholder="这里输入每页条数" style="width:90%" title="每页条数"/></td>
+											</tr>
+											<tr>
+												<td style="width:76px;text-align: right;padding-top: 13px;">默认皮肤:</td>
+												<td>
+												<select class="chosen-select form-control" name="SKIN" id="SKIN">
+												    <option value="no-skin" <c:if test="${pd.SKIN == 'no-skin'}">selected</c:if>>no-skin</option>
+												    <option value="skin-1" <c:if test="${pd.SKIN == 'skin-1'}">selected</c:if>>skin-1</option>
+												    <option value="skin-2" <c:if test="${pd.SKIN == 'skin-2'}">selected</c:if>>skin-2</option>
+												    <option value="skin-3" <c:if test="${pd.SKIN == 'skin-3'}">selected</c:if>>skin-3</option>
+											    </select>
 											</tr>
 										</table>
 										<table class="center" style="width:100%" >

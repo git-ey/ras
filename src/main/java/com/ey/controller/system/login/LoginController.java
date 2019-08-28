@@ -189,6 +189,7 @@ public class LoginController extends BaseController {
 			logger.error(e.getMessage(), e);
 		}
 		pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME)); // 读取系统名称
+		pd.put("SKIN", Tools.readTxtFile(Const.SKIN)); // 读取默认皮肤
 		mv.addObject("pd", pd);
 		return mv;
 	}

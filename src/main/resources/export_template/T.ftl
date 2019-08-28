@@ -3645,7 +3645,7 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <#if extraFundInfo.structured != 'T'  && extraFundInfo.mf != 'Y' && extraFundInfo.etf != 'Y'>
+ <#if extraFundInfo.structured != 'T' && extraFundInfo.mf != 'Y' && extraFundInfo.etf != 'Y'>
  <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="186.75"/>
@@ -3705,82 +3705,116 @@
     <Cell ss:StyleID="s88"/>
     <Cell ss:StyleID="s76"/>
    </Row>
-   <#if T300.main.count == 0>
    <Row>
     <Cell ss:StyleID="s89"><Data ss:Type="String">金额</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s93"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s94" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s90"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s57"/>
    </Row>
-   <#else>
+   <#if T300.main.count != 0>
    <#list T300.main.list as item>
-   <#if item_index == 0>
    <Row>
-    <Cell ss:StyleID="s89"><Data ss:Type="String">金额</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s93"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s94" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">${item.level!}</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s47"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s57"/>
    </Row>
-   </#if>
    </#list>
    </#if>
+   <Row>
+    <Cell ss:StyleID="s92"/>
+    <Cell ss:Index="3" ss:StyleID="s93"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s57"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s76"/>
+   </Row>
    <Row>
     <Cell ss:StyleID="s86"/>
     <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 2</Data></Cell>
-    <Cell ss:StyleID="s340"><Data ss:Type="String">Note 1</Data></Cell>
-    <Cell ss:StyleID="s87"/>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s94"/>
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s380"/>
-    <Cell ss:StyleID="s380"/>
-    <Cell ss:StyleID="s381"/>
-    <Cell ss:StyleID="s87"/>
+    <Cell ss:Index="3" ss:StyleID="s96"/>
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s91"/>
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s294"/>
-    <Cell ss:StyleID="s294"/>
-    <Cell ss:StyleID="s294"/>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
     <Cell ss:StyleID="s379"/>
     <Cell ss:StyleID="s76"/>
    </Row>
-   <#if T300.main.count == 0>
-   <Row>
-    <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s93"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s94" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T500&gt;</Data></Cell>
-   </Row>
-   <#else>
+   <#if T300.main.count != 0>
    <#list T300.main.list as item>
-   <#if item_index == 0>
    <Row>
-    <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s93"><Data ss:Type="Number">${(item.beginUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="Number">${(item.drUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="Number">${(item.crUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s94" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="String">${item.level!}</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s47"><Data ss:Type="Number">${(item.beginUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.drUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.crUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T500&gt;</Data></Cell>
    </Row>
-   </#if>
    </#list>
    </#if>
    <Row>
+    <Cell ss:StyleID="s92"/>
+    <Cell ss:Index="3" ss:StyleID="s93"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row ss:Height="14.25">
     <Cell ss:StyleID="s87"/>
-    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></#if></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"><#if T300.adj.adjFlag == 'Y'><#if T300.note.note3Flag == 'Y'>Note 4<#else>Note 3</#if></#if></Data></Cell>
-    <Cell ss:StyleID="s57"/>
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
@@ -3892,7 +3926,7 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s112"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s47" ss:Formula="=R[-1]C-R[-21]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=R[-1]C-R[${(-(24+T300.main.count))?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s298"/>
     <Cell ss:StyleID="s346"><Data ss:Type="String">注：差异原因为XXXX，已查见相关凭证，无异常，对实收基金贷方无影响。（请根据实际情况说明差异原因，以及是否存在异常，此处以无异常为例）</Data></Cell>
    </Row>
@@ -3995,7 +4029,7 @@
    <Row>
     <Cell ss:StyleID="s105"/>
     <Cell ss:StyleID="s112"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s121" ss:Formula="=R[-1]C-R[-36]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=R[-1]C-R[${(-(39+T300.main.count))?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s107"/>
     <Cell ss:StyleID="s76"/>
    </Row>
@@ -4024,7 +4058,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">基金成立金额</Data></Cell>
     <Cell ss:StyleID="s114"/>
     <Cell ss:StyleID="s115"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s115" ss:Formula="=RC[-1]-R[-41]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-1]-R[${(-(42+2*T300.main.count))?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s115"/>
     <Cell ss:StyleID="s115"/>
    </Row>
@@ -4032,7 +4066,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">首次设立募集规模（份额）</Data></Cell>
     <Cell ss:StyleID="s112"/>
     <Cell ss:StyleID="s115"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s115" ss:Formula="=RC[-1]-R[-38]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-1]-R[${(-(37+T300.main.count))?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s115"/>
     <Cell ss:StyleID="s115"/>
    </Row>
@@ -4042,16 +4076,16 @@
    <Row>
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">基金成立金额</Data></Cell>
     <Cell ss:StyleID="s114"/>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s115" ss:Formula="=RC[-1]-R[-41]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-1]-R[${(-(44+T300.main.count))?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s115"/>
     <Cell ss:StyleID="s115"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">首次设立募集规模（份额）</Data></Cell>
     <Cell ss:StyleID="s112"/>
-    <Cell ss:StyleID="s115"><Data ss:Type="Number">${(item.units!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s115" ss:Formula="=RC[-1]-R[-38]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.units!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-1]-R[39]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s115"/>
     <Cell ss:StyleID="s115"/>
    </Row>
@@ -4099,8 +4133,8 @@
    </#list>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s112"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R14C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R10C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R${(17+T300.main.count)?string('0')}C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R11C6"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s198"/>
@@ -4164,7 +4198,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
- <#if extraFundInfo.structured == 'T'  && extraFundInfo.mf != 'Y' && extraFundInfo.etf != 'Y'>
+ <#if extraFundInfo.structured == 'T' && extraFundInfo.mf != 'Y' && extraFundInfo.etf != 'Y'>
  <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="178.5"/>
@@ -4739,7 +4773,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
- <#if extraFundInfo.structured != 'T'  && extraFundInfo.mf == 'Y' && extraFundInfo.etf != 'Y'>
+ <#if extraFundInfo.structured != 'T' && extraFundInfo.mf == 'Y' && extraFundInfo.etf != 'Y'>
  <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s72" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s72" ss:AutoFitWidth="0" ss:Width="174.75"/>
@@ -4820,107 +4854,117 @@
     <Cell ss:StyleID="s300"/>
     <Cell ss:StyleID="s183"/>
    </Row>
-   <#if T300.main.count == 0>
-   <Row ss:StyleID="s75">
+   <Row>
     <Cell ss:StyleID="s89"><Data ss:Type="String">金额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:Index="3" ss:StyleID="s90"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s57"/>
    </Row>
-   <#else>
+   <#if T300.main.count != 0>
    <#list T300.main.list as item>
-   <#if item_index == 0>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s89"><Data ss:Type="String">金额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
+   <Row>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">${item.level!}</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s47"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s57"/>
    </Row>
-   </#if>
    </#list>
    </#if>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s92"/>
+    <Cell ss:Index="3" ss:StyleID="s93"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s57"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 2</Data></Cell>
-    <Cell ss:StyleID="s340"><Data ss:Type="String">Note 1</Data></Cell>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s144"/>
+   <Row>
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s96"/>
     <Cell ss:StyleID="s96"/>
     <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s340"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
+   <Row>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
     <Cell ss:StyleID="s379"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <#if T300.main.count == 0>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T500&gt;</Data></Cell>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-   </Row>
-   <#else>
+   <#if T300.main.count != 0>
    <#list T300.main.list as item>
-   <#if item_index == 0>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.beginUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.drUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.crUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s97"><Data ss:Type="String">${item.level!}</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s47"><Data ss:Type="Number">${(item.beginUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.drUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.crUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T500&gt;</Data></Cell>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
    </Row>
-   </#if>
    </#list>
    </#if>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s144"/>
+   <Row>
+    <Cell ss:StyleID="s92"/>
+    <Cell ss:Index="3" ss:StyleID="s93"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:StyleID="s91"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s317"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:StyleID="s73">
     <Cell ss:StyleID="s320"/>
@@ -5012,7 +5056,7 @@
    <Row ss:StyleID="s73">
     <Cell ss:StyleID="s331"/>
     <Cell ss:StyleID="s112"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s129" ss:Formula="=R[-1]C-R[-14]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s129" ss:Formula="=R[-1]C-R[${(-(17+T300.main.count))?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s346"><Data ss:Type="String">注：差异原因为XXXX，已查见相关凭证，无异常，对实收基金贷方无影响。（请根据实际情况说明差异原因，以及是否存在异常，此处以无异常为例）</Data></Cell>
     <Cell ss:StyleID="s178"/>
     <Cell ss:StyleID="s178"/>
@@ -5121,7 +5165,7 @@
    <Row ss:StyleID="s70">
     <Cell ss:StyleID="s178"/>
     <Cell ss:StyleID="s112"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s129" ss:Formula="=R[-1]C-R[-24]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s129" ss:Formula="=R[-1]C-R[${(-(27+T300.main.count))?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="5" ss:StyleID="s331"/>
     <Cell ss:StyleID="s331"/>
     <Cell ss:StyleID="s331"/>
@@ -5175,7 +5219,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">基金成立金额</Data></Cell>
     <Cell ss:StyleID="s324"/>
     <Cell ss:StyleID="s144"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-29]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[${(-(32+T300.main.count))?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -5185,7 +5229,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">首次设立募集规模（份额）</Data></Cell>
     <Cell ss:StyleID="s323"/>
     <Cell ss:StyleID="s144"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-26]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-27]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -5198,7 +5242,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">基金成立金额</Data></Cell>
     <Cell ss:StyleID="s324"/>
     <Cell ss:StyleID="s144"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-29]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[${(-(32+T300.main.count))?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -5208,7 +5252,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">首次设立募集规模（份额）</Data></Cell>
     <Cell ss:StyleID="s323"/>
     <Cell ss:StyleID="s144"><Data ss:Type="Number">${(item.units!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-26]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-27]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -5324,7 +5368,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
- <#if extraFundInfo.structured == 'T'  && extraFundInfo.mf == 'Y' && extraFundInfo.etf != 'Y'>
+ <#if extraFundInfo.structured == 'T' && extraFundInfo.mf == 'Y' && extraFundInfo.etf != 'Y'>
  <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s72" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s72" ss:AutoFitWidth="0" ss:Width="145.5"/>
@@ -5425,204 +5469,117 @@
     <Cell ss:StyleID="s183"/>
     <Cell ss:StyleID="s183"/>
    </Row>
-   <Row ss:StyleID="s75">
+   <Row>
     <Cell ss:StyleID="s89"><Data ss:Type="String">金额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:Index="8" ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s89"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:Index="8" ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:Index="3" ss:StyleID="s90"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s57"/>
    </Row>
    <#if T300.main.count != 0>
    <#list T300.main.list as item>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s86"><Data ss:Type="String">${item.level!}</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">${item.level!}</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s47"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
    </Row>
    </#list>
    </#if>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
+   <Row>
+    <Cell ss:StyleID="s92"/>
+    <Cell ss:Index="3" ss:StyleID="s93"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
     <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
    </Row>
-   <Row ss:Height="14.25" ss:StyleID="s75">
-    <Cell ss:StyleID="s89"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s327" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s327" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s327" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s327" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
    </Row>
-   <Row ss:Height="14.25" ss:StyleID="s75">
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s144"/>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 2</Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 1</Data></Cell>
-    <Cell ss:StyleID="s317"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <Row ss:StyleID="s75">
+   <Row>
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s96"/>
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row>
     <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:Index="8" ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s89"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:Index="6" ss:StyleID="s379"/>
-    <Cell ss:Index="8" ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:Index="3" ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s379"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <#if T300.main.count != 0>
    <#list T300.main.list as item>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s86"><Data ss:Type="String">${item.level!}</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.beginUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(item.drUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(item.crUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s97"><Data ss:Type="String">${item.level!}</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s47"><Data ss:Type="Number">${(item.beginUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.drUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.crUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T500&gt;</Data></Cell>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
    </Row>
    </#list>
    </#if>
-   <Row ss:StyleID="s75">
+   <Row>
+    <Cell ss:StyleID="s92"/>
+    <Cell ss:Index="3" ss:StyleID="s93"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:Index="3" ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <Row ss:Height="14.25" ss:StyleID="s75">
-    <Cell ss:StyleID="s89"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s327" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s327" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s327" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s327" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <Row ss:Height="14.25" ss:StyleID="s75">
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-   </Row>
-   <Row ss:StyleID="s75">
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s144"/>
+   <Row>
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:StyleID="s91"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s317"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s183"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:StyleID="s73">
     <Cell ss:StyleID="s320"/>
@@ -6113,8 +6070,8 @@
     <Cell ss:StyleID="s124"><Data ss:Type="String">上年度末</Data></Cell>
     <#if T300.main.count != 0>
     <#list T300.main.list as item>
-    <Cell ss:StyleID="s336" ss:Formula="=R${(18+T300.main.count+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s336" ss:Formula="=R${(12+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s336" ss:Formula="=R${(17+T300.main.count+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s336" ss:Formula="=R${(11+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
    </Row>
@@ -6122,8 +6079,8 @@
     <Cell ss:StyleID="s123"><Data ss:Type="String">本期申购</Data></Cell>
     <#if T300.main.count != 0>
     <#list T300.main.list as item>
-    <Cell ss:StyleID="s125" ss:Formula="=R${(18+T300.main.count+item_index)?string('0')}C5-R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=R${(12+item_index)?string('0')}C5-R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=R${(17+T300.main.count+item_index)?string('0')}C5-R${(39+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=R${(11+item_index)?string('0')}C5-R${(39+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
    </Row>
@@ -6131,8 +6088,8 @@
     <Cell ss:StyleID="s123"><Data ss:Type="String">本期赎回（以&quot;-&quot;填列）</Data></Cell>
     <#if T300.main.count != 0>
     <#list T300.main.list as item>
-    <Cell ss:StyleID="s125" ss:Formula="=-R${(18+T300.main.count+item_index)?string('0')}C4+R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=-R${(12+item_index)?string('0')}C4+R${(40+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=-R${(17+T300.main.count+item_index)?string('0')}C4+R${(39+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=-R${(11+item_index)?string('0')}C4+R${(39+2*T300.main.count+T300.note.note1.levelDataCount+item_index)?string('0')}C3"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
    </Row>
@@ -6149,8 +6106,8 @@
     <Cell ss:StyleID="s337"><Data ss:Type="String">Control</Data></Cell>
     <#if T300.main.count != 0>
     <#list T300.main.list as item>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R${(18+T300.main.count+item_index)?string('0')}C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R${(12+item_index)?string('0')}C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R${(17+T300.main.count+item_index)?string('0')}C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s338" ss:Formula="=R[-1]C-R${(11+item_index)?string('0')}C6"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
    </Row>
@@ -6297,91 +6254,117 @@
     <Cell ss:StyleID="s315"/>
     <Cell ss:StyleID="s300"/>
    </Row>
-   <#if T300.main.count == 0>
-   <Row ss:Height="13.5" ss:StyleID="s75">
+   <Row>
     <Cell ss:StyleID="s89"><Data ss:Type="String">金额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s90"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s57"/>
    </Row>
-   <#else>
+   <#if T300.main.count != 0>
    <#list T300.main.list as item>
-   <#if item_index == 0>
-   <Row ss:Height="13.5" ss:StyleID="s75">
-    <Cell ss:StyleID="s89"><Data ss:Type="String">金额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">${item.level!}</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s47"><Data ss:Type="Number">${(item.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.drAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.crAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s57"/>
    </Row>
-   </#if>
    </#list>
    </#if>
-   <Row ss:Height="13.5" ss:StyleID="s75">
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s92"/>
+    <Cell ss:Index="3" ss:StyleID="s93"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s57"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s95" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T&gt;/&lt;T500&gt;</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s96"><Data ss:Type="String">Note 2</Data></Cell>
-    <Cell ss:StyleID="s340"><Data ss:Type="String">Note 1</Data></Cell>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s300"/>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <Row ss:Height="13.5" ss:StyleID="s75">
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s144"/>
+   <Row>
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s96"/>
     <Cell ss:StyleID="s96"/>
     <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s340"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s300"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <Row ss:Height="13.5" ss:StyleID="s75">
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
+   <Row>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"/>
     <Cell ss:StyleID="s379"/>
-    <Cell ss:StyleID="s300"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
-   <#if T300.main.count == 0>
-   <Row ss:Height="13.5" ss:StyleID="s75">
-    <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T500&gt;</Data></Cell>
-   </Row>
-   <#else>
+   <#if T300.main.count != 0>
    <#list T300.main.list as item>
-   <#if item_index == 0>
-   <Row ss:Height="13.5" ss:StyleID="s75">
-    <Cell ss:StyleID="s89"><Data ss:Type="String">份额</Data></Cell>
-    <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.beginUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.drUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s316"><Data ss:Type="Number">${(item.crUnits!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s97"><Data ss:Type="String">${item.level!}</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s47"><Data ss:Type="Number">${(item.beginUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.drUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="Number">${(item.crUnits!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s47" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s57"><Data ss:Type="String">&lt;T500&gt;</Data></Cell>
    </Row>
-   </#if>
    </#list>
    </#if>
-   <Row ss:Height="13.5" ss:StyleID="s75">
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s144"/>
+   <Row>
+    <Cell ss:StyleID="s92"/>
+    <Cell ss:Index="3" ss:StyleID="s93"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s86"/>
+    <Cell ss:Index="3" ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s98" ss:Formula="=SUM(R[${(-(1+T300.main.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:StyleID="s91"/>
     <Cell ss:StyleID="s96"><Data ss:Type="String"><#if T300.note.note3Flag == 'Y'>Note 3</#if></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s317"/>
-    <Cell ss:StyleID="s300"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:Height="13.5" ss:StyleID="s73">
     <Cell ss:StyleID="s320"/>
@@ -6512,7 +6495,7 @@
    <Row ss:Height="13.5">
     <Cell ss:StyleID="s105"/>
     <Cell ss:StyleID="s112"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s129" ss:Formula="=R[-1]C-R[-19]C[2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s129" ss:Formula="=R[-1]C-R[${(-(22+T300.main.count))?string('0')}]C[2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s346"><Data ss:Type="String">注：差异原因为XXXX，已查见相关凭证，无异常，对实收基金贷方无影响。（请根据实际情况说明差异原因，以及是否存在异常，此处以无异常为例）</Data></Cell>
     <Cell ss:StyleID="s60"/>
     <Cell ss:StyleID="s60"/>
@@ -6633,7 +6616,7 @@
    <Row ss:AutoFitHeight="0" ss:Height="12">
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s112"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s129" ss:Formula="=R[-1]C-R[-32]C[1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s129" ss:Formula="=R[-1]C-R[${(-(35+T300.main.count))?string('0')}]C[1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="5" ss:StyleID="s67"/>
     <Cell ss:StyleID="s67"/>
     <Cell ss:StyleID="s67"/>
@@ -6683,7 +6666,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">基金成立金额</Data></Cell>
     <Cell ss:StyleID="s324"/>
     <Cell ss:StyleID="s144"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-37]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[${(-(40+T300.main.count))?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -6693,7 +6676,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">首次设立募集规模（份额）</Data></Cell>
     <Cell ss:StyleID="s323"/>
     <Cell ss:StyleID="s144"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-34]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-35]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -6706,7 +6689,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">基金成立金额</Data></Cell>
     <Cell ss:StyleID="s324"/>
     <Cell ss:StyleID="s144"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-37]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[${(-(40+T300.main.count))?string('0')}]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -6716,7 +6699,7 @@
     <Cell ss:StyleID="s105"><Data ss:Type="String" x:Ticked="1">首次设立募集规模（份额）</Data></Cell>
     <Cell ss:StyleID="s323"/>
     <Cell ss:StyleID="s144"><Data ss:Type="Number">${(item.units!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-34]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s178" ss:Formula="=RC[-1]-R[-35]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
     <Cell ss:StyleID="s179"/>
@@ -7187,7 +7170,7 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <#if extraFundInfo.structured != 'T'  && extraFundInfo.mf != 'Y'>
+ <#if extraFundInfo.structured != 'T' && extraFundInfo.mf != 'Y'>
  <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
@@ -7561,7 +7544,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
- <#if extraFundInfo.structured == 'T'  && extraFundInfo.mf != 'Y'>
+ <#if extraFundInfo.structured == 'T' && extraFundInfo.mf != 'Y'>
  <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
@@ -8012,7 +7995,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
- <#if extraFundInfo.structured != 'T'  && extraFundInfo.mf == 'Y'>
+ <#if extraFundInfo.structured != 'T' && extraFundInfo.mf == 'Y'>
  <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
@@ -8305,7 +8288,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
- <#if extraFundInfo.structured == 'T'  && extraFundInfo.mf == 'Y'>
+ <#if extraFundInfo.structured == 'T' && extraFundInfo.mf == 'Y'>
  <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
@@ -9084,7 +9067,8 @@
    <Row/>
    <Row>
     <Cell><Data ss:Type="String">起始日（${T500.f_test.mother.dateType!}）</Data></Cell>
-    <Cell ss:StyleID="s388"><Data ss:Type="DateTime">${T500.f_test.mother.dateFrom}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s388"><Data ss:Type="DateTime"><#if T500.f_test.mother.dateFrom??>${T500.f_test.mother.dateFrom!}<#else>${period?string('0')}-${month?string('00')}-${day?string('00')}</#if>T00:00:00.000</Data>
+</Cell>
     <Cell ss:Index="4" ss:StyleID="s118"/>
     <Cell ss:StyleID="s269"/>
    </Row>

@@ -109,7 +109,7 @@ public class OExportService extends BaseExportService implements OExportManager 
      */
     private Map<String,Object> getO300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<>();
         
         result.put("YJZZS_JRSPZR_SX", new HashMap<>());
         result.put("YJZZS_DKFW_SX", new HashMap<>());
@@ -166,6 +166,8 @@ public class OExportService extends BaseExportService implements OExportManager 
                         result.put("YJFJS_YJJYFJ_SX", resMap);
                     }else if("应交地方教育费附加".equals(resMap.get("subtype"))) {
                         result.put("YJFJS_YJDFJYFJ_SX", resMap);
+                    }else if("应交附加税-中转".equals(resMap.get("subtype"))) {
+                        result.put("YJFJS_YJFJSZZ_SX", resMap);
                     }
                 }
             }
@@ -206,13 +208,13 @@ public class OExportService extends BaseExportService implements OExportManager 
         
         for(Map<String, Object> resMap : resMapList) {
             if("金融商品转让".equals(resMap.get("item"))) {
-                if("基金转让".equals(resMap.get("subItem"))) {
+                if("基金投资收益".equals(resMap.get("subItem"))) {
                     item1.put("JJZR", resMap);
-                }else if("贵金属转让".equals(resMap.get("subItem"))) {
+                }else if("贵金属投资收益".equals(resMap.get("subItem"))) {
                     item1.put("GJSZR", resMap);
-                }else if("权证转让".equals(resMap.get("subItem"))) {
+                }else if("权证损益".equals(resMap.get("subItem"))) {
                     item1.put("QZZR", resMap);
-                }else if("期货转让".equals(resMap.get("subItem"))) {
+                }else if("衍生工具收益".equals(resMap.get("subItem"))) {
                     item1.put("QHZR", resMap);
                 }
             }

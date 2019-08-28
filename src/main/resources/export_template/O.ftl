@@ -556,6 +556,11 @@
    <Interior/>
    <NumberFormat ss:Format="yyyy\-mm\-dd"/>
   </Style>
+  <Style ss:ID="s10099">
+   <Font ss:FontName="宋体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#000000"/>
+   <Interior/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="O">
   <Table ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -830,6 +835,18 @@
     <Cell ss:StyleID="s70"><#if O300.YJFJS_YJDFJYFJ_SX.crAmount?? && (O300.YJFJS_YJDFJYFJ_SX.crAmount != 0)><Data ss:Type="String">&lt;U800&gt;</Data></#if></Cell>
     <Cell ss:StyleID="s66" ss:Formula="=RC[-5]-RC[-4]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
+   <#if O300.YJFJS_YJFJSZZ_SX??>
+   <Row>
+    <Cell ss:StyleID="s62"/>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">应交附加税-中转</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJFJSZZ_SX.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJFJSZZ_SX.drAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJFJSZZ_SX.crAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s70"><#if O300.YJFJS_YJFJSZZ_SX.crAmount?? && (O300.YJFJS_YJFJSZZ_SX.crAmount != 0)><Data ss:Type="String">Note</Data></#if></Cell>
+    <Cell ss:StyleID="s66" ss:Formula="=RC[-5]-RC[-4]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   </#if>
    <Row>
     <Cell ss:StyleID="s62"><Data ss:Type="String">应交增值税_未实现</Data></Cell>
     <Cell ss:StyleID="s65"/>
@@ -905,7 +922,7 @@
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.OTHER.beginBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.OTHER.drAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s79"><Data ss:Type="String">v</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String"><#if (O300.OTHER.beginBalance!0)!=0>v</#if></Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s60"><Data ss:Type="Number">${(O300.OTHER.crAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"/>
     <Cell ss:StyleID="s66" ss:Formula="=RC[-5]-RC[-4]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -922,11 +939,11 @@
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s43"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s68" ss:Formula="=SUM(R[-16]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s68" ss:Formula="=SUM(R[-16]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s68" ss:Formula="=SUM(R[-16]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s68" ss:Formula="=SUM(R[-<#if O300.YJFJS_YJFJSZZ_SX??>17<#else>16</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s68" ss:Formula="=SUM(R[-<#if O300.YJFJS_YJFJSZZ_SX??>17<#else>16</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s68" ss:Formula="=SUM(R[-<#if O300.YJFJS_YJFJSZZ_SX??>17<#else>16</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s68" ss:Formula="=SUM(R[-16]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s68" ss:Formula="=SUM(R[-<#if O300.YJFJS_YJFJSZZ_SX??>17<#else>16</#if>]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="String">&lt;O&gt;</Data></Cell>
    </Row>
    <Row ss:Height="14.25">
@@ -972,6 +989,13 @@
     <Cell ss:StyleID="s78"><ss:Data ss:Type="String"
       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">S/L：</Font></B><Font>与明细账核对一致。</Font></ss:Data></Cell>
    </Row>
+   <#if O300.YJFJS_YJFJSZZ_SX??>
+   <Row/>
+   <Row>
+     <Cell ss:StyleID="s70"><Data ss:Type="String">Note</Data></Cell>
+     <Cell ss:StyleID="s65"><Data ss:Type="String">附加税通过本科目计提，除了1月的附加税费直接借记本科目支付外，其余月份均结转至应交城建税附加、教育费附加、地方教育费附加后向税务机关缴纳。</Data></Cell>
+   </Row>
+   </#if>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -1123,7 +1147,7 @@
    <Row>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">权证转让</Data></Cell>
-    <Cell ss:StyleID="s89"><Data ss:Type="String">UXXX</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String"><#if (O310.detail.JRSPZR.QZZR.amount!0)!=0>UXXX</#if></Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.detail.JRSPZR.QZZR.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.detail.JRSPZR.QZZR.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
@@ -1134,7 +1158,7 @@
    <Row>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">期货转让</Data></Cell>
-    <Cell ss:StyleID="s89"><Data ss:Type="String">UXXX</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String"><#if (O310.detail.JRSPZR.QHZR.amount!0)!=0>UXXX</#if></Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.detail.JRSPZR.QHZR.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.detail.JRSPZR.QHZR.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
@@ -1147,9 +1171,9 @@
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s61"><Data ss:Type="String">小计</Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String"></Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s84"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s60" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s84"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s60" ss:Formula="=MAX(0,SUM(R[-5]C:R[-1]C))"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O310.summary.JRSPZR.XJ.taxClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
@@ -1326,7 +1350,7 @@
    <Row>
     <Cell ss:StyleID="s94"><Data ss:Type="String">不含税收入</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=R[-3]C-SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">&lt;O300&gt;</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">&lt;O310&gt;</Data></Cell>
    </Row>
    <Row ss:Index="14" ss:Height="27">
     <Cell ss:Index="2" ss:StyleID="s81"><Data ss:Type="String">科目代码</Data></Cell>
@@ -1340,7 +1364,7 @@
    <#if O311.detailListCount != 0>
    <#list O311.detailList as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s98"><Data ss:Type="Number">${item.accountNum!}</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s65"><Data ss:Type="String">${item.accountNum!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.accountName!}</Data></Cell>
     <Cell ss:StyleID="s81"><Data ss:Type="String">${item.vatFlag!}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>

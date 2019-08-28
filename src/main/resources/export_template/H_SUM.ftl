@@ -2298,7 +2298,7 @@
     <Cell ss:MergeAcross="8" ss:StyleID="s170"><Data ss:Type="String">每单位债券/资产支持证券应收利息</Data></Cell>
     <Cell ss:Index="29" ss:MergeAcross="3" ss:StyleID="s170"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
     <Cell ss:Index="34" ss:MergeAcross="2" ss:StyleID="s170"><Data ss:Type="String">行权条款摘录（如有）</Data></Cell>
-    <Cell ss:Index="38" ss:MergeAcross="1" ss:StyleID="s10181"><Data ss:Type="String">行权条款摘录（如有）</Data></Cell>
+    <Cell ss:Index="38" ss:MergeAcross="1" ss:StyleID="s10181"><Data ss:Type="String">系统计算结果（确认diff后请删除）</Data></Cell>
    </Row>
    <Row ss:Height="27" ss:StyleID="s63">
     <Cell><Data ss:Type="String">基金代码</Data></Cell>

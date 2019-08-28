@@ -27,7 +27,10 @@ import com.ey.service.wp.output.UExportManager;
 import com.ey.service.wp.output.VExportManager;
 import com.ey.util.Logger;
 import com.ey.util.PageData;
+import com.ey.util.VbsUtil;
+import com.ey.util.VbsUtil.Scripts;
 import com.ey.util.fileexport.Constants;
+import com.ey.util.fileexport.FileExportUtils;
 
 /** 
  * 说明： 底稿导出工作台
@@ -96,6 +99,7 @@ public class WorkPaperService implements WorkPaperManager{
     
     private static final String PD_FIELD_WP_TYPE = "WP_TYPE";
     private static final String PD_FIELD_FUND_ID = "FUND_ID";
+    private static final String PD_FIELD_FIRM_CODE = "FIRM_CODE";
     
     private final Logger logger = Logger.getLogger(WorkPaperService.class);
 	
@@ -163,14 +167,20 @@ public class WorkPaperService implements WorkPaperManager{
 	 * @param pd
 	 */
 	public void exportWorkPaper(PageData pd) throws Exception {
-//		{
-//		    FIRM_CODE=FG, 
-//	        WP_TYPE=C,
-//		    PERIOD=20161231, 
-//		    OUTBOND_PATH=D:\wp\, 
-//		    FUND_ID=F100066-01
-//		}
+//	    pd = {
+//	        "FIRM_CODE": "FG",
+//	        "WP_TYPE": "C",
+//	        "PERIOD": "20161231",
+//	        "OUTBOND_PATH": "D:\\wp\\",
+//	        "FUND_ID": "F100066-01"
+//	    }
 	    String exportPath = pd.getString("OUTBOND_PATH");
+	    String tempExportPath = exportPath;
+	    int exportPathLength = exportPath.length();
+	    if(exportPath.charAt(exportPathLength - 1) == '/' || exportPath.charAt(exportPathLength - 1) == '\\') {
+	        tempExportPath = tempExportPath.substring(0, exportPathLength - 1);
+	    }
+	    tempExportPath = tempExportPath + "_temp" + File.separatorChar;
 	    String periodStr = pd.getString("PERIOD");
 	    @SuppressWarnings("unchecked")
         List<PageData> fundInfos = (List<PageData>)dao.findForList("WorkPaperMapper.selectFundInfos", pd);
@@ -178,7 +188,7 @@ public class WorkPaperService implements WorkPaperManager{
 	        String errorMsg = StringUtils.EMPTY;
 	        for(PageData fundInfo : fundInfos) {
 	            try {
-	                this.exportOneFundWorkPaper(fundInfo, exportPath, periodStr, pd.getString(PD_FIELD_WP_TYPE));
+	                this.exportOneFundWorkPaper(fundInfo, tempExportPath, periodStr, pd.getString(PD_FIELD_WP_TYPE));
 	            }catch (Exception ex) {
 	                logger.error("底稿导出异常: " + fundInfo.getString("FUND_ID") + " " + fundInfo.getString("PERIOD"), ex);
 	                errorMsg += (ex.getMessage() + '\n');
@@ -186,7 +196,10 @@ public class WorkPaperService implements WorkPaperManager{
 	        }
 	        try {
 	        	if(StringUtils.isEmpty(pd.getString(PD_FIELD_WP_TYPE)) || "H_SUM".equals(pd.getString(PD_FIELD_WP_TYPE))){
-		            String hSumExportPath = exportPath + (periodStr + File.separatorChar + "H_SUM" + File.separatorChar);
+	        	    // ↓ daigaokuo@hotmail.com 2019-02-13 ↓
+	                // [IMP] 最终输出文件夹路径中添加firm code
+		            String hSumExportPath = tempExportPath + (periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE) + File.separatorChar + "H_SUM" + File.separatorChar);
+		            // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
 		            this.hSumExportService.doExport(hSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr);
 	        	}
 	        }catch (Exception ex) {
@@ -195,7 +208,10 @@ public class WorkPaperService implements WorkPaperManager{
             }
 	        try {
 	            if(StringUtils.isEmpty(pd.getString(PD_FIELD_WP_TYPE)) || "SA".equals(pd.getString(PD_FIELD_WP_TYPE))){
-	                String saSumExportPath = exportPath + (periodStr + File.separatorChar + "SA" + File.separatorChar);
+	                // ↓ daigaokuo@hotmail.com 2019-02-13 ↓
+	                // [IMP] 最终输出文件夹路径中添加firm code
+	                String saSumExportPath = tempExportPath + (periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE) + File.separatorChar + "SA" + File.separatorChar);
+	                // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
                     this.saExportService.doExport(saSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_SA, pd.getString("FIRM_CODE"), periodStr);
                 }
 	        }catch (Exception ex) {
@@ -205,6 +221,18 @@ public class WorkPaperService implements WorkPaperManager{
 	        if(errorMsg.length() != 0) {
 	            throw new Exception(errorMsg);
 	        }
+	        FileExportUtils.createDir(exportPath);
+	        // ↓ daigaokuo@hotmail.com 2019-03-18 ↓
+            // [IMP] VBS脚本运行时按期间+公司代码隔离
+	        /* vbs创建文件夹时不能自动创建父级,因此手工创建一个父级目录 */
+	        FileExportUtils.createDir(exportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE));
+	        VbsUtil.callScript(
+	                        Scripts.WORKPAPER_AND_REPORT_CONVERTER, 
+	                        tempExportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE), 
+	                        exportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE)
+                        );
+	        // ↑ daigaokuo@hotmail.com 2019-03-18 ↑
+//	        FileUtils.deleteDirectory(new File(tempExportPath));
 	    }
 	    // 设置消息
         pd.put("RESULT", "S");
@@ -222,9 +250,12 @@ public class WorkPaperService implements WorkPaperManager{
 	 */
 	private void exportOneFundWorkPaper(PageData pd, String exportPath, String periodStr, String wpType) throws Exception {
         final String fundId = pd.getString(PD_FIELD_FUND_ID);
-        final String fileIdentifier = fundId;
+        final String firmCode = pd.getString(PD_FIELD_FIRM_CODE);
         exportPath += (periodStr + File.separatorChar) ;
-        final String folderName = exportPath + fileIdentifier;
+        // ↓ daigaokuo@hotmail.com 2019-02-13 ↓
+        // [IMP] 最终输出文件夹路径中添加firm code
+        final String folderName = exportPath + firmCode + File.separatorChar + fundId;
+        // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
         if (this.getExportFlag(pd, PD_FIELD_CFLAG) && (StringUtils.isEmpty(wpType) || "C".equals(wpType))) {
             this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr);
         }
