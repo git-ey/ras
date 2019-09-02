@@ -152,7 +152,7 @@
         and V500REV.STATUS = 'Y'
         and V500REV.FUND_ID = #{fundId}
         and V500REV.PERIOD = #{period}
-        and V500REV.ITEM != '交易性金融资产-基金投资'
+        <!-- and V500REV.ITEM != '交易性金融资产-基金投资' -->
         LIMIT 1
     </select>
 

@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 <?mso-application progid="Excel.Sheet"?>
 <Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
- xmlns:o="urn:schemas-microsoft-com:office:office"
- xmlns:x="urn:schemas-microsoft-com:office:excel"
- xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
- xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
- xmlns:html="http://www.w3.org/TR/REC-html40">
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Grace Jiang</Author>
   <LastAuthor>戴宗</LastAuthor>
@@ -1242,7 +1241,7 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s65"><Data ss:Type="String">应交城建费附加</Data></Cell>
     <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.extra.YJCJFFJ.taxRate!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R18C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R20C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O300</Data></Cell>
     <Cell ss:StyleID="s85"><Data ss:Type="Number">${(O310.extra.YJCJFFJ.taxClient!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
@@ -1254,7 +1253,7 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s65"><Data ss:Type="String">应交教育费附加</Data></Cell>
     <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.extra.YJJYFFJ.taxRate!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R18C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R20C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O300</Data></Cell>
     <Cell ss:StyleID="s85"><Data ss:Type="Number">${(O310.extra.YJJYFFJ.taxClient!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
@@ -1266,7 +1265,7 @@
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s65"><Data ss:Type="String">应交地方教育费附加</Data></Cell>
     <Cell ss:StyleID="s84"><Data ss:Type="Number">${(O310.extra.YJDFJYFFJ.taxRate!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R18C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s85" ss:Formula="=RC[-1]*R20C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s89"><Data ss:Type="String">O300</Data></Cell>
     <Cell ss:StyleID="s85"><Data ss:Type="Number">${(O310.extra.YJDFJYFFJ.taxClient!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>

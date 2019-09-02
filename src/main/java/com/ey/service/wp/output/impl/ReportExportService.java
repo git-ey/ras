@@ -5,13 +5,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
@@ -96,8 +90,7 @@ public class ReportExportService implements ReportExportManager {
      * 生成文件内容
      * @author Dai Zong 2017年10月17日
      * 
-     * @param fundId
-     * @param periodStr
+     * @param exportParam
      * @param fundInfo
      * @return
      * @throws Exception
@@ -1638,8 +1631,8 @@ public class ReportExportService implements ReportExportManager {
             String partyShortName = entry.getKey();
             Map<String, List<Map<String, Object>>> levelMap = entry.getValue();
             
-            Double salesCommisionAmtSum = new Double(0d);
-            Double salesCommisionAmtLastSum = new Double(0d);
+            Double salesCommisionAmtSum = Double.valueOf(0d);
+            Double salesCommisionAmtLastSum = Double.valueOf(0d);
             for(String levelName : levelNames) {
                 List<Map<String, Object>> oneLevelList = levelMap.get(levelName);
                 if(CollectionUtils.isNotEmpty(oneLevelList)) {
@@ -1679,8 +1672,8 @@ public class ReportExportService implements ReportExportManager {
                 return String.valueOf(item.get("level"));
             }));
             
-            Double salesCommisionAmtSum = new Double(0d);
-            Double salesCommisionAmtLastSum = new Double(0d);
+            Double salesCommisionAmtSum = Double.valueOf(0d);
+            Double salesCommisionAmtLastSum = Double.valueOf(0d);
             for(String levelName : levelNames) {
                 List<Map<String, Object>> oneLevelList = levelMap.get(levelName);
                 if(CollectionUtils.isNotEmpty(oneLevelList)) {
@@ -2000,16 +1993,18 @@ public class ReportExportService implements ReportExportManager {
         }
         SimpleDateFormat sdfin = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdfout = new SimpleDateFormat("yyyy年MM月dd日");
-        String noteDates = noteDataList.stream().filter(item -> {
-            return item != null  && !StringUtils.EMPTY.equals(item);
+        List<String> distinctNoteDateList = noteDataList.stream().filter(item -> {
+            return item != null && !StringUtils.EMPTY.equals(item);
         }).map(item -> {
             try {
                 return sdfout.format(sdfin.parse(item));
             } catch (ParseException e) {
                 return StringUtils.EMPTY;
             }
-        }).distinct().collect(Collectors.joining("、"));
+        }).distinct().collect(Collectors.toList());
+        String noteDates = distinctNoteDateList.stream().collect(Collectors.joining("、"));
         noteData.put("noteDates", noteDates);
+        noteData.put("noteDatesCount", distinctNoteDateList.size());
         //--------------------↑H11000.note↑--------------------
         
         H11000.put("additian", additian);
@@ -2179,9 +2174,9 @@ public class ReportExportService implements ReportExportManager {
             V300MetaDataList = new ArrayList<>(); 
         }
         
-        Map<String, List<Map<String, Object>>> groups = V300MetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
-            return String.valueOf(item.get("type"));
-        }));
+        Map<String, List<Map<String, Object>>> groups = V300MetaDataList.parallelStream().collect(Collectors.groupingBy(item ->
+            String.valueOf(item.get("type"))
+        ));
         
         final List<String> V300IntRistPeriodsDataListFinal = V300IntRistPeriodsDataList;
         List<Map<String,Double>> sum1List = new ArrayList<>();
@@ -2215,8 +2210,8 @@ public class ReportExportService implements ReportExportManager {
                 case "银行存款":
                     attr1.put("list", list);
                     attr1.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2224,8 +2219,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr1.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr1.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2233,8 +2228,8 @@ public class ReportExportService implements ReportExportManager {
                 case "结算备付金":
                     attr2.put("list", list);
                     attr2.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2242,8 +2237,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr2.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr2.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2251,8 +2246,8 @@ public class ReportExportService implements ReportExportManager {
                 case "存出保证金":
                     attr3.put("list", list);
                     attr3.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2260,8 +2255,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr3.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr3.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2269,8 +2264,8 @@ public class ReportExportService implements ReportExportManager {
                 case "交易性金融资产":
                     attr4.put("list", list);
                     attr4.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2278,8 +2273,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr4.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr4.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2287,8 +2282,8 @@ public class ReportExportService implements ReportExportManager {
                 case "衍生金融资产":
                     attr5.put("list", list);
                     attr5.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2296,8 +2291,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr5.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr5.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2305,8 +2300,8 @@ public class ReportExportService implements ReportExportManager {
                 case "买入返售金融资产":
                     attr6.put("list", list);
                     attr6.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2314,8 +2309,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr6.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr6.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2323,8 +2318,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应收证券清算款":
                     attr7.put("list", list);
                     attr7.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2332,8 +2327,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr7.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr7.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2341,8 +2336,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应收利息":
                     attr8.put("list", list);
                     attr8.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2350,8 +2345,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr8.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr8.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2359,8 +2354,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应收股利":
                     attr9.put("list", list);
                     attr9.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2368,8 +2363,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr9.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr9.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2377,8 +2372,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应收申购款":
                     attr10.put("list", list);
                     attr10.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2386,8 +2381,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr10.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr10.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2395,8 +2390,8 @@ public class ReportExportService implements ReportExportManager {
                 case "其他资产":
                     attr11.put("list", list);
                     attr11.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum1List.get(i);
@@ -2404,8 +2399,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr11.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr11.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2413,8 +2408,8 @@ public class ReportExportService implements ReportExportManager {
                 case "短期借款":
                     attr12.put("list", list);
                     attr12.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2422,8 +2417,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr12.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr12.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2431,8 +2426,8 @@ public class ReportExportService implements ReportExportManager {
                 case "交易性金融负债":
                     attr13.put("list", list);
                     attr13.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2440,8 +2435,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr13.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr13.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2449,8 +2444,8 @@ public class ReportExportService implements ReportExportManager {
                 case "衍生金融负债":
                     attr14.put("list", list);
                     attr14.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2458,8 +2453,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr14.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr14.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2467,8 +2462,8 @@ public class ReportExportService implements ReportExportManager {
                 case "卖出回购金融资产款":
                     attr15.put("list", list);
                     attr15.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2476,8 +2471,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr15.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr15.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2485,8 +2480,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应付证券清算款":
                     attr16.put("list", list);
                     attr16.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2494,8 +2489,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr16.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr16.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2503,8 +2498,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应付赎回款":
                     attr17.put("list", list);
                     attr17.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2512,8 +2507,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr17.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr17.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2521,8 +2516,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应付管理人报酬":
                     attr18.put("list", list);
                     attr18.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2530,8 +2525,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr18.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr18.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2539,8 +2534,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应付托管费":
                     attr19.put("list", list);
                     attr19.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2548,8 +2543,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr19.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr19.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2557,8 +2552,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应付销售服务费":
                     attr20.put("list", list);
                     attr20.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2566,8 +2561,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr20.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr20.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2575,8 +2570,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应付交易费用":
                     attr21.put("list", list);
                     attr21.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2584,8 +2579,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr21.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr21.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2593,8 +2588,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应付税费":
                     attr22.put("list", list);
                     attr22.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2602,8 +2597,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr22.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr22.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2611,8 +2606,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应付利息":
                     attr23.put("list", list);
                     attr23.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2620,8 +2615,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr23.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr23.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2629,8 +2624,8 @@ public class ReportExportService implements ReportExportManager {
                 case "应付利润":
                     attr24.put("list", list);
                     attr24.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2638,8 +2633,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr24.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr24.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2647,8 +2642,8 @@ public class ReportExportService implements ReportExportManager {
                 case "其他负债":
                     attr25.put("list", list);
                     attr25.put("count", count);
-                    lineAmountSum = new Double(0d);
-                    lineAmountLastSum = new Double(0d);
+                    lineAmountSum = Double.valueOf(0d);
+                    lineAmountLastSum = Double.valueOf(0d);
                     for(int i = 0 ; i < list.size() ; i++) {
                         Map<String,Object> map = list.get(i);
                         Map<String, Double> sumMap = sum2List.get(i);
@@ -2656,8 +2651,8 @@ public class ReportExportService implements ReportExportManager {
                         Double temp2 = map.get("amountLast") == null ? 0 : Double.parseDouble(String.valueOf(map.get("amountLast")));
                         lineAmountSum += temp1;
                         lineAmountLastSum +=temp2;
-                        sumMap.put("amount", sumMap.get("amount") == null ? 0 : sumMap.get("amount") + temp1);
-                        sumMap.put("amountLast", sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast") + temp2);
+                        sumMap.put("amount", (sumMap.get("amount") == null ? 0 : sumMap.get("amount")) + temp1);
+                        sumMap.put("amountLast", (sumMap.get("amountLast") == null ? 0 : sumMap.get("amountLast")) + temp2);
                     }
                     attr25.put("lineAmountSum", lineAmountSum == 0 ? null : lineAmountSum);
                     attr25.put("lineAmountLastSum", lineAmountLastSum == 0 ? null : lineAmountLastSum);
@@ -2667,14 +2662,14 @@ public class ReportExportService implements ReportExportManager {
             }
         }
         
-        Double sum1LineAmountSum = new Double(0d);
-        Double sum1LineAmountLastSum = new Double(0d);
+        Double sum1LineAmountSum = Double.valueOf(0d);
+        Double sum1LineAmountLastSum = Double.valueOf(0d);
         for(Map<String,Double> sum1Map : sum1List) {
             sum1LineAmountSum += (sum1Map.get("amount") == null ? 0 : sum1Map.get("amount"));
             sum1LineAmountLastSum += (sum1Map.get("amountLast") == null ? 0 : sum1Map.get("amountLast"));
         }
-        Double sum2LineAmountSum = new Double(0d);
-        Double sum2LineAmountLastSum = new Double(0d);
+        Double sum2LineAmountSum = Double.valueOf(0d);
+        Double sum2LineAmountLastSum = Double.valueOf(0d);
         for(Map<String,Double> sum2Map : sum2List) {
             sum2LineAmountSum += (sum2Map.get("amount") == null ? 0 : sum2Map.get("amount"));
             sum2LineAmountLastSum += (sum2Map.get("amountLast") == null ? 0 : sum2Map.get("amountLast"));
