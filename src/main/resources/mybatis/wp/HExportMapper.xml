@@ -760,6 +760,7 @@
 	    AND P600T.BUY_OUT_BOND = 'Note 1' 
         AND P600T.FUND_ID = #{fundId}
         AND P600T.PERIOD = #{period}
+        ORDER BY P600T.DUE_ACCOUNT_DAY
     </select>
     
 </mapper>

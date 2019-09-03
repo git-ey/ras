@@ -1992,7 +1992,7 @@ public class ReportExportService implements ReportExportManager {
             noteDataList = new ArrayList<>();
         }
         SimpleDateFormat sdfin = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat sdfout = new SimpleDateFormat("yyyy年MM月dd日");
+        SimpleDateFormat sdfout = new SimpleDateFormat("yyyy年M月d日");
         List<String> distinctNoteDateList = noteDataList.stream().filter(item -> {
             return item != null && !StringUtils.EMPTY.equals(item);
         }).map(item -> {
