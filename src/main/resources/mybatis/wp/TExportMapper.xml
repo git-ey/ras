@@ -341,9 +341,9 @@
 	    SELECT
 		    T11000.`LEVEL` AS `level`,
 		    T11000.SEQ AS seq,
-		    T11000.REGISTRATION_DATE AS registrationDate,
-		    T11000.LISTED_DIVIDEND_DATE AS listedDividendDate,
-		    T11000.UNLISTED_DIVIDEND_DATE AS unlistedDividendDate,
+            DATE_FORMAT(T11000.REGISTRATION_DATE,'%Y-%m-%d') as registrationDate,
+            DATE_FORMAT(T11000.LISTED_DIVIDEND_DATE,'%Y-%m-%d') as listedDividendDate,
+            DATE_FORMAT(T11000.UNLISTED_DIVIDEND_DATE,'%Y-%m-%d') as unlistedDividendDate,
 		    IF(T11000.BONUS_UNIT = 0, null, T11000.BONUS_UNIT) AS bonusUnit,
 		    IF(T11000.CASH_AMOUNT = 0, null, T11000.CASH_AMOUNT) AS cashAmount,
 		    IF(T11000.REINVEST_AMOUNT = 0, null, T11000.REINVEST_AMOUNT) AS reinvestAmount,
