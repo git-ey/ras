@@ -438,6 +438,20 @@
             </build>  
         </profile>
         <profile>  
+            <id>sit</id>
+            <activation/>
+            <build>  
+                <resources>  
+                    <resource>  
+                        <directory>src/main/resources/profiles/sit</directory>  
+                    </resource>
+                    <resource>  
+                        <directory>src/main/resources</directory>  
+                    </resource>
+                </resources>  
+            </build>  
+        </profile>
+        <profile>  
             <id>uat</id>
             <activation/>
             <build>  
