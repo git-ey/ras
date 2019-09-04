@@ -35,7 +35,7 @@
     <o:CustomDocumentProperties>
         <o:客户全称 dt:dt="string">${fundInfo.fundFullName!}</o:客户全称>
         <o:客户简称 dt:dt="string">${fundInfo.fundShortName!}</o:客户简称>
-        <o:审计年度 dt:dt="string">${dateInfo.TABLE_PERIOD_CURRENT!}</o:审计年度>
+        <o:审计年度 dt:dt="string">${(dateInfo.CURRENT_BS_DATE?string("yyyy年M月d日"))!}</o:审计年度>
         <o:审计年度大写 dt:dt="string"></o:审计年度大写>
         <o:会计制度 dt:dt="string">企业会计制度</o:会计制度>
         <o:事务所名 dt:dt="string">安永华明会计师事务所</o:事务所名>
