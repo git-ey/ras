@@ -39,4 +39,13 @@
 		</property>
 	</bean>
 
+    <!-- Session 管理器 -->
+	<bean id="sessionManager"
+		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- 设置超时时间 -->
+		<property name="globalSessionTimeout" value="1800000" />
+		<property name="deleteInvalidSessions" value="true" />
+		<property name="sessionValidationSchedulerEnabled" value="true" />
+	</bean>
+
 </beans>
