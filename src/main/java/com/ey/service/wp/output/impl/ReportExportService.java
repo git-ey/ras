@@ -1773,6 +1773,7 @@ public class ReportExportService implements ReportExportManager {
             }
             result2.put("list", levelList);
             result2.put("count", levelList.size());
+            result2.put("levelName", levelName);
             Map<String,Object> levelQueryMap = new HashMap<>();
             levelQueryMap.put("fundId", queryParam.get("fundId"));
             levelQueryMap.put("level", levelName);
