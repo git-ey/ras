@@ -253,7 +253,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>file/goAdd.do';
+			 diag.URL = '<%=path%>/file/goAdd.do';
 			 diag.Width = 460;
 			 diag.Height = 290;
 			 diag.Modal = true;				//有无遮罩窗口

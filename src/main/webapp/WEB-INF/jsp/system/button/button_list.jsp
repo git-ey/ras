@@ -206,7 +206,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>button/goAdd.do';
+			 diag.URL = '<%=path%>/button/goAdd.do';
 			 diag.Width = 450;
 			 diag.Height = 358;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -242,7 +242,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>button/goEdit.do?BUTTON_ID='+Id;
+			 diag.URL = '<%=path%>/button/goEdit.do?BUTTON_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 358;
 			 diag.CancelEvent = function(){ //关闭事件

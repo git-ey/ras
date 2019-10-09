@@ -262,7 +262,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>eypl/goAdd.do';
+			 diag.URL = '<%=path%>/eypl/goAdd.do';
 			 diag.Width = 600;
 			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -300,7 +300,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>eypl/goEdit.do?PL_ID='+Id;
+			 diag.URL = '<%=path%>/eypl/goEdit.do?PL_ID='+Id;
 			 diag.Width = 600;
 			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口

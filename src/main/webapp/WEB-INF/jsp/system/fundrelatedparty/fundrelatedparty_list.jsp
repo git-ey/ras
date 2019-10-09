@@ -260,7 +260,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>fundrelatedparty/goAdd.do';
+			 diag.URL = '<%=path%>/fundrelatedparty/goAdd.do';
 			 diag.Width = 700;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -298,7 +298,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>fundrelatedparty/goEdit.do?FUNDRELATEDPARTY_ID='+Id;
+			 diag.URL = '<%=path%>/fundrelatedparty/goEdit.do?FUNDRELATEDPARTY_ID='+Id;
 			 diag.Width = 700;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -365,7 +365,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>fundrelatedparty/goUploadExcel.do';
+			 diag.URL = '<%=path%>/fundrelatedparty/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件

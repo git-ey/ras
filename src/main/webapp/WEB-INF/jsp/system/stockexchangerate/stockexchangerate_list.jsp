@@ -257,7 +257,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>stockexchangerate/goAdd.do';
+			 diag.URL = '<%=path%>/stockexchangerate/goAdd.do';
 			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -295,7 +295,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>stockexchangerate/goEdit.do?STOCKEXCHANGERATE_ID='+Id;
+			 diag.URL = '<%=path%>/stockexchangerate/goEdit.do?STOCKEXCHANGERATE_ID='+Id;
 			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口

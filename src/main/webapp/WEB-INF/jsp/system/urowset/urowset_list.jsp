@@ -267,7 +267,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>urowset/goAdd.do';
+			 diag.URL = '<%=path%>/urowset/goAdd.do';
 			 diag.Width = 700;
 			 diag.Height = 300;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -305,7 +305,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>urowset/goEdit.do?UROWSET_ID='+Id;
+			 diag.URL = '<%=path%>/urowset/goEdit.do?UROWSET_ID='+Id;
 			 diag.Width = 700;
 			 diag.Height = 300;
 			 diag.Modal = true;				//有无遮罩窗口

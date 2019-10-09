@@ -287,7 +287,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>seattrx/goAdd.do';
+			 diag.URL = '<%=path%>/seattrx/goAdd.do';
 			 diag.Width = 600;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -325,7 +325,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>seattrx/goEdit.do?SEATTRX_ID='+Id;
+			 diag.URL = '<%=path%>/seattrx/goEdit.do?SEATTRX_ID='+Id;
 			 diag.Width = 600;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口

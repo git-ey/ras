@@ -268,7 +268,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>importconfig/goAdd.do';
+			 diag.URL = '<%=path%>/importconfig/goAdd.do';
 			 diag.Width = 1000;
 			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -321,7 +321,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>importconfig/goEdit.do?IMPORTCONFIG_ID='+Id;
+			 diag.URL = '<%=path%>/importconfig/goEdit.do?IMPORTCONFIG_ID='+Id;
 			 diag.Width = 1000;
 			 diag.Height = 600;
 			 diag.Modal = true;				//有无遮罩窗口

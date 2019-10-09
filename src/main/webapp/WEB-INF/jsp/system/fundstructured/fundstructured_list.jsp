@@ -254,7 +254,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>fundstructured/goAdd.do';
+			 diag.URL = '<%=path%>/fundstructured/goAdd.do';
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -292,7 +292,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>fundstructured/goEdit.do?FUNDSTRUCTURED_ID='+Id;
+			 diag.URL = '<%=path%>/fundstructured/goEdit.do?FUNDSTRUCTURED_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -359,7 +359,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>fundstructured/goUploadExcel.do';
+			 diag.URL = '<%=path%>/fundstructured/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件

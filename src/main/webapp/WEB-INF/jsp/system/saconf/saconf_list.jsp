@@ -263,7 +263,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>saconf/goAdd.do';
+			 diag.URL = '<%=path%>/saconf/goAdd.do';
 			 diag.Width = 800;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -301,7 +301,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>saconf/goEdit.do?SACONF_ID='+Id;
+			 diag.URL = '<%=path%>/saconf/goEdit.do?SACONF_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口

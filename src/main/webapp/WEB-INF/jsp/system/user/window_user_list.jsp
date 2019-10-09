@@ -213,7 +213,7 @@ function viewUser(USERNAME){
 	 var diag = new top.Dialog();
 	 diag.Drag=true;
 	 diag.Title ="资料";
-	 diag.URL = '<%=basePath%>user/view.do?USERNAME='+USERNAME;
+	 diag.URL = '<%=path%>/user/view.do?USERNAME='+USERNAME;
 	 diag.Width = 469;
 	 diag.Height = 380;
 	 diag.CancelEvent = function(){ //关闭事件

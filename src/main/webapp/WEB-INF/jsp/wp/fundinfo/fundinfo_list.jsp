@@ -264,7 +264,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>fundinfo/goAdd.do';
+			 diag.URL = '<%=path%>/fundinfo/goAdd.do';
 			 diag.Width = 900;
 			 diag.Height = 300;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -302,7 +302,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>fundinfo/goEdit.do?FUNDINFO_ID='+Id;
+			 diag.URL = '<%=path%>/fundinfo/goEdit.do?FUNDINFO_ID='+Id;
 			 diag.Width = 900;
 			 diag.Height = 300;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -369,7 +369,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>fundinfo/goUploadExcel.do';
+			 diag.URL = '<%=path%>/fundinfo/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件

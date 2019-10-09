@@ -236,7 +236,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>othdisline/goAdd.do?OTHDISHEAD_ID=${pd.OTHDISHEAD_ID}';
+			 diag.URL = '<%=path%>/othdisline/goAdd.do?OTHDISHEAD_ID=${pd.OTHDISHEAD_ID}';
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -270,7 +270,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>othdisline/goEdit.do?OTHDISLINE_ID='+Id;
+			 diag.URL = '<%=path%>/othdisline/goEdit.do?OTHDISLINE_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口

@@ -285,7 +285,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>timingbackup/goAdd.do';
+			 diag.URL = '<%=path%>/timingbackup/goAdd.do';
 			 diag.Width = 600;
 			 diag.Height = 380;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -321,7 +321,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>timingbackup/goEdit.do?TIMINGBACKUP_ID='+Id;
+			 diag.URL = '<%=path%>/timingbackup/goEdit.do?TIMINGBACKUP_ID='+Id;
 			 diag.Width = 600;
 			 diag.Height = 380;
 			 diag.CancelEvent = function(){ //关闭事件

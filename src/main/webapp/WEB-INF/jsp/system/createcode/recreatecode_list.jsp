@@ -253,7 +253,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="代码生成器";
-			 diag.URL = '<%=basePath%>recreateCode/goProductCode.do?table='+table+'&dbtype='+dbtype+'&dbAddress='+dbAddress+'&dbport='+dbport+'&username='+username+'&password='+password+'&databaseName='+databaseName;
+			 diag.URL = '<%=path%>/recreateCode/goProductCode.do?table='+table+'&dbtype='+dbtype+'&dbAddress='+dbAddress+'&dbport='+dbport+'&username='+username+'&password='+password+'&databaseName='+databaseName;
 			 diag.Width = 800;
 			 diag.Height = 500;
 			 diag.CancelEvent = function(){ //关闭事件

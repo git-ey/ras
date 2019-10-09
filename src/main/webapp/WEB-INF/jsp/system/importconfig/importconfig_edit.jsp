@@ -172,7 +172,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="表创建SQL";
-			 diag.URL = '<%=basePath%>importconfig/goSqlView.do?IMPORTCONFIG_ID='+Id;
+			 diag.URL = '<%=path%>/importconfig/goSqlView.do?IMPORTCONFIG_ID='+Id;
 			 diag.Width = 500;
 			 diag.Height = 300;
 			 diag.Modal = true;				//有无遮罩窗口

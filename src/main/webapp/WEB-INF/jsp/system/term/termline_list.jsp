@@ -239,7 +239,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>termline/goAdd.do?TERMHEAD_ID=${pd.TERMHEAD_ID}';
+			 diag.URL = '<%=path%>/termline/goAdd.do?TERMHEAD_ID=${pd.TERMHEAD_ID}';
 			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -273,7 +273,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>termline/goEdit.do?TERMLINE_ID='+Id;
+			 diag.URL = '<%=path%>/termline/goEdit.do?TERMLINE_ID='+Id;
 			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口

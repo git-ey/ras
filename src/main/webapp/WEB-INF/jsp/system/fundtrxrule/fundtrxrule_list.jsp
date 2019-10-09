@@ -272,7 +272,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>fundtrxrule/goAdd.do';
+			 diag.URL = '<%=path%>/fundtrxrule/goAdd.do';
 			 diag.Width = 700;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -310,7 +310,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>fundtrxrule/goEdit.do?FUNDTRXRULE_ID='+Id;
+			 diag.URL = '<%=path%>/fundtrxrule/goEdit.do?FUNDTRXRULE_ID='+Id;
 			 diag.Width = 700;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -377,7 +377,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>fundtrxrule/goUploadExcel.do';
+			 diag.URL = '<%=path%>/fundtrxrule/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件

@@ -281,7 +281,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>eyvaluation/goAdd.do';
+			 diag.URL = '<%=path%>/eyvaluation/goAdd.do';
 			 diag.Width = 900;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -319,7 +319,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>eyvaluation/goEdit.do?VALUATION_ID='+Id;
+			 diag.URL = '<%=path%>/eyvaluation/goEdit.do?VALUATION_ID='+Id;
 			 diag.Width = 900;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口

@@ -268,7 +268,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>valueationindex/goAdd.do';
+			 diag.URL = '<%=path%>/valueationindex/goAdd.do';
 			 diag.Width = 900;
 			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -306,7 +306,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>valueationindex/goEdit.do?VALUEATIONINDEX_ID='+Id;
+			 diag.URL = '<%=path%>/valueationindex/goEdit.do?VALUEATIONINDEX_ID='+Id;
 			 diag.Width = 900;
 			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -373,7 +373,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>valueationindex/goUploadExcel.do';
+			 diag.URL = '<%=path%>/valueationindex/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件

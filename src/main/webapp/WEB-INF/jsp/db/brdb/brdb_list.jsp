@@ -341,7 +341,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>brdb/goEdit.do?DB_ID='+Id;
+			 diag.URL = '<%=path%>/brdb/goEdit.do?DB_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 250;
 			 diag.CancelEvent = function(){ //关闭事件

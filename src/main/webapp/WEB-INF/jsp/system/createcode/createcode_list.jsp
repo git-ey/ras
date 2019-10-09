@@ -220,7 +220,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="代码生成器";
-			 diag.URL = '<%=basePath%>createCode/goProductCode.do?CREATECODE_ID='+CREATECODE_ID;
+			 diag.URL = '<%=path%>/createCode/goProductCode.do?CREATECODE_ID='+CREATECODE_ID;
 			 diag.Width = 800;
 			 diag.Height = 500;
 			 diag.Modal = true;				//有无遮罩窗口

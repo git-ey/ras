@@ -191,7 +191,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>role/toAdd.do?parent_id='+pid;
+			 diag.URL = '<%=path%>/role/toAdd.do?parent_id='+pid;
 			 diag.Width = 222;
 			 diag.Height = 100;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -210,7 +210,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>role/toEdit.do?ROLE_ID='+ROLE_ID;
+			 diag.URL = '<%=path%>/role/toEdit.do?ROLE_ID='+ROLE_ID;
 			 diag.Width = 222;
 			 diag.Height = 100;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -277,7 +277,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag = true;
 			 diag.Title = "菜单权限";
-			 diag.URL = '<%=basePath%>role/menuqx.do?ROLE_ID='+ROLE_ID;
+			 diag.URL = '<%=path%>/role/menuqx.do?ROLE_ID='+ROLE_ID;
 			 diag.Width = 320;
 			 diag.Height = 450;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -301,7 +301,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag = true;
 			 diag.Title = Title;
-			 diag.URL = '<%=basePath%>role/b4Button.do?ROLE_ID='+ROLE_ID+'&msg='+msg;
+			 diag.URL = '<%=path%>/role/b4Button.do?ROLE_ID='+ROLE_ID+'&msg='+msg;
 			 diag.Width = 330;
 			 diag.Height = 450;
 			 diag.CancelEvent = function(){ //关闭事件

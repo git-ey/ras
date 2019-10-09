@@ -227,7 +227,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="运行请求";
-			 diag.URL = '<%=basePath%>concruning/goAdd.do';
+			 diag.URL = '<%=path%>/concruning/goAdd.do';
 			 diag.Width = 600;
 			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口

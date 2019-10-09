@@ -224,7 +224,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="报告导出";
-			 diag.URL = '<%=basePath%>report/goAdd.do';
+			 diag.URL = '<%=path%>/report/goAdd.do';
 			 diag.Width = 1000;
 			 diag.Height = 500;
 			 diag.Modal = true;				//有无遮罩窗口

@@ -272,7 +272,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>subledger/goAdd.do';
+			 diag.URL = '<%=path%>/subledger/goAdd.do';
 			 diag.Width = 800;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -310,7 +310,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>subledger/goEdit.do?SUBLEDGER_ID='+Id;
+			 diag.URL = '<%=path%>/subledger/goEdit.do?SUBLEDGER_ID='+Id;
 			 diag.Width = 800;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口

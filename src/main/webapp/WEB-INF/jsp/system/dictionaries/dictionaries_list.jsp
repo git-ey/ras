@@ -204,7 +204,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>dictionaries/goAdd.do?DICTIONARIES_ID='+DICTIONARIES_ID;
+			 diag.URL = '<%=path%>/dictionaries/goAdd.do?DICTIONARIES_ID='+DICTIONARIES_ID;
 			 diag.Width = 500;
 			 diag.Height = 500;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -264,7 +264,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>dictionaries/goEdit.do?DICTIONARIES_ID='+Id;
+			 diag.URL = '<%=path%>/dictionaries/goEdit.do?DICTIONARIES_ID='+Id;
 			 diag.Width = 500;
 			 diag.Height = 500;
 			 diag.CancelEvent = function(){ //关闭事件

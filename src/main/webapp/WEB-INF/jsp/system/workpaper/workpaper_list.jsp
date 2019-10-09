@@ -212,7 +212,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="底稿导出";
-			 diag.URL = '<%=basePath%>workpaper/goAdd.do';
+			 diag.URL = '<%=path%>/workpaper/goAdd.do';
 			 diag.Width = 600;
 			 diag.Height = 300;
 			 diag.Modal = true;				//有无遮罩窗口

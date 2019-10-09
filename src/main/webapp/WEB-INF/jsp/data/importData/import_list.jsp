@@ -231,7 +231,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>importData/goAdd.do';
+			 diag.URL = '<%=path%>/importData/goAdd.do';
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -256,7 +256,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="查看导入文件";
-			 diag.URL = '<%=basePath%>importData/listImportFile.do?IMPORT_ID='+Id;
+			 diag.URL = '<%=path%>/importData/listImportFile.do?IMPORT_ID='+Id;
 			 diag.Width = 1100;
 			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口

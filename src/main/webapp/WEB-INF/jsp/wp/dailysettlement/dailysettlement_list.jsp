@@ -264,7 +264,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>dailysettlement/goAdd.do';
+			 diag.URL = '<%=path%>/dailysettlement/goAdd.do';
 			 diag.Width = 700;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -302,7 +302,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>dailysettlement/goEdit.do?DAILYSETTLEMENT_ID='+Id;
+			 diag.URL = '<%=path%>/dailysettlement/goEdit.do?DAILYSETTLEMENT_ID='+Id;
 			 diag.Width = 700;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -369,7 +369,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>dailysettlement/goUploadExcel.do';
+			 diag.URL = '<%=path%>/dailysettlement/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件
