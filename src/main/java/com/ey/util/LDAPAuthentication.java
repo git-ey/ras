@@ -31,9 +31,9 @@ public class LDAPAuthentication {
 		env.put(Context.PROVIDER_URL, URL + BASEDN);
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 
-		String root = "cn=Directory Manager";// root
+		String root = "cn=vincent-s.shen";// root
 		env.put(Context.SECURITY_PRINCIPAL, root);
-		env.put(Context.SECURITY_CREDENTIALS, "Admin123");
+		env.put(Context.SECURITY_CREDENTIALS, "@jvqak5fpzj201911");
 		// 此处若不指定用户名和密码,则自动转换为匿名登录
 		try {
 			ctx = new InitialLdapContext(env, connCtls);
@@ -44,7 +44,7 @@ public class LDAPAuthentication {
 		}
 	}
 
-	private String getUserDN(String uid) {
+	public String getUserDN(String uid) {
 		String userDN = "";
 		LDAP_connect();
 		try {
@@ -94,4 +94,7 @@ public class LDAPAuthentication {
 
 		return valide;
 	}
+	
+	
+	
 }

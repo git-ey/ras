@@ -73,10 +73,10 @@ public class FundService implements FundManager{
 			pd.put("INTEREST_RATE_PERIOD", map.get("INTEREST_RATE_PERIOD"));
 			pd.put("OTHER_LIABILITIES", map.get("OTHER_LIABILITIES"));
 			pd.put("DIRECT_DEALER_NAME", map.get("DIRECT_DEALER_NAME"));
-			pd.put("DEALER_SEPERATE", map.get("DEALER_SEPERATE"));
-			pd.put("U_ROW_SET", map.get("U_ROW_SET"));
-			pd.put("RISK_VARIABLE", map.get("RISK_VARIABLE"));
-			pd.put("PRICE_VARIABLE", map.get("PRICE_VARIABLE"));
+			pd.put("DEALER_SEPERATE", map.get("DEALER_SEPERATE"));			
+			// pd.put("U_ROW_SET", map.get("U_ROW_SET"));
+			// pd.put("RISK_VARIABLE", map.get("RISK_VARIABLE"));
+			// pd.put("PRICE_VARIABLE", map.get("PRICE_VARIABLE"));
 			pd.put("INTEREST_SENSTVT_METHOD", map.get("INTEREST_SENSTVT_METHOD"));
 			pd.put("INTEREST_SENSTVT_SOURSE", map.get("INTEREST_SENSTVT_SOURSE"));
 			pd.put("PRICE_SENSTVT_METHOD", map.get("PRICE_SENSTVT_METHOD"));

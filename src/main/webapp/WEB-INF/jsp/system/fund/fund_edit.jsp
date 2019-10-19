@@ -239,6 +239,26 @@
 								</td>
 							</tr>
 							<tr>
+									<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性方法:</td>
+									<td><input type="text" name="INT_SEN_METHOD" id="INT_SEN_METHOD" value="${pd.INT_SEN_METHOD}" maxlength="60" style="width:98%;"/></td>
+									<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性数据来源:</td>
+									<td><input type="text" name="INT_SEN_SOURCE_TYPE" id="INT_SEN_SOURCE_TYPE" value="${pd.INT_SEN_SOURCE_TYPE}" maxlength="60" style="width:98%;"/></td>							
+									<td style="width:110px;text-align: right;padding-top: 13px;">非利率敏感性资产:</td>
+									<td><input type="text" name="INT_SEN_ASSET_EXCL" id="INT_SEN_ASSET_EXCL" value="${pd.INT_SEN_ASSET_EXCL}" maxlength="60" style="width:98%;"/></td>
+									<td style="width:110px;text-align: right;padding-top: 13px;">利率风险变量:</td>
+									<td><input type="text" name="INT_VAR" id="INT_VAR" value="${pd.INT_VAR}" maxlength="60" style="width:98%;"/></td>
+							</tr>
+							<tr>
+									<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性方法:</td>
+									<td><input type="text" name="PRI_SEN_METHOD" id="PRI_SEN_METHOD" value="${pd.PRI_SEN_METHOD}" maxlength="60" style="width:98%;"/></td>
+									<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性数据来源:</td>
+									<td><input type="text" name="PRI_SEN_SOURCE_TYPE" id="PRI_SEN_SOURCE_TYPE" value="${pd.PRI_SEN_SOURCE_TYPE}" maxlength="60" style="width:98%;"/></td>							
+									<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性资产:</td>
+									<td><input type="text" name="PRI_SEN_ASSET" id="PRI_SEN_ASSET" value="${pd.PRI_SEN_ASSET}" maxlength="60" style="width:98%;"/></td>
+									<td style="width:110px;text-align: right;padding-top: 13px;">价格风险变量:</td>
+									<td><input type="text" name="PRI_VAR" id="PRI_VAR" value="${pd.PRI_VAR}" maxlength="60" style="width:98%;"/></td>
+							</tr>
+							<tr>
 							    <td style="width:110px;text-align: right;padding-top: 13px;">单位净值有效位数:</td>
 								<td><input type="number" name="NAV_ROUND" id="NAV_ROUND" value="${pd.NAV_ROUND}" maxlength="32" title="单位净值有效位数" style="width:49%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-复利计算:</td>
