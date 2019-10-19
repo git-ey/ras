@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -35,6 +36,7 @@ import com.ey.util.AppUtil;
 import com.ey.util.Const;
 import com.ey.util.DateUtil;
 import com.ey.util.Jurisdiction;
+import com.ey.util.LDAPAuthentication;
 import com.ey.util.PageData;
 import com.ey.util.RightsHelper;
 import com.ey.util.Tools;
@@ -96,43 +98,31 @@ public class LoginController extends BaseController {
 			String USERNAME = KEYDATA[0]; // 登录过来的用户名
 			String PASSWORD = KEYDATA[1]; // 登录过来的密码
 			pd.put("USERNAME", USERNAME);
-			String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString(); // 密码加密
-			pd.put("PASSWORD", passwd);
-			pd = userService.getUserByNameAndPwd(pd); // 根据用户名和密码去读取用户信息
-			if (pd != null) {
-				this.removeSession(USERNAME);// 请缓存
-				pd.put("LAST_LOGIN", DateUtil.getTime().toString());
-				userService.updateLastLogin(pd);
-				User user = new User();
-				user.setUSER_ID(pd.getString("USER_ID"));
-				user.setUSERNAME(pd.getString("USERNAME"));
-				user.setPASSWORD(pd.getString("PASSWORD"));
-				user.setNAME(pd.getString("NAME"));
-				user.setRIGHTS(pd.getString("RIGHTS"));
-				user.setROLE_ID(pd.getString("ROLE_ID"));
-				user.setLAST_LOGIN(pd.getString("LAST_LOGIN"));
-				user.setIP(pd.getString("IP"));
-				user.setSTATUS(pd.getString("STATUS"));
-				session.setAttribute(Const.SESSION_USER, user); // 把用户信息放session中
-				session.removeAttribute(Const.SESSION_SECURITY_CODE); // 清除登录验证码的session
-				// shiro加入身份验证
-				Subject subject = SecurityUtils.getSubject();
-				UsernamePasswordToken token = new UsernamePasswordToken(USERNAME, PASSWORD);
-				try {
-					subject.login(token);
-				} catch (AuthenticationException e) {
-					errInfo = "身份验证失败！";
-				}
+			String ldap = Tools.readTxtFile(Const.LDAP);
+			if (StringUtils.isBlank(ldap) || ldap.endsWith("N")) {
+				String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString(); // 密码加密
+				pd.put("PASSWORD", passwd);
+				pd = userService.getUserByNameAndPwd(pd); // 根据用户名和密码去读取用户信息
+				// 登录过程
+				errInfo = this.processLogin(session, pd, USERNAME, PASSWORD);
+				// LDAP处理方式
 			} else {
-				errInfo = "usererror"; // 用户名或密码有误
-				logBefore(logger, USERNAME + "登录系统密码或用户名错误");
-				logManager.save(USERNAME, "登录系统密码或用户名错误");
+				LDAPAuthentication auth = new LDAPAuthentication();
+				// if (auth.authenricate(USERNAME, PASSWORD)) {
+				pd = userService.findByUsername(pd); // 根据用户名和密码去读取用户信息
+				// 不存在则新增用户
+				if (null == pd) {
+					PageData pda = new PageData();
+					pda.put("USERNAME", USERNAME);
+					pda.put("PASSWORD", PASSWORD);
+					this.insertUser(pda);
+				}
+				// 登录过程
+				errInfo = this.processLogin(session, pd, USERNAME, PASSWORD);
+				// }
+
 			}
-			if (Tools.isEmpty(errInfo)) {
-				errInfo = "success"; // 验证成功
-				logBefore(logger, USERNAME + "登录系统");
-				logManager.save(USERNAME, "登录系统");
-			}
+
 		} else {
 			errInfo = "error"; // 缺少参数
 		}
@@ -425,6 +415,70 @@ public class LoginController extends BaseController {
 		pd.put("USERNAME", USERNAME);
 		pd.put("IP", ip);
 		userService.saveIP(pd);
+	}
+
+	// 登录执行
+	private String processLogin(Session session, PageData pd, String USERNAME, String PASSWORD) throws Exception {
+		String errInfo = "";
+		if (pd != null) {
+			this.removeSession(USERNAME);// 请缓存
+			pd.put("LAST_LOGIN", DateUtil.getTime().toString());
+			userService.updateLastLogin(pd);
+			User user = new User();
+			user.setUSER_ID(pd.getString("USER_ID"));
+			user.setUSERNAME(pd.getString("USERNAME"));
+			user.setPASSWORD(pd.getString("PASSWORD"));
+			user.setNAME(pd.getString("NAME"));
+			user.setRIGHTS(pd.getString("RIGHTS"));
+			user.setROLE_ID(pd.getString("ROLE_ID"));
+			user.setLAST_LOGIN(pd.getString("LAST_LOGIN"));
+			user.setIP(pd.getString("IP"));
+			user.setSTATUS(pd.getString("STATUS"));
+			session.setAttribute(Const.SESSION_USER, user); // 把用户信息放session中
+			session.removeAttribute(Const.SESSION_SECURITY_CODE); // 清除登录验证码的session
+			// shiro加入身份验证
+			Subject subject = SecurityUtils.getSubject();
+			UsernamePasswordToken token = new UsernamePasswordToken(USERNAME, PASSWORD);
+			try {
+				subject.login(token);
+			} catch (AuthenticationException e) {
+				errInfo = "身份验证失败！";
+			}
+		} else {
+			errInfo = "usererror"; // 用户名或密码有误
+			logBefore(logger, USERNAME + "登录系统密码或用户名错误");
+			logManager.save(USERNAME, "登录系统密码或用户名错误");
+		}
+		if (Tools.isEmpty(errInfo)) {
+			errInfo = "success"; // 验证成功
+			logBefore(logger, USERNAME + "登录系统");
+			logManager.save(USERNAME, "登录系统");
+		}
+		return errInfo;
+	}
+
+	/**
+	 * 新增用户
+	 * 
+	 * @param pd
+	 * @throws Exception
+	 */
+	private void insertUser(PageData pd) throws Exception {
+		pd.put("USER_ID", this.get32UUID()); // ID 主键
+		pd.put("ROLE_ID", "3"); // 角色ID 3 为注册用户
+		pd.put("NUMBER", ""); // 编号
+		pd.put("PHONE", ""); // 手机号
+		pd.put("BZ", "注册用户"); // 备注
+		pd.put("LAST_LOGIN", ""); // 最后登录时间
+		pd.put("IP", ""); // IP
+		pd.put("STATUS", "0"); // 状态
+		pd.put("SKIN", "default");
+		pd.put("RIGHTS", "");
+		pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString()); // 密码加密
+		if (null == userService.findByUsername(pd)) { // 判断用户名是否存在
+			userService.saveU(pd); // 执行保存
+			logManager.save(pd.getString("USERNAME"), "新注册");
+		}
 	}
 
 }

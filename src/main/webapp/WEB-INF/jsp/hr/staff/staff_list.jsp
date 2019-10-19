@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
 <base href="<%=basePath%>">
-<script type="text/javascript" src="static/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="static/js/jquery.js"></script>
 <!-- jsp文件头和头部 -->
 <%@ include file="../../system/index/top.jsp"%>
 <!-- 树形下拉框start -->

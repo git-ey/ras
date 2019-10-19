@@ -61,10 +61,12 @@
 											<td style="width:79px;text-align: right;padding-top: 13px;">手机号:</td>
 											<td><input type="number" name="PHONE" id="PHONE"  value="${pd.PHONE }"  maxlength="32" title="手机号" style="width:98%;" disabled="disabled"/></td>
 										</tr>
+										<!-- 
 										<tr>
 											<td style="width:79px;text-align: right;padding-top: 13px;">邮箱:</td>
 											<td><input type="email" name="EMAIL" id="EMAIL"  value="${pd.EMAIL }" maxlength="32" title="邮箱" onblur="hasE('${pd.USERNAME }')" style="width:98%;" disabled="disabled"/></td>
 										</tr>
+										-->
 										<tr>
 											<td style="width:79px;text-align: right;padding-top: 13px;">备注:</td>
 											<td><input type="text" name="BZ" id="BZ"value="${pd.BZ }"  maxlength="64" title="备注" style="width:98%;" disabled="disabled"/></td>

@@ -123,5 +123,5 @@ public interface UserManager {
 	 * @throws Exception
 	 */
 	public PageData getUserCount(String value)throws Exception;
-	
+
 }
