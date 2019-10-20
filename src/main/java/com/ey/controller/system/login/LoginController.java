@@ -28,15 +28,16 @@ import com.ey.entity.system.User;
 import com.ey.service.hr.datajur.DatajurManager;
 import com.ey.service.system.button.ButtonManager;
 import com.ey.service.system.buttonrights.ButtonrightsManager;
+import com.ey.service.system.config.impl.SystemConfig;
 import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.menu.MenuManager;
 import com.ey.service.system.role.RoleManager;
 import com.ey.service.system.user.UserManager;
+import com.ey.service.system.user.impl.LdapService;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
 import com.ey.util.DateUtil;
 import com.ey.util.Jurisdiction;
-import com.ey.util.LDAPAuthentication;
 import com.ey.util.PageData;
 import com.ey.util.RightsHelper;
 import com.ey.util.Tools;
@@ -61,6 +62,10 @@ public class LoginController extends BaseController {
 	private DatajurManager datajurService;
 	@Resource(name = "logService")
 	private LogerManager logManager;
+	@Resource(name = "ldapService")
+	private LdapService ldapService;
+	@Resource(name = "systemConfig")
+	private SystemConfig systemConfig;
 
 	/**
 	 * 访问登录页
@@ -98,8 +103,7 @@ public class LoginController extends BaseController {
 			String USERNAME = KEYDATA[0]; // 登录过来的用户名
 			String PASSWORD = KEYDATA[1]; // 登录过来的密码
 			pd.put("USERNAME", USERNAME);
-			String ldap = Tools.readTxtFile(Const.LDAP);
-			if (StringUtils.isBlank(ldap) || ldap.endsWith("N")) {
+			if (StringUtils.isBlank(systemConfig.getLdapFlag()) || systemConfig.getLdapFlag().endsWith("N")) {
 				String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString(); // 密码加密
 				pd.put("PASSWORD", passwd);
 				pd = userService.getUserByNameAndPwd(pd); // 根据用户名和密码去读取用户信息
@@ -107,20 +111,25 @@ public class LoginController extends BaseController {
 				errInfo = this.processLogin(session, pd, USERNAME, PASSWORD);
 				// LDAP处理方式
 			} else {
-				LDAPAuthentication auth = new LDAPAuthentication();
-				// if (auth.authenricate(USERNAME, PASSWORD)) {
-				pd = userService.findByUsername(pd); // 根据用户名和密码去读取用户信息
-				// 不存在则新增用户
-				if (null == pd) {
-					PageData pda = new PageData();
-					pda.put("USERNAME", USERNAME);
-					pda.put("PASSWORD", PASSWORD);
-					this.insertUser(pda);
+				boolean b;
+				try {
+					b = ldapService.authenticate(USERNAME, PASSWORD);
+				} catch (Exception e) {
+					b = false;
+					errInfo = "AD域认证异常，请联系管理员";
 				}
-				// 登录过程
-				errInfo = this.processLogin(session, pd, USERNAME, PASSWORD);
-				// }
-
+				if (b) {
+					pd = userService.findByUsername(pd); // 根据用户名和密码去读取用户信息
+					// 不存在则新增用户
+					if (null == pd) {
+						PageData pda = new PageData();
+						pda.put("USERNAME", USERNAME);
+						pda.put("PASSWORD", PASSWORD);
+						this.insertUser(pda);
+					}
+					// 登录过程
+					errInfo = this.processLogin(session, pd, USERNAME, PASSWORD);
+				}
 			}
 
 		} else {

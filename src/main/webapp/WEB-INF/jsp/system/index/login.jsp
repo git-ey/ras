@@ -59,6 +59,17 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
+				<div style="float:right;padding-right:10%;">
+					<div style="float: left;margin-top:3px;margin-right:2px;">
+						<font color="white">记住密码</font>
+					</div>
+					<div style="float: left;">
+						<input name="form-field-checkbox" id="saveid" type="checkbox"
+							onclick="savePaw();" style="padding-top:0px;" />
+					</div>
+				</div>
+				-->
 				<div class="form-actions">
 					<div style="width:86%;padding-left:8%;">
 						<span class="pull-right"><a onclick="severCheck();" class="flip-link btn btn-info" id="to-recover">登录</a></span>
@@ -88,7 +99,7 @@
 					cache: false,
 					success: function(data){
 						if("success" == data.result){
-							saveCookie();
+							<!--saveCookie();-->
 							window.location.href="main/index";
 						}else if("usererror" == data.result){
 							$("#loginname").tips({
@@ -102,7 +113,7 @@
 						}else{
 							$("#loginname").tips({
 								side : 1,
-								msg : "缺少参数",
+								msg : data.result,
 								bg : '#FF5080',
 								time : 15
 							});
@@ -160,6 +171,19 @@
 			});
 
 			return true;
+		}
+		
+		function savePaw() {
+			if (!$("#saveid").attr("checked")) {
+				$.cookie('loginname', '', {
+					expires : -1
+				});
+				$.cookie('password', '', {
+					expires : -1
+				});
+				$("#loginname").val('');
+				$("#password").val('');
+			}
 		}
 
 		function saveCookie() {

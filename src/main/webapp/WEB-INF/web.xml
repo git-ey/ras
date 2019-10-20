@@ -73,12 +73,12 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- tomcat等 启动之前执行 -->
+	<!-- tomcat等 启动之前执行 
 	<filter>
 		<filter-name>startFilter</filter-name>
 		<filter-class>com.ey.filter.startFilter</filter-class>
 	</filter>
-	
+	-->
 	<!-- Shiro filter start -->
 	<filter>
 		<filter-name>shiroFilter</filter-name>
