@@ -474,6 +474,7 @@ public class LoginController extends BaseController {
 	 */
 	private void insertUser(PageData pd) throws Exception {
 		pd.put("USER_ID", this.get32UUID()); // ID 主键
+		pd.put("USERNAME", pd.getString("USERNAME"));
 		pd.put("ROLE_ID", "3"); // 角色ID 3 为注册用户
 		pd.put("NUMBER", ""); // 编号
 		pd.put("PHONE", ""); // 手机号

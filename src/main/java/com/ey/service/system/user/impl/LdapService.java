@@ -19,7 +19,7 @@ public class LdapService {
 		LdapTemplate ldapTemplate = new LdapTemplate(ldapContextSource);
 		
 		AndFilter filter = new AndFilter();
-		filter.and(new EqualsFilter("objectclass", "user")).and(new EqualsFilter("CN", userName));
+		filter.and(new EqualsFilter("objectClass", "user")).and(new EqualsFilter("CN", userName));
 		return ldapTemplate.authenticate(DistinguishedName.EMPTY_PATH, filter.toString(), password);
 	}
 
