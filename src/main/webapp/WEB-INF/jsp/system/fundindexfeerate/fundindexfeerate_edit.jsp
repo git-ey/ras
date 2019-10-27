@@ -33,19 +33,19 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="30" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="30" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">托管费率:</td>
-								<td><input type="number" name="COSTODY_RATE" id="COSTODY_RATE" value="${pd.COSTODY_RATE}" maxlength="32" placeholder="这里输入托管费率" title="托管费率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="COSTODY_RATE" id="COSTODY_RATE" value="${pd.COSTODY_RATE}" maxlength="32" placeholder="这里输入托管费率" title="托管费率" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">指数使用费率:</td>
-								<td><input type="number" name="INDEX_RATE" id="INDEX_RATE" value="${pd.INDEX_RATE}" maxlength="32" placeholder="这里输入指数使用费率" title="指数使用费率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="INDEX_RATE" id="INDEX_RATE" value="${pd.INDEX_RATE}" maxlength="32" placeholder="这里输入指数使用费率" title="指数使用费率" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">指数使用费最低下限:</td>
-								<td><input type="number" name="MIN_INDEX_FEE" id="MIN_INDEX_FEE" value="${pd.MIN_INDEX_FEE}" maxlength="32" placeholder="这里输入指数使用费最低下限" title="指数使用费最低下限" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="MIN_INDEX_FEE" id="MIN_INDEX_FEE" value="${pd.MIN_INDEX_FEE}" maxlength="32" placeholder="这里输入指数使用费最低下限" title="指数使用费最低下限" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>

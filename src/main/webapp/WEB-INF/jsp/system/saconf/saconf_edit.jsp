@@ -33,7 +33,7 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">排序:</td>
-								<td><input type="number" name="SEQ" id="SEQ" value="${pd.SEQ}" maxlength="32" placeholder="这里输入排序" title="排序" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="SEQ" id="SEQ" value="${pd.SEQ}" maxlength="32" placeholder="这里输入排序" title="排序" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">科目类型:</td>
 								<td>
 									<select class="chosen-select form-control" name="ACCOUNT_TYPE" id="ACCOUNT_TYPE" data-placeholder="请选择" style="width:49%;">
@@ -44,9 +44,9 @@
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">表项:</td>
-								<td><input type="text" name="AFS_CODE" id="AFS_CODE" value="${pd.AFS_CODE}" maxlength="30" placeholder="这里输入表项" title="表项" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="AFS_CODE" id="AFS_CODE" value="${pd.AFS_CODE}" maxlength="30" placeholder="这里输入表项" title="表项" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">表项名称:</td>
-								<td><input type="text" name="ITEM" id="ITEM" value="${pd.ITEM}" maxlength="60" placeholder="这里输入表项名称" title="表项名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ITEM" id="ITEM" value="${pd.ITEM}" maxlength="60" placeholder="这里输入表项名称" title="表项名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">交易量是否大:</td>
@@ -98,7 +98,7 @@
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

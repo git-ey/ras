@@ -40,7 +40,7 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">文件名:</td>
-								<td><input type="text" name="NAME" id="NAME" value="" maxlength="30" placeholder="这里输入文件名" title="文件名" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="NAME" id="NAME" value="" maxlength="30" placeholder="这里输入文件名" title="文件名" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;" id="FILEPATHn">文件:</td>
@@ -51,7 +51,7 @@
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">备注:</td>
-								<td><input type="text" name="BZ" id="BZ" value="" maxlength="100" placeholder="这里输入备注" title="备注" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BZ" id="BZ" value="" maxlength="100" placeholder="这里输入备注" title="备注" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

@@ -47,7 +47,7 @@
 								<tr>
 									<c:if test="${dbtype != 'sqlserver' }">
 									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									<label class="pos-rel"><input type="checkbox" autocomplete="off" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									</c:if>
 									<th class="center" style="width:50px;">序号</th>
@@ -67,7 +67,7 @@
 										<tr>
 											<c:if test="${dbtype != 'sqlserver' }">
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' id='fhid${vs.index}' value="${var}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' autocomplete="off" name='ids' id='fhid${vs.index}' value="${var}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											</c:if>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>

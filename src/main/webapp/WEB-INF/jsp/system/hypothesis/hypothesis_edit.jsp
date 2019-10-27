@@ -33,19 +33,19 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">类型:</td>
-								<td><input type="text" name="HYPOTHESIS_TPYE" id="HYPOTHESIS_TPYE" value="${pd.HYPOTHESIS_TPYE}" maxlength="255" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="HYPOTHESIS_TPYE" id="HYPOTHESIS_TPYE" value="${pd.HYPOTHESIS_TPYE}" maxlength="255" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">编码:</td>
-								<td><input type="text" name="HYPOTHESIS_NUM" id="HYPOTHESIS_NUM" value="${pd.HYPOTHESIS_NUM}" maxlength="255" placeholder="这里输入编码" title="编码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="HYPOTHESIS_NUM" id="HYPOTHESIS_NUM" value="${pd.HYPOTHESIS_NUM}" maxlength="255" placeholder="这里输入编码" title="编码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>

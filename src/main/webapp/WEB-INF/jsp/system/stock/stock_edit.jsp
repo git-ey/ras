@@ -33,15 +33,15 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">股票代码:</td>
-								<td><input type="text" name="CODE" id="CODE" value="${pd.CODE}" maxlength="10" placeholder="这里输入股票代码" title="股票代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CODE" id="CODE" value="${pd.CODE}" maxlength="10" placeholder="这里输入股票代码" title="股票代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">股票简称:</td>
-								<td><input type="text" name="NAME" id="NAME" value="${pd.NAME}" maxlength="30" placeholder="这里输入股票简称" title="股票简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="NAME" id="NAME" value="${pd.NAME}" maxlength="30" placeholder="这里输入股票简称" title="股票简称" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">AMAC所属行业:</td>
-								<td><input type="text" name="INDUSTRY" id="INDUSTRY" value="${pd.INDUSTRY}" maxlength="255" placeholder="这里输入AMAC所属行业" title="AMAC所属行业" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="INDUSTRY" id="INDUSTRY" value="${pd.INDUSTRY}" maxlength="255" placeholder="这里输入AMAC所属行业" title="AMAC所属行业" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">估值日期:</td>
@@ -51,27 +51,27 @@
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">行情收市价:</td>
-								<td><input type="number" name="UNIT_PRICE" id="UNIT_PRICE" value="${pd.UNIT_PRICE}" maxlength="32" placeholder="这里输入行情收市价" title="行情收市价" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="UNIT_PRICE" id="UNIT_PRICE" value="${pd.UNIT_PRICE}" maxlength="32" placeholder="这里输入行情收市价" title="行情收市价" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">停牌状态:</td>
-								<td><input type="text" name="SUSPENSION" id="SUSPENSION" value="${pd.SUSPENSION}" maxlength="10" placeholder="这里输入停牌状态" title="停牌状态" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SUSPENSION" id="SUSPENSION" value="${pd.SUSPENSION}" maxlength="10" placeholder="这里输入停牌状态" title="停牌状态" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">停牌日期:</td>
 								<td><input class="span10 date-picker" name="SUSPENSION_DATE" id="SUSPENSION_DATE" value="${pd.SUSPENSION_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="停牌日期" title="停牌日期" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">停牌前日收盘价:</td>
-								<td><input type="number" name="CLOSING_PRICE" id="CLOSING_PRICE" value="${pd.CLOSING_PRICE}" maxlength="32" placeholder="这里输入停牌前一日收盘价" title="停牌前一日收盘价" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="CLOSING_PRICE" id="CLOSING_PRICE" value="${pd.CLOSING_PRICE}" maxlength="32" placeholder="这里输入停牌前一日收盘价" title="停牌前一日收盘价" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">停牌原因:</td>
-								<td><input type="text" name="SUSPENSION_INFO" id="SUSPENSION_INFO" value="${pd.SUSPENSION_INFO}" maxlength="255" placeholder="这里输入停牌原因" title="停牌原因" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SUSPENSION_INFO" id="SUSPENSION_INFO" value="${pd.SUSPENSION_INFO}" maxlength="255" placeholder="这里输入停牌原因" title="停牌原因" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">复牌日期:</td>
 								<td><input class="span10 date-picker" name="RESUMPTION_DATE" id="RESUMPTION_DATE" value="${pd.RESUMPTION_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="复牌日期" title="复牌日期" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">复牌开盘单价:</td>
-								<td><input type="number" name="RESUMPTION_PRICE" id="RESUMPTION_PRICE" value="${pd.RESUMPTION_PRICE}" maxlength="32" placeholder="这里输入复牌开盘单价" title="复牌开盘单价" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="RESUMPTION_PRICE" id="RESUMPTION_PRICE" value="${pd.RESUMPTION_PRICE}" maxlength="32" placeholder="这里输入复牌开盘单价" title="复牌开盘单价" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">新股:</td>
-								<td><input type="text" name="NEW_FLAG" id="NEW_FLAG" value="${pd.NEW_FLAG}" maxlength="10" placeholder="这里输入新股" title="新股" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="NEW_FLAG" id="NEW_FLAG" value="${pd.NEW_FLAG}" maxlength="10" placeholder="这里输入新股" title="新股" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">新股可流通日:</td>
@@ -86,7 +86,7 @@
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">状态:</td>
-								<td><input type="text" name="STATUS" id="STATUS" value="${pd.STATUS}" maxlength="30" placeholder="这里输入状态" title="状态" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="STATUS" id="STATUS" value="${pd.STATUS}" maxlength="30" placeholder="这里输入状态" title="状态" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

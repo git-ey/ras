@@ -46,11 +46,11 @@
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">时间规则:</td>
-								<td><input type="text" name="FHTIME" id="FHTIME" value="${pd.FHTIME}" maxlength="30" placeholder="这里输入时间规则" title="时间规则" style="width:98%;"/></td>
+								<td><input type="text" name="FHTIME" autocomplete="off" id="FHTIME" value="${pd.FHTIME}" maxlength="30" placeholder="这里输入时间规则" title="时间规则" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">备注:</td>
-								<td><input type="text" name="BZ" id="BZ" value="${pd.BZ}" maxlength="255" placeholder="这里输入备注" title="备注" style="width:98%;"/></td>
+								<td><input type="text" name="BZ" id="BZ" autocomplete="off" value="${pd.BZ}" maxlength="255" placeholder="这里输入备注" title="备注" style="width:98%;"/></td>
 							</tr>
 						</table>
 						<table id="table_report" class="table table-striped table-bordered table-hover">
@@ -156,7 +156,7 @@
 								<td colspan="10" class="center"><b>规则说明</b></td>
 							</tr>
 							<tr>
-								<td colspan="10"><input type="text" class="center" name="TIMEEXPLAIN" id="TIMEEXPLAIN" value="${pd.TIMEEXPLAIN}" maxlength="100" placeholder="这里是规则说明" title="规则说明" style="width:100%;" readonly="readonly"/></td>
+								<td colspan="10"><input type="text" autocomplete="off" class="center" name="TIMEEXPLAIN" id="TIMEEXPLAIN" value="${pd.TIMEEXPLAIN}" maxlength="100" placeholder="这里是规则说明" title="规则说明" style="width:100%;" readonly="readonly"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

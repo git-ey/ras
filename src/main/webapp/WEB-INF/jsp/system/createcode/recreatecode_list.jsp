@@ -56,18 +56,18 @@
 														</select>
 													</td>
 													<td>&nbsp;地址：</td>
-													<td><input type="text" name="dbAddress" id="dbAddress" value="localhost" maxlength="200" placeholder="数据库连接地址" title="数据库连接地址"/></td>
+													<td><input type="text" autocomplete="off" name="dbAddress" id="dbAddress" value="localhost" maxlength="200" placeholder="数据库连接地址" title="数据库连接地址"/></td>
 													<td>&nbsp;端口：</td>
-													<td><input type="number" name="dbport" id="dbport" value="3306"  maxlength="10" placeholder="输入端口" title="端口"/></td>
+													<td><input type="number" autocomplete="off" name="dbport" id="dbport" value="3306"  maxlength="10" placeholder="输入端口" title="端口"/></td>
 												</tr>
 												<tr><td colspan="100" style="height: 5px;"></td></tr>
 												<tr>
 													<td>用户名：</td>
-													<td><input type="text" name="username" id="username" value="root"  maxlength="32" placeholder="输入用户名" title="用户名"/></td>
+													<td><input type="text" autocomplete="off" name="username" id="username" value="root"  maxlength="32" placeholder="输入用户名" title="用户名"/></td>
 													<td>&nbsp;密码：</td>
-													<td><input type="password" name="password" id="password"  maxlength="32" placeholder="输入密码" title="密码"/></td>
+													<td><input type="password" autocomplete="off" name="password" id="password"  maxlength="32" placeholder="输入密码" title="密码"/></td>
 													<td>&nbsp;库名：</td>
-													<td><input type="text" name="databaseName" id="databaseName"  maxlength="32" placeholder="输入数据库名" title="数据库名"/></td>
+													<td><input type="text" autocomplete="off" name="databaseName" id="databaseName"  maxlength="32" placeholder="输入数据库名" title="数据库名"/></td>
 												</tr>
 											</table>
 										</div>

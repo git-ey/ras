@@ -12,11 +12,12 @@
 						http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realm" ref="ShiroRealm" />
+		<property name="realm" ref="shiroRealm" />
+		<property name="sessionManager" ref="sessionManager"/>
 	</bean>
 
 	<!-- 項目自定义的Realm -->
-	<bean id="ShiroRealm" class="com.ey.interceptor.shiro.ShiroRealm"></bean>
+	<bean id="shiroRealm" class="com.ey.interceptor.shiro.ShiroRealm"></bean>
 
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -39,13 +40,19 @@
 		</property>
 	</bean>
 
-    <!-- Session 管理器 -->
+	<!-- Session 管理器 -->
 	<bean id="sessionManager"
 		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-		<!-- 设置超时时间 -->
-		<property name="globalSessionTimeout" value="1800000" />
+		<!-- 设置超时时间 25分钟 -->
+		<property name="globalSessionTimeout" value="1500000" />
 		<property name="deleteInvalidSessions" value="true" />
 		<property name="sessionValidationSchedulerEnabled" value="true" />
+	    <property name="sessionDAO" ref="sessionDAO" />
+	</bean>
+
+    <!-- Session DAO -->
+	<bean id="sessionDAO"
+		class="org.apache.shiro.session.mgt.eis.MemorySessionDAO">
 	</bean>
 
 </beans>

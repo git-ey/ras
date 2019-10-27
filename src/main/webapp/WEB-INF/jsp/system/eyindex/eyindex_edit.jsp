@@ -33,15 +33,15 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">类型:</td>
-								<td><input type="text" name="INDEX_TYPE" id="INDEX_TYPE" value="${pd.INDEX_TYPE}" maxlength="255" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="INDEX_TYPE" id="INDEX_TYPE" value="${pd.INDEX_TYPE}" maxlength="255" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">日期:</td>
-								<td><input type="text" name="INDEX_DATE" id="INDEX_DATE" value="${pd.INDEX_DATE}" maxlength="255" placeholder="这里输入日期" title="日期" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="INDEX_DATE" id="INDEX_DATE" value="${pd.INDEX_DATE}" maxlength="255" placeholder="这里输入日期" title="日期" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">指数:</td>
-								<td><input type="number" name="INDEX_QTY" id="INDEX_QTY" value="${pd.INDEX_QTY}" maxlength="32" placeholder="这里输入指数" title="指数" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="INDEX_QTY" id="INDEX_QTY" value="${pd.INDEX_QTY}" maxlength="32" placeholder="这里输入指数" title="指数" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>

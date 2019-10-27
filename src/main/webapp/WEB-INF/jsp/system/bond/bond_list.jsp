@@ -43,7 +43,7 @@
 									</div>
 								</td>
 								<td style="vertical-align:top;padding-left:10px;">
-								 	<input class="nav-search-input" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" type="text" placeholder="期间" title="期间"/>
+								 	<input class="nav-search-input" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" type="text" placeholder="期间" title="期间"/>
 								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
@@ -58,7 +58,7 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									<label class="pos-rel"><input type="checkbox" autocomplete="off" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">期间</th>
@@ -81,7 +81,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.BONDINFO_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' autocomplete="off" name='ids' value="${var.BONDINFO_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.PERIOD}</td>

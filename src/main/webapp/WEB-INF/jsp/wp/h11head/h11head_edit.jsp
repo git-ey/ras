@@ -33,27 +33,27 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" readonly value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" readonly value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">公司代码:</td>
-								<td><input type="text" name="FIRM_CODE" id="FIRM_CODE" readonly value="${pd.FIRM_CODE}" maxlength="255" title="公司代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FIRM_CODE" id="FIRM_CODE" readonly value="${pd.FIRM_CODE}" maxlength="255" title="公司代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">股票代码:</td>
-								<td><input type="text" name="STOCK_CODE" id="STOCK_CODE" readonly value="${pd.STOCK_CODE}" maxlength="60" title="股票代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="STOCK_CODE" id="STOCK_CODE" readonly value="${pd.STOCK_CODE}" maxlength="60" title="股票代码" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">股票简称:</td>
-								<td><input type="text" name="STOCK_NAME" id="STOCK_NAME" readonly value="${pd.STOCK_NAME}" maxlength="255" title="股票简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="STOCK_NAME" id="STOCK_NAME" readonly value="${pd.STOCK_NAME}" maxlength="255" title="股票简称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">AMAC所属行业:</td>
-								<td><input type="text" name="INDUSTRY" id="INDUSTRY" readonly value="${pd.INDUSTRY}" maxlength="255" title="AMAC所属行业" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="INDUSTRY" id="INDUSTRY" readonly value="${pd.INDUSTRY}" maxlength="255" title="AMAC所属行业" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">最近交易日:</td>
-								<td><input type="text" name="RECENT_TRX_DATE" id="RECENT_TRX_DATE" readonly value="${pd.RECENT_TRX_DATE}" maxlength="255" title="最近交易日" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="RECENT_TRX_DATE" id="RECENT_TRX_DATE" readonly value="${pd.RECENT_TRX_DATE}" maxlength="255" title="最近交易日" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">AMAC估值价:</td>
-								<td><input type="text" name="AMAC_PRICE" id="AMAC_PRICE" value="${pd.AMAC_PRICE}" maxlength="20" title="AMAC估值价" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="AMAC_PRICE" id="AMAC_PRICE" value="${pd.AMAC_PRICE}" maxlength="20" title="AMAC估值价" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">最近交易日收盘价:</td>
-								<td><input type="text" name="RECENT_PRICE" id="RECENT_PRICE" value="${pd.RECENT_PRICE}" maxlength="20" title="最近交易日收盘价" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="RECENT_PRICE" id="RECENT_PRICE" value="${pd.RECENT_PRICE}" maxlength="20" title="最近交易日收盘价" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">使用AMAC估值:</td>
@@ -65,17 +65,17 @@
 								    </select>
 								</td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">估值价类型:</td>
-								<td><input type="text" name="VAL_TYPE" id="VAL_TYPE" value="${pd.VAL_TYPE}" maxlength="10" title="估值价类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="VAL_TYPE" id="VAL_TYPE" value="${pd.VAL_TYPE}" maxlength="10" title="估值价类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">估值价格:</td>
-								<td><input type="text" name="VAL_PRICE" id="VAL_PRICE" value="${pd.VAL_PRICE}" maxlength="20" title="估值价格" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="VAL_PRICE" id="VAL_PRICE" value="${pd.VAL_PRICE}" maxlength="20" title="估值价格" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">结论:</td>
-								<td><input type="text" name="RESULT" id="RESULT" value="${pd.RESULT}" maxlength="10" title="结论" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="RESULT" id="RESULT" value="${pd.RESULT}" maxlength="10" title="结论" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">备注:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="10" title="备注" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="10" title="备注" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

@@ -33,33 +33,33 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券代码:</td>
-								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="60" title="债券代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="60" title="债券代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券简称:</td>
-								<td><input type="text" name="BOND_NAME" id="BOND_NAME" value="${pd.BOND_NAME}" maxlength="120" title="债券简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BOND_NAME" id="BOND_NAME" value="${pd.BOND_NAME}" maxlength="120" title="债券简称" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券全称:</td>
-								<td><input type="text" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="255" title="债券全称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="255" title="债券全称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">上市市场:</td>
-								<td><input type="text" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="10" title="上市市场" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="10" title="上市市场" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券类型:</td>
-								<td><input type="text" name="BOND_TYPE" id="BOND_TYPE" value="${pd.BOND_TYPE}" maxlength="60" title="债券类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BOND_TYPE" id="BOND_TYPE" value="${pd.BOND_TYPE}" maxlength="60" title="债券类型" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">停牌状态:</td>
-								<td><input type="text" name="SUSPENSION" id="SUSPENSION" value="${pd.SUSPENSION}" maxlength="10" title="停牌状态" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SUSPENSION" id="SUSPENSION" value="${pd.SUSPENSION}" maxlength="10" title="停牌状态" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">停牌原因:</td>
-								<td><input type="text" name="SUSPENSION_INFO" id="SUSPENSION_INFO" value="${pd.SUSPENSION_INFO}" maxlength="255" title="停牌原因" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SUSPENSION_INFO" id="SUSPENSION_INFO" value="${pd.SUSPENSION_INFO}" maxlength="255" title="停牌原因" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">发行面值:</td>
-								<td><input type="number" name="PAR_VALUE_ISSUE" id="PAR_VALUE_ISSUE" value="${pd.PAR_VALUE_ISSUE}" maxlength="32" title="发行面值" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="PAR_VALUE_ISSUE" id="PAR_VALUE_ISSUE" value="${pd.PAR_VALUE_ISSUE}" maxlength="32" title="发行面值" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">最新面值:</td>
-								<td><input type="number" name="PAR_VALUE_LAST" id="PAR_VALUE_LAST" value="${pd.PAR_VALUE_LAST}" maxlength="32" title="最新面值" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="PAR_VALUE_LAST" id="PAR_VALUE_LAST" value="${pd.PAR_VALUE_LAST}" maxlength="32" title="最新面值" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">票面利率%:</td>
-								<td><input type="number" name="COUPON_RATE" id="COUPON_RATE" value="${pd.COUPON_RATE}" maxlength="32" title="票面利率%" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="COUPON_RATE" id="COUPON_RATE" value="${pd.COUPON_RATE}" maxlength="32" title="票面利率%" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">发行价格 元:</td>
-								<td><input type="number" name="ISSUE_PRICE" id="ISSUE_PRICE" value="${pd.ISSUE_PRICE}" maxlength="32" title="发行价格 元" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ISSUE_PRICE" id="ISSUE_PRICE" value="${pd.ISSUE_PRICE}" maxlength="32" title="发行价格 元" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">起息日期:</td>
@@ -69,15 +69,15 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">兑付日:</td>
 								<td><input class="span10 date-picker" name="DATE_PAY" id="DATE_PAY" value="${pd.DATE_PAY}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="兑付日" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">计息方式:</td>
-								<td><input type="text" name="INTEREST_MODE" id="INTEREST_MODE" value="${pd.INTEREST_MODE}" maxlength="255" title="计息方式" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="INTEREST_MODE" id="INTEREST_MODE" value="${pd.INTEREST_MODE}" maxlength="255" title="计息方式" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">付息方式:</td>
-								<td><input type="text" name="PAYMENT_METHOD" id="PAYMENT_METHOD" value="${pd.PAYMENT_METHOD}" maxlength="255" title="付息方式" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PAYMENT_METHOD" id="PAYMENT_METHOD" value="${pd.PAYMENT_METHOD}" maxlength="255" title="付息方式" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">年付息次数:</td>
-								<td><input type="number" name="PAYMENT_TIMES_YEAR" id="PAYMENT_TIMES_YEAR" value="${pd.PAYMENT_TIMES_YEAR}" maxlength="32" title="年付息次数" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="PAYMENT_TIMES_YEAR" id="PAYMENT_TIMES_YEAR" value="${pd.PAYMENT_TIMES_YEAR}" maxlength="32" title="年付息次数" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">一年多次付息应计利息处理规则:</td>
-								<td><input type="text" name="INTEREST_PAY_METHOD" id="INTEREST_PAY_METHOD" value="${pd.INTEREST_PAY_METHOD}" maxlength="255" title="一年多次付息应计利息处理规则" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="INTEREST_PAY_METHOD" id="INTEREST_PAY_METHOD" value="${pd.INTEREST_PAY_METHOD}" maxlength="255" title="一年多次付息应计利息处理规则" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">每年付息日:</td>
 								<td><input class="span10 date-picker" name="PAY_DATE_YEAR" id="PAY_DATE_YEAR" value="${pd.PAY_DATE_YEAR}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="每年付息日" style="width:98%;"/></td>
 							</tr>
@@ -87,39 +87,39 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">下一付息日:</td>
 								<td><input class="span10 date-picker" name="PAY_DATE_NEXT" id="PAY_DATE_NEXT" value="${pd.PAY_DATE_NEXT}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="下一付息日" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">最新债券评级:</td>
-								<td><input type="text" name="BOND_RATING" id="BOND_RATING" value="${pd.BOND_RATING}" maxlength="255" title="最新债券评级" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BOND_RATING" id="BOND_RATING" value="${pd.BOND_RATING}" maxlength="255" title="最新债券评级" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">最新债券评级机构:</td>
-								<td><input type="text" name="BOND_RATING_ORG" id="BOND_RATING_ORG" value="${pd.BOND_RATING_ORG}" maxlength="255" title="最新债券评级机构" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BOND_RATING_ORG" id="BOND_RATING_ORG" value="${pd.BOND_RATING_ORG}" maxlength="255" title="最新债券评级机构" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">最新债券评级日期:</td>
 								<td><input class="span10 date-picker" name="BOND_RATING_DATE" id="BOND_RATING_DATE" value="${pd.BOND_RATING_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="最新债券评级日期" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">发债主体最新评级:</td>
-								<td><input type="text" name="ENTITY_RATING" id="ENTITY_RATING" value="${pd.ENTITY_RATING}" maxlength="255" title="发债主体最新评级" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ENTITY_RATING" id="ENTITY_RATING" value="${pd.ENTITY_RATING}" maxlength="255" title="发债主体最新评级" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">发债主体最新评级机构:</td>
-								<td><input type="text" name="ENTITY_RATING_ORG" id="ENTITY_RATING_ORG" value="${pd.ENTITY_RATING_ORG}" maxlength="255" title="发债主体最新评级机构" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ENTITY_RATING_ORG" id="ENTITY_RATING_ORG" value="${pd.ENTITY_RATING_ORG}" maxlength="255" title="发债主体最新评级机构" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">发债主体最新评级日期:</td>
 								<td><input class="span10 date-picker" name="ENTITY_RATING_DATE" id="ENTITY_RATING_DATE" value="${pd.ENTITY_RATING_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="发债主体最新评级日期" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">是否免税:</td>
-								<td><input type="text" name="TAX_FREE" id="TAX_FREE" value="${pd.TAX_FREE}" maxlength="10" title="是否免税" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TAX_FREE" id="TAX_FREE" value="${pd.TAX_FREE}" maxlength="10" title="是否免税" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">税率:</td>
-								<td><input type="number" name="TAX_RATE" id="TAX_RATE" value="${pd.TAX_RATE}" maxlength="32" title="税率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="TAX_RATE" id="TAX_RATE" value="${pd.TAX_RATE}" maxlength="32" title="税率" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">特殊条款:</td>
-								<td><input type="text" name="SPECIAL_CLAUSE" id="SPECIAL_CLAUSE" value="${pd.SPECIAL_CLAUSE}" maxlength="255" title="特殊条款" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SPECIAL_CLAUSE" id="SPECIAL_CLAUSE" value="${pd.SPECIAL_CLAUSE}" maxlength="255" title="特殊条款" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">是否存在提前行权:</td>
-								<td><input type="text" name="EARLY_EXERCISE" id="EARLY_EXERCISE" value="${pd.EARLY_EXERCISE}" maxlength="10" title="是否存在提前行权" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="EARLY_EXERCISE" id="EARLY_EXERCISE" value="${pd.EARLY_EXERCISE}" maxlength="10" title="是否存在提前行权" style="width:98%;"/></td>
 							</tr>
 							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">第N年末行权:</td>
-								<td><input type="number" name="YEAR_N" id="YEAR_N" value="${pd.YEAR_N}" maxlength="32" title="第N年末行权" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="YEAR_N" id="YEAR_N" value="${pd.YEAR_N}" maxlength="32" title="第N年末行权" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">发行人利率选择权:</td>
-								<td><input type="text" name="INTEREST_RATE_OPTION" id="INTEREST_RATE_OPTION" value="${pd.INTEREST_RATE_OPTION}" maxlength="255" title="发行人利率选择权" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="INTEREST_RATE_OPTION" id="INTEREST_RATE_OPTION" value="${pd.INTEREST_RATE_OPTION}" maxlength="255" title="发行人利率选择权" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">回售权:</td>
-								<td><input type="text" name="SELL_BACK" id="SELL_BACK" value="${pd.SELL_BACK}" maxlength="60" title="回售权" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SELL_BACK" id="SELL_BACK" value="${pd.SELL_BACK}" maxlength="60" title="回售权" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">赎回权:</td>
-								<td><input type="text" name="REDEMPTION" id="REDEMPTION" value="${pd.REDEMPTION}" maxlength="60" title="赎回权" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="REDEMPTION" id="REDEMPTION" value="${pd.REDEMPTION}" maxlength="60" title="赎回权" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

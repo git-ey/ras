@@ -47,19 +47,19 @@
 										</c:if>
 										<tr>
 											<td style="width:79px;text-align: right;padding-top: 13px;">用户名:</td>
-											<td><input type="text" name="USERNAME" id="loginname" value="${pd.USERNAME }" maxlength="32" title="用户名" style="width:98%;" disabled="disabled"/></td>
+											<td><input type="text" autocomplete="off" name="USERNAME" id="loginname" value="${pd.USERNAME }" maxlength="32" title="用户名" style="width:98%;" disabled="disabled"/></td>
 										</tr>
 										<tr>
 											<td style="width:79px;text-align: right;padding-top: 13px;">编号:</td>
-											<td><input type="text" name="NUMBER" id="NUMBER" value="${pd.NUMBER }" maxlength="32" title="编号" onblur="hasN('${pd.USERNAME }')" style="width:98%;" disabled="disabled"/></td>
+											<td><input type="text" autocomplete="off" name="NUMBER" id="NUMBER" value="${pd.NUMBER }" maxlength="32" title="编号" onblur="hasN('${pd.USERNAME }')" style="width:98%;" disabled="disabled"/></td>
 										</tr>
 										<tr>
 											<td style="width:79px;text-align: right;padding-top: 13px;">姓名:</td>
-											<td><input type="text" name="NAME" id="name"  value="${pd.NAME }"  maxlength="32" placeholder="这里输入姓名" title="姓名" style="width:98%;" disabled="disabled"/></td>
+											<td><input type="text" autocomplete="off" name="NAME" id="name"  value="${pd.NAME }"  maxlength="32" placeholder="这里输入姓名" title="姓名" style="width:98%;" disabled="disabled"/></td>
 										</tr>
 										<tr>
 											<td style="width:79px;text-align: right;padding-top: 13px;">手机号:</td>
-											<td><input type="number" name="PHONE" id="PHONE"  value="${pd.PHONE }"  maxlength="32" title="手机号" style="width:98%;" disabled="disabled"/></td>
+											<td><input type="number" autocomplete="off" name="PHONE" id="PHONE"  value="${pd.PHONE }"  maxlength="32" title="手机号" style="width:98%;" disabled="disabled"/></td>
 										</tr>
 										<!-- 
 										<tr>
@@ -69,7 +69,7 @@
 										-->
 										<tr>
 											<td style="width:79px;text-align: right;padding-top: 13px;">备注:</td>
-											<td><input type="text" name="BZ" id="BZ"value="${pd.BZ }"  maxlength="64" title="备注" style="width:98%;" disabled="disabled"/></td>
+											<td><input type="text" autocomplete="off" name="BZ" id="BZ"value="${pd.BZ }"  maxlength="64" title="备注" style="width:98%;" disabled="disabled"/></td>
 										</tr>
 									</table>
 									</div>

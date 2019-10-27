@@ -33,9 +33,9 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">顺序编码:</td>
-								<td><input type="number" name="SEQ" id="SEQ" value="${pd.SEQ}" maxlength="255" placeholder="这里输入顺序编码" title="顺序编码" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="SEQ" id="SEQ" value="${pd.SEQ}" maxlength="255" placeholder="这里输入顺序编码" title="顺序编码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="255" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="255" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
@@ -47,25 +47,25 @@
 								  	</select>
 								</td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">券商名称:</td>
-								<td><input type="text" name="AGENCY_NAME" id="AGENCY_NAME" value="${pd.AGENCY_NAME}" maxlength="255" placeholder="这里输入券商名称" title="券商名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="AGENCY_NAME" id="AGENCY_NAME" value="${pd.AGENCY_NAME}" maxlength="255" placeholder="这里输入券商名称" title="券商名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">成交额_股票:</td>
-								<td><input type="number" name="AMOUNT_STOCK" id="AMOUNT_STOCK" value="${pd.AMOUNT_STOCK}" maxlength="32" placeholder="这里输入成交额_股票" title="成交额_股票" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="AMOUNT_STOCK" id="AMOUNT_STOCK" value="${pd.AMOUNT_STOCK}" maxlength="32" placeholder="这里输入成交额_股票" title="成交额_股票" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">成交额_债券:</td>
-								<td><input type="number" name="AMOUNT_BOND" id="AMOUNT_BOND" value="${pd.AMOUNT_BOND}" maxlength="32" placeholder="这里输入成交额_债券" title="成交额_债券" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="AMOUNT_BOND" id="AMOUNT_BOND" value="${pd.AMOUNT_BOND}" maxlength="32" placeholder="这里输入成交额_债券" title="成交额_债券" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">成交额_回购:</td>
-								<td><input type="number" name="AMOUNT_REPO" id="AMOUNT_REPO" value="${pd.AMOUNT_REPO}" maxlength="32" placeholder="这里输入成交额_回购" title="成交额_回购" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="AMOUNT_REPO" id="AMOUNT_REPO" value="${pd.AMOUNT_REPO}" maxlength="32" placeholder="这里输入成交额_回购" title="成交额_回购" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">成交额_权证:</td>
-								<td><input type="number" name="AMOUNT_WARRANT" id="AMOUNT_WARRANT" value="${pd.AMOUNT_WARRANT}" maxlength="32" placeholder="这里输入成交额_权证" title="成交额_权证" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="AMOUNT_WARRANT" id="AMOUNT_WARRANT" value="${pd.AMOUNT_WARRANT}" maxlength="32" placeholder="这里输入成交额_权证" title="成交额_权证" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">成交额_基金:</td>
-								<td><input type="number" name="AMOUNT_FUND" id="AMOUNT_FUND" value="${pd.AMOUNT_FUND}" maxlength="32" placeholder="这里输入成交额_基金" title="成交额_基金" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="AMOUNT_FUND" id="AMOUNT_FUND" value="${pd.AMOUNT_FUND}" maxlength="32" placeholder="这里输入成交额_基金" title="成交额_基金" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">实付佣金:</td>
-								<td><input type="number" name="ACTUAL_COMMISSION" id="ACTUAL_COMMISSION" value="${pd.ACTUAL_COMMISSION}" maxlength="32" placeholder="这里输入实付佣金" title="实付佣金" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ACTUAL_COMMISSION" id="ACTUAL_COMMISSION" value="${pd.ACTUAL_COMMISSION}" maxlength="32" placeholder="这里输入实付佣金" title="实付佣金" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>

@@ -33,23 +33,23 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" title="基金ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">签字人1:</td>
-								<td><input type="text" name="SIGNOFF_1" id="SIGNOFF_1" value="${pd.SIGNOFF_1}" maxlength="60" title="签字人1" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SIGNOFF_1" id="SIGNOFF_1" value="${pd.SIGNOFF_1}" maxlength="60" title="签字人1" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">签字人2:</td>
-								<td><input type="text" name="SIGNOFF_2" id="SIGNOFF_2" value="${pd.SIGNOFF_2}" maxlength="60" title="签字人2" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SIGNOFF_2" id="SIGNOFF_2" value="${pd.SIGNOFF_2}" maxlength="60" title="签字人2" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">签字人3:</td>
-								<td><input type="text" name="SIGNOFF_3" id="SIGNOFF_3" value="${pd.SIGNOFF_3}" maxlength="60" title="签字人3" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SIGNOFF_3" id="SIGNOFF_3" value="${pd.SIGNOFF_3}" maxlength="60" title="签字人3" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>

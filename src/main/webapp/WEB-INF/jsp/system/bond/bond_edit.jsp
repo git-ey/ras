@@ -33,27 +33,27 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="10" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="10" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
 								<td style="width:75px;text-align: right;padding-top: 13px;">数据来源:</td>
-								<td><input type="text" name="DATA_SOURCE" id="DATA_SOURCE" value="${pd.DATA_SOURCE}" maxlength="20" placeholder="这里输入数据来源" title="数据来源" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DATA_SOURCE" id="DATA_SOURCE" value="${pd.DATA_SOURCE}" maxlength="20" placeholder="这里输入数据来源" title="数据来源" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">债券代码:</td>
-								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="30" placeholder="这里输入债券代码" title="债券代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="30" placeholder="这里输入债券代码" title="债券代码" style="width:98%;"/></td>
 								<td style="width:75px;text-align: right;padding-top: 13px;">债券简称:</td>
-								<td><input type="text" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="120" placeholder="这里输入债券简称" title="债券简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="120" placeholder="这里输入债券简称" title="债券简称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">债券全称:</td>
-								<td><input type="text" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="240" placeholder="这里输入债券全称" title="债券全称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="240" placeholder="这里输入债券全称" title="债券全称" style="width:98%;"/></td>
 								<td style="width:75px;text-align: right;padding-top: 13px;">债券类型:</td>
-								<td><input type="text" name="BOND_TYPE" id="BOND_TYPE" value="${pd.BOND_TYPE}" maxlength="60" placeholder="这里输入债券类型" title="债券类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BOND_TYPE" id="BOND_TYPE" value="${pd.BOND_TYPE}" maxlength="60" placeholder="这里输入债券类型" title="债券类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">上市市场:</td>
-								<td><input type="text" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="60" placeholder="这里输入上市市场" title="上市市场" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="60" placeholder="这里输入上市市场" title="上市市场" style="width:98%;"/></td>
 								<td style="width:75px;text-align: right;padding-top: 13px;">市场类型:</td>
-								<td><input type="text" name="MARKET_TYPE" id="MARKET_TYPE" value="${pd.MARKET_TYPE}" maxlength="60" placeholder="这里输入市场类型" title="市场类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="MARKET_TYPE" id="MARKET_TYPE" value="${pd.MARKET_TYPE}" maxlength="60" placeholder="这里输入市场类型" title="市场类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

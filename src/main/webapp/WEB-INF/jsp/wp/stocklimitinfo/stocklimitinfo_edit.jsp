@@ -33,35 +33,35 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">公司代码:</td>
-								<td><input type="text" name="FIRM_CODE" id="FIRM_CODE" value="${pd.FIRM_CODE}" maxlength="60" title="公司代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FIRM_CODE" id="FIRM_CODE" value="${pd.FIRM_CODE}" maxlength="60" title="公司代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="30" title="基金代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="30" title="基金代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">科目代码:</td>
-								<td><input type="text" name="ACCOUNT_NUM" id="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM}" maxlength="60" title="科目代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ACCOUNT_NUM" id="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM}" maxlength="60" title="科目代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">股票代码:</td>
-								<td><input type="text" name="STOCK_CODE" id="STOCK_CODE" value="${pd.STOCK_CODE}" maxlength="30" title="股票代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="STOCK_CODE" id="STOCK_CODE" value="${pd.STOCK_CODE}" maxlength="30" title="股票代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">股票名称:</td>
-								<td><input type="text" name="STOCK_NAME" id="STOCK_NAME" value="${pd.STOCK_NAME}" maxlength="60" title="股票名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="STOCK_NAME" id="STOCK_NAME" value="${pd.STOCK_NAME}" maxlength="60" title="股票名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">交易市场:</td>
-								<td><input type="text" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="30" title="交易市场" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="30" title="交易市场" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">子类型:</td>
-								<td><input type="text" name="SUB_TYPE" id="SUB_TYPE" value="${pd.SUB_TYPE}" maxlength="60" title="子类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SUB_TYPE" id="SUB_TYPE" value="${pd.SUB_TYPE}" maxlength="60" title="子类型" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期末交易状态:</td>
-								<td><input type="text" name="TRX_STATUS" id="TRX_STATUS" value="${pd.TRX_STATUS}" maxlength="30" title="期末交易状态" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TRX_STATUS" id="TRX_STATUS" value="${pd.TRX_STATUS}" maxlength="30" title="期末交易状态" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">流通受限类型:</td>
-								<td><input type="text" name="RESTRICT_TYPE" id="RESTRICT_TYPE" value="${pd.RESTRICT_TYPE}" maxlength="60" title="流通受限类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="RESTRICT_TYPE" id="RESTRICT_TYPE" value="${pd.RESTRICT_TYPE}" maxlength="60" title="流通受限类型" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">认购日:</td>
 								<td><input class="span10 date-picker" name="SUBSCRIBE_DATE" id="SUBSCRIBE_DATE" value="${pd.SUBSCRIBE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="认购日" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">认购价格:</td>
-								<td><input type="number" name="SUBSCRIBE_PRICE" id="SUBSCRIBE_PRICE" value="${pd.SUBSCRIBE_PRICE}" maxlength="32" title="认购价格" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="SUBSCRIBE_PRICE" id="SUBSCRIBE_PRICE" value="${pd.SUBSCRIBE_PRICE}" maxlength="32" title="认购价格" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">可流通日:</td>
@@ -69,19 +69,19 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">停牌日期:</td>
 								<td><input class="span10 date-picker" name="SUSPENSION_DATE" id="SUSPENSION_DATE" value="${pd.SUSPENSION_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="停牌日期" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">停牌原因:</td>
-								<td><input type="text" name="SUSPENSION_INFO" id="SUSPENSION_INFO" value="${pd.SUSPENSION_INFO}" maxlength="255" title="停牌原因" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SUSPENSION_INFO" id="SUSPENSION_INFO" value="${pd.SUSPENSION_INFO}" maxlength="255" title="停牌原因" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">复牌日期:</td>
 								<td><input class="span10 date-picker" name="RESUMPTION_DATE" id="RESUMPTION_DATE" value="${pd.RESUMPTION_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="复牌日期" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">复牌开盘单价:</td>
-								<td><input type="text" name="RESMPATION_OPEN_PRICE" id="RESMPATION_OPEN_PRICE" value="${pd.RESMPATION_OPEN_PRICE}" maxlength="255" title="复牌开盘单价" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="RESMPATION_OPEN_PRICE" id="RESMPATION_OPEN_PRICE" value="${pd.RESMPATION_OPEN_PRICE}" maxlength="255" title="复牌开盘单价" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">Createdby:</td>
-								<td><input type="text" name="CREATOR" id="CREATOR" value="${pd.CREATOR}" maxlength="255" title="Createdby" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CREATOR" id="CREATOR" value="${pd.CREATOR}" maxlength="255" title="Createdby" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">ReviewedBy:</td>
-								<td><input type="text" name="REVIEWER" id="REVIEWER" value="${pd.REVIEWER}" maxlength="255" title="ReviewedBy" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="REVIEWER" id="REVIEWER" value="${pd.REVIEWER}" maxlength="255" title="ReviewedBy" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

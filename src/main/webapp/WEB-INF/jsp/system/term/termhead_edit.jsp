@@ -32,13 +32,13 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">账龄代码:</td>
-								<td><input type="text" name="TERMHEAD_ID" id="TERMHEAD_ID" value="${pd.TERMHEAD_ID}" maxlength="100" title="账龄代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TERMHEAD_ID" id="TERMHEAD_ID" value="${pd.TERMHEAD_ID}" maxlength="100" title="账龄代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">账龄类型:</td>
-								<td><input type="text" name="TERM_TYPE" id="TERM_TYPE" value="${pd.TERM_TYPE}" maxlength="60" title="账龄类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TERM_TYPE" id="TERM_TYPE" value="${pd.TERM_TYPE}" maxlength="60" title="账龄类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">账龄名称:</td>
-								<td><input type="text" name="NAME" id="NAME" value="${pd.NAME}" maxlength="60" title="账龄名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="NAME" id="NAME" value="${pd.NAME}" maxlength="60" title="账龄名称" style="width:98%;"/></td>
                                 <td style="width:100px;text-align: right;padding-top: 13px;">计算方法:</td>
 								<td>
 								    <select class="chosen-select form-control" name="METHOD" id="METHOD" data-placeholder="请选择" style="width:49%;">
@@ -58,7 +58,7 @@
 								    </select>
 								</td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" title="说明" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>

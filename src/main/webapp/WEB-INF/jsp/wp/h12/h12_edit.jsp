@@ -33,37 +33,37 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" readonly value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" readonly value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">公司代码:</td>
-								<td><input type="text" name="FIRM_CODE" id="FIRM_CODE" readonly value="${pd.FIRM_CODE}" maxlength="255" title="公司代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FIRM_CODE" id="FIRM_CODE" readonly value="${pd.FIRM_CODE}" maxlength="255" title="公司代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">期末交易状态:</td>
-								<td><input type="text" name="TRX_STATUS" id="TRX_STATUS" readonly value="${pd.TRX_STATUS}" maxlength="255" title="期末交易状态" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TRX_STATUS" id="TRX_STATUS" readonly value="${pd.TRX_STATUS}" maxlength="255" title="期末交易状态" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">股票代码:</td>
-								<td><input type="text" name="STOCK_CODE" id="STOCK_CODE" readonly value="${pd.STOCK_CODE}" maxlength="60" title="股票代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="STOCK_CODE" id="STOCK_CODE" readonly value="${pd.STOCK_CODE}" maxlength="60" title="股票代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">股票名称:</td>
-								<td><input type="text" name="STOCK_NAME" id="STOCK_NAME" readonly value="${pd.STOCK_NAME}" maxlength="255" title="股票名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="STOCK_NAME" id="STOCK_NAME" readonly value="${pd.STOCK_NAME}" maxlength="255" title="股票名称" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">折扣率来源:</td>
-								<td><input type="text" name="LOMD_SOURCE" id="LOMD_SOURCE" value="${pd.LOMD_SOURCE}" maxlength="60" title="折扣率来源" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="LOMD_SOURCE" id="LOMD_SOURCE" value="${pd.LOMD_SOURCE}" maxlength="60" title="折扣率来源" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">折扣率:</td>
-								<td><input type="text" name="LOMD" id="LOMD" value="${pd.LOMD}" maxlength="20" title="折扣率" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="LOMD" id="LOMD" value="${pd.LOMD}" maxlength="20" title="折扣率" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">参考估值类型代码:</td>
-								<td><input type="text" name="VAL_TYPE_REF" id="VAL_TYPE_REF" value="${pd.VAL_TYPE_REF}" maxlength="60" title="参考估值类型代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="VAL_TYPE_REF" id="VAL_TYPE_REF" value="${pd.VAL_TYPE_REF}" maxlength="60" title="参考估值类型代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">股票的估值类型:</td>
-								<td><input type="text" name="VAL_TYPE_NAME" id="VAL_TYPE_NAME" value="${pd.VAL_TYPE_NAME}" maxlength="120" title="股票的估值类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="VAL_TYPE_NAME" id="VAL_TYPE_NAME" value="${pd.VAL_TYPE_NAME}" maxlength="120" title="股票的估值类型" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">股票的估值单价:</td>
-								<td><input type="text" name="VAL_PRICE_REF" id="VAL_PRICE_REF" value="${pd.VAL_PRICE_REF}" maxlength="20" title="股票的估值单价" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="VAL_PRICE_REF" id="VAL_PRICE_REF" value="${pd.VAL_PRICE_REF}" maxlength="20" title="股票的估值单价" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:120px;text-align: right;padding-top: 13px;">非公开股票的估值单价:</td>
-								<td><input type="text" name="VAL_PRICE" id="VAL_PRICE" value="${pd.VAL_PRICE}" maxlength="20" title="非公开股票的估值单价" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="VAL_PRICE" id="VAL_PRICE" value="${pd.VAL_PRICE}" maxlength="20" title="非公开股票的估值单价" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

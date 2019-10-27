@@ -33,15 +33,15 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">类型:</td>
-								<td><input type="text" name="TYPE" id="TYPE" value="${pd.TYPE}" maxlength="60" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TYPE" id="TYPE" value="${pd.TYPE}" maxlength="60" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">全称:</td>
-								<td><input type="text" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="255" placeholder="这里输入全称" title="全称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="255" placeholder="这里输入全称" title="全称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">简称:</td>
-								<td><input type="text" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="120" placeholder="这里输入简称" title="简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="120" placeholder="这里输入简称" title="简称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>

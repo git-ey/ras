@@ -46,9 +46,9 @@ var jsessionid = "<%=session.getId()%>";  //勿删，uploadify兼容火狐用到
 										<table id="table_report" class="table table-striped table-bordered table-hover">
 											<tr>
 												<td style="width:76px;text-align: right;padding-top: 13px;">系统名称:</td>
-												<td><input type="text" name="SYSNAME" id="SYSNAME" value="${pd.SYSNAME }" placeholder="这里输入系统名称" style="width:90%" title="系统名称"/></td>
+												<td><input type="text" autocomplete="off" name="SYSNAME" id="SYSNAME" value="${pd.SYSNAME }" placeholder="这里输入系统名称" style="width:90%" title="系统名称"/></td>
 												<td style="width:76px;text-align: right;padding-top: 13px;">每页条数:</td>
-												<td><input type="number" name="COUNTPAGE" id="COUNTPAGE" value="${pd.COUNTPAGE }" placeholder="这里输入每页条数" style="width:90%" title="每页条数"/></td>
+												<td><input type="number" autocomplete="off" name="COUNTPAGE" id="COUNTPAGE" value="${pd.COUNTPAGE }" placeholder="这里输入每页条数" style="width:90%" title="每页条数"/></td>
 											</tr>
 											<tr>
 												<td style="width:76px;text-align: right;padding-top: 13px;">默认皮肤:</td>

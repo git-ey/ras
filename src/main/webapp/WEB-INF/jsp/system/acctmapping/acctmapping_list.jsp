@@ -43,13 +43,13 @@
 									</div>
 								</td>
 								<td style="vertical-align:top;padding-left:2px;">
-								    <input type="text" style="width:98%;" placeholder="基金ID" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }"/>
+								    <input type="text" autocomplete="off" style="width:98%;" placeholder="基金ID" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }"/>
 								</td>
 								<td style="vertical-align:top;padding-left:2px;">
-								    <input type="text" style="width:98%;" placeholder="科目代码" class="nav-search-input" name="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM }"/>
+								    <input type="text" autocomplete="off" style="width:98%;" placeholder="科目代码" class="nav-search-input" name="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM }"/>
 								</td>
 								<td style="vertical-align:top;padding-left:2px;">
-								    <input type="text" style="width:98%;" placeholder="EY科目ID" class="nav-search-input" name="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM }"/>
+								    <input type="text" autocomplete="off" style="width:98%;" placeholder="EY科目ID" class="nav-search-input" name="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM }"/>
 								</td>
 								<td style="vertical-align:top;padding-left:2px;">
 								 	<select class="chosen-select form-control" name="LEVEL" id="id" data-placeholder="科目级别" style="vertical-align:top;width: 120px;">
@@ -75,7 +75,7 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									<label class="pos-rel"><input type="checkbox" autocomplete="off" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center" style="width:8%;">基金ID</th>
@@ -100,7 +100,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.ACCTMAPPING_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' autocomplete="off" name='ids' value="${var.ACCTMAPPING_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.FUND_ID}</td>

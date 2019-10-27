@@ -33,27 +33,27 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">证券代码:</td>
-								<td><input type="text" name="FUTURE_CODE" id="FUTURE_CODE" value="${pd.FUTURE_CODE}" maxlength="60" title="证券代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUTURE_CODE" id="FUTURE_CODE" value="${pd.FUTURE_CODE}" maxlength="60" title="证券代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">证券简称:</td>
-								<td><input type="text" name="FUTURE_NAME" id="FUTURE_NAME" value="${pd.FUTURE_NAME}" maxlength="255"  title="证券简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUTURE_NAME" id="FUTURE_NAME" value="${pd.FUTURE_NAME}" maxlength="255"  title="证券简称" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">上市市场:</td>
-								<td><input type="text" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="30" title="上市市场" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="30" title="上市市场" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">交易品种:</td>
-								<td><input type="text" name="SUB_TYPE" id="SUB_TYPE" value="${pd.SUB_TYPE}" maxlength="60" title="交易品种" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SUB_TYPE" id="SUB_TYPE" value="${pd.SUB_TYPE}" maxlength="60" title="交易品种" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">合约标的:</td>
-								<td><input type="text" name="OBJECT" id="OBJECT" value="${pd.OBJECT}" maxlength="255" title="合约标的" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="OBJECT" id="OBJECT" value="${pd.OBJECT}" maxlength="255" title="合约标的" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">合约乘数:</td>
-								<td><input type="number" name="MULTIPLIER" id="MULTIPLIER" value="${pd.MULTIPLIER}" maxlength="32" title="合约乘数" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="MULTIPLIER" id="MULTIPLIER" value="${pd.MULTIPLIER}" maxlength="32" title="合约乘数" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">结算价:</td>
-								<td><input type="number" name="UNIT_SETTL_PRICE" id="UNIT_SETTL_PRICE" value="${pd.UNIT_SETTL_PRICE}" maxlength="32" title="结算价" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="UNIT_SETTL_PRICE" id="UNIT_SETTL_PRICE" value="${pd.UNIT_SETTL_PRICE}" maxlength="32" title="结算价" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

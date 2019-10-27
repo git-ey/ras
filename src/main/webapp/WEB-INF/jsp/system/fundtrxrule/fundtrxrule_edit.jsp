@@ -33,39 +33,39 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">类型:</td>
-								<td><input type="text" name="TYPE" id="TYPE" value="${pd.TYPE}" maxlength="30" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TYPE" id="TYPE" value="${pd.TYPE}" maxlength="30" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">申购款（代销）:</td>
-								<td><input type="number" name="ATTR1" id="ATTR1" value="${pd.ATTR1}" maxlength="32" placeholder="这里输入申购款（代销）" title="申购款（代销）" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ATTR1" id="ATTR1" value="${pd.ATTR1}" maxlength="32" placeholder="这里输入申购款（代销）" title="申购款（代销）" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">申购款（直销）:</td>
-								<td><input type="number" name="ATTR2" id="ATTR2" value="${pd.ATTR2}" maxlength="32" placeholder="这里输入申购款（直销）" title="申购款（直销）" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ATTR2" id="ATTR2" value="${pd.ATTR2}" maxlength="32" placeholder="这里输入申购款（直销）" title="申购款（直销）" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">申购款:</td>
-								<td><input type="number" name="ATTR3" id="ATTR3" value="${pd.ATTR3}" maxlength="32" placeholder="这里输入申购款" title="申购款" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ATTR3" id="ATTR3" value="${pd.ATTR3}" maxlength="32" placeholder="这里输入申购款" title="申购款" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">转入款:</td>
-								<td><input type="number" name="ATTR4" id="ATTR4" value="${pd.ATTR4}" maxlength="32" placeholder="这里输入转入款" title="转入款" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ATTR4" id="ATTR4" value="${pd.ATTR4}" maxlength="32" placeholder="这里输入转入款" title="转入款" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">赎回款:</td>
-								<td><input type="number" name="ATTR5" id="ATTR5" value="${pd.ATTR5}" maxlength="32" placeholder="这里输入赎回款" title="赎回款" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ATTR5" id="ATTR5" value="${pd.ATTR5}" maxlength="32" placeholder="这里输入赎回款" title="赎回款" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">转出款:</td>
-								<td><input type="number" name="ATTR6" id="ATTR6" value="${pd.ATTR6}" maxlength="32" placeholder="这里输入转出款" title="转出款" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ATTR6" id="ATTR6" value="${pd.ATTR6}" maxlength="32" placeholder="这里输入转出款" title="转出款" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">赎回费:</td>
-								<td><input type="number" name="ATTR7" id="ATTR7" value="${pd.ATTR7}" maxlength="32" placeholder="这里输入赎回费" title="赎回费" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ATTR7" id="ATTR7" value="${pd.ATTR7}" maxlength="32" placeholder="这里输入赎回费" title="赎回费" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">转换费:</td>
-								<td><input type="number" name="ATTR8" id="ATTR8" value="${pd.ATTR8}" maxlength="32" placeholder="这里输入转换费" title="转换费" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ATTR8" id="ATTR8" value="${pd.ATTR8}" maxlength="32" placeholder="这里输入转换费" title="转换费" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">后端申购费:</td>
-								<td><input type="number" name="ATTR9" id="ATTR9" value="${pd.ATTR9}" maxlength="32" placeholder="这里输入后端申购费" title="后端申购费" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ATTR9" id="ATTR9" value="${pd.ATTR9}" maxlength="32" placeholder="这里输入后端申购费" title="后端申购费" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>

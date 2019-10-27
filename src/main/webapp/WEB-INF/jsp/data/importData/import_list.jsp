@@ -51,7 +51,7 @@
 								</td>
 								<td style="padding-left:2px;text-align: right;width:10%;">已导入文件:</td>
 								<td style="vertical-align:top;padding-left:2px;width:10%;">
-										<input type="text" class="nav-search-input" name="IMPORT_FILE_NAME" value="${pd.IMPORT_FILE_NAME }" placeholder="这里输入文件名"/>
+										<input type="text" class="nav-search-input" autocomplete="off" name="IMPORT_FILE_NAME" value="${pd.IMPORT_FILE_NAME }" placeholder="这里输入文件名"/>
 								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;text-align:left;padding-left:2px;width:5%;"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
@@ -69,7 +69,7 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									<label class="pos-rel"><input type="checkbox" autocomplete="off" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center" style="width:25%;">文件路径</th>
@@ -90,7 +90,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.IMPORT_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' autocomplete="off" name='ids' value="${var.IMPORT_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.IMPORT_FILE_PATH}</td>

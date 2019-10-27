@@ -34,27 +34,27 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">顺序:</td>
-								<td><input type="number" name="SORT" id="SORT" value="${pd.SORT}" maxlength="32" placeholder="这里输入顺序" title="顺序" style="width:49%;"/></td>
+								<td><input type="number" autocomplete="off" name="SORT" id="SORT" value="${pd.SORT}" maxlength="32" placeholder="这里输入顺序" title="顺序" style="width:49%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">账龄期限名称:</td>
-								<td><input type="text" name="PERIOD_NAME" id="PERIOD_NAME" value="${pd.PERIOD_NAME}" maxlength="60" placeholder="这里输入账龄期限名称" title="账龄期限名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD_NAME" id="PERIOD_NAME" value="${pd.PERIOD_NAME}" maxlength="60" placeholder="这里输入账龄期限名称" title="账龄期限名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">披露名称:</td>
-								<td><input type="text" name="REVEAL_NAME" id="REVEAL_NAME" value="${pd.REVEAL_NAME}" maxlength="120" placeholder="这里输入披露名称" title="披露名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="REVEAL_NAME" id="REVEAL_NAME" value="${pd.REVEAL_NAME}" maxlength="120" placeholder="这里输入披露名称" title="披露名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">月数从:</td>
-								<td><input type="number" name="MONTH_FROM" id="MONTH_FROM" value="${pd.MONTH_FROM}" maxlength="32" placeholder="均为>" title="月数从" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="MONTH_FROM" id="MONTH_FROM" value="${pd.MONTH_FROM}" maxlength="32" placeholder="均为>" title="月数从" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">月数至:</td>
-								<td><input type="number" name="MONTH_TO" id="MONTH_TO" value="${pd.MONTH_TO}" maxlength="32" placeholder="均为<=" title="月数至" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="MONTH_TO" id="MONTH_TO" value="${pd.MONTH_TO}" maxlength="32" placeholder="均为<=" title="月数至" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="140" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="140" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

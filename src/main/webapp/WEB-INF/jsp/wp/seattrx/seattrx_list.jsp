@@ -52,7 +52,7 @@
 								</td>
 								<td style="padding-left:2px;text-align:right;width:10%;">基金代码:</td>
 								<td style="vertical-align:top;padding-left:2px;width:10%;">
-								    <input type="text" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }" placeholder="这里输入基金代码"/>
+								    <input type="text" autocomplete="off" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }" placeholder="这里输入基金代码"/>
 								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>

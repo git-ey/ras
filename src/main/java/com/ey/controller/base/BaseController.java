@@ -1,8 +1,10 @@
 package com.ey.controller.base;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,124 +40,124 @@ public class BaseController {
 	@Autowired
 	@Qualifier("importConfigParser")
 	private ImportConfigParser importConfigParser;
-	
+
 	protected Logger logger = Logger.getLogger(this.getClass());
-	
+
 	/**
 	 * AM科目映射导入模版代码
 	 */
 	protected final static String AM_IMPORT_TEMPLATE_CODE = "AM";
-	
+
 	/**
 	 * 交易日历导入模版代码
 	 */
 	protected final static String TC_IMPORT_TEMPLATE_CODE = "TC";
-	
+
 	/**
 	 * 基金信息导入模版代码
 	 */
 	protected final static String FI_IMPORT_TEMPLATE_CODE = "FI";
-	
+
 	/**
 	 * 股票信息导入模版代码
 	 */
 	protected final static String SSI_IMPORT_TEMPLATE_CODE = "SSI";
-	
+
 	/**
 	 * 资产负债表映射导入模版代码
 	 */
 	protected final static String BSM_IMPORT_TEMPLATE_CODE = "BSM";
-	
+
 	/**
 	 * 利润表映射导入模版代码
 	 */
 	protected final static String PLM_IMPORT_TEMPLATE_CODE = "PLM";
-	
+
 	/**
 	 * AMA科目映射属性导入模版代码
 	 */
 	protected final static String AMA_IMPORT_TEMPLATE_CODE = "AMA";
-	
+
 	/**
 	 * BETA系数导入模版代码
 	 */
 	protected final static String BETA_IMPORT_TEMPLATE_CODE = "BETA";
-	
+
 	/**
 	 * SCB中债估值导入模版代码
 	 */
 	protected final static String SCB_IMPORT_TEMPLATE_CODE = "SCB";
-	
+
 	/**
 	 * SDC久期凸性导入模版代码
 	 */
 	protected final static String SDC_IMPORT_TEMPLATE_CODE = "SDC";
-	
+
 	/**
 	 * EYI指数导入模版代码
 	 */
 	protected final static String EYI_IMPORT_TEMPLATE_CODE = "EYI";
-	
+
 	/**
 	 * FIFR基金指数使用费率导入模版代码
 	 */
 	protected final static String FIFR_IMPORT_TEMPLATE_CODE = "FIFR";
-	
+
 	/**
 	 * HPTS风险分析性假设导入模版代码
 	 */
 	protected final static String HPTS_IMPORT_TEMPLATE_CODE = "HPTS";
-	
+
 	/**
 	 * SSB中证估值导入模版代码
 	 */
 	protected final static String SSB_IMPORT_TEMPLATE_CODE = "SSB";
-	
+
 	/**
 	 * SLI股票受限信息导入模版代码
 	 */
 	protected final static String SLI_IMPORT_TEMPLATE_CODE = "SLI";
-	
+
 	/**
 	 * SVI估值方法索引导入模版代码
 	 */
 	protected final static String SVI_IMPORT_TEMPLATE_CODE = "SVI";
-	
+
 	/**
 	 * EFI基金投资信息导入模版代码
 	 */
 	protected final static String EFI_IMPORT_TEMPLATE_CODE = "EFI";
-	
+
 	/**
 	 * EFUI期货投资信息导入模版代码
 	 */
 	protected final static String EFUI_IMPORT_TEMPLATE_CODE = "EFUI";
-	
+
 	/**
 	 * EBI债券投资信息导入模版代码
 	 */
 	protected final static String EBI_IMPORT_TEMPLATE_CODE = "EBI";
-	
+
 	/**
 	 * BLI债券流通受限信息导入模版代码
 	 */
 	protected final static String BLI_IMPORT_TEMPLATE_CODE = "BLI";
-	
+
 	/**
 	 * SFS基金分级信息导入模版代码
 	 */
 	protected final static String SFS_IMPORT_TEMPLATE_CODE = "SFS";
-	
+
 	/**
 	 * SFSF基金分级信息假分级导入模版代码
 	 */
 	protected final static String SFSF_IMPORT_TEMPLATE_CODE = "SFSF";
-	
+
 	/**
 	 * SFR基金申赎规则导入模版代码
 	 */
 	protected final static String SFR_IMPORT_TEMPLATE_CODE = "SFR";
-	
+
 	/**
 	 * SFSO基金签字人导入模版代码
 	 */
@@ -165,43 +167,42 @@ public class BaseController {
 	 * DSS日交割单导入模版代码
 	 */
 	protected final static String DSS_IMPORT_TEMPLATE_CODE = "DSS";
-	
+
 	/**
 	 * SFRP基金关联方导入模版代码
 	 */
 	protected final static String SFRP_IMPORT_TEMPLATE_CODE = "SFRP";
-	
+
 	/**
 	 * SFRI基金募集信息导入模版代码
 	 */
-	protected final static String SFRI_IMPORT_TEMPLATE_CODE = "SFRI";	
-	
+	protected final static String SFRI_IMPORT_TEMPLATE_CODE = "SFRI";
+
 	/**
 	 * SFA基金券商信息导入模版代码
 	 */
-	protected final static String SFA_IMPORT_TEMPLATE_CODE = "SFA";	
-	
+	protected final static String SFA_IMPORT_TEMPLATE_CODE = "SFA";
+
 	/**
 	 * TPS第三方名称导入模版代码
 	 */
-	protected final static String TPS_IMPORT_TEMPLATE_CODE = "TPS";		
-	
+	protected final static String TPS_IMPORT_TEMPLATE_CODE = "TPS";
+
 	/**
 	 * SBI债券信息导入模版代码
 	 */
-	protected final static String SBI_IMPORT_TEMPLATE_CODE = "SBI";		
-	
+	protected final static String SBI_IMPORT_TEMPLATE_CODE = "SBI";
+
 	/**
 	 * SRC报告文本信息表导入模版代码
 	 */
-	protected final static String SRC_IMPORT_TEMPLATE_CODE = "SRC";	
-	
+	protected final static String SRC_IMPORT_TEMPLATE_CODE = "SRC";
+
 	/**
 	 * SFC报告章节控制表导入模版代码
 	 */
-	protected final static String SFC_IMPORT_TEMPLATE_CODE = "SFC";	
-	
-	
+	protected final static String SFC_IMPORT_TEMPLATE_CODE = "SFC";
+
 	/**
 	 * new PageData对象
 	 * 
@@ -262,6 +263,7 @@ public class BaseController {
 
 	/**
 	 * Excel上传数据
+	 * 
 	 * @param file
 	 * @param importFileCode
 	 * @return
@@ -283,7 +285,7 @@ public class BaseController {
 			String extension = fileName.lastIndexOf(".") == -1 ? "" : fileName.substring(fileName.lastIndexOf(".") + 1);
 			String excelFilePath = filePath + fileName;
 			String executeFilePath = "";
-			if(configuration.getImportFileType() == ImportFileType.CSV){
+			if (configuration.getImportFileType() == ImportFileType.CSV) {
 				String csvFilePath = filePath + fileNameStr + ".csv";
 				switch (extension) {
 				case "xls":
@@ -301,21 +303,34 @@ public class BaseController {
 					break;
 				}
 				executeFilePath = csvFilePath;
-			}else{
+			} else {
 				executeFilePath = excelFilePath;
 			}
-			
+
 			File executeFile = new File(executeFilePath);
 			if (!executeFile.exists()) {
 				throw new Exception(executeFilePath + " 未找到上传文件");
 			}
 			try {
-				mapResult = (MapResult) FileImportExecutor.importFile(configuration, executeFile, executeFile.getName());
+				mapResult = (MapResult) FileImportExecutor.importFile(configuration, executeFile,
+						executeFile.getName());
 			} catch (FileImportException e) {
 				throw new Exception("导入上传文件数据失败:" + executeFile.getName() + "," + e.getMessage());
 			}
 		}
 		return mapResult;
+	}
+
+	/**
+	 * 设置禁用请求缓存
+	 * @param response
+	 * @throws IOException
+	 */
+	protected void setNoCache(HttpServletResponse response) throws IOException {
+		response.setHeader("Pragma", "No-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expires", 0);
+		response.flushBuffer();
 	}
 
 }

@@ -33,23 +33,23 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">交易所:</td>
-								<td><input type="text" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="255" placeholder="这里输入交易所" title="交易所" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="255" placeholder="这里输入交易所" title="交易所" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">印花税率:</td>
-								<td><input type="number" name="RATE_STAMP" id="RATE_STAMP" value="${pd.RATE_STAMP}" maxlength="32" placeholder="这里输入印花税率" title="印花税率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="RATE_STAMP" id="RATE_STAMP" value="${pd.RATE_STAMP}" maxlength="32" placeholder="这里输入印花税率" title="印花税率" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">经手费率:</td>
-								<td><input type="number" name="RATE_BROKERAGE" id="RATE_BROKERAGE" value="${pd.RATE_BROKERAGE}" maxlength="32" placeholder="这里输入经手费率" title="经手费率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="RATE_BROKERAGE" id="RATE_BROKERAGE" value="${pd.RATE_BROKERAGE}" maxlength="32" placeholder="这里输入经手费率" title="经手费率" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">证管费率:</td>
-								<td><input type="number" name="RATE_SEC" id="RATE_SEC" value="${pd.RATE_SEC}" maxlength="32" placeholder="这里输入证管费率" title="证管费率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="RATE_SEC" id="RATE_SEC" value="${pd.RATE_SEC}" maxlength="32" placeholder="这里输入证管费率" title="证管费率" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">过户费率:</td>
-								<td><input type="number" name="RATE_TRANSFER" id="RATE_TRANSFER" value="${pd.RATE_TRANSFER}" maxlength="32" placeholder="这里输入过户费率" title="过户费率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="RATE_TRANSFER" id="RATE_TRANSFER" value="${pd.RATE_TRANSFER}" maxlength="32" placeholder="这里输入过户费率" title="过户费率" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启动:</td>

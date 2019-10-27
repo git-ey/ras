@@ -31,7 +31,7 @@
 								<div id="zhongxin">
 								<table style="width:95%;" >
 									<tr>
-										<td style="padding-top: 20px;"><input type="file" id="excel" name="excel" style="width:50px;" onchange="fileType(this)" /></td>
+										<td style="padding-top: 20px;"><input type="file" autocomplete="off" id="excel" name="excel" style="width:50px;" onchange="fileType(this)" /></td>
 									</tr>
 									<tr>
 										<td style="text-align: center;padding-top: 10px;">

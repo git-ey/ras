@@ -2,11 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	String path = request.getContextPath();
+	response.setHeader("Pragma","No-cache");
+	response.setHeader("Cache-Control","no-cache");
+	response.setDateHeader("Expires", 0);
+	response.flushBuffer();
 %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>${pd.SYSNAME}</title>
 <meta charset="UTF-8" />
@@ -16,7 +18,7 @@
 <link rel="stylesheet" href="static/login/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="static/login/matrix-login.css" />
 <link href="static/login/font-awesome.css" rel="stylesheet" />
-<script type="text/javascript" src="static/login/js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="static/login/js/jquery.min.js"></script>
  <style type="text/css">
       .cavs{
     	z-index:1;
@@ -46,7 +48,7 @@
 						<div class="main_input_box">
 							<span class="add-on bg_lg">
 							<i><img height="37" src="static/login/user.png" /></i>
-							</span><input type="text" name="loginname" id="loginname" value="" placeholder="请输入用户名" />
+							</span><input type="text" name="loginname" id="loginname" autocomplete="off" value="" placeholder="请输入用户名" />
 						</div>
 					</div>
 				</div>
@@ -55,21 +57,10 @@
 						<div class="main_input_box">
 							<span class="add-on bg_ly">
 							<i><img height="37" src="static/login/suo.png" /></i>
-							</span><input type="password" name="password" id="password" placeholder="请输入密码" value=""/>
+							</span><input type="password" name="password" id="password" autocomplete="off" placeholder="请输入密码" value=""/>
 						</div>
 					</div>
 				</div>
-				<!-- 
-				<div style="float:right;padding-right:10%;">
-					<div style="float: left;margin-top:3px;margin-right:2px;">
-						<font color="white">记住密码</font>
-					</div>
-					<div style="float: left;">
-						<input name="form-field-checkbox" id="saveid" type="checkbox"
-							onclick="savePaw();" style="padding-top:0px;" />
-					</div>
-				</div>
-				-->
 				<div class="form-actions">
 					<div style="width:86%;padding-left:8%;">
 						<span class="pull-right"><a onclick="severCheck();" class="flip-link btn btn-info" id="to-recover">登录</a></span>
@@ -99,7 +90,6 @@
 					cache: false,
 					success: function(data){
 						if("success" == data.result){
-							<!--saveCookie();-->
 							window.location.href="main/index";
 						}else if("usererror" == data.result){
 							$("#loginname").tips({
@@ -108,7 +98,6 @@
 								bg : '#FF5080',
 								time : 15
 							});
-							showfh();
 							$("#loginname").focus();
 						}else{
 							$("#loginname").tips({
@@ -117,7 +106,6 @@
 								bg : '#FF5080',
 								time : 15
 							});
-							showfh();
 							$("#loginname").focus();
 						}
 					}
@@ -146,7 +134,6 @@
 					bg : '#AE81FF',
 					time : 3
 				});
-				showfh();
 				$("#loginname").focus();
 				return false;
 			} else {
@@ -159,7 +146,6 @@
 					bg : '#AE81FF',
 					time : 3
 				});
-				showfh();
 				$("#password").focus();
 				return false;
 			}
@@ -186,17 +172,6 @@
 			}
 		}
 
-		function saveCookie() {
-			if ($("#saveid").attr("checked")) {
-				$.cookie('loginname', $("#loginname").val(), {
-					expires : 7
-				});
-				$.cookie('password', $("#password").val(), {
-					expires : 7
-				});
-			}
-		}
-		
 		jQuery(function() {
 			var loginname = $.cookie('loginname');
 			var password = $.cookie('password');
@@ -242,10 +217,8 @@
 	</c:if>
 	<script src="static/login/js/bootstrap.min.js"></script>
 	<script src="static/js/jquery.js"></script>
-	<script src="static/login/js/jquery.easing.1.3.js"></script>
+	<script src="static/login/js/jquery.easing.js"></script>
 	<script src="static/login/js/jquery.mobile.customized.min.js"></script>
-	<script src="static/login/js/templatemo_script.js"></script>
-	<script src="static/login/js/ban.js"></script>
 	<script type="text/javascript" src="static/js/jQuery.md5.js"></script>
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
 	<script type="text/javascript" src="static/js/jquery.cookie.js"></script>

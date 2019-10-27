@@ -33,7 +33,7 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:110px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="120" title="基金代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="120" title="基金代码" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">管理公司:</td>
 								<td>
 								    <select class="chosen-select form-control" name="FIRM_CODE" id="FIRM_CODE" data-placeholder="请选择公司" style="vertical-align:top;width: 110px;">
@@ -43,17 +43,17 @@
 								  	</select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">基金简称:</td>
-								<td><input type="text" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="60" title="基金简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="60" title="基金简称" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">基金全称:</td>
-								<td><input type="text" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="240" title="基金全称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="240" title="基金全称" style="width:98%;"/></td>
                             </tr>
 							<tr>
 								<td style="width:110px;text-align: right;padding-top: 13px;">基金原名:</td>
-								<td><input type="text" name="FULL_NAME_ORIGINAL" id="FULL_NAME_ORIGINAL" value="${pd.FULL_NAME_ORIGINAL}" maxlength="240" placeholder="这里输入基金原名" title="基金原名" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FULL_NAME_ORIGINAL" id="FULL_NAME_ORIGINAL" value="${pd.FULL_NAME_ORIGINAL}" maxlength="240" placeholder="这里输入基金原名" title="基金原名" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">帐套号:</td>
-								<td><input type="text" name="LEDGER_NUM" id="LEDGER_NUM" value="${pd.LEDGER_NUM}" maxlength="60" title="帐套号" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="LEDGER_NUM" id="LEDGER_NUM" value="${pd.LEDGER_NUM}" maxlength="60" title="帐套号" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">TA基金名称:</td>
-								<td><input type="text" name="TA_NAME" id="TA_NAME" value="${pd.TA_NAME}" maxlength="240" title="TA基金名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TA_NAME" id="TA_NAME" value="${pd.TA_NAME}" maxlength="240" title="TA基金名称" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">财务系统:</td>
 								<td>
 								    <select class="chosen-select form-control" name="FIN_SYSTEM" id="FIN_SYSTEM" data-placeholder="请选择" style="width:49%;">
@@ -159,7 +159,7 @@
 								    </select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">货币量纲:</td>
-								<td><input type="number" name="UNIT" id="UNIT" value="${pd.UNIT}" maxlength="32" title="数字，按万元披露的维护成10000/按元披露的维护成1" style="width:49%;"/></td>
+								<td><input type="number" autocomplete="off" name="UNIT" id="UNIT" value="${pd.UNIT}" maxlength="32" title="数字，按万元披露的维护成10000/按元披露的维护成1" style="width:49%;"/></td>
 							</tr>
 							<tr>	
 								<td style="width:110px;text-align: right;padding-top: 13px;">合同生效日:</td>
@@ -198,7 +198,7 @@
 								  	</select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">直销销售商名称:</td>
-								<td><input type="text" name="DIRECT_DEALER_NAME" id="DIRECT_DEALER_NAME" value="${pd.DIRECT_DEALER_NAME}" maxlength="60"  title="直销销售商名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DIRECT_DEALER_NAME" id="DIRECT_DEALER_NAME" value="${pd.DIRECT_DEALER_NAME}" maxlength="60"  title="直销销售商名称" style="width:98%;"/></td>
 							    <td style="width:110px;text-align: right;padding-top: 13px;">直销代销分离:</td>
 								<td>
 								    <select class="chosen-select form-control" name="DEALER_SEPERATE" id="DEALER_SEPERATE" data-placeholder="请选择" style="width:49%;">
@@ -224,11 +224,11 @@
 						    </tr>
 							<tr>
 								<td style="width:110px;text-align: right;padding-top: 13px;">指数来源:</td>
-								<td><input type="text" name="INDEX_SOURSE" id="INDEX_SOURSE" value="${pd.INDEX_SOURSE}" maxlength="60" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="INDEX_SOURSE" id="INDEX_SOURSE" value="${pd.INDEX_SOURSE}" maxlength="60" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性BETA:</td>
-								<td><input type="text" name="PRICE_SENSTVT_BETA" id="PRICE_SENSTVT_BETA" value="${pd.PRICE_SENSTVT_BETA}" maxlength="60" style="width:98%;"/></td>							
+								<td><input type="text" autocomplete="off" name="PRICE_SENSTVT_BETA" id="PRICE_SENSTVT_BETA" value="${pd.PRICE_SENSTVT_BETA}" maxlength="60" style="width:98%;"/></td>							
 							    <td style="width:110px;text-align: right;padding-top: 13px;">BETA来源:</td>
-								<td><input type="text" name="BETA_SOURSE" id="BETA_SOURSE" value="${pd.BETA_SOURSE}" maxlength="60" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BETA_SOURSE" id="BETA_SOURSE" value="${pd.BETA_SOURSE}" maxlength="60" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">是否显示分级份额:</td>
 								<td>
 								    <select class="chosen-select form-control" name="LEVEL_SHARE" id="LEVEL_SHARE" data-placeholder="请选择" style="width:49%;">
@@ -240,27 +240,27 @@
 							</tr>
 							<tr>
 									<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性方法:</td>
-									<td><input type="text" name="INT_SEN_METHOD" id="INT_SEN_METHOD" value="${pd.INT_SEN_METHOD}" maxlength="60" style="width:98%;"/></td>
+									<td><input type="text" autocomplete="off" name="INT_SEN_METHOD" id="INT_SEN_METHOD" value="${pd.INT_SEN_METHOD}" maxlength="60" style="width:98%;"/></td>
 									<td style="width:110px;text-align: right;padding-top: 13px;">利率敏感性数据来源:</td>
-									<td><input type="text" name="INT_SEN_SOURCE_TYPE" id="INT_SEN_SOURCE_TYPE" value="${pd.INT_SEN_SOURCE_TYPE}" maxlength="60" style="width:98%;"/></td>							
+									<td><input type="text" autocomplete="off" name="INT_SEN_SOURCE_TYPE" id="INT_SEN_SOURCE_TYPE" value="${pd.INT_SEN_SOURCE_TYPE}" maxlength="60" style="width:98%;"/></td>							
 									<td style="width:110px;text-align: right;padding-top: 13px;">非利率敏感性资产:</td>
-									<td><input type="text" name="INT_SEN_ASSET_EXCL" id="INT_SEN_ASSET_EXCL" value="${pd.INT_SEN_ASSET_EXCL}" maxlength="60" style="width:98%;"/></td>
+									<td><input type="text" autocomplete="off" name="INT_SEN_ASSET_EXCL" id="INT_SEN_ASSET_EXCL" value="${pd.INT_SEN_ASSET_EXCL}" maxlength="60" style="width:98%;"/></td>
 									<td style="width:110px;text-align: right;padding-top: 13px;">利率风险变量:</td>
-									<td><input type="text" name="INT_VAR" id="INT_VAR" value="${pd.INT_VAR}" maxlength="60" style="width:98%;"/></td>
+									<td><input type="text" autocomplete="off" name="INT_VAR" id="INT_VAR" value="${pd.INT_VAR}" maxlength="60" style="width:98%;"/></td>
 							</tr>
 							<tr>
 									<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性方法:</td>
-									<td><input type="text" name="PRI_SEN_METHOD" id="PRI_SEN_METHOD" value="${pd.PRI_SEN_METHOD}" maxlength="60" style="width:98%;"/></td>
+									<td><input type="text" autocomplete="off" name="PRI_SEN_METHOD" id="PRI_SEN_METHOD" value="${pd.PRI_SEN_METHOD}" maxlength="60" style="width:98%;"/></td>
 									<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性数据来源:</td>
-									<td><input type="text" name="PRI_SEN_SOURCE_TYPE" id="PRI_SEN_SOURCE_TYPE" value="${pd.PRI_SEN_SOURCE_TYPE}" maxlength="60" style="width:98%;"/></td>							
+									<td><input type="text" autocomplete="off" name="PRI_SEN_SOURCE_TYPE" id="PRI_SEN_SOURCE_TYPE" value="${pd.PRI_SEN_SOURCE_TYPE}" maxlength="60" style="width:98%;"/></td>							
 									<td style="width:110px;text-align: right;padding-top: 13px;">价格敏感性资产:</td>
-									<td><input type="text" name="PRI_SEN_ASSET" id="PRI_SEN_ASSET" value="${pd.PRI_SEN_ASSET}" maxlength="60" style="width:98%;"/></td>
+									<td><input type="text" autocomplete="off" name="PRI_SEN_ASSET" id="PRI_SEN_ASSET" value="${pd.PRI_SEN_ASSET}" maxlength="60" style="width:98%;"/></td>
 									<td style="width:110px;text-align: right;padding-top: 13px;">价格风险变量:</td>
-									<td><input type="text" name="PRI_VAR" id="PRI_VAR" value="${pd.PRI_VAR}" maxlength="60" style="width:98%;"/></td>
+									<td><input type="text" autocomplete="off" name="PRI_VAR" id="PRI_VAR" value="${pd.PRI_VAR}" maxlength="60" style="width:98%;"/></td>
 							</tr>
 							<tr>
 							    <td style="width:110px;text-align: right;padding-top: 13px;">单位净值有效位数:</td>
-								<td><input type="number" name="NAV_ROUND" id="NAV_ROUND" value="${pd.NAV_ROUND}" maxlength="32" title="单位净值有效位数" style="width:49%;"/></td>
+								<td><input type="number" autocomplete="off" name="NAV_ROUND" id="NAV_ROUND" value="${pd.NAV_ROUND}" maxlength="32" title="单位净值有效位数" style="width:49%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-复利计算:</td>
 								<td>
 								    <select class="chosen-select form-control" name="COMPOUND" id="COMPOUND" data-placeholder="请选择" style="width:49%;">
@@ -270,13 +270,13 @@
 								    </select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-约定年基准收益率:</td>
-								<td><input type="text" name="ROR_BASELINE" id="ROR_BASELINE" value="${pd.ROR_BASELINE}" maxlength="240" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ROR_BASELINE" id="ROR_BASELINE" value="${pd.ROR_BASELINE}" maxlength="240" style="width:98%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">假分级-本期收益率:</td>
-								<td><input type="number" name="ROR" id="ROR" value="${pd.ROR}" maxlength="32" title="假分级-本期收益率" style="width:49%;"/></td>
+								<td><input type="number" autocomplete="off" name="ROR" id="ROR" value="${pd.ROR}" maxlength="32" title="假分级-本期收益率" style="width:49%;"/></td>
 							</tr>
 							<tr>
 							    <td style="width:110px;text-align: right;padding-top: 13px;">假分级-杠杆比:</td>
-								<td><input type="number" name="LEVERAGE" id="LEVERAGE" value="${pd.LEVERAGE}" maxlength="32" title="假分级-杠杆比" style="width:49%;"/></td>
+								<td><input type="number" autocomplete="off" name="LEVERAGE" id="LEVERAGE" value="${pd.LEVERAGE}" maxlength="32" title="假分级-杠杆比" style="width:49%;"/></td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">递进利率行权起始日口径:</td>
 								<td>
 								    <select class="chosen-select form-control" name="EXERCISE_DATE_METHOD" id="EXERCISE_DATE_METHOD" data-placeholder="请选择" style="width:98%;">

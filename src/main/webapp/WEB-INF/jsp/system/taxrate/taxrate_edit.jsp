@@ -33,19 +33,19 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">项目:</td>
-								<td><input type="text" name="ITEM" id="ITEM" value="${pd.ITEM}" maxlength="30" placeholder="这里输入项目" title="项目" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ITEM" id="ITEM" value="${pd.ITEM}" maxlength="30" placeholder="这里输入项目" title="项目" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">税率:</td>
-								<td><input type="number" name="RATE" id="RATE" value="${pd.RATE}" maxlength="32" placeholder="这里输入税率" title="税率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="RATE" id="RATE" value="${pd.RATE}" maxlength="32" placeholder="这里输入税率" title="税率" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">启用:</td>
-								<td><input type="text" name="ACTIVE" id="ACTIVE" value="${pd.ACTIVE}" maxlength="3" placeholder="这里输入启用" title="启用" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ACTIVE" id="ACTIVE" value="${pd.ACTIVE}" maxlength="3" placeholder="这里输入启用" title="启用" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="240" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="240" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

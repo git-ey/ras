@@ -33,19 +33,19 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">来源:</td>
-								<td><input type="text" name="SOURCE" id="SOURCE" value="${pd.SOURCE}" maxlength="30" title="来源" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SOURCE" id="SOURCE" value="${pd.SOURCE}" maxlength="30" title="来源" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">股票代码:</td>
-								<td><input type="text" name="STOCK_CODE" id="STOCK_CODE" value="${pd.STOCK_CODE}" maxlength="30" title="股票代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="STOCK_CODE" id="STOCK_CODE" value="${pd.STOCK_CODE}" maxlength="30" title="股票代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">Beta:</td>
-								<td><input type="number" name="BETA" id="BETA" value="${pd.BETA}" maxlength="32" title="Beta" style="width:49%;"/></td>
+								<td><input type="number" autocomplete="off" name="BETA" id="BETA" value="${pd.BETA}" maxlength="32" title="Beta" style="width:49%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>

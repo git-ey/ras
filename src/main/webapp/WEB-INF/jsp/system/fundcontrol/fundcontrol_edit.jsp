@@ -33,7 +33,7 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:140px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" title="基金ID" style="width:98%;"/></td>
 								<td style="width:140px;text-align: right;padding-top: 13px;">股票投资收益构成:</td>
 								<td>
 								    <select class="chosen-select form-control" name="STOCK_ALL" id="STOCK_ALL" data-placeholder="请选择" style="width:98%;">

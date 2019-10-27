@@ -44,7 +44,7 @@
 								</td>
 								<td style="padding-left:2px;">期间:</td>
 								<td style="vertical-align:top;padding-left:2px;">
-								 	<input class="nav-search-input" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" type="text" placeholder="期间" title="期间"/>
+								 	<input class="nav-search-input" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" type="text" placeholder="期间" title="期间"/>
 								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>

@@ -56,24 +56,24 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 名称 :</label>
 								<div class="col-sm-9">
-									<input type="text" name="MENU_NAME" id="menuName" value="${pd.MENU_NAME }" placeholder="这里输入菜单名称" class="col-xs-10 col-sm-5" />
+									<input type="text" autocomplete="off" name="MENU_NAME" id="menuName" value="${pd.MENU_NAME }" placeholder="这里输入菜单名称" class="col-xs-10 col-sm-5" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 链接  :</label>
 								<div class="col-sm-9">
 									<c:if test="${null != pds.MENU_NAME}">
-									<input type="text" name="MENU_URL" id="menuUrl" value="${pd.MENU_URL }" placeholder="这里输入菜单链接" class="col-xs-10 col-sm-5" />
+									<input type="text" autocomplete="off" name="MENU_URL" id="menuUrl" value="${pd.MENU_URL }" placeholder="这里输入菜单链接" class="col-xs-10 col-sm-5" />
 									</c:if>
 									<c:if test="${null == pds.MENU_NAME}">
-									<input type="text" name="MENU_URL" id="menuUrl" value="" readonly="readonly" placeholder="顶级菜单禁止输入" class="col-xs-10 col-sm-5" />
+									<input type="text" autocomplete="off" name="MENU_URL" id="menuUrl" value="" readonly="readonly" placeholder="顶级菜单禁止输入" class="col-xs-10 col-sm-5" />
 									</c:if>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 序号 : </label>
 								<div class="col-sm-9">
-									<input type="number" name="MENU_ORDER" id="menuOrder" value="${pd.MENU_ORDER}" placeholder="这里输入菜单序号" title="请输入正整数" class="col-xs-10 col-sm-5" />
+									<input type="number" autocomplete="off" name="MENU_ORDER" id="menuOrder" value="${pd.MENU_ORDER}" placeholder="这里输入菜单序号" title="请输入正整数" class="col-xs-10 col-sm-5" />
 								</div>
 							</div>
 							

@@ -33,11 +33,11 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">科目代码:</td>
-								<td><input type="text" name="ACC_NUM" id="ACC_NUM" value="${pd.ACC_NUM}" maxlength="255" placeholder="这里输入科目代码" title="科目代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ACC_NUM" id="ACC_NUM" value="${pd.ACC_NUM}" maxlength="255" placeholder="这里输入科目代码" title="科目代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">科目属性:</td>
-								<td><input type="text" name="ATTR" id="ATTR" value="${pd.ATTR}" maxlength="255" placeholder="这里输入科目属性" title="科目属性" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ATTR" id="ATTR" value="${pd.ATTR}" maxlength="255" placeholder="这里输入科目属性" title="科目属性" style="width:98%;"/></td>
 							</tr>
 							<tr>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>

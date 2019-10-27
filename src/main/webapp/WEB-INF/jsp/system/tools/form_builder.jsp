@@ -64,13 +64,13 @@
 											                            <div class="form-group draggable">
 																			<label class="col-sm-3 control-label no-padding-right" for="form-field-1">输入框：</label>
 																			<div class="col-sm-9">
-																				<input type="text" id="form-field-1" placeholder="提示文字" class="col-xs-10 col-sm-5" />
+																				<input type="text" autocomplete="off" id="form-field-1" placeholder="提示文字" class="col-xs-10 col-sm-5" />
 																			</div>
 											                            </div>
 											                            <div class="form-group draggable">
 																			<label class="col-sm-3 control-label no-padding-right" for="form-field-1">密码框：</label>
 																			<div class="col-sm-9">
-																				<input type="password" id="form-field-1" placeholder="请输入密码" class="col-xs-10 col-sm-5" />
+																				<input type="password" autocomplete="off" id="form-field-1" placeholder="请输入密码" class="col-xs-10 col-sm-5" />
 																			</div>
 											                            </div>
 											                            <div class="form-group draggable">
@@ -78,11 +78,11 @@
 																			<div class="col-sm-9">
 																				<!-- #section:elements.form.input-icon -->
 																				<span class="input-icon">
-																					<input type="text" id="form-field-icon-1" />
+																					<input type="text" autocomplete="off" id="form-field-icon-1" />
 																					<i class="ace-icon fa fa-leaf blue"></i>
 																				</span>
 																				<span class="input-icon input-icon-right">
-																					<input type="text" id="form-field-icon-2" />
+																					<input type="text" autocomplete="off" id="form-field-icon-2" />
 																					<i class="ace-icon fa fa-leaf green"></i>
 																				</span>
 																				<!-- /section:elements.form.input-icon -->

@@ -33,9 +33,9 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">行集代码:</td>
-								<td><input type="text" name="ROW_SET_CODE" id="ROW_SET_CODE" value="${pd.ROW_SET_CODE}" maxlength="30" placeholder="这里输入行集代码" title="行集代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ROW_SET_CODE" id="ROW_SET_CODE" value="${pd.ROW_SET_CODE}" maxlength="30" placeholder="这里输入行集代码" title="行集代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">行集:</td>
-								<td><input type="text" name="ROW_SET" id="ROW_SET" value="${pd.ROW_SET}" maxlength="255" placeholder="这里输入行集" title="行集" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ROW_SET" id="ROW_SET" value="${pd.ROW_SET}" maxlength="255" placeholder="这里输入行集" title="行集" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">行集类型:</td>
@@ -52,13 +52,13 @@
 								    </select>
 								</td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">列:</td>
-								<td><input type="number" name="COLUMN_NUM" id="COLUMN_NUM" value="${pd.COLUMN_NUM}" maxlength="32" placeholder="这里输入列" title="列" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="COLUMN_NUM" id="COLUMN_NUM" value="${pd.COLUMN_NUM}" maxlength="32" placeholder="这里输入列" title="列" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">行:</td>
-								<td><input type="number" name="ROW_NUM" id="ROW_NUM" value="${pd.ROW_NUM}" maxlength="32" placeholder="这里输入行" title="行" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ROW_NUM" id="ROW_NUM" value="${pd.ROW_NUM}" maxlength="32" placeholder="这里输入行" title="行" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">行名称:</td>
-								<td><input type="text" name="ROW_NAME" id="ROW_NAME" value="${pd.ROW_NAME}" maxlength="255" placeholder="这里输入行名称" title="行名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ROW_NAME" id="ROW_NAME" value="${pd.ROW_NAME}" maxlength="255" placeholder="这里输入行名称" title="行名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

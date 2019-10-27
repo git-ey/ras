@@ -1,12 +1,15 @@
 package com.ey.controller.system.login;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -14,6 +17,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +34,7 @@ import com.ey.service.system.button.ButtonManager;
 import com.ey.service.system.buttonrights.ButtonrightsManager;
 import com.ey.service.system.config.impl.SystemConfig;
 import com.ey.service.system.loger.LogerManager;
+import com.ey.service.system.loger.LoginManager;
 import com.ey.service.system.menu.MenuManager;
 import com.ey.service.system.role.RoleManager;
 import com.ey.service.system.user.UserManager;
@@ -66,6 +71,10 @@ public class LoginController extends BaseController {
 	private LdapService ldapService;
 	@Resource(name = "systemConfig")
 	private SystemConfig systemConfig;
+	@Resource(name = "loginService")
+	private LoginManager loginManager;
+	@Resource(name = "sessionDAO")
+	private SessionDAO sessionDAO;
 
 	/**
 	 * 访问登录页
@@ -92,14 +101,15 @@ public class LoginController extends BaseController {
 	 */
 	@RequestMapping(value = "/login_login", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public Object login() throws Exception {
+	public Object login(HttpServletResponse response) throws Exception {
+		// 处理缓存
+		setNoCache(response);
 		Map<String, String> map = new HashMap<String, String>();
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		String errInfo = "";
 		String KEYDATA[] = pd.getString("KEYDATA").split(",");
 		if (null != KEYDATA && KEYDATA.length == 2) {
-			Session session = Jurisdiction.getSession();
 			String USERNAME = KEYDATA[0]; // 登录过来的用户名
 			String PASSWORD = KEYDATA[1]; // 登录过来的密码
 			pd.put("USERNAME", USERNAME);
@@ -108,7 +118,7 @@ public class LoginController extends BaseController {
 				pd.put("PASSWORD", passwd);
 				pd = userService.getUserByNameAndPwd(pd); // 根据用户名和密码去读取用户信息
 				// 登录过程
-				errInfo = this.processLogin(session, pd, USERNAME, PASSWORD);
+				errInfo = this.processLogin(pd, USERNAME, PASSWORD);
 				// LDAP处理方式
 			} else {
 				boolean b;
@@ -128,7 +138,7 @@ public class LoginController extends BaseController {
 						this.insertUser(pda);
 					}
 					// 登录过程
-					errInfo = this.processLogin(session, pd, USERNAME, PASSWORD);
+					errInfo = this.processLogin(pd, USERNAME, PASSWORD);
 				}
 			}
 
@@ -427,10 +437,27 @@ public class LoginController extends BaseController {
 	}
 
 	// 登录执行
-	private String processLogin(Session session, PageData pd, String USERNAME, String PASSWORD) throws Exception {
+	private String processLogin(PageData pd, String USERNAME, String PASSWORD) throws Exception {
+		Session session = Jurisdiction.getSession();
 		String errInfo = "";
-		if (pd != null) {
-			this.removeSession(USERNAME);// 请缓存
+		if (pd == null) {
+			// 记录错误次数
+			saveLoginErrorTimes(USERNAME);
+			// 错误次数控制
+			errInfo = checkLoginErrorTimes(USERNAME, false);
+			if (StringUtils.isNotBlank(errInfo)) {
+				return errInfo;
+			}
+			logBefore(logger, USERNAME + "登录系统密码或用户名错误");
+			logManager.save(USERNAME, "登录系统密码或用户名错误");
+		} else {
+			// 错误次数控制
+			errInfo = checkLoginErrorTimes(USERNAME, true);
+			if (StringUtils.isNotBlank(errInfo)) {
+				return errInfo;
+			}
+			this.removeSession(USERNAME);// 清缓存
+			loginManager.delete(USERNAME); // 清记录
 			pd.put("LAST_LOGIN", DateUtil.getTime().toString());
 			userService.updateLastLogin(pd);
 			User user = new User();
@@ -445,6 +472,8 @@ public class LoginController extends BaseController {
 			user.setSTATUS(pd.getString("STATUS"));
 			session.setAttribute(Const.SESSION_USER, user); // 把用户信息放session中
 			session.removeAttribute(Const.SESSION_SECURITY_CODE); // 清除登录验证码的session
+			// 单一登录控制
+			checkSingleSingOn(USERNAME);
 			// shiro加入身份验证
 			Subject subject = SecurityUtils.getSubject();
 			UsernamePasswordToken token = new UsernamePasswordToken(USERNAME, PASSWORD);
@@ -453,10 +482,6 @@ public class LoginController extends BaseController {
 			} catch (AuthenticationException e) {
 				errInfo = "身份验证失败！";
 			}
-		} else {
-			errInfo = "usererror"; // 用户名或密码有误
-			logBefore(logger, USERNAME + "登录系统密码或用户名错误");
-			logManager.save(USERNAME, "登录系统密码或用户名错误");
 		}
 		if (Tools.isEmpty(errInfo)) {
 			errInfo = "success"; // 验证成功
@@ -464,6 +489,87 @@ public class LoginController extends BaseController {
 			logManager.save(USERNAME, "登录系统");
 		}
 		return errInfo;
+	}
+
+	private String checkLoginErrorTimes(String USERNAME, boolean loginSucess) {
+		try {
+			PageData pd = loginManager.findById(USERNAME);
+			if (null == pd) {
+				return "";
+			}
+			long pwdTimes = systemConfig.getPwdTimes();
+			long lockTimes = systemConfig.getLockTimes();
+			Long times = Long.parseLong(String.valueOf(pd.get("TIMES")));
+			Date loginDate = Tools.str2Date(pd.getString("LOGIN_DATE"));
+			long sec = timeDifference(new Date(), loginDate, lockTimes);
+			if (loginSucess) {
+				if (sec > 0 && (times >= pwdTimes)) {
+					return "账户已锁定，请 " + sec + " 分钟后再试!";
+				} else {
+					loginManager.delete(USERNAME);
+				}
+			} else {
+				if (times < pwdTimes) {
+					return "还有" + (pwdTimes - times) + "次机会，超过5次会被锁定1小时";
+				} else {
+					if (sec > 0) {
+						return "账户已锁定，请 " + sec + " 分钟后再试!";
+					}
+				}
+			}
+		} catch (Exception e) {
+		}
+		return "";
+	}
+
+	private long timeDifference(Date date1, Date date2, long lockTimes) {
+		long times = date1.getTime() - date2.getTime();
+		return (lockTimes - times) / 1000 / 60;
+	}
+
+	/**
+	 * 设置登录错误密码
+	 * 
+	 * @param USERNAME
+	 */
+	private void saveLoginErrorTimes(String USERNAME) {
+		try {
+			PageData pd = loginManager.findById(USERNAME);
+			if (null == pd) {
+				loginManager.save(USERNAME, Tools.date2Str(new Date()));
+			} else {
+				Long times = Long.parseLong(String.valueOf(pd.get("TIMES")));
+				if (times < 5) {
+					loginManager.update(USERNAME, Tools.date2Str(new Date()));
+				}
+				Date loginDate = Tools.str2Date(pd.getString("LOGIN_DATE"));
+				long lockTimes = systemConfig.getLockTimes();
+				long sec = timeDifference(new Date(), loginDate, lockTimes);
+				if (sec < 0) {
+					loginManager.delete(USERNAME);
+					loginManager.save(USERNAME, Tools.date2Str(new Date()));
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	/**
+	 * 用户单一登录
+	 * 
+	 * @param user
+	 *            用户实体
+	 */
+	private void checkSingleSingOn(String USERNAME) {
+		// 获取当前已登录的用户session列表
+		Collection<Session> sessions = sessionDAO.getActiveSessions();
+		for (Session session : sessions) {
+			// 清除该用户以前登录时保存的session
+			if (USERNAME.equals(String.valueOf(session.getAttribute("USERNAME")))) {
+				// 清除认证缓存
+				sessionDAO.delete(session);
+			}
+		}
 	}
 
 	/**

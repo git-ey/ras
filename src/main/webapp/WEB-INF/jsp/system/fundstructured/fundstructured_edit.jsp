@@ -33,19 +33,19 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" title="基金ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">分级基金代码:</td>
-								<td><input type="text" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="60" title="分级基金代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="60" title="分级基金代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">分级基金简称:</td>
-								<td><input type="text" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="120" title="分级基金简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="120" title="分级基金简称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">第几级:</td>
-								<td><input type="text" name="LEVEL" id="LEVEL" value="${pd.LEVEL}" maxlength="10" title="第几级" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="LEVEL" id="LEVEL" value="${pd.LEVEL}" maxlength="10" title="第几级" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>

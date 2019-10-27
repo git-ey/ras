@@ -33,27 +33,27 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="30" title="期间" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">证券代码:</td>
-								<td><input type="text" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="30" title="证券代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="30" title="证券代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">证券简称:</td>
-								<td><input type="text" name="FUND_NAME" id="FUND_NAME" value="${pd.FUND_NAME}" maxlength="120" title="证券简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_NAME" id="FUND_NAME" value="${pd.FUND_NAME}" maxlength="120" title="证券简称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金全称:</td>
-								<td><input type="text" name="FUND_FULLNAME" id="FUND_FULLNAME" value="${pd.FUND_FULLNAME}" maxlength="240" title="基金全称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_FULLNAME" id="FUND_FULLNAME" value="${pd.FUND_FULLNAME}" maxlength="240" title="基金全称" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">上市市场:</td>
-								<td><input type="text" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="30" title="上市市场" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="30" title="上市市场" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">交易状态:</td>
-								<td><input type="text" name="TRX_STATUS" id="TRX_STATUS" value="${pd.TRX_STATUS}" maxlength="30" title="交易状态" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TRX_STATUS" id="TRX_STATUS" value="${pd.TRX_STATUS}" maxlength="30" title="交易状态" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">申赎状态:</td>
-								<td><input type="text" name="RE_STATUS" id="RE_STATUS" value="${pd.RE_STATUS}" maxlength="30" title="申赎状态" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="RE_STATUS" id="RE_STATUS" value="${pd.RE_STATUS}" maxlength="30" title="申赎状态" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">收盘价:</td>
-								<td><input type="number" name="CLOSING_PRICE" id="CLOSING_PRICE" value="${pd.CLOSING_PRICE}" maxlength="32" title="收盘价" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="CLOSING_PRICE" id="CLOSING_PRICE" value="${pd.CLOSING_PRICE}" maxlength="32" title="收盘价" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">单位净值:</td>
-								<td><input type="number" name="UNIT_NAV" id="UNIT_NAV" value="${pd.UNIT_NAV}" maxlength="32" title="单位净值" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="UNIT_NAV" id="UNIT_NAV" value="${pd.UNIT_NAV}" maxlength="32" title="单位净值" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

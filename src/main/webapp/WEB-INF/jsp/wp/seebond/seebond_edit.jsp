@@ -33,37 +33,37 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="255" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="255" title="期间" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值日:</td>
 								<td><input class="span10 date-picker" name="VALUE_DATE" id="VALUE_DATE" value="${pd.VALUE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="估值日" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">上海代码:</td>
-								<td><input type="text" name="SHH_CODE" id="SHH_CODE" value="${pd.SHH_CODE}" maxlength="255" title="上海代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SHH_CODE" id="SHH_CODE" value="${pd.SHH_CODE}" maxlength="255" title="上海代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">深圳代码:</td>
-								<td><input type="text" name="SHZ_CODE" id="SHZ_CODE" value="${pd.SHZ_CODE}" maxlength="255" title="深圳代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SHZ_CODE" id="SHZ_CODE" value="${pd.SHZ_CODE}" maxlength="255" title="深圳代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">银行间代码:</td>
-								<td><input type="text" name="INTER_BANK_CODE" id="INTER_BANK_CODE" value="${pd.INTER_BANK_CODE}" maxlength="255" title="银行间代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="INTER_BANK_CODE" id="INTER_BANK_CODE" value="${pd.INTER_BANK_CODE}" maxlength="255" title="银行间代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">全价:</td>
-								<td><input type="number" name="CALCULATION_PRICE" id="CALCULATION_PRICE" value="${pd.CALCULATION_PRICE}" maxlength="32" title="全价" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="CALCULATION_PRICE" id="CALCULATION_PRICE" value="${pd.CALCULATION_PRICE}" maxlength="32" title="全价" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">到期收益率:</td>
-								<td><input type="number" name="YIELD_TO_MATURITY" id="YIELD_TO_MATURITY" value="${pd.YIELD_TO_MATURITY}" maxlength="32" title="到期收益率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="YIELD_TO_MATURITY" id="YIELD_TO_MATURITY" value="${pd.YIELD_TO_MATURITY}" maxlength="32" title="到期收益率" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">修正久期:</td>
-								<td><input type="number" name="MODIFIED_DURATION" id="MODIFIED_DURATION" value="${pd.MODIFIED_DURATION}" maxlength="32" title="修正久期" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="MODIFIED_DURATION" id="MODIFIED_DURATION" value="${pd.MODIFIED_DURATION}" maxlength="32" title="修正久期" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">凸性:</td>
-								<td><input type="number" name="CONVEXITY" id="CONVEXITY" value="${pd.CONVEXITY}" maxlength="32" title="凸性" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="CONVEXITY" id="CONVEXITY" value="${pd.CONVEXITY}" maxlength="32" title="凸性" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">净价:</td>
-								<td><input type="number" name="CLEAN_PRICE" id="CLEAN_PRICE" value="${pd.CLEAN_PRICE}" maxlength="32" title="净价" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="CLEAN_PRICE" id="CLEAN_PRICE" value="${pd.CLEAN_PRICE}" maxlength="32" title="净价" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">应收利息:</td>
-								<td><input type="number" name="ACCRUED_INTEREST" id="ACCRUED_INTEREST" value="${pd.ACCRUED_INTEREST}" maxlength="32" title="应收利息" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="ACCRUED_INTEREST" id="ACCRUED_INTEREST" value="${pd.ACCRUED_INTEREST}" maxlength="32" title="应收利息" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

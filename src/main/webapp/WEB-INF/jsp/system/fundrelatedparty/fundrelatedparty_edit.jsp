@@ -33,37 +33,37 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="100" title="基金ID" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">排序号:</td>
 								<td><input type="number" name="SORT" id="SORT" value="${pd.SORT}" maxlength="240" title="排序号" style="width:49%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">关联方ID:</td>
-								<td><input type="text" name="PARTY_ID" id="PARTY_ID" value="${pd.PARTY_ID}" maxlength="255" title="关联方ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PARTY_ID" id="PARTY_ID" value="${pd.PARTY_ID}" maxlength="255" title="关联方ID" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">关联方名称:</td>
-								<td><input type="text" name="PARTY_FULL_NAME" id="PARTY_FULL_NAME" value="${pd.PARTY_FULL_NAME}" maxlength="240" title="关联方名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PARTY_FULL_NAME" id="PARTY_FULL_NAME" value="${pd.PARTY_FULL_NAME}" maxlength="240" title="关联方名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">关联方简称1:</td>
-								<td><input type="text" name="PARTY_SHORT_NAME_1" id="PARTY_SHORT_NAME_1" value="${pd.PARTY_SHORT_NAME_1}" maxlength="120" title="关联方简称1" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PARTY_SHORT_NAME_1" id="PARTY_SHORT_NAME_1" value="${pd.PARTY_SHORT_NAME_1}" maxlength="120" title="关联方简称1" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">关联方简称2:</td>
-								<td><input type="text" name="PARTY_SHORT_NAME_2" id="PARTY_SHORT_NAME_2" value="${pd.PARTY_SHORT_NAME_2}" maxlength="120" title="关联方简称2" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PARTY_SHORT_NAME_2" id="PARTY_SHORT_NAME_2" value="${pd.PARTY_SHORT_NAME_2}" maxlength="120" title="关联方简称2" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">关联方简称3:</td>
-								<td><input type="text" name="PARTY_SHORT_NAME_3" id="PARTY_SHORT_NAME_3" value="${pd.PARTY_SHORT_NAME_3}" maxlength="120" title="关联方简称3" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PARTY_SHORT_NAME_3" id="PARTY_SHORT_NAME_3" value="${pd.PARTY_SHORT_NAME_3}" maxlength="120" title="关联方简称3" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">与本基金的关系:</td>
-								<td><input type="text" name="RELATIONSHIP" id="RELATIONSHIP" value="${pd.RELATIONSHIP}" maxlength="240" title="备注7" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="RELATIONSHIP" id="RELATIONSHIP" value="${pd.RELATIONSHIP}" maxlength="240" title="备注7" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">股票代码:</td>
-								<td><input type="text" name="STOCK_CODE" id="STOCK_CODE" value="${pd.STOCK_CODE}" maxlength="240" title="股票代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="STOCK_CODE" id="STOCK_CODE" value="${pd.STOCK_CODE}" maxlength="240" title="股票代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">债券代码:</td>
-								<td><input type="text" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="1200" title="债券代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="BOND_CODE" id="BOND_CODE" value="${pd.BOND_CODE}" maxlength="1200" title="债券代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="240" title="基金代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="240" title="基金代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">其他关联交易关联方:</td>
 								<td>
 								    <select class="chosen-select form-control" name="RELATED_FLAG" id="RELATED_FLAG" data-placeholder="请选择" style="width:49%;">

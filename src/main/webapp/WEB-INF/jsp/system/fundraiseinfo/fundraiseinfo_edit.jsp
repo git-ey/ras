@@ -33,23 +33,23 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" title="基金ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="60" title="基金代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_CODE" id="FUND_CODE" value="${pd.FUND_CODE}" maxlength="60" title="基金代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">第几级:</td>
-								<td><input type="text" name="LEVEL" id="LEVEL" value="${pd.LEVEL}" maxlength="10" title="第几级" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="LEVEL" id="LEVEL" value="${pd.LEVEL}" maxlength="10" title="第几级" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">金额:</td>
-								<td><input type="text" name="AMOUNT" id="AMOUNT" value="${pd.AMOUNT}" maxlength="18" title="金额" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="AMOUNT" id="AMOUNT" value="${pd.AMOUNT}" maxlength="18" title="金额" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">份额:</td>
-								<td><input type="text" name="UNITS" id="UNITS" value="${pd.UNITS}" maxlength="18" title="份额" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="UNITS" id="UNITS" value="${pd.UNITS}" maxlength="18" title="份额" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
