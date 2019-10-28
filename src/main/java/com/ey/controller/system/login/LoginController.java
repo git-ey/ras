@@ -113,8 +113,8 @@ public class LoginController extends BaseController {
 			String USERNAME = KEYDATA[0]; // 登录过来的用户名
 			String PASSWORD = KEYDATA[1]; // 登录过来的密码
 			pd.put("USERNAME", USERNAME);
+			String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString(); // 密码加密
 			if (StringUtils.isBlank(systemConfig.getLdapFlag()) || systemConfig.getLdapFlag().equals("N")) {
-				String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString(); // 密码加密
 				pd.put("PASSWORD", passwd);
 				pd = userService.getUserByNameAndPwd(pd); // 根据用户名和密码去读取用户信息
 				// 登录过程
@@ -131,9 +131,9 @@ public class LoginController extends BaseController {
 				if (b) {
 					pd = userService.findByUsername(pd);
 					if (pd == null) {
-						pd = this.insertUser(USERNAME, PASSWORD);
+						pd = this.insertUser(USERNAME, passwd);
 					} else {
-						pd = this.updateUser(USERNAME, PASSWORD);
+						pd = this.updateUser(USERNAME, passwd);
 					}
 					// 登录过程
 					errInfo = this.processLogin(pd, USERNAME, PASSWORD);
@@ -611,7 +611,7 @@ public class LoginController extends BaseController {
 	 * @param uSERNAME
 	 * @param pASSWORD
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private PageData updateUser(String USERNAME, String PASSWORD) throws Exception {
 		PageData pd = new PageData();
