@@ -33,7 +33,7 @@
 							<tr>
 								<td style="width:120px;text-align: center;padding-top: 13px;">程序代码</td>
 								<td>
-								<select class="chosen-select form-control" name="CONC_CODE" id="CONC_CODE"  onchange="initParam(this.options[this.options.selectedIndex].value)" data-placeholder="请选择并发程序" style="vertical-align:top;" style="width:98%;" >
+								<select class="chosen-select form-control" name="CONC_CODE" id="CONC_CODE"   data-placeholder="请选择并发程序" style="vertical-align:top;" style="width:98%;" >
 								<option value=""></option>
 								<c:forEach items="${concList}" var="var" varStatus="vs">
 									<option value="${var.CONC_CODE }">${var.CONC_DESCRIPTION }</option>

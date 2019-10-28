@@ -113,7 +113,7 @@ public class LoginController extends BaseController {
 			String USERNAME = KEYDATA[0]; // 登录过来的用户名
 			String PASSWORD = KEYDATA[1]; // 登录过来的密码
 			pd.put("USERNAME", USERNAME);
-			if (StringUtils.isBlank(systemConfig.getLdapFlag()) || systemConfig.getLdapFlag().endsWith("N")) {
+			if (StringUtils.isBlank(systemConfig.getLdapFlag()) || systemConfig.getLdapFlag().equals("N")) {
 				String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString(); // 密码加密
 				pd.put("PASSWORD", passwd);
 				pd = userService.getUserByNameAndPwd(pd); // 根据用户名和密码去读取用户信息
@@ -129,16 +129,18 @@ public class LoginController extends BaseController {
 					errInfo = "AD域认证异常，请联系管理员";
 				}
 				if (b) {
-					pd = userService.findByUsername(pd); // 根据用户名和密码去读取用户信息
-					// 不存在则新增用户
-					if (null == pd) {
-						PageData pda = new PageData();
-						pda.put("USERNAME", USERNAME);
-						pda.put("PASSWORD", PASSWORD);
-						this.insertUser(pda);
+					pd = userService.findByUsername(pd);
+					if (pd == null) {
+						pd = this.insertUser(USERNAME, PASSWORD);
 					}
 					// 登录过程
 					errInfo = this.processLogin(pd, USERNAME, PASSWORD);
+				} else {
+					pd = userService.findByUsername(pd);
+					if (pd != null) {
+						// 登录过程
+						errInfo = this.processLogin(null, USERNAME, PASSWORD);
+					}
 				}
 			}
 
@@ -578,9 +580,11 @@ public class LoginController extends BaseController {
 	 * @param pd
 	 * @throws Exception
 	 */
-	private void insertUser(PageData pd) throws Exception {
+	private PageData insertUser(String USERNAME, String PASSWORD) throws Exception {
+		PageData pd = new PageData();
 		pd.put("USER_ID", this.get32UUID()); // ID 主键
-		pd.put("USERNAME", pd.getString("USERNAME"));
+		pd.put("USERNAME", USERNAME);
+		pd.put("NAME", USERNAME);
 		pd.put("ROLE_ID", "3"); // 角色ID 3 为注册用户
 		pd.put("NUMBER", ""); // 编号
 		pd.put("PHONE", ""); // 手机号
@@ -590,11 +594,12 @@ public class LoginController extends BaseController {
 		pd.put("STATUS", "0"); // 状态
 		pd.put("SKIN", "default");
 		pd.put("RIGHTS", "");
-		pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString()); // 密码加密
+		pd.put("PASSWORD", new SimpleHash("SHA-1", USERNAME, PASSWORD).toString()); // 密码加密
 		if (null == userService.findByUsername(pd)) { // 判断用户名是否存在
 			userService.saveU(pd); // 执行保存
 			logManager.save(pd.getString("USERNAME"), "新注册");
 		}
+		return pd;
 	}
 
 }
