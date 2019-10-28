@@ -329,8 +329,8 @@ public class BaseController {
 	protected void setNoCache(HttpServletResponse response) throws IOException {
 		response.setHeader("Pragma", "No-cache");
 		response.setHeader("Cache-Control", "no-cache");
-		response.setDateHeader("Expires", 0);
-		response.flushBuffer();
+		response.setDateHeader("Expires", 18000);
+		//response.flushBuffer();
 	}
 
 }

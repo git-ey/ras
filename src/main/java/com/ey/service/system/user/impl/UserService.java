@@ -188,5 +188,10 @@ public class UserService implements UserManager{
     public PageData getUserCount(String value)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.getUserCount", value);
 	}
+
+	@Override
+	public void updateUser(PageData pd) throws Exception {
+		dao.update("UserMapper.updateUser", pd);
+	}
 	
 }

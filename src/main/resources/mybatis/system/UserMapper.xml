@@ -298,6 +298,17 @@
 				USER_ID = #{USER_ID}
 	</update>
 	
+	<!-- 修改 -->
+	<update id="updateUser" parameterType="pd" >
+		update  <include refid="tableName"></include>
+			set USERNAME = #{USERNAME}
+			<if test="PASSWORD != null and PASSWORD != ''">
+				,PASSWORD = #{PASSWORD}
+			</if>
+			where 
+				USERNAME = #{USERNAME}
+	</update>
+	
 	<!-- 删除用户 -->
 	<delete id="deleteU" parameterType="pd" flushCache="false">
 		delete from <include refid="tableName"></include>

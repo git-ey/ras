@@ -124,4 +124,10 @@ public interface UserManager {
 	 */
 	public PageData getUserCount(String value)throws Exception;
 
+	/**
+	 * 更新用户
+	 * @param pd
+	 */
+	public void updateUser(PageData pd) throws Exception;
+
 }

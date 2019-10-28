@@ -132,6 +132,8 @@ public class LoginController extends BaseController {
 					pd = userService.findByUsername(pd);
 					if (pd == null) {
 						pd = this.insertUser(USERNAME, PASSWORD);
+					} else {
+						pd = this.updateUser(USERNAME, PASSWORD);
 					}
 					// 登录过程
 					errInfo = this.processLogin(pd, USERNAME, PASSWORD);
@@ -577,8 +579,9 @@ public class LoginController extends BaseController {
 	/**
 	 * 新增用户
 	 * 
-	 * @param pd
-	 * @throws Exception
+	 * @param uSERNAME
+	 * @param pASSWORD
+	 * @return
 	 */
 	private PageData insertUser(String USERNAME, String PASSWORD) throws Exception {
 		PageData pd = new PageData();
@@ -599,6 +602,22 @@ public class LoginController extends BaseController {
 			userService.saveU(pd); // 执行保存
 			logManager.save(pd.getString("USERNAME"), "新注册");
 		}
+		return pd;
+	}
+
+	/**
+	 * 更新用户
+	 * 
+	 * @param uSERNAME
+	 * @param pASSWORD
+	 * @return
+	 * @throws Exception 
+	 */
+	private PageData updateUser(String USERNAME, String PASSWORD) throws Exception {
+		PageData pd = new PageData();
+		pd.put("USERNAME", USERNAME);
+		pd.put("PASSWORD", PASSWORD);
+		userService.updateUser(pd);
 		return pd;
 	}
 
