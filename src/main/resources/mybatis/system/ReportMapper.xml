@@ -329,6 +329,7 @@
             IFNULL( src.FV_ATTR1, '' ) AS FV_ATTR1,
             IFNULL( src.MR, '' ) AS MR,
 			IFNULL( src.IR, '' ) AS IR,
+			IFNULL( src.ER, '' ) AS ER,
 			IFNULL( src.IR_EXP, '' ) AS IR_EXP<!-- ,
 			IFNULL( src.ER, '' ) AS ER  -->
         FROM
