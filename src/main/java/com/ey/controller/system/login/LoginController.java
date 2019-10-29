@@ -133,7 +133,7 @@ public class LoginController extends BaseController {
 					if (pd == null) {
 						pd = this.insertUser(USERNAME, passwd);
 					} else {
-						pd = this.updateUser(USERNAME, passwd);
+						this.updateUser(USERNAME, passwd);
 					}
 					// 登录过程
 					errInfo = this.processLogin(pd, USERNAME, PASSWORD);
