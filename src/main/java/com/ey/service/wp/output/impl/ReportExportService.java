@@ -1783,6 +1783,7 @@ public class ReportExportService implements ReportExportManager {
         }
         unmgerHoldFund.put("levels", resultList);
         unmgerHoldFund.put("levelsCount", resultList.size());
+        unmgerHoldFund.put("RowsCount", unmgerHoldFundMetaDataList.size());
         //--------------------↑I.unmgerHoldFund↑--------------------
         //--------------------↓I.bank↓--------------------
         Map<String, Object> bank = new HashMap<>();
