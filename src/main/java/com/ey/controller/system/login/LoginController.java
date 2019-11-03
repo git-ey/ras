@@ -103,7 +103,7 @@ public class LoginController extends BaseController {
 	@ResponseBody
 	public Object login(HttpServletResponse response) throws Exception {
 		// 处理缓存
-		setNoCache(response);
+		// setNoCache(response);
 		Map<String, String> map = new HashMap<String, String>();
 		PageData pd = new PageData();
 		pd = this.getPageData();

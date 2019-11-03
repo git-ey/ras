@@ -89,7 +89,33 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- Shiro filter end -->
- 
+	
+	<!-- Cookies -->
+    <filter>
+    	<filter-name>cookieFilter</filter-name>
+    	<filter-class>com.ey.filter.CookieFilter</filter-class>
+    </filter>
+    <filter-mapping>
+    	<filter-name>cookieFilter</filter-name>
+    	<url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+    	<filter-name>cookieFilter</filter-name>
+    	<url-pattern>/main/index</url-pattern>
+    </filter-mapping>
+    <!-- End Cookies -->
+    
+    <!-- Xxs -->
+     <filter>  
+       <filter-name>XssFilter</filter-name>  
+       <filter-class>com.ey.filter.XssFilter</filter-class>   <!-- 修改为自己的项目路径  -->
+    </filter>  
+    <filter-mapping>  
+       <filter-name>XssFilter</filter-name>  
+       <url-pattern>/*</url-pattern>  
+    </filter-mapping> 
+    <!-- End Xxs -->
+    
 	<error-page>
 		<error-code>404</error-code>
 		<location>/404.jsp</location>

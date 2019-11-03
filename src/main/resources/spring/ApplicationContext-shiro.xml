@@ -13,7 +13,7 @@
 
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="shiroRealm" />
-		<property name="sessionManager" ref="sessionManager"/>
+		<property name="sessionManager" ref="sessionManager" />
 	</bean>
 
 	<!-- 項目自定义的Realm -->
@@ -47,12 +47,24 @@
 		<property name="globalSessionTimeout" value="1500000" />
 		<property name="deleteInvalidSessions" value="true" />
 		<property name="sessionValidationSchedulerEnabled" value="true" />
-	    <property name="sessionDAO" ref="sessionDAO" />
+		<property name="sessionDAO" ref="sessionDAO" />
+		<property name="sessionIdCookie" ref="simpleCookie"/>
 	</bean>
 
-    <!-- Session DAO -->
-	<bean id="sessionDAO"
-		class="org.apache.shiro.session.mgt.eis.MemorySessionDAO">
+	<!-- Session DAO -->
+	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO">
+	</bean>
+
+	<!-- sessionIdCookie的实现,用于重写覆盖容器默认的JSESSIONID -->
+	<bean id="simpleCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<!-- 设置Cookie名字, 默认为: JSESSIONID 问题: 与SERVLET容器名冲突, 如JETTY, TOMCAT 等默认JSESSIONID, 
+			当跳出SHIRO SERVLET时如ERROR-PAGE容器会为JSESSIONID重新分配值导致登录会话丢失! -->
+		<property name="name" value="EYCOOKIE" />
+		<!-- JSESSIONID的path为/用于多个系统共享JSESSIONID -->
+		<!-- <property name="path" value="/"/> -->
+		<!-- 浏览器中通过document.cookie可以获取cookie属性，设置了HttpOnly=true,在脚本中就不能的到cookie，可以避免cookie被盗用 -->
+		<property name="httpOnly" value="true" />
+		<property name="secure" value="true" />
 	</bean>
 
 </beans>
