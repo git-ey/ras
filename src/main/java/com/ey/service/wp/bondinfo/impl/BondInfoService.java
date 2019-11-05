@@ -116,6 +116,7 @@ public class BondInfoService implements BondInfoManager{
 				pd.put("PAYMENT_METHOD", map.get("PAYMENT_METHOD"));
 				pd.put("PAYMENT_TIMES_YEAR", map.get("PAYMENT_TIMES_YEAR"));
 				pd.put("INTEREST_PAY_METHOD", map.get("INTEREST_PAY_METHOD"));
+				pd.put("INTEREST_RULE_TYPE", map.get("INTEREST_RULE_TYPE"));
 				pd.put("PAY_DATE_YEAR", map.get("PAY_DATE_YEAR"));
 				pd.put("PAY_DATE_LAST", map.get("PAY_DATE_LAST"));
 				pd.put("PAY_DATE_NEXT", map.get("PAY_DATE_NEXT"));
