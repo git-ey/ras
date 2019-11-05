@@ -49,6 +49,8 @@ public class CsrfInterceptor extends HandlerInterceptorAdapter {
 					throw new Exception("非法请求，请求源不正确");
 				}
 			}
+		} else {
+			throw new Exception("非法请求，请求源不合法");
 		}
 		return true;
 	}
