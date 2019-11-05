@@ -56,6 +56,8 @@
 	
 	<bean id="systemConfig" class="com.ey.service.system.config.impl.SystemConfig"> 
 	   <property name="ldapFlag" value="${ldapFlag}" />
+	   <property name="serverPort" value="${serverPort}" />
+	   <property name="serverAddr" value="${serverAddr}" />
 	</bean>
 
 </beans>

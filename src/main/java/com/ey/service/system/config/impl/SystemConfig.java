@@ -20,6 +20,10 @@ public class SystemConfig {
 	 */
 	private long lockTimes = (60 * 60 * 1000);
 
+    private String serverPort;
+    
+    private String serverAddr;
+    
 	public String getLdapFlag() {
 		return ldapFlag;
 	}
@@ -42,6 +46,22 @@ public class SystemConfig {
 
 	public void setLockTimes(long lockTimes) {
 		this.lockTimes = lockTimes;
+	}
+
+	public String getServerPort() {
+		return serverPort;
+	}
+
+	public void setServerPort(String serverPort) {
+		this.serverPort = serverPort;
+	}
+
+	public String getServerAddr() {
+		return serverAddr;
+	}
+
+	public void setServerAddr(String serverAddr) {
+		this.serverAddr = serverAddr;
 	}
 
 }
