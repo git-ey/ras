@@ -2720,8 +2720,9 @@
                 <w:outlineLvl w:val="1"/>
             </w:pPr>
             <w:rPr>
-                <w:rFonts w:ascii="Arial" w:h-ansi="Arial"/>
-                <wx:font wx:val="Arial"/>
+                <wx:font wx:val="黑体"/>
+                <w:b/>
+                <w:kern w:val="44"/>
             </w:rPr>
         </w:style>
         <w:style w:type="paragraph" w:styleId="Heading3">
@@ -2738,7 +2739,9 @@
                 <w:outlineLvl w:val="2"/>
             </w:pPr>
             <w:rPr>
-                <wx:font wx:val="Arial"/>
+                <wx:font wx:val="黑体"/>
+                <w:b/>
+                <w:kern w:val="44"/>
             </w:rPr>
         </w:style>
         <w:style w:type="paragraph" w:styleId="Heading4">
@@ -2755,7 +2758,9 @@
                 <w:outlineLvl w:val="3"/>
             </w:pPr>
             <w:rPr>
-                <wx:font wx:val="Arial"/>
+                <wx:font wx:val="黑体"/>
+                <w:b/>
+                <w:kern w:val="44"/>
             </w:rPr>
         </w:style>
         <w:style w:type="paragraph" w:styleId="Heading5">
@@ -2772,7 +2777,9 @@
                 <w:outlineLvl w:val="4"/>
             </w:pPr>
             <w:rPr>
-                <wx:font wx:val="Arial"/>
+                <wx:font wx:val="黑体"/>
+                <w:b/>
+                <w:kern w:val="44"/>
             </w:rPr>
         </w:style>
         <w:style w:type="paragraph" w:styleId="Heading6">
@@ -2790,8 +2797,7 @@
                 <w:outlineLvl w:val="5"/>
             </w:pPr>
             <w:rPr>
-                <w:rFonts w:ascii="Arial" w:h-ansi="Arial"/>
-                <wx:font wx:val="Arial"/>
+                <wx:font wx:val="黑体"/>
                 <w:b/>
                 <w:sz w:val="24"/>
             </w:rPr>
@@ -2831,8 +2837,8 @@
                 <w:outlineLvl w:val="7"/>
             </w:pPr>
             <w:rPr>
-                <w:rFonts w:ascii="Arial" w:h-ansi="Arial"/>
-                <wx:font wx:val="Arial"/>
+                <wx:font wx:val="黑体"/>
+                <w:b/>
                 <w:sz w:val="24"/>
             </w:rPr>
         </w:style>
@@ -2851,8 +2857,8 @@
                 <w:outlineLvl w:val="8"/>
             </w:pPr>
             <w:rPr>
-                <w:rFonts w:ascii="Arial" w:h-ansi="Arial"/>
-                <wx:font wx:val="Arial"/>
+                <wx:font wx:val="黑体"/>
+                <w:b/>
                 <w:sz w:val="24"/>
             </w:rPr>
         </w:style>
