@@ -133,11 +133,7 @@
 		    DATE_FORMAT( H20.SUSPENSION_DATE, '%Y-%m-%dT00:00:00.000' ) AS suspensionDate,
 		    H20.SUSPENSION_INFO AS suspensionInfo,
 		    DATE_FORMAT( H20.RESUMPTION_DATE, '%Y-%m-%dT00:00:00.000' ) AS resumptionDate,
-		    H20.RESMPATION_OPEN_PRICE AS resmpationOpenPrice,
-		    H20.BOND_RATING AS bondRating,
-		    DATE_FORMAT( H20.BOND_RATING_DATE, '%Y-%m-%dT00:00:00.000' ) AS bondRatingDate,
-		    H20.ENTITY_RATING AS entityRating,
-		    DATE_FORMAT( H20.ENTITY_RATING_DATE, '%Y-%m-%dT00:00:00.000' ) AS entityRatingDate 
+		    H20.RESMPATION_OPEN_PRICE AS resmpationOpenPrice
 		FROM
 		    wp_h20 H20 
 		WHERE
@@ -168,11 +164,7 @@
 		    DATE_FORMAT( H21.SUSPENSION_DATE, '%Y-%m-%dT00:00:00.000' ) AS suspensionDate,
 		    H21.SUSPENSION_INFO AS suspensionInfo,
 		    DATE_FORMAT( H21.RESUMPTION_DATE, '%Y-%m-%dT00:00:00.000' ) AS resumptionDate,
-		    H21.RESMPATION_OPEN_PRICE AS resmpationOpenPrice,
-		    H21.BOND_RATING AS bondRating,
-		    DATE_FORMAT( H21.BOND_RATING_DATE, '%Y-%m-%dT00:00:00.000' ) AS bondRatingDate,
-		    H21.ENTITY_RATING AS entityRating,
-		    DATE_FORMAT( H21.ENTITY_RATING_DATE, '%Y-%m-%dT00:00:00.000' ) AS entityRatingDate 
+		    H21.RESMPATION_OPEN_PRICE AS resmpationOpenPrice 
 		FROM
 		    wp_h21 H21 
 		WHERE
@@ -196,6 +188,7 @@
 		    H30.PAYMENT_METHOD AS paymentMethod,
 		    H30.PAYMENT_TIMES_YEAR AS paymentTimesYear,
 		    H30.INTEREST_PAY_METHOD AS interestPayMethod,
+			H30.INTEREST_RULE_TYPE AS interestRuleType,
 		    DATE_FORMAT( H30.DATE_FROM, '%Y-%m-%dT00:00:00.000' ) AS dateFrom,
 		    DATE_FORMAT( H30.DATE_TO, '%Y-%m-%dT00:00:00.000' ) AS dateTo,
 		    DATE_FORMAT( H30.DATE_PAY, '%Y-%m-%dT00:00:00.000' ) AS datePay,
@@ -234,6 +227,7 @@
 		    H31.PAYMENT_METHOD AS paymentMethod,
 		    H31.PAYMENT_TIMES_YEAR AS paymentTimesYear,
 		    H31.INTEREST_PAY_METHOD AS interestPayMethod,
+			H31.INTEREST_RULE_TYPE AS interestRuleType,
 		    DATE_FORMAT( H31.DATE_FROM, '%Y-%m-%dT00:00:00.000' ) AS dateFrom,
 		    DATE_FORMAT( H31.DATE_TO, '%Y-%m-%dT00:00:00.000' ) AS dateTo,
 		    DATE_FORMAT( H31.DATE_PAY, '%Y-%m-%dT00:00:00.000' ) AS datePay,

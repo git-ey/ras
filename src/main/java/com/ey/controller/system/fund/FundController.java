@@ -151,7 +151,19 @@ public class FundController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
+		pd = fundService.findById(pd);
 		mv.setViewName("system/fund/fund_edit");
+		List<PageData> companyList = mgrcompanyService.listAll(pd);
+		// 期间账龄信息
+		List<PageData> termList = termheadService.listAll(pd);
+		// 其他负债批量口径
+		List<PageData> othdisList = othdisheadService.listAll(pd);
+		// U底稿行集
+		List<PageData> uRowSetList = urowsetService.listURowSet(pd);
+		mv.addObject("companyList", companyList);
+		mv.addObject("othdisList", othdisList);
+		mv.addObject("termList",termList);
+		mv.addObject("uRowSetList",uRowSetList);
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
