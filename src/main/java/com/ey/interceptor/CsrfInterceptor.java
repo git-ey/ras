@@ -24,7 +24,7 @@ public class CsrfInterceptor extends HandlerInterceptorAdapter {
 	
 	private static final String URL_PROTO_HTTP = "http://";
 	private static final String URL_PROTO_HTTPS = "https://";
-
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -49,7 +49,7 @@ public class CsrfInterceptor extends HandlerInterceptorAdapter {
 					throw new Exception("非法请求，请求源不正确");
 				}
 			}
-		} else {
+		} else if(request.getServletPath().endsWith(".do")) {
 			throw new Exception("非法请求，请求源不合法");
 		}
 		return true;
@@ -59,8 +59,9 @@ public class CsrfInterceptor extends HandlerInterceptorAdapter {
 		Set<String> domains = new HashSet<String>();
 		// 代理地址
 		String serverAddr = systemConfig.getServerAddr();
-		if (StringUtils.isNotBlank(serverAddr)) {
-			domains.add(serverAddr);
+		String[] serverAddrs = serverAddr.split(",");
+		for (String addr : serverAddrs) {
+			domains.add(addr);
 		}
 		// 多网域暂时未考虑
 		return domains;
