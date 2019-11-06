@@ -300,7 +300,7 @@
 						}else if("false" == data.result){
 							top.hangge();
 							bootbox.dialog({
-								message: "<span class='bigger-110'>删除失败,请先删除明细数据!</span>",
+								message: "<span class='bigger-110'>删除失败,请先删除基金分级信息表、基金关联方信息表和签字人信息表中该基金信息!</span>",
 								buttons: 			
 								{
 									"button" :
