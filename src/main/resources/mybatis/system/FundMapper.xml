@@ -420,7 +420,7 @@
 	   select (select count(*) from sys_fund_related_party where FUND_ID = #{FUND_ID}) + 
        (select count(*) from sys_fund_signoff where FUND_ID = #{FUND_ID}) +
        (select count(*) from sys_fund_structured where FUND_ID = #{FUND_ID}) +
-       (select count(*) from sys_fund_trx_rule where FUND_ID = #{FUND_ID}) zs;
+	   (select count(*) from sys_fund_structured_f where FUND_ID = #{FUND_ID}) zs;
 	</select>
 	
 	<!-- 批量更新-->
