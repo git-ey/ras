@@ -12,7 +12,8 @@
 		USERNAME,	
 		CZTIME,	
 		CONTENT,	
-		LOG_ID
+		LOG_ID,
+		IP
 	</sql>
 	
 	<!-- 字段值 -->
@@ -20,7 +21,8 @@
 		#{USERNAME},	
 		#{CZTIME},	
 		#{CONTENT},	
-		#{LOG_ID}
+		#{LOG_ID},
+		#{IP}
 	</sql>
 	
 	<!-- 新增-->

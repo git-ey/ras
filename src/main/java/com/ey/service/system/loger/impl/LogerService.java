@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ey.dao.DaoSupport;
@@ -22,6 +24,8 @@ public class LogerService implements LogerManager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
+	@Autowired
+	private HttpServletRequest req;
 	
 	/**新增
 	 * @param pd
@@ -34,6 +38,8 @@ public class LogerService implements LogerManager{
 		pd.put("CONTENT", CONTENT);						//事件
 		pd.put("LOG_ID", UuidUtil.get32UUID());		//主键
 		pd.put("CZTIME", Tools.date2Str(new Date()));	//操作时间
+		String ip = req.getRemoteAddr();
+		pd.put("IP", ip); // IP地址
 		dao.save("LogMapper.save", pd);
 	}
 	
