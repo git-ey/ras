@@ -58,6 +58,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<listener> 
+        <listener-class>com.ey.listener.WebAppContextListener</listener-class>
+    </listener>
 
 	<servlet>
 		<servlet-name>springMvc</servlet-name>

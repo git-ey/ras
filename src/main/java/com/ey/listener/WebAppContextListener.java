@@ -23,6 +23,7 @@ public class WebAppContextListener implements ServletContextListener {
 		// TODO Auto-generated method stub
 		Const.WEB_APP_CONTEXT = WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
 		//System.out.println("========获取Spring WebApplicationContext");
+		System.setProperty("com.sun.jndi.ldap.object.disableEndpointIdentification",  "true");
 	}
 
 }
