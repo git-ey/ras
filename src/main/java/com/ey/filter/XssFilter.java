@@ -11,25 +11,35 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ey.util.MHttpServletRequest;
-public class XssFilter implements Filter{  
+/**
+ *
+ * 拦截防止sql注入、xss注入
+ */
+public class XssFilter implements Filter {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
+	 * javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	 */
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException {
+		XssHttpServletRequestWrapper xssRequest = new XssHttpServletRequestWrapper((HttpServletRequest) request);
+		HttpServletResponse xssResponse = (HttpServletResponse) response;
+		xssResponse.setHeader("X-XSS-Protection", "0");
+		filterChain.doFilter(xssRequest, xssResponse);
+
+	}
+
 	@Override
-    public void init(FilterConfig filterConfig) throws ServletException {
- 
-    }
- 
-    @Override
-    public void doFilter(ServletRequest req, ServletResponse res,
-            FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest)req;
-        request = new MHttpServletRequest(request);
-        HttpServletResponse response = (HttpServletResponse)res;
-        response.setHeader("X-XSS-Protection", "0");
-        chain.doFilter(request, response);
-    }
- 
-    @Override
-    public void destroy() {
- 
-    }
+	public void destroy() {
+
+	}
+
+	@Override
+	public void init(FilterConfig arg0) throws ServletException {
+
+	}
+
 }
