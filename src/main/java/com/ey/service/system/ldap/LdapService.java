@@ -1,4 +1,4 @@
-package com.ey.service.system.user.impl;
+package com.ey.service.system.ldap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.core.DistinguishedName;

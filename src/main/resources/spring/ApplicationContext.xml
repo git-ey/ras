@@ -45,7 +45,7 @@
 		<property name="keepAliveSeconds" value="120" />
 	</bean>
 
-	<bean id="ldapContextSource" class="org.springframework.ldap.core.support.LdapContextSource">
+	<bean id="ldapContextSource" class="com.ey.service.system.ldap.SSLLdapContextSource">
 		<property name="url" value="${ldapUrl}" />
 		<property name="userDn" value="${ldapUserDn}" />
 		<property name="password" value="${ldapPassword}" />
