@@ -27,10 +27,11 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
-	<!-- Csrf拦截器 -->
+	<!-- Csrf拦截器 
 	<mvc:interceptors>
-       <bean class="com.ey.interceptor.CsrfInterceptor" />
+       <bean class="com.ey.interceptor.csrf.CSRFInterceptor"/>
     </mvc:interceptors>
+    -->
 	 
 	<!-- 配置SpringMVC的视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

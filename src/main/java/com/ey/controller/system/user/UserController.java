@@ -307,6 +307,7 @@ public class UserController extends BaseController {
 	/**
 	 * 修改用户
 	 */
+	
 	@RequestMapping(value="/editU")
 	public ModelAndView editU() throws Exception{
 		logBefore(logger, Jurisdiction.getUsername()+"修改ser");
