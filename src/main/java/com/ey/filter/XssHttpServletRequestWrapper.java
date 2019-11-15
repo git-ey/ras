@@ -94,9 +94,11 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 			case '&':
 				sb.append('＆');// 全角
 				break;
+			/**	
 			case '\\':
 				sb.append('＼');// 全角斜线
 				break;
+		    */
 			case '#':
 				sb.append('＃');// 全角井号
 				break;
