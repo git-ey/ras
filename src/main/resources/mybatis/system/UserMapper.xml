@@ -166,7 +166,7 @@
 		from <include refid="tableName"></include> u, <include refid="roleTableName"></include> r 
 		where u.ROLE_ID = r.ROLE_ID 
 		and u.USERNAME != 'admin'
-		and r.PARENT_ID = '1'
+		<!-- and r.PARENT_ID = '1'  -->
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
@@ -209,7 +209,7 @@
 		from <include refid="tableName"></include> u, <include refid="roleTableName"></include> r 
 		where u.ROLE_ID = r.ROLE_ID 
 		and u.USERNAME != 'admin'
-		and r.PARENT_ID = '1'
+		<!-- and r.PARENT_ID = '1'  -->
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
@@ -346,7 +346,7 @@
 		from <include refid="tableName"></include> u, <include refid="roleTableName"></include> r 
 		where u.ROLE_ID = r.ROLE_ID 
 		and u.USERNAME != 'admin'
-		and r.PARENT_ID = '1'
+		<!-- and r.PARENT_ID = '1' -->
 		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
 			and
 				(
