@@ -1,5 +1,6 @@
 package com.ey.plugin.interceptor;
 
+import com.ey.util.Const;
 import com.ey.util.Jurisdiction;
 import com.ey.util.sql.SqlUtils;
 import net.sf.jsqlparser.JSQLParserException;
@@ -50,7 +51,9 @@ public class SqlParserInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         try {
-            if (Jurisdiction.getSession() != null && StringUtils.hasText(Jurisdiction.getUsername())) {
+            if (Jurisdiction.getSession() != null
+                    && Jurisdiction.getSession().getAttribute(Const.SESSION_USERNAME) != null
+                    && StringUtils.hasText(Jurisdiction.getUsername())) {
                 BoundSql boundSql = SqlUtils.getBoundSql(invocation);
                 if (boundSql == null) {
                     logger.error("[Error] No SQL found.");
