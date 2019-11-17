@@ -43,6 +43,7 @@ var jsessionid = "<%=session.getId()%>";  //勿删，uploadify兼容火狐用到
 						            <div class="tab-content">
 									  <div id="home" class="tab-pane in active">
 										<form action="head/saveSys.do" name="Form" id="Form" method="post">
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 										<table id="table_report" class="table table-striped table-bordered table-hover">
 											<tr>
 												<td style="width:76px;text-align: right;padding-top: 13px;">系统名称:</td>

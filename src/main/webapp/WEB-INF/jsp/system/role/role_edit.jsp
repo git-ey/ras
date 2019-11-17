@@ -22,6 +22,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<form action="role/${msg}.do" name="form1" id="form1"  method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="ROLE_ID" id="id" value="${pd.ROLE_ID}"/>
 						<input name="PARENT_ID" id="parent_id" value="${pd.parent_id }" type="hidden">
 							<div id="zhongxin" style="padding-top:13px;">

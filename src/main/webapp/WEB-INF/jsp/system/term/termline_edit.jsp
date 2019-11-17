@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="termline/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="TERMLINE_ID" id="TERMLINE_ID" value="${pd.TERMLINE_ID}"/>
 						<input type="hidden" name="TERMHEAD_ID" id="TERMHEAD_ID" value="${pd.TERMHEAD_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">

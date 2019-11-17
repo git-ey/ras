@@ -28,6 +28,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<form action="convexity/readExcel.do" name="Form" id="Form" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								<div id="zhongxin">
 								<table style="width:95%;" >
 									<tr>

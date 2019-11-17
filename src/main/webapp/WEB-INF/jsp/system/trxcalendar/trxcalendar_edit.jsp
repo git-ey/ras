@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="trxcalendar/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="TRXCALENDAR_ID" id="TRXCALENDAR_ID" value="${pd.TRXCALENDAR_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">

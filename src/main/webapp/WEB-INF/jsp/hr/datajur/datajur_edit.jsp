@@ -31,6 +31,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 					<form action="datajur/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="DATAJUR_ID" id="DATAJUR_ID" value="${DATAJUR_ID}"/>
 						<input name="DEPARTMENT_ID" id="DEPARTMENT_ID" type="hidden" value="${pd.DEPARTMENT_ID }" />
 						<div id="zhongxin" style="padding-top: 13px;">

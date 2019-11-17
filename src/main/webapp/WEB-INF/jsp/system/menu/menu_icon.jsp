@@ -31,6 +31,7 @@
 						<div id="zhongxin">
 						
 						<form action="menu/editicon.do" name="menuForm" id="menuForm" method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="MENU_ID" id="menuId" value="${pd.MENU_ID}"/>
 						<input type="hidden" name="MENU_ICON" id="MENU_ICON" value=""/>
 						<input type="hidden" name="MENU_ICONColor" id="MENU_ICONColor" value="black"/>

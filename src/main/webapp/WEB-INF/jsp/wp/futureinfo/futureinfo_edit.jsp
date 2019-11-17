@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="futureinfo/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="FUTUREINFO_ID" id="FUTUREINFO_ID" value="${pd.FUTUREINFO_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">

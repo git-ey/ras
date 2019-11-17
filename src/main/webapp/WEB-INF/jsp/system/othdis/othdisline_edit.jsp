@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="othdisline/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="OTHDISLINE_ID" id="OTHDISLINE_ID" value="${pd.OTHDISLINE_ID}"/>
 						<input type="hidden" name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">

@@ -33,6 +33,7 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<!-- 检索  -->
 						<form action="user/listUsersForWindow.do" method="post" name="userForm" id="userForm">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>

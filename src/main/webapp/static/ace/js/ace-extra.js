@@ -8,6 +8,21 @@ ace.config = {
 if( !('vars' in window['ace']) ) window['ace'].vars = {}
 ace.vars['very_old_ie']	= !('querySelector' in document.documentElement);
 
+/**
+ * *为请求添加token
+ */
+var header = $('meta[name=_csrf_header]').attr('content');
+var token  = $('meta[name=_csrf]').attr('content');
+$(document).ready(function() {
+	$.ajaxSetup({
+		global: true,
+		beforeSend: function (xhr, settings) {
+			if (header !== '' && header.length > 0 && token !== '' && token.length > 0) {
+				xhr.setRequestHeader(header, token);
+			}
+		}
+	});
+});
 
 ace.settings = {
 	is : function(item, status) {

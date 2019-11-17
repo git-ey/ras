@@ -31,6 +31,7 @@
 						<div class="col-xs-12">
 						<!-- 检索  -->
 						<form action="importData/listImportFile.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="IMPORT_ID" id="IMPORT_ID" value="${pd.IMPORT_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table style="margin-top:5px;">

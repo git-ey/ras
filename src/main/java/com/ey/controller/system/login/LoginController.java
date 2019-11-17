@@ -461,7 +461,7 @@ public class LoginController extends BaseController {
 				return errInfo;
 			}
 			this.removeSession(USERNAME);// 清缓存
-			loginManager.delete(USERNAME); // 清记录
+			//loginManager.delete(USERNAME); // 清记录
 			pd.put("LAST_LOGIN", DateUtil.getTime().toString());
 			userService.updateLastLogin(pd);
 			User user = new User();

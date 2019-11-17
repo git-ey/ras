@@ -33,6 +33,7 @@
 							
 						<!-- 检索  -->
 						<form action="file/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>

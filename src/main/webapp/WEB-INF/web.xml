@@ -118,6 +118,17 @@
        <url-pattern>/*</url-pattern>  
     </filter-mapping> 
     <!-- End Xxs -->
+
+	<!-- csrf -->
+	<filter>
+		<filter-name>CsrfFilter</filter-name>
+		<filter-class>com.ey.filter.csrf.CsrfFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CsrfFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- End Xxs -->
     
 	<error-page>
 		<error-code>404</error-code>

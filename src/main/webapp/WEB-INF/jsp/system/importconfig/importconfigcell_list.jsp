@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="importconfigcell/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="IMPORTCONFIG_ID" id="IMPORTCONFIG_ID" value="${pd.IMPORTCONFIG_ID}"/>
 						<table style="margin-top:5px;">
 							<tr>

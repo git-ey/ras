@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="concparam/${msg}.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="CONC_PARAM_ID" id="CONC_PARAM_ID" value="${pd.CONC_PARAM_ID}"/>
 						<input type="hidden" name="CONC_ID" id="CONC_ID" value="${pd.CONC_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">

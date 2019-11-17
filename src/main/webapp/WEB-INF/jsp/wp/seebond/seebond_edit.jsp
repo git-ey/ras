@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="seebond/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="SEEBOND_ID" id="SEEBOND_ID" value="${pd.SEEBOND_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">

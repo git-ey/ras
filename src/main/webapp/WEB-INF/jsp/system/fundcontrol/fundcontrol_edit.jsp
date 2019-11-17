@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="fundcontrol/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="FUNDCONTROL_ID" id="FUNDCONTROL_ID" value="${pd.FUNDCONTROL_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">

@@ -36,6 +36,7 @@
 							
 						<!-- 检索  -->
 						<form action="staff/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input name="ZDEPARTMENT_ID" id="ZDEPARTMENT_ID" type="hidden" value="${pd.ZDEPARTMENT_ID }" />
 						<input name="DEPARTMENT_ID" id="DEPARTMENT_ID" type="hidden" value="${pd.DEPARTMENT_ID }" />
 						<table style="margin-top:5px;">
