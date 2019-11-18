@@ -27,6 +27,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 								<form action="user/${msg }.do" name="userForm" id="userForm" method="post">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 									<input type="hidden" name="USER_ID" id="user_id" value="${pd.USER_ID }"/>
 									<div id="zhongxin" style="padding-top: 13px;">
 									<table id="table_report" class="table table-striped table-bordered table-hover">

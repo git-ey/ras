@@ -31,6 +31,7 @@
 						<div class="col-xs-12">
 						<!-- 检索  -->
 						<form action="importData/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td style="vertical-align:top;padding-left:2px;width:10%;">

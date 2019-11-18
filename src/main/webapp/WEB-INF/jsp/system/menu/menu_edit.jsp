@@ -39,6 +39,7 @@
 						<div class="col-xs-12">
 
 						<form  action="menu/${MSG }.do" name="menuForm" id="menuForm" method="post" class="form-horizontal">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<input type="hidden" name="MENU_ID" id="menuId" value="${pd.MENU_ID }"/>
 							<input type="hidden" name="MENU_TYPE" id="MENU_TYPE" value="${pd.MENU_TYPE }"/>
 							<input type="hidden" name="MENU_STATE" id="MENU_STATE" value="${pd.MENU_STATE }"/>

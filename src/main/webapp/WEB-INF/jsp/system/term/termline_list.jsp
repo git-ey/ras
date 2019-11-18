@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="termline/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="TERMHEAD_ID" id="TERMHEAD_ID" value="${pd.TERMHEAD_ID}"/>
 						<div style="overflow-x: scroll; scrolling: auto;width: 100%;">
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	

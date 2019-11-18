@@ -97,6 +97,7 @@
 					</div>
 				
 					<form action="createCode/proCode.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="zindex" id="zindex" value="0">
 						<input type="hidden" name="FIELDLIST" id="FIELDLIST" value="">
 						<input type="hidden" name="faobject" id="faobject" value="">

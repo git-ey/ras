@@ -55,6 +55,7 @@
 											                          	  拖拽左侧的表单元素到右侧区域，即可生成相应的HTML代码
 											                        </div>
 											                        <form class="form-horizontal m-t">
+																		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 											                        	<div class="form-group draggable">
 											                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">纯文本：</label>
 											                                <div class="col-sm-9">
@@ -251,6 +252,7 @@
 		<!-- /.main-content -->
 		
 		<form action="<%=basePath%>/tool/downloadFormCode.do" name="Form" id="Form" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<textarea name="htmlCode" id="htmlCode"style="display: none;"></textarea>
 		</form>
 		

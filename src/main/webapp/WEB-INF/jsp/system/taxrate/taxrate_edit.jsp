@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="taxrate/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="TAXRATE_ID" id="TAXRATE_ID" value="${pd.TAXRATE_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">

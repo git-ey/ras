@@ -3,6 +3,8 @@
 		<title>${pd.SYSNAME}</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<meta name="_csrf" content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="X-CSRF-TOKEN" />
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="static/ace/css/bootstrap.css" />
 		<link rel="stylesheet" href="static/ace/css/font-awesome.css" />

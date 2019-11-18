@@ -21,6 +21,12 @@
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
 		<!-- mapper扫描 -->
 		<property name="mapperLocations" value="classpath:mybatis/*/*.xml"></property>
+		<!-- 拦截器 -->
+		<property name="plugins">
+			<list>
+				<bean class="com.ey.plugin.interceptor.SqlParserInterceptor"/>
+			</list>
+		</property>
 	</bean>
 	<!-- 阿里 druid数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"

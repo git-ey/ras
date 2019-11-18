@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="convexity/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="CONVEXITY_ID" id="CONVEXITY_ID" value="${pd.CONVEXITY_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">

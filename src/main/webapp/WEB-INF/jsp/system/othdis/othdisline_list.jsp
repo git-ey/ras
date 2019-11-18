@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="othdisline/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}"/>
 						<!-- 检索  -->
 						<div style="overflow-x: scroll; scrolling: auto;width: 100%;">
