@@ -51,7 +51,7 @@ public final class CsrfFilter implements Filter {
         }
 
         String actualToken = getCsrfToken(request, csrfToken);
-        if (!csrfToken.getToken().equals(actualToken)) {
+        if (StringUtils.isNotBlank(actualToken) && !csrfToken.getToken().equals(actualToken)) {
             if (this.logger.isDebugEnabled()) {
                 this.logger.debug("Invalid CSRF token found for " + UrlUtils.buildFullRequestUrl(request));
             }
