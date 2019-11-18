@@ -209,7 +209,7 @@ public class SqlParserInterceptor implements Interceptor {
 
     private String getHandledSql() {
         String tableAlias = "SUF_" + getTableIndex();
-        return "SELECT " + tableAlias + "FUND_ID FROM SYS_USER_FUND " + tableAlias + "  WHERE " + tableAlias + ".USERNAME = '" + Jurisdiction.getUsername() + "'";
+        return "SELECT " + tableAlias + ".FUND_ID FROM SYS_USER_FUND " + tableAlias + "  WHERE " + tableAlias + ".USERNAME = '" + Jurisdiction.getUsername() + "'";
     }
 
     private int getTableIndex() {
