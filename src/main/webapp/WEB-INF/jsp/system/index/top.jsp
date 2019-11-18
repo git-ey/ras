@@ -19,6 +19,24 @@
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="static/ace/css/ace-ie.css" />
 		<![endif]-->
+
+		<%
+			String pathf = request.getContextPath();
+			String basePathf = request.getScheme() + "://"
+					+ request.getServerName() + ":" + request.getServerPort()
+					+ pathf + "/";
+		%>
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='<%=basePathf%>static/ace/js/jquery.js'>"+"<"+"/script>");
+		</script>
+		<!-- <![endif]-->
+		<!--[if IE]>
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='<%=basePathf%>static/ace/js/jquery1x.js'>"+"<"+"/script>");
+		</script>
+		<![endif]-->
+
 		<!-- inline styles related to this page -->
 		<!-- ace settings handler -->
 		<script src="static/ace/js/ace-extra.js"></script>
@@ -27,3 +45,5 @@
 		<script src="static/ace/js/html5shiv.js"></script>
 		<script src="static/ace/js/respond.js"></script>
 		<![endif]-->
+
+

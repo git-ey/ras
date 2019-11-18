@@ -25,7 +25,7 @@ public final class CsrfFilter implements Filter {
     public CsrfFilter() {
         tokenRepository = new HttpSessionCsrfTokenRepository();
         requireCsrfProtectionMatcher = new CsrfSecurityRequestMatcher();
-        requireCsrfProtectionMatcher.setExcludeUrls(Arrays.asList("/druid/*", "/login_login"));
+        requireCsrfProtectionMatcher.setExcludeUrls(Arrays.asList("/druid/**", "/static/**", "/login_login"));
     }
 
     @Override
