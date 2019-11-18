@@ -170,8 +170,8 @@ public class DbTools{
 	 */
 	public static Connection getCon(String dbtype,String dbusername,String dbpassword,String dburl,String databaseName) throws SQLException, ClassNotFoundException{
 		if("mysql".equals(dbtype)){
-			Class.forName("com.mysql.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://"+dburl+"/"+databaseName+"?user="+dbusername+"&password="+dbpassword);
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			return DriverManager.getConnection("jdbc:mysql://"+dburl+"/"+databaseName+"?user="+dbusername+"&password="+dbpassword+"&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&noAccessToProcedureBodies=true&serverTimezone=UTC");
 		}else if("oracle".equals(dbtype)){
 			Class.forName("oracle.jdbc.driver.OracleDriver"); 
 			return DriverManager.getConnection("jdbc:oracle:thin:@"+dburl+":"+databaseName, dbusername, dbpassword);
@@ -532,7 +532,7 @@ public class DbTools{
 	 * @throws IOException
 	 */
 	public static Properties getPprVue() {
-		InputStream inputStream = DbTools.class.getClassLoader().getResourceAsStream("dbconfig.properties");
+		InputStream inputStream = DbTools.class.getClassLoader().getResourceAsStream("config.properties");
 		Properties p = new Properties();
 		try {
 			p.load(inputStream);
