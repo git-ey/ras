@@ -228,19 +228,23 @@ public class SqlParserInterceptor implements Interceptor {
     }
 
     private Column handleSubSelect(Column column, Map args) {
-        String columnName = column.getColumnName();
-        if (columnName != null && columnName.length() >= COLUMN_FUND_ID.length()) {
-            String subColumn = columnName.substring(columnName.length() - COLUMN_FUND_ID.length());
-            if (COLUMN_FUND_ID.equalsIgnoreCase(subColumn)) {
-                List<Column> handleColumnList = handleColumns.get();
-                if (handleColumnList == null) {
-                    handleColumnList = new ArrayList<>();
-                    handleColumns.set(handleColumnList);
-                }
-                handleColumnList.add(column);
+        if (COLUMN_FUND_ID.equalsIgnoreCase(getColumnName(column.getColumnName()))) {
+            List<Column> handleColumnList = handleColumns.get();
+            if (handleColumnList == null) {
+                handleColumnList = new ArrayList<>();
+                handleColumns.set(handleColumnList);
             }
+            handleColumnList.add(column);
         }
         return column;
+    }
+
+    private String getColumnName(String columnName) {
+        int splitIndex = columnName.lastIndexOf(".");
+        if (splitIndex > -1) {
+            return columnName.substring(splitIndex);
+        }
+        return columnName;
     }
 
     private void handleExpression(Expression expression, Map args) throws JSQLParserException {
