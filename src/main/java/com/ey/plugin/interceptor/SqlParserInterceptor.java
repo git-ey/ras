@@ -180,7 +180,7 @@ public class SqlParserInterceptor implements Interceptor {
         if (!CollectionUtils.isEmpty(handleColumnList)) {
             return createHandledColumnExpression(where, handleColumnList);
         }
-        return null;
+        return where;
     }
 
     private Expression createHandledColumnExpression(Expression where, List<Column> handleColumnList) throws JSQLParserException {
