@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ey.filter.csrf.exception.InvalidCsrfTokenException;
 import com.ey.filter.csrf.exception.MissingCsrfTokenException;
 import com.ey.util.UrlUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -49,10 +50,7 @@ public final class CsrfFilter implements Filter {
             return;
         }
 
-        String actualToken = request.getHeader(csrfToken.getHeaderName());
-        if (actualToken == null) {
-            actualToken = request.getParameter(csrfToken.getParameterName());
-        }
+        String actualToken = getCsrfToken(request, csrfToken);
         if (!csrfToken.getToken().equals(actualToken)) {
             if (this.logger.isDebugEnabled()) {
                 this.logger.debug("Invalid CSRF token found for " + UrlUtils.buildFullRequestUrl(request));
@@ -65,6 +63,17 @@ public final class CsrfFilter implements Filter {
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private String getCsrfToken(HttpServletRequest request, CsrfToken csrfToken) {
+        String actualToken = request.getHeader(csrfToken.getHeaderName());
+        if (StringUtils.isBlank(actualToken)) {
+            actualToken = request.getParameter(csrfToken.getParameterName());
+        }
+        if (StringUtils.isBlank(actualToken)) {
+            actualToken = (String) request.getParameterMap().get(csrfToken.getParameterName());
+        }
+        return actualToken;
     }
 
 	@Override
