@@ -169,12 +169,12 @@
 	</delete>
 	
 	<!-- 执行存储过程 -->
-	<select id="runProcedure" statementType="CALLABLE" parameterType="pd">
+	<update id="runProcedure" statementType="CALLABLE" parameterType="pd">
       <![CDATA[call ${CONC_PROGRAM}(]]>
       <foreach item="item" index="index" collection="CONC_PARAM" separator=",">
           #{item}
       </foreach>
       <![CDATA[,#{RESULT,mode=OUT,jdbcType=VARCHAR},#{MESSAGE,mode=OUT,jdbcType=VARCHAR});]]>
-	</select>
+	</update>
 	
 </mapper>

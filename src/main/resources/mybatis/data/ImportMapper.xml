@@ -238,8 +238,8 @@
 	</insert>
 	
 	<!-- 执行导入后的存储过程 -->
-	<select id="callableProcedure" statementType="CALLABLE" parameterType="pd">
+	<update id="callableProcedure" statementType="CALLABLE" parameterType="pd">
       <![CDATA[call ${PROCEDURE_NAME}(#{IMPORTFILEID,mode=IN,jdbcType=VARCHAR},#{RESULT,mode=OUT,jdbcType=VARCHAR},#{MESSAGE,mode=OUT,jdbcType=VARCHAR});]]>
-	</select>
+	</update>
 	
 </mapper>
