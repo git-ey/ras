@@ -66,8 +66,12 @@
 			MARKET = #{MARKET},
 			TRX_STATUS = #{TRX_STATUS},
 			RE_STATUS = #{RE_STATUS},
+			<if test="CLOSING_PRICE != null and CLOSING_PRICE != ''">
 			CLOSING_PRICE = #{CLOSING_PRICE},
+			</if>
+			<if test="UNIT_NAV != null and UNIT_NAV != ''">
 			UNIT_NAV = #{UNIT_NAV},
+			</if>
 		FUNDINFO_ID = FUNDINFO_ID
 		where 
 		FUNDINFO_ID = #{FUNDINFO_ID}

@@ -70,11 +70,21 @@
 			TRX_DATE = #{TRX_DATE},
 			TRX_TYPE = #{TRX_TYPE},
 			DEALER = #{DEALER},
+			<if test="TRX_QUANTITY != null and TRX_QUANTITY != ''">
 			TRX_QUANTITY = #{TRX_QUANTITY},
+			</if>
+			<if test="TRX_AMOUNT != null and TRX_AMOUNT != ''">
 			TRX_AMOUNT = #{TRX_AMOUNT},
+			</if>
+			<if test="TRX_FEE != null and TRX_FEE != ''">
 			TRX_FEE = #{TRX_FEE},
+			</if>
+			<if test="BACKEND_FEE != null and BACKEND_FEE != ''">
 			BACKEND_FEE = #{BACKEND_FEE},
+			</if>
+			<if test="CONFIRMED_AMOUNT != null and CONFIRMED_AMOUNT != ''">
 			CONFIRMED_AMOUNT = #{CONFIRMED_AMOUNT},
+			</if>
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS}
 		where 

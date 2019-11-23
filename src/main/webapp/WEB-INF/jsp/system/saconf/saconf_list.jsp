@@ -86,11 +86,36 @@
 											<td class='center'>${var.ACCOUNT_TYPE}</td>
 											<td class='center'>${var.AFS_CODE}</td>
 											<td class='center'>${var.ITEM}</td>
-											<td class='center'>${var.VOLUME}</td>
-											<td class='center'>${var.COMPLEXITY}</td>
-											<td class='center'>${var.JUDGEMENT}</td>
-											<td class='center'>${var.RISK}</td>
-											<td class='center'>${var.CONCERN}</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.VOLUME == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.VOLUME == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.COMPLEXITY == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.COMPLEXITY == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.JUDGEMENT == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.JUDGEMENT == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.RISK == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.RISK == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.CONCERN == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.CONCERN == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.ACTIVE == 'Y' }"> 是 </c:when>

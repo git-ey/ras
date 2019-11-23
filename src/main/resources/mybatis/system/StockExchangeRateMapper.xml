@@ -56,10 +56,18 @@
 		<include refid="tableName"></include>
 		set 
 			MARKET = #{MARKET},
+			<if test="RATE_STAMP != null and RATE_STAMP != ''">
 			RATE_STAMP = #{RATE_STAMP},
+			</if>
+			<if test="RATE_BROKERAGE != null and RATE_BROKERAGE != ''">
 			RATE_BROKERAGE = #{RATE_BROKERAGE},
+			</if>
+			<if test="RATE_SEC != null and RATE_SEC != ''">
 			RATE_SEC = #{RATE_SEC},
+			</if>
+			<if test="RATE_TRANSFER != null and RATE_TRANSFER != ''">
 			RATE_TRANSFER = #{RATE_TRANSFER},
+			</if>
 			ACTIVE = #{ACTIVE},
 		STOCKEXCHANGERATE_ID = STOCKEXCHANGERATE_ID
 		where 

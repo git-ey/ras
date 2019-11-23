@@ -88,10 +88,16 @@
 			EFFECTIVE_DATE = #{EFFECTIVE_DATE},
 			ACCOUNT_NUM = #{ACCOUNT_NUM},
 			CURRENCY = #{CURRENCY},
+			<if test="EXCHANGE_RATE != null and EXCHANGE_RATE != ''">
 			EXCHANGE_RATE = #{EXCHANGE_RATE},
+			</if>
 			DRCR = #{DRCR},
+			<if test="AMOUNT_ENTERED != null and AMOUNT_ENTERED != ''">
 			AMOUNT_ENTERED = #{AMOUNT_ENTERED},
+			</if>
+			<if test="AMOUNT_CNY != null and AMOUNT_CNY != ''">
 			AMOUNT_CNY = #{AMOUNT_CNY},
+			</if>
 			AMOUNT_CNY_DRCR = #{AMOUNT_CNY_DRCR},
 			<if test="QUANTITY != null and QUANTITY != ''">
 			QUANTITY = #{QUANTITY},

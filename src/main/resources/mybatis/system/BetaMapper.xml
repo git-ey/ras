@@ -56,7 +56,9 @@
 		    PERIOD = #{PERIOD},
 			SOURCE = #{SOURCE},
 			STOCK_CODE = #{STOCK_CODE},
+			<if test="BETA != null and BETA != ''">
 			BETA = #{BETA},
+			</if>
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS}
 		where 

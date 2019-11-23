@@ -101,16 +101,6 @@
 				$("#PERIOD").focus();
 			return false;
 			}
-			if($("#DATA_SOURCE").val()==""){
-				$("#DATA_SOURCE").tips({
-					side:3,
-		            msg:'请输入数据来源',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#DATA_SOURCE").focus();
-			return false;
-			}
 			if($("#BOND_CODE").val()==""){
 				$("#BOND_CODE").tips({
 					side:3,

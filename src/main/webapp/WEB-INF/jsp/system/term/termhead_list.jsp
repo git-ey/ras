@@ -77,7 +77,12 @@
 											<td class='center'>${var.TERM_TYPE}</td>
 											<td class='center'>${var.NAME}</td>
 											<td class='center'>${var.METHOD}</td>
-											<td class='center'>${var.PREV_RANGE}</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.PREV_RANGE == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.PREV_RANGE == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
 											<td class='center'>${var.DESCRIPTION}</td>
 											<td class='center'>
 											<c:choose>  

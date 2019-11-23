@@ -70,10 +70,18 @@
 			BOND_CODE = #{BOND_CODE},
 			VALUE_DATE = #{VALUE_DATE},
 			MARKET = #{MARKET},
+		    <if test="VALUATION_NET_PRICE != null and VALUATION_NET_PRICE != ''">
 			VALUATION_NET_PRICE = #{VALUATION_NET_PRICE},
+			</if>
+			<if test="VALUATION_RETURN != null and VALUATION_RETURN != ''">
 			VALUATION_RETURN = #{VALUATION_RETURN},
+			</if>
+			<if test="DURATION != null and DURATION != ''">
 			DURATION = #{DURATION},
+			</if>
+			<if test="CONVEXITY != null and CONVEXITY != ''">
 			CONVEXITY = #{CONVEXITY},
+			</if>
 			RELIABILITY = #{RELIABILITY},
 			VALUATION_PRICE_END = #{VALUATION_PRICE_END},
 			INTEREST_END = #{INTEREST_END},

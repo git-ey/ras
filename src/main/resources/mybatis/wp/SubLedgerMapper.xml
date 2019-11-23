@@ -83,13 +83,25 @@
 			SQUENCE_NUM = #{SQUENCE_NUM},
 			DESCRIPTION = #{DESCRIPTION},
 			CURRENCY = #{CURRENCY},
+			<if test="DR_UNITS != null and DR_UNITS != ''">
 			DR_UNITS = #{DR_UNITS},
+			</if>
+			<if test="CR_UNITS != null and CR_UNITS != ''">
 			CR_UNITS = #{CR_UNITS},
+			</if>
+			<if test="DR_AMOUNT != null and DR_AMOUNT != ''">
 			DR_AMOUNT = #{DR_AMOUNT},
+			</if>
+			<if test="CR_AMOUNT != null and CR_AMOUNT != ''">
 			CR_AMOUNT = #{CR_AMOUNT},
+			</if>
 			END_DRCR = #{END_DRCR},
+			<if test="END_UNITS != null and END_UNITS != ''">
 			END_UNITS = #{END_UNITS},
+			</if>
+			<if test="END_BALANCE != null and END_BALANCE != ''">
 			END_BALANCE = #{END_BALANCE},
+			</if>
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS},
 		SUBLEDGER_ID = SUBLEDGER_ID

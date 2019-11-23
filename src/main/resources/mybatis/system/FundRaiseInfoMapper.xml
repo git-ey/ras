@@ -58,8 +58,12 @@
 			FUND_ID = #{FUND_ID},
 			FUND_CODE = #{FUND_CODE},
 			LEVEL = #{LEVEL},
+		    <if test="AMOUNT != null and AMOUNT != ''">
 			AMOUNT = #{AMOUNT},
+			</if>
+			<if test="UNITS != null and UNITS != ''">
 			UNITS = #{UNITS},
+			</if>
 			ACTIVE = #{ACTIVE},
 		FUNDRAISEINFO_ID = FUNDRAISEINFO_ID
 		where 

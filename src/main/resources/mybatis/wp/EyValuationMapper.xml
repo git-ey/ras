@@ -107,9 +107,15 @@
 			<if test="UNIT_PRICE != null and UNIT_PRICE != ''">			
 			UNIT_PRICE = #{UNIT_PRICE},
 			</if>
+			<if test="MKT_VALUE_ENTERED != null and MKT_VALUE_ENTERED != ''">	
 			MKT_VALUE_ENTERED = #{MKT_VALUE_ENTERED},
+			</if>
+			<if test="MKT_VALUE_CNY != null and MKT_VALUE_CNY != ''">	
 			MKT_VALUE_CNY = #{MKT_VALUE_CNY},
+			</if>
+			<if test="APPRECIATION_ENTERED != null and APPRECIATION_ENTERED != ''">	
 			APPRECIATION_ENTERED = #{APPRECIATION_ENTERED},
+			</if>
 			<if test="APPRECIATION_CNY != null and APPRECIATION_CNY != ''">					
 			APPRECIATION_CNY = #{APPRECIATION_CNY},
 			</if>

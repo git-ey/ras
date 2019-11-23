@@ -123,10 +123,18 @@
 			BOND_TYPE = #{BOND_TYPE},
 			SUSPENSION = #{SUSPENSION},
 			SUSPENSION_INFO = #{SUSPENSION_INFO},
+			<if test="PAR_VALUE_ISSUE != null and PAR_VALUE_ISSUE != ''">
 			PAR_VALUE_ISSUE = #{PAR_VALUE_ISSUE},
+			</if>
+			<if test="PAR_VALUE_LAST != null and PAR_VALUE_LAST != ''">
 			PAR_VALUE_LAST = #{PAR_VALUE_LAST},
+			</if>
+			<if test="COUPON_RATE != null and COUPON_RATE != ''">
 			COUPON_RATE = #{COUPON_RATE},
+			</if>
+			<if test="ISSUE_PRICE != null and ISSUE_PRICE != ''">
 			ISSUE_PRICE = #{ISSUE_PRICE},
+			</if>
 			DATE_FROM = #{DATE_FROM},
 			DATE_TO = #{DATE_TO},
 			DATE_PAY = #{DATE_PAY},

@@ -57,8 +57,13 @@
 			PERIOD = #{PERIOD},
 			BSCODE = #{BSCODE},
 			DESCRIPSION = #{DESCRIPSION},
+			<if test="BEG_BALANCE != null and BEG_BALANCE != ''">
 			BEG_BALANCE = #{BEG_BALANCE},
-			END_BALANCE = #{END_BALANCE}
+			</if>
+			<if test="END_BALANCE != null and END_BALANCE != ''">
+			END_BALANCE = #{END_BALANCE},
+			</if>
+			BS_ID = #{BS_ID}
 		where 
 		BS_ID = #{BS_ID}
 	</update>

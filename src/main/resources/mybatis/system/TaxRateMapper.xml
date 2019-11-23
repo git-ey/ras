@@ -50,7 +50,9 @@
 		<include refid="tableName"></include>
 		set 
 			ITEM = #{ITEM},
+			<if test="RATE != null and RATE != ''">
 			RATE = #{RATE},
+			</if>
 			ACTIVE = #{ACTIVE},
 			DESCRIPTION = #{DESCRIPTION},
 		TAXRATE_ID = TAXRATE_ID

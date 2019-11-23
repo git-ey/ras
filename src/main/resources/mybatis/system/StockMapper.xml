@@ -112,19 +112,27 @@
 			INDUSTRY = #{INDUSTRY},
 			VALUATION_DATE = #{VALUATION_DATE},
 			RECENT_TRX_DATE = #{RECENT_TRX_DATE},
+			<if test="UNIT_PRICE != null and UNIT_PRICE != ''">
 			UNIT_PRICE = #{UNIT_PRICE},
+			</if>
 			SUSPENSION = #{SUSPENSION},
+			<if test="SUSPENSION_DATE != null and SUSPENSION_DATE != ''">
 			SUSPENSION_DATE = #{SUSPENSION_DATE},
+			</if>
 			<if test="CLOSING_PRICE != null and CLOSING_PRICE != ''">
 			CLOSING_PRICE = #{CLOSING_PRICE},
 			</if>
 			SUSPENSION_INFO = #{SUSPENSION_INFO},
+			<if test="RESUMPTION_DATE != null and RESUMPTION_DATE != ''">
 			RESUMPTION_DATE = #{RESUMPTION_DATE},
+			</if>
 			<if test="RESUMPTION_PRICE != null and RESUMPTION_PRICE != ''">
 			RESUMPTION_PRICE = #{RESUMPTION_PRICE},
 			</if>
 			NEW_FLAG = #{NEW_FLAG},
+			<if test="AFLOAT_DATE != null and AFLOAT_DATE != ''">
 			AFLOAT_DATE = #{AFLOAT_DATE},
+			</if>
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS}
 		where 

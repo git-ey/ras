@@ -92,7 +92,12 @@
 											<td class='center'>${var.CONVEXITY}</td>
 											<td class='center'>${var.CLEAN_PRICE}</td>
 											<td class='center'>${var.ACCRUED_INTEREST}</td>
-											<td class='center'>${var.ACTIVE}</td>
+                                            <td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.ACTIVE == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.ACTIVE == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
 											<td class='center'>${var.STATUS}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
