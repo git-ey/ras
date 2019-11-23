@@ -29,7 +29,7 @@
 					
 					<form action="eypl/${msg }.do" name="Form" id="Form" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<input type="hidden" name="EYPL_ID" id="EYPL_ID" value="${pd.EYPL_ID}"/>
+						<input type="hidden" name="PL_ID" id="PL_ID" value="${pd.PL_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>

@@ -156,6 +156,10 @@
 			and
 				(
 				<!-- 根据需求自己加检索条件 -->
+                    FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				     or 
+                    PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				     or 
 					EY_BUYSELL_TYPE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
 					EY_STOCKBOND_TYPE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 

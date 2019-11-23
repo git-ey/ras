@@ -29,7 +29,7 @@
 					
 					<form action="acctmappingattr5/${msg }.do" name="Form" id="Form" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<input type="hidden" name="ACCTMAPPINGATTR1_ID" id="ACCTMAPPINGATTR1_ID" value="${pd.ACCTMAPPINGATTR1_ID}"/>
+						<input type="hidden" name="ACCTMAPPINGATTR5_ID" id="ACCTMAPPINGATTR5_ID" value="${pd.ACCTMAPPINGATTR5_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>

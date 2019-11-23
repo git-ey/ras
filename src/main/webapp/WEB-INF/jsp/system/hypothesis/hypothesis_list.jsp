@@ -85,7 +85,12 @@
 											<td class='center'>${var.HYPOTHESIS_TPYE}</td>
 											<td class='center'>${var.HYPOTHESIS_NUM}</td>
 											<td class='center'>${var.DESCRIPTION}</td>
-											<td class='center'>${var.ACTIVE}</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.ACTIVE == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.ACTIVE == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>

@@ -91,7 +91,12 @@
 											<td class='center'>${var.JUDGEMENT}</td>
 											<td class='center'>${var.RISK}</td>
 											<td class='center'>${var.CONCERN}</td>
-											<td class='center'>${var.ACTIVE}</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.ACTIVE == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.ACTIVE == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
 											<td class='center'>${var.DESCRIPTION}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
@@ -303,8 +308,8 @@
 			 diag.Drag=true;
 			 diag.Title ="编辑";
 			 diag.URL = '<%=path%>/saconf/goEdit.do?SACONF_ID='+Id;
-			 diag.Width = 450;
-			 diag.Height = 355;
+			 diag.Width = 800;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 

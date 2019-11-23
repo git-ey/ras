@@ -38,7 +38,7 @@
 								<td>
 									<div class="nav-search">
 										<span class="input-icon">
-											<input type="text" placeholder="这里输入关键词" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }" placeholder="这里输入关键词"/>
+											<input type="text" placeholder="基金ID|期间|EY股债类型|EY证券代码" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }"/>
 											<i class="ace-icon fa fa-search nav-search-icon"></i>
 										</span>
 									</div>

@@ -93,7 +93,9 @@
 			AMOUNT_ENTERED = #{AMOUNT_ENTERED},
 			AMOUNT_CNY = #{AMOUNT_CNY},
 			AMOUNT_CNY_DRCR = #{AMOUNT_CNY_DRCR},
+			<if test="QUANTITY != null and QUANTITY != ''">
 			QUANTITY = #{QUANTITY},
+			</if>
 			DESCRIPTION = #{DESCRIPTION},
 			MAKER = #{MAKER},
 			CHECKER = #{CHECKER},
@@ -129,11 +131,9 @@
 					ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%')
 					 or 
 					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%') 
-				
+				     or
+				    FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%') 
 				)
-		</if>
-		<if test="pd.FUND_ID != null and pd.FUND_ID != ''" >
-		    and FUND_ID = #{pd.FUND_ID,jdbcType=VARCHAR}
 		</if>
 		<if test="pd.lastStart!= null and pd.lastStart != ''">
 		    and EFFECTIVE_DATE &gt;= #{pd.lastStart,jdbcType=DATE}

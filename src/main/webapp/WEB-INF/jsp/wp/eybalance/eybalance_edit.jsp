@@ -29,7 +29,7 @@
 					
 					<form action="eybalance/${msg }.do" name="Form" id="Form" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<input type="hidden" name="EYBALANCE_ID" id="EYBALANCE_ID" value="${pd.EYBALANCE_ID}"/>
+						<input type="hidden" name="BALANCE_ID" id="BALANCE_ID" value="${pd.BALANCE_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
@@ -52,7 +52,7 @@
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">汇率:</td>
-								<td><input type="text" autocomplete="off" name="EXCHANGE_RATE" id="EXCHANGE_RATE" value="${pd.EXCHANGE_RATE}" maxlength="30" placeholder="CNY默认为1，其他币种填入科目" title="币种" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="EXCHANGE_RATE" id="EXCHANGE_RATE" value="${pd.EXCHANGE_RATE}" maxlength="30"  title="汇率" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">年初借贷方向:</td>
 								<td><input type="text" autocomplete="off" name="BEGIN_DRCR" id="BEGIN_DRCR" value="${pd.BEGIN_DRCR}" maxlength="30" placeholder="借/贷/平" title="年初借贷方向" style="width:98%;"/></td>
 							</tr>
@@ -222,26 +222,6 @@
 				$("#BEGIN_BALANCE_CNY").focus();
 			return false;
 			}
-			if($("#DR_AMOUNT_CNY").val()==""){
-				$("#DR_AMOUNT_CNY").tips({
-					side:3,
-		            msg:'请输入本年本位币借方',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#DR_AMOUNT_CNY").focus();
-			return false;
-			}
-			if($("#CR_AMOUNT_CNY").val()==""){
-				$("#CR_AMOUNT_CNY").tips({
-					side:3,
-		            msg:'请输入本年本位币贷方',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#CR_AMOUNT_CNY").focus();
-			return false;
-			}
 			if($("#END_DRCR").val()==""){
 				$("#END_DRCR").tips({
 					side:3,
@@ -260,46 +240,6 @@
 		            time:2
 		        });
 				$("#END_BALANCE_CNY").focus();
-			return false;
-			}
-			if($("#BEGIN_BALANCE_ENTERED").val()==""){
-				$("#BEGIN_BALANCE_ENTERED").tips({
-					side:3,
-		            msg:'请输入年初外币',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#BEGIN_BALANCE_ENTERED").focus();
-			return false;
-			}
-			if($("#DR_AMOUNT_ENTERED").val()==""){
-				$("#DR_AMOUNT_ENTERED").tips({
-					side:3,
-		            msg:'请输入本年外币借方',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#DR_AMOUNT_ENTERED").focus();
-			return false;
-			}
-			if($("#CR_AMOUNT_ENTERED").val()==""){
-				$("#CR_AMOUNT_ENTERED").tips({
-					side:3,
-		            msg:'请输入本年外币贷方',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#CR_AMOUNT_ENTERED").focus();
-			return false;
-			}
-			if($("#END_BALANCE_ENTERED").val()==""){
-				$("#END_BALANCE_ENTERED").tips({
-					side:3,
-		            msg:'请输入年末外币',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#END_BALANCE_ENTERED").focus();
 			return false;
 			}
 			if($("#ACTIVE").val()==""){

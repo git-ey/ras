@@ -82,7 +82,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.DAILYSETTLEMENT_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.DAILY_SETTLEMENT_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center'>${var.FUND_ID}</td>
 											<td class='center'>${var.PERIOD}</td>
@@ -100,12 +100,12 @@
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.DAILYSETTLEMENT_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.DAILY_SETTLEMENT_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.DAILYSETTLEMENT_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.DAILY_SETTLEMENT_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -119,7 +119,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.DAILYSETTLEMENT_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.DAILY_SETTLEMENT_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -128,7 +128,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.DAILYSETTLEMENT_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.DAILY_SETTLEMENT_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -289,7 +289,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>dailysettlement/delete.do?DAILYSETTLEMENT_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>dailysettlement/delete.do?DAILY_SETTLEMENT_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -303,7 +303,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=path%>/dailysettlement/goEdit.do?DAILYSETTLEMENT_ID='+Id;
+			 diag.URL = '<%=path%>/dailysettlement/goEdit.do?DAILY_SETTLEMENT_ID='+Id;
 			 diag.Width = 700;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口

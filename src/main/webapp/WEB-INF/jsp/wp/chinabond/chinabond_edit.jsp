@@ -29,7 +29,7 @@
 					
 					<form action="chinabond/${msg }.do" name="Form" id="Form" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<input type="hidden" name="BONDCHINA_ID" id="BONDCHINA_ID" value="${pd.BONDCHINA_ID}"/>
+						<input type="hidden" name="CHINABOND_ID" id="CHINABOND_ID" value="${pd.CHINABOND_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
@@ -133,6 +133,7 @@
 				$("#VALUE_DATE").focus();
 			return false;
 			}
+			<!--
 			if($("#VALUATION_NET_PRICE").val()==""){
 				$("#VALUATION_NET_PRICE").tips({
 					side:3,
@@ -203,6 +204,7 @@
 				$("#INTEREST_END").focus();
 			return false;
 			}
+			-->
 			$("#Form").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();

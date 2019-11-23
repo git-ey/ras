@@ -97,17 +97,27 @@
 			EY_ACCOUNT_NUM = #{EY_ACCOUNT_NUM},
 			APAR = #{APAR},
 			CURRENCY = #{CURRENCY},
+			<if test="EXCHANGE_RATE != null and EXCHANGE_RATE != ''">
 			EXCHANGE_RATE = #{EXCHANGE_RATE},
+			</if>
 			BEGIN_DRCR = #{BEGIN_DRCR},
 			BEGIN_BALANCE_CNY = #{BEGIN_BALANCE_CNY},
 			DR_AMOUNT_CNY = #{DR_AMOUNT_CNY},
 			CR_AMOUNT_CNY = #{CR_AMOUNT_CNY},
 			END_DRCR = #{END_DRCR},
 			END_BALANCE_CNY = #{END_BALANCE_CNY},
+			<if test="BEGIN_BALANCE_ENTERED != null and BEGIN_BALANCE_ENTERED != ''">
 			BEGIN_BALANCE_ENTERED = #{BEGIN_BALANCE_ENTERED},
+			</if>
+		    <if test="DR_AMOUNT_ENTERED != null and DR_AMOUNT_ENTERED != ''">
 			DR_AMOUNT_ENTERED = #{DR_AMOUNT_ENTERED},
+			</if>
+		    <if test="CR_AMOUNT_ENTERED != null and CR_AMOUNT_ENTERED != ''">
 			CR_AMOUNT_ENTERED = #{CR_AMOUNT_ENTERED},
+			</if>
+			<if test="END_BALANCE_ENTERED != null and END_BALANCE_ENTERED != ''">
 			END_BALANCE_ENTERED = #{END_BALANCE_ENTERED},
+			</if>
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS},
 			ATTR1 = #{ATTR1},
@@ -144,8 +154,9 @@
 				<!-- 根据需求自己加检索条件 -->
 					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					or 
 					EY_ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				
 				)
 		</if>
 		<if test="pd.lastStart!= null and pd.lastStart != ''">

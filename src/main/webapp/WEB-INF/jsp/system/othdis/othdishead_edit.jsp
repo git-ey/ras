@@ -29,12 +29,11 @@
 					
 					<form action="othdishead/${msg }.do" name="Form" id="Form" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<input type="hidden" name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">披露口径代码:</td>
-								<td><input type="text" autocomplete="off" name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}" maxlength="60" placeholder="这里输入披露口径代码" title="披露口径代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" <c:if test="${pd.OTHDISHEAD_ID != null}">readonly</c:if> name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}" maxlength="60" placeholder="这里输入披露口径代码" title="披露口径代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">披露口径名称:</td>
 								<td><input type="text" autocomplete="off" name="DISCLOSURE_NAME" id="DISCLOSURE_NAME" value="${pd.DISCLOSURE_NAME}" maxlength="240" placeholder="这里输入披露口径名称" title="披露口径名称" style="width:98%;"/></td>
 							</tr>

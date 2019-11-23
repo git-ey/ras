@@ -194,36 +194,6 @@
 				$("#CURRENCY").focus();
 			return false;
 			}
-			if($("#EXCHANGE_RATE").val()==""){
-				$("#EXCHANGE_RATE").tips({
-					side:3,
-		            msg:'请输入汇率',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#EXCHANGE_RATE").focus();
-			return false;
-			}
-			if($("#QUANTITY").val()==""){
-				$("#QUANTITY").tips({
-					side:3,
-		            msg:'请输入数量',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#QUANTITY").focus();
-			return false;
-			}
-			if($("#UNIT_COST").val()==""){
-				$("#UNIT_COST").tips({
-					side:3,
-		            msg:'请输入单位成本',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#UNIT_COST").focus();
-			return false;
-			}
 			if($("#TOTAL_COST_ENTERED").val()==""){
 				$("#TOTAL_COST_ENTERED").tips({
 					side:3,
@@ -242,16 +212,6 @@
 		            time:2
 		        });
 				$("#TOTAL_COST_CNY").focus();
-			return false;
-			}
-			if($("#UNIT_PRICE").val()==""){
-				$("#UNIT_PRICE").tips({
-					side:3,
-		            msg:'请输入行情收市价',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#UNIT_PRICE").focus();
 			return false;
 			}
 			if($("#MKT_VALUE_ENTERED").val()==""){
@@ -282,36 +242,6 @@
 		            time:2
 		        });
 				$("#APPRECIATION_ENTERED").focus();
-			return false;
-			}
-			if($("#APPRECIATION_CNY").val()==""){
-				$("#APPRECIATION_CNY").tips({
-					side:3,
-		            msg:'请输入估值增值_本位币',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#APPRECIATION_CNY").focus();
-			return false;
-			}
-			if($("#SUSPENSION_INFO").val()==""){
-				$("#SUSPENSION_INFO").tips({
-					side:3,
-		            msg:'请输入停牌信息',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#SUSPENSION_INFO").focus();
-			return false;
-			}
-			if($("#DESCRIPTION").val()==""){
-				$("#DESCRIPTION").tips({
-					side:3,
-		            msg:'请输入备注',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#DESCRIPTION").focus();
 			return false;
 			}
 			if($("#ACTIVE").val()==""){

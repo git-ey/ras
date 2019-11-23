@@ -118,14 +118,14 @@
 			and
 				(
 				<!-- 根据需求自己加检索条件 -->
+				    FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%')
+					 or
 					ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%')
 					 or 
 					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%') 
-				
+				     or
+				    DESCRIPTION LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%') 
 				)
-		</if>
-	    <if test="pd.FUND_ID != null and pd.FUND_ID != ''" >
-		    and FUND_ID = #{pd.pd.FUND_ID,jdbcType=VARCHAR}
 		</if>
 		<if test="pd.lastStart!= null and pd.lastStart != ''">
 		    and EFFECTIVE_DATE &gt;= #{pd.lastStart,jdbcType=DATE}

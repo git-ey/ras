@@ -64,7 +64,9 @@
 									<th class="center">期间</th>
 									<th class="center">来源</th>
 									<th class="center">股票代码</th>
+									<!-- 
 									<th class="center">股票简称</th>
+									-->
 									<th class="center">Beta</th>
 									<th class="center">操作</th>
 								</tr>
@@ -84,7 +86,9 @@
 											<td class='center'>${var.PERIOD}</td>
 											<td class='center'>${var.SOURCE}</td>
 											<td class='center'>${var.STOCK_CODE}</td>
+											<!-- 
 											<td class='center'>${var.STOCK_NAME}</td>
+											 -->
 											<td class='center'>${var.BETA}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">

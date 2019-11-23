@@ -72,7 +72,6 @@ public class FundController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("FUND_ID", this.get32UUID());	//主键
 		fundService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
@@ -310,7 +309,7 @@ public class FundController extends BaseController {
 		List<PageData> varList = new ArrayList<PageData>();
 		for(int i=0;i<varOList.size();i++){
 			PageData vpd = new PageData();
-			vpd.put("var1", varOList.get(i).getString("FUND_CODE"));	    //1
+			vpd.put("var1", varOList.get(i).getString("FUND_ID"));	    //1
 			vpd.put("var2", varOList.get(i).getString("FIRM_CODE"));	    //2
 			vpd.put("var3", varOList.get(i).getString("SHORT_NAME"));	    //3
 			vpd.put("var4", varOList.get(i).getString("FULL_NAME"));	    //4

@@ -29,7 +29,7 @@
 					
 					<form action="dailysettlement/${msg }.do" name="Form" id="Form" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<input type="hidden" name="DAILYSETTLEMENT_ID" id="DAILYSETTLEMENT_ID" value="${pd.DAILYSETTLEMENT_ID}"/>
+						<input type="hidden" name="DAILY_SETTLEMENT_ID" id="DAILY_SETTLEMENT_ID" value="${pd.DAILY_SETTLEMENT_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
