@@ -55,7 +55,7 @@ public class EyJeController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("EYJE_ID", this.get32UUID());	//主键
+		pd.put("JE_ID", this.get32UUID());	//主键
 		eyjeService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");

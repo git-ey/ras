@@ -10945,7 +10945,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s545"><Data ss:Type="String">结算服务费</Data></Cell>
+    <Cell ss:StyleID="s545"><Data ss:Type="String">债券/回购交易费用</Data></Cell>
     <Cell ss:StyleID="s107"><Data ss:Type="Number">${(U500.main.KM6407.bank.S1.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s119"><Data ss:Type="Number">${(U500.main.KM6407.bank.S1.amountLast!0)?string('0.##')}</Data></Cell>
@@ -10953,19 +10953,6 @@
     <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
-    <Cell ss:Index="15" ss:StyleID="s104"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s545"><Data ss:Type="String">交易手续费</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="Number">${(U500.main.KM6407.bank.S2.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s119"><Data ss:Type="Number">${(U500.main.KM6407.bank.S2.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s117"/>
     <Cell ss:Index="15" ss:StyleID="s104"/>
    </Row>
    <Row>

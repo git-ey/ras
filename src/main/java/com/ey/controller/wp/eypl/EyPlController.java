@@ -54,7 +54,7 @@ public class EyPlController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("EYPL_ID", this.get32UUID());	//主键
+		pd.put("PL_ID", this.get32UUID());	//主键
 		eyplService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");

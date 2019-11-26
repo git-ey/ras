@@ -51,7 +51,7 @@ public class EyBalanceController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("EYBALANCE_ID", this.get32UUID());	//主键
+		pd.put("BALANCE_ID", this.get32UUID());	//主键
 		eybalanceService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");

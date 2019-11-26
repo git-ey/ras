@@ -61,7 +61,7 @@ public class ChinaBondController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("BONDCHINA_ID", this.get32UUID());	//主键
+		pd.put("CHINABOND_ID", this.get32UUID());	//主键
 		chinabondService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");

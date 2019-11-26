@@ -363,7 +363,7 @@ public class UExportService extends BaseExportService implements UExportManager 
             			    trade.put("S6", map);
             			}
             		}else if("银行间".equals(map.get("type"))) {
-            			if("结算服务费".equals(map.get("item"))) {
+            			if("债券/回购交易费用".equals(map.get("item"))) {
             				bank.put("S1", map);
             			}else if("交易手续费".equals(map.get("item"))) {
             				bank.put("S2", map);
