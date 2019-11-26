@@ -288,6 +288,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("S1", temp.get("基金赎回费收入")==null?new HashMap<>():temp.get("基金赎回费收入"));
         result.put("S2", temp.get("基金转换费收入")==null?new HashMap<>():temp.get("基金转换费收入"));
         result.put("S3", temp.get("印花税返还收入")==null?new HashMap<>():temp.get("印花税返还收入"));
+        result.put("S5", temp.get("销售服务费返还")==null?new HashMap<>():temp.get("销售服务费返还"));
         result.put("S4", temp.get("其他")==null?new HashMap<>():temp.get("其他"));
         
         return result;
@@ -323,6 +324,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         bank.put("S2", new HashMap<>());
         fundTrade.put("S1", new HashMap<>());
         fundTrade.put("S2", new HashMap<>());
+        fundTrade.put("S3", new HashMap<>());
         cffe.put("S1", new HashMap<>());
         KM6411.put("S1", new HashMap<>());
         KM6411.put("S2", new HashMap<>());
@@ -340,6 +342,9 @@ public class UExportService extends BaseExportService implements UExportManager 
             			fundTrade.put("S1", map);
             		}else if("赎回费".equals(map.get("subType"))) {
             			fundTrade.put("S2", map);
+            		}
+                    else if("交易费".equals(map.get("subType"))) {
+            			fundTrade.put("S3", map);
             		}
             	}else {
             		if("交易所".equals(map.get("type"))) {

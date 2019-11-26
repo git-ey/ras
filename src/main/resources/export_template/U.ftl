@@ -10543,6 +10543,15 @@
     <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
+    <Row ss:StyleID="s118">
+    <Cell><Data ss:Type="String">销售服务费返还 </Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(U400.S5.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s243"/>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U400.S5.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s245"/>
+    <Cell ss:StyleID="s101" ss:Formula="=RC[-4]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-3]&lt;&gt;0,RC[-1]/RC[-3],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
+   </Row>
    <Row ss:StyleID="s118">
     <Cell ss:StyleID="s265"><Data ss:Type="String">其他</Data></Cell>
     <Cell ss:StyleID="s101"><Data ss:Type="Number">${(U400.S4.amountCurrent!0)?string('0.##')}</Data></Cell>
@@ -11013,6 +11022,19 @@
     <Cell ss:StyleID="s107"><Data ss:Type="Number">${(U500.main.KM6407.fundTrade.S2.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s119"><Data ss:Type="Number">${(U500.main.KM6407.fundTrade.S2.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s117"/>
+    <Cell ss:Index="15" ss:StyleID="s104"/>
+   </Row>
+      <Row>
+    <Cell ss:StyleID="s181"/>
+    <Cell ss:StyleID="s545"><Data ss:Type="String">交易费</Data></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">${(U500.main.KM6407.fundTrade.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number">${(U500.main.KM6407.fundTrade.S3.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"/>
@@ -13841,7 +13863,7 @@
    <#if U10000.trxFee.count != 0>
    <#list U10000.trxFee.list as item>
    <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String"><#if (item.item??) && (item.item != "赎回费") && (item.item != "其中：申购费")>U500</#if></Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String"><#if (item.item??) && (item.item != "      赎回费") && (item.item != "      交易费") && (item.item != "其中：申购费")>U500</#if></Data></Cell>
     <Cell ss:StyleID="s219"><Data ss:Type="String"><#if (item.item??) && (item.item == "赎回费")>      ${item.item!}<#else>${item.item!}</#if></Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
