@@ -9,7 +9,8 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		INDEX_TYPE,	
+		INDEX_TYPE,
+		INDEX_CODE,	
 		INDEX_DATE,	
 		INDEX_QTY,	
 		ACTIVE,	
@@ -19,7 +20,8 @@
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{INDEX_TYPE},	
+		#{INDEX_TYPE},
+		#{INDEX_CODE},
 		#{INDEX_DATE},	
 		#{INDEX_QTY},	
 		#{ACTIVE},	
@@ -52,6 +54,7 @@
 		<include refid="tableName"></include>
 		set 
 			INDEX_TYPE = #{INDEX_TYPE},
+			INDEX_CODE = #{INDEX_CODE},
 			INDEX_DATE = #{INDEX_DATE},
 			INDEX_QTY = #{INDEX_QTY},
 			ACTIVE = #{ACTIVE},
@@ -122,7 +125,8 @@
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
-		     #{pd.INDEX_TYPE},	
+		     #{pd.INDEX_TYPE},
+			 #{pd.INDEX_CODE},
 		     #{pd.INDEX_DATE},	
 		     #{pd.INDEX_QTY},
 		     #{pd.ACTIVE},

@@ -244,6 +244,7 @@ public class EyIndexController extends BaseController {
 		Map<String,Object> dataMap = new HashMap<String,Object>();
 		List<String> titles = new ArrayList<String>();
 		titles.add("类型");	//1
+		titles.add("代码");	//2
 		titles.add("日期");	//2
 		titles.add("指数");	//3
 		titles.add("是否启用");	//4
@@ -254,10 +255,11 @@ public class EyIndexController extends BaseController {
 		for(int i=0;i<varOList.size();i++){
 			PageData vpd = new PageData();
 			vpd.put("var1", varOList.get(i).getString("INDEX_TYPE"));	    //1
-			vpd.put("var2", varOList.get(i).getString("INDEX_DATE"));	    //2
-			vpd.put("var3", varOList.get(i).get("INDEX_QTY").toString());	//3
-			vpd.put("var4", varOList.get(i).getString("ACTIVE"));	    //4
-			vpd.put("var5", varOList.get(i).getString("STATUS"));	    //5
+			vpd.put("var2", varOList.get(i).getString("INDEX_CODE"));	    //1
+			vpd.put("var3", varOList.get(i).getString("INDEX_DATE"));	    //2
+			vpd.put("var4", varOList.get(i).get("INDEX_QTY").toString());	//3
+			vpd.put("var5", varOList.get(i).getString("ACTIVE"));	    //4
+			vpd.put("var6", varOList.get(i).getString("STATUS"));	    //5
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

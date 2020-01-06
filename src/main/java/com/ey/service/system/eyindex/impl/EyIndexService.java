@@ -101,6 +101,7 @@ public class EyIndexService implements EyIndexManager{
 				PageData pd = new PageData();
 				pd.put("INDEX_ID", UuidUtil.get32UUID());
 				pd.put("INDEX_TYPE", map.get("INDEX_TYPE"));
+				pd.put("INDEX_CODE", map.get("INDEX_CODE"));
 				pd.put("INDEX_DATE", map.get("INDEX_DATE"));
 				pd.put("INDEX_QTY", map.get("INDEX_QTY"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));

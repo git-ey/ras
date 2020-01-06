@@ -37,6 +37,10 @@
 								<td><input type="text" autocomplete="off" name="INDEX_TYPE" id="INDEX_TYPE" value="${pd.INDEX_TYPE}" maxlength="255" placeholder="这里输入类型" title="类型" style="width:98%;"/></td>
 							</tr>
 							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">代码:</td>
+								<td><input type="text" autocomplete="off" name="INDEX_CODE" id="INDEX_CODE" value="${pd.INDEX_CODE}" maxlength="255" placeholder="这里输入代码" title="代码" style="width:98%;"/></td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">日期:</td>
 							    <td><input class="span10 date-picker" name="INDEX_DATE" id="INDEX_DATE" value="${pd.INDEX_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="这里输入日期" title="日期" style="width:98%;"/></td>
 							</tr>
@@ -96,6 +100,16 @@
 		            time:2
 		        });
 				$("#INDEX_TYPE").focus();
+			return false;
+			}
+			if($("#INDEX_CODE").val()==""){
+				$("#INDEX_CODE").tips({
+					side:3,
+		            msg:'请输入代码',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#INDEX_CODE").focus();
 			return false;
 			}
 			if($("#INDEX_DATE").val()==""){
