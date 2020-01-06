@@ -1989,7 +1989,7 @@
     <Cell ss:StyleID="s109"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E310.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s125" ss:Formula="=SUM(R[${(-(1+E310.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s129"><Data ss:Type="String"> &lt;E&gt;</Data></Cell>
+    <Cell ss:StyleID="s129"><Data ss:Type="String"> &lt;E300&gt;</Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s62">
     <Cell ss:Index="4" ss:StyleID="s66"><Data ss:Type="String">^</Data></Cell>

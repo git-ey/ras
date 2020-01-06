@@ -2751,7 +2751,7 @@
     <Cell ss:StyleID="s37"><Data ss:Type="String">${item.releated!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.trxStatus!}</Data></Cell>
     <Cell ss:Index="8"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.valPrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.valPrice!0)?string('0.####')}</Data></Cell>
     <Cell><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
    </Row>
    </#list>

@@ -108,7 +108,16 @@ public class ReportContentService implements ReportContentManager{
 				pd.put("CF_ATTR3", map.get("CF_ATTR3"));
 				pd.put("CF_ATTR4", map.get("CF_ATTR4"));
 				pd.put("CF_ATTR5", map.get("CF_ATTR5"));
+				pd.put("SF_ATTR1", map.get("SF_ATTR1"));
+				pd.put("SF_ATTR2", map.get("SF_ATTR2"));
+				pd.put("SF_ATTR3", map.get("SF_ATTR3"));
+				pd.put("SF_ATTR4", map.get("SF_ATTR4"));
+				pd.put("SF_ATTR5", map.get("SF_ATTR5"));
+				pd.put("MR", map.get("MR"));
+				pd.put("IR", map.get("IR"));
+				pd.put("IR_EXP", map.get("IR_EXP"));
 				pd.put("IR_ATTR1", map.get("IR_ATTR1"));
+				pd.put("ER", map.get("ER"));
 				pd.put("IR_UP", map.get("IR_UP"));
 				pd.put("IR_DOWN", map.get("IR_DOWN"));
 				pd.put("PR_UP", map.get("PR_UP"));

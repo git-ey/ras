@@ -256,10 +256,11 @@ public class FundControlController extends BaseController {
 		titles.add("贵金属买卖差价收入");	//11
 		titles.add("贵金属赎回差价收入");	//12
 		titles.add("贵金属申购差价收入");	//13
-		titles.add("利率风险敏感性");	//14
-		titles.add("价格风险敏感性");	//15
-		titles.add("价格风险敞口");	//16
-		titles.add("启用");	//17
+		titles.add("利率敏感性说明在表前");	//14
+		titles.add("利率风险敏感性");	//15
+		titles.add("价格风险敏感性");	//16
+		titles.add("价格风险敞口");	//17
+		titles.add("启用");	//18
 		dataMap.put("titles", titles);
 		List<PageData> varOList = fundcontrolService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
@@ -278,10 +279,11 @@ public class FundControlController extends BaseController {
 			vpd.put("var11", varOList.get(i).getString("GOLD_BS"));	    //11
 			vpd.put("var12", varOList.get(i).getString("GOLD_R"));	    //12
 			vpd.put("var13", varOList.get(i).getString("GOLD_P"));	    //13
-			vpd.put("var14", varOList.get(i).getString("RISK_S_INT"));	    //14
-			vpd.put("var15", varOList.get(i).getString("RISK_S_PRICE"));	    //15
-			vpd.put("var16", varOList.get(i).getString("RISK_E_PRICE"));	    //16
-			vpd.put("var17", varOList.get(i).getString("ACTIVE"));	    //17
+			vpd.put("var14", varOList.get(i).getString("RISK_LOC"));	    //14
+			vpd.put("var15", varOList.get(i).getString("RISK_S_INT"));	    //15
+			vpd.put("var16", varOList.get(i).getString("RISK_S_PRICE"));	    //16
+			vpd.put("var17", varOList.get(i).getString("RISK_E_PRICE"));	    //17
+			vpd.put("var18", varOList.get(i).getString("ACTIVE"));	    //18
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

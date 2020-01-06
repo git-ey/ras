@@ -715,7 +715,7 @@
     <Cell ss:StyleID="s81" ss:Formula="=G300!R[${(-3+G300.KM1221Count)?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221.drAmountAdj)??>${(G.KM1221.drAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221.crAmountAdj)??>${(G.KM1221.crAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
-    <Cell ss:StyleID="s80" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80" ss:Formula="=RC[-3]-RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s81"><Data ss:Type="Number"><#if (G.KM1221.amountAuditLast)??>${(G.KM1221.amountAuditLast)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80"/>
@@ -738,7 +738,7 @@
     <Cell ss:StyleID="s81" ss:Formula="=G300!R[${(-1+G300.KM1221Count+G300.KM1501Count)?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1501.drAmountAdj)??>${(G.KM1501.drAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1501.crAmountAdj)??>${(G.KM1501.crAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
-    <Cell ss:StyleID="s80" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80" ss:Formula="=RC[-3]-RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s81"><Data ss:Type="Number"><#if (G.KM1501.amountAuditLast)??>${(G.KM1501.amountAuditLast)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80"/>

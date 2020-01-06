@@ -106,6 +106,7 @@ public class FundControlService implements FundControlManager{
 				pd.put("GOLD_BS", map.get("GOLD_BS"));
 				pd.put("GOLD_R", map.get("GOLD_R"));
 				pd.put("GOLD_P", map.get("GOLD_P"));
+				pd.put("RISK_LOC", map.get("RISK_LOC"));
 				pd.put("RISK_S_INT", map.get("RISK_S_INT"));
 				pd.put("RISK_S_PRICE", map.get("RISK_S_PRICE"));
 				pd.put("RISK_E_PRICE", map.get("RISK_E_PRICE"));

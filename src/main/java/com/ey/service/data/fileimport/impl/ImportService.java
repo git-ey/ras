@@ -164,6 +164,7 @@ public class ImportService implements ImportManager{
 		PageData pd = new PageData();
 		pd.put("IMPORT_FILE_NAME", pathFile);
 		pd.put("SHEET_NO", sheetNo);
+		pd.put("NAME_SEG_6", pathFile.split("_")[5]);
 		return (Long)dao.findForObject("ImportMapper.findFileCount", pd);
 	}
 	

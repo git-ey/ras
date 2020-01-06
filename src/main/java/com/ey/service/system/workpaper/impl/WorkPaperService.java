@@ -256,39 +256,42 @@ public class WorkPaperService implements WorkPaperManager{
         // [IMP] 最终输出文件夹路径中添加firm code
         final String folderName = exportPath + firmCode + File.separatorChar + fundId;
         // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
-        if (this.getExportFlag(pd, PD_FIELD_CFLAG) && (StringUtils.isEmpty(wpType) || "C".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_CFLAG) && ("全部底稿".equals(wpType) || "C".equals(wpType))) {
             this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_GFLAG) && (StringUtils.isEmpty(wpType) || "G".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_GFLAG) && ("全部底稿".equals(wpType) || "G".equals(wpType))) {
             this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_NFLAG) && (StringUtils.isEmpty(wpType) || "N".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_NFLAG) && ("全部底稿".equals(wpType) || "N".equals(wpType))) {
             this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_PFLAG) && (StringUtils.isEmpty(wpType) || "P".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_PFLAG) && ("全部底稿".equals(wpType) || "P".equals(wpType))) {
             this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_EFLAG) && (StringUtils.isEmpty(wpType) || "E".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_EFLAG) && ("全部底稿".equals(wpType) || "E".equals(wpType))) {
             this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_UFLAG) && (StringUtils.isEmpty(wpType) || "U".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_UFLAG) && ("全部底稿".equals(wpType) || "U".equals(wpType))) {
             this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_VFLAG) && (StringUtils.isEmpty(wpType) || "V".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_VFLAG) && ("全部底稿".equals(wpType) || "V".equals(wpType))) {
             this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_TFLAG) && (StringUtils.isEmpty(wpType) || "T".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_TFLAG) && ("全部底稿".equals(wpType) || "T".equals(wpType))) {
             this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_HFLAG) && (StringUtils.isEmpty(wpType) || "H".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_HFLAG) && ("全部底稿".equals(wpType) || "H".equals(wpType))) {
             this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_IFLAG) && (StringUtils.isEmpty(wpType) || "I".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_IFLAG) && ("全部底稿".equals(wpType) || "I".equals(wpType))) {
             this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);
         }
-        if (this.getExportFlag(pd, PD_FIELD_OFLAG) && (StringUtils.isEmpty(wpType) || "O".equals(wpType))) {
+        if (this.getExportFlag(pd, PD_FIELD_OFLAG) && ("全部底稿".equals(wpType) || "O".equals(wpType))) {
             this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);
         }
+        // if (this.getExportFlag(pd, PD_FIELD_OFLAG) && (StringUtils.isEmpty(wpType) || "O".equals(wpType))) {
+        //     this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);
+        // }
 	}
 	
 	/**

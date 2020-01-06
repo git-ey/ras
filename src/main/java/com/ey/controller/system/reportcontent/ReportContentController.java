@@ -258,16 +258,25 @@ public class ReportContentController extends BaseController {
 		titles.add("托管费描述3");	//13
 		titles.add("托管费描述4");	//14
 		titles.add("托管费描述5");	//15
-		titles.add("利率风险的敏感性分析");	//16
-		titles.add("利率风险变动上升");	//17
-		titles.add("利率风险变动下降");	//18
-		titles.add("价格风险变动上升");	//19
-		titles.add("价格风险变动下降");	//20
-		titles.add("其他价格风险");	//21
-		titles.add("其他价格风险敞口");	//22
-		titles.add("他价格风险的敏感性分析");	//23
-		titles.add("公允价值所属层次间的重大变动");	//24
-		titles.add("启用");	//25
+		titles.add("销售服务费描述1"); //16
+		titles.add("销售服务费描述2"); //17
+		titles.add("销售服务费描述3"); //18
+		titles.add("销售服务费描述4"); //19
+		titles.add("销售服务费描述5"); //20
+		titles.add("市场风险描述"); //21
+		titles.add("利率风险描述"); //22
+		titles.add("利率风险敞口描述"); //23
+		titles.add("利率风险的敏感性分析");	//24
+		titles.add("外汇风险描述"); //25
+		titles.add("利率风险变动上升");	//26
+		titles.add("利率风险变动下降");	//27
+		titles.add("价格风险变动上升");	//28
+		titles.add("价格风险变动下降");	//29
+		titles.add("其他价格风险");	//30
+		titles.add("其他价格风险敞口");	//31
+		titles.add("他价格风险的敏感性分析"); //32
+		titles.add("公允价值所属层次间的重大变动");	//33
+		titles.add("启用");	//34
 		dataMap.put("titles", titles);
 		List<PageData> varOList = reportcontentService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
@@ -288,16 +297,25 @@ public class ReportContentController extends BaseController {
 			vpd.put("var13", varOList.get(i).getString("CF_ATTR3"));	    //13
 			vpd.put("var14", varOList.get(i).getString("CF_ATTR4"));	    //14
 			vpd.put("var15", varOList.get(i).getString("CF_ATTR5"));	    //15
-			vpd.put("var16", varOList.get(i).getString("IR_ATTR1"));	    //16
-			vpd.put("var17", varOList.get(i).getString("IR_UP"));	    //17
-			vpd.put("var18", varOList.get(i).getString("IR_DOWN"));	    //18
-			vpd.put("var19", varOList.get(i).getString("PR_UP"));	    //19
-			vpd.put("var20", varOList.get(i).getString("PR_DOWN"));	    //20
-			vpd.put("var21", varOList.get(i).getString("PR_ATTR1"));	    //21
-			vpd.put("var22", varOList.get(i).getString("PR_ATTR2"));	    //22
-			vpd.put("var23", varOList.get(i).getString("PR_ATTR3"));	    //23
-			vpd.put("var24", varOList.get(i).getString("FV_ATTR1"));	    //24
-			vpd.put("var25", varOList.get(i).getString("ACTIVE"));	    //25
+			vpd.put("var16", varOList.get(i).getString("SF_ATTR1"));       //16
+			vpd.put("var17", varOList.get(i).getString("SF_ATTR2"));       //17
+			vpd.put("var18", varOList.get(i).getString("SF_ATTR3"));       //18
+			vpd.put("var19", varOList.get(i).getString("SF_ATTR4"));      //19
+			vpd.put("var20", varOList.get(i).getString("SF_ATTR5"));     //20
+			vpd.put("var21", varOList.get(i).getString("MR"));   //21
+			vpd.put("var22", varOList.get(i).getString("IR"));  //22
+			vpd.put("var23", varOList.get(i).getString("IR_EXP"));   //23
+			vpd.put("var24", varOList.get(i).getString("IR_ATTR1"));	    //24
+			vpd.put("var25", varOList.get(i).getString("ER"));   //25
+			vpd.put("var26", varOList.get(i).getString("IR_UP"));	    //26
+			vpd.put("var27", varOList.get(i).getString("IR_DOWN"));	    //27
+			vpd.put("var28", varOList.get(i).getString("PR_UP"));	    //28
+			vpd.put("var29", varOList.get(i).getString("PR_DOWN"));	    //29
+			vpd.put("var30", varOList.get(i).getString("PR_ATTR1"));	    //30
+			vpd.put("var31", varOList.get(i).getString("PR_ATTR2"));	    //31
+			vpd.put("var33", varOList.get(i).getString("PR_ATTR3"));	    //32
+			vpd.put("var34", varOList.get(i).getString("FV_ATTR1"));	    //33
+			vpd.put("var35", varOList.get(i).getString("ACTIVE"));	    //34
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

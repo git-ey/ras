@@ -221,8 +221,13 @@
 		  count(*)
 		from 
 		<include refid="fileTableName"></include>
-		where
-		  IMPORT_FILE_NAME = #{IMPORT_FILE_NAME}
+		where 1=1
+		<if test="NAME_SEG_6 != '4001明细账'">
+          and substring_index(import_file_name,"_",6)= substring_index(#{IMPORT_FILE_NAME},"_",6)
+		</if>
+		<if test="NAME_SEG_6 == '4001明细账'">
+          and substring_index(import_file_name,"_",7)= substring_index(#{IMPORT_FILE_NAME},"_",7)
+		</if>
 		  and SHEET_NO = #{SHEET_NO}
           and MESSAGE IS NULL
 	</select>

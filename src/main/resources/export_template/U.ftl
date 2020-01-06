@@ -13798,14 +13798,14 @@
     <Cell ss:StyleID="s198"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U300</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U400</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">基金赎回费收入</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.other_r.S1.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.other_r.S1.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">U300</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U400</Data></Cell>
     <Cell ss:StyleID="s219"><Data ss:Type="String">基金转换费收入</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.other_r.S2.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.other_r.S2.amountLast!0)?string('0.##')}</Data></Cell>

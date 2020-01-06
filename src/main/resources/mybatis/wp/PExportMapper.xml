@@ -227,6 +227,7 @@
     <select id="selectP10000Data" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             P10000.ITEM as item,
+            P10000.REF_NUM as refnum,
             IF(P10000.BEGIN_BALANCE = 0, null, P10000.BEGIN_BALANCE) as beginBalance,
             IF(P10000.END_BALANCE = 0, null, P10000.END_BALANCE) as endBalance
         FROM

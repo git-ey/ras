@@ -73,8 +73,32 @@
 								<td><input type="text" autocomplete="off" name="CF_ATTR5" id="CF_ATTR5" value="${pd.CF_ATTR5}" maxlength="800" title="托管费描述5" style="width:98%;"/></td>
 							</tr>
 							<tr>
+								<td style="width:120px;text-align: right;padding-top: 13px;">销售服务费描述1:</td>
+								<td><input type="text" autocomplete="off" name="SF_ATTR1" id="SF_ATTR1" value="${pd.SF_ATTR1}" maxlength="800" title="销售服务费描述1" style="width:98%;"/></td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">销售服务费描述2:</td>
+								<td><input type="text" autocomplete="off" name="SF_ATTR2" id="SF_ATTR2" value="${pd.SF_ATTR2}" maxlength="800" title="销售服务费描述2" style="width:98%;"/></td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">销售服务费描述3:</td>
+								<td><input type="text" autocomplete="off" name="SF_ATTR3" id="SF_ATTR3" value="${pd.SF_ATTR3}" maxlength="800" title="销售服务费描述3" style="width:98%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:120px;text-align: right;padding-top: 13px;">销售服务费描述4:</td>
+								<td><input type="text" autocomplete="off" name="SF_ATTR4" id="SF_ATTR4" value="${pd.SF_ATTR4}" maxlength="800" title="销售服务费描述4" style="width:98%;"/></td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">销售服务费描述5:</td>
+								<td><input type="text" autocomplete="off" name="SF_ATTR5" id="SF_ATTR5" value="${pd.SF_ATTR5}" maxlength="800" title="销售服务费描述5" style="width:98%;"/></td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">市场风险描述:</td>
+								<td><input type="text" autocomplete="off" name="MR" id="MR" value="${pd.MR}" maxlength="800" title="市场风险描述" style="width:98%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:120px;text-align: right;padding-top: 13px;">利率风险描述:</td>
+								<td><input type="text" autocomplete="off" name="IR" id="IR" value="${pd.IR}" maxlength="800" title="利率风险描述" style="width:98%;"/></td>
+								<td style="width:120px;text-align: right;padding-top: 13px;">利率风险敞口描述:</td>
+								<td><input type="text" autocomplete="off" name="IR_EXP" id="IR_EXP" value="${pd.IR_EXP}" maxlength="800" title="利率风险敞口描述" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">利率风险的敏感性分析:</td>
 								<td><input type="text" autocomplete="off" name="IR_ATTR1" id="IR_ATTR1" value="${pd.IR_ATTR1}" maxlength="800" title="利率风险的敏感性分析" style="width:98%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:120px;text-align: right;padding-top: 13px;">外汇风险描述:</td>
+								<td><input type="text" autocomplete="off" name="ER" id="ER" value="${pd.ER}" maxlength="800" title="外汇风险描述" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">利率风险变动上升:</td>
 								<td><input type="text" autocomplete="off" name="IR_UP" id="IR_UP" value="${pd.IR_UP}" maxlength="800" title="利率风险变动上升" style="width:98%;"/></td>
 								<td style="width:120px;text-align: right;padding-top: 13px;">利率风险变动下降:</td>

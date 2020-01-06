@@ -138,7 +138,15 @@ public class LoginController extends BaseController {
 					// 登录过程
 					errInfo = this.processLogin(pd, USERNAME, PASSWORD);
 				} else {
-					pd = userService.findByUsername(pd);
+					// pd = userService.findByUsername(pd);
+					// if (pd != null) {
+						//  // 登录过程
+					    //  errInfo = this.processLogin(null, USERNAME, PASSWORD);
+					//若出现连接LDAP服务器异常，或出现密码频繁报错（实际没错）的情况
+					pd.put("PASSWORD", passwd);
+					pd = userService.getUserByNameAndPwd(pd);// 根据用户名和密码去读取用户信息
+					// 登录过程
+					errInfo = this.processLogin(pd, USERNAME, PASSWORD);
 					if (pd != null) {
 						// 登录过程
 						errInfo = this.processLogin(null, USERNAME, PASSWORD);

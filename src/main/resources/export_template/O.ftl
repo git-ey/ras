@@ -652,7 +652,7 @@
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O.KM2221.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O.KM2221.drAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O.KM2221.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s60" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s60" ss:Formula="=RC[-3]-RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s61"/>
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O.KM2221.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s61"/>
@@ -703,7 +703,7 @@
    <Column ss:AutoFitWidth="0" ss:Width="112.5" ss:Span="1"/>
    <Column ss:Index="5" ss:AutoFitWidth="0" ss:Width="40.5"/>
    <Column ss:AutoFitWidth="0" ss:Width="112.5"/>
-   <Column ss:Index="8" ss:AutoFitWidth="0" ss:Width="112.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="85.5"/>
    <Column ss:AutoFitWidth="0" ss:Width="80.25"/>
    <Row ss:Height="14.25"/>
    <Row>
@@ -811,7 +811,7 @@
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJCJFFJ_SX.drAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s79"><Data ss:Type="String">v</Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJCJFFJ_SX.crAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s70"><#if O300.YJFJS_YJCJFFJ_SX.crAmount?? && (O300.YJFJS_YJCJFFJ_SX.crAmount != 0)><Data ss:Type="String">&lt;U800&gt;</Data></#if></Cell>
+    <Cell ss:StyleID="s70"><#if O300.YJFJS_YJCJFFJ_SX.crAmount?? && (O300.YJFJS_YJCJFFJ_SX.crAmount != 0)><Data ss:Type="String">&lt;O310&gt;&lt;U800&gt;</Data></#if></Cell>
     <Cell ss:StyleID="s66" ss:Formula="=RC[-5]-RC[-4]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
@@ -821,7 +821,7 @@
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJJYFJ_SX.drAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s79"><Data ss:Type="String">v</Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJJYFJ_SX.crAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s70"><#if O300.YJFJS_YJJYFJ_SX.crAmount?? && (O300.YJFJS_YJJYFJ_SX.crAmount != 0)><Data ss:Type="String">&lt;U800&gt;</Data></#if></Cell>
+    <Cell ss:StyleID="s70"><#if O300.YJFJS_YJJYFJ_SX.crAmount?? && (O300.YJFJS_YJJYFJ_SX.crAmount != 0)><Data ss:Type="String">&lt;O310&gt;&lt;U800&gt;</Data></#if></Cell>
     <Cell ss:StyleID="s66" ss:Formula="=RC[-5]-RC[-4]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
@@ -831,7 +831,7 @@
     <Cell ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJDFJYFJ_SX.drAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s79"><Data ss:Type="String">v</Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s60"><Data ss:Type="Number">${(O300.YJFJS_YJDFJYFJ_SX.crAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s70"><#if O300.YJFJS_YJDFJYFJ_SX.crAmount?? && (O300.YJFJS_YJDFJYFJ_SX.crAmount != 0)><Data ss:Type="String">&lt;U800&gt;</Data></#if></Cell>
+    <Cell ss:StyleID="s70"><#if O300.YJFJS_YJDFJYFJ_SX.crAmount?? && (O300.YJFJS_YJDFJYFJ_SX.crAmount != 0)><Data ss:Type="String">&lt;O310&gt;&lt;U800&gt;</Data></#if></Cell>
     <Cell ss:StyleID="s66" ss:Formula="=RC[-5]-RC[-4]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <#if O300.YJFJS_YJFJSZZ_SX??>

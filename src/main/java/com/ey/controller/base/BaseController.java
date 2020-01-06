@@ -204,6 +204,21 @@ public class BaseController {
 	protected final static String SFC_IMPORT_TEMPLATE_CODE = "SFC";
 
 	/**
+	 * SFF斜率法公式表导入模版代码
+	 */
+	protected final static String SFF_IMPORT_TEMPLATE_CODE = "SFF";
+
+	/**
+	 * ESL股票流通受限清单导入模版代码
+	 */
+	protected final static String ESL_IMPORT_TEMPLATE_CODE = "ESL";
+
+	/**
+	 * EL折扣率表导入模版代码
+	 */
+	protected final static String EL_IMPORT_TEMPLATE_CODE = "EL";
+
+	/**
 	 * new PageData对象
 	 * 
 	 * @return

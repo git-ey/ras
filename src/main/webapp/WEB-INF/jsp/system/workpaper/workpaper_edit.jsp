@@ -62,7 +62,6 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">底稿类型:</td>
 								<td>
 								    <select class="chosen-select form-control" name="WP_TYPE" id="WP_TYPE" data-placeholder="请选择" style="width:49%;">
-								        <option value="" <c:if test="${pd.WP_TYPE == ''}">selected</c:if>></option>
 								        <option value="C" <c:if test="${pd.WP_TYPE == 'C'}">selected</c:if>>C</option>
 								        <option value="E" <c:if test="${pd.WP_TYPE == 'E'}">selected</c:if>>E</option>
 								        <option value="G" <c:if test="${pd.WP_TYPE == 'G'}">selected</c:if>>G</option>
@@ -75,7 +74,8 @@
 								        <option value="U" <c:if test="${pd.WP_TYPE == 'U'}">selected</c:if>>U</option>
 								        <option value="V" <c:if test="${pd.WP_TYPE == 'V'}">selected</c:if>>V</option>
 								        <option value="O" <c:if test="${pd.WP_TYPE == 'O'}">selected</c:if>>O</option>
-								        <option value="SA" <c:if test="${pd.WP_TYPE == 'SA'}">selected</c:if>>SA</option>
+										<option value="SA" <c:if test="${pd.WP_TYPE == 'SA'}">selected</c:if>>SA</option>
+										<option value="全部底稿" <c:if test="${pd.WP_TYPE == '全部底稿'}">selected</c:if>>全部底稿</option>
 								    </select>
 								</td>
 							</tr>

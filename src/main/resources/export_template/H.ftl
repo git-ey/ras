@@ -2506,6 +2506,12 @@
     ss:Bold="1"/>
    <NumberFormat/>
   </Style>
+  <Style ss:ID="s390" ss:Parent="s16">
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat ss:Format="_(* #,##0.0000_);_(* \(#,##0.0000\);_(* &quot;-&quot;??_);_(@_)"/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="H">
   <Table x:FullColumns="1"
@@ -4187,11 +4193,19 @@
     <Cell ss:StyleID="s257"><Data ss:Type="String"><#if item_index == 0>HHXXX</#if></Data></Cell>
     <Cell ss:StyleID="s258"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+    <#if item.subType == '基金投资'>
+    <Cell ss:StyleID="s390"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.####')}</Data></Cell>
+    <#else>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
+    </#if>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.appreciationClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"/>
+    <#if item.subType == '基金投资'>
+    <Cell ss:StyleID="s390"><Data ss:Type="Number">${(item.valPrice!0)?string('0.####')}</Data></Cell>
+    <#else>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.valPrice!0)?string('0.##')}</Data></Cell>
+    </#if>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-7]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-5]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-2]-RC[-8]"><Data ss:Type="Number"></Data></Cell>

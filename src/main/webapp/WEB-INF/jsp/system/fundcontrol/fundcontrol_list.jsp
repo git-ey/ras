@@ -364,7 +364,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=path%>/reportcontent/goUploadExcel.do';
+			 diag.URL = '<%=path%>/fundcontrol/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件

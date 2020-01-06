@@ -122,12 +122,10 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">赎回权:</td>
 								<td><input type="text" autocomplete="off" name="REDEMPTION" id="REDEMPTION" value="${pd.REDEMPTION}" maxlength="60" title="赎回权" style="width:98%;"/></td>
 							</tr>
-							<!-- 
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">计息规则类型:</td>
 								<td><input type="text" name="INTEREST_RULE_TYPE" id="INTEREST_RULE_TYPE" value="${pd.INTEREST_RULE_TYPE}" maxlength="255" title="计息规则类型" style="width:98%;"/></td>
 							</tr>
-							 -->
 							<tr>
 								<td style="text-align: center;" colspan="10">
 									<a class="btn btn-mini btn-primary" onclick="save();">保存</a>

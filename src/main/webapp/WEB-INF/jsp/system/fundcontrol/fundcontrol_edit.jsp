@@ -34,7 +34,8 @@
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:140px;text-align: right;padding-top: 13px;">基金代码:</td>
-								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}"  title="基金ID" style="width:98%;"/></td>
+								<!-- <td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" title="基金ID" style="width:49%;"/></td> -->
 								<td style="width:140px;text-align: right;padding-top: 13px;">股票投资收益构成:</td>
 								<td>
 								    <select class="chosen-select form-control" name="STOCK_ALL" id="STOCK_ALL" data-placeholder="请选择" style="width:98%;">
@@ -55,7 +56,7 @@
 							<tr>
 								<td style="width:140px;text-align: right;padding-top: 13px;">股票赎回差价收入:</td>
 								<td>
-								    <select class="chosen-select form-control" name="STOCK_R" id="STOCK_R" data-placeholder="请选择" style="width:49%;">
+								    <select class="chosen-select form-control" name="STOCK_R" id="STOCK_R" data-placeholder="请选择" style="width:98%;">
 								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.STOCK_R == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.STOCK_R == 'N'}">selected</c:if>>否</option>
@@ -81,7 +82,7 @@
 							<tr>
 								<td style="width:140px;text-align: right;padding-top: 13px;">债券买卖差价收入:</td>
 								<td>
-								    <select class="chosen-select form-control" name="BOND_BS" id="BOND_BS" data-placeholder="请选择" style="width:49%;">
+								    <select class="chosen-select form-control" name="BOND_BS" id="BOND_BS" data-placeholder="请选择" style="width:98%;">
 								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.BOND_BS == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.BOND_BS == 'N'}">selected</c:if>>否</option>
@@ -107,7 +108,7 @@
 							<tr>
 								<td style="width:140px;text-align: right;padding-top: 13px;">贵金属投资收益构成:</td>
 								<td>
-								    <select class="chosen-select form-control" name="GOLD_ALL" id="GOLD_ALL" data-placeholder="请选择" style="width:49%;">
+								    <select class="chosen-select form-control" name="GOLD_ALL" id="GOLD_ALL" data-placeholder="请选择" style="width:98%;">
 								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.GOLD_ALL == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.GOLD_ALL == 'N'}">selected</c:if>>否</option>
@@ -133,10 +134,18 @@
 							<tr>
 								<td style="width:140px;text-align: right;padding-top: 13px;">贵金属申购差价收入:</td>
 								<td>
-								    <select class="chosen-select form-control" name="GOLD_P" id="GOLD_P" data-placeholder="请选择" style="width:49%;">
+								    <select class="chosen-select form-control" name="GOLD_P" id="GOLD_P" data-placeholder="请选择" style="width:98%;">
 								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.GOLD_P == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.GOLD_P == 'N'}">selected</c:if>>否</option>
+								    </select>
+								</td>
+								<td style="width:140px;text-align: right;padding-top: 13px;">利率敏感性说明在表前:</td>
+								<td>
+								    <select class="chosen-select form-control" name="RISK_LOC" id="RISK_LOC" data-placeholder="请选择" style="width:98%;">
+								    <option value=""></option>
+								    <option value="Y" <c:if test="${pd.RISK_LOC == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.RISK_LOC == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
 								<td style="width:140px;text-align: right;padding-top: 13px;">利率风险敏感性:</td>
@@ -147,6 +156,8 @@
 								    <option value="N" <c:if test="${pd.RISK_S_INT == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
+							</tr>
+							<tr>
 								<td style="width:140px;text-align: right;padding-top: 13px;">价格风险敏感性:</td>
 								<td>
 								    <select class="chosen-select form-control" name="RISK_S_PRICE" id="RISK_S_PRICE" data-placeholder="请选择" style="width:98%;">
@@ -155,11 +166,9 @@
 								    <option value="N" <c:if test="${pd.RISK_S_PRICE == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-							</tr>
-							<tr>
 								<td style="width:140px;text-align: right;padding-top: 13px;">价格风险敞口:</td>
 								<td>
-								    <select class="chosen-select form-control" name="RISK_E_PRICE" id="RISK_E_PRICE" data-placeholder="请选择" style="width:49%;">
+								    <select class="chosen-select form-control" name="RISK_E_PRICE" id="RISK_E_PRICE" data-placeholder="请选择" style="width:98%;">
 								    <option value=""></option>
 								    <option value="Y" <c:if test="${pd.RISK_E_PRICE == 'Y'}">selected</c:if>>是</option>
 								    <option value="N" <c:if test="${pd.RISK_E_PRICE == 'N'}">selected</c:if>>否</option>
@@ -216,6 +225,166 @@
 		            time:2
 		        });
 				$("#FUND_ID").focus();
+			return false;
+			}
+			if($("#STOCK_ALL").val()==""){
+				$("#STOCK_ALL").tips({
+					side:3,
+		            msg:'请输入股票投资收益构成',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#STOCK_ALL").focus();
+			return false;
+			}
+			if($("#STOCK_BS").val()==""){
+				$("#STOCK_BS").tips({
+					side:3,
+		            msg:'请股票买卖差价收入',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#STOCK_BS").focus();
+			return false;
+			}
+			if($("#STOCK_R").val()==""){
+				$("#STOCK_R").tips({
+					side:3,
+		            msg:'请输入股票赎回差价收入',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#STOCK_R").focus();
+			return false;
+			}
+			if($("#STOCK_P").val()==""){
+				$("#STOCK_P").tips({
+					side:3,
+		            msg:'请输入股票申购差价收入',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#STOCK_P").focus();
+			return false;
+			}
+			if($("#BOND_ALL").val()==""){
+				$("#BOND_ALL").tips({
+					side:3,
+		            msg:'请输入债券投资收益构成',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#BOND_ALL").focus();
+			return false;
+			}
+			if($("#BOND_BS").val()==""){
+				$("#BOND_BS").tips({
+					side:3,
+		            msg:'请输入债券买卖差价收入',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#BOND_BS").focus();
+			return false;
+			}
+			if($("#BOND_R").val()==""){
+				$("#BOND_R").tips({
+					side:3,
+		            msg:'请输入债券赎回差价收入',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#BOND_R").focus();
+			return false;
+			}
+			if($("#BOND_P").val()==""){
+				$("#BOND_P").tips({
+					side:3,
+		            msg:'请输入债券申购差价收入',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#BOND_P").focus();
+			return false;
+			}
+			if($("#GOLD_ALL").val()==""){
+				$("#GOLD_ALL").tips({
+					side:3,
+		            msg:'请输入贵金属投资收益构成',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#GOLD_ALL").focus();
+			return false;
+			}
+			if($("#GOLD_BS").val()==""){
+				$("#GOLD_BS").tips({
+					side:3,
+		            msg:'请输入贵金属买卖差价收入',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#GOLD_BS").focus();
+			return false;
+			}
+			if($("#GOLD_R").val()==""){
+				$("#GOLD_R").tips({
+					side:3,
+		            msg:'请输入贵金属赎回差价收入',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#GOLD_R").focus();
+			return false;
+			}
+			if($("#GOLD_P").val()==""){
+				$("#GOLD_P").tips({
+					side:3,
+		            msg:'请输入贵金属申购差价收入',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#GOLD_P").focus();
+			return false;
+			}
+			if($("#RISK_LOC").val()==""){
+				$("#RISK_LOC").tips({
+					side:3,
+		            msg:'请输入利率敏感性说明在表前',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#RISK_LOC").focus();
+			return false;
+			}
+			if($("#RISK_S_INT").val()==""){
+				$("#RISK_S_INT").tips({
+					side:3,
+		            msg:'请输入利率风险敏感性',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#RISK_S_INT").focus();
+			return false;
+			}
+			if($("#RISK_S_PRICE").val()==""){
+				$("#RISK_S_PRICE").tips({
+					side:3,
+		            msg:'请输入价格风险敏感性',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#RISK_S_PRICE").focus();
+			return false;
+			}
+			if($("#RISK_E_PRICE").val()==""){
+				$("#RISK_E_PRICE").tips({
+					side:3,
+		            msg:'请输入价格风险敞口',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#RISK_E_PRICE").focus();
 			return false;
 			}
 			$("#Form").submit();
