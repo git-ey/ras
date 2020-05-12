@@ -83,6 +83,18 @@
 								    </select>
 								</td>
 							</tr>
+							<!-- 20200507,yury,新增一行报告类型，可选年审报告或中期报告 -->
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">报告类型:</td>
+								<td>
+									<select class="chosen-select form-control" name="REPTYPE" id="REPTYPE" data-placeholder="请选择" style="width:49%;">
+										<option value=""></option>
+										<option value="年审报告" <c:if test="${pd.REPTYPE == '年审报告'}">selected</c:if>>年审报告</option>
+										<option value="中期报告" <c:if test="${pd.REPTYPE == '中期报告'}">selected</c:if>>中期报告</option>
+									</select>
+								</td>
+							</tr>
+							<!-- 20200507,yury,新增至此 -->
 						    <tr>
 								<td style="width:100px;text-align: center;padding-top: 13px;" colspan="6"><b>模板参数选择</b></td>
 							</tr>

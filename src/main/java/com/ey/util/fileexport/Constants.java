@@ -20,7 +20,8 @@ public interface Constants {
     /**
      * 底稿名称--Report
      */
-    static final String EXPORT_AIM_FILE_NAME_REPORT = "${companyShortName}_${fundId}_${fundShortName}_年审报告_${periodStr}.doc";
+    // 20200507，yury，新增报告类型到报告名称中
+    static final String EXPORT_AIM_FILE_NAME_REPORT = "${companyShortName}_${fundId}_${fundShortName}_${repType}_${periodStr}.doc";
     /**
      * 模板名称--C
      */

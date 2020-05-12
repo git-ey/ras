@@ -72,7 +72,8 @@ public class ReportController extends BaseController {
 		pd.put("RESULT", "R");// 运行中
 		// 组装运行参数
 		pd.put("RUN_PARAM", pd.getString("PERIOD") + "," + pd.getString("FIRM_CODE") + "," + pd.getString("FUND_ID")
-				+ "," + pd.getString("MF") + "," + pd.getString("ETF") + "," + pd.getString("STRUCTURED"));
+				+ "," + pd.getString("MF") + "," + pd.getString("ETF") + "," + pd.getString("STRUCTURED") + "," + pd.getString("REPTYPE")); // 20200507,yury,新增一个REPTYPE参数
+		pd.put("REPTYPE", pd.getString("REPTYPE")); // 20200507,yury,新增一个REPTYPE参数
 		reportService.save(pd);
 		// 执行并发程序
 		taskExecutor.submit(new ReportRunWorker(reportService, pd));

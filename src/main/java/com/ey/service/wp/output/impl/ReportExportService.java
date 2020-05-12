@@ -147,8 +147,10 @@ public class ReportExportService implements ReportExportManager {
     public boolean doExport(HttpServletRequest request, HttpServletResponse response, Map<String,Object> exportParam) throws Exception {
         String fundId = String.valueOf(exportParam.get("FUND_ID"));
         String periodStr = String.valueOf(exportParam.get("PEROID"));
+        String repType = String.valueOf(exportParam.get("REPTYPE")); // 20200507,yury
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
+        fundInfo.put("repType", repType); // 20200507,yury
         String fileStr = this.generateFileContent(exportParam, fundInfo);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_REPORT, fundInfo), fileStr);
         return true;
@@ -158,8 +160,10 @@ public class ReportExportService implements ReportExportManager {
     public boolean doExport(String folederName, String fileName, Map<String,Object> exportParam) throws Exception {
         String fundId = String.valueOf(exportParam.get("FUND_ID"));
         String periodStr = String.valueOf(exportParam.get("PEROID"));
+        String repType = String.valueOf(exportParam.get("REPTYPE")); // 20200507,yury
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
+        fundInfo.put("repType", repType); // 20200507,yury
         String fileStr = this.generateFileContent(exportParam, fundInfo);
         // ↓ daigaokuo@hotmail.com 2019-02-13 ↓
         // [IMP] 最终输出文件夹路径中添加firm code

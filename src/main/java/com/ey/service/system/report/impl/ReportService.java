@@ -345,6 +345,7 @@ public class ReportService implements ReportManager {
         // 根据参数获取基金信息
         // 期间
         String period = pd.getString("PERIOD");
+        String reptype = pd.getString("REPTYPE"); // 20200507,yury
 
         // 此次导出的基金集合
         List<PageData> funds = listReportFund(pd);
@@ -421,7 +422,7 @@ public class ReportService implements ReportManager {
                     p2TempNameFinal = p2TempName + ".xml";
                 }
                 // P3
-                p3TempNameFinal = p3TempName + tempNameKey + ".ftl";
+                p3TempNameFinal = reptype.equals("年审报告")? p3TempName + tempNameKey + ".ftl" : p3TempName + tempNameKey + "_Mid.ftl"; // 20200507,yury,新增年报或中期的判断，中期报告的P3有单独的模板
                 // P4
                 // 如果选择此种规则，则按照基金区分模板
                 if (pd.getString("P4").equals("P4_FSO_BF")) {
@@ -448,6 +449,7 @@ public class ReportService implements ReportManager {
                 exportParam.put("partName", partName);
                 exportParam.put("reportTempRootPath", reportTempRootPath);
                 exportParam.put("reportOutBoundPath", reportOutBoundTempPath);
+                exportParam.put("REPTYPE", reptype); // 20200507,yury
                 // 开始导出
                 try {
                     this.reportExportService.doExport(reportOutBoundTempPath, Constants.EXPORT_AIM_FILE_NAME_REPORT, exportParam);
@@ -493,6 +495,7 @@ public class ReportService implements ReportManager {
         // 根据参数获取基金信息
         // 期间
         String period = pd.getString("PERIOD");
+        String repType = period.substring(4, 8).equals("0630")? "中期报告" : "年审报告"; // 20200507,yury
 
         // 此次导出的基金集合
         PageData pfund = (PageData) dao.findForObject("ReportMapper.selectReportFundById", pd);
@@ -542,7 +545,7 @@ public class ReportService implements ReportManager {
         // P2
         p2TempNameFinal = p2TempName + ".xml";
         // P3
-        p3TempNameFinal = p3TempName + tempNameKey + ".ftl";
+        p3TempNameFinal = repType.equals("年审报告")? p3TempName + tempNameKey + ".ftl" : p3TempName + tempNameKey + "_Mid.ftl"; // 20200507,yury,新增年报或中期的判断，中期报告的P3有单独的模板
         // P4
         // 如果选择此种规则，则按照基金区分模板
         p4TempNameFinal = p4TempName + ".xml";
@@ -564,6 +567,7 @@ public class ReportService implements ReportManager {
         exportParam.put("FUND_ID", pfund.getString("FUND_ID"));
         exportParam.put("partName", partName);
         exportParam.put("reportTempRootPath", reportTempRootPath);
+        exportParam.put("REPTYPE", repType.toString()); // 20200507,yury
         // 开始导出
         this.reportExportService.doExport(request, response, exportParam);
     }
