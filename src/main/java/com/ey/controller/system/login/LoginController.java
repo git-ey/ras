@@ -147,10 +147,10 @@ public class LoginController extends BaseController {
 					pd = userService.getUserByNameAndPwd(pd);// 根据用户名和密码去读取用户信息
 					// 登录过程
 					errInfo = this.processLogin(pd, USERNAME, PASSWORD);
-					if (pd != null) {
-						// 登录过程
-						errInfo = this.processLogin(null, USERNAME, PASSWORD);
-					}
+					// if (pd != null) { // yury, 20200825, 上面已经执行过一次登录过程了，pd不为空，不能再用null去执行一遍登录过程
+					// 	// 登录过程
+					// 	errInfo = this.processLogin(null, USERNAME, PASSWORD);
+					// }
 				}
 			}
 
