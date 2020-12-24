@@ -106,6 +106,7 @@ public class FundInfoService implements FundInfoManager{
 				pd.put("RE_STATUS", map.get("RE_STATUS"));
 				pd.put("CLOSING_PRICE", map.get("CLOSING_PRICE"));
 				pd.put("UNIT_NAV", map.get("UNIT_NAV"));
+				pd.put("MODE", map.get("MODE")); // yury，20200910，EY_BOND_INFO新增MODE基金运作方式字段
 				pds.add(pd);
 				idx++;
 			}

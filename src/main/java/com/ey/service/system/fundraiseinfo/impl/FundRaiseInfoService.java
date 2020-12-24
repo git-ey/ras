@@ -97,6 +97,8 @@ public class FundRaiseInfoService implements FundRaiseInfoManager{
 				pd.put("FUND_CODE", map.get("FUND_CODE"));
 				pd.put("LEVEL", map.get("LEVEL"));
 				pd.put("AMOUNT", map.get("AMOUNT"));
+				pd.put("AMOUNT_PRINCIPAL", map.get("AMOUNT_PRINCIPAL")); // yury，20200910，新增实收基金下注释
+				pd.put("AMOUNT_INTEREST", map.get("AMOUNT_INTEREST")); // yury，20200910，新增实收基金下注释
 				pd.put("UNITS", map.get("UNITS"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));

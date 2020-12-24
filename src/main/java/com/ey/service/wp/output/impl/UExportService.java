@@ -103,6 +103,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         M6011.put("S2", new HashMap<>());
         M6011.put("S3", new HashMap<>());
         M6011.put("S4", new HashMap<>());
+        M6011.put("S45", new HashMap<>()); // yury,20200901,U Lead新增证券出借业务
         M6011.put("S5", new HashMap<>());
         
         Map<String,Object> M6111 = new HashMap<>();
@@ -124,38 +125,89 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("KM6802", new HashMap<>());
         result.put("KM6605", new HashMap<>());
         
+        // yury,20200901,U Lead新增证券出借业务
         for(Map<String,Object> map : UMetaDataList) {
-            if("6011".equals(map.get("accountNum"))) {
-                if("存款利息收入".equals(map.get("item"))) {
-                    M6011.put("S1", map);
-                }else if("债券利息收入".equals(map.get("item"))) {
-                    M6011.put("S2", map);
-                }else if("资产支持证券利息收入".equals(map.get("item"))) {
-                    M6011.put("S3", map);                
-                }else if("买入返售金融资产收入".equals(map.get("item"))) {
-                    M6011.put("S4", map);
-                }else if("其他利息收入".equals(map.get("item"))) {
-                    M6011.put("S5", map);
-                }
-            }else if("6111".equals(map.get("accountNum"))) {
-                if("股票投资收益".equals(map.get("item"))) {
-                    M6111.put("S1", map);
-                }else if("基金投资收益".equals(map.get("item"))) {
-                    M6111.put("S2", map);
-                }else if("债券投资收益".equals(map.get("item"))) {
-                    M6111.put("S3", map);
-                }else if("资产支持证券投资收益".equals(map.get("item"))) {
-                    M6111.put("S4", map);
-                }else if("贵金属投资收益".equals(map.get("item"))) {
-                    M6111.put("S5", map);
-                }else if("衍生工具收益".equals(map.get("item"))) {
-                    M6111.put("S6", map);
-                }else if("股利收益".equals(map.get("item"))) {
-                    M6111.put("S7", map);
+            if("6011".equals(map.get("accountNum"))){
+                switch ((String)map.get("item")){
+                    case "存款利息收入":
+                        M6011.put("S1", map);
+                        break;
+                    case "债券利息收入":
+                        M6011.put("S2", map);
+                        break;
+                    case "资产支持证券利息收入":
+                        M6011.put("S3", map);
+                        break;
+                    case "买入返售金融资产收入":
+                        M6011.put("S4", map);
+                        break;
+                    case "证券出借利息收入":
+                        M6011.put("S45", map);
+                        break;
+                    case "其他利息收入":
+                        M6011.put("S5", map);
+                        break;
+                    }
+            }else if ("6111".equals(map.get("accountNum"))){
+                switch ((String)map.get("item")){
+                    case "股票投资收益":
+                        M6111.put("S1", map);
+                        break;
+                    case "基金投资收益":
+                        M6111.put("S2", map);
+                        break;
+                    case "债券投资收益":
+                        M6111.put("S3", map);
+                        break;
+                    case "资产支持证券投资收益":
+                        M6111.put("S4", map);
+                        break;
+                    case "贵金属投资收益":
+                        M6111.put("S5", map);
+                        break;
+                    case "衍生工具收益":
+                        M6111.put("S6", map);
+                        break;
+                    case "股利收益":
+                        M6111.put("S7", map);
+                        break;
                 }
             }else {
                 result.put("KM" + map.get("accountNum"), map);
             }
+
+        // for(Map<String,Object> map : UMetaDataList) {
+        //     if("6011".equals(map.get("accountNum"))) {
+        //         if("存款利息收入".equals(map.get("item"))) {
+        //             M6011.put("S1", map);
+        //         }else if("债券利息收入".equals(map.get("item"))) {
+        //             M6011.put("S2", map);
+        //         }else if("资产支持证券利息收入".equals(map.get("item"))) {
+        //             M6011.put("S3", map);                
+        //         }else if("买入返售金融资产收入".equals(map.get("item"))) {
+        //             M6011.put("S4", map);
+        //         }else if("其他利息收入".equals(map.get("item"))) {
+        //             M6011.put("S5", map);
+        //         }
+        //     }else if("6111".equals(map.get("accountNum"))) {
+        //         if("股票投资收益".equals(map.get("item"))) {
+        //             M6111.put("S1", map);
+        //         }else if("基金投资收益".equals(map.get("item"))) {
+        //             M6111.put("S2", map);
+        //         }else if("债券投资收益".equals(map.get("item"))) {
+        //             M6111.put("S3", map);
+        //         }else if("资产支持证券投资收益".equals(map.get("item"))) {
+        //             M6111.put("S4", map);
+        //         }else if("贵金属投资收益".equals(map.get("item"))) {
+        //             M6111.put("S5", map);
+        //         }else if("衍生工具收益".equals(map.get("item"))) {
+        //             M6111.put("S6", map);
+        //         }else if("股利收益".equals(map.get("item"))) {
+        //             M6111.put("S7", map);
+        //         }
+        //     }else {
+        //         result.put("KM" + map.get("accountNum"), map);
+        //     }
         }
         
         result.put("KM6011", M6011);
@@ -211,6 +263,7 @@ public class UExportService extends BaseExportService implements UExportManager 
             temp.put(String.valueOf(map.get("item")), map);
         }
         dividend.put("S1", temp.get("股票")==null?new HashMap<>():temp.get("股票"));
+        dividend.put("S15", temp.get("证券出借")==null?new HashMap<>():temp.get("证券出借")); // yury,20200911,U300新增证券出借业务
         dividend.put("S2", temp.get("基金")==null?new HashMap<>():temp.get("基金"));
         
         Map<String, Object> interest = new HashMap<>();
@@ -408,6 +461,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         trxFee.put("SH", temp.get("上交所") ==null?new HashMap<>():temp.get("上交所"));
         trxFee.put("SZ", temp.get("深交所") ==null?new HashMap<>():temp.get("深交所"));
+        // yury，20201112，U500交易费用测试或新股配售修改
+        trxFee.put("SHH", temp.get("沪港通") ==null?new HashMap<>():temp.get("沪港通"));
+        trxFee.put("SZH", temp.get("深港通") ==null?new HashMap<>():temp.get("深港通"));
         
         Map<String, Object> test = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -417,6 +473,18 @@ public class UExportService extends BaseExportService implements UExportManager 
             test.put("perClient", U500TestMetaDataList.get(0).get("perClient"));
         }
         
+        // yury,20201112,U500交易费用测试或新股配售修改
+        Map<String, Object> iposubscribe = new HashMap<>();
+        iposubscribe.put("iposubscribeamount", 0);
+        iposubscribe.put("commissionRate", 0.005);
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U500ipo_subscribe_amount = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU500iposubscrive", queryMap);
+        if (U500ipo_subscribe_amount.size() != 0){
+            iposubscribe.put("iposubscribeamount", U500ipo_subscribe_amount.get(0).get("iposubscribeamount") == null? 0: U500ipo_subscribe_amount.get(0).get("iposubscribeamount"));
+            iposubscribe.put("commissionRate", U500ipo_subscribe_amount.get(0).get("commissionRate") == null? 0.005: U500ipo_subscribe_amount.get(0).get("commissionRate"));
+        }
+
+        result.put("iposubscribe", iposubscribe);
         result.put("main", main);
         result.put("trxFee", trxFee);
         result.put("test", test);
@@ -691,6 +759,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         stocks.put("S1", new HashMap<>());
         stocks.put("S2", new HashMap<>());
         stocks.put("S3", new HashMap<>());
+        stocks.put("S35", new HashMap<>()); // yury, 20200902, U10000新增7.4.7.12.5证券出借业务
         stocks.put("S4", new HashMap<>());
         stocks.put("S5", new HashMap<>());
         stocks.put("S6", new HashMap<>());
@@ -700,6 +769,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         stocks.put("S10", new HashMap<>());
         stocks.put("S11", new HashMap<>());
         stocks.put("S12", new HashMap<>());
+        stocks.put("S13", new HashMap<>()); // yury, 20200902, U10000新增7.4.7.12.5证券出借业务
+        stocks.put("S14", new HashMap<>());
+        stocks.put("S15", new HashMap<>());
         queryMap.put("type", "STOCKS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
@@ -720,6 +792,9 @@ public class UExportService extends BaseExportService implements UExportManager 
                 stocks.put("S2", map);
             } else if ("股票投资收益——申购差价收入".equals(map.get("item")) && "STOCKS".equals(map.get("type"))) {
                 stocks.put("S3", map);
+            // yury，20200901，U10000新增证券出借业务
+            } else if ("股票投资收益——证券出借差价收入".equals(map.get("item")) && "STOCKS".equals(map.get("type"))) {
+                stocks.put("S35", map);
             //S4--S5[公共]
             } else if ("卖出股票成交总额".equals(map.get("item")) && "STOCKS_BS".equals(map.get("type"))) {
                 stocks.put("S4", map);
@@ -741,6 +816,13 @@ public class UExportService extends BaseExportService implements UExportManager 
                 stocks.put("S11", map);
             } else if ("其他".equals(map.get("item")) && "STOCKS_P".equals(map.get("type"))) {
                 stocks.put("S12", map);
+            // S13--S15 yury, 20200902, U10000新增7.4.7.12.5证券出借业务
+            } else if ("出借证券现金清偿总额".equals(map.get("item")) && "STOCKS_L".equals(map.get("type"))) {
+                stocks.put("S13", map);
+            } else if ("减：出借证券成本总额".equals(map.get("item")) && "STOCKS_L".equals(map.get("type"))) {
+                stocks.put("S14", map);
+            } else if ("减：应收证券出借利息".equals(map.get("item")) && "STOCKS_L".equals(map.get("type"))) {
+                stocks.put("S15", map);
             }
         }
         result.put("stocks", stocks);
@@ -951,6 +1033,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         
         Map<String, Object> dividend = new HashMap<>();
         dividend.put("S1", new HashMap<>());
+        dividend.put("S15", new HashMap<>()); // yury，20200915，U10000股利收益新增证券出借业务
         dividend.put("S2", new HashMap<>());
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000DividendMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000DividendData", queryMap);
@@ -960,6 +1043,8 @@ public class UExportService extends BaseExportService implements UExportManager 
         for(Map<String,Object> map : U10000DividendMetaDataList) {
             if("10".equals(String.valueOf(map.get("sort")))) {
                 dividend.put("S1", map);
+            }else if("15".equals(String.valueOf(map.get("sort")))) { // yury，20200915，U10000股利收益新增证券出借业务
+                dividend.put("S15", map);
             }else if("20".equals(String.valueOf(map.get("sort")))) {
                 dividend.put("S2", map);
             }

@@ -122,8 +122,22 @@
         and U400.FUND_ID = #{fundId}
         and U400.PERIOD = #{period}
     </select>
-    
-    <select id="selectU500MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+
+    <!-- yury,20200902,U500新增新股配售经纪佣金 -->
+    <select id="selectU500iposubscrive" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            WU5I.IPO_SUBSCRIBE_AMOUNT as iposubscribeamount,
+            WU5I.IPO_BROKERAGE_COMMISSION_RATE as commissionRate
+        FROM
+            wp_u500_iposubscribe WU5I
+        where
+            1 = 1
+        and WU5I.FUND_ID = #{fundId}
+        and WU5I.PERIOD = #{period}
+        limit 1;
+    </select>
+
+    <select id="selectU500MainData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             U500.EY_ACCOUNT_NUM as accountNum,
             U500.ATTR1 as item,
@@ -149,7 +163,8 @@
 		    U500UTF.RATE_STAMP as stampRate,
 		    U500UTF.RATE_BROKERAGE as brokerageRate,
 		    U500UTF.RATE_SEC as setRate,
-		    U500UTF.RATE_TRANSFER as transferRate
+		    U500UTF.RATE_TRANSFER as transferRate,
+            U500UTF.RATE_TRX as trxRate
 		FROM
 		    wp_u500_trx_fee U500UTF
         where 

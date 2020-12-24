@@ -120,11 +120,14 @@
 	</delete>
 	
 		<!-- 批量新增-->
+	<!-- yury，20200910，新增实收基金下注释 -->
 	<insert id="saveBatch" parameterType="java.util.List">
 		insert into 
 	        <include refid="tableName"></include>
 		(
-	        <include refid="Field"></include>
+	        <include refid="Field"></include>,
+			AMOUNT_PRINCIPAL,
+			AMOUNT_INTEREST
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
@@ -135,7 +138,9 @@
 		#{pd.UNITS},	
 		#{pd.ACTIVE},	
 		#{pd.STATUS},	
-		#{pd.FUNDRAISEINFO_ID}
+		#{pd.FUNDRAISEINFO_ID},
+		#{pd.AMOUNT_PRINCIPAL},
+	    #{pd.AMOUNT_INTEREST}
          )
          </foreach >
 	</insert>

@@ -67,7 +67,13 @@
 		insert into 
 	        <include refid="tableName"></include>
 		(
-	        <include refid="Field"></include>
+			<include refid="Field"></include>,
+			INDUSTRY_NAME_CSRC,
+			INDUSTRY_CODE_CSRC,
+			INDUSTRY_NAME_HS,
+			INDUSTRY_CODE_HS,
+			INDUSTRY_NAME_GICS,
+			INDUSTRY_CODE_GICS
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
@@ -83,12 +89,18 @@
 		     #{pd.CLOSING_PRICE},	
 		     #{pd.SUSPENSION_INFO},	
 		     #{pd.RESUMPTION_DATE},	
-		     #{pd.RESUMPTION_PRICE},	
-		     #{pd.NEW_FLAG},	
+		     #{pd.RESUMPTION_PRICE},
+		     #{pd.NEW_FLAG},
 		     #{pd.AFLOAT_DATE},	
-		     #{pd.ACTIVE},	
-		     #{pd.STATUS},	
-		     #{pd.STOCK_ID}
+		     #{pd.ACTIVE},
+		     #{pd.STATUS},
+		     #{pd.STOCK_ID},
+			 #{pd.INDUSTRY_NAME_CSRC},
+			 #{pd.INDUSTRY_CODE_CSRC},
+			 #{pd.INDUSTRY_NAME_HS},
+			 #{pd.INDUSTRY_CODE_HS},
+			 #{pd.INDUSTRY_NAME_GICS},
+			 #{pd.INDUSTRY_CODE_GICS}
          )
          </foreach >
 	</insert>

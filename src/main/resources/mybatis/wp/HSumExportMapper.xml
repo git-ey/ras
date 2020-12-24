@@ -112,6 +112,7 @@
         AND H12V.FIRM_CODE = #{firmCode}
     </select>
     
+	<!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
     <select id="selectH20Data" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H20.FUND_ID AS fundId,
@@ -126,6 +127,7 @@
 		    H20.VAL_BASE_SOURCE AS valBaseSource,
 		    H20.VAL_BASE_PRICE AS valBasePrice,
 		    H20.THREE_LEVEL AS threeLevel,
+			H20.VAL_PRICE AS val_price,
 		    H20.RESTRICT_TYPE AS restrictType,
 		    DATE_FORMAT( H20.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
 		    H20.SUBSCRIBE_PRICE AS subscribePrice,
@@ -143,6 +145,7 @@
         AND H20.FIRM_CODE = #{firmCode}
     </select>
     
+	<!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
     <select id="selectH21Data" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    H21.FUND_ID AS fundId,
@@ -157,6 +160,7 @@
 		    H21.VAL_BASE_SOURCE AS valBaseSource,
 		    H21.VAL_BASE_PRICE AS valBasePrice,
 		    H21.THREE_LEVEL AS threeLevel,
+			H21.VAL_PRICE AS val_price,
 		    H21.RESTRICT_TYPE AS restrictType,
 		    DATE_FORMAT( H21.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
 		    H21.SUBSCRIBE_PRICE AS subscribePrice,

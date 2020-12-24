@@ -146,11 +146,23 @@
 	</delete>
 	
 	<!-- 批量新增-->
+	<!-- yury,20200910,新增报告7.4.7.12.5证券出借差价收入,新增外汇风险敞口及敏感性分析 -->
 	<insert id="saveBatch" parameterType="java.util.List">
 		insert into 
 	        <include refid="tableName"></include>
 		(
-	        <include refid="Field"></include>
+	        <include refid="Field"></include>,
+			STOCK_L,
+		RISK_E_FOREIGN_EXCHANGE,
+		RISK_S_FOREIGN_EXCHANGE,
+		SHORT_BOND_RATING,
+		SHORT_ABS_RATING,
+		SHORT_NCD_RATING,
+		LONG_BOND_RATING,
+		LONG_ABS_RATING,
+		LONG_NCD_RATING,
+		EXPIRE_PERIOD_ANALYSIS,
+		PORTFOLIO_LIQUID_RISK
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
@@ -172,7 +184,18 @@
 		#{pd.RISK_S_PRICE},	
 		#{pd.RISK_E_PRICE},	
 		#{pd.ACTIVE},	
-		#{pd.FUNDCONTROL_ID}
+		#{pd.FUNDCONTROL_ID},
+		#{pd.STOCK_L},
+		#{pd.RISK_E_FOREIGN_EXCHANGE},
+		#{pd.RISK_S_FOREIGN_EXCHANGE},
+		#{pd.SHORT_BOND_RATING},
+		#{pd.SHORT_ABS_RATING},
+		#{pd.SHORT_NCD_RATING},
+		#{pd.LONG_BOND_RATING},
+		#{pd.LONG_ABS_RATING},
+		#{pd.LONG_NCD_RATING},
+		#{pd.EXPIRE_PERIOD_ANALYSIS},
+		#{pd.PORTFOLIO_LIQUID_RISK}
          )
          </foreach >
 	</insert>	

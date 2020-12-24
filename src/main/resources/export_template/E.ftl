@@ -1837,6 +1837,16 @@
     <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I80.endBalance!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s129"><Data ss:Type="String"></Data></Cell>
    </Row>
+   <!-- yury,20200831,新增证券出借业务 -->
+   <Row>
+    <Cell ss:StyleID="s58"/>
+    <Cell ss:StyleID="s131"><Data ss:Type="String">应收出借证券利息</Data></Cell>
+    <Cell ss:StyleID="s58"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I85.beginBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s61"/>
+    <Cell ss:StyleID="s57"><Data ss:Type="Number">${(E300.main.I85.endBalance!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s129"><Data ss:Type="String"></Data></Cell>
+   </Row>
    <Row>
     <Cell ss:StyleID="s58"/>
     <Cell ss:StyleID="s131"><Data ss:Type="String">其他</Data></Cell>

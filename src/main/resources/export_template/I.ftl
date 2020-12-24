@@ -1429,7 +1429,7 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s94"><Data ss:Type="String">7.4.9.1 . 关联方关系</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s94"><Data ss:Type="String">7.4.9.1. 关联方关系</Data></Cell>
     <Cell ss:StyleID="s121"/>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
@@ -2392,8 +2392,49 @@
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <!-- yury,20200901,I新增证券出借，开始-->
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4 各关联方投资本基金的情况</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4 报告期内转融通证券出借业务发生重大关联交易事项的说明</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="3" ss:StyleID="s142"/>
+    <Cell ss:StyleID="s142"/>
+    <Cell ss:Index="9" ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.1 与关联方通过约定申报方式进行的适用固定期限费率的证券出借业务的情况</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String"><#if extraFundInfo.NewFlag == 'Y'>本报告期<#else>本基金本报告期及上年度可比期间均</#if>未与关联方通过约定申报方式进行适用固定期限费率的证券出借业务。</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3" ss:StyleID="s142"/>
+    <Cell ss:StyleID="s142"/>
+    <Cell ss:Index="9" ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.2 与关联方通过约定申报方式进行的适用市场化期限费率的证券出借业务的情况</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String"><#if extraFundInfo.NewFlag == 'Y'>本报告期<#else>本基金本报告期及上年度可比期间均</#if>未与关联方通过约定申报方式进行适用市场化期限费率的证券出借业务。</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3" ss:StyleID="s142"/>
+    <Cell ss:StyleID="s142"/>
+    <Cell ss:Index="9" ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <!-- yury,20200901,I新增证券出借，结束-->
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.5 各关联方投资本基金的情况</Data></Cell>
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
@@ -2402,7 +2443,7 @@
    </Row>
    <#if extraFundInfo.structured == 'N'>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.1 报告期内基金管理人运用固有资金投资本基金的情况</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.5.1 报告期内基金管理人运用固有资金投资本基金的情况</Data></Cell>
     <Cell ss:Index="5" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
@@ -2547,7 +2588,7 @@
    <#else>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s118"/>
-    <Cell ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.1 报告期内基金管理人运用固有资金投资本基金的情况</Data></Cell>
+    <Cell ss:StyleID="s106"><Data ss:Type="String">7.4.10.5.1 报告期内基金管理人运用固有资金投资本基金的情况</Data></Cell>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s122"/>
@@ -2731,7 +2772,7 @@
    <Row/>
    <#if extraFundInfo.structured == 'N'>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.2 报告期末除基金管理人之外的其他关联方投资本基金的情况</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.5.2 报告期末除基金管理人之外的其他关联方投资本基金的情况</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s135"/>
@@ -2780,7 +2821,7 @@
    </#if>
    <#else>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.4.2 报告期末除基金管理人之外的其他关联方投资本基金的情况</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.5.2 报告期末除基金管理人之外的其他关联方投资本基金的情况</Data></Cell>
    </Row>
    <#if I.unmgerHoldFund.levelsCount != 0>
    <#list I.unmgerHoldFund.levels as level>
@@ -2849,7 +2890,7 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s98"><Data ss:Type="String">7.4.10.5 由关联方保管的银行存款余额及当期产生的利息收入</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s98"><Data ss:Type="String">7.4.10.6 由关联方保管的银行存款余额及当期产生的利息收入</Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
@@ -2902,7 +2943,7 @@
     <Cell ss:StyleID="s177"/>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s110"><Data ss:Type="String">7.4.10.6 本基金在承销期内参与关联方承销证券的情况</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s110"><Data ss:Type="String">7.4.10.7 本基金在承销期内参与关联方承销证券的情况</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s98"/>
@@ -3019,7 +3060,7 @@
    <Row/>
    <Row ss:StyleID="s138">
     <Cell ss:StyleID="s156"/>
-    <Cell ss:StyleID="s117"><Data ss:Type="String">7.4.10.7 其他关联交易事项的说明</Data></Cell>
+    <Cell ss:StyleID="s117"><Data ss:Type="String">7.4.10.8 其他关联交易事项的说明</Data></Cell>
     <Cell ss:StyleID="s156"/>
     <Cell ss:StyleID="s156"/>
     <Cell ss:StyleID="s156"/>

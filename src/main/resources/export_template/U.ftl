@@ -3976,6 +3976,30 @@
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
    <NumberFormat/>
   </Style>
+  <Style ss:ID="s10091">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s10092" ss:Parent="s54">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s10093" ss:Parent="s54">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Double" ss:Weight="3"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11" />
+   <Interior/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="U">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s78" ss:DefaultRowHeight="13.5">
@@ -4103,12 +4127,12 @@
    <Row>
     <Cell ss:StyleID="s377"><Data ss:Type="String">利息收入</Data></Cell>
     <Cell ss:StyleID="s374"><Data ss:Type="String">U300</Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[5]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[5]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[5]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[5]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[5]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s93"/>
     <Cell ss:StyleID="s93"/>
@@ -4164,6 +4188,21 @@
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6011.S4.crAmountAdj!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6011.S4.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s93"/>
+    <Cell ss:StyleID="s93"/>
+    <Cell ss:StyleID="s93"/>
+   </Row>
+   <!-- yury,20200901,U Lead新增证券出借业务-->
+   <Row>
+    <Cell ss:StyleID="s373"><Data ss:Type="String">      证券出借利息收入</Data></Cell>
+    <Cell ss:StyleID="s373"/>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6011.S45.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6011.S45.drAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6011.S45.crAmountAdj!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s378" ss:Formula="=RC[-3]+RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s378"><Data ss:Type="Number">${(U.KM6011.S45.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s378" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s379" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-3]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s93"/>
@@ -4895,6 +4934,14 @@
     <Cell ss:StyleID="s423"/>
     <Cell ss:StyleID="s423"><Data ss:Type="Number">${(U300.dividend.S1.amountLast!0)?string('0.##')}</Data></Cell>
    </Row>
+   <!-- yury,20200901,U300新增证券出借业务-->
+   <Row>
+    <Cell ss:StyleID="s406"><Data ss:Type="String">其中：证券出借权益补偿收入</Data></Cell>
+    <Cell ss:StyleID="s406"/>
+    <Cell ss:StyleID="s423"><Data ss:Type="Number">${(U300.dividend.S15.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s423"/>
+    <Cell ss:StyleID="s423"><Data ss:Type="Number">${(U300.dividend.S15.amountLast!0)?string('0.##')}</Data></Cell>
+   </Row>
    <Row>
     <Cell ss:StyleID="s406"><Data ss:Type="String">基金投资产生的股利收益</Data></Cell>
     <Cell ss:StyleID="s406"/>
@@ -5506,17 +5553,64 @@
     <Cell ss:StyleID="s361"/>
     <Cell ss:StyleID="s361"/>
    </Row>
-   <Row ss:Index="84">
+   <!-- yury,20200901,U310普通版新增证券出借业务-->
+   <Row ss:StyleID="s361">
+    <Cell ss:StyleID="s468"><Data ss:Type="Number">1.4</Data></Cell>
+    <Cell><Data ss:Type="String">证券出借差价收入</Data></Cell>
+    <Cell ss:StyleID="s349"><Data ss:Type="String">根据实际情况填列，如无则删除</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s361">
+    <Cell ss:StyleID="s451"/>
+    <Cell ss:Index="3" ss:StyleID="s448"><Data ss:Type="String">U311</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s344"><Data ss:Type="String">成交清算日报表</Data></Cell>
+    <Cell ss:StyleID="s345"><Data ss:Type="String">Diff.</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s361">
+    <Cell ss:StyleID="s346"><Data ss:Type="String">Dr</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s481"><Data ss:Type="String">U320</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+   </Row>
+   <Row ss:StyleID="s361">
+    <Cell ss:StyleID="s346"><Data ss:Type="String">Cr</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s481"><Data ss:Type="String">U320</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+    <Cell ss:StyleID="s361"/>
+   </Row>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="Number">2</Data></Cell>
     <Cell ss:StyleID="s338"><Data ss:Type="String">债券投资收益测试：</Data></Cell>
    </Row>
-   <Row ss:Index="86">
+   <Row/>
+   <Row>
     <Cell ss:Index="2"><Data ss:Type="String">债券投资收益项目构成</Data></Cell>
    </Row>
-   <Row ss:Index="88">
+   <Row/>
+   <Row>
     <Cell ss:Index="2" ss:StyleID="s454"><Data ss:Type="String">${(period)?string('0')}年度：</Data></Cell>
    </Row>
-   <Row ss:Index="90">
+   <Row/>
+   <Row>
     <Cell ss:Index="2"><Data ss:Type="String">ref no.</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s458"><Data ss:Type="String">2.1.1</Data></Cell>
     <Cell ss:StyleID="s458"><Data ss:Type="String">2.1.2</Data></Cell>
@@ -5779,15 +5873,18 @@
     <Cell ss:StyleID="s90"/>
     <Cell ss:StyleID="s90"/>
    </Row>
-   <Row ss:Index="114" ss:StyleID="s476">
+   <Row/>
+   <Row ss:StyleID="s476">
     <Cell ss:StyleID="s359"><Data ss:Type="String">Note X</Data></Cell>
     <Cell><Data ss:Type="String">口径问题的描述wording在此</Data></Cell>
     <Cell ss:Index="6"><Data ss:Type="String">按比例测算的，目前华夏独一家，需要问恋洁具体怎么算的；其他的算或者不算，还是很明确的</Data></Cell>
    </Row>
-   <Row ss:Index="116">
+   <Row/>
+   <Row >
     <Cell ss:Index="2"><Data ss:Type="String">我们汇总与债券差价收入相关的业务的凭证如下，并与成交清算日报表的相关金额相核对：</Data></Cell>
    </Row>
-   <Row ss:Index="118">
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="String">2.1.1</Data></Cell>
     <Cell><Data ss:Type="String">买卖债券差价收入-卖出</Data></Cell>
    </Row>
@@ -5857,11 +5954,14 @@
     <Cell ss:StyleID="s361"/>
     <Cell ss:StyleID="s361"/>
    </Row>
-   <Row ss:Index="129">
+   <Row/>
+   <Row>
     <Cell ss:Index="4" ss:StyleID="s476"><Data ss:Type="String">以下没有细化了，需补完</Data></Cell>
     <Cell ss:StyleID="s476"/>
    </Row>
-   <Row ss:Index="132">
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="String">2.1.2</Data></Cell>
     <Cell><Data ss:Type="String">买卖债券差价收入-兑付</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s349"><Data ss:Type="String">此处逻辑应注意，单独付息的凭证应当分别分类到对应的业务类别下</Data></Cell>
@@ -5943,7 +6043,10 @@
     <Cell ss:StyleID="s361"/>
     <Cell ss:StyleID="s361"/>
    </Row>
-   <Row ss:Index="147">
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="String">2.1.3</Data></Cell>
     <Cell><Data ss:Type="String">买卖债券差价收入-提前还本</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s349"><Data ss:Type="String">此处逻辑应注意，单独付息的凭证应当分别分类到对应的业务类别下</Data></Cell>
@@ -6035,28 +6138,45 @@
     <Cell ss:StyleID="s361"/>
     <Cell ss:Index="8" ss:StyleID="s360"><Data ss:Type="String">SUMIF口径金额</Data></Cell>
    </Row>
-   <Row ss:Index="161">
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="String">2.1.4</Data></Cell>
     <Cell><Data ss:Type="String">买卖债券差价收入-债转股</Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s349"><Data ss:Type="String">如有还需单独加note和测试在U312</Data></Cell>
     <Cell ss:StyleID="s349"/>
     <Cell ss:StyleID="s349"/>
    </Row>
-   <Row ss:Index="166">
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="String">2.1.5</Data></Cell>
     <Cell><Data ss:Type="String">买卖债券差价收入-回售</Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s349"><Data ss:Type="String">如有还需单独加note和测试在U312</Data></Cell>
     <Cell ss:StyleID="s349"/>
     <Cell ss:StyleID="s349"/>
    </Row>
-   <Row ss:Index="171">
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="String">2.1.6</Data></Cell>
     <Cell><Data ss:Type="String">买卖债券差价收入-其他</Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s349"><Data ss:Type="String">如有还需单独加note和测试在U312</Data></Cell>
     <Cell ss:StyleID="s349"/>
     <Cell ss:StyleID="s349"/>
    </Row>
-   <Row ss:Index="180">
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="Number">3</Data></Cell>
     <Cell ss:StyleID="s338"><Data ss:Type="String">资产支持证券投资收益测试：</Data></Cell>
    </Row>
@@ -6067,10 +6187,12 @@
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">资产支持证券投资收益项目构成</Data></Cell>
    </Row>
-   <Row ss:Index="184">
+   <Row/>
+   <Row>
     <Cell ss:Index="2" ss:StyleID="s454"><Data ss:Type="String">${(period)?string('0')}年度：</Data></Cell>
    </Row>
-   <Row ss:Index="186">
+   <Row/>
+   <Row>
     <Cell ss:Index="2"><Data ss:Type="String">ref no.</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s458"><Data ss:Type="String">3.1</Data></Cell>
     <Cell ss:StyleID="s458"><Data ss:Type="String">3.2</Data></Cell>
@@ -6203,18 +6325,26 @@
     <Cell ss:StyleID="s90"/>
     <Cell ss:StyleID="s90"/>
    </Row>
-   <Row ss:Index="204" ss:StyleID="s476">
+   <Row/>
+   <Row ss:StyleID="s476">
     <Cell ss:StyleID="s359"><Data ss:Type="String">Note X</Data></Cell>
     <Cell><Data ss:Type="String">口径问题的描述wording在此</Data></Cell>
     <Cell ss:Index="6"><Data ss:Type="String">ABS也有提前还本相似的口径问题，可问史蒂夫妮；并，改造为债券那样带口径列的</Data></Cell>
    </Row>
-   <Row ss:Index="206">
+   <Row/>
+   <Row>
     <Cell ss:Index="2"><Data ss:Type="String">我们汇总与资产支持证券投资收益相关的业务的凭证如下，并与成交清算日报表的相关金额相核对：</Data></Cell>
    </Row>
-   <Row ss:Index="209">
+   <Row/>
+   <Row/>
+   <Row >
     <Cell ss:Index="2" ss:StyleID="s476"><Data ss:Type="String">参考债券继续补充</Data></Cell>
    </Row>
-   <Row ss:Index="214">
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:Index="2" ss:StyleID="s476"><Data ss:Type="String">以下仅示例，股、债之外可不批构成表，待完善</Data></Cell>
     <Cell ss:StyleID="s476"/>
     <Cell ss:StyleID="s476"/>
@@ -6224,15 +6354,19 @@
     <Cell ss:StyleID="s476"/>
     <Cell ss:StyleID="s476"/>
    </Row>
-   <Row ss:Index="218">
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="Number">4</Data></Cell>
     <Cell ss:StyleID="s338"><Data ss:Type="String">基金投资收益测试：</Data></Cell>
    </Row>
-   <Row ss:Index="220">
+   <Row/>
+   <Row>
     <Cell ss:Index="3" ss:StyleID="s467"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
     <Cell ss:Index="5" ss:StyleID="s467"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
    </Row>
-   <Row ss:Index="222">
+   <Row/>
+   <Row>
     <Cell ss:Index="2"><Data ss:Type="String">卖出/赎回基金成交总额</Data></Cell>
    </Row>
    <Row>
@@ -6241,10 +6375,12 @@
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">基金投资收益</Data></Cell>
    </Row>
-   <Row ss:Index="226">
+   <Row/>
+   <Row>
     <Cell ss:Index="2"><Data ss:Type="String">我们汇总与基金投资收益相关的业务的凭证如下，并与成交清算日报表的相关金额相核对：</Data></Cell>
    </Row>
-   <Row ss:Index="228">
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s455"/>
     <Cell ss:Index="3" ss:StyleID="s469"><Data ss:Type="String">U314</Data></Cell>
     <Cell ss:StyleID="s343"/>
@@ -6299,15 +6435,20 @@
     <Cell ss:StyleID="s361"/>
     <Cell ss:StyleID="s361"/>
    </Row>
-   <Row ss:Index="238">
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="String">5.1</Data></Cell>
     <Cell ss:StyleID="s338"><Data ss:Type="String">衍生工具收益——买卖权证差价收入测试：</Data></Cell>
    </Row>
-   <Row ss:Index="240">
+   <Row/>
+   <Row>
     <Cell ss:Index="3" ss:StyleID="s467"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
     <Cell ss:Index="5" ss:StyleID="s467"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
    </Row>
-   <Row ss:Index="242">
+   <Row/>
+   <Row>
     <Cell ss:Index="2"><Data ss:Type="String">卖出权证成交总额</Data></Cell>
    </Row>
    <Row>
@@ -6317,10 +6458,12 @@
     <Cell ss:Index="2"><Data ss:Type="String">买卖权证差价收入</Data></Cell>
     <Cell ss:Index="6"><Data ss:Type="String">注：本项包含权证行权产生的差价收入。</Data></Cell>
    </Row>
-   <Row ss:Index="246">
+   <Row/>
+   <Row>
     <Cell ss:Index="2"><Data ss:Type="String">我们汇总与买卖权证差价收入相关的业务的凭证如下，并与成交清算日报表的相关金额相核对：</Data></Cell>
    </Row>
-   <Row ss:Index="248">
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s455"/>
     <Cell ss:StyleID="s349"/>
     <Cell ss:StyleID="s469"><Data ss:Type="String">U314</Data></Cell>
@@ -6376,15 +6519,20 @@
     <Cell ss:StyleID="s476"/>
     <Cell ss:StyleID="s476"/>
    </Row>
-   <Row ss:Index="258">
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s468"><Data ss:Type="String">5.2</Data></Cell>
     <Cell ss:StyleID="s338"><Data ss:Type="String">衍生工具收益——其他投资收益测试：</Data></Cell>
    </Row>
-   <Row ss:Index="260">
+   <Row/>
+   <Row>
     <Cell ss:Index="3" ss:StyleID="s467"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
     <Cell ss:Index="5" ss:StyleID="s467"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
    </Row>
-   <Row ss:Index="262">
+   <Row/>
+   <Row>
     <Cell ss:Index="2" ss:StyleID="s78"><Data ss:Type="String">股指期货投资收益</Data></Cell>
     <Cell ss:StyleID="s496"/>
     <Cell ss:StyleID="s361"/>
@@ -6410,7 +6558,8 @@
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">我们汇总与股指期货投资收益相关的业务的凭证如下，并与成交清算日报表的相关金额相核对：</Data></Cell>
    </Row>
-   <Row ss:Index="269">
+   <Row/>
+   <Row>
     <Cell ss:StyleID="s455"/>
     <Cell ss:StyleID="s349"/>
     <Cell ss:StyleID="s469"><Data ss:Type="String">U314</Data></Cell>
@@ -6466,7 +6615,12 @@
     <Cell ss:StyleID="s476"/>
     <Cell ss:StyleID="s476"/>
    </Row>
-   <Row ss:Index="281" ss:StyleID="s182">
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row ss:StyleID="s182">
     <Cell ss:StyleID="s436"/>
     <Cell ss:StyleID="s436"/>
     <Cell ss:StyleID="s437"/>
@@ -10573,11 +10727,11 @@
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s118">
     <Cell ss:StyleID="s255"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s247" ss:Formula="=SUM(R[-5]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s247" ss:Formula="=SUM(R[-6]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s243"/>
-    <Cell ss:StyleID="s247" ss:Formula="=SUM(R[-5]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s247" ss:Formula="=SUM(R[-6]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s270"/>
-    <Cell ss:StyleID="s247" ss:Formula="=SUM(R[-5]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s247" ss:Formula="=SUM(R[-6]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s118">
     <Cell ss:StyleID="s265"/>
@@ -11029,7 +11183,7 @@
     <Cell ss:StyleID="s117"/>
     <Cell ss:Index="15" ss:StyleID="s104"/>
    </Row>
-      <Row>
+   <Row>
     <Cell ss:StyleID="s181"/>
     <Cell ss:StyleID="s545"><Data ss:Type="String">交易费</Data></Cell>
     <Cell ss:StyleID="s107"><Data ss:Type="Number">${(U500.main.KM6407.fundTrade.S3.amountCurrent!0)?string('0.##')}</Data></Cell>
@@ -11161,9 +11315,9 @@
    <Row ss:Height="16.5">
     <Cell ss:StyleID="s126"><Data ss:Type="String">交易费用合计</Data></Cell>
     <Cell ss:StyleID="s545"/>
-    <Cell ss:StyleID="s127" ss:Formula="=R[-19]C+R[-13]C+R[-7]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s127" ss:Formula="=R[-19]C+R[-14]C+R[-7]C+R[-2]C"><Data ss:Type="Number"></Data></Cell> <!-- yury,20200901,U500公式引用bug修复,插入行时要注意列方向的公式要修改，插入列时注意行方向的公式要修改 -->
     <Cell ss:StyleID="s128"/>
-    <Cell ss:StyleID="s127" ss:Formula="=R[-19]C+R[-13]C+R[-7]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s127" ss:Formula="=R[-19]C+R[-14]C+R[-7]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s129"/>
     <Cell ss:StyleID="s130"/>
     <Cell ss:StyleID="s131"/>
@@ -11347,8 +11501,8 @@
     <Cell ss:StyleID="s139"/>
     <Cell ss:MergeDown="1" ss:StyleID="s143"><Data ss:Type="String">成交量金额合计</Data></Cell>
     <Cell ss:MergeDown="1" ss:StyleID="s143"><Data ss:Type="String">成交量数量合计</Data></Cell>
-    <Cell ss:MergeDown="1" ss:StyleID="s143"><Data ss:Type="String">卖出股票金额合计</Data></Cell>
-    <Cell ss:MergeAcross="4" ss:StyleID="s582"><Data ss:Type="String">费率</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s143"><Data ss:Type="String">印花税计缴基数</Data></Cell>
+    <Cell ss:MergeAcross="5" ss:StyleID="s582"><Data ss:Type="String">费率</Data></Cell>
     <Cell ss:MergeDown="1" ss:StyleID="s579"><Data ss:Type="String">印花税额</Data></Cell>
     <Cell ss:MergeDown="1" ss:StyleID="s579"><Data ss:Type="String">过户费额</Data></Cell>
     <Cell ss:StyleID="s144"><Data ss:Type="String">合计</Data></Cell>
@@ -11369,8 +11523,9 @@
     <Cell ss:StyleID="s143"><Data ss:Type="String">经手费率</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">证管费率</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="String">过户费率</Data></Cell>
-    <Cell ss:StyleID="s143"><Data ss:Type="String">经手费、证管费合计</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s145"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="String">交易费率</Data></Cell> <!-- yury，20201112，U500交易费用新增沪深港通 -->
+    <Cell ss:StyleID="s143"><Data ss:Type="String">经手费、证管费、交易费合计</Data></Cell>
+    <Cell ss:Index="13" ss:StyleID="s145"/>
     <Cell ss:StyleID="s145"/>
     <Cell ss:StyleID="s94"/>
     <Cell ss:StyleID="s104"/>
@@ -11390,6 +11545,7 @@
     <Cell ss:StyleID="s149"><Data ss:Type="String">E</Data></Cell>
     <Cell ss:StyleID="s149"><Data ss:Type="String">F</Data></Cell>
     <Cell ss:StyleID="s149"><Data ss:Type="String">G</Data></Cell>
+    <Cell ss:StyleID="s148"/>
     <Cell ss:StyleID="s147"><Data ss:Type="String">H=E+F</Data></Cell>
     <Cell ss:StyleID="s150"><Data ss:Type="String">I=C*D</Data></Cell>
     <Cell ss:StyleID="s150"><Data ss:Type="String">J=A*G</Data></Cell>
@@ -11406,7 +11562,7 @@
     <Cell ss:StyleID="s94"/>
    </Row>
    <Row ss:StyleID="s146">
-    <Cell ss:Index="2" ss:StyleID="s428"><Data ss:Type="String">U320</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s428"><Data ss:Type="String">U310</Data></Cell>
     <Cell ss:StyleID="s152"/>
     <Cell ss:Index="5" ss:StyleID="s153"><Data ss:Type="String">From 交易所</Data></Cell>
     <Cell ss:StyleID="s154"/>
@@ -11436,10 +11592,11 @@
     <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SH.brokerageRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SH.setRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SH.transferRate!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s141" ss:Formula="=RC[-3]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=RC[-6]*RC[-5]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=RC[-9]*RC[-3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=RC[-2]+RC[-1]+RC[-10]*RC[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SH.trxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141" ss:Formula="=RC[-4]+RC[-3]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-7]*RC[-6]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-10]*RC[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-2]+RC[-1]+RC[-11]*RC[-3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s140"/>
     <Cell ss:StyleID="s140"/>
     <Cell ss:StyleID="s104"/>
@@ -11457,10 +11614,56 @@
     <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SZ.brokerageRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SZ.setRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SZ.transferRate!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s141" ss:Formula="=RC[-3]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=RC[-6]*RC[-5]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=RC[-9]*RC[-3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=RC[-2]+RC[-1]+RC[-10]*RC[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SZ.trxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141" ss:Formula="=RC[-4]+RC[-3]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-7]*RC[-6]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-10]*RC[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-2]+RC[-1]+RC[-11]*RC[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"/>
+    <Cell ss:StyleID="s140"/>
+    <Cell ss:StyleID="s104"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   <!-- yury,20201112,U500交易费用测试或新股配售修改 -->
+   <Row ss:StyleID="s138">
+    <Cell ss:StyleID="s143"><Data ss:Type="String">沪港通</Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(U500.trxFee.SHH.trxAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(U500.trxFee.SHH.trxQuantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(U500.trxFee.SHH.amountStock!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SHH.stampRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SHH.brokerageRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SHH.setRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SHH.transferRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SHH.trxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141" ss:Formula="=RC[-4]+RC[-3]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-7]*RC[-6]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-10]*RC[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-2]+RC[-1]+RC[-11]*RC[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140"/>
+    <Cell ss:StyleID="s140"/>
+    <Cell ss:StyleID="s104"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   <Row ss:StyleID="s138">
+    <Cell ss:StyleID="s143"><Data ss:Type="String">深港通</Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(U500.trxFee.SZH.trxAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(U500.trxFee.SZH.trxQuantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s140"><Data ss:Type="Number">${(U500.trxFee.SZH.amountStock!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SZH.stampRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SZH.brokerageRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SZH.setRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SZH.transferRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="Number">${(U500.trxFee.SZH.trxRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s141" ss:Formula="=RC[-4]+RC[-3]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-7]*RC[-6]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-10]*RC[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s140" ss:Formula="=RC[-2]+RC[-1]+RC[-11]*RC[-3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s140"/>
     <Cell ss:StyleID="s140"/>
     <Cell ss:StyleID="s104"/>
@@ -11486,115 +11689,69 @@
     <Cell ss:StyleID="s78"/>
    </Row>
    <Row ss:StyleID="s138">
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s242"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s93"/>
-    <Cell ss:StyleID="s161"><Data ss:Type="String">小计</Data></Cell>
-    <Cell ss:StyleID="s162" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s163"/>
-    <Cell ss:StyleID="s163"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
+    <Cell ss:Index="12" ss:StyleID="s161"><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s162" ss:Formula="=SUM(R[-5]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s164">
     <Cell ss:Index="2" ss:StyleID="s552"/>
     <Cell ss:Index="5" ss:StyleID="s165"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s138"/>
-    <Cell ss:StyleID="s138"/>
-    <Cell ss:StyleID="s138"/>
-    <Cell ss:StyleID="s138"/>
-    <Cell ss:StyleID="s138"/>
-    <Cell ss:Index="15" ss:StyleID="s104"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
    </Row>
    <Row ss:StyleID="s164">
-    <Cell ss:StyleID="s138"/>
-    <Cell ss:StyleID="s552"/>
-    <Cell ss:Index="5" ss:StyleID="s165"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s138"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">佣金</Data></Cell>
+    <Cell ss:Index="11" ss:StyleID="s185"><Data ss:Type="String">佣金</Data></Cell>
     <Cell ss:StyleID="s167"><Data ss:Type="String">N500</Data></Cell>
     <Cell ss:StyleID="s163"><Data ss:Type="Number">${(U500.test.commission!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s138"/>
-    <Cell ss:Index="15" ss:StyleID="s104"/>
+   </Row>
+   <!-- yury,20200902,U500新增新股配售经纪佣金 -->
+   <Row>
     <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
+   </Row>
+   <Row ss:StyleID="s164">
+    <Cell ss:Index="11" ss:StyleID="s185"><Data ss:Type="String">新股配售经纪佣金</Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s163" ss:Formula="=R[8]C[-10]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:StyleID="s164">
     <Cell ss:Index="2" ss:StyleID="s552"/>
     <Cell ss:Index="5" ss:StyleID="s165"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s138"/>
-    <Cell ss:StyleID="s185"/>
    </Row>
+   <!-- yury,20200902,U500新增新股配售经纪佣金 -->
    <Row ss:Height="14.25" ss:StyleID="s138">
-    <Cell ss:Index="2" ss:StyleID="s168"/>
-    <Cell ss:Index="5" ss:StyleID="s165"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:StyleID="s166"/>
-    <Cell ss:Index="10" ss:StyleID="s186"><Data ss:Type="String">交易费用合计</Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s10091" ss:MergeAcross="6" ss:MergeDown="1"><Data ss:Type="String">根据《上海证券交易所科创板股票公开发行自律委员会促进科创板初期企业平稳发行行业倡导建议》：经充分评估承销商在发行承销工作中的收益和投入匹配性，建议对战略投资者和网下投资者收取的经纪佣金费率由承销商在0.08%至0.5%的区间内自主确定，推动形成行业惯例，避免恶性竞争。</Data></Cell>
+    <Cell ss:Index="11" ss:StyleID="s186"><Data ss:Type="String">交易费用合计</Data></Cell>
     <Cell ss:StyleID="s169"><Data ss:Type="String">Per EY</Data></Cell>
-    <Cell ss:StyleID="s184" ss:Formula="=R[-4]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s10093" ss:Formula="=R[-6]C+R[-4]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row ss:Height="14.25" ss:StyleID="s138">
-    <Cell ss:Index="2" ss:StyleID="s168"/>
-    <Cell ss:Index="5" ss:StyleID="s168"/>
-   </Row>
+   <Row ss:Height="14.25" ss:StyleID="s138"/>
    <Row ss:StyleID="s138">
-    <Cell ss:Index="2" ss:StyleID="s168"/>
-    <Cell ss:Index="5" ss:StyleID="s168"/>
-    <Cell ss:Index="11" ss:StyleID="s169"><Data ss:Type="String">Per Client</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s168" ><Data ss:Type="String">新股配售经纪佣金为支付承销商的佣金，未通过应付佣金科目计算，因此我们单独进行测试</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s169"><Data ss:Type="String">Per Client</Data></Cell>
     <Cell ss:StyleID="s140"><Data ss:Type="Number">${(U500.test.perClient!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row ss:StyleID="s138">
-    <Cell ss:Index="2" ss:StyleID="s168"/>
-    <Cell ss:Index="5" ss:StyleID="s172"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:Index="11" ss:StyleID="s143"><Data ss:Type="String">Diff.</Data></Cell>
-    <Cell ss:StyleID="s140" ss:Formula="=R[-3]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s168" ><Data ss:Type="String">经查看，本年公告发行结果的科创板新股中，除XXXX之外，其余新股的经纪佣金费率均为0.5%，因此我们以0.5%的新股配售经纪佣金费率进行测试。</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s143"><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell ss:StyleID="s163" ss:Formula="=R[-3]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s171"><Data ss:Type="String">m</Data></Cell>
    </Row>
    <Row ss:StyleID="s138">
-    <Cell ss:Index="2" ss:StyleID="s168"/>
-    <Cell ss:Index="5" ss:StyleID="s172"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:Index="11" ss:StyleID="s143"></Cell>
-    <Cell ss:StyleID="s263" ss:Formula="=IF(R[-31]C[-9]&lt;&gt;0,R[-1]C/R[-31]C[-9],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s168" ><Data ss:Type="String">科创板本期新股中签金额</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s140" ><Data ss:Type="Number">${(U500.iposubscribe.iposubscribeamount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="13" ss:StyleID="s263" ss:Formula="=IF(R[-35]C[-10]&lt;&gt;0,R[-1]C/R[-35]C[-10],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s171"><Data ss:Type="String">m</Data></Cell>
    </Row>
+   <Row ss:StyleID="s138">
+    <Cell ss:Index="2" ss:StyleID="s168" ><Data ss:Type="String">新股配售经纪佣金费率</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s122" ><Data ss:Type="Number">${U500.iposubscribe.commissionRate!0}</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s138">
+    <Cell ss:Index="2" ss:StyleID="s168" ><Data ss:Type="String">新股配售经纪佣金</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s163" ss:Formula="=R[-1]C*R[-2]C"><Data ss:Type="Number"></Data></Cell>
+   </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s168"><Data ss:Type="String">测试结果：本年发生的交易所交易费用是合理的。</Data></Cell>
-    <Cell ss:StyleID="s93"/>
+    <Cell ss:StyleID="s138"/>
+    <Cell ss:StyleID="s168"/>
+    <Cell ss:StyleID="s138"/>
     <Cell ss:StyleID="s138"/>
    </Row>
    <Row>
@@ -11604,8 +11761,9 @@
     <Cell ss:StyleID="s138"/>
    </Row>
    <Row>
-    <Cell ss:Index="3" ss:StyleID="s93"/>
-    <Cell ss:StyleID="s78"/>
+    <Cell ss:Index="2" ss:StyleID="s168"><Data ss:Type="String">测试结果：本年发生的交易所交易费用是合理的。</Data></Cell>
+    <Cell ss:StyleID="s93"/>
+    <Cell ss:StyleID="s138"/>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -12593,7 +12751,7 @@
     <Cell ss:Index="4" ss:StyleID="s76"/>
    </Row>
    <Row ss:Index="8">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.10 存款利息收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.11 存款利息收入</Data></Cell> <!-- yury，20200901，U10000修改标题序号，该sheet页下面所有标题序号都有修改-->
    </Row>
    <Row ss:Index="10">
     <Cell ss:Index="2" ss:StyleID="s195"><Data ss:Type="String">项目</Data></Cell>
@@ -12667,7 +12825,7 @@
    <Row/>
    <#if U10000.ETF != 'Y'>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.11 股票投资收益</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12 股票投资收益</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s195"><Data ss:Type="String">项目</Data></Cell>
@@ -12712,10 +12870,10 @@
    </Row>
    <#else>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.11 股票投资收益</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12 股票投资收益</Data></Cell>
    </Row>
-     <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.11.1 股票投资收益项目构成</Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12.1 股票投资收益项目构成</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s195"><Data ss:Type="String">项目</Data></Cell>
@@ -12748,10 +12906,18 @@
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.stocks.S3.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
+   <!-- yury,20200901,U10000新增证券出借业务-->
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="String">股票投资收益——证券出借差价收入</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.stocks.S35.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.stocks.S35.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203"/>
+   </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s206"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
@@ -12765,7 +12931,7 @@
     <Cell ss:StyleID="s208"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.11.2 股票投资收益——买卖股票差价收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12.2 股票投资收益——买卖股票差价收入</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s195"><Data ss:Type="String">项目</Data></Cell>
@@ -12809,7 +12975,7 @@
     <Cell ss:StyleID="s208"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.11.3 股票投资收益——赎回差价收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12.3 股票投资收益——赎回差价收入</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s195"><Data ss:Type="String">项目</Data></Cell>
@@ -12860,7 +13026,7 @@
     <Cell ss:StyleID="s208"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.11.4 股票投资收益——申购差价收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12.4 股票投资收益——申购差价收入</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s195"><Data ss:Type="String">项目</Data></Cell>
@@ -12917,9 +13083,61 @@
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
    </Row>
+   <!-- yury, 20200902, U10000新增7.4.7.12.5证券出借业务-->
+   <Row>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12.5 股票投资收益——证券出借差价收入</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s195"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:StyleID="s196"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
+    <Cell ss:StyleID="s196"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s93">
+    <Cell ss:Index="2" ss:StyleID="s197"/>
+    <Cell ss:StyleID="s198"/>
+    <Cell ss:StyleID="s198"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="String">出借证券现金清偿总额</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.stocks.S13.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.stocks.S13.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="String">减：出借证券成本总额</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.stocks.S14.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.stocks.S14.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="String">减：应收证券出借利息</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.stocks.S15.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.stocks.S15.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s203"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U310</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="String">证券出借差价收入</Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=R[-3]C-R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=R[-3]C-R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s203"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">control</Data></Cell>
+    <Cell ss:StyleID="s208"/>
+    <Cell ss:StyleID="s208"/>
+   </Row>
+   <Row ss:StyleID="s93">
+    <Cell ss:Index="2" ss:StyleID="s209"/>
+    <Cell ss:StyleID="s208"/>
+    <Cell ss:StyleID="s208"/>
+   </Row>
    </#if>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.12 基金投资收益</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.13 基金投资收益</Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
@@ -12970,7 +13188,7 @@
    </Row>
    <#if U10000.ETF != 'Y'>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.13 债券投资收益</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14 债券投资收益</Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
@@ -13022,13 +13240,13 @@
    <Row/>
    <#else>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.13 债券投资收益</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14 债券投资收益</Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
    </Row>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.13.1 债券投资收益项目构成</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14.1 债券投资收益项目构成</Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
@@ -13078,7 +13296,7 @@
    </Row>
    <Row/>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.13.2 债券投资收益——买卖债券差价收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14.2 债券投资收益——买卖债券差价收入</Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
@@ -13129,7 +13347,7 @@
    </Row>
    <Row/>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.13.3 债券投资收益——赎回差价收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14.3 债券投资收益——赎回差价收入</Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
@@ -13187,7 +13405,7 @@
    </Row>
    <Row/>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.13.4 债券投资收益——申购差价收入</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14.4 债券投资收益——申购差价收入</Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
@@ -13253,7 +13471,7 @@
    <Row/>
    </#if>
    <Row ss:StyleID="s93">
-    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14 资产支持证券投资收益</Data></Cell>
+    <Cell ss:StyleID="s194"><Data ss:Type="String">7.4.7.14.5 资产支持证券投资收益</Data></Cell>
     <Cell ss:StyleID="s209"/>
     <Cell ss:StyleID="s208"/>
     <Cell ss:StyleID="s208"/>
@@ -13647,6 +13865,13 @@
     <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.dividend.S1.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s201"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
+   <!--yury, 20200902, U10000股利收益新增证券出借业务 -->
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">U300</Data></Cell>
+    <Cell ss:StyleID="s199"><Data ss:Type="String">其中：证券出借权益补偿收入</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.dividend.S15.amountCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s213"><Data ss:Type="Number">${(U10000.dividend.S15.amountLast!0)?string('0.##')}</Data></Cell>
+   </Row>
    <Row>
     <Cell ss:StyleID="s75"><Data ss:Type="String">U300</Data></Cell>
     <Cell ss:StyleID="s199"><Data ss:Type="String">基金投资产生的股利收益</Data></Cell>
@@ -13656,8 +13881,8 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s199"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s213" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s216"/>
    </Row>
    <Row>

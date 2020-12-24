@@ -184,6 +184,7 @@ public class EExportService extends BaseExportService implements EExportManager{
         main.put("I60", this.computeE300DiscObject(temp, "应收买入返售证券利息"));
         main.put("I70", this.computeE300DiscObject(temp, "应收申购款利息"));
         main.put("I80", this.computeE300DiscObject(temp, "应收黄金合约拆借孳息"));
+        main.put("I85", this.computeE300DiscObject(temp, "应收出借证券利息")); // YURY，20200831，新增证券出借业务
         main.put("I90", this.computeE300DiscObject(temp, "其他"));
 
         result.put("main", main);
@@ -214,6 +215,7 @@ public class EExportService extends BaseExportService implements EExportManager{
         discList.add(this.computeE300DiscObject(temp, "应收买入返售证券利息"));
         discList.add(this.computeE300DiscObject(temp, "应收申购款利息"));
         discList.add(this.computeE300DiscObject(temp, "应收黄金合约拆借孳息"));
+        discList.add(this.computeE300DiscObject(temp, "应收出借证券利息")); // YURY，20200831，新增证券出借业务
         discList.add(this.computeE300DiscObject(temp, "其他"));
         
         disc.put("list", discList);

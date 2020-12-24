@@ -113,6 +113,9 @@ public class ReportContentService implements ReportContentManager{
 				pd.put("SF_ATTR3", map.get("SF_ATTR3"));
 				pd.put("SF_ATTR4", map.get("SF_ATTR4"));
 				pd.put("SF_ATTR5", map.get("SF_ATTR5"));
+				pd.put("LR", map.get("LR")); // yury,20201112,新增投资的长短期信用评级
+				pd.put("EPA", map.get("EPA")); // yury,20201112,新增投资的长短期信用评级
+				pd.put("PLR", map.get("PLR")); // yury,20201112,新增投资的长短期信用评级
 				pd.put("MR", map.get("MR"));
 				pd.put("IR", map.get("IR"));
 				pd.put("IR_EXP", map.get("IR_EXP"));

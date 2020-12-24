@@ -11582,7 +11582,8 @@
    <#if T11000.main.levelCount == 0>
    <Row>
     <Cell ss:StyleID="s227"/>
-    <Cell><Data ss:Type="String">截止至资产负债表日，本基金无需要披露的资产负债表日后事项</Data></Cell>
+    <!-- <Cell><Data ss:Type="String">截止至资产负债表日，本基金无需要披露的资产负债表日后事项</Data></Cell> -->
+    <Cell><Data ss:Type="String">截至财务报表批准日，本基金无需要披露的资产负债表日后事项。</Data></Cell> <!-- yury,20200901,T11000修改无日后事项时的文字段-->
     <Cell ss:StyleID="s75"/>
     <Cell ss:StyleID="s75"/>
     <Cell ss:StyleID="s75"/>

@@ -122,6 +122,12 @@ public class StockService implements StockManager{
 				pd.put("RESUMPTION_PRICE", map.get("RESUMPTION_PRICE"));
 				pd.put("NEW_FLAG", map.get("NEW_FLAG"));
 				pd.put("AFLOAT_DATE", map.get("AFLOAT_DATE"));
+				pd.put("INDUSTRY_NAME_CSRC", map.get("INDUSTRY_NAME_CSRC"));
+				pd.put("INDUSTRY_CODE_CSRC", map.get("INDUSTRY_CODE_CSRC"));
+				pd.put("INDUSTRY_NAME_HS", map.get("INDUSTRY_NAME_HS"));
+				pd.put("INDUSTRY_CODE_HS", map.get("INDUSTRY_CODE_HS"));
+				pd.put("INDUSTRY_NAME_GICS", map.get("INDUSTRY_NAME_GICS"));
+				pd.put("INDUSTRY_CODE_GICS", map.get("INDUSTRY_CODE_GICS"));
 				pd.put("ACTIVE", map.get("ACTIVE") == null ? "Y" : map.get("ACTIVE"));
 				pd.put("STATUS", map.get("STATUS"));
 				pds.add(pd);

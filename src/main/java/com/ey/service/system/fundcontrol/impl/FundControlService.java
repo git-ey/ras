@@ -98,6 +98,7 @@ public class FundControlService implements FundControlManager{
 				pd.put("STOCK_BS", map.get("STOCK_BS"));
 				pd.put("STOCK_R", map.get("STOCK_R"));
 				pd.put("STOCK_P", map.get("STOCK_P"));
+				pd.put("STOCK_L", map.get("STOCK_L")); // yury,20200910,新增报告7.4.7.12.5证券出借差价收入
 				pd.put("BOND_ALL", map.get("BOND_ALL"));
 				pd.put("BOND_BS", map.get("BOND_BS"));
 				pd.put("BOND_R", map.get("BOND_R"));
@@ -106,10 +107,20 @@ public class FundControlService implements FundControlManager{
 				pd.put("GOLD_BS", map.get("GOLD_BS"));
 				pd.put("GOLD_R", map.get("GOLD_R"));
 				pd.put("GOLD_P", map.get("GOLD_P"));
+				pd.put("SHORT_BOND_RATING", map.get("SHORT_BOND_RATING")); // yury,20201117,新增投资的长短期信用评级
+				pd.put("SHORT_ABS_RATING", map.get("SHORT_ABS_RATING")); // yury,20200910,新增投资的长短期信用评级
+				pd.put("SHORT_NCD_RATING", map.get("SHORT_NCD_RATING")); // yury,20200910,新增投资的长短期信用评级
+				pd.put("LONG_BOND_RATING", map.get("LONG_BOND_RATING")); // yury,20201117,新增投资的长短期信用评级
+				pd.put("LONG_ABS_RATING", map.get("LONG_ABS_RATING")); // yury,20201117,新增投资的长短期信用评级
+				pd.put("LONG_NCD_RATING", map.get("LONG_NCD_RATING")); // yury,20201117,新增投资的长短期信用评级
+				pd.put("EXPIRE_PERIOD_ANALYSIS", map.get("EXPIRE_PERIOD_ANALYSIS")); // yury,20201117,新增投资的长短期信用评级
+				pd.put("PORTFOLIO_LIQUID_RISK", map.get("PORTFOLIO_LIQUID_RISK")); // yury,20201117,新增投资的长短期信用评级
 				pd.put("RISK_LOC", map.get("RISK_LOC"));
 				pd.put("RISK_S_INT", map.get("RISK_S_INT"));
 				pd.put("RISK_S_PRICE", map.get("RISK_S_PRICE"));
 				pd.put("RISK_E_PRICE", map.get("RISK_E_PRICE"));
+				pd.put("RISK_E_FOREIGN_EXCHANGE", map.get("RISK_E_FOREIGN_EXCHANGE")); // yury,20200910,新增外汇风险敞口及敏感性分析
+				pd.put("RISK_S_FOREIGN_EXCHANGE", map.get("RISK_S_FOREIGN_EXCHANGE")); // yury,20200910,新增外汇风险敞口及敏感性分析
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pds.add(pd);
 				idx++;

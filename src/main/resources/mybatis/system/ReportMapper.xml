@@ -248,6 +248,19 @@
         AND wb.PERIOD = #{period}
     </select>
     
+    <!-- BS表注释文字段数据 -->
+    <!-- yury,20200907,新增资产负债表下注释 -->
+    <select id = "selectBsNote" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        WBN.DESCRIPTION AS description
+        FROM SYS_FUND_INFO SFI, WP_BS_NOTE WBN
+        WHERE SFI.FUND_ID = WBN.FUND_ID
+		AND WBN.fund_id = #{fundId}
+        AND WBN.PERIOD = #{period}
+        AND SFI.ACTIVE = 'Y'
+        ORDER BY WBN.SEQ;
+    </select>
+
     <!-- PL数据 -->
     <!-- daigaokuo@hotmail.com -->
     <!-- 2017-12-20 -->
@@ -267,12 +280,14 @@
     <!-- fundControl数据 -->
     <!-- daigaokuo@hotmail.com -->
     <!-- 2017-12-31 -->
+	<!-- yury，20200909，新增外汇风险敞口及敏感性分析 -->
     <select id="selectFundControlData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 			IFNULL(sfc.STOCK_ALL, 'N') AS stockAll,
 			IFNULL(sfc.STOCK_BS, 'N') AS stockBs,
 			IFNULL(sfc.STOCK_R, 'N') AS stockR,
 			IFNULL(sfc.STOCK_P, 'N') AS stockP,
+			IFNULL(sfc.STOCK_L, 'N') AS stockL,
 			IFNULL(sfc.BOND_ALL, 'N') AS bondAll,
 			IFNULL(sfc.BOND_BS, 'N') AS bondBs,
 			IFNULL(sfc.BOND_R, 'N') AS bondR,
@@ -281,9 +296,19 @@
 			IFNULL(sfc.GOLD_BS, 'N') AS goldBs,
 			IFNULL(sfc.GOLD_R, 'N') AS goldR,
 			IFNULL(sfc.GOLD_P, 'N') AS goldP,
+			IFNULL(sfc.SHORT_BOND_RATING, 'N') AS shortbondrating,
+			IFNULL(sfc.SHORT_ABS_RATING, 'N') AS shortabsrating,
+			IFNULL(sfc.SHORT_NCD_RATING, 'N') AS shortncdrating,
+			IFNULL(sfc.LONG_BOND_RATING, 'N') AS longbondrating,
+			IFNULL(sfc.LONG_ABS_RATING, 'N') AS longabsrating,
+			IFNULL(sfc.LONG_NCD_RATING, 'N') AS longncdrating,
+			IFNULL(sfc.EXPIRE_PERIOD_ANALYSIS, 'N') AS EXPIRE_PERIOD_ANALYSIS,
+			IFNULL(sfc.PORTFOLIO_LIQUID_RISK, 'N') AS PORTFOLIO_LIQUID_RISK,
 			IFNULL(sfc.RISK_S_INT, 'N') AS riskSInt,
 			IFNULL(sfc.RISK_S_PRICE, 'N') AS riskSPrice,
 			IFNULL(sfc.RISK_E_PRICE, 'N') AS riskEPrice,
+            IFNULL(sfc.RISK_E_FOREIGN_EXCHANGE, 'N') AS riskEForeignExchange,
+            IFNULL(sfc.RISK_S_FOREIGN_EXCHANGE, 'N') AS riskSForeignExchange,
 			IFNULL(sfc.RISK_LOC, 'N') AS riskLoc
 		FROM
 		    sys_fund_control sfc 
@@ -318,6 +343,9 @@
             IFNULL( src.SF_ATTR3, '' ) AS SF_ATTR3,
             IFNULL( src.SF_ATTR4, '' ) AS SF_ATTR4,
             IFNULL( src.SF_ATTR5, '' ) AS SF_ATTR5,
+            IFNULL( src.LR, '' ) AS LR,<!-- yury,20201119,V200按自定义形式披露信用风险评级 -->
+            IFNULL( src.EPA, '' ) AS EPA,<!-- yury,20201119,V200按自定义形式披露信用风险评级 -->
+            IFNULL( src.PLR, '' ) AS PLR,<!-- yury,20201119,V200按自定义形式披露信用风险评级 -->
             IFNULL( src.IR_ATTR1, '' ) AS IR_ATTR1,
             IFNULL( src.IR_UP, '' ) AS IR_UP,
             IFNULL( src.IR_DOWN, '' ) AS IR_DOWN,

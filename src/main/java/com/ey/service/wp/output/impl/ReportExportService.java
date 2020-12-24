@@ -125,7 +125,19 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> reportContent = (Map<String,Object>)this.dao.findForObject("ReportMapper.selectReportContentData", queryMap);
         if(reportContent == null) {
-            reportContent = new HashMap<>(); 
+            reportContent = new HashMap<>();
+        }
+        String temp = (String)reportContent.get("LR");
+        if (temp != null){
+            reportContent.put("LR", temp.split("\n"));
+        }
+        temp = (String)reportContent.get("EPA");
+        if (temp != null){
+            reportContent.put("EPA", temp.split("\n"));
+        }
+        temp = (String)reportContent.get("PLR");
+        if (temp != null){
+            reportContent.put("PLR", temp.split("\n"));
         }
         
         exportParam.put("reportExtendInfo", reportExtendInfo);
@@ -364,7 +376,20 @@ public class ReportExportService implements ReportExportManager {
         BS.put("SUM3", SUM3);
         BS.put("SUM4", SUM4);
         //====================↑BS↑====================
-        
+
+        //====================↓BS表注释文字段↓====================
+        // yury,20200907,新增资产负债表下注释
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> bsNoteList = (List<Map<String, Object>>)this.dao.findForList("ReportMapper.selectBsNote", queryParam);
+        if (bsNoteList == null){
+            bsNoteList = new ArrayList<>();
+        }
+        int count = bsNoteList.size();
+        Map<String, Object> BSNote = new HashMap<String, Object>();
+        BSNote.put("count", count);
+        BSNote.put("list", bsNoteList);
+        //====================↑BS表注释文字段↑====================
+
         //====================↓PL↓====================
         Map<String,Object> PL = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -547,6 +572,7 @@ public class ReportExportService implements ReportExportManager {
         //====================↑T500↑====================
         
         P1.put("BS", BS);
+        P1.put("BSNote", BSNote);
         P1.put("PL", PL);
         P1.put("T500", T500);
         exportParam.put("P1", P1);
@@ -1018,7 +1044,21 @@ public class ReportExportService implements ReportExportManager {
         T10000.put("levels", levels1);
         T10000.put("levelCount", levels1.size());
         //====================↑T10000↑====================
-        
+
+        //====================↓T10000_Note↓====================
+        // yury,20200907,新增实收基金下注释
+        Map<String, Object> T10000Note = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> t10000NoteList = (List<Map<String, Object>>)this.dao.findForList("TExportMapper.selectT10000Note", queryParam);
+        if (t10000NoteList == null){
+            t10000NoteList = new ArrayList<>();
+        }
+        int count = t10000NoteList.size();
+        T10000Note.put("count", count);
+        T10000Note.put("list", t10000NoteList);
+        T10000.put("T10000Note", T10000Note);
+        //====================↑T10000_Note↑====================
+
         //====================↓T11000↓====================
         Map<String, Object> T11000 = new HashMap<>();
         //--------------------↓T11000.P4104↓--------------------
@@ -1093,6 +1133,7 @@ public class ReportExportService implements ReportExportManager {
         Map<String, Object> STOCKS = new HashMap<>();
         Map<String, Object> STOCKS_R = new HashMap<>();
         Map<String, Object> STOCKS_P = new HashMap<>();
+        Map<String, Object> STOCKS_L = new HashMap<>(); // yury，20200907，新增报告7.4.7.12.5证券出借差价收入
         Map<String, Object> FUND = new HashMap<>();
         Map<String, Object> BOND_BS = new HashMap<>();
         Map<String, Object> BOND = new HashMap<>();
@@ -1146,6 +1187,14 @@ public class ReportExportService implements ReportExportManager {
         if(U10000StocksPDataList == null) {
             U10000StocksPDataList = new ArrayList<>(); 
         }
+        // yury，20200907，新增报告7.4.7.12.5证券出借差价收入
+        queryParam.put("type", "STOCKS_L");
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> U10000StocksLDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
+        if(U10000StocksLDataList == null) {
+            U10000StocksLDataList = new ArrayList<>();
+        }
+
         queryParam.put("type", "FUND");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000FUNDDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
@@ -1248,7 +1297,11 @@ public class ReportExportService implements ReportExportManager {
         
         STOCKS_P.put("list", U10000StocksPDataList);
         STOCKS_P.put("count", U10000StocksPDataList.size());
-        
+
+        //yury，20200907，新增报告7.4.7.12.5证券出借差价收入
+        STOCKS_L.put("list", U10000StocksLDataList);
+        STOCKS_L.put("count", U10000StocksLDataList.size());
+
         FUND.put("list", U10000FUNDDataList);
         FUND.put("count", U10000FUNDDataList.size());
         
@@ -1289,6 +1342,7 @@ public class ReportExportService implements ReportExportManager {
         importData.put("STOCKS", STOCKS);
         importData.put("STOCKS_R", STOCKS_R);
         importData.put("STOCKS_P", STOCKS_P);
+        importData.put("STOCKS_L", STOCKS_L); // yury，20200907，新增报告7.4.7.12.5证券出借差价收入
         importData.put("FUND", FUND);
         importData.put("BOND_BS", BOND_BS);
         importData.put("BOND", BOND);
@@ -1465,8 +1519,24 @@ public class ReportExportService implements ReportExportManager {
         }
         main.put("levels", levels);
         main.put("levelCount", levels.size());
+
         //--------------------↑T11000.main↑--------------------
         T11000.put("main", main);
+
+
+        //--------------------↓T11000Words↓--------------------
+        // yury，20200908，新增日后事项文字段
+        Map<String, Object> T11000Words = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> T11000WordsList = (List<Map<String, Object>>)this.dao.findForList("TExportMapper.selectT11000Words", queryParam);
+        if (T11000WordsList == null){
+            T11000WordsList = new ArrayList<>();
+        }
+        T11000Words.put("count", T11000WordsList.size());
+        T11000Words.put("list", T11000WordsList);
+        T11000.put("T11000Words", T11000Words);
+        //--------------------↑T11000Words↑--------------------
+
         //====================↑T11000↑====================
         
         result.put("T11000", T11000);
@@ -2076,6 +2146,127 @@ public class ReportExportService implements ReportExportManager {
         String PeriodLast = (Integer.parseInt(Period.substring(0, 4)) - 1) + "1231";
         Map<String, Object> queryParamLast = this.createBaseQueryMap(FundId, PeriodLast);
         
+        // yury,20201112,V200按自定义形式披露信用风险评级
+        //====================↓V200↓====================
+        Map<String,Object> V200 = new HashMap<>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V200CreditRiskRating = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV200CreditRiskRating", queryParam);
+        if(V200CreditRiskRating == null) {
+            V200CreditRiskRating = new ArrayList<>(); 
+        }
+        List<Map<String,Object>> ShortBondRatingList = new ArrayList<>(); 
+        List<Map<String,Object>> ShortABSRatingList = new ArrayList<>(); 
+        List<Map<String,Object>> ShortNCDRatingList = new ArrayList<>(); 
+        List<Map<String,Object>> LongBondRatingList = new ArrayList<>(); 
+        List<Map<String,Object>> LongABSRatingList = new ArrayList<>(); 
+        List<Map<String,Object>> LongNCDRatingList = new ArrayList<>(); 
+        Double ShortBondRatingSumCurrent = 0d;
+        Double ShortABSRatingSumCurrent = 0d;
+        Double ShortNCDRatingSumCurrent = 0d;
+        Double LongBondRatingSumCurrent = 0d;
+        Double LongABSRatingSumCurrent = 0d;
+        Double LongNCDRatingSumCurrent = 0d;
+        Double ShortBondRatingSumLast = 0d;
+        Double ShortABSRatingSumLast = 0d;
+        Double ShortNCDRatingSumLast = 0d;
+        Double LongBondRatingSumLast = 0d;
+        Double LongABSRatingSumLast = 0d;
+        Double LongNCDRatingSumLast = 0d;
+        for (Map<String, Object> map: V200CreditRiskRating){
+            if (((String)map.get("invest_type")).contains("债券") && "短期".equals((String)map.get("duration"))){
+                ShortBondRatingList.add(map);
+                ShortBondRatingSumCurrent += ((BigDecimal)map.get("amount")).doubleValue();
+                ShortBondRatingSumLast += ((BigDecimal)map.get("amount_last")).doubleValue();
+            }else if (((String)map.get("invest_type")).contains("资产支持证券") && "短期".equals((String)map.get("duration"))){
+                ShortABSRatingList.add(map);
+                ShortABSRatingSumCurrent += ((BigDecimal)map.get("amount")).doubleValue();
+                ShortABSRatingSumLast += ((BigDecimal)map.get("amount_last")).doubleValue();
+            }else if (((String)map.get("invest_type")).contains("同业存单") && "短期".equals((String)map.get("duration"))){
+                ShortNCDRatingList.add(map);
+                ShortNCDRatingSumCurrent += ((BigDecimal)map.get("amount")).doubleValue();
+                ShortNCDRatingSumLast += ((BigDecimal)map.get("amount_last")).doubleValue();
+            }else if (((String)map.get("invest_type")).contains("债券") && "长期".equals((String)map.get("duration"))){
+                LongBondRatingList.add(map);
+                LongBondRatingSumCurrent += ((BigDecimal)map.get("amount")).doubleValue();
+                LongBondRatingSumLast += ((BigDecimal)map.get("amount_last")).doubleValue();
+            }else if (((String)map.get("invest_type")).contains("资产支持证券") && "长期".equals((String)map.get("duration"))){
+                LongABSRatingList.add(map);
+                LongABSRatingSumCurrent += ((BigDecimal)map.get("amount")).doubleValue();
+                LongABSRatingSumLast += ((BigDecimal)map.get("amount_last")).doubleValue();
+            }else if (((String)map.get("invest_type")).contains("同业存单") && "长期".equals((String)map.get("duration"))){
+                LongNCDRatingList.add(map);
+                LongNCDRatingSumCurrent += ((BigDecimal)map.get("amount")).doubleValue();
+                LongNCDRatingSumLast += ((BigDecimal)map.get("amount_last")).doubleValue();
+            }
+        }
+        V200.put("ShortBondRatingList", ShortBondRatingList);
+        V200.put("ShortABSRatingList", ShortABSRatingList);
+        V200.put("ShortNCDRatingList", ShortNCDRatingList);
+        V200.put("LongBondRatingList", LongBondRatingList);
+        V200.put("LongABSRatingList", LongABSRatingList);
+        V200.put("LongNCDRatingList", LongNCDRatingList);
+
+        V200.put("ShortBondRatingCount", ShortBondRatingList.size());
+        V200.put("ShortABSRatingCount", ShortABSRatingList.size());
+        V200.put("ShortNCDRatingCount", ShortNCDRatingList.size());
+        V200.put("LongBondRatingCount", LongBondRatingList.size());
+        V200.put("LongABSRatingCount", LongABSRatingList.size());
+        V200.put("LongNCDRatingCount", LongNCDRatingList.size());
+
+        V200.put("ShortBondRatingSumCurrent", ShortBondRatingSumCurrent);
+        V200.put("ShortABSRatingSumCurrent", ShortABSRatingSumCurrent);
+        V200.put("ShortNCDRatingSumCurrent", ShortNCDRatingSumCurrent);
+        V200.put("LongBondRatingSumCurrent", LongBondRatingSumCurrent);
+        V200.put("LongABSRatingSumCurrent", LongABSRatingSumCurrent);
+        V200.put("LongNCDRatingSumCurrent", LongNCDRatingSumCurrent);
+        V200.put("ShortBondRatingSumLast", ShortBondRatingSumLast);
+        V200.put("ShortABSRatingSumLast", ShortABSRatingSumLast);
+        V200.put("ShortNCDRatingSumLast", ShortNCDRatingSumLast);
+        V200.put("LongBondRatingSumLast", LongBondRatingSumLast);
+        V200.put("LongABSRatingSumLast", LongABSRatingSumLast);
+        V200.put("LongNCDRatingSumLast", LongNCDRatingSumLast);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V200CreditRiskNote = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV200CreditRiskNote", queryParamLast);
+        if(V200CreditRiskNote == null) {
+            V200CreditRiskNote = new ArrayList<>();
+        }
+        Map<String,Object> ShortBondNote = new HashMap<>(); 
+        Map<String,Object> ShortABSNote = new HashMap<>(); 
+        Map<String,Object> ShortNCDNote = new HashMap<>(); 
+        Map<String,Object> LongBondNote = new HashMap<>(); 
+        Map<String,Object> LongABSNote = new HashMap<>(); 
+        Map<String,Object> LongNCDNote = new HashMap<>();
+        ShortBondNote.put("note", "");
+        ShortABSNote.put("note", "");
+        ShortNCDNote.put("note", "");
+        LongBondNote.put("note", "");
+        LongABSNote.put("note", "");
+        LongNCDNote.put("note", "");
+        for (Map<String, Object> map: V200CreditRiskNote){
+            if (((String)map.get("invest_type")).contains("债券") && "短期".equals((String)map.get("duration"))){
+                ShortBondNote = map;
+            }else if (((String)map.get("invest_type")).contains("资产支持证券") && "短期".equals((String)map.get("duration"))){
+                ShortABSNote = map;
+            }else if (((String)map.get("invest_type")).contains("同业存单") && "短期".equals((String)map.get("duration"))){
+                ShortNCDNote = map;
+            }else if (((String)map.get("invest_type")).contains("债券") && "长期".equals((String)map.get("duration"))){
+                LongBondNote = map;
+            }else if (((String)map.get("invest_type")).contains("资产支持证券") && "长期".equals((String)map.get("duration"))){
+                LongABSNote = map;
+            }else if (((String)map.get("invest_type")).contains("同业存单") && "长期".equals((String)map.get("duration"))){
+                LongNCDNote = map;
+            }
+        }
+        V200.put("ShortBondNote", ShortBondNote);
+        V200.put("ShortABSNote", ShortABSNote);
+        V200.put("ShortNCDNote", ShortNCDNote);
+        V200.put("LongBondNote", LongBondNote);
+        V200.put("LongABSNote", LongABSNote);
+        V200.put("LongNCDNote", LongNCDNote);
+
+        //====================↑V200↑====================
+
         //====================↓V300↓====================
         Map<String,Object> V300 = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -2802,8 +2993,88 @@ public class ReportExportService implements ReportExportManager {
         V500.put("summaryCurrent", summaryCurrent2);
         V500.put("summaryLast", summaryLast2);
         //====================↑V500↑====================        
+
+        //====================↓V600↓====================
+        // yury，20200909，新增外汇风险敞口及敏感性分析
+        Map<String, Object> V600 = new HashMap<>();
+
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> V600ExposureCurrentList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600ExposureData", queryParam);
+        if (V600ExposureCurrentList == null){
+            V600ExposureCurrentList = new ArrayList<>();
+        }
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> V600ExposureLastList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600ExposureData", queryParamLast);
+        if (V600ExposureLastList == null){
+            V600ExposureLastList = new ArrayList<>();
+        }
+        V600.put("Currentcount", V600ExposureCurrentList.size());
+        V600.put("Currentlist", V600ExposureCurrentList);
+
+        V600.put("Lastcount", V600ExposureLastList.size());
+        V600.put("Lastlist", V600ExposureLastList);
+
+        float Currentinfluence = 0;
+        if (V600ExposureCurrentList != null){
+            for (Map<String, Object> o: V600ExposureCurrentList){
+                if (((String) o.get("item")).equals("资产负债表外汇风险敞口净额")){
+                    Currentinfluence = ((BigDecimal) o.get("amount_hk")).floatValue();
+                    break;
+                }
+            }
+        }
+        float Lastinfluence = 0;
+        if (V600ExposureLastList != null){
+            for (Map<String, Object> o: V600ExposureLastList){
+                if (((String) o.get("item")).equals("资产负债表外汇风险敞口净额")){
+                    Lastinfluence = ((BigDecimal) o.get("amount_hk")).floatValue();
+                    break;
+                }
+            }
+        }
+
+        V600.put("Currentinfluence", Currentinfluence);
+        V600.put("Lastinfluence", Lastinfluence);
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V600HypothesisDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600HypothesisDataForReport", queryParam);
+        if(V600HypothesisDataList == null) {
+            V600HypothesisDataList = new ArrayList<>();
+        }
+        V600.put("hypothesis", V600HypothesisDataList);
+        V600.put("hypothesisCount", V600HypothesisDataList.size());
+
+        // yury，20201119，v600新增敏感性风险变量导入
+        List<Map<String,Object>> V600TestList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600Test", queryParam);
+        if(V600TestList == null) {
+            V600TestList = new ArrayList<>();
+        }
+        Map<String, Object> V600TestUP = new HashMap<>();
+        Map<String, Object> V600TestDOWN = new HashMap<>();
+        V600TestUP.put("infl_words", "");
+        V600TestUP.put("infl_amount", 0);
+        V600TestUP.put("infl_amount_last", 0);
+        V600TestDOWN.put("infl_words", "");
+        V600TestDOWN.put("infl_amount", 0);
+        V600TestDOWN.put("infl_amount_last", 0);
+
+        for (Map<String, Object> map: V600TestList){
+            if ((Integer)map.get("seq") == 10){
+                V600TestUP.put("infl_words", (String)map.get("infl_words"));
+                V600TestUP.put("infl_amount", (BigDecimal)map.get("infl_amount"));
+                V600TestUP.put("infl_amount_last", (BigDecimal)map.get("infl_amount_last"));
+            }else if ((Integer)map.get("seq") == 20){
+                V600TestDOWN.put("infl_words", (String)map.get("infl_words"));
+                V600TestDOWN.put("infl_amount", (BigDecimal)map.get("infl_amount"));
+                V600TestDOWN.put("infl_amount_last", (BigDecimal)map.get("infl_amount_last"));
+            }
+        }
+        V600.put("V600TestUP", V600TestUP);
+        V600.put("V600TestDOWN", V600TestDOWN);
         
-        //====================↓H10000↓====================   
+        //====================↑V600↑====================
+
+        //====================↓H10000↓====================
         Map<String,Object> H10000 = new HashMap<>();
         Map<String,Object> threeLevel = new HashMap<>();
         
@@ -2823,9 +3094,11 @@ public class ReportExportService implements ReportExportManager {
         H10000.put("threeLevel", threeLevel);
         //====================↑H10000↑====================        
         
+        P5.put("V200", V200); // yury,20201112,新增投资的长短期信用评级
         P5.put("V300", V300);
         P5.put("V400", V400);
         P5.put("V500", V500);
+        P5.put("V600", V600); // yury，20200909，新增外汇风险敞口及敏感性分析
         P5.put("H10000", H10000);
         exportParam.put("P5", P5);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P5")));

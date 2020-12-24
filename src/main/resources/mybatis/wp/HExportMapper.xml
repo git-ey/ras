@@ -626,6 +626,60 @@
             H11000A.`CODE`
     </select>
     
+    <!--  yury, 20200831, H11000拆分流通受限股票和债券 -->
+    <select id="selectH11000AdditianDataStock" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000A.TYPE AS type,
+		    H11000A.`CODE` AS `code`,
+		    H11000A.`NAME` AS `name`,
+		    DATE_FORMAT( H11000A.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
+		    DATE_FORMAT( H11000A.LIFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS liftingDate,
+		    H11000A.RESTRICT_TYPE AS restrictType,
+		    H11000A.SUBSCRIBE_PRICE AS subscribePrice,
+		    H11000A.UNIT_PRICE AS unitPrice,
+		    H11000A.QUANTITY AS quantity,
+		    H11000A.TOTAL_COST AS totalCost,
+		    H11000A.MKT_VALUE_CLIENT AS mktValueClient,
+		    IF(H11000A.RESTRICT_TYPE LIKE '%转增%' OR H11000A.RESTRICT_TYPE LIKE '%分红%', '注', null) remark
+		FROM
+		    wp_h11000_additian H11000A
+		WHERE
+            1 = 1
+        AND H11000A.STATUS = 'Y'
+        AND H11000A.FUND_ID = #{fundId}
+        AND H11000A.PERIOD = #{period}
+        AND H11000A.TYPE = '股票'
+        ORDER BY
+            H11000A.`CODE`
+    </select>
+
+    <!--  yury, 20200831, H11000拆分流通受限股票和债券 -->
+    <select id="selectH11000AdditianDataBond" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000A.TYPE AS type,
+		    H11000A.`CODE` AS `code`,
+		    H11000A.`NAME` AS `name`,
+		    DATE_FORMAT( H11000A.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
+		    DATE_FORMAT( H11000A.LIFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS liftingDate,
+		    H11000A.RESTRICT_TYPE AS restrictType,
+		    H11000A.SUBSCRIBE_PRICE AS subscribePrice,
+		    H11000A.UNIT_PRICE AS unitPrice,
+		    H11000A.QUANTITY AS quantity,
+		    H11000A.TOTAL_COST AS totalCost,
+		    H11000A.MKT_VALUE_CLIENT AS mktValueClient,
+		    IF(H11000A.RESTRICT_TYPE LIKE '%转增%' OR H11000A.RESTRICT_TYPE LIKE '%分红%', '注', null) remark
+		FROM
+		    wp_h11000_additian H11000A
+		WHERE
+            1 = 1
+        AND H11000A.STATUS = 'Y'
+        AND H11000A.FUND_ID = #{fundId}
+        AND H11000A.PERIOD = #{period}
+        AND H11000A.TYPE = '债券'
+        ORDER BY
+            H11000A.`CODE`
+    </select>
+
     <select id="selectH11000AdditianDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             H11000A.TYPE AS type,
@@ -716,6 +770,7 @@
             H11000SI.BOND_CODE
     </select>
     
+    <!-- yury, 20200618, 修改排序逻辑 -->
     <select id="selectH11000SaleInDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             H11000SI.BOND_CODE AS bondCode,
@@ -732,7 +787,7 @@
         AND H11000SI.FUND_ID = #{fundId}
         AND H11000SI.PERIOD = #{period}
         ORDER BY 
-            H11000SI.BOND_CODE
+            H11000SI.RETURN_DAY, H11000SI.BOND_CODE
     </select>
     
     <select id="selectH11000SaleInSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">

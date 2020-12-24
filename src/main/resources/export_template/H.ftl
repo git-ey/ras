@@ -3497,7 +3497,9 @@
    </Row>
    <Row>
     <Cell><Data ss:Type="String">资产支持证券</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s141"/>
+    <!-- <Cell ss:Index="3" ss:StyleID="s141"/> -->
+    <!-- 20200831.yury.新增H500 -->
+    <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="String">H500</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H500!R[-4]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H500!R[-4]C[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -4656,7 +4658,7 @@
     <Cell ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s76"/>
     <Cell ss:Index="8" ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
-    <Cell ss:Index="14" ss:StyleID="s75"><Data ss:Type="String">E300</Data></Cell>
+    <Cell ss:Index="14" ss:StyleID="s75"><Data ss:Type="String">&lt;E300&gt;</Data></Cell> <!-- yury，20200831，H500加入尖括号 -->
     <Cell ss:Index="16" ss:StyleID="s75"><Data ss:Type="String">H20</Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">Per EY</Data></Cell>
     <Cell ss:StyleID="s76"/>
@@ -5634,7 +5636,7 @@
     <Cell ss:StyleID="s60"/>
     <Cell ss:Index="6" ss:StyleID="s76"/>
     <Cell ss:Index="14" ss:StyleID="s119"><Data ss:Type="String">Per EY</Data></Cell>
-    <Cell ss:StyleID="s110"><Data ss:Type="String">E300</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;E300&gt;</Data></Cell> <!-- yury,20200831,H800加入尖括号-->
    </Row>
    <#if H800.interestTest.count != 0>
    <#list H800.interestTest.list as item>
@@ -6921,7 +6923,7 @@
     <Cell ss:StyleID="s299"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">7..4.12 期末本基金持有的流通受限证券</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12 期末本基金持有的流通受限证券</Data></Cell> <!-- yury,20200831,去掉多余的一个点-->
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
@@ -6959,8 +6961,9 @@
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
    </Row>
+   <!-- 7.4.12.1.1 受限证券类别：股票-->
    <Row>
-    <Cell ss:StyleID="s306"/>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.1.1 受限证券类别：股票</Data></Cell> <!-- yury,20200831,H11000拆分流通受限股票和债券-->
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
@@ -6998,11 +7001,11 @@
    </Row>
    <Row ss:StyleID="s214">
     <Cell ss:StyleID="s307"/>
-    <Cell ss:StyleID="s212"><Data ss:Type="String">H400/H500</Data></Cell>
+    <Cell ss:StyleID="s212"><Data ss:Type="String">H400</Data></Cell>
     <Cell ss:StyleID="s308"/>
     <Cell ss:StyleID="s212"><Data ss:Type="String">H10</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">H10</Data></Cell>
-    <Cell ss:StyleID="s212"><Data ss:Type="String">H400/H500</Data></Cell>
+    <Cell ss:StyleID="s212"><Data ss:Type="String">H400</Data></Cell>
     <Cell ss:StyleID="s308"/>
     <Cell ss:StyleID="s308"/>
     <Cell ss:StyleID="s308"/>
@@ -7010,52 +7013,169 @@
     <Cell ss:StyleID="s308"/>
     <Cell ss:StyleID="s213"/>
    </Row>
-   <#list H11000.additian.list as item>
-   <#if item.code??>
-   <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">${item.type!}</Data></Cell>
-    <Cell ss:StyleID="s215"><Data ss:Type="String">${item.code!}</Data></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">${item.name!}</Data></Cell>
-    <Cell ss:StyleID="s243"><#if item.subscribeDate??><Data ss:Type="DateTime">${item.subscribeDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s243"><#if item.liftingDate??><Data ss:Type="DateTime">${item.liftingDate!}</Data></#if></Cell>
-    <Cell ss:StyleID="s74"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.subscribePrice!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s278"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s168"><Data ss:Type="String">${item.remark!}</Data></Cell>
-   </Row>
+   <#if H11000.additian.stockcount != 0>
+    <#list H11000.additian.stocklist as item>
+      <#if item.code??>
+      <Row>
+        <Cell ss:StyleID="s213"><Data ss:Type="String">${item.type!}</Data></Cell>
+        <Cell ss:StyleID="s215"><Data ss:Type="String">${item.code!}</Data></Cell>
+        <Cell ss:StyleID="s74"><Data ss:Type="String">${item.name!}</Data></Cell>
+        <Cell ss:StyleID="s243"><#if item.subscribeDate??><Data ss:Type="DateTime">${item.subscribeDate!}</Data></#if></Cell>
+        <Cell ss:StyleID="s243"><#if item.liftingDate??><Data ss:Type="DateTime">${item.liftingDate!}</Data></#if></Cell>
+        <Cell ss:StyleID="s74"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
+        <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.subscribePrice!0)?string('0.##')}</Data></Cell>
+        <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
+        <Cell ss:StyleID="s278"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+        <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+        <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
+        <Cell ss:StyleID="s168"><Data ss:Type="String">${item.remark!}</Data></Cell>
+      </Row>
+      <#else>
+      <Row>
+        <Cell ss:StyleID="s213"><Data ss:Type="String">${item.type!}</Data></Cell>
+        <Cell ss:StyleID="s198"><Data ss:Type="String">无</Data></Cell>
+        <Cell ss:StyleID="s310"/>
+        <Cell ss:StyleID="s310"/>
+        <Cell ss:StyleID="s310"/>
+        <Cell ss:StyleID="s310"/>
+        <Cell ss:StyleID="s311"/>
+        <Cell ss:StyleID="s311"/>
+        <Cell ss:StyleID="s278"/>
+        <Cell ss:StyleID="s311"/>
+        <Cell ss:StyleID="s311"/>
+        <Cell ss:StyleID="s213"/>
+      </Row>
+      </#if>
+    </#list>
    <#else>
+    <Row>
+     <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+    </Row>
+   </#if>
    <Row>
-    <Cell ss:StyleID="s213"><Data ss:Type="String">${item.type!}</Data></Cell>
-    <Cell ss:StyleID="s198"><Data ss:Type="String">无</Data></Cell>
-    <Cell ss:StyleID="s310"/>
-    <Cell ss:StyleID="s310"/>
-    <Cell ss:StyleID="s310"/>
-    <Cell ss:StyleID="s310"/>
-    <Cell ss:StyleID="s311"/>
-    <Cell ss:StyleID="s311"/>
-    <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s311"/>
-    <Cell ss:StyleID="s311"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+   </Row>
+   <!-- 7.4.12.1.2 受限证券类别：债券-->
+   <Row>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.1.2 受限证券类别：债券</Data></Cell> <!-- yury,20200831,H11000拆分流通受限股票和债券-->
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s299"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s319"><Data ss:Type="String">流通受限类别</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">证券</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">证券</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">成功</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">可流通日</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">流通受限类型</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">认购</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">期末估值单价</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">数量</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">期末</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">期末</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">备注</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s308"/>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">代码</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">名称</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">认购日</Data></Cell>
+    <Cell ss:Index="7" ss:StyleID="s320"><Data ss:Type="String">价格</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s320"><Data ss:Type="String">（单位： ）</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">成本总额</Data></Cell>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">估值总额</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s214">
+    <Cell ss:StyleID="s307"/>
+    <Cell ss:StyleID="s212"><Data ss:Type="String">H500</Data></Cell>
+    <Cell ss:StyleID="s308"/>
+    <Cell ss:StyleID="s212"><Data ss:Type="String">H10</Data></Cell>
+    <Cell ss:StyleID="s212"><Data ss:Type="String">H10</Data></Cell>
+    <Cell ss:StyleID="s212"><Data ss:Type="String">H500</Data></Cell>
+    <Cell ss:StyleID="s308"/>
+    <Cell ss:StyleID="s308"/>
+    <Cell ss:StyleID="s308"/>
+    <Cell ss:StyleID="s308"/>
+    <Cell ss:StyleID="s308"/>
     <Cell ss:StyleID="s213"/>
    </Row>
+   <#if H11000.additian.bondcount != 0>
+    <#list H11000.additian.bondlist as item>
+     <#if item.code??>
+      <Row>
+       <Cell ss:StyleID="s213"><Data ss:Type="String">${item.type!}</Data></Cell>
+       <Cell ss:StyleID="s215"><Data ss:Type="String">${item.code!}</Data></Cell>
+       <Cell ss:StyleID="s74"><Data ss:Type="String">${item.name!}</Data></Cell>
+       <Cell ss:StyleID="s243"><#if item.subscribeDate??><Data ss:Type="DateTime">${item.subscribeDate!}</Data></#if></Cell>
+       <Cell ss:StyleID="s243"><#if item.liftingDate??><Data ss:Type="DateTime">${item.liftingDate!}</Data></#if></Cell>
+       <Cell ss:StyleID="s74"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
+       <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.subscribePrice!0)?string('0.##')}</Data></Cell>
+       <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
+       <Cell ss:StyleID="s278"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+       <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+       <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
+       <Cell ss:StyleID="s168"><Data ss:Type="String">${item.remark!}</Data></Cell>
+      </Row>
+     <#else>
+      <Row>
+       <Cell ss:StyleID="s213"><Data ss:Type="String">${item.type!}</Data></Cell>
+       <Cell ss:StyleID="s198"><Data ss:Type="String">无</Data></Cell>
+       <Cell ss:StyleID="s310"/>
+       <Cell ss:StyleID="s310"/>
+       <Cell ss:StyleID="s310"/>
+       <Cell ss:StyleID="s310"/>
+       <Cell ss:StyleID="s311"/>
+       <Cell ss:StyleID="s311"/>
+       <Cell ss:StyleID="s278"/>
+       <Cell ss:StyleID="s311"/>
+       <Cell ss:StyleID="s311"/>
+       <Cell ss:StyleID="s213"/>
+      </Row>
+     </#if>
+    </#list>
+   <#else>
+    <Row>
+     <Cell ss:StyleID="s213"><Data ss:Type="String">债券</Data></Cell>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s299"/>
+    </Row>
    </#if>
-   </#list>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
    <Row>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
@@ -7366,7 +7486,7 @@
     <Cell ss:StyleID="s299"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.4 期末参与转融通证券出借业务的证券</Data></Cell> <!-- yury,20200831,H11000新增证券出借-->
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
@@ -7380,7 +7500,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
+    <Cell><Data ss:Type="String">本基金本报告期末无参与转融通证券出借业务的融出证券。</Data></Cell> <!-- yury,20200831,H11000新增证券出借-->
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>
     <Cell ss:StyleID="s299"/>

@@ -584,7 +584,8 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s29"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">${(dateInfo.CURRENT_END_DATE?string("yyyy年M月d日"))!}</Data></Cell>
+    <!-- <Cell ss:StyleID="s37"><Data ss:Type="String">(dateInfo.CURRENT_END_DATE?string("yyyy年M月d日"))!</Data></Cell> -->
+    <Cell ss:StyleID="s37"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell> <!-- yury,20200901,O解决期间为空的bug-->
     <Cell ss:StyleID="s31"/>
     <Cell ss:StyleID="s38"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">XX</Data></Cell>
@@ -719,7 +720,8 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s29"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">${(dateInfo.CURRENT_END_DATE?string("yyyy年M月d日"))!}</Data></Cell>
+    <!-- <Cell ss:StyleID="s37"><Data ss:Type="String">(dateInfo.CURRENT_END_DATE?string("yyyy年M月d日"))!</Data></Cell> -->
+    <Cell ss:StyleID="s37"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell> <!-- yury,20200901,O解决期间为空的bug-->
     <Cell ss:StyleID="s31"/>
     <Cell ss:StyleID="s38"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">XX</Data></Cell>
@@ -1044,7 +1046,8 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s29"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">${(dateInfo.CURRENT_END_DATE?string("yyyy年M月d日"))!}</Data></Cell>
+    <!-- <Cell ss:StyleID="s37"><Data ss:Type="String">(dateInfo.CURRENT_END_DATE?string("yyyy年M月d日"))!</Data></Cell> -->
+    <Cell ss:StyleID="s37"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell> <!-- yury,20200901,O解决期间为空的bug-->
     <Cell ss:StyleID="s31"/>
     <Cell ss:StyleID="s38"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">XX</Data></Cell>
@@ -1317,7 +1320,8 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s29"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s37"><Data ss:Type="String">${(dateInfo.CURRENT_END_DATE?string("yyyy年M月d日"))!}</Data></Cell>
+    <!-- <Cell ss:StyleID="s37"><Data ss:Type="String">(dateInfo.CURRENT_END_DATE?string("yyyy年M月d日"))!</Data></Cell> -->
+    <Cell ss:StyleID="s37"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell> <!-- yury,20200901,O解决期间为空的bug-->
     <Cell ss:StyleID="s31"/>
     <Cell ss:StyleID="s38"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s39"><Data ss:Type="String">XX</Data></Cell>

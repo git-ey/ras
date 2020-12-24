@@ -129,11 +129,14 @@
 	</delete>
 	
 	<!-- 批量新增-->
+	<!-- yury，20200910，EY_BOND_INFO新增MODE基金运作方式字段 -->
+	<!-- 目前是在引用后面直接加了MODE字段，未修改Field和FieldValue引用中的字段，后面若要全部修改成加上MODE，则可以在各引用中加入MODE字段 -->
 	<insert id="saveBatch" parameterType="java.util.List">
 		insert into 
 	        <include refid="tableName"></include>
 		(
-	        <include refid="Field"></include>
+	        <include refid="Field"></include>,
+			MODE
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
@@ -146,7 +149,8 @@
 		#{pd.RE_STATUS},	
 		#{pd.CLOSING_PRICE},	
 		#{pd.UNIT_NAV},	
-		#{pd.FUNDINFO_ID}
+		#{pd.FUNDINFO_ID},
+		#{pd.MODE}
          )
          </foreach >
 	</insert>

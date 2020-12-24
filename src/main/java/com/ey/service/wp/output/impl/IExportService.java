@@ -110,7 +110,14 @@ public class IExportService extends BaseExportService implements IExportManager{
                 ex.printStackTrace();
             }
         }
-        
+        String NewFlag = ""; // yury,20200917,I新增证券出借,文字披露要区分新老基金
+        if (periodStr.substring(0, 4).equals(startYear.toString())){
+            NewFlag = "Y";
+        }
+        else{
+            NewFlag = "N";
+        }
+        fundInfo.put("NewFlag", NewFlag);
         fundInfo.put("startYear", startYear);
         fundInfo.put("startMonth", startMonth);
         fundInfo.put("startDay", startDay);

@@ -703,14 +703,32 @@ public class HExportService extends BaseExportService implements HExportManager{
         Map<String, Object> result = new HashMap<String,Object>();
         
         //========process dataMap for addition view begin========
+        // Map<String, Object> additian = new HashMap<String,Object>();
+        // @SuppressWarnings("unchecked")
+        // List<Map<String,Object>> additianMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000AdditianData", queryMap);
+        // if(additianMetaDataList == null) {
+        //     additianMetaDataList = new ArrayList<>();
+        // }
+        // additian.put("list", additianMetaDataList);
+        // additian.put("count", additianMetaDataList.size());
+        
+        // yury, 20200831, H11000拆分流通受限股票和债券
         Map<String, Object> additian = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
-        List<Map<String,Object>> additianMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000AdditianData", queryMap);
-        if(additianMetaDataList == null) {
-            additianMetaDataList = new ArrayList<>();
+        List<Map<String,Object>> additianMetaDataStockList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000AdditianDataStock", queryMap);
+        if(additianMetaDataStockList == null) {
+            additianMetaDataStockList = new ArrayList<>();
         }
-        additian.put("list", additianMetaDataList);
-        additian.put("count", additianMetaDataList.size());
+        additian.put("stocklist", additianMetaDataStockList);
+        additian.put("stockcount", additianMetaDataStockList.size());
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> additianMetaDataBondList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH11000AdditianDataBond", queryMap);
+        if(additianMetaDataBondList == null) {
+            additianMetaDataBondList = new ArrayList<>();
+        }
+        additian.put("bondlist", additianMetaDataBondList);
+        additian.put("bondcount", additianMetaDataBondList.size());
         //========process dataMap for addition view end========
         
         //========process dataMap for suspension view begin========

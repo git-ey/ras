@@ -25,3 +25,5 @@
 #JRebel
 **/rebel.xml
 .vscode/settings.json
+
+.vscode/

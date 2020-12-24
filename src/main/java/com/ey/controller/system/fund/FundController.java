@@ -238,7 +238,7 @@ public class FundController extends BaseController {
 	 */
 	@RequestMapping(value="/downExcel")
 	public void downExcel(HttpServletResponse response) throws Exception{
-		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Fund_Info.xlsx", "Fund_Info.xlsx");
+		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Fund_Control.xlsx", "Fund_Control.xlsx");
 	}
 	
 	/**

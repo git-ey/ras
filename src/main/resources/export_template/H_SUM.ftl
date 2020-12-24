@@ -1767,6 +1767,7 @@
     <Cell ss:Index="19" ss:MergeDown="1" ss:StyleID="s63"><Data ss:Type="String">流通受限类型</Data></Cell>
     <Cell ss:Index="21" ss:MergeAcross="2" ss:StyleID="s167"><Data ss:Type="String">因新发流通受限</Data></Cell>
     <Cell ss:Index="25" ss:MergeAcross="3" ss:StyleID="s167"><Data ss:Type="String">暂时流通受限</Data></Cell>
+    <Cell ss:Index="30" ss:MergeAcross="2" ss:StyleID="s167"><Data ss:Type="String">估值单价</Data></Cell> <!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较 -->
    </Row>
    <Row ss:StyleID="s44">
     <Cell><Data ss:Type="String">基金代码</Data></Cell>
@@ -1801,6 +1802,11 @@
     <Cell><Data ss:Type="String">停牌原因</Data></Cell>
     <Cell><Data ss:Type="String">复牌日期</Data></Cell>
     <Cell><Data ss:Type="String">复牌开盘单价</Data></Cell>
+    <!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
+    <Cell/>
+    <Cell><Data ss:Type="String">系统值</Data></Cell>
+    <Cell><Data ss:Type="String">EXCEL计算值</Data></Cell>
+    <Cell><Data ss:Type="String">DIFF</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s41"><Data ss:Type="String">From 估值表</Data></Cell>
@@ -1828,7 +1834,8 @@
     <Cell ss:Index="10"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.valBaseSource!}</Data></Cell>
     <Cell ss:StyleID="s155"><Data ss:Type="Number">${(item.valBasePrice!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s155" ss:Formula="=IF(RC[-3]=&quot;债C&quot;,INDEX(H30!C[12],MATCH(RC[-10],H30!C[-10],0)),IF(RC[-3]=&quot;债D&quot;,-INDEX(H30!C[13],MATCH(RC[-10],H30!C[-10],0)),0))"><Data ss:Type="Number"></Data></Cell>
+    <!-- <Cell ss:StyleID="s155" ss:Formula="=IF(RC[-3]=&quot;债C&quot;,INDEX(H30!C[12],MATCH(RC[-10],H30!C[-10],0)),IF(RC[-3]=&quot;债D&quot;,-INDEX(H30!C[13],MATCH(RC[-10],H30!C[-10],0)),0))"><Data ss:Type="Number"></Data></Cell> -->
+    <Cell ss:StyleID="s155" ss:Formula="=IF(RC[-3]=&quot;债C&quot;,INDEX(H30!C[13],MATCH(RC[-10],H30!C[-10],0)),IF(RC[-3]=&quot;债D&quot;,-INDEX(H30!C[14],MATCH(RC[-10],H30!C[-10],0)),0))"><Data ss:Type="Number"></Data></Cell> <!--YURY,20200902,更新H20K列利息调整公式 -->
     <Cell ss:StyleID="s155" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="String"><#if item_index == 0>&lt;各基金底稿H500&gt;</#if></Data></Cell>
     <Cell ss:Index="17" ss:StyleID="s43"><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
@@ -1840,6 +1847,11 @@
     <Cell><Data ss:Type="String">${item.suspensionInfo!}</Data></Cell>
     <Cell ss:StyleID="s103"><#if item.resumptionDate??><Data ss:Type="DateTime">${item.resumptionDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.resmpationOpenPrice!0)?string('0.##')}</Data></Cell>
+    <!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
+    <Cell/>
+    <Cell ss:StyleID="s155"><Data ss:Type="Number">${(item.val_price!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s155" ss:Formula="=RC[-17]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s155" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -2060,6 +2072,7 @@
     <Cell ss:Index="19" ss:MergeDown="1" ss:StyleID="s63"><Data ss:Type="String">流通受限类型</Data></Cell>
     <Cell ss:Index="21" ss:MergeAcross="2" ss:StyleID="s167"><Data ss:Type="String">因新发流通受限</Data></Cell>
     <Cell ss:Index="25" ss:MergeAcross="3" ss:StyleID="s167"><Data ss:Type="String">暂时流通受限</Data></Cell>
+    <Cell ss:Index="30" ss:MergeAcross="2" ss:StyleID="s167"><Data ss:Type="String">影子定价</Data></Cell> <!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较 -->
    </Row>
    <Row ss:StyleID="s44">
     <Cell><Data ss:Type="String">基金代码</Data></Cell>
@@ -2093,6 +2106,11 @@
     <Cell><Data ss:Type="String">停牌原因</Data></Cell>
     <Cell><Data ss:Type="String">复牌日期</Data></Cell>
     <Cell><Data ss:Type="String">复牌开盘单价</Data></Cell>
+    <!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
+    <Cell/>
+    <Cell><Data ss:Type="String">系统数据</Data></Cell>
+    <Cell><Data ss:Type="String">EXCEL数据</Data></Cell>
+    <Cell><Data ss:Type="String">DIFF</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s41"><Data ss:Type="String">From 估值表</Data></Cell>
@@ -2120,7 +2138,8 @@
     <Cell ss:Index="10"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.valBaseSource!}</Data></Cell>
     <Cell ss:StyleID="s155"><Data ss:Type="Number">${(item.valBasePrice!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s155" ss:Formula="=IF(RC[-3]=&quot;MMF债C&quot;,INDEX(H31!C[12],MATCH(RC[-10],H31!C[-10],0)),0)"><Data ss:Type="Number"></Data></Cell>
+    <!--<Cell ss:StyleID="s155" ss:Formula="=IF(RC[-3]=&quot;MMF债C&quot;,INDEX(H31!C[12],MATCH(RC[-10],H31!C[-10],0)),0)"><Data ss:Type="Number"></Data></Cell> -->
+    <Cell ss:StyleID="s155" ss:Formula="=IF(RC[-3]=&quot;MMF债C&quot;,INDEX(H31!C[13],MATCH(RC[-10],H31!C[-10],0)),0)"><Data ss:Type="Number"></Data></Cell> <!--YURY,20200902,更新H21K列利息调整公式 -->
     <Cell ss:StyleID="s155" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="String"><#if item_index == 0>&lt;各基金底稿H500&gt;</#if></Data></Cell>
     <Cell ss:Index="17" ss:StyleID="s43"><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
@@ -2132,6 +2151,11 @@
     <Cell><Data ss:Type="String">${item.suspensionInfo!}</Data></Cell>
     <Cell ss:StyleID="s103"><#if item.resumptionDate??><Data ss:Type="DateTime">${item.resumptionDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.resmpationOpenPrice!0)?string('0.##')}</Data></Cell>
+    <!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
+    <Cell/>
+    <Cell ss:StyleID="s155"><Data ss:Type="Number">${(item.val_price!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s155" ss:Formula="=RC[-17]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s155" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -2376,9 +2400,13 @@
     <Cell ss:Formula="=RC[-3]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Formula="=RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.taxRate!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s157"
+    <!-- <Cell ss:StyleID="s157"
      ss:Formula="=IF(RC[-23]=&quot;资产支持证券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(RC[-11]=&quot;实际天数/365&quot;,RC[-17]*RC[-16]*RC[-3]/365,IF(RC[-11]=&quot;实际天数/360&quot;,RC[-17]*RC[-16]*RC[-3]/360,IF(RC[-11]=&quot;实际天数/实际天数(ACT/ACT)&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1))))),RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-4]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365),IF(RC[-23]=&quot;债券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-14]=&quot;到期一次性还本付息&quot;,RC[-17]*RC[-16]*INT((RC[-6]-RC[-10])/365)+RC[-17]*RC[-16]*(RC[-6]-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))+1)/(DATE(YEAR(RC[-6])+1,MONTH(RC[-10]),DAY(RC[-10]))-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))),IF(RC[-13]=1,RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-13]&gt;1,IF(RC[-12]=&quot;按平均值付息&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2]/RC[-13],IF(RC[-12]=&quot;按实际天数付息&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1)))))))),IF(RC[-14]=&quot;贴现&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2],RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-4]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365))))"><Data
-      ss:Type="Number"></Data></Cell>
+      ss:Type="Number"></Data></Cell> -->
+    <!-- yury,20200902,更新H30V列期末应计利息税前公式 -->
+    <Cell ss:StyleID="s157"
+          ss:Formula="=IF(RC[-23]=&quot;资产支持证券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(RC[-11]=&quot;实际天数/365&quot;,RC[-17]*RC[-16]*RC[-3]/365,IF(RC[-11]=&quot;实际天数/360&quot;,RC[-17]*RC[-16]*RC[-3]/360,IF(RC[-11]=&quot;实际天数/实际天数(ACT/ACT)&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1))))),RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-6]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365),IF(RC[-23]=&quot;债券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-14]=&quot;到期一次性还本付息&quot;,RC[-17]*RC[-16]*INT((RC[-6]-RC[-10])/365)+RC[-17]*RC[-16]*(RC[-6]-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))+1)/(DATE(YEAR(RC[-6])+1,MONTH(RC[-10]),DAY(RC[-10]))-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))),IF(RC[-13]=1,RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-13]&gt;1,IF(RC[-12]=&quot;按平均值付息&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2]/RC[-13],IF(RC[-12]=&quot;按实际天数付息&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1)))))))),IF(RC[-14]=&quot;贴现&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2],RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-6]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365))))"><Data
+             ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s157" ss:Formula="=RC[-1]*RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s157" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="30"><Data ss:Type="String">${item.earlyExercise!}</Data></Cell>
@@ -2610,9 +2638,13 @@
     <Cell ss:Formula="=RC[-3]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Formula="=RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.taxRate!0)?string('0.######')}</Data></Cell>
-    <Cell ss:StyleID="s155"
+    <!-- <Cell ss:StyleID="s155"
      ss:Formula="=IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),0,IF(RC[-23]=&quot;资产支持证券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(RC[-11]=&quot;实际天数/365&quot;,RC[-17]*RC[-16]*RC[-3]/365,IF(RC[-11]=&quot;实际天数/360&quot;,RC[-17]*RC[-16]*RC[-3]/360,IF(RC[-11]=&quot;实际天数/实际天数(ACT/ACT)&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1))))),RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-4]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365),IF(RC[-23]=&quot;债券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-14]=&quot;到期一次性还本付息&quot;,RC[-17]*RC[-16]*INT((RC[-6]-RC[-10])/365)+RC[-17]*RC[-16]*(RC[-6]-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))+1)/(DATE(YEAR(RC[-6])+1,MONTH(RC[-10]),DAY(RC[-10]))-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))),IF(RC[-13]=1,RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-13]&gt;1,IF(RC[-12]=&quot;按平均值付息&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2]/RC[-13],IF(RC[-12]=&quot;按实际天数付息&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1)))))))),IF(RC[-14]=&quot;贴现&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2],RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-4]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365)))))"><Data
-      ss:Type="Number"></Data></Cell>
+      ss:Type="Number"></Data></Cell> -->
+    <!-- yury,20200902,更新H31V列期末应计利息税前公式 -->
+    <Cell ss:StyleID="s155"
+          ss:Formula="=IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),0,IF(RC[-23]=&quot;资产支持证券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(RC[-11]=&quot;实际天数/365&quot;,RC[-17]*RC[-16]*RC[-3]/365,IF(RC[-11]=&quot;实际天数/360&quot;,RC[-17]*RC[-16]*RC[-3]/360,IF(RC[-11]=&quot;实际天数/实际天数(ACT/ACT)&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1))))),RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-6]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365),IF(RC[-23]=&quot;债券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-14]=&quot;到期一次性还本付息&quot;,RC[-17]*RC[-16]*INT((RC[-6]-RC[-10])/365)+RC[-17]*RC[-16]*(RC[-6]-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))+1)/(DATE(YEAR(RC[-6])+1,MONTH(RC[-10]),DAY(RC[-10]))-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))),IF(RC[-13]=1,RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-13]&gt;1,IF(RC[-12]=&quot;按平均值付息&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2]/RC[-13],IF(RC[-12]=&quot;按实际天数付息&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1)))))))),IF(RC[-14]=&quot;贴现&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2],RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-6]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365)))))"><Data
+             ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s155" ss:Formula="=RC[-1]*RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s155" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="30"><Data ss:Type="String">${item.earlyExercise!}</Data></Cell>

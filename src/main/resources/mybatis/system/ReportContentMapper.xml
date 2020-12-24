@@ -198,7 +198,10 @@
 		insert into 
 	        <include refid="tableName"></include>
 		(
-	        <include refid="Field"></include>
+			<include refid="Field"></include>,
+			LR,
+			EPA,
+			PLR
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
@@ -236,7 +239,10 @@
 		#{pd.PR_ATTR3},	
 		#{pd.FV_ATTR1},	
 		#{pd.ACTIVE},	
-		#{pd.REPORTCONTENT_ID}
+		#{pd.REPORTCONTENT_ID},
+		#{pd.LR},
+		#{pd.EPA},
+		#{pd.PLR}
          )
          </foreach >
 	</insert>
