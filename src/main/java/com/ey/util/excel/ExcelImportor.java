@@ -170,7 +170,7 @@ public class ExcelImportor extends FileImportor {
 			int startRow, String quotes) throws FileImportException {
 		int num = importCell.getNumber();
 		int showLine = line + startRow;
-		int showColumn = num + startRow;
+		int showColumn = num;
 		maps.put(MapResult.LINE_NUM_KEY, showLine);
 		ImportConfigCell.CellType cellType = importCell.getCellType();
 		ImportConfigCell.NullAble nullable = importCell.getNullAble();
@@ -266,5 +266,13 @@ public class ExcelImportor extends FileImportor {
 	public ExcelImportor(ImportConfig configuration) {
 		this.configuration = configuration;
 	}
+
+	// public static void main() {
+	// 	String file = "C:\\Users\\EYHIVE\\Desktop\\华宝股票流通受限表-EY_STOCK_LIMIT.xlsx";
+	// 	workbook = new XSSFWorkbook(new FileInputStream(file));
+	// 	StringBuilder sb = new StringBuilder();
+	// 	List<Map> map = this.readExcel(Workbook workbook, ImportConfig configuration, sb)
+	// 	this.readExcel()
+	// }
 
 }

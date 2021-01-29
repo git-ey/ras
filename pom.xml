@@ -476,7 +476,7 @@
 				</resources>
 			</build>
 		</profile>
-		<profile>
+		<!-- <profile>
 			<id>pro</id>
 			<activation />
 			<build>
@@ -489,7 +489,7 @@
 					</resource>
 				</resources>
 			</build>
-		</profile>
+		</profile> -->
 	</profiles>
 	<artifactId>ras</artifactId>
 </project>

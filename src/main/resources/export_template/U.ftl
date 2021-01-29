@@ -4956,12 +4956,13 @@
     <Cell ss:StyleID="s423"/>
     <Cell ss:StyleID="s423"/>
    </Row>
+   <!-- linnea,20200128,修改合计-->
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s406"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s406"/>
-    <Cell ss:StyleID="s430" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s430" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s423"/>
-    <Cell ss:StyleID="s430" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s430" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s406"/>
@@ -11209,12 +11210,13 @@
     <Cell ss:StyleID="s117"/>
     <Cell ss:Index="15" ss:StyleID="s104"/>
    </Row>
+  <!-- linnea,20200128,修改合计-->
    <Row>
     <Cell ss:StyleID="s181"/>
     <Cell ss:StyleID="s545"><Data ss:Type="String">交易基金产生的费用小计</Data></Cell>
-    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s183" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s109" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s263" ss:Formula="=IF(RC[-2]&lt;&gt;0,RC[-1]/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"/>

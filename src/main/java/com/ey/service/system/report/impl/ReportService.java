@@ -143,7 +143,7 @@ public class ReportService implements ReportManager {
     /**
      * 列表段落模板
      * 
-     * @param pd
+     * @param paragraphCode
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
@@ -201,19 +201,44 @@ public class ReportService implements ReportManager {
      * @param dateTo
      * @param dateTransform
      * @return
+     * 
+     * 汇总：
+     * CURRENT_BS_DATE       ：资产负债表日，格式：20201231，String类型
+     * CURRENT_YEAR          ：资产负债表日的年，格式：2020，String类型
+     * CURRENT_YEAR_NUM      ：资产负债表日的年，格式：2020，int类型
+     * CURRENT_INIT_SOURCE   ：文字描述，不是日期。转型日 / 合同生效日 / 资产负债表日
+     * CURRENT_INIT_TEXT     ：文字描述，不是日期。基金合同转型日 / 基金合同生效日 / 资产负债表日
+     * CURRENT_INIT_DATE     ：（重要）本期起始日，转型基金为转型日，新基金为合同生效日，除此之外为0101。格式：20200101、20200603，Date对象
+     * CURRENT_INIT_DATE_TEXT：（重要）本期起始日的文字格式。格式：2020年1月1日、2020年6月23日
+     * CURRENT_END_DATE      ：（重要）本期截止日，普通基金为资产负债表日，终止的或需要转型的基金为合同终止日或转型日，格式：20201231、20200406，Date对象
+     * CURRENT_END_DATE_TEXT ：（重要）本期截止日的文字格式。格式：2020年12月31日、2020年4月6日
+     * CURRENT_END_SOURCE    ：文字描述，不是日期。资产负债表日 / 合同终止日
+     * CURRENT_PERIOD        ：文字描述，不是日期。本期年度。有以下三种：
+     *                         （1）期初为0101，且期末为1231，则为：2020年度
+     *                         （2）期初为0101，期末 < 1231， 则为：2020年1月1日至2020年7月19日
+     *                         （3）除以上情况，              则为：2020年x月x日（${CURRENT_INIT_TEXT}）至2020年12月31日。其中x月x日为${CURRENT_INIT_DATE}格式化为string
+     * CURRENT_END_TXT       ：空
+     * TXT_PERIOD_CURRENT    ：正文中的当期时间段文字描述，有两种情况：
+     *                         （1）${CURRENT_PERIOD}包含“年度”两个字，则为：${CURRENT_PERIOD}
+     *                         （2）除以上情况，                     ，则为：${CURRENT_PERIOD}止期间
+     * TABLE_PERIOD_CURRENT  ：表格中的当期时间段文字描述，有两种情况：
+     *                         （1）${CURRENT_PERIOD}包含“年度”两个字，则为：2020年1月1日至2020年12月31日
+     *                         （2）除以上情况，                     ，则为：${CURRENT_PERIOD}止期间
+     * TABLE_PERIOD_CURRENT_A：${TABLE_PERIOD_CURRENT}按照“至”分割后的第0个字符串
+     * TABLE_PERIOD_CURRENT_A：${TABLE_PERIOD_CURRENT}按照“至”分割后的第1个字符串
      */
     @Override
     public Map<String, Object> getDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform)
             throws Exception {
         Map<String, Object> infoMap = Maps.newHashMap();
 
-        // 年
+        // 年，例如：2020
         String year = period.substring(0, 4);
-        // 年第一天
+        // 年第一天，例如：20200101，转日期对象
         Date yearFirstDate = DateUtil.fomatDate(year + "0101", "yyyyMMdd");
-        // 年最后一天
+        // 年最后一天，例如：20201231，转日期对象
         Date yearLastDate = DateUtil.fomatDate(year + "1231", "yyyyMMdd");
-        // 期间日期
+        // 期间日期，例如：20201231，20200630，转日期对象
         Date periodDate = DateUtil.fomatDate(period, "yyyyMMdd");
 
         // 本期资产负债表日
@@ -243,6 +268,7 @@ public class ReportService implements ReportManager {
         } else {
             infoMap.put("CURRENT_INIT_DATE", dateFrom);
         }
+        infoMap.put("CURRENT_INIT_DATE_TEXT", this.getDateStr((Date)infoMap.get("CURRENT_INIT_DATE")));
 
         // 本期截止日&&本期截止日来源
         if (dateTo == null || DateUtils.truncatedCompareTo(dateTo, periodDate, Calendar.DATE) > 0) {
@@ -252,6 +278,7 @@ public class ReportService implements ReportManager {
             infoMap.put("CURRENT_END_DATE", dateTo);
             infoMap.put("CURRENT_END_SOURCE", "合同终止日");
         }
+        infoMap.put("CURRENT_END_DATE_TEXT", this.getDateStr((Date)infoMap.get("CURRENT_END_DATE")));
 
         // 本期年度
         if (DateUtils.truncatedEquals((Date) infoMap.get("CURRENT_INIT_DATE"), yearFirstDate, Calendar.DATE)
