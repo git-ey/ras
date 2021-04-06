@@ -273,6 +273,7 @@
 		from sys_fund_info sf
 		left join sys_mgrcompany sm
 		 on sf.firm_code = sm.company_code
+		where 1 = 1
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(

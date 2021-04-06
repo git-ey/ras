@@ -56,6 +56,7 @@
 									<option value="I" <c:if test="${pd.SOURCETABLE == 'I'}">selected</c:if>>I</option>
 									<option value="U" <c:if test="${pd.SOURCETABLE == 'U'}">selected</c:if>>U</option>
 									<option value="V" <c:if test="${pd.SOURCETABLE == 'V'}">selected</c:if>>V</option>
+									<option value="O" <c:if test="${pd.SOURCETABLE == 'O'}">selected</c:if>>O</option>
 								  	</select>
 								</td>
 								<c:if test="${QX.cha == 1 }">

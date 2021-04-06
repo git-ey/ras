@@ -82,10 +82,10 @@
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.MARKET}</td>
-											<td class='center'>${var.RATE_STAMP}</td>
-											<td class='center'>${var.RATE_BROKERAGE}</td>
-											<td class='center'>${var.RATE_SEC}</td>
-											<td class='center'>${var.RATE_TRANSFER}</td>
+											<td class='center'><fmt:formatNumber value="${var.RATE_STAMP}" type="number" pattern="0.0000000"/> </td>
+											<td class='center'><fmt:formatNumber value="${var.RATE_BROKERAGE}" type="number" pattern="0.0000000"/> </td>
+											<td class='center'><fmt:formatNumber value="${var.RATE_SEC}" type="number" pattern="0.0000000"/> </td>
+											<td class='center'><fmt:formatNumber value="${var.RATE_TRANSFER}" type="number" pattern="0.0000000"/> </td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.ACTIVE == 'Y' }"> 是 </c:when>
