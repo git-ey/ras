@@ -106,6 +106,7 @@ public class LomdService implements LomdManager{
 				pd.put("LIFTING_DATE", map.get("LIFTING_DATE"));
 				pd.put("LOMD_SOURCE", map.get("LOMD_SOURCE"));
 				pd.put("LOMD", map.get("LOMD"));
+				pd.put("ANN_VOL", map.get("ANN_VOL"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pds.add(pd);
 				idx++;

@@ -9,7 +9,8 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		FUND_CODE,	
+		FUND_CODE,
+		FUND_TYPE, <!--chenhy,20240218,新增基金类型-->
 		FIRM_CODE,	
 		SHORT_NAME,	
 		FULL_NAME,	
@@ -23,6 +24,7 @@
 		SHHK,	
 		QD,	
 		MF,	
+		AC,	
 		IDX,	
 		LOF,	
 		ETF,
@@ -57,13 +59,19 @@
 		LEVERAGE,
 		EXERCISE_DATE_METHOD,
 		ACTIVE,	
-		STATUS,	
+		STATUS,
+		SSF,
+		TA,
+		AIM_FUND,
+		PUB_FUND,
+		`IS`,	
 		FUND_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{FUND_CODE},	
+		#{FUND_CODE},
+		#{FUND_TYPE}, 
 		#{FIRM_CODE},	
 		#{SHORT_NAME},	
 		#{FULL_NAME},	
@@ -76,7 +84,8 @@
 		#{CLOSED},	
 		#{SHHK},	
 		#{QD},	
-		#{MF},	
+		#{MF},
+		#{AC},	
 		#{IDX},	
 		#{LOF},	
 		#{ETF},
@@ -111,7 +120,12 @@
 		#{LEVERAGE},
 		#{EXERCISE_DATE_METHOD},
 		#{ACTIVE},	
-		#{STATUS},	
+		#{STATUS},
+		#{SSF},
+		#{TA},
+		#{AIM_FUND},
+		#{PUB_FUND},
+		#{`IS`},		
 		#{FUND_ID}
 	</sql>
 	
@@ -140,6 +154,7 @@
 		<include refid="tableName"></include>
 		set 
 			FUND_CODE = #{FUND_CODE},
+			FUND_TYPE = #{FUND_TYPE},
 			FIRM_CODE = #{FIRM_CODE},
 			SHORT_NAME = #{SHORT_NAME},
 			FULL_NAME = #{FULL_NAME},
@@ -153,6 +168,7 @@
 			SHHK = #{SHHK},
 			QD = #{QD},
 			MF = #{MF},
+			AC = #{AC},
 			IDX = #{IDX},
 			LOF = #{LOF},
 			ETF = #{ETF},
@@ -178,10 +194,14 @@
 			INT_SEN_METHOD=#{INT_SEN_METHOD},
 			INT_SEN_SOURCE_TYPE=#{INT_SEN_SOURCE_TYPE},
 			INT_SEN_ASSET_EXCL=#{INT_SEN_ASSET_EXCL},
+			<if test="INT_VAR != null and INT_VAR != ''">
 			INT_VAR=#{INT_VAR},
+		    </if>
 			PRI_SEN_METHOD=#{PRI_SEN_METHOD},
 			PRI_SEN_SOURCE_TYPE=#{PRI_SEN_SOURCE_TYPE},
+			<if test="PRI_VAR != null and PRI_VAR != ''">
 			PRI_VAR=#{PRI_VAR},
+			</if>
 			PRI_SEN_ASSET=#{PRI_SEN_ASSET},
 		    U_ROW_SET = #{U_ROW_SET},
 		    INDEX_SOURSE = #{INDEX_SOURSE},
@@ -202,6 +222,16 @@
 			EXERCISE_DATE_METHOD = #{EXERCISE_DATE_METHOD},
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS},
+			<if test="SSF != null and SSF != ''">
+			SSF = #{SSF},</if>
+			<if test="TA != null and TA != ''">
+			TA = #{TA},</if>
+			<if test="AIM_FUND != null and AIM_FUND != ''">
+			AIM_FUND = #{AIM_FUND},</if>
+			<if test="PUB_FUND != null and PUB_FUND != ''">
+			PUB_FUND = #{PUB_FUND},</if>
+			<if test="IS != null and IS != ''">
+			`IS` = #{`IS`},</if>
 		FUND_ID = FUND_ID
 		where 
 		FUND_ID = #{FUND_ID}
@@ -219,7 +249,8 @@
 	
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">
-		select sf.FUND_CODE,	
+		select sf.FUND_CODE,
+			   sf.FUND_TYPE,	
 		       sf.FIRM_CODE,	
 		       sf.SHORT_NAME,	
 		       sf.FULL_NAME,	
@@ -232,7 +263,8 @@
 		       sf.CLOSED,	
 		       sf.SHHK,	
 		       sf.QD,	
-		       sf.MF,	
+			   sf.MF,
+			   sf.AC,	
 		       sf.IDX,	
 		       sf.LOF,	
 		       sf.ETF,
@@ -267,7 +299,12 @@
 		       sf.LEVERAGE,
 		       sf.EXERCISE_DATE_METHOD,
 		       sf.ACTIVE,	
-		       sf.STATUS,	
+		       sf.STATUS,
+			   sf.SSF,
+			   sf.TA,
+			   sf.AIM_FUND,
+			   sf.PUB_FUND,
+			   sf.`IS`,
 		       sf.FUND_ID,
 		       IFNULL(sm.SHORT_NAME,sf.firm_code) COMPANY_SHORT_NAME 
 		from sys_fund_info sf
@@ -341,6 +378,42 @@
         AND sfi.FUND_ID = #{fundId}
         LIMIT 1
     </select>
+
+	<!-- 底稿导出时查询基金FOF信息 chenhy，20220704 -->
+    <select id="selectFOFFlag" parameterType="java.util.Map" resultType="java.util.Map"> 
+       SELECT
+            ifnull( sfi.FOF, 'N' ) AS FOF
+        FROM
+            SYS_FUND_INFO sfi 
+        WHERE
+            1 = 1 
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+	
+	<!-- 底稿导出时查询基金AC信息 chenhy，20220902 -->
+    <select id="selectACFlag" parameterType="java.util.Map" resultType="java.util.Map"> 
+       SELECT
+            ifnull( sfi.AC, 'N' ) AS AC
+        FROM
+            SYS_FUND_INFO sfi 
+        WHERE
+            1 = 1 
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+	
+	<!-- 底稿导出时查询基金MF信息 chenhy，20220902 -->
+    <select id="selectMFFlag" parameterType="java.util.Map" resultType="java.util.Map"> 
+       SELECT
+            ifnull( sfi.MF, 'N' ) AS MF
+        FROM
+            SYS_FUND_INFO sfi 
+        WHERE
+            1 = 1 
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
 	
 	<!-- 批量删除 -->
 	<delete id="deleteAll" parameterType="String">
@@ -362,7 +435,8 @@
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
-        #{pd.FUND_CODE},	
+        #{pd.FUND_CODE},
+		#{pd.FUND_TYPE},	
 		#{pd.FIRM_CODE},	
 		#{pd.SHORT_NAME},	
 		#{pd.FULL_NAME},	
@@ -375,7 +449,8 @@
 		#{pd.CLOSED},	
 		#{pd.SHHK},	
 		#{pd.QD},	
-		#{pd.MF},	
+		#{pd.MF},
+		#{pd.AC},	
 		#{pd.IDX},	
 		#{pd.LOF},	
 		#{pd.ETF},
@@ -410,7 +485,12 @@
 		#{pd.LEVERAGE},
 		#{pd.EXERCISE_DATE_METHOD},
 		#{pd.ACTIVE},	
-		#{pd.STATUS},	
+		#{pd.STATUS},
+		#{pd.SSF},
+		#{pd.TA},
+		#{pd.AIM_FUND},
+		#{pd.PUB_FUND},
+		#{pd.`IS`},
 		#{pd.FUND_ID}
          )
          </foreach >
@@ -436,7 +516,8 @@
 		       fi.CLOSED = REPLACE(fi.CLOSED,'''',null),
 		       fi.SHHK = REPLACE(fi.SHHK,'''',null),
 		       fi.QD = REPLACE(fi.QD,'''',null),
-		       fi.MF = REPLACE(fi.MF,'''',null),
+			   fi.MF = REPLACE(fi.MF,'''',null),
+			   fi.AC = REPLACE(fi.AC,'''',null),
 		       fi.IDX = REPLACE(fi.IDX,'''',null),
 		       fi.LOF = REPLACE(fi.LOF,'''',null),
 		       fi.ETF = REPLACE(fi.ETF,'''',null),
@@ -469,7 +550,13 @@
 		       fi.LEVERAGE = REPLACE(fi.LEVERAGE,'''',null),
 		       fi.EXERCISE_DATE_METHOD = REPLACE(fi.EXERCISE_DATE_METHOD,'''',null),
 		       fi.ACTIVE = REPLACE(fi.ACTIVE,'''',null),
-		       fi.`STATUS` = REPLACE(fi.`STATUS`,'''',null)
+		       fi.`STATUS` = REPLACE(fi.`STATUS`,'''',null),
+			   fi.`SSF` = REPLACE(fi.`SSF`,'''',null),
+			   fi.`TA` = REPLACE(fi.`TA`,'''',null),
+			   fi.`AIM_FUND` = REPLACE(fi.`AIM_FUND`,'''',null),
+			   fi.`PUB_FUND` = REPLACE(fi.`PUB_FUND`,'''',null),
+			   fi.`IS` = REPLACE(fi.`IS`,'''',null),
+			    fi.`FUND_TYPE` = REPLACE(fi.`FUND_TYPE`,'''',null)
 		  WHERE 1 = 0
 	</update>
 

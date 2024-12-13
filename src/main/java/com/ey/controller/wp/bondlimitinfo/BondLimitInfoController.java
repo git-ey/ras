@@ -190,7 +190,7 @@ public class BondLimitInfoController extends BaseController {
 	@RequestMapping(value = "/goUploadExcel")
 	public ModelAndView goUploadExcel() throws Exception {
 		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("system/bondlimitinfo/uploadexcel");
+		mv.setViewName("wp/bondlimitinfo/uploadexcel");
 		return mv;
 	}
 
@@ -288,6 +288,7 @@ public class BondLimitInfoController extends BaseController {
 			vpd.put("var18", varOList.get(i).get("RESMPATION_OPEN_PRICE").toString());	//18
 			vpd.put("var19", varOList.get(i).getString("CREATOR"));	    //19
 			vpd.put("var20", varOList.get(i).getString("REVIEWER"));	    //20
+			vpd.put("var21", varOList.get(i).getString("LIMIT_LEN"));	    //21 20220630IREN 新增
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

@@ -1529,6 +1529,7 @@
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.transaction.stock.count != 0>
    <Row ss:StyleID="s177">
     <Cell ss:Index="2" ss:StyleID="s135"/>
     <Cell ss:MergeAcross="1" ss:StyleID="m2531779791664"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
@@ -1546,11 +1547,11 @@
     <Cell ss:StyleID="s178"/>
     <Cell ss:Index="11" ss:StyleID="s179"/>
    </Row>
-   <#if I.transaction.stock.count != 0>
+   
    <#list I.transaction.stock.list as item>
    <Row>
     <#if item_index == 0>
-    <Cell ss:StyleID="s172"><Data ss:Type="String">N510/NNXXX</Data></Cell>
+    <Cell ss:StyleID="s172"><Data ss:Type="String">P810/NNXXX</Data></Cell>
     <#else>
     <Cell/>
     </#if>
@@ -1563,6 +1564,10 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    </#list>
+   <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均未通过关联方交易单元进行股票交易。</Data></Cell>
+   </Row>
    </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s137"/>
@@ -1580,6 +1585,7 @@
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.transaction.bond.count != 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s135"/>
     <Cell ss:MergeAcross="1" ss:StyleID="m2531779791804"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
@@ -1594,11 +1600,10 @@
     <Cell ss:StyleID="s134"><Data ss:Type="String">占当期债券&#10;成交总额的比例</Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s122"/>
    </Row>
-   <#if I.transaction.bond.count != 0>
    <#list I.transaction.bond.list as item>
    <Row>
     <#if item_index == 0>
-    <Cell ss:StyleID="s172"><Data ss:Type="String">N510/NNXXX</Data></Cell>
+    <Cell ss:StyleID="s172"><Data ss:Type="String">P810/NNXXX</Data></Cell>
     <#else>
     <Cell/>
     </#if>
@@ -1611,6 +1616,10 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    </#list>
+   <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均未通过关联方交易单元进行债券交易。</Data></Cell>
+   </Row>
    </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s98"/>
@@ -1626,6 +1635,7 @@
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.transaction.warrant.count != 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s135"/>
     <Cell ss:MergeAcross="1" ss:StyleID="m2531779791092"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
@@ -1641,11 +1651,10 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.transaction.warrant.count != 0>
    <#list I.transaction.warrant.list as item>
    <Row>
     <#if item_index == 0>
-    <Cell ss:StyleID="s172"><Data ss:Type="String">N510/NNXXX</Data></Cell>
+    <Cell ss:StyleID="s172"><Data ss:Type="String">P810/NNXXX</Data></Cell>
     <#else>
     <Cell/>
     </#if>
@@ -1658,6 +1667,10 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    </#list>
+   <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均未通过关联方交易单元进行权证交易。</Data></Cell>
+   </Row>
    </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s98"/>
@@ -1669,6 +1682,7 @@
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.transaction.repo.count != 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s135"/>
     <Cell ss:MergeAcross="1" ss:StyleID="m2531779791132"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
@@ -1685,11 +1699,10 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.transaction.repo.count != 0>
    <#list I.transaction.repo.list as item>
    <Row>
     <#if item_index == 0>
-    <Cell ss:StyleID="s172"><Data ss:Type="String">N510/NNXXX</Data></Cell>
+    <Cell ss:StyleID="s172"><Data ss:Type="String">P810/NNXXX</Data></Cell>
     <#else>
     <Cell/>
     </#if>
@@ -1702,6 +1715,10 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    </#list>
+    <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均未通过关联方交易单元进行回购交易。</Data></Cell>
+   </Row>
    </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s98"/>
@@ -1717,6 +1734,7 @@
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.transaction.fund.count != 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s135"/>
     <Cell ss:MergeAcross="1" ss:StyleID="m2531779791032"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
@@ -1733,11 +1751,10 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.transaction.fund.count != 0>
    <#list I.transaction.fund.list as item>
    <Row>
     <#if item_index == 0>
-    <Cell ss:StyleID="s172"><Data ss:Type="String">N510/NNXXX</Data></Cell>
+    <Cell ss:StyleID="s172"><Data ss:Type="String">P810/NNXXX</Data></Cell>
     <#else>
     <Cell/>
     </#if>
@@ -1750,6 +1767,10 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    </#list>
+   <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均未通过关联方交易单元进行基金交易。</Data></Cell>
+   </Row>
    </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s98"/>
@@ -1769,6 +1790,7 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.transaction.related.current.count != 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s135"/>
     <Cell ss:MergeAcross="3" ss:StyleID="m2531779790992"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
@@ -1784,11 +1806,10 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.transaction.related.current.count != 0>
    <#list I.transaction.related.current.list as item>
    <Row>
     <#if item_index == 0>
-    <Cell ss:StyleID="s172"><Data ss:Type="String">N500/NNXXX</Data></Cell>
+    <Cell ss:StyleID="s172"><Data ss:Type="String">P810/NNXXX</Data></Cell>
     <#else>
     <Cell/>
     </#if>
@@ -1811,6 +1832,7 @@
     <Cell ss:StyleID="s109"/>
     <Cell ss:Index="11" ss:StyleID="s139"/>
    </Row>
+   <#if I.transaction.related.last.count != 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s135"/>
     <Cell ss:MergeAcross="3" ss:StyleID="m2531779791012"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
@@ -1826,9 +1848,13 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.transaction.related.last.count != 0>
    <#list I.transaction.related.last.list as item>
    <Row>
+    <#if item_index == 0>
+    <Cell ss:StyleID="s172"><Data ss:Type="String">P810/NNXXX</Data></Cell>
+    <#else>
+    <Cell/>
+    </#if>
     <Cell ss:Index="2" ss:StyleID="s136"><Data ss:Type="String">${item.relatedParty!}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.commission!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s208"><Data ss:Type="Number">${(item.proportionTotal!0)?string('0.######')}</Data></Cell>
@@ -1838,6 +1864,7 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    </#list>
+   
    </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s98"/>
@@ -1900,10 +1927,21 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s172"><Data ss:Type="String">I400</Data></Cell>
-    <Cell ss:StyleID="s145"><Data ss:Type="String">其中：支付销售机构的客户维护费</Data></Cell>
+    <Cell ss:StyleID="s167"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s145"><Data ss:Type="String">其中：应支付销售机构的客户维护费</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(I.manageFee.item2.amountCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(I.manageFee.item2.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s122"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s167"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s145"><Data ss:Type="String">      应支付基金管理人的净管理费</Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
@@ -1986,6 +2024,7 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+
    <#if extraFundInfo.structured == 'N'>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s110"><Data ss:Type="String">7.4.10.2.3 销售服务费</Data></Cell>
@@ -1997,9 +2036,12 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.salesFee.count != 0>
    <Row ss:StyleID="s153">
     <Cell ss:Index="2" ss:StyleID="s190"><Data ss:Type="String">获得销售服务费的</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="m2531779791844"><Data ss:Type="String">本期&#10;XX年XX月XX日至XX年XX月XX日</Data></Cell>
+    <!--chenhy,20240717,修改表头文字为本期-->
+    <!--<Cell ss:MergeAcross="1" ss:StyleID="m2531779791844"><Data ss:Type="String">本期&#10;XX年XX月XX日至XX年XX月XX日</Data></Cell>-->
+    <Cell ss:MergeAcross="1" ss:StyleID="m2531779791844"><Data ss:Type="String">本期</Data></Cell>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
@@ -2016,7 +2058,6 @@
     <Cell ss:StyleID="s152"/>
     <Cell ss:StyleID="s152"/>
    </Row>
-   <#if I.salesFee.count != 0>
    <#list I.salesFee.list as item>
    <Row ss:StyleID="s153">
     <Cell ss:StyleID="s168"><Data ss:Type="String">IIXXX</Data></Cell>
@@ -2038,17 +2079,7 @@
     <Cell ss:StyleID="s152"/>
    </Row>
    </#list>
-   </#if>
-   <Row ss:StyleID="s153">
-    <Cell ss:Index="2" ss:StyleID="s154"/>
-    <Cell ss:StyleID="s207"/>
-    <Cell ss:StyleID="s207"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s152"/>
-    <Cell ss:StyleID="s152"/>
-    <Cell ss:StyleID="s152"/>
-   </Row>
+   
    <Row ss:StyleID="s153">
     <Cell ss:Index="2" ss:StyleID="s154"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
@@ -2070,7 +2101,9 @@
    </Row>
    <Row ss:StyleID="s237">
     <Cell ss:Index="2" ss:StyleID="s190"><Data ss:Type="String">获得销售服务费的</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="m2531779791864"><Data ss:Type="String">上年度可比期间&#10;XX年XX月XX日至XX年XX月XX日</Data></Cell>
+    <!--chenhy,20240717,修改表头文字为上年度可比期间-->
+    <!--<Cell ss:MergeAcross="1" ss:StyleID="m2531779791864"><Data ss:Type="String">上年度可比期间&#10;XX年XX月XX日至XX年XX月XX日</Data></Cell>-->
+    <Cell ss:MergeAcross="1" ss:StyleID="m2531779791864"><Data ss:Type="String">上年度可比期间</Data></Cell>
     <Cell ss:StyleID="s239"/>
     <Cell ss:StyleID="s240"/>
     <Cell ss:StyleID="s241"/>
@@ -2087,20 +2120,19 @@
     <Cell ss:StyleID="s241"/>
     <Cell ss:StyleID="s241"/>
    </Row>
-   <#if I.salesFee.count != 0>
    <#list I.salesFee.list as item>
    <Row ss:StyleID="s237">
     <Cell ss:StyleID="s214"/>
     <Cell ss:StyleID="s154"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
-    <#if item.count != 0>
-    <#list item.leves as level>
-    <#if level_index == 0>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.salesCommisionAmtLast!0)?string('0.##')}</Data></Cell>
-    </#if>
-    </#list>
-    <#else>
-    <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
-    </#if>
+      <#if item.count != 0>
+      <#list item.leves as level>
+        <#if level_index == 0>
+        <Cell ss:StyleID="s207"><Data ss:Type="Number">${(level.salesCommisionAmtLast!0)?string('0.##')}</Data></Cell>
+        </#if>
+      </#list>
+      <#else>
+      <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
+      </#if>
     <Cell ss:StyleID="s207"><Data ss:Type="Number">${(item.salesCommisionBalLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s104"/>
     <Cell ss:StyleID="s240"/>
@@ -2109,17 +2141,7 @@
     <Cell ss:StyleID="s241"/>
    </Row>
    </#list>
-   </#if>
-   <Row ss:StyleID="s153">
-    <Cell ss:Index="2" ss:StyleID="s154"/>
-    <Cell ss:StyleID="s207"/>
-    <Cell ss:StyleID="s207"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s122"/>
-    <Cell ss:StyleID="s152"/>
-    <Cell ss:StyleID="s152"/>
-    <Cell ss:StyleID="s152"/>
-   </Row>
+   
    <Row ss:StyleID="s237">
     <Cell ss:Index="2" ss:StyleID="s154"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-1-I.salesFee.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
@@ -2132,6 +2154,11 @@
    </Row>
    <#else>
    <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均无销售服务费。</Data></Cell>
+   </Row>
+   </#if>
+   <#else>
+   <Row>
     <Cell ss:Index="2" ss:StyleID="s110"><Data ss:Type="String">7.4.10.2.3 销售服务费</Data></Cell>
     <Cell ss:StyleID="s142"/>
     <Cell ss:StyleID="s142"/>
@@ -2141,9 +2168,12 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.salesFee.levelCount != 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s192"><Data ss:Type="String">获得销售服务费的</Data></Cell>
-    <Cell ss:MergeAcross="${(1+I.salesFee.levelCount)?string('0')}" ss:StyleID="m2529972893740"><Data ss:Type="String">本期&#10;XX年XX月XX日至XX年XX月XX日</Data></Cell>
+    <!--chenhy,20240717,修改表头文字为本期-->
+    <!--<Cell ss:MergeAcross="${(1+I.salesFee.levelCount)?string('0')}" ss:StyleID="m2529972893740"><Data ss:Type="String">本期&#10;XX年XX月XX日至XX年XX月XX日</Data></Cell>-->
+    <Cell ss:MergeAcross="${(1+I.salesFee.levelCount)?string('0')}" ss:StyleID="m2529972893740"><Data ss:Type="String">本期</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s194"><Data ss:Type="String">各关联方名称</Data></Cell>
@@ -2152,11 +2182,11 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s193"/>
-    <#if I.salesFee.levelCount != 0>
+    
     <#list I.salesFee.levelNames as name>
     <Cell ss:StyleID="s188"><Data ss:Type="String">${name!}</Data></Cell>
     </#list>
-    </#if>
+   
     <Cell ss:StyleID="s189"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s193"/>
    </Row>
@@ -2177,16 +2207,6 @@
    </#list>
    </#if>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s112"/>
-    <#if I.salesFee.levelCount != 0>
-    <#list I.salesFee.levelNames as name>
-    <Cell ss:StyleID="s207"/>
-    </#list>
-    </#if>
-    <Cell ss:StyleID="s207"/>
-    <Cell ss:StyleID="s207"/>
-   </Row>
-   <Row>
     <Cell ss:Index="2" ss:StyleID="s112"><Data ss:Type="String">合计</Data></Cell>
     <#if I.salesFee.levelCount != 0>
     <#list I.salesFee.levelNames as name>
@@ -2205,7 +2225,9 @@
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s192"><Data ss:Type="String">获得销售服务费的</Data></Cell>
-    <Cell ss:MergeAcross="${(1+I.salesFee.levelCount)?string('0')}" ss:StyleID="m2529972893620"><Data ss:Type="String">上年度可比期间&#10;XX年XX月XX日至XX年XX月XX日</Data></Cell>
+    <!--chenhy,20240717,修改表头文字为上年度可比期间-->
+    <!--<Cell ss:MergeAcross="${(1+I.salesFee.levelCount)?string('0')}" ss:StyleID="m2529972893620"><Data ss:Type="String">上年度可比期间&#10;XX年XX月XX日至XX年XX月XX日</Data></Cell>-->
+    <Cell ss:MergeAcross="${(1+I.salesFee.levelCount)?string('0')}" ss:StyleID="m2529972893620"><Data ss:Type="String">上年度可比期间</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s194"><Data ss:Type="String">各关联方名称</Data></Cell>
@@ -2238,16 +2260,6 @@
    </Row>
    </#list>
    </#if>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s112"/>
-    <#if I.salesFee.levelCount != 0>
-    <#list I.salesFee.levelNames as name>
-    <Cell ss:StyleID="s207"/>
-    </#list>
-    </#if>
-    <Cell ss:StyleID="s207"/>
-    <Cell ss:StyleID="s207"/>
-   </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s112"><Data ss:Type="String">合计</Data></Cell>
@@ -2263,6 +2275,11 @@
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
    </Row>
+   <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均无销售服务费。</Data></Cell>
+   </Row>
+   </#if>
    </#if>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s118"/>
@@ -2295,6 +2312,7 @@
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+    <#if I.bankThx.count != 0>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s142"/>
     <Cell ss:StyleID="s142"/>
@@ -2325,7 +2343,6 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.bankThx.count != 0>
    <#list I.bankThx.list as item>
    <Row>
     <Cell ss:StyleID="s167"><Data ss:Type="String">NNXXX</Data></Cell>
@@ -2340,7 +2357,6 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    </#list>
-   </#if>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s142"/>
     <Cell ss:StyleID="s142"/>
@@ -2371,7 +2387,6 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.bankThx.count != 0>
    <#list I.bankThx.list as item>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
@@ -2385,6 +2400,10 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    </#list>
+     <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均未通过关联方进行银行间同业市场的债券（含回购）交易</Data></Cell>
+   </Row>
    </#if>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s142"/>
@@ -2460,7 +2479,7 @@
    </Row>
    <#if I.mgerHoldFund.item10Flag == 'Y'>
    <Row ss:Height="27">
-    <Cell ss:StyleID="s173"><Data ss:Type="String">IIXXX</Data></Cell>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item10.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item10.count == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
@@ -2479,7 +2498,8 @@
    </#if>
    <#if I.mgerHoldFund.item11Flag == 'Y'>
    <Row>
-    <Cell ss:StyleID="s173"><Data ss:Type="String"><#if I.mgerHoldFund.item10Flag != 'Y'>IIXXX</#if></Data></Cell>
+    <!-- <Cell ss:StyleID="s173"><Data ss:Type="String"><#if I.mgerHoldFund.item10Flag != 'Y'>NN/GLR</#if></Data></Cell> -->
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item11.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item11.count == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
@@ -2497,7 +2517,7 @@
    </Row>
    </#if>
    <Row>
-    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item20.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item20.count == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
@@ -2514,7 +2534,7 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item30.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item30.count == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
@@ -2531,7 +2551,7 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item40.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item40.count == 0>
     <Cell ss:StyleID="s207"><Data ss:Type="Number"></Data></Cell>
@@ -2548,7 +2568,7 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item50.itemName!}</Data></Cell>
     <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-3-I.mgerHoldFund.dynamicCount)?string('0')}]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s207" ss:Formula="=SUM(R[${(-3-I.mgerHoldFund.dynamicCount)?string('0')}]C:R[-2]C)-R[-1]C"><Data ss:Type="Number"></Data></Cell>
@@ -2557,7 +2577,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s216"><Data ss:Type="String">${I.mgerHoldFund.item60.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item60.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item60.count == 0>
     <Cell ss:StyleID="s206" ss:Formula="=R[-1]C/R[1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="Number"></Data></Cell>
@@ -2598,6 +2618,7 @@
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
    </Row>
+   <#if I.mgerHoldFund.levelCount != 0>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -2639,7 +2660,7 @@
    </Row>
    <#if I.mgerHoldFund.item10Flag == 'Y'>
    <Row ss:Height="27" ss:StyleID="s119">
-    <Cell ss:StyleID="s173"><Data ss:Type="String">IIXXX</Data></Cell>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item10.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item10.count != 0>
     <#list I.mgerHoldFund.item10.levels as level>
@@ -2655,7 +2676,7 @@
    </#if>
    <#if I.mgerHoldFund.item11Flag == 'Y'>
    <Row ss:StyleID="s119">
-    <Cell ss:StyleID="s173"><Data ss:Type="String"><#if I.mgerHoldFund.item10Flag != 'Y'>IIXXX</#if></Data></Cell>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item11.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item11.count != 0>
     <#list I.mgerHoldFund.item11.levels as level>
@@ -2670,7 +2691,7 @@
    </Row>
    </#if>
    <Row ss:StyleID="s119">
-    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item20.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item20.count != 0>
     <#list I.mgerHoldFund.item20.levels as level>
@@ -2684,7 +2705,7 @@
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row ss:StyleID="s119">
-    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item30.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item30.count != 0>
     <#list I.mgerHoldFund.item30.levels as level>
@@ -2698,7 +2719,7 @@
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row ss:StyleID="s119">
-    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item40.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item40.count != 0>
     <#list I.mgerHoldFund.item40.levels as level>
@@ -2712,7 +2733,7 @@
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row ss:StyleID="s119">
-    <Cell ss:StyleID="s173"/>
+    <Cell ss:StyleID="s173"><Data ss:Type="String">NN/GLR</Data></Cell>
     <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item50.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item50.count != 0>
     <#list I.mgerHoldFund.item50.levels as level>
@@ -2727,7 +2748,7 @@
    </Row>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s203"><Data ss:Type="String">${I.mgerHoldFund.item60.itemName!}</Data></Cell>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">${I.mgerHoldFund.item60.itemName!}</Data></Cell>
     <#if I.mgerHoldFund.item60.count != 0>
     <#list I.mgerHoldFund.item60.levels as level>
     <#if extraFundInfo.levelShare == 'Y'>
@@ -2743,6 +2764,11 @@
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
    </Row>
+    <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均无基金管理人运用固有资金投资本基金的情况</Data></Cell>
+   </Row>
+   </#if>
    <Row ss:StyleID="s119">
     <Cell ss:StyleID="s214"><Data ss:Type="String">T300</Data></Cell>
     <Cell ss:StyleID="s213"><Data ss:Type="String">${I.mgerHoldFund.item70.itemName!}</Data></Cell>
@@ -2774,6 +2800,7 @@
    <Row>
     <Cell ss:Index="2" ss:StyleID="s106"><Data ss:Type="String">7.4.10.5.2 报告期末除基金管理人之外的其他关联方投资本基金的情况</Data></Cell>
    </Row>
+    <#if I.unmgerHoldFund.levelsCount != 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s135"/>
     <Cell ss:MergeAcross="1" ss:StyleID="s130"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
@@ -2799,7 +2826,6 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.unmgerHoldFund.levelsCount != 0>
    <#list I.unmgerHoldFund.levels as level>
    <#if level_index == 0>
    <#if level.count != 0>
@@ -2818,6 +2844,10 @@
    </#if>
    </#if>
    </#list>
+   <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均无基金管理人之外的其他关联方投资本基金的情况</Data></Cell>
+   </Row>
    </#if>
    <#else>
    <Row>
@@ -2879,6 +2909,10 @@
    </#list>
    </#if>
    </#list>
+   <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均无基金管理人之外的其他关联方投资本基金的情况</Data></Cell>
+   </Row>
    </#if>
    </#if>
    <Row>
@@ -2894,6 +2928,7 @@
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.bank.count != 0>
    <Row>
     <Cell ss:Index="7" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
@@ -2914,7 +2949,6 @@
     <Cell ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.bank.count != 0>
    <#list I.bank.list as item>
    <Row>
     <Cell ss:StyleID="s167"><Data ss:Type="String"><#if item_index == 0>C300/I300</#if></Data></Cell>
@@ -2927,6 +2961,10 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    </#list>
+   <#else>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期及上年度可比期间均无关联方保管的银行存款余额及当期产生的利息收入</Data></Cell>
+   </Row>
    </#if>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s177"/>
@@ -2945,6 +2983,7 @@
    <Row>
     <Cell ss:Index="2" ss:StyleID="s110"><Data ss:Type="String">7.4.10.7 本基金在承销期内参与关联方承销证券的情况</Data></Cell>
    </Row>
+   <#if I.underWrite.current.count != 0>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s98"/>
    </Row>
@@ -2973,7 +3012,6 @@
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.underWrite.current.count != 0>
    <#list I.underWrite.current.list as item>
    <Row>
     <#if item_index == 0>
@@ -2999,6 +3037,7 @@
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
+   <#if I.underWrite.last.count != 0>
    <Row>
     <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s130"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
     <Cell ss:StyleID="s107"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
@@ -3024,7 +3063,6 @@
     <Cell ss:Index="9" ss:StyleID="s122"/>
     <Cell ss:StyleID="s122"/>
    </Row>
-   <#if I.underWrite.last.count != 0>
    <#list I.underWrite.last.list as item>
    <Row>
     <Cell/>

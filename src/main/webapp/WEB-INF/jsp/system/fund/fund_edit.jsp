@@ -103,12 +103,12 @@
 								    <option value="N" <c:if test="${pd.SHHK == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<td style="width:110px;text-align: right;padding-top: 13px;">QD:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">指数:</td>
 								<td>
-								    <select class="chosen-select form-control" name="QD" id="QD" data-placeholder="请选择" style="width:49%;">
+								    <select class="chosen-select form-control" name="IDX" id="IDX" data-placeholder="请选择" style="width:49%;">
 								    <option value=""></option>
-								    <option value="Y" <c:if test="${pd.QD == 'Y'}">selected</c:if>>是</option>
-								    <option value="N" <c:if test="${pd.QD == 'N'}">selected</c:if>>否</option>
+								    <option value="Y" <c:if test="${pd.IDX == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.IDX == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
 								<td style="width:110px;text-align: right;padding-top: 13px;">货基:</td>
@@ -119,14 +119,15 @@
 								    <option value="N" <c:if test="${pd.MF == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<td style="width:110px;text-align: right;padding-top: 13px;">指数:</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">摊余成本:</td>
 								<td>
-								    <select class="chosen-select form-control" name="IDX" id="IDX" data-placeholder="请选择" style="width:49%;">
+								    <select class="chosen-select form-control" name="AC" id="AC" data-placeholder="请选择" style="width:49%;">
 								    <option value=""></option>
-								    <option value="Y" <c:if test="${pd.IDX == 'Y'}">selected</c:if>>是</option>
-								    <option value="N" <c:if test="${pd.IDX == 'N'}">selected</c:if>>否</option>
+								    <option value="Y" <c:if test="${pd.AC == 'Y'}">selected</c:if>>是</option>
+								    <option value="N" <c:if test="${pd.AC == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
+								
 							</tr>
 							<tr>
 								<td style="width:110px;text-align: right;padding-top: 13px;">LOF:</td>
@@ -274,7 +275,20 @@
 								    <option value="下一付息日" <c:if test="${pd.COMPOUND == '下一付息日'}">selected</c:if>>下一付息日</option>
 								    <option value="到期日" <c:if test="${pd.COMPOUND == '到期日'}">selected</c:if>>到期日</option>
 								    </select>
-								</td>
+								</td>							
+								<td style="width:110px;text-align: right;padding-top: 13px;">是否发起式:</td>
+								<td><input type="text" autocomplete="off" name="SSF" id="SSF" value="${pd.SSF}" maxlength="60" style="width:98%;"/></td>
+							</tr>
+							<tr>								
+								<td style="width:110px;text-align: right;padding-top: 13px;">注册登记机构:</td>
+								<td><input type="text" autocomplete="off" name="TA" id="TA" value="${pd.TA}" maxlength="60" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">ETF链接基金的目标基金:</td>
+								<td><input type="text" autocomplete="off" name="AIM_FUND" id="AIM_FUND" value="${pd.AIM_FUND}" maxlength="60" style="width:98%;"/></td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">托管人模板:</td>
+								<td><input type="text" autocomplete="off" name="PUB_FUND" id="PUB_FUND" value="${pd.PUB_FUND}" maxlength="60" style="width:98%;"/></td>			
+								<td style="width:110px;text-align: right;padding-top: 13px;">期货投资策略文字段:</td>
+								<td><input type="text" autocomplete="off" name="IS" id="IS" value="${pd.IS}" maxlength="60" style="width:98%;"/></td>
+							</tr>
 								<td style="width:110px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
@@ -283,11 +297,8 @@
 								    <option value="N" <c:if test="${pd.ACTIVE == 'N'}">selected</c:if>>否</option>
 								    </select>
 								</td>
-								<!-- 
 								<td style="width:110px;text-align: right;padding-top: 13px;">状态:</td>
 								<td><input type="text" name="STATUS" id="STATUS" value="${pd.STATUS}" maxlength="30"  title="状态" style="width:98%;"/></td>
-								 -->
-								
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

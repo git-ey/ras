@@ -129,6 +129,13 @@ public class ReportContentService implements ReportContentManager{
 				pd.put("PR_ATTR2", map.get("PR_ATTR2"));
 				pd.put("PR_ATTR3", map.get("PR_ATTR3"));
 				pd.put("FV_ATTR1", map.get("FV_ATTR1"));
+				pd.put("FV_ATTR2", map.get("FV_ATTR2"));
+				pd.put("FI", map.get("FI"));
+				pd.put("CR", map.get("CR"));
+				pd.put("CR_LOSS", map.get("CR_LOSS"));
+				pd.put("ADDITAN_NOTE", map.get("ADDITAN_NOTE"));
+				pd.put("THREE_LEVEL_CHANGE_NOTE", map.get("THREE_LEVEL_CHANGE_NOTE"));
+				pd.put("RM", map.get("RM"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pds.add(pd);
 				idx++;

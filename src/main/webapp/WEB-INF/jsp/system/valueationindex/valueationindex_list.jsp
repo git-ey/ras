@@ -60,6 +60,7 @@
 									<th class="center" style="width:35px;">
 									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
+									<th class="center">公司代码</th>
 									<th class="center">是否货基</th>
 									<th class="center">投资标的</th>
 									<th class="center">交易市场</th>
@@ -69,8 +70,6 @@
 									<th class="center">索引估值类型代码</th>
 									<th class="center">估值类型代码</th>
 									<th class="center">估值类型</th>
-									<th class="center">估值基价来源</th>
-									<th class="center">估值基价字段</th>
 									<th class="center">三层次类型</th>
 									<th class="center">操作</th>
 								</tr>
@@ -86,6 +85,7 @@
 											<td class='center'>
 												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.VALUEATIONINDEX_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
+											<td class='center'>${var.FIRM_CODE}</td>
 											<td class='center'>${var.MMF}</td>
 											<td class='center'>${var.TYPE}</td>
 											<td class='center'>${var.MARKET}</td>
@@ -95,8 +95,6 @@
 											<td class='center'>${var.VAL_TYPE_INDEX}</td>
 											<td class='center'>${var.VAL_TYPE_CODE}</td>
 											<td class='center'>${var.VAL_TYPE_DEXS}</td>
-											<td class='center'>${var.VAL_BASE_SOURCE}</td>
-											<td class='center'>${var.VAL_COLUMN}</td>
 											<td class='center'>${var.THREE_LEVEL}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">

@@ -2767,7 +2767,7 @@ function winScrollContent(c) {
                 f += (isNaN(c) ? 0 : c) + (isNaN(j) ? 0 : j)
             }
             f += Math.round(parseFloat(i.width())) + Math.round(parseFloat(b.width()));
-            if (a.browser.msie) {
+            if (/msie/.test(navigator.userAgent.toLowerCase())) {
                 i.width(a(this).width() - 65);
                 g.css({
                     position: "relative",

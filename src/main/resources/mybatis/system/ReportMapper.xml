@@ -13,7 +13,7 @@
 		P1,
 		P2,
 		P3,
-		P4,
+		<!--P4,-->
 		P5,
 		OPERATOR,
 		RUN_DATETIME,
@@ -29,7 +29,7 @@
 		#{P1},
 		#{P2},
 		#{P3},
-		#{P4},
+		<!-- #{P4},-->
 		#{P5},
 		#{OPERATOR},
 		#{RUN_DATETIME},
@@ -80,7 +80,7 @@
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">
 		select
-		  CONCAT(RUN_PARAM,',',P1,',',P2,',',P3,',',P4,',',P5) REPORT_PARAM,
+		  CONCAT(RUN_PARAM,',',P1,',',P2,',',P3,',',P5) REPORT_PARAM,
 		  OPERATOR,
 		  RUN_DATETIME,
 		  OUTBOND_PATH,
@@ -159,6 +159,7 @@
 	<select id="listReportFund" parameterType="pd" resultType="pd">
 		select sf.FUND_CODE,	
 		       sf.FUND_ID,
+			   sf.FUND_TYPE, <!--chenhy,20240223,新增基金和产品的区分-->
 		       sf.FIRM_CODE,	
 		       sf.SHORT_NAME,	
 		       sf.FULL_NAME,	
@@ -217,7 +218,8 @@
 		SELECT
 		    sm.FULL_NAME AS mgrFullName,
 		    sfs.SIGNOFF_1 as signOff1,
-		    sfs.SIGNOFF_2 as signOff2
+		    sfs.SIGNOFF_2 as signOff2,
+			sfs.DB_NUM as DB_NUM
 		FROM
 		    sys_fund_info sfi
 	    LEFT JOIN sys_mgrcompany sm ON sm.COMPANY_CODE = sfi.FIRM_CODE 
@@ -288,10 +290,15 @@
 			IFNULL(sfc.STOCK_R, 'N') AS stockR,
 			IFNULL(sfc.STOCK_P, 'N') AS stockP,
 			IFNULL(sfc.STOCK_L, 'N') AS stockL,
+			IFNULL(sfc.FUND_BS, 'N') AS fundBs,
 			IFNULL(sfc.BOND_ALL, 'N') AS bondAll,
 			IFNULL(sfc.BOND_BS, 'N') AS bondBs,
 			IFNULL(sfc.BOND_R, 'N') AS bondR,
 			IFNULL(sfc.BOND_P, 'N') AS bondP,
+			IFNULL(sfc.ABS_ALL, 'N') AS ABSAll,
+			IFNULL(sfc.ABS_BS, 'N') AS ABSBS,
+			IFNULL(sfc.ABS_R, 'N') AS ABSR,
+			IFNULL(sfc.ABS_P, 'N') AS ABSP,
 			IFNULL(sfc.GOLD_ALL, 'N') AS goldAll,
 			IFNULL(sfc.GOLD_BS, 'N') AS goldBs,
 			IFNULL(sfc.GOLD_R, 'N') AS goldR,
@@ -355,10 +362,18 @@
             IFNULL( src.PR_ATTR2, '' ) AS PR_ATTR2,
             IFNULL( src.PR_ATTR3, '' ) AS PR_ATTR3,
             IFNULL( src.FV_ATTR1, '' ) AS FV_ATTR1,
+            IFNULL( src.FV_ATTR2, '' ) AS FV_ATTR2, <!-- 20220628,新增 金融工具公允价值计量的方法 -->
             IFNULL( src.MR, '' ) AS MR,
 			IFNULL( src.IR, '' ) AS IR,
 			IFNULL( src.ER, '' ) AS ER,
-			IFNULL( src.IR_EXP, '' ) AS IR_EXP<!-- ,
+			IFNULL( src.IR_EXP, '' ) AS IR_EXP,
+			IFNULL( src.FI, '' ) AS FI,<!-- 20210805,新增 风险管理政策和组织架构 -->
+			IFNULL( src.RM, '' ) AS RM,<!-- 20210805,新增 风险管理政策和组织架构 -->
+			IFNULL( src.CR, '' ) AS CR, <!-- 20210805,新增 信用风险 -->
+			IFNULL( src.CR_LOSS, '' ) AS CR_LOSS, <!-- 20210805,新增 信用风险 -->
+			IFNULL( src.ADDITAN_NOTE, '' ) AS ADDITAN_NOTE, <!-- 20230807,新增 流通受限证券文字说明 -->
+			IFNULL( src.THREE_LEVEL_CHANGE_NOTE, '' ) AS THREE_LEVEL_CHANGE_NOTE <!-- 20231121,新增 第三层次公允价值余额及变动情况 -->
+			<!-- ,
 			IFNULL( src.ER, '' ) AS ER  -->
         FROM
             sys_report_content src 

@@ -29,7 +29,7 @@
   <Style ss:ID="Default" ss:Name="Normal">
    <Alignment ss:Vertical="Center"/>
    <Borders/>
-   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
    <Interior/>
    <NumberFormat/>
    <Protection/>
@@ -38,7 +38,7 @@
    <Font ss:FontName="Tms Rmn" x:Family="Roman" ss:Size="11"/>
   </Style>
   <Style ss:ID="s27" ss:Name="Normal_HX - H">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -51,8 +51,8 @@
   <Style ss:ID="s19" ss:Name="百分比 2">
    <NumberFormat ss:Format="0%"/>
   </Style>
-  <Style ss:ID="s23" ss:Name="常规 2">
-   <Alignment ss:Vertical="Bottom"/>
+  <Style ss:ID="s23" ss:Name="常规 2FORH">
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -60,15 +60,15 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s28" ss:Name="常规 3">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
-   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Font ss:FontName="黑体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
    <Interior/>
    <NumberFormat/>
    <Protection/>
   </Style>
   <Style ss:ID="s18" ss:Name="常规_L-deferred assets">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Size="11"/>
    <Interior/>
@@ -76,7 +76,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s16" ss:Name="常规_T-Owner's equity">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -84,7 +84,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s26" ss:Name="常规_T-Owner's equity 2">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -92,7 +92,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s31" ss:Name="常规_T-Owner's equity_H-Industrial Fund 2005-1">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -100,7 +100,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s33" ss:Name="常规_T-Owner's equity_股票型基金-H">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -108,7 +108,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s20" ss:Name="常规_U-WF-WH-0409">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Size="11"/>
    <Interior/>
@@ -116,7 +116,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s25" ss:Name="常规_XYZZ - H">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -130,6 +130,127 @@
    <Interior/>
    <NumberFormat/>
    <Protection/>
+  </Style>
+  <Style ss:ID="s66" ss:Name="常规 2">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection ss:Protected="0"/>
+  </Style>
+  <Style ss:ID="m1679463336" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat ss:Format="Short Date"/>
+  </Style>
+  <Style ss:ID="m1176394024" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m1176394064" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m1176394084" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m1176393924" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m1238161464" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m1238161484" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m1238161504" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m1238161524" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m1176394044" ss:Parent="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
   </Style>
   <Style ss:ID="s34" ss:Name="千位分隔">
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
@@ -147,7 +268,7 @@
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
   <Style ss:ID="m2372032623712" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -158,7 +279,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="m2372032623732" ss:Parent="s23">
-   <Alignment ss:Horizontal="Justify" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -179,7 +300,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="m2372032623772" ss:Parent="s23">
-   <Alignment ss:Horizontal="Justify" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -189,7 +310,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="m2372032623792" ss:Parent="s23">
-   <Alignment ss:Horizontal="Justify" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -199,7 +320,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="m2372032629800" ss:Parent="s23">
-   <Alignment ss:Horizontal="Justify" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -220,7 +341,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="m2372032629880" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -242,7 +363,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s43" ss:Parent="s21">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -266,7 +387,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s47" ss:Parent="s21">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
@@ -274,7 +395,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s48" ss:Parent="s21">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
@@ -291,19 +412,19 @@
    <Interior/>
   </Style>
   <Style ss:ID="s51" ss:Parent="s23">
-   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s52" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <Interior/>
    <NumberFormat/>
   </Style>
   <Style ss:ID="s53" ss:Parent="s23">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <Interior/>
@@ -314,7 +435,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s55" ss:Parent="s25">
-   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
@@ -330,7 +451,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s58" ss:Parent="s25">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
@@ -352,7 +473,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s62" ss:Parent="s16">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
@@ -362,7 +483,7 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
   <Style ss:ID="s64" ss:Parent="s29">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
@@ -370,7 +491,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s65" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -381,27 +502,15 @@
     ss:Color="#0000FF"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s66" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
-   <Borders>
-    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
-    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
-    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
-    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
-   </Borders>
-   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
-    ss:Color="#000000"/>
-   <Interior/>
-  </Style>
   <Style ss:ID="s67" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
    <Interior/>
   </Style>
   <Style ss:ID="s68" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
@@ -409,7 +518,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s69" ss:Parent="s31">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
@@ -435,7 +544,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s73">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
   </Style>
@@ -468,7 +577,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s77" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -480,7 +589,7 @@
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s78" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -652,33 +761,33 @@
    <Interior/>
   </Style>
   <Style ss:ID="s105" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:ShrinkToFit="1"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s106" ss:Parent="s23">
-   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s107" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s108" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" />
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
   </Style>
   <Style ss:ID="s109" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
   <Style ss:ID="s110" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
   </Style>
@@ -694,13 +803,13 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s113" ss:Parent="s16">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s114" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Double" ss:Weight="3"/>
     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -708,45 +817,45 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
   <Style ss:ID="s115" ss:Parent="s18">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s116" ss:Parent="s16">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s117" ss:Parent="s28">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
   <Style ss:ID="s118" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s119" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#00B0F0" ss:Bold="1"/>
   </Style>
   <Style ss:ID="s120" ss:Parent="s31">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s121" ss:Parent="s31">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s122" ss:Parent="s28">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1" ss:Underline="Single"/>
   </Style>
@@ -781,7 +890,7 @@
     ss:Color="#FF0000" ss:Bold="1"/>
   </Style>
   <Style ss:ID="s129" ss:Parent="s28">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#00B0F0" ss:Bold="1"/>
   </Style>
@@ -793,7 +902,7 @@
    <NumberFormat ss:Format="Short Date"/>
   </Style>
   <Style ss:ID="s131" ss:Parent="s21">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
@@ -804,7 +913,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s132" ss:Parent="s24">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
    </Borders>
@@ -839,7 +948,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s136" ss:Parent="s21">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
@@ -850,7 +959,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s137" ss:Parent="s24">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
    </Borders>
@@ -875,6 +984,17 @@
    <Interior/>
    <NumberFormat/>
    <Protection ss:Protected="0"/>
+  </Style>
+  <Style ss:ID="s415" ss:Parent="s75">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
   </Style>
   <Style ss:ID="s141" ss:Parent="s22">
    <Borders/>
@@ -918,7 +1038,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s148" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -933,18 +1053,18 @@
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s150" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s151" ss:Parent="s28">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
   </Style>
   <Style ss:ID="s152" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
    </Borders>
@@ -953,43 +1073,43 @@
    <NumberFormat ss:Format="Short Date"/>
   </Style>
   <Style ss:ID="s153" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s154" ss:Parent="s28">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
   <Style ss:ID="s155" ss:Parent="s31">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s156" ss:Parent="s31">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
    <NumberFormat ss:Format="_ * #,##0_ ;_ * \-#,##0_ ;_ * &quot;-&quot;_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s157" ss:Parent="s24">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
    <NumberFormat ss:Format="_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)"/>
   </Style>
   <Style ss:ID="s158" ss:Parent="s18">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s159" ss:Parent="s24">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2"/>
     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
@@ -999,7 +1119,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s160" ss:Parent="s24">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
     <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2"/>
@@ -1009,25 +1129,25 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s161" ss:Parent="s16">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s162" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s163" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s164" ss:Parent="s18">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <Interior/>
@@ -1054,13 +1174,13 @@
    <Interior/>
   </Style>
   <Style ss:ID="s167" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
    <NumberFormat ss:Format="_ * #,##0_ ;_ * \-#,##0_ ;_ * &quot;-&quot;_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s168" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1071,7 +1191,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s169" ss:Parent="s23">
-   <Alignment ss:Horizontal="Justify" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1106,7 +1226,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s172" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -1119,7 +1239,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s174" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -1136,7 +1256,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s176" ss:Parent="s23">
-   <Alignment ss:Horizontal="Justify" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1146,7 +1266,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s177" ss:Parent="s23">
-   <Alignment ss:Horizontal="Justify" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
@@ -1159,14 +1279,14 @@
    <Interior/>
   </Style>
   <Style ss:ID="s179" ss:Parent="s23">
-   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#0000FF"/>
    <Interior/>
   </Style>
   <Style ss:ID="s180" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1179,7 +1299,7 @@
    <NumberFormat ss:Format="Short Date"/>
   </Style>
   <Style ss:ID="s181" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1211,7 +1331,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s184" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1223,7 +1343,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s185" ss:Parent="s23">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1247,25 +1367,25 @@
    <Interior/>
   </Style>
   <Style ss:ID="s188" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#00B0F0" ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s189" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s190" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s191" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
@@ -1279,20 +1399,20 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s193" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s194" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
    <NumberFormat/>
   </Style>
   <Style ss:ID="s195" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
    <NumberFormat ss:Format="_ * #,##0_ ;_ * \-#,##0_ ;_ * &quot;-&quot;_ ;_ @_ "/>
@@ -1312,7 +1432,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s198" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1409,7 +1529,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s212" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1420,7 +1540,7 @@
     ss:Color="#FF0000" ss:Bold="1"/>
   </Style>
   <Style ss:ID="s213" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1430,7 +1550,7 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
   <Style ss:ID="s214" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
@@ -1460,7 +1580,7 @@
     ss:Color="#000000"/>
   </Style>
   <Style ss:ID="s217" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1471,7 +1591,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s218" ss:Parent="s31">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
@@ -1479,7 +1599,7 @@
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s219" ss:Parent="s24">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
@@ -1487,7 +1607,7 @@
    <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s220" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1506,7 +1626,7 @@
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s222" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#808080" ss:Pattern="Solid"/>
   </Style>
@@ -1514,6 +1634,18 @@
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="m1293278544" ss:Parent="s76">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#000000" ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s224" ss:Parent="s40">
@@ -1529,7 +1661,7 @@
    <NumberFormat ss:Format="0.0000%"/>
   </Style>
   <Style ss:ID="s226">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
    <Interior/>
@@ -1590,11 +1722,11 @@
    <Interior/>
   </Style>
   <Style ss:ID="s234" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
   <Style ss:ID="s235" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <NumberFormat ss:Format="Short Date"/>
   </Style>
@@ -1624,7 +1756,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s240" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1635,13 +1767,13 @@
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s241" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s242" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <NumberFormat ss:Format="_ * #,##0_ ;_ * \-#,##0_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
@@ -1665,6 +1797,30 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
    <Interior/>
+  </Style>
+  <Style ss:ID="s418" ss:Parent="s77">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s436" ss:Parent="s66">
+   <Alignment ss:Vertical="Top"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat ss:Format="Short Date"/>
   </Style>
   <Style ss:ID="s249" ss:Parent="s34">
    <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
@@ -1769,7 +1925,7 @@
    <NumberFormat ss:Format="_ * #,##0_ ;_ * \-#,##0_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s259" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1782,7 +1938,7 @@
    <NumberFormat ss:Format="_ * #,##0_ ;_ * \-#,##0_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
   </Style>
   <Style ss:ID="s260" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <NumberFormat ss:Format="yyyy\-mm\-dd"/>
   </Style>
@@ -1799,7 +1955,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s262" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1835,7 +1991,7 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
   </Style>
   <Style ss:ID="s266" ss:Parent="s34">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1848,7 +2004,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s267" ss:Parent="s34">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1861,7 +2017,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s268" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1882,7 +2038,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s270" ss:Parent="s34">
-   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1917,7 +2073,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s273" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1929,7 +2085,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s274" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1942,7 +2098,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s275" ss:Parent="s34">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -1954,7 +2110,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s276" ss:Parent="s34">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2054,7 +2210,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s286" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#00B0F0"/>
   </Style>
@@ -2100,7 +2256,7 @@
    <NumberFormat ss:Format="0.0000%"/>
   </Style>
   <Style ss:ID="s293" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2112,7 +2268,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s294" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2124,24 +2280,24 @@
    <Interior/>
   </Style>
   <Style ss:ID="s295" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior/>
   </Style>
   <Style ss:ID="s296" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s297" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
    <NumberFormat/>
   </Style>
   <Style ss:ID="s298" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
    <NumberFormat/>
@@ -2178,7 +2334,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s304" ss:Parent="s16">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
@@ -2186,7 +2342,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s305" ss:Parent="s21">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
@@ -2200,7 +2356,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s307" ss:Parent="s23">
-   <Alignment ss:Vertical="Bottom"/>
+   <Alignment ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2212,7 +2368,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s308" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2238,7 +2394,7 @@
    <Protection/>
   </Style>
   <Style ss:ID="s310" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2250,7 +2406,7 @@
    <NumberFormat/>
   </Style>
   <Style ss:ID="s311" ss:Parent="s34">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2325,7 +2481,7 @@
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s319" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2336,7 +2492,7 @@
     ss:Bold="1"/>
   </Style>
   <Style ss:ID="s320" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2345,6 +2501,29 @@
    </Borders>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s336">
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="18"
+    ss:Color="#FF0000" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s392" ss:Parent="s34">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s394" ss:Parent="s80">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#000000" ss:Bold="1"/>
+   <Interior ss:Color="#B4C6E7" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s407" ss:Parent="s75">
+   <Interior ss:Color="#D0CECE" ss:Pattern="Solid"/>
   </Style>
   <Style ss:ID="s321" ss:Parent="s23">
    <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
@@ -2388,6 +2567,13 @@
    <Interior/>
    <NumberFormat ss:Format="Standard"/>
   </Style>
+  <Style ss:ID="s340" ss:Parent="s16">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#FF0000" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
   <Style ss:ID="s359">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
@@ -2425,7 +2611,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s363" ss:Parent="s28">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
    </Borders>
@@ -2433,7 +2619,7 @@
     ss:Bold="1"/>
   </Style>
   <Style ss:ID="s365" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2483,7 +2669,7 @@
    <NumberFormat ss:Format="Short Date"/>
   </Style>
   <Style ss:ID="s377" ss:Parent="s23">
-   <Alignment ss:Horizontal="Justify" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2495,7 +2681,7 @@
    <Interior/>
   </Style>
   <Style ss:ID="s385" ss:Parent="s23">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -2506,851 +2692,799 @@
     ss:Bold="1"/>
    <NumberFormat/>
   </Style>
-  <Style ss:ID="s390" ss:Parent="s16">
+  <Style ss:ID="s388" ss:Parent="s16">
+    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    <Borders>
+     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
+     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
+    </Borders>
+    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+     ss:Color="#000000" ss:Bold="1"/>
+   </Style>
+   <Style ss:ID="s389" ss:Parent="s16">
+    <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+    <Borders>
+     <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2"/>
+     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
+    </Borders>
+    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+     ss:Color="#000000" ss:Bold="1"/>
+   </Style>
+   <Style ss:ID="s390" ss:Parent="s16">
+    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    <Borders>
+     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
+     <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
+    </Borders>
+    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+     ss:Color="#000000"/>
+    <Interior/>
+    <NumberFormat ss:Format="_(* #,##0.0000_);_(* \(#,##0.0000\);_(* &quot;-&quot;??_);_(@_)"/>
+   </Style>
+   <Style ss:ID="s391" ss:Parent="s16">
+    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+    <Borders>
+     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
+     <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2"/>
+    </Borders>
+    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+     ss:Color="#000000"/>
+    <NumberFormat ss:Format="0%"/>
+   </Style>
+  <Style ss:ID="s395" ss:Parent="s22">
+    <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#FF0000" ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s396">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="Short Date"/>
+  </Style>
+  <Style ss:ID="s397">
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.0000%"/>
+  </Style>
+  <Style ss:ID="s398">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s399">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s400">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s401">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Color="#000000"/>
    <Interior/>
    <NumberFormat ss:Format="_(* #,##0.0000_);_(* \(#,##0.0000\);_(* &quot;-&quot;??_);_(@_)"/>
   </Style>
+  <Style ss:ID="s402">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
+    ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
  </Styles>
- <Worksheet ss:Name="H">
-  <Table x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s85" ss:DefaultColumnWidth="54.75"
-   ss:DefaultRowHeight="13.5">
-   <Column ss:StyleID="s83" ss:AutoFitWidth="0" ss:Width="197.25"/>
-   <Column ss:StyleID="s83" ss:AutoFitWidth="0" ss:Width="97.5"/>
-   <Column ss:StyleID="s85" ss:Width="121.5"/>
-   <Column ss:StyleID="s83" ss:Width="102"/>
-   <Column ss:StyleID="s83" ss:AutoFitWidth="0" ss:Width="79.5"/>
-   <Column ss:StyleID="s85" ss:Width="115.5"/>
-   <Column ss:StyleID="s83" ss:Width="58.5"/>
-   <Column ss:StyleID="s85" ss:Width="121.5"/>
-   <Column ss:StyleID="s83" ss:Width="58.5"/>
-   <Column ss:StyleID="s85" ss:Width="66"/>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s44"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s86"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
-    <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
-    <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
-    <Cell ss:StyleID="s134"/>
-    <Cell ss:StyleID="s135"><Data ss:Type="String">WP Ref</Data></Cell>
-   </Row>
-   <Row ss:Height="14.25" ss:StyleID="s83">
-    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s130"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
-    <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
-    <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
-    <Cell ss:StyleID="s134"/>
-    <Cell ss:StyleID="s140"><Data ss:Type="String">H</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s91"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">投资</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s89"/>
-    <Cell ss:StyleID="s89"/>
-   </Row>
-   <Row ss:StyleID="s83"/>
-   <Row ss:StyleID="s83">
-    <Cell ss:MergeDown="1" ss:StyleID="s244"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:StyleID="s244"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${period?string('0')}/${month?string('00')}/${day?string('00')}(RMB)</Data></Cell>
-    <Cell ss:StyleID="s244"/>
-    <Cell ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${(period-1)?string('0')}/${month?string('00')}/${day?string('00')}</Data></Cell>
-    <Cell ss:StyleID="s244"/>
-    <Cell ss:StyleID="s84"><Data ss:Type="String">波动</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:Index="3" ss:StyleID="s244"><Data ss:Type="String">未审数</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s244"><Data ss:Type="String">审计调整</Data></Cell>
-    <Cell ss:StyleID="s244"><Data ss:Type="String">审定数</Data></Cell>
-    <Cell ss:StyleID="s244"/>
-    <Cell ss:StyleID="s244"><Data ss:Type="String">审定数</Data></Cell>
-    <Cell ss:StyleID="s244"/>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">%</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s41"><Data ss:Type="String" x:Ticked="1">Dr.</Data></Cell>
-    <Cell ss:StyleID="s41"><Data ss:Type="String" x:Ticked="1">Cr.</Data></Cell>
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s41"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:Index="3" ss:StyleID="s94"><Data ss:Type="String">M/A</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s94"><Data ss:Type="String">T/B</Data></Cell>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">W/P</Data></Cell>
-    <Cell ss:StyleID="s94"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s236"><Data ss:Type="String">股票投资</Data></Cell>
-    <Cell ss:StyleID="s95"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!RC[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr1.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr1.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr1.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s82"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-2]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr2.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr2.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr2.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s228"/>
-    <Cell ss:StyleID="s96"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s41"><Data ss:Type="String">股票投资估值增值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr3.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr3.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s236"><Data ss:Type="String">债券投资</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1"><#if extraFundInfo.mf != 'Y'>-成本<#else>-摊余成本</#if></Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-5]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr4.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr4.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr4.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s82"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1"><#if extraFundInfo.mf != 'Y'>-公允价值<#else>-影子定价</#if></Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-7]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>1
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s41"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>债券投资估值增值<#else>债券投资偏离金额</#if></Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr6.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr6.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s95"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s236"><Data ss:Type="String">资产支持证券投资</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-9]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr7.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr7.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr7.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s82"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1"><#if extraFundInfo.mf != 'Y'>-公允价值<#else>-影子定价</#if></Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-11]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>资产支持持证券投资估值增值<#else>资产支持证券投资偏离金额</#if></Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr9.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr9.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s236"><Data ss:Type="String">基金</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-15]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr10.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr10.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr10.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s82"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-17]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr11.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr11.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr11.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"><Data ss:Type="String">基金投资估值增值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr12.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr12.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s236"><Data ss:Type="String">衍生金融工具</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-17]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr13.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr13.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr13.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s82"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-19]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr14.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr14.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr14.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"><Data ss:Type="String">衍生金融工具估值增值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr15.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr15.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s236"><Data ss:Type="String">贵金属投资-金交所黄金合约</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-35]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr16.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr16.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr16.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s82"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-37]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr17.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr17.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr17.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"><Data ss:Type="String">贵金属投资-金交所黄金合约估值增值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr18.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr18.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s236"><Data ss:Type="String">其他</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-36]C[1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr19.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr19.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr19.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s82"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R[-38]C[3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr20.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr20.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr20.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s230"/>
-    <Cell ss:StyleID="s229"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"><Data ss:Type="String">其他投资估值增值</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr21.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr21.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s91"><Data ss:Type="String">买入返售金融资产</Data></Cell>
-    <Cell ss:StyleID="s95"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s81"><Data ss:Type="String">-账面余额</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">H800</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H800!R${(13+H800.main.count!0)?string('0')}C4"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.drAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.crAmountAdj!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.amountAuditLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s82"/>
-    <Cell ss:Index="3" ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s95"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:StyleID="s95"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s57"/>
-    <Cell ss:StyleID="s97"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:Index="3" ss:StyleID="s265"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s186"/>
-    <Cell ss:StyleID="s265"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">M/A</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与本年未审报表核对一致。</Font></ss:Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">T/B</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与本年试算平衡表核对一致。</Font></ss:Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
-       html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
-   </Row>
-   <Row/>
-   <Row/>
-   <Row ss:StyleID="s83">
-    <Cell ss:StyleID="s237"><Data ss:Type="String">Note 1</Data></Cell>
-    <Cell ss:StyleID="s238"><Data ss:Type="String">分析性复核</Data></Cell>
-    <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s238"/>
-    <Cell ss:StyleID="s238"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s100"/>
-    <Cell ss:Index="3" ss:StyleID="s83"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s100"/>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:Index="4" ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s100"/>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s83"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s100"/>
-    <Cell ss:StyleID="s85"/>
-    <Cell ss:Index="4" ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s100"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:StyleID="s83"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s100"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:Index="4" ss:StyleID="s85"/>
-    <Cell ss:StyleID="s85"/>
-   </Row>
-  </Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <PageSetup>
-    <Layout x:CenterHorizontal="1"/>
-    <Header x:Margin="0.4"/>
-    <Footer x:Margin="0.51181102362204722"/>
-    <PageMargins x:Bottom="0.74803149606299213" x:Left="0.55118110236220474"
-     x:Right="0.55118110236220474" x:Top="0.49"/>
-   </PageSetup>
-   <FitToPage/>
-   <Print>
-    <ValidPrinterInfo/>
-    <PaperSizeIndex>9</PaperSizeIndex>
-    <Scale>35</Scale>
-    <HorizontalResolution>-3</HorizontalResolution>
-    <VerticalResolution>600</VerticalResolution>
-    <Gridlines/>
-   </Print>
-   <Zoom>80</Zoom>
-   <Selected/>
-   <ProtectObjects>False</ProtectObjects>
-   <ProtectScenarios>False</ProtectScenarios>
-  </WorksheetOptions>
- </Worksheet>
- <Worksheet ss:Name="H300">
+<#if extraFundInfo.mf == 'N' && extraFundInfo.ac == 'Y'>
+   <Worksheet ss:Name="H">
+    <Table x:FullColumns="1"
+     x:FullRows="1" ss:StyleID="s85" ss:DefaultColumnWidth="54.75"
+     ss:DefaultRowHeight="13.5">
+     <Column ss:StyleID="s83" ss:AutoFitWidth="0" ss:Width="197.25"/>
+     <Column ss:StyleID="s83" ss:AutoFitWidth="0" ss:Width="97.5"/>
+     <Column ss:StyleID="s85" ss:Width="133"/>
+     <Column ss:StyleID="s83" ss:Width="100"/>
+     <Column ss:StyleID="s83" ss:AutoFitWidth="0" ss:Width="100"/>
+     <Column ss:StyleID="s85" ss:Width="133"/>
+     <Column ss:StyleID="s83" ss:Width="58.5"/>
+     <Column ss:StyleID="s85" ss:Width="121.5"/>
+     <Column ss:StyleID="s83" ss:Width="58.5"/>
+     <Column ss:StyleID="s85" ss:Width="66"/>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s86"><Data ss:Type="String">客户：</Data></Cell>
+      <Cell ss:StyleID="s44"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
+      <Cell ss:Index="6" ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
+      <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
+      <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+      <Cell ss:StyleID="s134"/>
+      <Cell ss:StyleID="s135"><Data ss:Type="String">WP Ref</Data></Cell>
+     </Row>
+     <Row ss:Height="14.25" ss:StyleID="s83">
+      <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
+      <Cell ss:StyleID="s130"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+      <Cell ss:Index="6" ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
+      <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
+      <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+      <Cell ss:StyleID="s134"/>
+      <Cell ss:StyleID="s140"><Data ss:Type="String">H</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s91"><Data ss:Type="String">科目：</Data></Cell>
+      <Cell ss:StyleID="s44"><Data ss:Type="String">投资</Data></Cell>
+      <Cell ss:Index="8" ss:StyleID="s89"/>
+      <Cell ss:StyleID="s89"/>
+     </Row>
+     <Row ss:StyleID="s83"/>
+     <Row ss:StyleID="s83">
+      <Cell ss:MergeDown="1" ss:StyleID="s244"><Data ss:Type="String">项目</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:MergeAcross="3" ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${period?string('0')}/${month?string('00')}/${day?string('00')}(RMB)</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${(period-1)?string('0')}/12/31</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:StyleID="s84"><Data ss:Type="String">波动</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:Index="3" ss:StyleID="s244"><Data ss:Type="String">未审数</Data></Cell>
+      <Cell ss:MergeAcross="1" ss:StyleID="s244"><Data ss:Type="String">审计调整</Data></Cell>
+      <Cell ss:StyleID="s244"><Data ss:Type="String">审定数</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:StyleID="s244"><Data ss:Type="String">审定数</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:StyleID="s92"><Data ss:Type="String">%</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:Index="4" ss:StyleID="s41"><Data ss:Type="String" x:Ticked="1">Dr.</Data></Cell>
+      <Cell ss:StyleID="s41"><Data ss:Type="String" x:Ticked="1">Cr.</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:Index="3" ss:StyleID="s94"><Data ss:Type="String">M/A</Data></Cell>
+      <Cell ss:Index="6" ss:StyleID="s94"><Data ss:Type="String">T/B</Data></Cell>
+      <Cell ss:StyleID="s94"/>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">W/P</Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">债券投资</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-账面价值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="='H300-摊余成本法债基'!R11C12"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr23.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr23.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr23.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">资产支持证券投资</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-账面价值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="='H300-摊余成本法债基'!R14C12"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr7.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr7.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr7.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row ss:AutoFitHeight="0">
+      <Cell ss:Index="8" ss:StyleID="s94"><Data ss:Type="String"></Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">债权投资合计</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=SUM(R[-6]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s91"><Data ss:Type="String">买入返售金融资产</Data></Cell>
+      <Cell ss:Index="8" ss:StyleID="s94"><Data ss:Type="String"></Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-账面余额</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H800</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H800!R${(13+H800.main.count!0)?string('0')}C7"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row/>
+     <Row/>
+     <Row/>
+     <Row>
+      <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
+        xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">M/A</Font></B><Font
+         html:Color="#FF0000">：</Font><Font>与本年未审报表核对一致。</Font></ss:Data></Cell>
+     </Row>
+     <Row>
+      <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
+        xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">T/B</Font></B><Font
+         html:Color="#FF0000">：</Font><Font>与本年试算平衡表核对一致。</Font></ss:Data></Cell>
+     </Row>
+     <Row>
+      <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
+        xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
+         html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
+     </Row>
+     <Row/>
+     <Row/>
+     <Row ss:StyleID="s238">
+      <Cell ss:StyleID="s237"><Data ss:Type="String">Note 1</Data></Cell>
+      <Cell ss:StyleID="s238"><Data ss:Type="String">分析性复核</Data></Cell>
+     </Row>
+    </Table>
+    <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+     <PageSetup>
+      <Layout x:CenterHorizontal="1"/>
+      <Header x:Margin="0.4"/>
+      <Footer x:Margin="0.51181102362204722"/>
+      <PageMargins x:Bottom="0.74803149606299213" x:Left="0.55118110236220474"
+       x:Right="0.55118110236220474" x:Top="0.49"/>
+     </PageSetup>
+     <FitToPage/>
+     <Print>
+      <ValidPrinterInfo/>
+      <PaperSizeIndex>9</PaperSizeIndex>
+      <Scale>35</Scale>
+      <HorizontalResolution>-3</HorizontalResolution>
+      <VerticalResolution>600</VerticalResolution>
+      <Gridlines/>
+     </Print>
+     <Zoom>80</Zoom>
+     <Selected/>
+     <ProtectObjects>False</ProtectObjects>
+     <ProtectScenarios>False</ProtectScenarios>
+    </WorksheetOptions>
+   </Worksheet> 
+   <#else>
+   <Worksheet ss:Name="H">
+    <Table x:FullColumns="1"
+     x:FullRows="1" ss:StyleID="s85" ss:DefaultColumnWidth="54.75"
+     ss:DefaultRowHeight="13.5">
+     <Column ss:StyleID="s83" ss:AutoFitWidth="0" ss:Width="197.25"/>
+     <Column ss:StyleID="s83" ss:AutoFitWidth="0" ss:Width="97.5"/>
+     <Column ss:StyleID="s85" ss:Width="133"/>
+     <Column ss:StyleID="s83" ss:Width="100"/>
+     <Column ss:StyleID="s83" ss:AutoFitWidth="0" ss:Width="100"/>
+     <Column ss:StyleID="s85" ss:Width="133"/>
+     <Column ss:StyleID="s83" ss:Width="58.5"/>
+     <Column ss:StyleID="s85" ss:Width="121.5"/>
+     <Column ss:StyleID="s83" ss:Width="58.5"/>
+     <Column ss:StyleID="s85" ss:Width="66"/>
+     <Row ss:Height="14.25">
+      <Cell ss:StyleID="s44"/>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s86"><Data ss:Type="String">客户：</Data></Cell>
+      <Cell ss:StyleID="s44"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
+      <Cell ss:Index="6" ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
+      <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
+      <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+      <Cell ss:StyleID="s134"/>
+      <Cell ss:StyleID="s135"><Data ss:Type="String">WP Ref</Data></Cell>
+     </Row>
+     <Row ss:Height="14.25" ss:StyleID="s83">
+      <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
+      <Cell ss:StyleID="s130"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+      <Cell ss:Index="6" ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
+      <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
+      <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+      <Cell ss:StyleID="s134"/>
+      <Cell ss:StyleID="s140"><Data ss:Type="String">H</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s91"><Data ss:Type="String">科目：</Data></Cell>
+      <Cell ss:StyleID="s44"><Data ss:Type="String">投资</Data></Cell>
+      <Cell ss:Index="8" ss:StyleID="s89"/>
+      <Cell ss:StyleID="s89"/>
+     </Row>
+     <Row ss:StyleID="s83"/>
+     <Row ss:StyleID="s83">
+      <Cell ss:MergeDown="1" ss:StyleID="s244"><Data ss:Type="String">项目</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:MergeAcross="3" ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${period?string('0')}/${month?string('00')}/${day?string('00')}(RMB)</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:StyleID="s244"><Data ss:Type="String" x:Ticked="1">${(period-1)?string('0')}/12/31</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:StyleID="s84"><Data ss:Type="String">波动</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:Index="3" ss:StyleID="s244"><Data ss:Type="String">未审数</Data></Cell>
+      <Cell ss:MergeAcross="1" ss:StyleID="s244"><Data ss:Type="String">审计调整</Data></Cell>
+      <Cell ss:StyleID="s244"><Data ss:Type="String">审定数</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:StyleID="s244"><Data ss:Type="String">审定数</Data></Cell>
+      <Cell ss:StyleID="s244"/>
+      <Cell ss:StyleID="s92"><Data ss:Type="String">%</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s41"/>
+      <Cell ss:StyleID="s41"/>
+      <Cell ss:StyleID="s41"/>
+      <Cell ss:StyleID="s41"><Data ss:Type="String" x:Ticked="1">Dr.</Data></Cell>
+      <Cell ss:StyleID="s41"><Data ss:Type="String" x:Ticked="1">Cr.</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:Index="3" ss:StyleID="s94"><Data ss:Type="String">M/A</Data></Cell>
+      <Cell ss:Index="6" ss:StyleID="s94"><Data ss:Type="String">T/B</Data></Cell>
+      <Cell ss:StyleID="s94"/>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">W/P</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">股票投资</Data></Cell>
+     </Row>
+     <Row>
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!RC[1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr1.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr1.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr1.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row>
+      <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-2]C[5]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr2.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr2.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr2.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row>
+      <Cell ss:StyleID="s41"><Data ss:Type="String">股票投资估值增值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr3.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr3.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">债券投资</Data></Cell>
+     </Row>
+     <Row>
+      <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1"><#if extraFundInfo.mf != 'Y'>-成本<#else>-摊余成本</#if></Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-5]C[1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr24.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr24.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr24.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row>
+      <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-应计利息</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-7]C[3]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr25.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr25.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr25.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row>
+      <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1"><#if extraFundInfo.mf != 'Y'>-公允价值<#else>-影子定价</#if></Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-9]C[5]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr5.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row>
+      <Cell ss:StyleID="s41"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>债券投资估值增值<#else>债券投资偏离金额</#if></Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-6]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr6.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr6.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-6]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">资产支持证券投资</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-11]C[1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr26.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr26.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr26.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-应计利息</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-13]C[3]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr27.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr27.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr27.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1"><#if extraFundInfo.mf != 'Y'>-公允价值<#else>-影子定价</#if></Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-15]C[5]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr8.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s41"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>资产支持持证券投资估值增值<#else>资产支持证券投资偏离金额</#if></Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-6]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr9.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr9.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-6]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">基金</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-19]C[1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr10.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr10.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr10.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-21]C[5]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr11.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr11.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr11.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s41"><Data ss:Type="String">基金投资估值增值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr12.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr12.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">贵金属投资-金交所黄金合约</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-31]C[1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr16.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr16.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr16.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-33]C[5]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr17.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr17.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr17.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s41"><Data ss:Type="String">贵金属投资-金交所黄金合约估值增值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr18.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr18.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">其他</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-32]C[1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr19.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr19.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr19.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R[-34]C[5]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr20.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr20.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr20.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s41"><Data ss:Type="String">其他投资估值增值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr21.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr21.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row ss:AutoFitHeight="0">
+      <Cell ss:Index="8" ss:StyleID="s94"><Data ss:Type="String"></Data></Cell>
+     </Row>
+     <#if extraFundInfo.mf == 'N'>
+     <Row ss:AutoFitHeight="0">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">交易性金融资产合计</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-34]C+R[-25]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-34]C+R[-25]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-34]C+R[-25]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-34]C+R[-25]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-34]C+R[-25]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
+     </Row>
+     <#else>
+     <Row ss:AutoFitHeight="0">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">交易性金融资产合计</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-38]C+R[-36]C+R[-29]C+R[-27]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-38]C+R[-36]C+R[-29]C+R[-27]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-38]C+R[-36]C+R[-29]C+R[-27]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-38]C+R[-36]C+R[-29]C+R[-27]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-43]C+R[-38]C+R[-36]C+R[-29]C+R[-27]C+R[-18]C+R[-11]C+R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="String"></Data></Cell>
+     </Row>
+     </#if>
+     <Row ss:AutoFitHeight="0">
+      <Cell ss:Index="8" ss:StyleID="s94"><Data ss:Type="String"></Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s236"><Data ss:Type="String">衍生金融工具</Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-成本</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R22C4"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr13.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr13.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr13.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String" x:Ticked="1">-公允价值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H300!R22C8"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr14.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr14.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr14.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s41"><Data ss:Type="String">衍生金融工具估值增值</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H300</Data></Cell>
+      <Cell ss:StyleID="s228" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr15.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr15.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186" ss:Formula="=R[-2]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s91"><Data ss:Type="String">买入返售金融资产</Data></Cell>
+      <Cell ss:Index="8" ss:StyleID="s94"><Data ss:Type="String"></Data></Cell>
+     </Row>
+     <Row ss:StyleID="s83">
+      <Cell ss:StyleID="s81"><Data ss:Type="String">-账面余额</Data></Cell>
+      <Cell ss:StyleID="s94"><Data ss:Type="String">H800</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=H800!R${(13+H800.main.count!0)?string('0')}C7"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.drAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.crAmountAdj!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s186" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+      <Cell ss:StyleID="s186"/>
+      <Cell ss:StyleID="s186"><Data ss:Type="Number">${(H.attr22.amountAuditLast!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s57"/>
+      <Cell ss:StyleID="s231" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+     </Row>
+     <Row/>
+     <Row/>
+     <Row/>
+     <Row/>
+     <Row>
+      <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
+        xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">M/A</Font></B><Font
+         html:Color="#FF0000">：</Font><Font>与本年未审报表核对一致。</Font></ss:Data></Cell>
+     </Row>
+     <Row>
+      <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
+        xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">T/B</Font></B><Font
+         html:Color="#FF0000">：</Font><Font>与本年试算平衡表核对一致。</Font></ss:Data></Cell>
+     </Row>
+     <Row>
+      <Cell ss:StyleID="s99"><ss:Data ss:Type="String"
+        xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">W/P</Font></B><Font
+         html:Color="#FF0000">：</Font><Font>与上年审定数核对一致。</Font></ss:Data></Cell>
+     </Row>
+     <Row/>
+     <Row/>
+     <Row ss:StyleID="s238">
+      <Cell ss:StyleID="s237"><Data ss:Type="String">Note 1</Data></Cell>
+      <Cell ss:StyleID="s238"><Data ss:Type="String">分析性复核</Data></Cell>
+     </Row>
+    </Table>
+    <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+     <PageSetup>
+      <Layout x:CenterHorizontal="1"/>
+      <Header x:Margin="0.4"/>
+      <Footer x:Margin="0.51181102362204722"/>
+      <PageMargins x:Bottom="0.74803149606299213" x:Left="0.55118110236220474"
+       x:Right="0.55118110236220474" x:Top="0.49"/>
+     </PageSetup>
+     <FitToPage/>
+     <Print>
+      <ValidPrinterInfo/>
+      <PaperSizeIndex>9</PaperSizeIndex>
+      <Scale>35</Scale>
+      <HorizontalResolution>-3</HorizontalResolution>
+      <VerticalResolution>600</VerticalResolution>
+      <Gridlines/>
+     </Print>
+     <Zoom>80</Zoom>
+     <Selected/>
+     <ProtectObjects>False</ProtectObjects>
+     <ProtectScenarios>False</ProtectScenarios>
+    </WorksheetOptions>
+   </Worksheet> 
+ </#if>
+ <#if extraFundInfo.mf == 'N' && extraFundInfo.ac == 'Y'>
+ <Worksheet ss:Name="H300-摊余成本法债基">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s49" ss:DefaultColumnWidth="61.5" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="120.75"/>
    <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="97.5"/>
    <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="108"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="91.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="101.25"/>
-   <Column ss:StyleID="s49" ss:Width="114"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="103.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="122.25"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="117.75"/>
-   <Column ss:StyleID="s49" ss:Width="103.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
    <Column ss:StyleID="s147" ss:AutoFitWidth="0" ss:Width="135.75"/>
    <Column ss:StyleID="s49" ss:Width="79.5"/>
-   <Column ss:Index="14" ss:StyleID="s49" ss:Width="36"/>
+   <Column ss:StyleID="s49" ss:Width="36"/>
    <Column ss:StyleID="s49" ss:Width="83.25"/>
-   <Column ss:Index="17" ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="16.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="16.5"/>
    <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="106.5"/>
    <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="16.5"/>
    <Column ss:StyleID="s49" ss:Width="118.5"/>
    <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="16.5"/>
    <Column ss:StyleID="s49" ss:Width="90"/>
-   <Row ss:Height="14.25" ss:StyleID="s85">
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:Index="4" ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:Index="9" ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:Index="18" ss:StyleID="s83"/>
-   </Row>
+   <Row/>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s86"><Data ss:Type="String">客户：</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
@@ -3358,8 +3492,6 @@
     <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
     <Cell ss:Index="9" ss:StyleID="s88"><Data ss:Type="String">WP Ref</Data></Cell>
-    <Cell ss:Index="11" ss:StyleID="s87"/>
-    <Cell ss:StyleID="s87"/>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s83">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
@@ -3368,25 +3500,325 @@
     <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
     <Cell ss:Index="9" ss:StyleID="s90"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:Index="11" ss:StyleID="s89"/>
-    <Cell ss:StyleID="s89"/>
+   </Row>
+   <Row ss:StyleID="s83">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s44"><Data ss:Type="String">债权投资明细表及披露</Data></Cell>
+   </Row>
+   <Row/>
+   <Row/>
+   <Row>
+    <Cell><Data ss:Type="String">本期末各金融资产的初始成本、利息调整、应计利息、减值准备和账面价值情况如下：</Data></Cell>
+    <Cell ss:Index="11" ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="s80"><Data ss:Type="String">初始成本</Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">利息调整</Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">减值准备</Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">账面价值</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:Index="12" ss:StyleID="s76"><Data ss:Type="String">A</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">债券</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="String">H500</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s146"><Data ss:Type="String">其中：</Data></Cell>
+    <Cell><Data ss:Type="String">交易所</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">H500</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-5]"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">银行间</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">H500</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-3]C[-5]"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">资产支持证券</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="String">H500</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-2]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-2]C[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-2]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-2]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-2]C[-5]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s146"><Data ss:Type="String">其中：</Data></Cell>
+    <Cell ss:StyleID="s233"><Data ss:Type="String">具体列明细类型，默认类型为其他</Data></Cell>
+    <Cell ss:StyleID="s207"><Data ss:Type="String">HXXX</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s145"><Data ss:Type="String">请在此行之前插入</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s143"/>
+   </Row>
+   <Row/>
+   <Row>
+   <Cell ss:Index="12" ss:StyleID="s196" ss:Formula="=SUM(R[-8]C:R[-1]C)-R[-8]C-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="12" ss:StyleID="s75"><Data ss:Type="String">^&lt;H&gt;</Data></Cell>
+   </Row>
+   <Row/>
+   <Row/>
+   <Row>
+    <Cell><Data ss:Type="String">于本基金本报告期末，本基金持有的债权投资公允价值及所属层次为：</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s75"><Data ss:Type="String">H500</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">一层次</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-17]C[23]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">二层次</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-17]C[23]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">三层次</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="='H500-摊余成本法债基'!R[-17]C[23]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+   </Row>
+   <Row/>
+   <Row/>
+   <Row>
+    <Cell><Data ss:Type="String">本期末各金融资产的利率风险敞口如下：</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s123">
+    <Cell/>
+    <Cell/>
+    <#if H300.interestRatePeriod.count != 0>
+    <#list H300.interestRatePeriod.list as item>
+    <Cell ss:StyleID="s223"><Data ss:Type="String">${item!}</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s223"><Data ss:Type="String">合计</Data></Cell>
+   </Row>
+   <Row/>
+   <Row ss:StyleID="s123">
+    <Cell ss:StyleID="s239"><Data ss:Type="String">债券及资产支持证券</Data></Cell>
+    <Cell ss:StyleID="s208"><Data ss:Type="String">H500</Data></Cell>
+    <#if H300.interestRatePeriod.count != 0>
+    <#list H300.interestRatePeriod.list as item>
+    <Cell ss:StyleID="s125" ss:Formula="=INDEX('H500-摊余成本法债基'!R9C10:R16C10,MATCH('H300-摊余成本法债基'!R[-2]C,'H500-摊余成本法债基'!R9C9:R16C9,0),0)"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s125" ss:Formula="=SUM(RC[${(-H300.interestRatePeriod.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row ss:StyleID="s123">
+    <Cell ss:Index="10" ss:StyleID="s126"><Data ss:Type="String">Control</Data></Cell>
+    <Cell ss:StyleID="s126"><Data ss:Type="String">Control</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s123">
+    <Cell><Data ss:Type="String">合计</Data></Cell>
+    <Cell/>
+    <#if H300.interestRatePeriod.count != 0>
+    <#list H300.interestRatePeriod.list as item>
+    <Cell ss:StyleID="s127" ss:Formula="=SUM(R[-5]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s127" ss:Formula="=SUM(RC[${(-H300.interestRatePeriod.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-SUM(R[-5]C[-1]:R[-1]C[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=RC[-2]-SUM(R11C12:R17C12,-R11C12,-R15C12)"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row ss:StyleID="s123">
+    <Cell/>
+    <Cell/>
+    <#if H300.interestRatePeriod.count != 0>
+    <#list H300.interestRatePeriod.list as item>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">^</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">^</Data></Cell>
+   </Row>
+   <Row>
+    <Cell/>
+    <Cell/>
+    <#if H300.interestRatePeriod.count != 0>
+    <#list H300.interestRatePeriod.list as item>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">&lt;V300&gt;</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">&lt;V300&gt;</Data></Cell>
+   </Row>
+   <Row/>
+   <Row/>
+   <Row>
+    <Cell><Data ss:Type="String">本期末，基金持有的关联方发行的证券如下：</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s80"><Data ss:Type="String">关联方</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">关联方关系</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">代码</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">简称</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">成本</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">公允价值</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">估值增值</Data></Cell>
+   </Row>
+   <Row/>
+   <#if H300.related.MacH500.count != 0>
+   <#list H300.related.MacH500.list as item>
+   <Row>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">${item.source!}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="String">${item.partyShortName!}</Data></Cell>
+    <Cell ss:StyleID="s233"><Data ss:Type="String">${item.relationship!}</Data></Cell>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">${item.code!}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.name!}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.interestArClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s263"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.appreciationClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
+   </Row>
+   </#list>
+   </#if>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape" x:CenterHorizontal="1"/>
+    <Header x:Margin="0.31496062992125984"/>
+    <Footer x:Margin="0.23622047244094491" x:Data="&amp;C&amp;P"/>
+    <PageMargins x:Bottom="0.39370078740157483" x:Left="0.35433070866141736"
+     x:Right="0.35433070866141736" x:Top="0.59055118110236227"/>
+   </PageSetup>
+   <FitToPage/>
+   <Print>
+    <FitHeight>3</FitHeight>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <Scale>63</Scale>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+    <Gridlines/>
+   </Print>
+   <Zoom>70</Zoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <#else>
+ <Worksheet ss:Name="H300">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s49" ss:DefaultColumnWidth="61.5" ss:DefaultRowHeight="13.5">
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="120.75"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="97.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="108"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="105"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="105"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="105"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="122.25"/>
+   <Column ss:StyleID="s49" ss:Width="114"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="105"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="122.25"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="117.75"/>
+   <Column ss:StyleID="s49" ss:Width="105"/>
+   <Column ss:StyleID="s147" ss:AutoFitWidth="0" ss:Width="135.75"/>
+   <Column ss:StyleID="s49" ss:Width="50"/>
+   <Column ss:StyleID="s49" ss:Width="36"/>
+   <Column ss:StyleID="s49" ss:Width="83.25"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="16.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="106.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="16.5"/>
+   <Column ss:StyleID="s49" ss:Width="118.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="16.5"/>
+   <Column ss:StyleID="s49" ss:Width="90"/>
+   <Row/>
+   <Row ss:StyleID="s83">
+    <Cell ss:StyleID="s86"><Data ss:Type="String">客户：</Data></Cell>
+    <Cell ss:StyleID="s44"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s88"><Data ss:Type="String">WP Ref</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25" ss:StyleID="s83">
+    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
+    <Cell ss:StyleID="s130"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s90"><Data ss:Type="String">H300</Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s91"><Data ss:Type="String">科目：</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">交易性金融资产明细表及披露</Data></Cell>
-    <Cell ss:Index="11" ss:StyleID="s89"/>
-    <Cell ss:StyleID="s89"/>
    </Row>
    <Row/>
    <Row/>
    <Row>
-    <Cell><Data ss:Type="String">本期末各金融资产的成本、公允价值和公允价值变动情况如下：</Data></Cell>
-    <Cell ss:Index="11" ss:StyleID="Default"/>
-    <Cell ss:StyleID="Default"/>
+    <Cell><Data ss:Type="String">本期末各金融资产的成本、应计利息、公允价值和公允价值变动情况如下：</Data></Cell>
    </Row>
    <#if extraFundInfo.mf == 'Y'>
    <Row>
     <Cell ss:Index="4" ss:StyleID="s80"><Data ss:Type="String">摊余成本</Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">应计利息</Data></Cell>
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">影子定价</Data></Cell>
     <Cell ss:StyleID="s80"/>
@@ -3396,48 +3828,43 @@
    <Row>
     <Cell ss:Index="4" ss:StyleID="s80"><Data ss:Type="String">成本</Data></Cell>
     <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">公允价值</Data></Cell>
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s80"><Data ss:Type="String">估值增值</Data></Cell>
-    <Cell ss:Index="10" ss:StyleID="s80"><Data ss:Type="String">上期末估值增值</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s80"><Data ss:Type="String">上期末估值增值</Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="String">估值增值变动数</Data></Cell>
    </Row>
    </#if>
    <Row>
-    <Cell ss:Index="4" ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
     <#if extraFundInfo.mf != 'Y'>
-    <Cell ss:Index="10" ss:StyleID="s105"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s105"><Data ss:Type="String">W/P</Data></Cell>
     <Cell ss:StyleID="s105"/>
     </#if>
    </Row>
    <Row>
-    <Cell ss:Index="4" ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s76"><Data ss:Type="String">A</Data></Cell>
     <#if extraFundInfo.mf != 'Y'>
-    <Cell ss:Index="10" ss:StyleID="s76"><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s76"><Data ss:Type="String">B</Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">C=A-B</Data></Cell>
     </#if>
-    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;U900&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">股票</Data></Cell>
     <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="String">H400</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H400!R[-2]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=H400!R[-2]C[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s407"/>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=H400!R[-2]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=H400!R[-2]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=H400!R[-2]C[-5]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <#if extraFundInfo.mf != 'Y'>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(H300.main.attr1.beginAppreciation!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;U900&gt;</Data></Cell>
     </#if>
    </Row>
    <Row>
@@ -3445,13 +3872,16 @@
     <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="String">H400</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H400!RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=H400!RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s407"/>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=H400!RC[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=H400!RC[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=H400!RC[-5]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <#if extraFundInfo.mf != 'Y'>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(H300.main.attr2.beginAppreciation!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;U900&gt;</Data></Cell>
     </#if>
    </Row>
    <Row>
@@ -3460,22 +3890,28 @@
     <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <#if extraFundInfo.mf != 'Y'>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;U900&gt;</Data></Cell>
     </#if>
    </Row>
    <Row>
     <Cell ss:StyleID="s146"><Data ss:Type="String">其中：</Data></Cell>
     <Cell><Data ss:Type="String">交易所</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">H500</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"/>
     <Cell ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"/>
     <Cell ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"/>
     <#if extraFundInfo.mf != 'Y'>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(H300.main.attr3.beginAppreciation!0)?string('0.##')}</Data></Cell>
@@ -3484,11 +3920,14 @@
    </Row>
    <Row>
     <Cell ss:Index="2"><Data ss:Type="String">银行间</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">H500</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"/>
     <Cell ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"/>
     <Cell ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-5]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"/>
     <#if extraFundInfo.mf != 'Y'>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(H300.main.attr4.beginAppreciation!0)?string('0.##')}</Data></Cell>
@@ -3503,12 +3942,15 @@
     <Cell ss:StyleID="s143" ss:Formula="=H500!R[-4]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H500!R[-4]C[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H500!R[-4]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-4]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <#if extraFundInfo.mf != 'Y'>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(H300.main.attr5.beginAppreciation!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;U900&gt;</Data></Cell>
     </#if>
    </Row>
    <Row>
@@ -3516,19 +3958,24 @@
     <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="String">H400</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H400!R[-7]C[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=H400!R[-7]C[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s407"/>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s143" ss:Formula="=H400!R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=H400!R[-7]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=H400!R[-7]C[-5]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <#if extraFundInfo.mf != 'Y'>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(H300.main.attr6.beginAppreciation!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;U900&gt;</Data></Cell>
     </#if>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">其他</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
+    <Cell ss:StyleID="s407"/>
+    <Cell ss:StyleID="s141"/>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
@@ -3536,6 +3983,7 @@
     <#if extraFundInfo.mf != 'Y'>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s53"><Data ss:Type="String">&lt;U900&gt;</Data></Cell>
     </#if>
    </Row>
    <Row>
@@ -3544,6 +3992,8 @@
     <Cell ss:StyleID="s207"><Data ss:Type="String">HXXX</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
+    <Cell ss:StyleID="s407"/>
+    <Cell ss:StyleID="s141"/>
     <Cell ss:StyleID="s143"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number"></Data></Cell>
@@ -3556,30 +4006,14 @@
    <Row>
     <Cell ss:Index="2" ss:StyleID="s145"><Data ss:Type="String">请在此行之前插入</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s143"/>
-    <Cell ss:StyleID="s141"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s141"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s141"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s147"/>
    </Row>
-   <Row>
-    <Cell ss:Index="4" ss:StyleID="s143"/>
-    <Cell ss:StyleID="s141"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s141"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s141"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s147"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell><Data ss:Type="String">衍生金融工具</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
+    <Cell ss:StyleID="s407"/>
+    <Cell ss:StyleID="s141"/>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H&gt;</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(R[1]C:R[2]C)"><Data ss:Type="Number"></Data></Cell>
@@ -3594,43 +4028,37 @@
     <Cell><Data ss:Type="String">期货</Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">H400</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H400!R[-12]C[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s143" ss:Formula="=H400!R[-12]C[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s143" ss:Formula="=H400!R[-12]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"/>
+    <Cell ss:StyleID="s407"/>
+    <Cell ss:Index="8" ss:StyleID="s143" ss:Formula="=H400!R[-12]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s143" ss:Formula="=H400!R[-12]C[-5]"><Data ss:Type="Number"></Data></Cell>
     <#if extraFundInfo.mf != 'Y'>
-    <Cell ss:Index="10" ss:StyleID="s143"><Data ss:Type="Number">${(H300.main.attr8.beginAppreciation!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s143"><Data ss:Type="Number">${(H300.main.attr8.beginAppreciation!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     </#if>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s79"><Data ss:Type="String">其他请在此行之前插入</Data></Cell>
-    <Cell ss:StyleID="s141"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:Index="6" ss:StyleID="s143"/>
-    <Cell ss:Index="8" ss:StyleID="s143"/>
-    <Cell ss:Index="10" ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s147"/>
    </Row>
+   <Row/>
    <Row>
-    <Cell ss:Index="4" ss:StyleID="s143"/>
-    <Cell ss:Index="6" ss:StyleID="s143"/>
-    <Cell ss:Index="8" ss:StyleID="s143"/>
-    <Cell ss:Index="10" ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s147"/>
-   </Row>
-   <Row>
+    <Cell ss:Index="4" ss:StyleID="s196" ss:Formula="=SUM(R[-15]C:R[-1]C)-R[-13]C-R[-4]C-R[-8]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s196" ss:Formula="=SUM(R[-15]C:R[-1]C)-R[-13]C-R[-4]C-R[-8]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s196" ss:Formula="=SUM(R[-15]C:R[-1]C)-R[-13]C-R[-4]C-R[-8]C"><Data ss:Type="Number"></Data></Cell>
-    <#if extraFundInfo.mf != 'Y'>
     <Cell ss:Index="10" ss:StyleID="s196" ss:Formula="=SUM(R[-15]C:R[-1]C)-R[-13]C-R[-4]C-R[-8]C"><Data ss:Type="Number"></Data></Cell>
+    <#if extraFundInfo.mf != 'Y'>
+    <Cell ss:Index="12" ss:StyleID="s196" ss:Formula="=SUM(R[-15]C:R[-1]C)-R[-13]C-R[-4]C-R[-8]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s196" ss:Formula="=SUM(R[-15]C:R[-1]C)-R[-13]C-R[-4]C-R[-8]C"><Data ss:Type="Number"></Data></Cell>
     </#if>
     <Cell ss:StyleID="s53"><!--<Data ss:Type="String">&lt;U&gt;/&lt;T400&gt;</Data>--></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="8" ss:StyleID="s75"><Data ss:Type="String">^</Data></Cell>
-    <#if extraFundInfo.mf != 'Y'>
+    <Cell ss:Index="4" ss:StyleID="s75"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s75"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s75"><Data ss:Type="String">^/&lt;H&gt;</Data></Cell>
     <Cell ss:Index="10" ss:StyleID="s75"><Data ss:Type="String">^</Data></Cell>
+    <#if extraFundInfo.mf != 'Y'>
+    <Cell ss:Index="12" ss:StyleID="s75"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s75"><Data ss:Type="String">^</Data></Cell>
     </#if>
    </Row>
@@ -3663,24 +4091,26 @@
    <Row>
     <Cell><Data ss:Type="String">一层次</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H400!R[-25]C[6]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-25]C[5]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-25]C[6]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(RC[-3]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H10000&gt;</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H12000&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">二层次</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H400!R[-25]C[6]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-25]C[5]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-25]C[6]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(RC[-3]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H12000&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">三层次</Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=H400!R[-25]C[6]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-25]C[5]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=H500!R[-25]C[6]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUM(RC[-3]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H12000&gt;</Data></Cell>
    </Row>
    <Row/>
    <Row/>
@@ -3699,24 +4129,14 @@
     </#if>
     <Cell ss:StyleID="s223"><Data ss:Type="String">合计</Data></Cell>
    </Row>
-   <Row ss:StyleID="s123">
-    <Cell/>
-    <Cell/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-   </Row>
+   <Row ss:StyleID="s123"/>
    <Row ss:StyleID="s123">
     <Cell ss:StyleID="s239"><Data ss:Type="String">股票</Data></Cell>
     <Cell/>
     <#if H300.interestRatePeriod.count != 0>
     <#list H300.interestRatePeriod.list as item>
     <#if item == '不计息'>
-    <Cell ss:StyleID="s125" ss:Formula="=R11C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=R11C8"><Data ss:Type="Number"></Data></Cell>
     <#else>
     <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
     </#if>
@@ -3729,7 +4149,7 @@
     <Cell ss:StyleID="s208"><Data ss:Type="String">H500</Data></Cell>
     <#if H300.interestRatePeriod.count != 0>
     <#list H300.interestRatePeriod.list as item>
-    <Cell ss:StyleID="s125" ss:Formula="=INDEX(H500!C11:C11,MATCH(H300!R[-3]C,H500!C10:C10,0),0)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=INDEX(H500!R9C12:R16C12,MATCH(H300!R[-3]C,H500!R9C11:R16C11,0),0)"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
     <Cell ss:StyleID="s125" ss:Formula="=SUM(RC[${(-H300.interestRatePeriod.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
@@ -3740,7 +4160,7 @@
     <#if H300.interestRatePeriod.count != 0>
     <#list H300.interestRatePeriod.list as item>
     <#if item == '不计息'>
-    <Cell ss:StyleID="s125" ss:Formula="=R17C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=R17C8"><Data ss:Type="Number"></Data></Cell>
     <#else>
     <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
     </#if>
@@ -3754,7 +4174,7 @@
     <#if H300.interestRatePeriod.count != 0>
     <#list H300.interestRatePeriod.list as item>
     <#if item == '不计息'>
-    <Cell ss:StyleID="s125" ss:Formula="=R12C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=R12C8"><Data ss:Type="Number"></Data></Cell>
     <#else>
     <Cell ss:StyleID="s125"><Data ss:Type="Number"></Data></Cell>
     </#if>
@@ -3783,8 +4203,12 @@
     </#list>
     </#if>
     <Cell ss:StyleID="s127" ss:Formula="=SUM(RC[${(-H300.interestRatePeriod.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-SUM(R[-5]C[-1]:R[-1]C[-1])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s125" ss:Formula="=RC[-2]-SUM(<#if extraFundInfo.mf != 'Y'>R11C6:R21C6,-R13C6,-R18C6<#else>R11C4:R21C4,-R13C4,-R18C4</#if>)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-SUM(R[-5]C[-1]:R[-1]C[-1])"><Data ss:Type="Number"></Data></Cell>    
+    <#if extraFundInfo.mf == 'Y'>
+    <Cell ss:StyleID="s125" ss:Formula="=RC[-2]-SUM(R11C4:R21C4,-R13C4,-R18C4,R11C6:R21C6,-R13C6,-R18C6)"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s125" ss:Formula="=RC[-2]-SUM(R11C8:R21C8,-R13C8,-R18C8)"><Data ss:Type="Number"></Data></Cell>
+    </#if>
    </Row>
    <Row ss:StyleID="s123">
     <Cell/>
@@ -3797,9 +4221,14 @@
     <Cell ss:StyleID="s128"><Data ss:Type="String">^</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="3" ss:StyleID="s110"><Data ss:Type="String">&lt;V300&gt;</Data></Cell>
-    <Cell ss:Index="11" ss:StyleID="s49"/>
-    <Cell ss:StyleID="s147"/>
+    <Cell/>
+    <Cell/>
+    <#if H300.interestRatePeriod.count != 0>
+    <#list H300.interestRatePeriod.list as item>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">&lt;V300&gt;</Data></Cell>
+    </#list>
+    </#if>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">&lt;V300&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="11" ss:StyleID="s49"/>
@@ -3818,19 +4247,11 @@
     <Cell ss:StyleID="s80"><Data ss:Type="String">代码</Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="String">简称</Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="String">成本</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">应计利息</Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="String">公允价值</Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="String">估值增值</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s80"/>
-    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
-   </Row>
+   <Row/>
    <#if H300.related.H400.count != 0>
    <#list H300.related.H400.list as item>
    <Row>
@@ -3840,8 +4261,10 @@
     <Cell ss:StyleID="s255"><Data ss:Type="String">${item.code!}</Data></Cell>
     <Cell ss:StyleID="s256"><Data ss:Type="String">${item.name!}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s263"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.appreciationClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
    </Row>
    </#list>
    </#if>
@@ -3854,83 +4277,13 @@
     <Cell ss:StyleID="s255"><Data ss:Type="String">${item.code!}</Data></Cell>
     <Cell ss:StyleID="s256"><Data ss:Type="String">${item.name!}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.interestArClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s263"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.appreciationClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;I&gt;</Data></Cell>
    </Row>
    </#list>
    </#if>
-   <Row>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="4" ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="4" ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="4" ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="4" ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="4" ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="4" ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="4" ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="4" ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -3955,7 +4308,9 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <Worksheet ss:Name="H400">
+ </#if>
+ <#if extraFundInfo.mf == 'N' && extraFundInfo.ac == 'Y'>
+ <Worksheet ss:Name="H400-摊余成本债基SPPI">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s49" ss:DefaultColumnWidth="61.5" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="94.5"/>
    <Column ss:StyleID="s49" ss:Width="115.5" ss:Span="4"/>
@@ -3965,170 +4320,237 @@
    <Column ss:StyleID="s49" ss:Width="79.5"/>
    <Column ss:StyleID="s49" ss:Width="96.75"/>
    <Column ss:StyleID="s147" ss:Width="79.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="31.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="79.5"/>
    <Column ss:StyleID="s49" ss:Width="114"/>
    <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="118.5"/>
-   <Column ss:StyleID="s49" ss:Width="43.5"/>
+   <Column ss:StyleID="s49" ss:Width="118.5"/>
    <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="163.5"/>
-   <Column ss:StyleID="s49" ss:Width="43.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="22.5"/>
+   <Column ss:StyleID="s49" ss:Width="100"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="100"/>
    <Column ss:StyleID="s205" ss:Width="97.5" ss:Span="1"/>
-   <Column ss:Index="22" ss:StyleID="s201" ss:AutoFitWidth="0" ss:Width="114.75"/>
-   <Column ss:StyleID="s49" ss:Width="216.75"/>
-   <Column ss:Index="25" ss:StyleID="s49" ss:Width="43.5"/>
-   <Row ss:Height="14.25" ss:StyleID="s85">
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:Index="7" ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:StyleID="s83"/>
-    <Cell ss:Index="20" ss:StyleID="s199"/>
-    <Cell ss:StyleID="s199"/>
-    <Cell ss:StyleID="s200"/>
-   </Row>
+   <Row/>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s86"><Data ss:Type="String">客户：</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s44"/>
     <Cell ss:Index="8" ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
     <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
     <Cell ss:Index="12" ss:StyleID="s88"><Data ss:Type="String">WP Ref</Data></Cell>
-    <Cell ss:StyleID="s87"/>
-    <Cell ss:Index="20" ss:StyleID="s135"/>
-    <Cell ss:StyleID="s135"/>
-    <Cell ss:StyleID="s199"/>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s83">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s130"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s130"/>
-    <Cell ss:StyleID="s130"/>
-    <Cell ss:StyleID="s130"/>
-    <Cell ss:StyleID="s130"/>
     <Cell ss:Index="8" ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
     <Cell ss:Index="12" ss:StyleID="s90"><Data ss:Type="String">H400</Data></Cell>
-    <Cell ss:StyleID="s89"/>
-    <Cell ss:Index="20" ss:StyleID="s140"/>
-    <Cell ss:StyleID="s140"/>
-    <Cell ss:StyleID="s199"/>
+   </Row>
+   <Row ss:StyleID="s83">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s44"><Data ss:Type="String">金融资产分类</Data></Cell>
+   </Row>
+   <Row/>
+   <Row ss:AutoFitHeight="0" ss:Height="30" ss:StyleID="s83">
+    <Cell ss:Index="15" ss:StyleID="s388"><Data ss:Type="String">折溢价摊销阈值</Data></Cell>
+    <Cell ss:StyleID="s389"><Data ss:Type="String">合理补偿范围的重要性水平</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s83">
+    <Cell ss:Index="15" ss:StyleID="s390"><Data ss:Type="String">0.0025</Data></Cell>
+    <Cell ss:StyleID="s391"><Data ss:Type="String">5%</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25" ss:StyleID="s83">
+    <Cell ss:Index="3" ss:StyleID="s145"><Data ss:Type="String">请根据JE补充</Data></Cell>
+    <Cell ss:StyleID="s145"><Data ss:Type="String">请根据JE修正</Data></Cell>
+    <Cell ss:StyleID="s145"><Data ss:Type="String">请根据JE修正</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s145"><Data ss:Type="String">请注意检查</Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s145"><Data ss:Type="String">请注意检查</Data></Cell>
+    <Cell ss:Index="19" ss:StyleID="s145"><Data ss:Type="String">请注意检查本列结果</Data></Cell>
+   </Row>
+   <Row/>
+   <Row ss:Height="30" ss:StyleID="s80">
+    <Cell><Data ss:Type="String">债券代码</Data></Cell>
+    <Cell><Data ss:Type="String">名称</Data></Cell>
+    <Cell><Data ss:Type="String">购买日</Data></Cell>
+    <Cell><Data ss:Type="String">数量</Data></Cell>
+    <Cell><Data ss:Type="String">成本</Data></Cell>
+    <Cell ss:StyleID="s394"><Data ss:Type="String">止息日期</Data></Cell>
+    <Cell ss:StyleID="s394"><Data ss:Type="String">是否可赎回</Data></Cell>
+    <Cell ss:StyleID="s394"><Data ss:Type="String">未来最近一次赎回日期</Data></Cell>
+    <Cell ss:StyleID="s394"><Data ss:Type="String">是否可回售</Data></Cell>
+    <Cell ss:StyleID="s394"><Data ss:Type="String">未来最近一次回售日期</Data></Cell>
+    <Cell ss:StyleID="s394"><Data ss:Type="String">是否是可转债</Data></Cell>
+    <Cell ss:StyleID="s394"><Data ss:Type="String">净价</Data></Cell>
+    <Cell><Data ss:Type="String">权利持有方</Data></Cell>
+    <Cell><Data ss:Type="String">使用的到期日</Data></Cell>
+    <Cell><Data ss:Type="String">是否落在阈值内</Data></Cell>
+    <Cell><Data ss:Type="String">是否为合理补偿</Data></Cell>
+    <Cell><Data ss:Type="String">是否能通过SPPI测试</Data></Cell>
+    <Cell><Data ss:Type="String">客户核对测试结果</Data></Cell>
+    <Cell><Data ss:Type="String">是否与客户核对结果一致</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="6" ss:StyleID="s104"><Data ss:Type="String">From 公开市场信息</Data></Cell>
+   </Row>
+   <#if H400.macMain.count != 0>
+   <#list H400.macMain.list as item>
+   <Row>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">${item.code!}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.name!}</Data></Cell>
+    <Cell ss:StyleID="s396"/>
+    <Cell ss:StyleID="s392"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s392"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s260"><#if item.dateTo??><Data ss:Type="DateTime">${item.dateTo!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">${item.isRedemption!}</Data></Cell>
+    <Cell ss:StyleID="s144"><Data ss:Type="String"><#if item.isRedemption == '是'>请手工补充<#else>——</#if></Data></Cell>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">${item.isSellBack!}</Data></Cell>
+    <Cell ss:StyleID="s144"><Data ss:Type="String"><#if item.isSellBack == '是'>请手工补充<#else>——</#if></Data></Cell>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">${item.isConertibleBond!}</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-7]/RC[-8]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=IF(RC[-6]=&quot;是&quot;,&quot;发行人&quot;,&quot;投资人&quot;)"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s260" ss:Formula="=MIN(RC[-8],RC[-6],RC[-4])"><Data ss:Type="DateTime"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=IF(ABS(RC[-3]-100)/((RC[-1]-RC[-12]+1)/365)&lt;=R7C15,&quot;Y&quot;,&quot;N&quot;)"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=IF(RC[-3]=&quot;投资人&quot;,IF(AND(RC[-4]&gt;=100,RC[-4]&lt;=100*(1+R7C16)),&quot;Y&quot;,&quot;N&quot;),IF(RC[-3]=&quot;发行人&quot;,IF(AND(RC[-4]&lt;=100,RC[-4]&gt;=100*(1-R7C16)),&quot;Y&quot;,&quot;N&quot;),IF(RC[-4]=100,&quot;Y&quot;,&quot;N&quot;)))"><Data ss:Type="String" x:Ticked="1"></Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=IF(RC[-6]=&quot;是&quot;,&quot;N&quot;,IF(AND(RC[-10]=&quot;否&quot;,RC[-8]=&quot;否&quot;),&quot;Y&quot;,IF(RC[-2]=&quot;Y&quot;,&quot;Y&quot;,IF(RC[-1]=&quot;Y&quot;,&quot;Y&quot;,&quot;N&quot;))))"><Data ss:Type="String" x:Ticked="1"></Data></Cell>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">Y</Data></Cell>
+    <Cell ss:StyleID="s255" ss:Formula="=IF(RC[-1]=RC[-2],&quot;OK&quot;,&quot;NO&quot;)"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   </#list>
+   </#if>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape" x:CenterHorizontal="1"/>
+    <Header x:Margin="0.31496062992125984"/>
+    <Footer x:Margin="0.23622047244094491" x:Data="&amp;C&amp;P"/>
+    <PageMargins x:Bottom="0.39370078740157483" x:Left="0.35433070866141736"
+     x:Right="0.35433070866141736" x:Top="0.59055118110236227"/>
+   </PageSetup>
+   <FitToPage/>
+   <Print>
+    <FitHeight>3</FitHeight>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <Scale>40</Scale>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+    <Gridlines/>
+   </Print>
+   <Zoom>90</Zoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <#else>
+ <Worksheet ss:Name="H400">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s49" ss:DefaultColumnWidth="61.5" ss:DefaultRowHeight="13.5">
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="94.5"/>
+   <Column ss:StyleID="s49" ss:Width="115.5" ss:Span="4"/>
+   <Column ss:Index="7" ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="94.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="96"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="119.25"/>
+   <Column ss:StyleID="s49" ss:Width="79.5"/>
+   <Column ss:StyleID="s49" ss:Width="96.75"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="31.5"/>
+   <Column ss:StyleID="s147" ss:Width="79.5"/>
+   <Column ss:StyleID="s49" ss:Width="114"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="118.5"/>
+   <Column ss:StyleID="s49" ss:Width="118"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="163.5"/>
+   <Column ss:StyleID="s49" ss:Width="43.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:StyleID="s205" ss:Width="97.5" ss:Span="1"/>
+   <Column ss:Index="22" ss:StyleID="s201" ss:AutoFitWidth="0" ss:Width="43"/>
+   <Column ss:StyleID="s49" ss:Width="70"/>
+   <Column ss:StyleID="s49" ss:Width="70"/>
+   <Column ss:StyleID="s147" ss:Width="90"/>
+   <Column ss:StyleID="s147" ss:Width="90"/>
+   <Column ss:StyleID="s147" ss:Width="90"/>
+   <Column ss:StyleID="s147" ss:Width="90"/>
+   <Row/>
+   <Row ss:StyleID="s83">
+    <Cell ss:StyleID="s86"><Data ss:Type="String">客户：</Data></Cell>
+    <Cell ss:StyleID="s44"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s88"><Data ss:Type="String">WP Ref</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25" ss:StyleID="s83">
+    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
+    <Cell ss:StyleID="s130"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s90"><Data ss:Type="String">H400</Data></Cell>
    </Row>
    <Row ss:StyleID="s83">
     <Cell ss:StyleID="s91"><Data ss:Type="String">科目：</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">权益类投资估值测试及披露</Data></Cell>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:Index="13" ss:StyleID="s89"/>
-    <Cell ss:Index="20" ss:StyleID="s199"/>
-    <Cell ss:StyleID="s199"/>
-    <Cell ss:StyleID="s199"/>
    </Row>
-   <Row>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:StyleID="s147"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:StyleID="s147"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-   </Row>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s233"><Data ss:Type="String">分类统计表</Data></Cell>
     <Cell ss:Index="7"><Data ss:Type="String">三层次合计</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s60"/>
     <Cell ss:Index="3" ss:StyleID="s232"><Data ss:Type="String">成本</Data></Cell>
     <Cell ss:StyleID="s232"><Data ss:Type="String">公允价值</Data></Cell>
     <Cell ss:StyleID="s232"><Data ss:Type="String">估值增值</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s60"/>
     <Cell><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;股票&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;股票&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;股票&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;股票&quot;,C[5])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;股票&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;股票&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     <Cell ss:StyleID="s210"><Data ss:Type="String">一层次合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[13],LEFT(RC[-1],3),C[3])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[12],LEFT(RC[-1],3),C[2])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s211"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s60"/>
     <Cell><Data ss:Type="String">基金</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;基金&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;基金&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;基金&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;基金&quot;,C[5])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;基金&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;基金&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s210"><Data ss:Type="String">二层次合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[13],LEFT(RC[-1],3),C[3])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s210"/>
-    <Cell ss:StyleID="s203"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[12],LEFT(RC[-1],3),C[2])"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s60"/>
     <Cell><Data ss:Type="String">期货</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;期货&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;期货&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;期货&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;期货&quot;,C[5])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;期货&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;期货&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s210"><Data ss:Type="String">三层次合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[13],LEFT(RC[-1],3),C[3])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s203"/>
-    <Cell ss:StyleID="s203"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[12],LEFT(RC[-1],3),C[2])"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s60"/>
     <Cell><Data ss:Type="String">现货</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;现货&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;现货&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;现货&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s203"/>
-    <Cell ss:StyleID="s203"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;现货&quot;,C[5])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;现货&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;现货&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s60"/>
     <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s203"/>
-    <Cell ss:StyleID="s203"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s60"/>
     <Cell><Data ss:Type="String">注：投资明细分类合计已与余额表/估值表核对一致</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s203"/>
-    <Cell ss:StyleID="s203"/>
+    <Cell ss:Index="24" ss:StyleID="s145"><Data ss:Type="String">请注意区分本列回函为中登/FOF/期货/金交所回函</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s203"/>
-    <Cell ss:StyleID="s203"/>
-   </Row>
+   <Row/>
    <Row ss:Height="14.25">
     <Cell ss:Index="11" ss:StyleID="s147"/>
     <Cell ss:StyleID="s49"/>
-    <Cell ss:Index="14" ss:MergeAcross="4" ss:StyleID="s359"><Data ss:Type="String">估值测试</Data></Cell>
-    <Cell ss:Index="20" ss:MergeAcross="2" ss:StyleID="s360"><Data ss:Type="String">For Disclosure</Data></Cell>
+    <Cell ss:Index="13" ss:MergeAcross="4" ss:StyleID="s359"><Data ss:Type="String">估值测试</Data></Cell>
+    <Cell ss:Index="19" ss:MergeAcross="2" ss:StyleID="s360"><Data ss:Type="String">For Disclosure</Data></Cell>
+    <Cell ss:Index="23" ss:MergeAcross="3" ss:StyleID="s360"><Data ss:Type="String">持仓函证核对</Data></Cell>
    </Row>
    <Row ss:StyleID="s80">
     <Cell><Data ss:Type="String">类型</Data></Cell>
@@ -4137,20 +4559,23 @@
     <Cell><Data ss:Type="String">简称</Data></Cell>
     <Cell><Data ss:Type="String">交易市场</Data></Cell>
     <Cell><Data ss:Type="String">子类型</Data></Cell>
-    <Cell><Data ss:Type="String">函证Index</Data></Cell>
     <Cell><Data ss:Type="String">数量</Data></Cell>
     <Cell><Data ss:Type="String">成本</Data></Cell>
     <Cell><Data ss:Type="String">单位市值</Data></Cell>
     <Cell><Data ss:Type="String">市值</Data></Cell>
     <Cell><Data ss:Type="String">估值增值</Data></Cell>
-    <Cell ss:Index="14" ss:StyleID="s103"><Data ss:Type="String">估值单价 Per EY</Data></Cell>
+    <Cell ss:Index="13" ss:StyleID="s103"><Data ss:Type="String">估值单价 Per EY</Data></Cell>
     <Cell><Data ss:Type="String">公允价值</Data></Cell>
     <Cell><Data ss:Type="String">Diff.</Data></Cell>
     <Cell><Data ss:Type="String">估值增值</Data></Cell>
     <Cell><Data ss:Type="String">Diff.</Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s202"><Data ss:Type="String">是否关联证券</Data></Cell>
+    <Cell ss:Index="19" ss:StyleID="s202"><Data ss:Type="String">是否关联证券</Data></Cell>
     <Cell ss:StyleID="s202"><Data ss:Type="String">三层次类型</Data></Cell>
     <Cell ss:StyleID="s202"><Data ss:Type="String">流通受限类型</Data></Cell>
+    <Cell ss:Index="23" ss:StyleID="s202"><Data ss:Type="String">函证 Index</Data></Cell>
+    <Cell ss:StyleID="s202"><Data ss:Type="String">回函数量</Data></Cell>
+    <Cell ss:StyleID="s202"><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell ss:StyleID="s202"><Data ss:Type="String">NOTE</Data></Cell>
    </Row>
    <Row ss:StyleID="s60">
     <Cell ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
@@ -4164,24 +4589,21 @@
     <Cell ss:StyleID="s76"/>
     <Cell ss:StyleID="s76"><Data ss:Type="String">Per EY</Data></Cell>
     <Cell ss:StyleID="s76"/>
-    <Cell ss:Index="20" ss:StyleID="s203"/>
+    <Cell ss:Index="19" ss:StyleID="s203"/>
     <Cell ss:StyleID="s75"><Data ss:Type="String">H10/H40/H50</Data></Cell>
     <Cell ss:StyleID="s75"><Data ss:Type="String">H10/H40/H50</Data></Cell>
    </Row>
    <Row ss:StyleID="s76">
     <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="8"><Data ss:Type="String">A</Data></Cell>
+    <Cell ss:Index="7"><Data ss:Type="String">A</Data></Cell>
     <Cell><Data ss:Type="String">B</Data></Cell>
-    <Cell ss:Index="11"><Data ss:Type="String">C</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="String">C</Data></Cell>
     <Cell><Data ss:Type="String">D</Data></Cell>
-    <Cell ss:Index="14"><Data ss:Type="String">E</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="String">E</Data></Cell>
     <Cell><Data ss:Type="String">F=E*A</Data></Cell>
     <Cell><Data ss:Type="String">G=F-C</Data></Cell>
     <Cell><Data ss:Type="String">H=F-B</Data></Cell>
     <Cell><Data ss:Type="String">I=H-D</Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s204"/>
-    <Cell ss:StyleID="s204"/>
-    <Cell ss:StyleID="s204"/>
    </Row>
    <#if H400.main.count != 0>
    <#list H400.main.list as item>
@@ -4192,236 +4614,175 @@
     <Cell ss:StyleID="s256"><Data ss:Type="String">${item.name!}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="String">${item.market!}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="String">${item.subType!}</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="String"><#if item_index == 0>HHXXX</#if></Data></Cell>
     <Cell ss:StyleID="s258"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
-    <#if item.subType == '基金投资'>
-    <Cell ss:StyleID="s390"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.####')}</Data></Cell>
+    <#if item.type == '基金'>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.####')}</Data></Cell>
     <#else>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
     </#if>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.appreciationClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"/>
-    <#if item.subType == '基金投资'>
-    <Cell ss:StyleID="s390"><Data ss:Type="Number">${(item.valPrice!0)?string('0.####')}</Data></Cell>
+    <#if item.type == '基金'>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.valPrice!0)?string('0.####')}</Data></Cell>
     <#else>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.valPrice!0)?string('0.##')}</Data></Cell>
     </#if>
+	<#if item.market == '港股通'>
+	<#list H500.rate.list as item1>
+	<Cell ss:StyleID="s143" ss:Formula="=ROUND(RC[-1]*RC[-7]*${(item1.rate!0)?string('0.#####')},2)"><Data ss:Type="Number"></Data></Cell>
+	</#list>
+	<#else>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-7]"><Data ss:Type="Number"></Data></Cell>
+	</#if>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-5]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-2]-RC[-8]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-6]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s206"><Data ss:Type="String">${item.releated!}</Data></Cell>
+    <Cell ss:Index="19" ss:StyleID="s206"><Data ss:Type="String">${item.releated!}</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
     <Cell ss:StyleID="s101"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
+    <Cell ss:Index="23" ss:StyleID="s340"><Data ss:Type="String"><#if item.market == '上交所'>HH/SH<#elseif item.market == '深交所'>HH/SZ<#elseif item.market == '金交所'>HH/JJS</#if></Data></Cell>
+    <Cell ss:StyleID="s399"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-18]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
    <Row>
     <Cell ss:StyleID="s142"><Data ss:Type="String">投资数据结束行</Data></Cell>
-    <Cell ss:StyleID="s255"/>
-    <Cell ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s257"/>
-    <Cell ss:StyleID="s258"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:Index="20" ss:StyleID="s206"/>
-    <Cell ss:StyleID="s206"/>
-    <Cell ss:StyleID="s101"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="9" ss:StyleID="s75"/>
-    <Cell ss:StyleID="s147"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:Index="16" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H400.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="15" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H400.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
     <Cell ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H400.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
-    <Cell ss:StyleID="s203"/>
-    <Cell ss:StyleID="s203"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="9" ss:StyleID="s75"/>
-    <Cell ss:StyleID="s147"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:Index="20" ss:StyleID="s203"/>
-    <Cell ss:StyleID="s203"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="9" ss:StyleID="s75"/>
-    <Cell ss:StyleID="s147"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:Index="20" ss:StyleID="s203"/>
-    <Cell ss:StyleID="s203"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-   </Row>
+   <Row/>
+   <Row/>
+   <Row/>
    <#if H400.main.noteFlag == 'Y'>
    <Row>
     <Cell ss:StyleID="s141"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">估值单价的测试请见<B><Font html:Color="#FF0000">H-XX旗下基金</Font></B><Font>底稿。</Font></ss:Data></Cell>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s141"/>
     <Cell ss:StyleID="s79"><Data ss:Type="String">期货成本指期货合约名义金额、公允价值指期货合约市值，估值增值=(期货合约市值-期货合约名义金额)</Data></Cell>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s79"><Data ss:Type="String">为简化计算过程，股指期货数量正数表示多头，负数表示空头，估值单价=合约乘数×结算价</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s79"/>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
    </Row>
-   <Row>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s207"><Data ss:Type="String">Note 2</Data></Cell>
     <Cell ss:StyleID="s79"><Data ss:Type="String">期货投资由于每日无负债结算制度，期末期货投资净额为零，无需进行三层次分类。</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s79"/>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
    </Row>
-   <Row>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-   </Row>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s221"><Data ss:Type="String">For Disclosure</Data></Cell>
     <Cell ss:StyleID="s79"/>
     <Cell ss:StyleID="s79"/>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
+    <Cell ss:StyleID="s79"/>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">对应子类型</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">合同/名义金额</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s184"><Data ss:Type="String">公允价值</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">备注</Data></Cell>
+    <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;H10000&gt;</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="10" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="20" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
+    <Cell ss:Index="5" ss:StyleID="s184"><Data ss:Type="String">资产</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">负债</Data></Cell>
    </Row>
+   <#if H10000.derivative.item1.amount??>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s217"><Data ss:Type="String">代码</Data></Cell>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">名称</Data></Cell>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">持仓量（买/卖）</Data></Cell>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">合约名义金额</Data></Cell>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">合约市值</Data></Cell>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">公允价值变动</Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="19" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s49"/>
+    <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">国债期货</Data></Cell>
+    <Cell ss:StyleID="s169"><Data ss:Type="String">利率衍生工具</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.asset!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.liabilities!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"/>
+   </Row>
+   </#if>
+   <#if H10000.derivative.item2.amount??>
+   <Row>
+    <Cell ss:Index="3" ss:StyleID="s169"><Data ss:Type="String">货币衍生工具</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.asset!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.liabilities!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"/>
+   </Row>
+   </#if>
+   <#if H10000.derivative.item3.amount??>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">股指期货</Data></Cell>
+    <Cell ss:StyleID="s169"><Data ss:Type="String">权益衍生工具</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.asset!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.liabilities!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"/>
+   </Row>
+   </#if>
+   <#if H10000.derivative.item4.amount??>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s240"><Data ss:Type="String">黄金延期合约</Data></Cell>
+    <Cell ss:StyleID="s169"><Data ss:Type="String">其他衍生工具</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.asset!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.liabilities!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s261"/>
+   </Row>
+   </#if>
+   <Row/>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s184"><Data ss:Type="String">代码</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">名称</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">持仓量（买/卖）</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">合约市值</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">公允价值变动</Data></Cell>
+    <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;H10000&gt;</Data></Cell>
    </Row>
    <#if H400.count != 0>
    <#list H400.list as item>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s217"><Data ss:Type="String">${item.optionCode!}</Data></Cell>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">${item.optionName!}</Data></Cell>
-    <Cell ss:StyleID="s259" ss:Formula="=SUMIF(C[-1],RC[-2],C[4])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=SUMIF(C[-2],RC[-3],C[4])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s266" ss:Formula="=SUMIF(C[-3],RC[-4],C[5])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s267" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="19" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s49"/>
+    <Cell ss:Index="2" ss:StyleID="s261"><Data ss:Type="String">${item.optionCode!}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="String">${item.optionName!}</Data></Cell>
+    <Cell ss:StyleID="s261" ss:Formula="=SUMIF(C[-1],RC[-2],C[4])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s261" ss:Formula="=SUMIF(C[-2],RC[-3],C[6])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s261" ss:Formula="=SUMIF(C[-3],RC[-4],C[6])"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s217"><Data ss:Type="String">总额合计</Data></Cell>
-    <Cell ss:StyleID="s220"/>
-    <Cell ss:StyleID="s259"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[${(-(H400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="19" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s49"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:Index="6" ss:StyleID="s261" ss:Formula="=SUM(R[${(-(H400.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s217"><Data ss:Type="String">减：可抵销期货暂收款</Data></Cell>
-    <Cell ss:StyleID="s220"/>
-    <Cell ss:StyleID="s259"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267" ss:Formula="=R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="19" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s49"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:Index="6" ss:StyleID="s261" ss:Formula="=R[-1]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s240"><Data ss:Type="String">xxxx期货投资净额</Data></Cell>
-    <Cell ss:StyleID="s220"/>
-    <Cell ss:StyleID="s259"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="9" ss:StyleID="s147"/>
-    <Cell ss:Index="12" ss:StyleID="s49"/>
-    <Cell ss:Index="19" ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s201"/>
-    <Cell ss:StyleID="s49"/>
+    <Cell ss:Index="2" ss:StyleID="s217"><Data ss:Type="String">净额</Data></Cell>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:Index="6" ss:StyleID="s261" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#if>
   </Table>
@@ -4448,34 +4809,44 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <Worksheet ss:Name="H500">
+ </#if>
+ <#if extraFundInfo.mf == 'N' && extraFundInfo.ac == 'Y'>
+ <Worksheet ss:Name="H500-摊余成本法债基">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s49" ss:DefaultColumnWidth="61.5" ss:DefaultRowHeight="13.5">
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="88.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="97.5" ss:Span="1"/>
-   <Column ss:Index="4" ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="109.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="93.75"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="97.5"/>
-   <Column ss:StyleID="s49" ss:Width="83.25"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="119.25"/>
-   <Column ss:StyleID="s49" ss:Width="123.75"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="100.5"/>
-   <Column ss:StyleID="s49" ss:Width="133.5"/>
-   <Column ss:StyleID="s49" ss:Width="162.75"/>
-   <Column ss:StyleID="s49" ss:Width="66"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="100.5"/>
-   <Column ss:StyleID="s49" ss:Width="46.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="144.75"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="131.25"/>
-   <Column ss:StyleID="s49" ss:Width="70.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="126.75"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="73.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="42"/>
-   <Column ss:StyleID="s49" ss:Width="109.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="151.5"/>
-   <Column ss:StyleID="s49" ss:Width="46.5"/>
-   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="30"/>
-   <Column ss:StyleID="s49" ss:Width="97.5" ss:Span="1"/>
-   <Column ss:Index="28" ss:StyleID="s49" ss:Width="126" ss:Span="1"/>
+   <Column ss:StyleID="s140" ss:AutoFitWidth="0" ss:Width="79"/>
+   <Column ss:StyleID="s140" ss:AutoFitWidth="0" ss:Width="88"/>
+   <Column ss:StyleID="s140" ss:AutoFitWidth="0" ss:Width="130" ss:Span="1"/>
+   <Column ss:Index="5" ss:StyleID="s140" ss:Width="107.5"/>
+   <Column ss:StyleID="s140" ss:AutoFitWidth="0" ss:Width="108.5"/>
+   <Column ss:StyleID="s140" ss:Width="128"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s126" ss:Width="86.5"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="119.5"/>
+   <Column ss:StyleID="s126" ss:Width="124"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="100.5"/>
+   <Column ss:StyleID="s126" ss:Width="133.5"/>
+   <Column ss:StyleID="s126" ss:Width="163"/>
+   <Column ss:StyleID="s126" ss:Width="66"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="100.5"/>
+   <Column ss:StyleID="s126" ss:Width="46.5"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="145"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="131.5"/>
+   <Column ss:StyleID="s126" ss:Width="70.5"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="127"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="73.5"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="42"/>
+   <Column ss:StyleID="s126" ss:Width="109.5"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="151.5"/>
+   <Column ss:StyleID="s126" ss:Width="90"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="70"/>
+   <Column ss:StyleID="s126" ss:Width="97.5"/>
+   <Column ss:StyleID="s126" ss:Width="121"/>
+   <Column ss:StyleID="s126" ss:Width="93"/>
+   <Column ss:StyleID="s126" ss:AutoFitWidth="0" ss:Width="131.5"/>
+   <Column ss:StyleID="s126" ss:Width="127.5"/>
+   <Column ss:Index="34" ss:StyleID="s126" ss:Width="33" ss:Span="1"/>
+   <Column ss:Index="36" ss:StyleID="s126" ss:Width="97.5" ss:Span="1"/>
+   <Column ss:Index="38" ss:StyleID="s126" ss:Width="120" ss:Span="5"/>
    <Row ss:Height="14.25" ss:StyleID="s85">
     <Cell ss:StyleID="s44"/>
     <Cell ss:StyleID="s83"/>
@@ -4512,109 +4883,84 @@
    <Row/>
    <Row ss:AutoFitHeight="0" ss:Height="15.75">
     <Cell ss:Index="2" ss:StyleID="s233"><Data ss:Type="String">分类统计表</Data></Cell>
-    <Cell ss:Index="7"><Data ss:Type="String">三层次合计</Data></Cell>
     <Cell ss:Index="10"><Data ss:Type="String">利率风险敞口合计</Data></Cell>
+    <Cell ss:Index="24" ss:StyleID="s233"><Data ss:Type="String">三层次合计</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="15.75">
-    <Cell ss:Index="3" ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>成本<#else>摊余成本</#if></Data></Cell>
-    <Cell ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>公允价值<#else>影子定价</#if></Data></Cell>
-    <Cell ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>估值增值<#else>偏离金额</#if></Data></Cell>
-    <#if extraFundInfo.interestSensitivity == 'Y'>
-    <Cell ss:Index="13"><Data ss:Type="String">可交换债券</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C6:C6,RC[-1],C11:C11)"><Data ss:Type="Number"></Data></Cell>
-    </#if>
+    <Cell ss:Index="3" ss:StyleID="s232"><Data ss:Type="String">初始成本</Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String">利息调整</Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String">减值准备</Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String">账面价值</Data></Cell>
    </Row>
    <#list H500.interestRatePeriod.list as period>
    <Row ss:AutoFitHeight="0" ss:Height="15.75">
     <#if period_index == 0>
-    <Cell ss:Index="2"><Data ss:Type="String">交易所债券</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[6],C[-2],&quot;债券&quot;,C[2],&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[7],C[-3],&quot;债券&quot;,C[1],&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s233"><Data ss:Type="String">交易所债券</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[5],C[-2],&quot;债券&quot;,C[2],&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[5],C[-3],&quot;债券&quot;,C[1],&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[7],C[-4],&quot;债券&quot;,C,&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[4],C[-5],&quot;债券&quot;,C[-1],&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(RC[-4]:RC[-2])-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
-    <Cell ss:StyleID="s210"><Data ss:Type="String">一层次合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),<#if extraFundInfo.mf != 'Y'>C[3]<#else>C[1]</#if>)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s211"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     <#elseif period_index == 1>
-    <Cell ss:Index="2"><Data ss:Type="String">银行间债券</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[6],C[-2],&quot;债券&quot;,C[2],&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[7],C[-3],&quot;债券&quot;,C[1],&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s233"><Data ss:Type="String">银行间债券</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[5],C[-2],&quot;债券&quot;,C[2],&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[5],C[-3],&quot;债券&quot;,C[1],&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[7],C[-4],&quot;债券&quot;,C,&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="7" ss:StyleID="s210"><Data ss:Type="String">二层次合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),<#if extraFundInfo.mf != 'Y'>C[3]<#else>C[1]</#if>)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s201"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C[4],C[-5],&quot;债券&quot;,C[-1],&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(RC[-4]:RC[-2])-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     <#elseif period_index == 2>
-    <Cell ss:Index="2"><Data ss:Type="String">债券合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;债券&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;债券&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s233"><Data ss:Type="String">债券合计</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;债券&quot;,C[5])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;债券&quot;,C[5])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;债券&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="7" ss:StyleID="s210"><Data ss:Type="String">三层次合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),<#if extraFundInfo.mf != 'Y'>C[3]<#else>C[1]</#if>)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s201"/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-5],&quot;债券&quot;,C[4])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(RC[-4]:RC[-2])-RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <#elseif period_index == 3>
     <Cell ss:StyleID="s101"/>
-    <Cell><Data ss:Type="String">资产支持证券</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;资产支持证券&quot;,C[6])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;资产支持证券&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s233"><Data ss:Type="String">资产支持证券</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-2],&quot;资产支持证券&quot;,C[5])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-3],&quot;资产支持证券&quot;,C[5])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-4],&quot;资产支持证券&quot;,C[7])"><Data ss:Type="Number"></Data></Cell>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-5],&quot;资产支持证券&quot;,C[4])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(RC[-4]:RC[-2])-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     <#elseif period_index == 4>
-    <Cell ss:StyleID="s101"/>
-    <Cell ss:StyleID="s101"/>
+    <Cell ss:Index="3" ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
-    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;/&lt;V400&gt;</Data></Cell>
     <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;/&lt;H910&gt;</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     <#elseif period_index == 5>
     <Cell ss:StyleID="s101"/>
     <Cell ss:StyleID="s146"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
-    <Cell ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
-    <Cell ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
+    <Cell ss:StyleID="s232" ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:StyleID="s232" ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:StyleID="s232" ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:StyleID="s232" ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:StyleID="s232" ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
     <#elseif period_index == 7>
-    <Cell ss:Index="2"><Data ss:Type="String">注：投资明细分类合计已与余额表/估值表核对一致</Data></Cell>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <#else>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
+    <Cell ss:Index="2" ss:StyleID="s233"><Data ss:Type="String">注：投资明细分类合计已与余额表/估值表核对一致</Data></Cell>
     </#if>
     <#if period?? && period != ''>
-    <Cell ss:StyleID="s144"><Data ss:Type="String">${period!}</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[18],RC[-1],<#if extraFundInfo.mf != 'Y'>C<#else>C[-2]</#if>)"><Data  ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s144"><Data ss:Type="String">${period!}</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[16],RC[-1],C[-2])+SUMIF(C[16],RC[-1],C[-1])-SUMIF(C[16],RC[-1],C)+SUMIF(C[16],RC[-1],C[2])"><Data  ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     </#if>
-    <#if extraFundInfo.interestSensitivity == 'Y'>
     <#if period_index == 0>
-    <Cell ss:StyleID="s211"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
-    <Cell><Data ss:Type="String">可转换债券</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C6:C6,RC[-1],C11:C11)"><Data  ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="24" ss:StyleID="s143"><Data ss:Type="String">一层次合计</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-1],LEFT(RC[-1],3),C[-7])+SUMIF(C[-1],LEFT(RC[-1],3),C[-13])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     <#elseif period_index == 1>
-    <Cell ss:Index="13"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;V400&gt;</Data></Cell>
-    </#if>
+    <Cell ss:Index="24" ss:StyleID="s143"><Data ss:Type="String">二层次合计</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-1],LEFT(RC[-1],3),C[-7])+SUMIF(C[-1],LEFT(RC[-1],3),C[-13])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <#elseif period_index == 2>
+    <Cell ss:Index="24" ss:StyleID="s143"><Data ss:Type="String">三层次合计</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[-1],LEFT(RC[-1],3),C[-7])+SUMIF(C[-1],LEFT(RC[-1],3),C[-13])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
     </#if>
    </Row>
    </#list>
@@ -4623,9 +4969,11 @@
     <Cell ss:StyleID="s60"/>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:Index="16" ss:MergeAcross="4" ss:StyleID="s359"><Data ss:Type="String">估值测试</Data></Cell>
-    <Cell ss:Index="22" ss:MergeAcross="2" ss:StyleID="s361"><Data ss:Type="String">固定收益品种计息测试</Data></Cell>
-    <Cell ss:Index="26" ss:MergeAcross="3" ss:StyleID="s362"><Data ss:Type="String">For Disclosure</Data></Cell>
+    <Cell ss:Index="14" ss:MergeAcross="2" ss:StyleID="s359"><Data ss:Type="String">计息测试</Data></Cell>
+    <Cell ss:Index="19" ss:MergeAcross="2" ss:StyleID="s361"><Data ss:Type="String">公允价值测试</Data></Cell>
+    <Cell ss:Index="23" ss:MergeAcross="3" ss:StyleID="s362"><Data ss:Type="String">For Disclosure</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s362"><Data ss:Type="String">持仓函证核对</Data></Cell>
+    <Cell ss:Index="36" ss:MergeAcross="3" ss:StyleID="s362"><Data ss:Type="String">ECL测试</Data></Cell>
    </Row>
    <Row ss:StyleID="s80">
     <Cell><Data ss:Type="String">类型</Data></Cell>
@@ -4634,60 +4982,77 @@
     <Cell><Data ss:Type="String">简称</Data></Cell>
     <Cell><Data ss:Type="String">交易市场</Data></Cell>
     <Cell><Data ss:Type="String">子类型</Data></Cell>
-    <Cell><Data ss:Type="String">函证Index</Data></Cell>
     <Cell><Data ss:Type="String">数量</Data></Cell>
-    <Cell><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>成本<#else>摊余成本</#if></Data></Cell>
-    <Cell><Data ss:Type="String">单位市值</Data></Cell>
-    <Cell><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>市值<#else>影子定价</#if></Data></Cell>
-    <Cell><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>估值增值<#else>偏离金额</#if></Data></Cell>
-    <Cell ss:Index="14"><Data ss:Type="String">应收利息</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s103"><Data ss:Type="String">估值单价 Per EY</Data></Cell>
-    <Cell><Data ss:Type="String">公允价值</Data></Cell>
+    <Cell><Data ss:Type="String">初始成本</Data></Cell>
+    <Cell><Data ss:Type="String">利息调整</Data></Cell>
+    <Cell><Data ss:Type="String">减值准备</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">单位税后应计利息</Data></Cell>
+    <Cell><Data ss:Type="String">应计利息</Data></Cell>
     <Cell><Data ss:Type="String">Diff.</Data></Cell>
-    <Cell><Data ss:Type="String">估值增值</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">公允价值（不含息）</Data></Cell>
+    <Cell><Data ss:Type="String">估值单价 Per EY</Data></Cell>
+    <Cell><Data ss:Type="String">公允价值（不含息）</Data></Cell>
     <Cell><Data ss:Type="String">Diff.</Data></Cell>
-    <Cell ss:Index="22"><Data ss:Type="String">单位税后应收利息</Data></Cell>
-    <Cell><Data ss:Type="String">应收利息</Data></Cell>
-    <Cell><Data ss:Type="String">Diff.</Data></Cell>
-    <Cell ss:Index="26" ss:StyleID="s103"><Data ss:Type="String">是否关联证券</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">是否关联证券</Data></Cell>
     <Cell ss:StyleID="s103"><Data ss:Type="String">三层次类型</Data></Cell>
     <Cell ss:StyleID="s103"><Data ss:Type="String">流通受限类型</Data></Cell>
     <Cell ss:StyleID="s103"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
-   </Row>
+    <Cell ss:Index="28" ss:StyleID="s103"><Data ss:Type="String">面值</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">面额</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">函证Index</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">回函面额</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">NOTE</Data></Cell>
+    <Cell ss:Index="36" ss:StyleID="s103"><Data ss:Type="String">ECL-high end</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">预期信用损失</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">预期信用损失</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Diff.</Data></Cell>
+</Row>
    <Row ss:StyleID="s60">
     <Cell ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s76"/>
-    <Cell ss:Index="8" ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
-    <Cell ss:Index="14" ss:StyleID="s75"><Data ss:Type="String">&lt;E300&gt;</Data></Cell> <!-- yury，20200831，H500加入尖括号 -->
-    <Cell ss:Index="16" ss:StyleID="s75"><Data ss:Type="String">H20</Data></Cell>
+    <Cell ss:Index="7" ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
+    <Cell ss:Index="14" ss:StyleID="s75"><Data ss:Type="String">H32</Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">Per EY</Data></Cell>
-    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="18" ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">H22</Data></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">Per EY</Data></Cell>
-    <Cell ss:StyleID="s76"/>
-    <Cell ss:Index="22" ss:StyleID="s75"><Data ss:Type="String">H30</Data></Cell>
-    <Cell ss:StyleID="s76"><Data ss:Type="String">Per EY</Data></Cell>
-    <Cell ss:Index="26" ss:StyleID="s75"/>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">H20</Data></Cell>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">H20</Data></Cell>
-    <Cell ss:StyleID="s75"><Data ss:Type="String">H20</Data></Cell>
+    <Cell ss:Index="24" ss:StyleID="s75"><Data ss:Type="String">H22</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">H22</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">H22</Data></Cell>
+    <Cell ss:Index="36" ss:StyleID="s75"><Data ss:Type="String">ECL底稿</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Per EY</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">Per Client</Data></Cell>
    </Row>
    <Row ss:StyleID="s76">
-    <Cell ss:Index="8"><Data ss:Type="String">A</Data></Cell>
+    <Cell ss:Index="7"><Data ss:Type="String">A</Data></Cell>
     <Cell><Data ss:Type="String">B</Data></Cell>
-    <Cell ss:Index="11"><Data ss:Type="String">C</Data></Cell>
+    <Cell><Data ss:Type="String">C</Data></Cell>
     <Cell><Data ss:Type="String">D</Data></Cell>
-    <Cell ss:Index="14"><Data ss:Type="String">J</Data></Cell>
-    <Cell ss:Index="16"><Data ss:Type="String">E</Data></Cell>
-    <Cell><Data ss:Type="String">F=E*A</Data></Cell>
-    <Cell><Data ss:Type="String">G=F-C</Data></Cell>
-    <Cell><Data ss:Type="String">H=F-B</Data></Cell>
-    <Cell><Data ss:Type="String">I=H-D</Data></Cell>
-    <Cell ss:Index="22"><Data ss:Type="String">K</Data></Cell>
-    <Cell><Data ss:Type="String">L=K*A</Data></Cell>
-    <Cell><Data ss:Type="String">M=L-J</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="String">E</Data></Cell>
+    <Cell ss:Index="14"><Data ss:Type="String">F</Data></Cell>
+    <Cell><Data ss:Type="String">G=F*A</Data></Cell>
+    <Cell><Data ss:Type="String">H=G-E</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">N</Data></Cell>
+    <Cell><Data ss:Type="String">O</Data></Cell>
+    <Cell><Data ss:Type="String">P=O*A</Data></Cell>
+    <Cell><Data ss:Type="String">U=P-N</Data></Cell>
+    <Cell ss:Index="28"><Data ss:Type="String">J</Data></Cell>
+    <Cell><Data ss:Type="String">K=J*A</Data></Cell>
+    <Cell ss:Index="31"><Data ss:Type="String">L</Data></Cell>
+    <Cell><Data ss:Type="String">M=L-K</Data></Cell>
+    <Cell ss:Index="36"><Data ss:Type="String">Q</Data></Cell>
+    <Cell><Data ss:Type="String">R=Q*(B+C)</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="String">T=R-S</Data></Cell>
    </Row>
-   <#if H500.main.count != 0>
-   <#list H500.main.list as item>
+   <#if H500.macMain.count != 0>
+   <#list H500.macMain.list as item>
    <Row>
     <Cell ss:StyleID="s60"><Data ss:Type="String">${item.type!}</Data></Cell>
     <Cell ss:StyleID="s255"><Data ss:Type="String">${item.accountNum!}</Data></Cell>
@@ -4695,184 +5060,58 @@
     <Cell ss:StyleID="s256"><Data ss:Type="String">${item.name!}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="String">${item.market!}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="String">${item.subType!}</Data></Cell>
-    <Cell ss:StyleID="s257"><Data ss:Type="String"><#if item_index == 0>HHXXX</#if></Data></Cell>
     <Cell ss:StyleID="s258"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.appreciationClient!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.interestArClient!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s143"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.interestAdjustment!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(-item.badDebt!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s143"><Data ss:Type="Number">${(item.interestArClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="14" ss:StyleID="s143"><Data ss:Type="Number">${(item.unitInterestAt!0)?string('0.############')}</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-8]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="18" ss:StyleID="s143"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.valPrice!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-9]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-7]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=RC[-2]-RC[-10]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-8]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.unitInterestAt!0)?string('0.############')}</Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-15]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-10]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="26" ss:StyleID="s60"><Data ss:Type="String">${item.releated!}</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-13]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="23" ss:StyleID="s60"><Data ss:Type="String">${item.releated!}</Data></Cell>
     <Cell ss:StyleID="s206"><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
     <Cell ss:StyleID="s101"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
     <Cell ss:StyleID="s60"><Data ss:Type="String">${item.exposurePeriod!}</Data></Cell>
+    <Cell ss:Index="28" ss:StyleID="s143"><Data ss:Type="Number">${(item.parValueLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-22]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s209"><Data ss:Type="String"><#if item.market == "上交所">HH/SH<#elseif item.market == "深交所">HH/SZ<#elseif item.market == "银行间">HH/ZZ / HH/SQ</#if></Data></Cell>
+    <Cell ss:StyleID="s144"/>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="36" ss:StyleID="s397"><Data ss:Type="Number">${(item.eclRate!0)?string('0.######')}</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*SUM(RC[-29]:RC[-28])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-28]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
    <Row>
     <Cell ss:StyleID="s142"><Data ss:Type="String">投资数据结束行</Data></Cell>
-    <Cell ss:StyleID="s255"/>
-    <Cell ss:StyleID="s255"/>
-    <Cell ss:StyleID="s256"/>
-    <Cell ss:StyleID="s101"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s257"/>
-    <Cell ss:StyleID="s258"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:StyleID="s143"/>
-    <Cell ss:Index="26" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s206"/>
-    <Cell ss:StyleID="s101"/>
-    <Cell ss:StyleID="s60"/>
    </Row>
+   <Row/>
    <Row>
-    <Cell ss:Index="6" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="16" ss:StyleID="s146"/>
-    <Cell ss:Index="18" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H500.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="16" ss:StyleID="s196" ss:Formula="=SUM(R[${(-2-H500.macMain.count)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
-    <Cell ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H500.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="21" ss:StyleID="s196" ss:Formula="=SUM(R[${(-2-H500.macMain.count)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
-    <Cell ss:StyleID="s146"/>
-    <Cell ss:Index="24" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H500.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="36" ss:StyleID="s397"><Data ss:Type="String">ECL-high end请根据FAAS Memo实际情况修改</Data></Cell>
+    <Cell ss:Index="39" ss:StyleID="s196" ss:Formula="=SUM(R[${(-2-H500.macMain.count)?string('0')}]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:Index="6" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="6" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-   </Row>
-   <#if extraFundInfo.mf == 'Y'>
-   <Row>
-    <Cell><Data ss:Type="String">偏离度测试：</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s324"/>
-    <Cell ss:StyleID="s325"/>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">资产净值</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="String">From 估值表</Data></Cell>
-    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(H500.diviaton.netAmount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="3" ss:StyleID="s60"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="String">交易所债券</Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="String">银行间债券</Data></Cell>
-    <Cell ss:StyleID="s60"><Data ss:Type="String">资产支持证券</Data></Cell>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">偏离金额</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s143" ss:Formula="=SUM(RC[1]:RC[3])"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s290" ss:Formula="=R9C5"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s290" ss:Formula="=R10C5"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s291" ss:Formula="=R12C5"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">偏离度</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="String">Per EY</Data></Cell>
-    <Cell ss:StyleID="s224" ss:Formula="=R[-1]C/R[-3]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s224" ss:Formula="=R[-1]C/R[-3]C[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s224" ss:Formula="=R[-1]C/R[-3]C[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s224" ss:Formula="=R[-1]C/R[-3]C[-3]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">偏离度</Data></Cell>
-    <Cell ss:StyleID="s104"><Data ss:Type="String">Per Client</Data></Cell>
-    <Cell ss:StyleID="s225"><Data ss:Type="Number">${(H500.diviaton.diviatonClient!0)?string('0.######')}</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-   </Row>
-   <Row>
-    <Cell><Data ss:Type="String">Diff.</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s225" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="6" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-    <Cell ss:StyleID="s60"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s207"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell ss:StyleID="s79"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">估值单价及单位税后应收利息的测试请见<B><Font
+      xmlns="http://www.w3.org/TR/REC-html40">估值单价及单位税后应计利息的测试请见<B><Font
         html:Color="#FF0000">H-XX旗下基金</Font></B><Font>底稿。</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s284"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s285"/>
-    <Cell ss:StyleID="s285"/>
-    <Cell ss:StyleID="s285"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
-    <Cell ss:StyleID="s79"/>
    </Row>
-   </#if>
+   <Row/>
+   <Row ss:Height="22.2">
+    <Cell ss:Index="3" ss:StyleID="s336"><Data ss:Type="String">！！！！请按需手工添加摊余成本计量测试，此处仅有框架和计息测试</Data></Cell>
+   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -4897,610 +5136,394 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <Worksheet ss:Name="H600">
-  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s54" ss:DefaultColumnWidth="54.75" ss:DefaultRowHeight="13.5">
-   <Column ss:StyleID="s54" ss:AutoFitWidth="0" ss:Width="76.5"/>
-   <Column ss:StyleID="s54" ss:AutoFitWidth="0" ss:Width="97.5"/>
-   <Column ss:StyleID="s54" ss:Width="78.75"/>
-   <Column ss:StyleID="s54" ss:Width="76.5"/>
-   <Column ss:StyleID="s54" ss:AutoFitWidth="0" ss:Width="37.5"/>
-   <Column ss:StyleID="s54" ss:AutoFitWidth="0" ss:Width="124.5"/>
-   <Row ss:Height="14.25" ss:StyleID="s42">
-    <Cell ss:StyleID="s102"/>
-   </Row>
-   <Row ss:StyleID="s42">
-    <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
+ <#else>
+ <Worksheet ss:Name="H500">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s49" ss:DefaultColumnWidth="61.5" ss:DefaultRowHeight="13.5">
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="88.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="97.5" ss:Span="1"/>
+   <Column ss:Index="4" ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="109.5"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="93.75"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="97.5"/>
+   <Column ss:StyleID="s49" ss:Width="83.25"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="119.25"/>
+   <Column ss:StyleID="s49" ss:Width="123.75"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="100.5"/>
+   <Column ss:StyleID="s49" ss:Width="133.5"/>
+   <Column ss:StyleID="s49" ss:Width="162.75"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="33"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="33"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="126.75"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="126.75"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="126.75"/>
+   <Column ss:StyleID="s49" ss:Width="33"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:AutoFitWidth="0" ss:Width="33"/>
+   <Column ss:StyleID="s49" ss:Width="97.5" ss:Span="1"/>
+   <Column ss:Index="28" ss:StyleID="s49" ss:Width="126" ss:Span="1"/>
+   <Column ss:Index="31" ss:StyleID="s49" ss:Width="33"/>
+   <Column ss:StyleID="s49" ss:Width="97.5"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:Width="133"/>
+   <Column ss:StyleID="s49" ss:Width="33"/>
+   <Row/>
+   <Row ss:StyleID="s83">
+    <Cell ss:StyleID="s86"><Data ss:Type="String">客户：</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s44"/>
+    <Cell ss:Index="5" ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
     <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s48"><Data ss:Type="String">WP Ref</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s88"><Data ss:Type="String">WP Ref</Data></Cell>
    </Row>
-   <Row ss:Height="14.25" ss:StyleID="s42">
+   <Row ss:Height="14.25" ss:StyleID="s83">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
     <Cell ss:StyleID="s130"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s130"/>
+    <Cell ss:Index="5" ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
     <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s47"><Data ss:Type="String">H600</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s90"><Data ss:Type="String">H500</Data></Cell>
    </Row>
-   <Row ss:StyleID="s42">
-    <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">投资-成本测试</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s43"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s58"/>
+   <Row ss:StyleID="s83">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s44"><Data ss:Type="String">固定收益类投资估值和计息测试及披露</Data></Cell>
    </Row>
    <Row/>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s56"><Data ss:Type="String">测试目的：</Data></Cell>
-    <Cell ss:StyleID="s72"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><Font html:Color="#000000">确定本期各类</Font><Font>投资的成本计量是否正确。</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
+   <Row/>
+   <Row ss:AutoFitHeight="0" ss:Height="15.75">
+    <Cell ss:Index="2" ss:StyleID="s233"><Data ss:Type="String">分类统计表</Data></Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">三层次合计</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="String">利率风险敞口合计</Data></Cell>
    </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15.75">
+    <Cell ss:Index="3" ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>成本<#else>摊余成本</#if></Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>应计利息<#else>应计利息</#if></Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>公允价值<#else>影子定价</#if></Data></Cell>
+    <Cell ss:StyleID="s232"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>估值增值<#else>偏离金额</#if></Data></Cell>
+    <Cell ss:Index="17"><Data ss:Type="String">可交换债券</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(R22C6:R${(21+H500.main.count)?string('0')}C6,RC[-1],R22C11:R${(21+H500.main.count)?string('0')}C11)"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s56"><Data ss:Type="String">测试方法：</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
+   <#list H500.interestRatePeriod.list as period>
+   <Row ss:AutoFitHeight="0" ss:Height="15.75">
+    <#if period_index == 0>
+    <Cell ss:Index="2"><Data ss:Type="String">交易所债券</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C9,C1,&quot;债券&quot;,C5,&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C15,C1,&quot;债券&quot;,C5,&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C11,C1,&quot;债券&quot;,C5,&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C13,C1,&quot;债券&quot;,C5,&quot;&lt;&gt;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <Cell ss:StyleID="s210"><Data ss:Type="String">一层次合计</Data></Cell>
+    <#if extraFundInfo.mf == 'Y' ||  extraFundInfo.ac == 'Y' >
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),C)+SUMIF(C[19],LEFT(RC[-1],3),C[6])"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),C[2])"><Data ss:Type="Number"></Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s211"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <#elseif period_index == 1>
+    <Cell ss:Index="2"><Data ss:Type="String">银行间债券</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C9,C1,&quot;债券&quot;,C5,&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C15,C1,&quot;债券&quot;,C5,&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C11,C1,&quot;债券&quot;,C5,&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIFS(C13,C1,&quot;债券&quot;,C5,&quot;银行间&quot;)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <Cell ss:StyleID="s210"><Data ss:Type="String">二层次合计</Data></Cell>
+    <#if extraFundInfo.mf == 'Y' ||  extraFundInfo.ac == 'Y' >
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),C)+SUMIF(C[19],LEFT(RC[-1],3),C[6])"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),C[2])"><Data ss:Type="Number"></Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <#elseif period_index == 2>
+    <Cell ss:Index="2"><Data ss:Type="String">债券合计</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C1,&quot;债券&quot;,C9)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C1,&quot;债券&quot;,C15)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C1,&quot;债券&quot;,C11)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C1,&quot;债券&quot;,C13)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <Cell ss:StyleID="s210"><Data ss:Type="String">三层次合计</Data></Cell>
+    <#if extraFundInfo.mf == 'Y' ||  extraFundInfo.ac == 'Y' >
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),C)+SUMIF(C[19],LEFT(RC[-1],3),C[6])"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[19],LEFT(RC[-1],3),C[2])"><Data ss:Type="Number"></Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <#elseif period_index == 3>
+    <Cell ss:StyleID="s101"/>
+    <Cell><Data ss:Type="String">资产支持证券</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C1,&quot;资产支持证券&quot;,C9)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C1,&quot;资产支持证券&quot;,C15)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C1,&quot;资产支持证券&quot;,C11)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C1,&quot;资产支持证券&quot;,C13)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <#elseif period_index == 4>
+    <Cell ss:Index="3" ss:StyleID="s395"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <Cell ss:StyleID="s395"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <Cell ss:StyleID="s395"><Data ss:Type="String">&lt;H300&gt;/&lt;V400&gt;</Data></Cell>
+    <Cell ss:StyleID="s395"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <#elseif period_index == 5>
+    <Cell ss:StyleID="s101"/>
+    <Cell ss:StyleID="s146"><Data ss:Type="String">Control</Data></Cell>
+    <Cell ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:Formula="=R[-3]C=SUM(R[-5]C:R[-4]C)"><Data ss:Type="Boolean"></Data></Cell>
+    <#elseif period_index == 7>
+    <Cell ss:Index="2"><Data ss:Type="String">注：投资明细分类合计已与余额表/估值表核对一致</Data></Cell>
+    </#if>
+    <#if period?? && period != ''>
+    <Cell ss:Index="11" ss:StyleID="s144"><Data ss:Type="String">${period!}</Data></Cell>
+    <#if extraFundInfo.mf == 'Y' ||  extraFundInfo.ac == 'Y' >
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[18],RC[-1],C[-3])+SUMIF(C[18],RC[-1],C[3])"><Data  ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(C[18],RC[-1],C[-1])"><Data  ss:Type="Number"></Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    </#if>
+    <#if period_index == 0>
+    <Cell ss:StyleID="s211"><Data ss:Type="String">&lt;H300&gt;</Data></Cell>
+    <Cell ss:Index="17"><Data ss:Type="String">可转换债券</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUMIF(R22C6:R${(21+H500.main.count)?string('0')}C6,RC[-1],R22C11:R${(21+H500.main.count)?string('0')}C11)"><Data  ss:Type="Number"></Data></Cell>
+    <#elseif period_index == 1>
+    <Cell ss:Index="17"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s141"><Data ss:Type="String">&lt;V400&gt;</Data></Cell>
+    </#if>
    </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s322"><Data ss:Type="String">1、</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="String">我们在预审阶段采用依赖控制的审计策略对相关流程进行抽样测试。</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
+   </#list>
+   <Row/>
+   <Row ss:Height="14.25">
+    <Cell ss:Index="17" ss:MergeAcross="4" ss:StyleID="s359"><Data ss:Type="String">估值测试</Data></Cell>
+    <Cell ss:Index="23" ss:MergeAcross="2" ss:StyleID="s361"><Data ss:Type="String">固定收益品种计息测试</Data></Cell>
+    <Cell ss:Index="27" ss:MergeAcross="3" ss:StyleID="s362"><Data ss:Type="String">For Disclosure</Data></Cell>
+    <Cell ss:Index="32" ss:MergeAcross="5" ss:StyleID="s362"><Data ss:Type="String">持仓函证核对</Data></Cell>
    </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s322"/>
-    <Cell><Data ss:Type="String">抽样方法：</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
+   <Row ss:StyleID="s80">
+    <Cell><Data ss:Type="String">类型</Data></Cell>
+    <Cell><Data ss:Type="String">科目代码</Data></Cell>
+    <Cell><Data ss:Type="String">代码</Data></Cell>
+    <Cell><Data ss:Type="String">简称</Data></Cell>
+    <Cell><Data ss:Type="String">交易市场</Data></Cell>
+    <Cell><Data ss:Type="String">子类型</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">数量</Data></Cell>
+    <Cell><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>成本<#else>摊余成本</#if></Data></Cell>
+    <Cell><Data ss:Type="String">单位市值</Data></Cell>
+    <Cell><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>市值<#else>影子定价</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>市值（不含息）<#else>影子定价（不含息）</#if></Data></Cell>
+    <Cell><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>估值增值<#else>偏离金额</#if></Data></Cell>
+    <Cell ss:Index="15"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:Index="17" ss:StyleID="s103"><Data ss:Type="String">估值单价 Per EY</Data></Cell>
+    <Cell><Data ss:Type="String">公允价值（不含息）</Data></Cell>
+    <Cell><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell><Data ss:Type="String">估值增值</Data></Cell>
+    <Cell><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell ss:Index="23"><Data ss:Type="String">单位税后应计利息</Data></Cell>
+    <Cell><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell ss:Index="27" ss:StyleID="s103"><Data ss:Type="String">是否关联证券</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">三层次类型</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">流通受限类型</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
+    <Cell ss:Index="32" ss:StyleID="s103"><Data ss:Type="String">面值</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">面额</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">函证Index</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">回函面额</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">NOTE</Data></Cell>
+</Row>
+   <Row ss:StyleID="s60">
+    <Cell ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s76"/>
+    <Cell ss:Index="8" ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
+    <Cell ss:Index="17" ss:StyleID="s75"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>H20<#else>H21</#if></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">Per EY</Data></Cell>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">Per EY</Data></Cell>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="23" ss:StyleID="s75"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>H30<#else>H31</#if></Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">Per EY</Data></Cell>
+    <Cell ss:Index="28" ss:StyleID="s75"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>H20<#else>H21</#if></Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>H20<#else>H21</#if></Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String"><#if extraFundInfo.mf != 'Y'>H20<#else>H21</#if></Data></Cell>
    </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s322"/>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">对于应用程序控制的业务（如交易所交易等），在ITGC评价为有效的前提下，我们测试一笔。</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
+   <Row ss:StyleID="s76">
+    <Cell ss:Index="8"><Data ss:Type="String">A</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Index="11"><Data ss:Type="String">C</Data></Cell>
+    <Cell><Data ss:Type="String">C'</Data></Cell>
+    <Cell><Data ss:Type="String">D</Data></Cell>
+    <Cell ss:Index="15"><Data ss:Type="String">J</Data></Cell>
+    <Cell ss:Index="17"><Data ss:Type="String">E</Data></Cell>
+    <Cell><Data ss:Type="String">F=E*A</Data></Cell>
+    <Cell><Data ss:Type="String">G=F-C'</Data></Cell>
+    <Cell><Data ss:Type="String">H=F-B</Data></Cell>
+    <Cell><Data ss:Type="String">I=H-D</Data></Cell>
+    <Cell ss:Index="23"><Data ss:Type="String">K</Data></Cell>
+    <Cell><Data ss:Type="String">L=K*A</Data></Cell>
+    <Cell><Data ss:Type="String">M=L-J</Data></Cell>
+    <Cell ss:Index="32"><Data ss:Type="String">N</Data></Cell>
+    <Cell><Data ss:Type="String">O=N*A</Data></Cell>
+    <Cell><Data ss:Type="String">P</Data></Cell>
+    <Cell><Data ss:Type="String">Q=P-O</Data></Cell>
    </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s322"/>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">对于不完全是应用程序控制的业务（如银行间交易、新股新债等），我们采用安永抽样方法进行了抽样，对选中的样本进行测试。</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
+   <#if H500.main.count != 0>
+   <#list H500.main.list as item>
+   <Row>
+    <Cell ss:StyleID="s60"><Data ss:Type="String">${item.type!}</Data></Cell>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">${item.accountNum!}</Data></Cell>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">${item.code!}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.name!}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="String">${item.market!}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="String">${item.subType!}</Data></Cell>
+    <Cell ss:StyleID="s143"/>
+    <Cell ss:StyleID="s258"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.totalCost!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${((item.mktValueClient!0)+(item.interestArClient!0))?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.mktValueClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.appreciationClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.interestArClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.valPrice!0)?string('0.##')}</Data></Cell>
+	<#if item.market == '港股通'>
+	<#list H500.rate.list as item1>
+	<Cell ss:StyleID="s143" ss:Formula="=ROUND(RC[-1]*RC[-10]*${(item1.rate!0)?string('0.####')},2)"><Data ss:Type="Number"></Data></Cell>
+	</#list>
+	<#else>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-10]"><Data ss:Type="Number"></Data></Cell>
+	</#if>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-7]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-2]-RC[-11]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-8]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.unitInterestAt!0)?string('0.############')}</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-16]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-10]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="27" ss:StyleID="s60"><Data ss:Type="String">${item.releated!}</Data></Cell>
+    <Cell ss:StyleID="s206"><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="String">${item.exposurePeriod!}</Data></Cell>
+    <Cell ss:StyleID="s143"/>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(item.parValueLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]*RC[-25]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s209"><Data ss:Type="String"><#if item.market == "上交所">HH/SH<#elseif item.market == "深交所">HH/SZ<#elseif item.market == "银行间">HH/ZZ / HH/SQ</#if></Data></Cell>
+    <Cell ss:StyleID="s144"/>
+    <Cell ss:StyleID="s143" ss:Formula="=RC[-1]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s322"/>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">测试步骤：</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s322"/>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">对于投资的初始确认，我们查看凭证并检查相关支持凭据，确认投资的初始入账是否准确无误。</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s322"/>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">对于投资的处置，我们查看凭证并对成本结转进行重新计算，检查成本结转是否采用移动加权平均法及结转金额是否准确无误。</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s322"><Data ss:Type="String">2、</Data></Cell>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">由于预审至年审的剩余期间小于3个月，我们在年审阶段询问管理层和相关员工，并观察剩余期间的控制程序以判断该流程是否发生变化。</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s55"/>
-    <Cell ss:Index="3" ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s56"><Data ss:Type="String">测试结果：</Data></Cell>
-    <Cell ss:StyleID="s54"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40">预审阶段的抽样测试未见异常，详请参见系统审计工作底稿<B><Font
-        html:Color="#FF0000">B4000</Font></B><Font>。</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s55"/>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">我们于年审阶段询问了管理层和相关员工，并观察了剩余期间的控制程序，未发现该流程发生变化，所以我们不再追加测试。</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s55"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s56"><Data ss:Type="String">测试结论：</Data></Cell>
-    <Cell ss:StyleID="s72"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><Font html:Color="#000000">本期各类</Font><Font>投资的成本计量是正确的。</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s55"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s55"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
+   </#list>
+   </#if>
+   <Row>
+    <Cell ss:StyleID="s142"><Data ss:Type="String">投资数据结束行</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s55"/>
+    <Cell ss:Index="19" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H500.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
+    <Cell ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H500.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
+    <Cell ss:Index="25" ss:StyleID="s196" ss:Formula="=SUM(R[${(-1-H500.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
+   </Row>
+   <Row/>
+   <Row/>
+   <#if extraFundInfo.mf == 'Y'>
+   <Row>
+    <Cell><Data ss:Type="String">偏离度测试：</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s55"/>
+    <Cell><Data ss:Type="String">资产净值</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">From 估值表</Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="Number">${(H500.diviaton.netAmount!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s55"/>
+    <Cell ss:Index="3" ss:StyleID="s60"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="String">交易所债券</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="String">银行间债券</Data></Cell>
+    <Cell ss:StyleID="s60"><Data ss:Type="String">资产支持证券</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">偏离金额</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s143" ss:Formula="=SUM(RC[1]:RC[3])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s290" ss:Formula="=R9C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s290" ss:Formula="=R10C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s291" ss:Formula="=R12C6"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">偏离度</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">Per EY</Data></Cell>
+    <Cell ss:StyleID="s224" ss:Formula="=R[-1]C/R[-3]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s224" ss:Formula="=R[-1]C/R[-3]C[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s224" ss:Formula="=R[-1]C/R[-3]C[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s224" ss:Formula="=R[-1]C/R[-3]C[-3]"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">偏离度</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">Per Client</Data></Cell>
+    <Cell ss:StyleID="s225"><Data ss:Type="Number">${(H500.diviaton.diviatonClient!0)?string('0.######')}</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s225" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row/>
+   </#if>
+   <Row>
+    <Cell ss:StyleID="s207"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s79"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40">估值单价及单位税后应计利息的测试请见<B><Font
+        html:Color="#FF0000">H-XX旗下基金</Font></B><Font>底稿。</Font></ss:Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
-    <Layout x:CenterHorizontal="1"/>
-    <Header x:Margin="0.51181102362204722"/>
-    <Footer x:Margin="0.51181102362204722"/>
-    <PageMargins x:Bottom="0.59055118110236227" x:Left="0.55118110236220474"
-     x:Right="0.55118110236220474" x:Top="0.78740157480314965"/>
+    <Layout x:Orientation="Landscape" x:CenterHorizontal="1"/>
+    <Header x:Margin="0.31496062992125984"/>
+    <Footer x:Margin="0.23622047244094491" x:Data="&amp;C&amp;P"/>
+    <PageMargins x:Bottom="0.39370078740157483" x:Left="0.35433070866141736"
+     x:Right="0.35433070866141736" x:Top="0.59055118110236227"/>
    </PageSetup>
    <FitToPage/>
    <Print>
+    <FitHeight>3</FitHeight>
     <ValidPrinterInfo/>
     <PaperSizeIndex>9</PaperSizeIndex>
-    <Scale>59</Scale>
-    <HorizontalResolution>-4</HorizontalResolution>
+    <Scale>63</Scale>
+    <HorizontalResolution>600</HorizontalResolution>
     <VerticalResolution>600</VerticalResolution>
+    <Gridlines/>
    </Print>
+   <Zoom>80</Zoom>
    <ProtectObjects>False</ProtectObjects>
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <Worksheet ss:Name="H700">
-  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s54" ss:DefaultColumnWidth="54.75" ss:DefaultRowHeight="13.5">
-   <Column ss:StyleID="s54" ss:Width="66.75"/>
-   <Column ss:StyleID="s54" ss:AutoFitWidth="0" ss:Width="97.5"/>
-   <Column ss:StyleID="s54" ss:Width="78.75"/>
-   <Column ss:StyleID="s54" ss:AutoFitWidth="0" ss:Width="137.25"/>
-   <Column ss:StyleID="s54" ss:AutoFitWidth="0" ss:Width="67.5"/>
-   <Column ss:StyleID="s54" ss:AutoFitWidth="0" ss:Width="80.25"/>
-   <Row ss:Height="14.25" ss:StyleID="s42">
-    <Cell ss:StyleID="s102"/>
-   </Row>
-   <Row ss:StyleID="s42">
-    <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
-    <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
-    <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s48"><Data ss:Type="String">WP Ref</Data></Cell>
-   </Row>
-   <Row ss:Height="14.25" ss:StyleID="s42">
-    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
-    <Cell ss:StyleID="s130"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
-    <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
-    <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s47"><Data ss:Type="String">H700</Data></Cell>
-   </Row>
-   <Row ss:StyleID="s42">
-    <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">投资-截止性测试</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s43"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s58"/>
-   </Row>
-   <Row/>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s56"><Data ss:Type="String">测试目的：</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s55"><Data ss:Type="String">1、</Data></Cell>
-    <Cell ss:StyleID="s72"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><Font html:Color="#000000">确定应计入本期</Font><Font>的投资是否已计入本期间；</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s55"><Data ss:Type="String">2、</Data></Cell>
-    <Cell ss:StyleID="s72"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><Font html:Color="#000000">确定应计入本期</Font><Font>的投资差价收入是否已在本期间确认 。</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s56"><Data ss:Type="String">测试方法：</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s226">
-    <Cell ss:StyleID="s55"><Data ss:Type="String">1、</Data></Cell>
-    <Cell ss:StyleID="s72"><ss:Data ss:Type="String"
-      xmlns="http://www.w3.org/TR/REC-html40"><Font html:Color="#000000">获取资产负债表日前后十个交易日</Font><Font>的非由应用程序控制的业务清单和相关支持凭据，对该等业务全部进行检查。</Font></ss:Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s55"><Data ss:Type="String">2、</Data></Cell>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">根据业务支持凭据查询入账情况，确认所检查的业务是否进行了正确的账务处理。</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s59"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s56"><Data ss:Type="String">测试结果：</Data></Cell>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">经查看，未见异常</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s55"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-   <Row ss:StyleID="s73">
-    <Cell ss:StyleID="s56"><Data ss:Type="String">测试结论：</Data></Cell>
-    <Cell ss:StyleID="s54"><Data ss:Type="String">应计入本期的投资已计入本期间，应计入本期的投资差价收入已在本期间确认。</Data></Cell>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s54"/>
-   </Row>
-  </Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <PageSetup>
-    <Layout x:CenterHorizontal="1"/>
-    <Header x:Margin="0.51181102362204722"/>
-    <Footer x:Margin="0.51181102362204722"/>
-    <PageMargins x:Bottom="0.78740157480314965" x:Left="0.55118110236220474"
-     x:Right="0.55118110236220474" x:Top="0.9055118110236221"/>
-   </PageSetup>
-   <FitToPage/>
-   <Print>
-    <ValidPrinterInfo/>
-    <PaperSizeIndex>9</PaperSizeIndex>
-    <Scale>75</Scale>
-    <HorizontalResolution>300</HorizontalResolution>
-    <VerticalResolution>300</VerticalResolution>
-   </Print>
-   <ProtectObjects>False</ProtectObjects>
-   <ProtectScenarios>False</ProtectScenarios>
-  </WorksheetOptions>
- </Worksheet>
+ </#if>
  <Worksheet ss:Name="H800">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s109" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s154" ss:AutoFitWidth="0" ss:Width="115.5"/>
-   <Column ss:StyleID="s154" ss:AutoFitWidth="0" ss:Width="84.75"/>
+   <Column ss:StyleID="s154" ss:AutoFitWidth="0" ss:Width="115"/>
    <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="97.5"/>
-   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="95.25"/>
-   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="102"/>
-   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="108"/>
-   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="103.5"/>
    <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="161.25"/>
-   <Column ss:StyleID="s109" ss:Width="175.5"/>
-   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="145.5"/>
-   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="112.5"/>
-   <Column ss:StyleID="s109" ss:Width="54.75"/>
-   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="96"/>
+   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="161.25"/>
+   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="161.25"/>
+   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="161.25"/>
+   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="161.25"/>
+   <Column ss:StyleID="s109" ss:Width="161.25"/>
+   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="160"/>
+   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="160"/>
+   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="160"/>
+   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="160"/>
    <Column ss:StyleID="s109" ss:Width="89.25"/>
-   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="79.5"/>
-   <Column ss:StyleID="s109" ss:Width="82.5"/>
-   <Column ss:StyleID="s109" ss:Width="89.25"/>
+   <Column ss:StyleID="s109" ss:AutoFitWidth="0" ss:Width="160"/>
+   <Column ss:StyleID="s109" ss:Width="160"/>
+   <Column ss:StyleID="s109" ss:Width="160"/>
    <Column ss:StyleID="s109" ss:Width="89.25"/>
    <Column ss:StyleID="s109" ss:Width="118.5"/>
    <Column ss:StyleID="s109" ss:Width="109.5"/>
@@ -5531,67 +5554,77 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s62"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s61"><Data ss:Type="String">买入返售金融资产计息测试</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s117"/>
-    <Cell ss:StyleID="s117"/>
-    <Cell ss:StyleID="s117"/>
-    <Cell ss:StyleID="s117"/>
+    <Cell ss:StyleID="s61"><Data ss:Type="String">买入返售金融资产及其计息测试</Data></Cell>
    </Row>
+   <Row/>
+   <Row/>
+   <Row/>
    <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
+    <Cell ss:MergeAcross="6" ss:StyleID="s152"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:Index="9" ss:MergeAcross="3" ss:StyleID="s152"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-   </Row>
-   <Row>
-    <Cell ss:MergeAcross="3" ss:StyleID="s152"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s152"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
-   </Row>
-   <Row>
+   <Row ss:StyleID="s80">
     <Cell ss:StyleID="s80"><Data ss:Type="String">交易市场</Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="String">子类型</Data></Cell>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">账面余额</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s108"><Data ss:Type="String">账面余额</Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">本金</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">减值准备</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s80"><Data ss:Type="String">本金</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">减值准备</Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="String">合计</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="4" ss:StyleID="s76"><Data ss:Type="String">From 估值表</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s75"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">From 余额表</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s76"><Data ss:Type="String">From 余额表</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">From 余额表</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">From 余额表</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s75"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="String">W/P</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-   </Row>
+   <Row/>
    <#if H800.main.count != 0>
    <#list H800.main.list as item>
    <Row>
     <Cell><Data ss:Type="String">${item.market!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.subType!}</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s234"><Data ss:Type="Number">${(item.endBalanceCny!0)?string('0.##')}</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s234"><Data ss:Type="Number">${(item.beginBalanceCny!0)?string('0.##')}</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s234"><Data ss:Type="Number">${(item.endBalanceCostCny!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.endBalanceInterstCny!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.endBalanceBadDebtCny!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s234"><Data ss:Type="Number">${(item.beginBalanceCostCny!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.beginBalanceInterstCny!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.beginBalanceBadDebtCny!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=RC[-3]+RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    </#list>
    </#if>
    <Row>
-    <Cell ss:Index="4" ss:StyleID="s234"/>
-    <Cell ss:Index="6" ss:StyleID="s234"/>
+    <Cell ss:Index="12" ss:StyleID="s47"><Data ss:Type="String"></Data></Cell>
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:Index="4" ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.main.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:Index="4" ss:StyleID="s110"><Data ss:Type="String">^ / &lt;H&gt;</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="7" ss:StyleID="s110"><Data ss:Type="String">^ / &lt;H&gt;</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">Note：我们查看了回购业务的成交记录，并查看了期后回款情况。</Data></Cell>
     <Cell ss:StyleID="s109"/>
    </Row>
    <Row>
@@ -5603,67 +5636,128 @@
     <Cell ss:StyleID="s122"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-   </Row>
-   <Row ss:Height="14.25">
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:Index="6" ss:StyleID="s118"/>
-    <Cell ss:Index="11" ss:MergeAcross="5" ss:StyleID="s363"><Data ss:Type="String">计息测试</Data></Cell>
+    <Cell ss:StyleID="s25"/>
+    <Cell ss:StyleID="s25"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s80"><Data ss:Type="String">代码</Data></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="String">简称</Data></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="String">交易市场</Data></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="String">子类型</Data></Cell>
-    <Cell ss:StyleID="s107"><Data ss:Type="String">证据Index</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">账面余额</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">首次结算日</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">到期结算日</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">到期金额</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">买断债券信息</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">回购天数</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">估值日</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">应计天数</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">应计利息</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">应计利息</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">Diff.</Data></Cell>
-    <Cell ss:Index="18" ss:StyleID="s108"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">回购业务类型</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">交易规则</Data></Cell>
    </Row>
    <Row>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">银行间回购</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">交易双方约定首期结算日与到期结算日，采用“券款对付”模式进行结算，即，在交易双方指定的结算日，债券和资金同步进行交收并互为条件</Data></Cell>
+    <Cell ss:StyleID="s41"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">交易所买断式回购</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">T+0结算、T+0资金交收</Data></Cell>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">资金交收日 = 结算日</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">交易所质押式回购</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">T+0结算、T+1资金交收</Data></Cell>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">资金交收日 = 结算日后第1个交易日</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s41"/>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">计息规则：计息期间为资金实际占用天数，即资金首次交收日到资金到期交收日之间（算头不算尾）。</Data></Cell>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s25"/>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">基于上述业务规则，基金在对交易所质押式回购业务进行核算时，在到期结算日，本息已按全额转入证券清算款，而利息尚未计提结束（要计提至资金到期交收日），也就是从单笔交易来看，从到期结算日至资金到期交收日期间会出现应计利息科目被结转为负数的情况。</Data></Cell>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s25"/>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">由此，逆回购业务计息测试按“资产负债表日之后到期的银行间逆回购”、“到期结算日在本期最后一个交易日之后的交易所质押式逆回购业务和交易所买断式逆回购业务”、“到期结算日在本期最后一个交易日的交易所质押式逆回购业务”分别进行测试：</Data></Cell>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s41"/>
+    <Cell ss:StyleID="s25"/>
+    </Row>
+  <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">1. 资产负债表日之后到期的银行间逆回购业务：</Data></Cell>
+    <Cell ss:StyleID="s25"/>
+  </Row>
+   <Row>
+    <Cell ss:StyleID="s54"/>
+    <Cell ss:StyleID="s25"/>
+    </Row>
+   <Row ss:StyleID="s80">
+    <Cell><Data ss:Type="String">代码</Data></Cell>
+    <Cell><Data ss:Type="String">简称</Data></Cell>
+    <Cell><Data ss:Type="String">交易市场</Data></Cell>
+    <Cell><Data ss:Type="String">子类型</Data></Cell>
+    <Cell><Data ss:Type="String">成本</Data></Cell>
+    <Cell><Data ss:Type="String">首期结算日</Data></Cell>
+    <Cell><Data ss:Type="String">到期结算日</Data></Cell>
+    <Cell><Data ss:Type="String">到期金额</Data></Cell>
+    <Cell><Data ss:Type="String">买断债券信息</Data></Cell>
+	  <Cell><Data ss:Type="String">起息日（首期结算日）</Data></Cell>
+    <Cell><Data ss:Type="String">止息日（到期结算日）</Data></Cell>
+    <Cell><Data ss:Type="String">利息天数</Data></Cell>
+    <Cell><Data ss:Type="String">估值日</Data></Cell>
+    <Cell><Data ss:Type="String">应计天数</Data></Cell>
+    <Cell><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell ss:Index="19"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s129"><Data ss:Type="String">From 估值表/成交记录/成交清算日报表</Data></Cell>
     <Cell ss:StyleID="s76"/>
     <Cell ss:StyleID="s60"/>
-    <Cell ss:Index="6" ss:StyleID="s76"/>
-    <Cell ss:Index="14" ss:StyleID="s119"><Data ss:Type="String">Per EY</Data></Cell>
-    <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;E300&gt;</Data></Cell> <!-- yury,20200831,H800加入尖括号-->
+    <Cell ss:Index="5" ss:StyleID="s76"/>
+    <Cell ss:Index="15" ss:StyleID="s119"><Data ss:Type="String">Per EY</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="String">Per Client</Data></Cell> 
    </Row>
-   <#if H800.interestTest.count != 0>
-   <#list H800.interestTest.list as item>
+   <#if H800.interestTestOTC.count != 0>
+   <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <#list H800.interestTestOTC.list as item>
    <Row>
     <Cell ss:StyleID="s255"><Data ss:Type="String">${item.code!}</Data></Cell>
     <Cell ss:StyleID="s256"><Data ss:Type="String">${item.shortName!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.market!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.subtype!}</Data></Cell>
-    <Cell ss:StyleID="s150"><Data ss:Type="String">${item.index!}</Data></Cell>
     <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.endBalanceCny!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s260"><#if item.firstAccountDay??><Data ss:Type="DateTime">${item.firstAccountDay!}T00:00:00.000</Data></#if></Cell>
     <Cell ss:StyleID="s260"><#if item.dueAccountDay??><Data ss:Type="DateTime">${item.dueAccountDay!}T00:00:00.000</Data></#if></Cell>
     <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.dueAmount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">${item.buyOutBond!}</Data></Cell>
-    <Cell ss:Formula="=RC[-3]-RC[-4]"><Data ss:Type="Number"></Data></Cell>
+	  <Cell ss:StyleID="s260" ss:Formula="=IF(OR(RC[-7]=&quot;银行间&quot;,RC[-6]=&quot;买断式&quot;),RC[-4],WORKDAY(RC[-4],1,'节假日'!R2C1:R1048576C1))"><Data ss:Type="DateTime"></Data></Cell>
+	  <Cell ss:StyleID="s260" ss:Formula="=IF(OR(RC[-8]=&quot;银行间&quot;,RC[-7]=&quot;买断式&quot;),RC[-4],WORKDAY(RC[-4],1,'节假日'!R2C1:R1048576C1))"><Data ss:Type="DateTime"></Data></Cell>
+	  <Cell ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s260"><#if item.valuationDay??><Data ss:Type="DateTime">${item.valuationDay!}T00:00:00.000</Data></#if></Cell>
-    <Cell ss:Formula="=RC[-1]-RC[-6]+1"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s234" ss:Formula="=(RC[-5]-RC[-8])/RC[-3]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s222"/>
-    <Cell ss:StyleID="s222"/>
-    <Cell ss:Index="18"><Data ss:Type="String">${item.exposurePeriod!}</Data></Cell>
+	  <Cell ss:Formula="=MIN(MAX(RC[-1]-RC[-4]+1,0),RC[-2])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=ROUND((RC[-7]-RC[-10])*RC[-1]/RC[-3],2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.accruedInterestClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="19"><Data ss:Type="String">${item.exposurePeriod!}</Data></Cell>
    </Row>
    </#list>
+   <#else>
+   <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">本基金本报告期末无资产负债表日之后到期的银行间逆回购业务</Data></Cell>
+    <Cell ss:StyleID="s25"/>
+   </Row>
    </#if>
    <Row>
     <Cell ss:StyleID="s109"/>
-    <Cell ss:Index="6" ss:StyleID="s234"/>
+    <Cell ss:Index="5" ss:StyleID="s234"/>
     <Cell ss:StyleID="s235"/>
     <Cell ss:StyleID="s235"/>
     <Cell ss:StyleID="s234"/>
@@ -5672,53 +5766,232 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s109"/>
-    <Cell ss:Index="6" ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.interestTest.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s234" ss:Formula="=RC[-1]-R[${(-10-H800.interestTest.count)?string('0')}]C[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.interestTestOTC.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=RC[-1]-SUMIF((R[${(-23-H800.interestTestOTC.count)?string('0')}]C[-5]:R[${(-25-H800.main.count-H800.interestTestOTC.count)?string('0')}]C[-5]),&quot;银行间&quot;,R[${(-23-H800.interestTestOTC.count)?string('0')}]C[-2]:R[${(-25-H800.main.count-H800.interestTestOTC.count)?string('0')}]C[-2])"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s235"/>
     <Cell ss:StyleID="s234"/>
-    <Cell ss:Index="14" ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.interestTest.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s114"><Data ss:Type="Number">${(H800.intestSummary.accruedInterestClient!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s114" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s197"><Data ss:Type="String">m</Data></Cell>
+    <Cell ss:Index="14" ss:StyleID="s124"><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.interestTestOTC.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.interestTestOTC.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s109"/>
-    <Cell ss:Index="6" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:Index="14" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="15" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s109"/>
     <Cell ss:StyleID="s109"/>
    </Row>
+    <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">2. 到期清算日在本期最后一个交易日之后的交易所质押式逆回购业务和交易所买断式逆回购业务：</Data></Cell>
+    <Cell ss:StyleID="s25"/>
+  </Row>
+   <Row>
+    <Cell ss:StyleID="s54"/>
+    <Cell ss:StyleID="s25"/>
+    </Row>
+   <Row ss:StyleID="s80">
+    <Cell><Data ss:Type="String">代码</Data></Cell>
+    <Cell><Data ss:Type="String">简称</Data></Cell>
+    <Cell><Data ss:Type="String">交易市场</Data></Cell>
+    <Cell><Data ss:Type="String">子类型</Data></Cell>
+    <Cell><Data ss:Type="String">成本</Data></Cell>
+    <Cell><Data ss:Type="String">首次清算日</Data></Cell>
+    <Cell><Data ss:Type="String">到期清算日</Data></Cell>
+    <Cell><Data ss:Type="String">到期金额</Data></Cell>
+    <Cell><Data ss:Type="String">买断债券信息</Data></Cell>
+	  <Cell><Data ss:Type="String">起息日（首次资金交收日）</Data></Cell>
+    <Cell><Data ss:Type="String">止息日（到期资金交收日）</Data></Cell>
+    <Cell><Data ss:Type="String">利息天数</Data></Cell>
+    <Cell><Data ss:Type="String">估值日</Data></Cell>
+    <Cell><Data ss:Type="String">应计天数</Data></Cell>
+    <Cell><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell><Data ss:Type="String">Diff.</Data></Cell>
+    <Cell ss:Index="19"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s129"><Data ss:Type="String">From 估值表/成交记录/成交清算日报表</Data></Cell>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s60"/>
+    <Cell ss:Index="5" ss:StyleID="s76"/>
+    <Cell ss:Index="15" ss:StyleID="s119"><Data ss:Type="String">Per EY</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="String">Per Client</Data></Cell> 
+   </Row>
+   <#if H800.interestTestEX.count != 0>
+   <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <#list H800.interestTestEX.list as item>
+   <Row>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">${item.code!}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.shortName!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.market!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.subtype!}</Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.endBalanceCny!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s260"><#if item.firstAccountDay??><Data ss:Type="DateTime">${item.firstAccountDay!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s260"><#if item.dueAccountDay??><Data ss:Type="DateTime">${item.dueAccountDay!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.dueAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">${item.buyOutBond!}</Data></Cell>
+	  <Cell ss:StyleID="s260" ss:Formula="=IF(OR(RC[-7]=&quot;银行间&quot;,RC[-6]=&quot;买断式&quot;),RC[-4],WORKDAY(RC[-4],1,'节假日'!R2C1:R1048576C1))"><Data ss:Type="DateTime"></Data></Cell>
+	  <Cell ss:StyleID="s260" ss:Formula="=IF(OR(RC[-8]=&quot;银行间&quot;,RC[-7]=&quot;买断式&quot;),RC[-4],WORKDAY(RC[-4],1,'节假日'!R2C1:R1048576C1))"><Data ss:Type="DateTime"></Data></Cell>
+	  <Cell ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s260"><#if item.valuationDay??><Data ss:Type="DateTime">${item.valuationDay!}T00:00:00.000</Data></#if></Cell>
+	  <Cell ss:Formula="=MIN(MAX(RC[-1]-RC[-4]+1,0),RC[-2])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=ROUND((RC[-7]-RC[-10])*RC[-1]/RC[-3],2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.accruedInterestClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="19"><Data ss:Type="String">${item.exposurePeriod!}</Data></Cell>
+   </Row>
+   </#list>
+   <#else>
+   <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">本基金本报告期末无到期清算日在本期最后一个交易日之后的交易所质押式逆回购业务和交易所买断式逆回购业务</Data></Cell>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   </#if>
+   <Row/>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:Index="5" ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.interestTestEX.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=RC[-1]-SUMIF((R[${(-33-H800.interestTestOTC.count-H800.interestTestEX.count)?string('0')}]C[-5]:R[${(-34-H800.main.count-H800.interestTestOTC.count-H800.interestTestEX.count)?string('0')}]C[-5]),&quot;&lt;&gt;银行间&quot;,R[${(-33-H800.interestTestOTC.count-H800.interestTestEX.count)?string('0')}]C[-2]:R[${(-34-H800.main.count-H800.interestTestOTC.count-H800.interestTestEX.count)?string('0')}]C[-2])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s235"/>
+    <Cell ss:StyleID="s234"/>
+    <Cell ss:Index="14" ss:StyleID="s124"><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.interestTestEX.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.interestTestEX.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:Index="5" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="15" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+   </Row>
+   <Row/>
+  <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">3. 到期清算日在本期最后一个交易日的交易所质押式逆回购业务：</Data></Cell>
+  </Row>
+  <Row/>
+  <Row ss:Height="14.25">
+    <Cell ss:Index="10" ss:MergeAcross="7" ss:StyleID="s363"><Data ss:Type="String">计息测试</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s80">
+    <Cell><Data ss:Type="String">代码</Data></Cell>
+    <Cell><Data ss:Type="String">简称</Data></Cell>
+    <Cell><Data ss:Type="String">交易市场</Data></Cell>
+    <Cell><Data ss:Type="String">子类型</Data></Cell>
+    <Cell><Data ss:Type="String">成本</Data></Cell>
+    <Cell><Data ss:Type="String">首期结算日</Data></Cell>
+    <Cell><Data ss:Type="String">到期结算日</Data></Cell>
+    <Cell><Data ss:Type="String">到期金额</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+	  <Cell><Data ss:Type="String">起息日（首次资金交收日）</Data></Cell>
+    <Cell><Data ss:Type="String">止息日（到期资金交收日）</Data></Cell>
+    <Cell><Data ss:Type="String">已收息天数</Data></Cell>
+    <Cell><Data ss:Type="String">估值日</Data></Cell>
+    <Cell><Data ss:Type="String">应计天数</Data></Cell>
+    <Cell><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell><Data ss:Type="String">Diff.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s129"><Data ss:Type="String">From 估值表/成交记录/成交清算日报表</Data></Cell>
+    <Cell ss:Index="15" ss:StyleID="s119"><Data ss:Type="String">Per EY</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="String">Per Client</Data></Cell>
+   </Row>
+   <#if H800.hp100h800.count != 0>
+   <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <#list H800.hp100h800.list as item>
+   <Row>
+    <Cell ss:StyleID="s255"><Data ss:Type="String">${item.code!}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.shortName!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.market!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.subtype!}</Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.endBalanceCny!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s260"><#if item.firstAccountDay??><Data ss:Type="DateTime">${item.firstAccountDay!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s260"><#if item.dueAccountDay??><Data ss:Type="DateTime">${item.dueAccountDay!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.dueAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">${item.buyOutBond!}</Data></Cell>
+	  <Cell ss:StyleID="s260" ss:Formula="=IF(OR(RC[-7]=&quot;银行间&quot;,RC[-6]=&quot;买断式&quot;),RC[-4],WORKDAY(RC[-4],1,'节假日'!R2C1:R1048576C1))"><Data ss:Type="DateTime"></Data></Cell>
+	  <Cell ss:StyleID="s260" ss:Formula="=IF(OR(RC[-8]=&quot;银行间&quot;,RC[-7]=&quot;买断式&quot;),RC[-4],WORKDAY(RC[-4],1,'节假日'!R2C1:R1048576C1))"><Data ss:Type="DateTime"></Data></Cell>
+	  <Cell ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s260"><#if item.valuationDay??><Data ss:Type="DateTime">${item.valuationDay!}T00:00:00.000</Data></#if></Cell>
+	  <Cell ss:Formula="=MIN(MAX(RC[-1]-RC[-4]+1,0),RC[-2])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=ROUND((RC[-7]-RC[-10])*RC[-1]/RC[-3],2)- ((RC[-7]-RC[-10]))"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.accruedInterestClient!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   </#list>
+   <#else>
+   <Row>
+    <Cell ss:StyleID="s54"><Data ss:Type="String">本基金本报告期末无到期清算日在本期最后一个交易日的交易所质押式逆回购业务</Data></Cell>
+   </Row>
+   </#if>
+   <Row>
+    <Cell ss:Index="19" ss:StyleID="s80"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:Index="14" ss:StyleID="s124"><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.hp100h800.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=SUM(R[${(-1-H800.hp100h800.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s234"/>    
+    <Cell ss:StyleID="s234"/>    
+    <#if H800.intRiskPeriod.count != 0>
+    <#list H800.intRiskPeriod.list as period>
+    <Cell><Data ss:Type="String"><#if period_index == 0>${period!}</#if></Data></Cell>
+    </#list>
+    </#if>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:Index="15" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:Index="16" ss:StyleID="s144" ss:Formula="=R${(13+H800.main.count)?string('0')}C[-11]-R[-2]C-R[${(-12-H800.hp100h800.count)?string('0')}]C-R[${(-21-H800.hp100h800.count-H800.interestTestEX.count)?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="19" ss:StyleID="s260"><Data ss:Type="String"><#if H800.intRiskPeriod.count != 0><#list H800.intRiskPeriod.list as period><#if period_index == 0>${period!}</#if></#list></#if></Data></Cell>
+    <Cell ss:Index="20" ss:StyleID="s145"><Data ss:Type="String">请注意将P列数字分拆入各对应条目，并删除本行</Data></Cell>  
+   </Row>
+   <Row/>
+    <Row ss:Height="14.25">
+    <Cell ss:Index="14" ss:StyleID="s124"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=R[-4]C+R[${(-14-H800.hp100h800.count)?string('0')}]C+R[${(-23-H800.hp100h800.count-H800.interestTestEX.count)?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=R[-4]C+R[${(-14-H800.hp100h800.count)?string('0')}]C+R[${(-23-H800.hp100h800.count-H800.interestTestEX.count)?string('0')}]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">m</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:Index="16" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:Index="15" ss:StyleID="s114"><Data ss:Type="String">ctrl</Data></Cell>
+    <Cell ss:StyleID="s114" ss:Formula="=R[-2]C-R${(13+H800.main.count)?string('0')}C[-11]"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row/>
    <#if H800.interestDetail.headsCount != 0>
    <Row>
     <Cell ss:StyleID="s110"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell ss:StyleID="s117"><Data ss:Type="String">该笔买断式逆回购相应的债券如下：</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-   </Row>
+   <Row/>
    </#if>
    <#if H800.interestDetail.headsCount != 0>
    <#list H800.interestDetail.heads as head>
-   <Row>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">回购业务类型</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">债券代码</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">债券名称</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">约定返售日</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">估值单价</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">数量（张）</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">估值总额</Data></Cell>
-    <Cell ss:StyleID="s151"><Data ss:Type="String">其中：已出售或再质押总额</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">估值全价</Data></Cell>
-    <Cell ss:StyleID="s108"><Data ss:Type="String">全价估值总额</Data></Cell>
+   <Row ss:StyleID="s80">
+    <Cell><Data ss:Type="String">回购业务类型</Data></Cell>
+    <Cell><Data ss:Type="String">债券代码</Data></Cell>
+    <Cell><Data ss:Type="String">债券名称</Data></Cell>
+    <Cell><Data ss:Type="String">约定返售日</Data></Cell>
+    <Cell><Data ss:Type="String">估值单价</Data></Cell>
+    <Cell><Data ss:Type="String">数量（张）</Data></Cell>
+    <Cell><Data ss:Type="String">估值总额</Data></Cell>
+    <Cell><Data ss:Type="String">其中：已出售或再质押总额</Data></Cell>
+    <Cell><Data ss:Type="String">估值全价</Data></Cell>
+    <Cell><Data ss:Type="String">全价估值总额</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
     <Cell ss:Index="6" ss:StyleID="s153"><Data ss:Type="String">HHXXX</Data></Cell>
     <Cell ss:Index="9" ss:StyleID="s119"><Data ss:Type="String">From 公开市场信息</Data></Cell>
    </Row>
@@ -5748,60 +6021,92 @@
    </#if>
    <Row>
     <Cell ss:StyleID="s286"><Data ss:Type="String">数据终止行</Data></Cell>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:Index="5" ss:StyleID="s234"/>
-    <Cell ss:StyleID="s234"/>
-    <Cell ss:StyleID="s234"/>
-    <Cell ss:StyleID="s234"/>
-    <Cell ss:StyleID="s234"/>
-    <Cell ss:StyleID="s234"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:Index="5" ss:StyleID="s234"/>
-    <Cell ss:StyleID="s268" ss:Formula="=SUM(R[${(-1-head.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s268" ss:Formula="=SUM(R[${(-1-head.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s148" ss:Formula="=SUM(R[${(-1-head.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s148" ss:Formula="=SUM(R[${(-1-head.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s148" ss:Formula="=SUM(R[${(-1-head.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s148" ss:Formula="=SUM(R[${(-1-head.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
     <Cell ss:Index="6" ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">^</Data></Cell>
    </Row>
+   <Row/>
+   </#list>
+   </#if>
    <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:Index="6" ss:StyleID="s110"/>
-    <Cell ss:StyleID="s110"/>
-    <Cell ss:StyleID="s110"/>
-    <Cell ss:StyleID="s110"/>
-    <Cell ss:StyleID="s110"/>
+    <Cell ss:StyleID="s115"><Data ss:Type="String">减值测试：</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s117"><Data ss:Type="String">交易所回购</Data></Cell>
+    <Cell ss:StyleID="s117"><Data ss:Type="String">交易所回购的证券质押和结算单位为中国证券登记结算有限责任公司（“中国结算”），信用风险极低，基金未对交易所回购计提预期信用损失准备。我们评估了基金对于该金融资产的减值考虑，未见重大不合理之处。我们邀请FAAS团队评估了交易所逆回购（即，中国结算为中央对手方的债券质押式逆回购）的信用减值计提比例，FAAS团队认为一般情况下，交易所逆回购预期信用损失率接近于零，与我们通常的理解相一致，因此我们认为交易所逆回购的预期信用损失准备为零可以接受。</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s117"><Data ss:Type="String">银行间回购</Data></Cell>
+    <Cell ss:StyleID="s117"><Data ss:Type="String">我们邀请FAAS团队评估了银行间逆回购的信用减值计提比例，FAAS团队认为，对于质押券的公允价值高于买入返售金融资产账面价值的银行间逆回购，基金管理人在计量预期信用损失时可认为违约损失率接近于零，这与我们通常的理解相一致。我们汇总了每一笔期末未到期的回购的到期结算金额（即到期本息合计金额），将其与质押券的公允价值（全价）进行比较，以此评估是否存在质押券的公允价值不足以覆盖对手方信用风险敞口的情况，经测算未见异常。因此我们认为银行间逆回购的预期信用损失准备为零是合理的。</Data></Cell>
+   </Row>
+   <Row/>
+   <#if H800.TMPL.count != 0>
+   <Row ss:StyleID="s80" ss:AutoFitHeight="0" ss:Height="40.5">
+    <Cell><Data ss:Type="String">成交单Index</Data></Cell>
+    <Cell><Data ss:Type="String">对手方全称</Data></Cell>
+    <Cell><Data ss:Type="String">成交编号</Data></Cell>
+    <Cell><Data ss:Type="String">交易品种</Data></Cell>
+    <Cell><Data ss:Type="String">首次结算日</Data></Cell>
+    <Cell><Data ss:Type="String">到期结算日</Data></Cell>
+    <Cell><Data ss:Type="String">到期金额</Data></Cell>
+    <Cell><Data ss:Type="String">债券代码</Data></Cell>
+    <Cell><Data ss:Type="String">债券名称</Data></Cell>
+    <Cell><Data ss:Type="String">数量</Data></Cell>
+    <Cell ss:StyleID="s400"><Data ss:Type="String">资产负债表日&#10;估值全价</Data></Cell>
+    <Cell ss:StyleID="s400"><Data ss:Type="String">资产负债表日&#10;估值总额</Data></Cell>
+    <Cell ss:StyleID="s400"><Data ss:Type="String">单笔回购质押&#10;是否足额</Data></Cell>
+    <Cell ss:StyleID="s402"><Data ss:Type="String">是否需进一步&#10;按对手方考虑&#10;足额否</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s80">
+    <Cell ss:Index="2" ss:StyleID="s129"><Data ss:Type="String">From 成交通知单</Data></Cell>
+    <Cell ss:Index="11" ss:StyleID="s129"><Data ss:Type="String">From 中债估值</Data></Cell>
+    <Cell ss:Index="14" ss:StyleID="s398"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row/>
+   <#list H800.TMPL.list as item>
+   <Row>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">${item.EYindex!}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.counterpartyName!}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.trxNum!}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.trxCode!}</Data></Cell>
+    <Cell ss:StyleID="s260"><#if item.firstAccountDay??><Data ss:Type="DateTime">${item.firstAccountDay!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s260"><#if item.dueAccountDay??><Data ss:Type="DateTime">${item.dueAccountDay!}T00:00:00.000</Data></#if></Cell>
+    <Cell ss:StyleID="s234"><Data ss:Type="Number">${(item.dueAmount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s256"><Data ss:Type="String">${item.bondName!}</Data></Cell>
+    <Cell ss:StyleID="s242"><Data ss:Type="Number">${(item.quantity!0)?string('0')}</Data></Cell>
+    <Cell ss:StyleID="s401"><Data ss:Type="Number">${(item.price!0)?string('0.####')}</Data></Cell>
+    <Cell ss:StyleID="s234" ss:Formula="=RC[-2]*RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s109" ss:Formula="=SUMIFS(R${(72+H800.main.count+H800.interestDetail.headsCount+H800.hp100h800.count+H800.interestTestEX.count+H800.interestTestOTC.count)?string('0')}C12:R${(71+H800.main.count+H800.interestDetail.headsCount+H800.hp100h800.count+H800.interestTestEX.count+H800.interestTestOTC.count+H800.TMPL.count)?string('0')}C12,R${(72+H800.main.count+H800.interestDetail.headsCount+H800.hp100h800.count+H800.interestTestEX.count+H800.interestTestOTC.count)?string('0')}C1:R${(71+H800.main.count+H800.interestDetail.headsCount+H800.hp100h800.count+H800.interestTestEX.count+H800.interestTestOTC.count+H800.TMPL.count)?string('0')}C1,RC[-12])&gt;RC[-6]"><Data ss:Type="Boolean"></Data></Cell>
+    <Cell ss:StyleID="s398" ss:Formula="=IF(RC[-1],&quot;N&quot;,&quot;Y&quot;)"><Data ss:Type="String"></Data></Cell>
    </Row>
    </#list>
    </#if>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s129"><Data ss:Type="String">For Disclosure</Data></Cell>
     <Cell ss:StyleID="s109"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s117"><Data ss:Type="String">利率风险敞口期限汇总如下：</Data></Cell>
     <Cell ss:StyleID="s109"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s123"/>
     <#if H800.intRiskPeriod.count != 0>
@@ -5812,28 +6117,58 @@
     <Cell ss:StyleID="s124"><Data ss:Type="String">合计</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s123"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
-    <Cell ss:StyleID="s124"/>
+    <Cell ss:Index="9" ss:StyleID="s124"><Data ss:Type="String">Control</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">买入返售金融资产</Data></Cell>
     <#if H800.intRiskPeriod.count != 0>
     <#list H800.intRiskPeriod.list as period>
-    <Cell ss:StyleID="s125" ss:Formula="=SUMIF(C18:C18,R[-2]C,C6:C6)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=SUMIF(C19,R[-2]C,C5)+SUMIF(C19,R[-2]C,C16)"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
     <Cell ss:StyleID="s125" ss:Formula="=SUM(RC[${(-H800.intRiskPeriod.count)?string('0')}]:RC[-1])"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s125" ss:Formula="=RC[-1]-R${(H800.main.count+13)?string('0')}C[-2]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s109"/>
     <Cell ss:StyleID="s110"><Data ss:Type="String">&lt;V300&gt;</Data></Cell>
    </Row>
+   <Row/>
+   <Row/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Zoom>80</Zoom>
+   <PageBreakZoom>140</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="节假日">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s109" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+    <Column ss:StyleID="s154" ss:AutoFitWidth="0" ss:Width="115.5"/>
+    <Column ss:StyleID="s154" ss:AutoFitWidth="0" ss:Width="84.75"/>
+   <Row ss:Height="14.4">
+    <Cell ss:StyleID="s260"><Data ss:Type="String">日期</Data></Cell>
+    <Cell ss:StyleID="s299"><Data ss:Type="String">说明</Data></Cell>
+   </Row>
+   <#if H800.trxcalendarData.count != 0>
+   <#list H800.trxcalendarData.list as item>
+   <Row ss:Height="14.4">
+    <Cell ss:StyleID="s260"><#if item.TRX_DATE??><Data ss:Type="DateTime">${item.TRX_DATE!}</Data></#if></Cell>
+    <Cell ss:StyleID="s299"><Data ss:Type="String">${item.COMMENTS!}</Data></Cell>
+   </Row>
+   </#list>
+   </#if>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -5856,20 +6191,16 @@
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s163" ss:DefaultColumnWidth="54.75" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s163" ss:AutoFitWidth="0" ss:Width="76.5"/>
    <Column ss:StyleID="s163" ss:AutoFitWidth="0" ss:Width="139.5"/>
-   <Column ss:StyleID="s163" ss:AutoFitWidth="0" ss:Width="107.25"/>
+   <Column ss:StyleID="s163" ss:AutoFitWidth="0" ss:Width="133"/>
    <Column ss:StyleID="s163" ss:Width="127.5" ss:Span="1"/>
-   <Column ss:Index="6" ss:StyleID="s163" ss:Width="120"/>
+   <Column ss:StyleID="s63" ss:Width="120"/>
+   <Column ss:StyleID="s63" ss:Width="120"/>
+   <Column ss:StyleID="s163" ss:Width="120"/>
    <Column ss:StyleID="s163" ss:Width="138.75"/>
    <Column ss:StyleID="s163" ss:AutoFitWidth="0" ss:Width="120.75"/>
    <Column ss:StyleID="s163" ss:AutoFitWidth="0" ss:Width="97.5"/>
    <Column ss:StyleID="s163" ss:Width="127.5"/>
-   <Row ss:Height="14.25" ss:StyleID="s155">
-    <Cell ss:StyleID="s102"/>
-    <Cell ss:StyleID="s121"/>
-    <Cell ss:StyleID="s120"/>
-    <Cell ss:Index="8" ss:StyleID="s156"/>
-    <Cell ss:StyleID="s157"/>
-   </Row>
+   <Row/>
    <Row ss:StyleID="s155">
     <Cell ss:StyleID="s158"><Data ss:Type="String">客户：</Data></Cell>
     <Cell ss:StyleID="s61"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
@@ -5888,112 +6219,97 @@
     <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s160"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s47"><Data ss:Type="String">H10000</Data></Cell>
-    <Cell ss:StyleID="s157"/>
    </Row>
    <Row ss:StyleID="s155">
     <Cell ss:StyleID="s161"><Data ss:Type="String">科目：</Data></Cell>
     <Cell ss:StyleID="s61"><Data ss:Type="String">报表附注</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s156"/>
-    <Cell ss:StyleID="s157"/>
    </Row>
-   <Row ss:StyleID="s155">
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s61"/>
-    <Cell ss:Index="8" ss:StyleID="s218"/>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s218"/>
-   </Row>
+   <Row/>
    <Row ss:StyleID="s155">
     <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.2 交易性金融资产</Data></Cell>
-    <Cell ss:Index="8" ss:StyleID="s218"/>
-    <Cell ss:StyleID="s219"/>
-    <Cell ss:StyleID="s218"/>
    </Row>
-   <Row ss:StyleID="s155">
-    <Cell ss:StyleID="s162"/>
-   </Row>
-   <#if extraFundInfo.mf != 'Y'>
+   <Row/>
+   <#if extraFundInfo.mf != 'Y' && extraFundInfo.ac != 'Y'>
    <Row ss:AutoFitHeight="0" ss:Height="14.25">
     <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s377"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="2" ss:StyleID="s365"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s365"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"><Data ss:Type="String">数据来源</Data></Cell>
     <Cell ss:Index="4" ss:StyleID="s184"><Data ss:Type="String">成本</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">应计利息</Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String">公允价值</Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String">估值增值</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String">H300</Data></Cell>
     <Cell ss:MergeAcross="1" ss:StyleID="m2372032629800"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R11C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R13C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R11C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R11C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R11C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:MergeAcross="1" ss:StyleID="m2372032629880"><Data ss:Type="String">贵金属投资-金交所黄金合约</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R47C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R49C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s164"/>
+    <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032629880"><Data ss:Type="String">贵金属投资-金交所黄金合约</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R12C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R12C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R12C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:MergeDown="2" ss:StyleID="m2372032629840"><Data ss:Type="String">债券</Data></Cell>
+    <Cell ss:Index="2" ss:MergeDown="2" ss:StyleID="m2372032629840"><Data ss:Type="String">债券</Data></Cell>
     <Cell ss:StyleID="s165"><Data ss:Type="String">交易所市场</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.exchange.cost!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.exchange.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s53"/>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R14C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R14C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R14C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s165"><Data ss:Type="String">银行间市场</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.bank.cost!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.bank.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s53"/>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R15C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R15C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R15C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.25">
-    <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s165"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="15">
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s166"><Data ss:Type="String">资产支持证券</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R25C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R27C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R16C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R16C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R16C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s166"><Data ss:Type="String">基金</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R32C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R34C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R17C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R17C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R17C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s166"><Data ss:Type="String">其他</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R54C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R56C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R18C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R18C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=H300!R18C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:MergeAcross="1" ss:StyleID="m2372032623792"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
@@ -6003,115 +6319,105 @@
     <Cell ss:Index="4" ss:StyleID="s64"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s189"/>
     <Cell ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币${(H10000.note.parValueLast!0)?string(',###.##')}元，公允价值为人民币${(H10000.note.mktValue!0)?string(',###.##')}元。</Data></Cell>
-    <Cell ss:StyleID="s106"/>
-    <Cell ss:StyleID="s195"/>
-    <Cell ss:StyleID="s195"/>
-    <Cell ss:StyleID="s195"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
-    <Cell ss:StyleID="s189"/>
    </Row>
-   <Row>
-    <Cell ss:Index="3" ss:StyleID="s51"/>
-    <Cell ss:StyleID="s167"/>
-    <Cell ss:StyleID="s167"/>
-    <Cell ss:StyleID="s167"/>
-   </Row>
+   <Row/>
    <Row/>
    <Row>
     <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s377"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:MergeAcross="2" ss:StyleID="s365"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s365"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="4" ss:StyleID="s184"><Data ss:Type="String">成本</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">应计利息</Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String">公允价值</Data></Cell>
     <Cell ss:StyleID="s184"><Data ss:Type="String">估值增值</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032623732"><Data ss:Type="String">股票</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R11C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R13C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr1.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr2.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s270"><Data ss:Type="Number">${(H.attr3.amountAuditLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032623712"><Data ss:Type="String">贵金属投资-金交所黄金合约</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R47C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R49C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s270" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s164"/>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr16.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr17.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s270"><Data ss:Type="Number">${(H.attr18.amountAuditLast!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:MergeDown="2" ss:StyleID="m2372032623752"><Data ss:Type="String">债券</Data></Cell>
     <Cell ss:StyleID="s165"><Data ss:Type="String">交易所市场</Data></Cell>
     <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.exchange.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.exchange.interestARLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.exchange.mktValueLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s53"/>
+    <Cell ss:StyleID="s270"><Data ss:Type="Number">${(H10000.TFA.exchange.appreciationLast!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s165"><Data ss:Type="String">银行间市场</Data></Cell>
     <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.bank.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.bank.interestARLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.bank.mktValueLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number">10</Data></Cell>
-    <Cell ss:StyleID="s53"/>
+    <Cell ss:StyleID="s270"><Data ss:Type="Number">${(H10000.TFA.bank.appreciationLast!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s165"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s166"><Data ss:Type="String">资产支持证券</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R25C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R27C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr7.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H10000.TFA.assetBackedSecuritiesInvestment.interestARLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr8.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s270"><Data ss:Type="Number">${(H.attr9.amountAuditLast!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s166"><Data ss:Type="String">基金</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R32C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R34C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr10.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr11.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s270"><Data ss:Type="Number">${(H.attr12.amountAuditLast!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s166"><Data ss:Type="String">其他</Data></Cell>
     <Cell ss:StyleID="s165"/>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R54C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=H!R56C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s269" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr19.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s269"><Data ss:Type="Number">${(H.attr20.amountAuditLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s270"><Data ss:Type="Number">${(H.attr21.amountAuditLast!0)?string('0.##')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:MergeAcross="1" ss:StyleID="m2372032623772"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
-    <Cell><Data ss:Type="String">  </Data></Cell>
+    <Cell ss:StyleID="s269" ss:Formula="=SUM(R[-8]C,R[-7]C,R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
+   <#elseif extraFundInfo.mf != 'Y' && extraFundInfo.ac == 'Y'>
+   <#if extraFundInfo.newFlag == 'Y'>
+   <Row>
+    <Cell ss:StyleID="s295"/>
+    <Cell ss:StyleID="s295"><Data ss:Type="String">本基金本报告期未持有交易性金融资产。</Data></Cell>
+    <Cell ss:StyleID="s295"/>
+   </Row>
+   <#else>
+   <Row>
+    <Cell ss:StyleID="s295"/>
+    <Cell ss:StyleID="s295"><Data ss:Type="String">本基金本报告期末及上年度末均未持有交易性金融资产。</Data></Cell>
+    <Cell ss:StyleID="s295"/>
+   </Row>
+   </#if>
    <#else>
    <Row>
     <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="2" ss:StyleID="s367"><Data ss:Type="String">项目</Data></Cell>
@@ -6123,7 +6429,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s295"><Data ss:Type="String">数据来源</Data></Cell>
-    <Cell ss:Index="4" ss:StyleID="s264"><Data ss:Type="String">摊余成本</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s264"><Data ss:Type="String">按实际利率计算的账面价值</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="String">影子定价</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="String">偏离金额</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="String">偏离度（%）</Data></Cell>
@@ -6132,30 +6438,38 @@
     <Cell ss:StyleID="s296"><Data ss:Type="String">H300/H500</Data></Cell>
     <Cell ss:MergeDown="3" ss:StyleID="s216"><Data ss:Type="String">债券</Data></Cell>
     <Cell ss:StyleID="s216"><Data ss:Type="String">交易所市场</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.exchange.cost!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.exchange.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.exchange.appreciation!0)?string('0.##')}</Data></Cell>
+    <#if extraFundInfo.mf == 'N' && extraFundInfo.ac == 'Y'>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">0</Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s289" ss:Formula="=H300!R14C4+H300!R14C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=H300!R14C8"><Data ss:Type="Number"></Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s289" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.exchange.diviaton!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s216"><Data ss:Type="String">银行间市场</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.bank.cost!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.bank.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.bank.appreciation!0)?string('0.##')}</Data></Cell>
+    <#if extraFundInfo.mf == 'N' && extraFundInfo.ac == 'Y'>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">0</Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s289" ss:Formula="=H300!R15C4+H300!R15C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=H300!R15C8"><Data ss:Type="Number"></Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s289" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.bank.diviaton!0)?string('0.######')}</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s323"><Data ss:Type="String">请手动补充</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289"/>
+    <Cell ss:StyleID="s289"/>
+    <Cell ss:StyleID="s289"/>
+    <Cell ss:StyleID="s289"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s295"/>
     <Cell ss:Index="3" ss:StyleID="s216"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s289" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
@@ -6166,9 +6480,14 @@
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s216"><Data ss:Type="String">资产支持证券</Data></Cell>
     <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s289" ss:Formula="=H!R25C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=H!R27C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=H!R29C6"><Data ss:Type="Number"></Data></Cell>
+    <#if extraFundInfo.mf == 'N' && extraFundInfo.ac == 'Y'>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">0</Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s289" ss:Formula="=H300!R16C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289" ss:Formula="=H300!R16C6"><Data ss:Type="Number"></Data></Cell>
+    </#if>
+    <Cell ss:StyleID="s289" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.assetBackedSecuritiesInvestment.diviaton!0)?string('0.######')}</Data></Cell>
    </Row>
    <Row>
@@ -6180,19 +6499,13 @@
     <Cell ss:StyleID="s289" ss:Formula="=R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H500.diviaton.diviatonEy!0)?string('0.######')}</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s189"><Data ss:Type="String">注：本基金本报告期末因进行买断式正回购而过户的债券面值为人民币${(H10000.note.parValueLast!0)?string(',###.##')}元，公允价值为人民币${(H10000.note.mktValue!0)?string(',###.##')}元。</Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
-   </Row>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="2" ss:StyleID="s367"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="3" ss:StyleID="s264"><Data ss:Type="String">上年度末</Data></Cell>
@@ -6201,7 +6514,7 @@
     <Cell ss:Index="4" ss:MergeAcross="3" ss:StyleID="s373"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="4" ss:StyleID="s264"><Data ss:Type="String">摊余成本</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s264"><Data ss:Type="String">按实际利率计算的账面价值</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="String">影子定价</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="String">偏离金额</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="String">偏离度（%）</Data></Cell>
@@ -6224,10 +6537,10 @@
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s323"><Data ss:Type="String">请手动补充</Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s289"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s292"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289"/>
+    <Cell ss:StyleID="s289"/>
+    <Cell ss:StyleID="s289"/>
+    <Cell ss:StyleID="s289"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s216"><Data ss:Type="String">合计</Data></Cell>
@@ -6240,9 +6553,9 @@
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s216"><Data ss:Type="String">资产支持证券</Data></Cell>
     <Cell ss:StyleID="s216"/>
-    <Cell ss:StyleID="s289" ss:Formula="=H!R25C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=H!R27C8"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s289" ss:Formula="=H!R29C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.assetBackedSecuritiesInvestment.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.assetBackedSecuritiesInvestment.mktValueLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s289"><Data ss:Type="Number">${(H10000.TFA.assetBackedSecuritiesInvestment.appreciationLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H10000.TFA.assetBackedSecuritiesInvestment.diviatonEyLast!0)?string('0.######')}</Data></Cell>
    </Row>
    <Row>
@@ -6255,26 +6568,23 @@
     <Cell ss:StyleID="s292"><Data ss:Type="Number">${(H500.diviaton.lastDiviatonEy!0)?string('0.######')}</Data></Cell>
    </Row>
    </#if>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
-   </Row>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.3. 衍生金融资产/负债</Data></Cell>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
    </Row>
+   <Row>
+    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.3.1 衍生金融资产/负债期末余额</Data></Cell>
+   </Row>
+   <#if H400.main.noteFlag == 'Y'>
    <Row>
     <Cell ss:Index="2" ss:MergeDown="2" ss:StyleID="s184"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="3" ss:StyleID="s365"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s184"><Data ss:Type="String">合同/名义</Data></Cell>
     <Cell ss:MergeAcross="1" ss:StyleID="s184"><Data ss:Type="String">公允价值</Data></Cell>
     <Cell ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">备注</Data></Cell>
-    <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"><Data ss:Type="String">数据来源</Data></Cell>
@@ -6283,33 +6593,37 @@
     <Cell ss:StyleID="s184"><Data ss:Type="String">负债</Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
+   <#if H10000.derivative.item1.amount??>
    <Row>
-    <Cell ss:StyleID="s296"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:StyleID="s296"><Data ss:Type="String">H400</Data></Cell>
     <Cell ss:StyleID="s169"><Data ss:Type="String">利率衍生工具</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.asset!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.liabilities!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s53"/>
+    <Cell ss:StyleID="s261"/>
    </Row>
+   </#if>
+   <#if H10000.derivative.item2.amount??>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">货币衍生工具</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.asset!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.liabilities!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s261"/>
    </Row>
+   </#if>
+   <#if H10000.derivative.item3.amount??>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">权益衍生工具</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.asset!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.liabilities!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s261"/>
    </Row>
+   </#if>
+   <#if H10000.derivative.item4.amount??>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">其他衍生工具</Data></Cell>
@@ -6318,33 +6632,24 @@
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.liabilities!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s175"><Data ss:Type="String"><#if (H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0) || (H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0) || (H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0)>注</#if></Data></Cell>
    </Row>
+   </#if>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s168"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s261"/>
    </Row>
-   <Row ss:StyleID="s174">
-    <Cell ss:Index="2" ss:StyleID="s172"/>
-    <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s173"/>
-    <Cell ss:StyleID="s68"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:Index="2" ss:MergeDown="2" ss:StyleID="s184"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="3" ss:StyleID="s365"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s184"><Data ss:Type="String">合同/名义</Data></Cell>
     <Cell ss:MergeAcross="1" ss:StyleID="s184"><Data ss:Type="String">公允价值</Data></Cell>
     <Cell ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">备注</Data></Cell>
-    <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s184"><Data ss:Type="String">金额</Data></Cell>
@@ -6352,30 +6657,34 @@
     <Cell ss:StyleID="s184"><Data ss:Type="String">负债</Data></Cell>
     <Cell ss:Index="7" ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
+   <#if H10000.derivative.item1.amountLast??>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">利率衍生工具</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.assetLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item1.liabilitiesLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s53"/>
+    <Cell ss:StyleID="s261"/>
    </Row>
+   </#if>
+   <#if H10000.derivative.item2.amountLast??>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">货币衍生工具</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.assetLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item2.liabilitiesLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s261"/>
    </Row>
+   </#if>
+   <#if H10000.derivative.item3.amountLast??>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">权益衍生工具</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.amountLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.assetLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item3.liabilitiesLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s261"/>
    </Row>
+   </#if>
+   <#if H10000.derivative.item4.amountLast??>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">其他衍生工具</Data></Cell>
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.amountLast!0)?string('0.##')}</Data></Cell>
@@ -6383,98 +6692,81 @@
     <Cell ss:StyleID="s261"><Data ss:Type="Number">${(H10000.derivative.item4.liabilitiesLast!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s175"><Data ss:Type="String"><#if (H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0) || (H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0) || (H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0)>注</#if></Data></Cell>
    </Row>
+   </#if>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s168"><Data ss:Type="String">合计</Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-4]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s170"/>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s261"/>
    </Row>
+   <#else>
+   <Row/>
    <Row>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
+    <Cell ss:StyleID="s141"/>
+    <Cell><Data ss:Type="String">本基金本报告期末及上年度末均未持有衍生金融资产、衍生金融负债。</Data></Cell>
    </Row>
+   </#if>
+   <Row/>
    <Row>
-    <Cell ss:Index="6" ss:StyleID="s52"/>
+    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.3.2 期末基金持有的期货合约情况</Data></Cell>
    </Row>
-   <#if (H10000.derivative.item4.amount?? && H10000.derivative.item4.amount != 0) || (H10000.derivative.item4.asset?? && H10000.derivative.item4.asset != 0) || (H10000.derivative.item4.liabilities?? && H10000.derivative.item4.liabilities != 0)>
-   <Row>
-    <Cell ss:Index="2"><Data ss:Type="String">其他衍生工具具体如下：</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s52"/>
-   </Row>
+   <Row/>
+   <#if H10000.futures.count != 0>
    <Row>
     <Cell ss:StyleID="s295"><Data ss:Type="String">数据来源</Data></Cell>
-    <Cell ss:StyleID="s293"><Data ss:Type="String">项目</Data></Cell>
-    <Cell ss:StyleID="s293"><Data ss:Type="String">持仓量（买/卖）</Data></Cell>
-    <Cell ss:StyleID="s293"><Data ss:Type="String">合约名义金额</Data></Cell>
-    <Cell ss:StyleID="s293"><Data ss:Type="String">合约市值</Data></Cell>
-    <Cell ss:StyleID="s293"><Data ss:Type="String">公允价值变动</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">代码</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">名称</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">持仓量（买/卖）</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">合约市值</Data></Cell>
+    <Cell ss:StyleID="s184"><Data ss:Type="String">公允价值变动</Data></Cell>
+   </Row>
+   <#list H10000.futures.list as item>
+   <Row>
+    <Cell ss:StyleID="s296"><Data ss:Type="String"><#if item_index == 0>H300</#if></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s261"><Data ss:Type="String">${item.code!}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="String">${item.name!}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(item.quantity?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(item.mktValue?string(',##0.00'))!'-'}</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="Number">${(item.appreciation?string(',##0.00'))!'-'}</Data></Cell>
+   </Row>
+   </#list>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s217"><Data ss:Type="String">总额合计</Data></Cell>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:Index="6" ss:StyleID="s261" ss:Formula="=SUM(R[${(-(H10000.futures.count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s296"><Data ss:Type="String">H400</Data></Cell>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">股指期货合约</Data></Cell>
-    <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item1.quantity!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item1.cost!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item1.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s267" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s217"><Data ss:Type="String">减：可抵销期货暂收款</Data></Cell>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:Index="6" ss:StyleID="s261" ss:Formula="=R[-1]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">国债期货合约</Data></Cell>
-    <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item2.quantity!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item2.cost!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item2.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s267" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s217"><Data ss:Type="String">净额</Data></Cell>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:StyleID="s261"/>
+    <Cell ss:Index="6" ss:StyleID="s261" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">黄金现货延期交收合约</Data></Cell>
-    <Cell ss:StyleID="s259"><Data ss:Type="Number">${(H10000.futures.item3.quantity!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item3.cost!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(H10000.futures.item3.mktValue!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s267" ss:Formula="=RC[-1]-RC[-2]"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">总额合计</Data></Cell>
-    <Cell ss:StyleID="s259"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[-3]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s217"><Data ss:Type="String">减：可抵销期货暂收款</Data></Cell>
-    <Cell ss:StyleID="s259"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267" ss:Formula="=R[-1]C"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s240"><Data ss:Type="String">xxxx期货投资净额</Data></Cell>
-    <Cell ss:StyleID="s259"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s266"/>
-    <Cell ss:StyleID="s267" ss:Formula="=R[-2]C-R[-1]C"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:Index="6" ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="2"><Data ss:Type="String">注：买入持仓量以正数表示，卖出持仓量以负数表示。</Data></Cell>
-    <Cell ss:Index="7" ss:StyleID="s52"/>
+   <Row/>
+   <#else>
+	 <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期末未持有期货合约。</Data></Cell>
    </Row>
    <Row/>
    </#if>
    <Row>
-    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.4 . 买入返售金融资产</Data></Cell>
+    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.4 买入返售金融资产</Data></Cell>
    </Row>
    <Row/>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s162"><Data ss:Type="String">7.4.7.4.1. 各项买入返售金融资产期末余额</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s162"><Data ss:Type="String">7.4.7.4.1 各项买入返售金融资产期末余额</Data></Cell>
    </Row>
+   <#if H10000.rmcfs.rmcfsdataSumCheck != 0>   
    <Row>
     <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="1" ss:StyleID="s375"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
@@ -6487,27 +6779,24 @@
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String">H800</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">交易所市场</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item1.balCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUMIF(H800!R12C1:H800!R${(12+H800.main.count)?string('0')}C1,&quot;&lt;&gt;银行间&quot;,H800!R12C7:H800!R${(12+H800.main.count)?string('0')}C7)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item1.buyOutCurrent!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s295"/>
+    <Cell ss:StyleID="s296"><Data ss:Type="String">H800</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">银行间市场</Data></Cell>
-    <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item2.balCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUMIF(H800!R12C1:H800!R${(12+H800.main.count)?string('0')}C1,&quot;银行间&quot;,H800!R12C7:H800!R${(12+H800.main.count)?string('0')}C7)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s272"><Data ss:Type="Number">${(H10000.rmcfs.item2.buyOutCurrent!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s169"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=H800!R${(13+H800.main.count)?string('0')}C7"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row ss:StyleID="s174">
-    <Cell ss:Index="2" ss:StyleID="s177"/>
-    <Cell ss:StyleID="s178"/>
-    <Cell ss:StyleID="s179"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="1" ss:StyleID="s375"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
@@ -6532,9 +6821,25 @@
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row/>
+   <#else>
+   <#if H10000.note3Flag == 'N'>
+     <Row>
+      <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期末及上年度末均未持有买入返售金融资产。</Data></Cell>
+     </Row>
+   <Row/>
+	<#else>
+	 <Row>
+      <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期末未持有买入返售金融资产。</Data></Cell>
+     </Row>
+   <Row/>
+    </#if>
+   <Row/>
+   </#if>
+   <Row/>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s162"><Data ss:Type="String">7.4.7.4.2 . 期末买断式逆回购交易中取得的债券</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s162"><Data ss:Type="String">7.4.7.4.2  期末买断式逆回购交易中取得的债券</Data></Cell>
    </Row>
+   <#if H10000.interestDetail.current.count != 0>
    <Row>
     <Cell ss:Index="2" ss:MergeDown="2" ss:StyleID="s184"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="6" ss:StyleID="s365"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
@@ -6548,7 +6853,6 @@
     <Cell ss:MergeDown="1" ss:StyleID="s294"><Data ss:Type="String">数量（张）</Data></Cell>
     <Cell ss:StyleID="s294"><Data ss:Type="String">估值</Data></Cell>
     <Cell ss:StyleID="s294"><Data ss:Type="String">其中：已出售</Data></Cell>
-    <Cell ss:StyleID="s53"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s295"><Data ss:Type="String">数据来源</Data></Cell>
@@ -6557,71 +6861,47 @@
     <Cell ss:StyleID="s294"><Data ss:Type="String">或再质押总额</Data></Cell>
     <Cell ss:StyleID="s53"/>
    </Row>
-   <#if H10000.interestDetail.current.count != 0>
    <#list H10000.interestDetail.current.list as item>
    <Row>
     <Cell ss:StyleID="s296"><Data ss:Type="String"><#if item_index == 0>H800</#if></Data></Cell>
     <Cell ss:StyleID="s175"><Data ss:Type="String">${item.accountDes!}</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="Number">${item.bondCode!}</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="String">${item.bondName!}</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="Number">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">${item.bondName!}</Data></Cell>
     <Cell ss:StyleID="s180"><#if item.returnDay??><Data ss:Type="DateTime">${item.returnDay!}T00:00:00.000</Data></#if></Cell>
     <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.price!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s262"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.reduceAmt!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s52"/>
    </Row>
-   </#list>
-   </#if>
-   <Row>
-    <Cell ss:StyleID="s296"/>
-    <Cell ss:StyleID="s175"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s262"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s52"/>
-   </Row>
+   </#list> 
    <Row>
     <Cell ss:StyleID="s295"/>
     <Cell ss:StyleID="s182"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s294"/>
+    <Cell ss:StyleID="s294"/>
+    <Cell ss:StyleID="s294"/>
+    <Cell ss:StyleID="s294"/>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s273" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.current.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row ss:StyleID="s189">
-    <Cell ss:Index="2"><Data ss:Type="String">注：债券为净价估值，买入返售为全价交易，${H10000.interestDetail.returnDays!}买断式逆回购交易债券全价估值总额为人民币${(H10000.note.valuationPriceTotal!0)?string(',###.##')} 元。</Data></Cell>
-    <Cell ss:StyleID="s190"/>
-    <Cell ss:StyleID="s190"/>
-    <Cell ss:StyleID="s190"/>
-    <Cell ss:StyleID="s190"/>
-    <Cell ss:StyleID="s191"/>
-    <Cell ss:StyleID="s192"/>
-    <Cell ss:StyleID="s193"/>
-    <Cell ss:StyleID="s194"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="3" ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s78"/>
-    <Cell ss:StyleID="s183"/>
-    <Cell ss:StyleID="s172"/>
-    <Cell ss:StyleID="s52"/>
-   </Row>
+   <#else>
+   <#if H10000.note3Flag == 'N'>
+    <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期末及上年度末均未持有买断式逆回购交易中取得的债券。</Data></Cell>
+    </Row>
+   <Row/>
+	<#else>
+    <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">本基金本报告期末未持有买断式逆回购交易中取得的债券。</Data></Cell>
+    </Row>
+  <Row/>
+    </#if>
+   </#if>
+   <#if H10000.interestDetail.last.count != 0>
    <Row>
     <Cell ss:Index="2" ss:MergeDown="2" ss:StyleID="s184"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:MergeAcross="6" ss:StyleID="s365"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
-    <Cell ss:StyleID="s52"/>
    </Row>
    <Row>
     <Cell ss:Index="3" ss:MergeDown="1" ss:StyleID="s294"><Data ss:Type="String">债券代码</Data></Cell>
@@ -6637,12 +6917,11 @@
     <Cell ss:Index="8" ss:StyleID="s294"><Data ss:Type="String">总额</Data></Cell>
     <Cell ss:StyleID="s294"><Data ss:Type="String">或再质押总额</Data></Cell>
    </Row>
-   <#if H10000.interestDetail.last.count != 0>
    <#list H10000.interestDetail.last.list as item>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s175"><Data ss:Type="String">${item.accountDes!}</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="Number">${item.bondCode!}</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="String">${item.bondName!}</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="Number">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">${item.bondName!}</Data></Cell>
     <Cell ss:StyleID="s180"><#if item.returnDay??><Data ss:Type="DateTime">${item.returnDay!}T00:00:00.000</Data></#if></Cell>
     <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.price!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s262"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
@@ -6650,161 +6929,244 @@
     <Cell ss:StyleID="s181"><Data ss:Type="Number">${(item.reduceAmt!0)?string('0.##')}</Data></Cell>
    </Row>
    </#list>
-   </#if>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s175"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s180"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s262"/>
-    <Cell ss:StyleID="s181"/>
-    <Cell ss:StyleID="s181"/>
-   </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s182"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s294"/>
+    <Cell ss:StyleID="s294"/>
+    <Cell ss:StyleID="s294"/>
+    <Cell ss:StyleID="s294"/>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s273" ss:Formula="=SUM(R[${(-1-H10000.interestDetail.last.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row/>
+   </#if>
    <Row/>
-   <#--<!--
-   <Row>
-    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.18 公允价值变动收益</Data></Cell>
+  <#if extraFundInfo.mf == 'N' && extraFundInfo.ac == 'Y'>
+    <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.5 债权投资</Data></Cell>
    </Row>
-   <Row/>
-   <Row ss:StyleID="s162">
-    <Cell ss:StyleID="s295"><Data ss:Type="String">数据来源</Data></Cell>
-    <Cell ss:StyleID="s184"><Data ss:Type="String">项目名称</Data></Cell>
-    <Cell ss:StyleID="s171"><Data ss:Type="String">${(period)?string('0')}年度</Data></Cell>
-    <Cell ss:StyleID="s171"><Data ss:Type="String">${(period-1)?string('0')}年度</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.5.1 债权投资情况</Data></Cell>
    </Row>
-   <Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:MergeAcross="4" ss:StyleID="m1679463336"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:Index="4" ss:StyleID="s294"><Data ss:Type="String">初始成本</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">利息调整</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">减值准备</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">账面价值</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s296"><Data ss:Type="String">H300</Data></Cell>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">1.交易性金融资产</Data></Cell>
-    <Cell ss:StyleID="s275" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s275" ss:Formula="=SUM(R[1]C:R[6]C)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">——股票投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item1.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item1.amountLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:MergeDown="2" ss:StyleID="s294"><Data ss:Type="String">债券</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">交易所市场</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R12C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R12C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R12C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R12C10"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R12C12"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">——债券投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item2.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item2.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s53"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:Index="3" ss:StyleID="s294"><Data ss:Type="String">银行间市场</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R13C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R13C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R13C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R13C10"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R13C12"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">——资产支持证券投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item3.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item3.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s53"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:Index="3" ss:StyleID="s294"><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">——基金投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item4.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item4.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s53"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s294"><Data ss:Type="String">资产支持证券</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R14C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R14C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R14C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R14C10"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R14C12"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">——贵金属投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item5.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item5.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s53"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s294"><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R15C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R15C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R15C8"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R15C10"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="='H300-摊余成本法债基'!R15C12"><Data ss:Type="Number"></Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">——其他</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item6.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item6.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s52"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s294"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">2.衍生工具</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[${(1+H10000.fairValues.toolCount)?string('0')}]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[1]C:R[${(1+H10000.fairValues.toolCount)?string('0')}]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
+   <Row></Row>
+   <Row></Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s184"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:MergeAcross="4" ss:StyleID="m1679463336"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">——权证投资</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item7.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.fairValues.item7.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s52"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:Index="4" ss:StyleID="s294"><Data ss:Type="String">初始成本</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">利息调整</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">减值准备</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">账面价值</Data></Cell>
    </Row>
-   <#if H10000.fairValues.toolCount != 0>
-   <#list H10000.fairValues.toolList as item>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s185"><Data ss:Type="String">${item.item!}</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(item.amountCurrent!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(item.amountLast!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s52"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeDown="2" ss:StyleID="s294"><Data ss:Type="String">债券</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">交易所市场</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.exchange.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.exchange.interestADJLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.exchange.interestARLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.exchange.impairmentLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.exchange.appreciationLast!0)?string('0.##')}</Data></Cell>
    </Row>
-   </#list>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:Index="3" ss:StyleID="s294"><Data ss:Type="String">银行间市场</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.bank.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.bank.interestADJLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.bank.interestARLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.bank.impairmentLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.bank.appreciationLast!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:Index="3" ss:StyleID="s294"><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s294"><Data ss:Type="String">资产支持证券</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.ABS.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.ABS.interestADJLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.ABS.interestARLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.ABS.impairmentLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.ABS.appreciationLast!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s294"><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.other.costLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.other.interestADJLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.other.interestARLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.other.impairmentLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MAC.other.appreciationLast!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s294"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row></Row>
+   <Row></Row>
+  <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.7.5.2 债权投资减值准备计提情况</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:MergeDown="1" ss:StyleID="s294"><Data ss:Type="String">减值准备</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">第一阶段</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">第二阶段</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">第三阶段</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s294"><Data ss:Type="String">合计</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:Index="3" ss:StyleID="s294"><Data ss:Type="String">未来12个月预期信用损失</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">整个存续期预期信用损失(未发生信用减值)</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">整个存续期预期信用损失(已发生信用减值)</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s296"><Data ss:Type="String">H900</Data></Cell>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">期初余额</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item1.one!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item1.two!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item1.three!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item1.total!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s164"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">本期从其他阶段转入</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item2.one!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item2.two!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item2.three!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item2.total!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">本期转出至其他阶段</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item3.one!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item3.two!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item3.three!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item3.total!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">本期新增</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item4.one!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item4.two!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item4.three!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item4.total!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">本期转回</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item5.one!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item5.two!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item5.three!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item5.total!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">其他变动</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item6.one!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item6.two!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item6.three!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item6.total!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.2">
+    <Cell ss:StyleID="s162"/>
+    <Cell ss:StyleID="s294"><Data ss:Type="String">期末余额</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item7.one!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item7.two!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item7.three!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.MACBad.item7.total!0)?string('0.##')}</Data></Cell>
+   </Row>
    </#if>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">3.其他</Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s271"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s52"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s295"/>
-    <Cell ss:StyleID="s169"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[${(-10-H10000.fairValues.toolCount)?string('0')}]C,R[${(-3-H10000.fairValues.toolCount)?string('0')}]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s276" ss:Formula="=SUM(R[${(-10-H10000.fairValues.toolCount)?string('0')}]C,R[${(-3-H10000.fairValues.toolCount)?string('0')}]C,R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row/>-->
-   <Row>
-    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.14 有助于理解和分析会计报表需要说明的其他事项</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.14.1 公允价值</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.14.1.2 以公允价值计量的金融工具</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s162"><Data ss:Type="String">7.4.14.1.2.1 各层次金融工具公允价值</Data></Cell>
-   </Row>
    <Row/>
    <Row/>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s147"/>
-    <Cell ss:StyleID="s80"><Data ss:Type="String">金额</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s147"/>
-    <Cell ss:StyleID="s187"><Data ss:Type="String">H300</Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s147"><Data ss:Type="String">一层次</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R34C5"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s147"><Data ss:Type="String">二层次</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R35C5"><Data ss:Type="Number"></Data></Cell>
-   </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s147"><Data ss:Type="String">三层次</Data></Cell>
-    <Cell ss:StyleID="s186" ss:Formula="=H300!R36C5"><Data ss:Type="Number"></Data></Cell>
-   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <Print>
@@ -6839,24 +7201,14 @@
    <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="97.5"/>
    <Column ss:StyleID="s63" ss:Width="96.75"/>
    <Column ss:StyleID="s63" ss:Width="91.5" ss:Span="1"/>
-   <Column ss:Index="6" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="170.25"/>
+   <Column ss:StyleID="s63" ss:Width="97.5"/>
+   <Column ss:StyleID="s63" ss:Width="97.5"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="170.25"/>
    <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="112.5"/>
    <Column ss:StyleID="s63" ss:Width="97.5"/>
    <Column ss:StyleID="s63" ss:Width="96.75"/>
    <Column ss:StyleID="s63" ss:Width="103.5" ss:Span="1"/>
-   <Row ss:Height="14.25" ss:StyleID="s50">
-    <Cell ss:StyleID="s300"/>
-    <Cell ss:StyleID="s301"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-   </Row>
+   <Row/>
    <Row ss:StyleID="s50">
     <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
     <Cell ss:StyleID="s61"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
@@ -6866,9 +7218,6 @@
     <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
     <Cell ss:StyleID="s303"/>
     <Cell ss:StyleID="s48"><Data ss:Type="String">WP Ref</Data></Cell>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s303"/>
-    <Cell ss:StyleID="s302"/>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s50">
     <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
@@ -6879,108 +7228,30 @@
     <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
     <Cell ss:StyleID="s303"/>
     <Cell ss:StyleID="s47"><Data ss:Type="String">H11000</Data></Cell>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s303"/>
-    <Cell ss:StyleID="s302"/>
    </Row>
    <Row ss:StyleID="s50">
     <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">报表附注</Data></Cell>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s305"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
-    <Cell ss:StyleID="s302"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12 期末本基金持有的流通受限证券</Data></Cell> <!-- yury,20200831,去掉多余的一个点-->
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.1. 因认购新发/增发证券而于期末持有的流通受限证券</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
    <!-- 7.4.12.1.1 受限证券类别：股票-->
    <Row>
     <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.1.1 受限证券类别：股票</Data></Cell> <!-- yury,20200831,H11000拆分流通受限股票和债券-->
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s319"><Data ss:Type="String">流通受限类别</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">证券</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">证券</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">成功</Data></Cell>
-    <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">可流通日</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">受限期</Data></Cell>
     <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">流通受限类型</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">认购</Data></Cell>
     <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">期末估值单价</Data></Cell>
@@ -7006,12 +7277,12 @@
     <Cell ss:StyleID="s212"><Data ss:Type="String">H10</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">H10</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">H400</Data></Cell>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s213"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
    </Row>
    <#if H11000.additian.stockcount != 0>
     <#list H11000.additian.stocklist as item>
@@ -7021,7 +7292,7 @@
         <Cell ss:StyleID="s215"><Data ss:Type="String">${item.code!}</Data></Cell>
         <Cell ss:StyleID="s74"><Data ss:Type="String">${item.name!}</Data></Cell>
         <Cell ss:StyleID="s243"><#if item.subscribeDate??><Data ss:Type="DateTime">${item.subscribeDate!}</Data></#if></Cell>
-        <Cell ss:StyleID="s243"><#if item.liftingDate??><Data ss:Type="DateTime">${item.liftingDate!}</Data></#if></Cell>
+        <Cell ss:StyleID="s243"><Data ss:Type="String">${item.lenLimt!}</Data></Cell>
         <Cell ss:StyleID="s74"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
         <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.subscribePrice!0)?string('0.##')}</Data></Cell>
         <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
@@ -7050,51 +7321,30 @@
    <#else>
     <Row>
      <Cell ss:StyleID="s213"><Data ss:Type="String">股票</Data></Cell>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
     </Row>
    </#if>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
    <!-- 7.4.12.1.2 受限证券类别：债券-->
    <Row>
     <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.1.2 受限证券类别：债券</Data></Cell> <!-- yury,20200831,H11000拆分流通受限股票和债券-->
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s319"><Data ss:Type="String">流通受限类别</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">证券</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">证券</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">成功</Data></Cell>
-    <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">可流通日</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">受限期</Data></Cell>
     <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">流通受限类型</Data></Cell>
     <Cell ss:StyleID="s320"><Data ss:Type="String">认购</Data></Cell>
     <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">期末估值单价</Data></Cell>
@@ -7120,12 +7370,12 @@
     <Cell ss:StyleID="s212"><Data ss:Type="String">H10</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">H10</Data></Cell>
     <Cell ss:StyleID="s212"><Data ss:Type="String">H500</Data></Cell>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s308"/>
-    <Cell ss:StyleID="s213"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
    </Row>
    <#if H11000.additian.bondcount != 0>
     <#list H11000.additian.bondlist as item>
@@ -7135,7 +7385,7 @@
        <Cell ss:StyleID="s215"><Data ss:Type="String">${item.code!}</Data></Cell>
        <Cell ss:StyleID="s74"><Data ss:Type="String">${item.name!}</Data></Cell>
        <Cell ss:StyleID="s243"><#if item.subscribeDate??><Data ss:Type="DateTime">${item.subscribeDate!}</Data></#if></Cell>
-       <Cell ss:StyleID="s243"><#if item.liftingDate??><Data ss:Type="DateTime">${item.liftingDate!}</Data></#if></Cell>
+       <Cell ss:StyleID="s243"><Data ss:Type="String">${item.lenLimt!}</Data></Cell>
        <Cell ss:StyleID="s74"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
        <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.subscribePrice!0)?string('0.##')}</Data></Cell>
        <Cell ss:StyleID="s277"><Data ss:Type="Number">${(item.unitPrice!0)?string('0.##')}</Data></Cell>
@@ -7164,57 +7414,24 @@
    <#else>
     <Row>
      <Cell ss:StyleID="s213"><Data ss:Type="String">债券</Data></Cell>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
-     <Cell ss:StyleID="s299"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
+     <Cell ss:StyleID="s277"/>
     </Row>
    </#if>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.2. 期末持有的暂时停牌股票</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s299"/>
     <Cell ss:MergeDown="1" ss:StyleID="s385"><Data ss:Type="String">股票代码</Data></Cell>
@@ -7260,84 +7477,16 @@
    </Row>
    </#list>
    </#if>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s312"/>
-    <Cell ss:StyleID="s313"/>
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s315"/>
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s314"/>
-    <Cell ss:StyleID="s314"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.3. 期末债券正回购交易中作为抵押的债券</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s306"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.3.1银行间市场债券正回购</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s297"><Data ss:Type="String">数据来源</Data></Cell>
     <Cell ss:StyleID="s321"><Data ss:Type="String">债券代码</Data></Cell>
@@ -7346,10 +7495,6 @@
     <Cell ss:StyleID="s321"><Data ss:Type="String">期末估值单价</Data></Cell>
     <Cell ss:StyleID="s321"><Data ss:Type="String">数量（张）</Data></Cell>
     <Cell ss:StyleID="s321"><Data ss:Type="String">期末估值总额</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
    <#if H11000.saleIn.count != 0>
    <#list H11000.saleIn.list as item>
@@ -7361,26 +7506,9 @@
     <Cell ss:StyleID="s282"><Data ss:Type="Number">${(item.price!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s250"><Data ss:Type="Number">${(item.quantity!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s282"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
    </#list>
    </#if>
-   <Row>
-    <Cell ss:StyleID="s298"/>
-    <Cell ss:StyleID="s253"/>
-    <Cell ss:StyleID="s254"/>
-    <Cell ss:StyleID="s243"/>
-    <Cell ss:StyleID="s282"/>
-    <Cell ss:StyleID="s250"/>
-    <Cell ss:StyleID="s282"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
    <Row>
     <Cell ss:StyleID="s297"/>
     <Cell ss:StyleID="s71"><Data ss:Type="String">合计</Data></Cell>
@@ -7389,232 +7517,65 @@
     <Cell ss:StyleID="s316"/>
     <Cell ss:StyleID="s250" ss:Formula="=SUM(R[${(-1-H11000.saleIn.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s282" ss:Formula="=SUM(R[${(-1-H11000.saleIn.count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s317"/>
-    <Cell ss:StyleID="s317"/>
-    <Cell ss:StyleID="s317"/>
-    <Cell ss:StyleID="s317"/>
-    <Cell ss:StyleID="s318"/>
-    <Cell ss:StyleID="s318"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.3.2 交易所市场债券正回购</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s299"/>
     <Cell><Data ss:Type="String">截至本报告期末${period?string('0')}年${month?string('00')}月${day?string('00')}日止，基金从事证券交易所债券正回购交易形成的卖出回购证券款余额${(H10000.note.siEndBal!0)?string(',###.##')}元，于${H11000.noteDates!}（先后）到期。该类交易要求本基金在回购期内持有的</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s299"/>
     <Cell><Data ss:Type="String">证券交易所交易的债券和/或在新质押式回购下转入质押库的债券，按证券交易所规定的比例折算为标准券后，不低于债券回购交易的余额。</Data></Cell>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.12.4 期末参与转融通证券出借业务的证券</Data></Cell> <!-- yury,20200831,H11000新增证券出借-->
+   </Row> 
+    <#if H11000.IRefinancingData.Count != 0>
+    <#list H11000.IRefinancingData.list as item>
+   <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">序号</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">证券代码</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">证券名称</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">出借到期日</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">期末估值单价</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">数量（单位：  ）</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">期末估值总额</Data></Cell>
    </Row>
+   <Row>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s253"><Data ss:Type="String">${item.ContractNum!}</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="String">${item.BondCode!}</Data></Cell>
+    <Cell ss:StyleID="s253"><Data ss:Type="String">${item.BondName!}</Data></Cell>
+    <Cell ss:StyleID="s243"><#if item.DueDate??><Data ss:Type="DateTime">${item.DueDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s250"><Data ss:Type="Number">${(item.UnitPrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s250"><Data ss:Type="Number">${(item.Quantity!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s250"><Data ss:Type="Number">${(item.ValValue!0)?string('0.##')}</Data></Cell>
+   </Row>
+    </#list>
+   <Row>
+    <Cell ss:StyleID="s299"/>
+    <Cell ss:StyleID="s320"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s253"/>
+    <Cell ss:StyleID="s253"/>
+    <Cell ss:StyleID="s250"/>
+    <Cell ss:StyleID="s250"/>
+    <Cell ss:StyleID="s250" ss:Formula="=SUM(R[${(-1-H11000.IRefinancingData.Count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s250" ss:Formula="=SUM(R[${(-1-H11000.IRefinancingData.Count)?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <#else>
    <Row>
     <Cell ss:StyleID="s299"/>
     <Cell><Data ss:Type="String">本基金本报告期末无参与转融通证券出借业务的融出证券。</Data></Cell> <!-- yury,20200831,H11000新增证券出借-->
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-    <Cell ss:StyleID="s299"/>
-   </Row>
+    </#if>
+   <Row/>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -7659,4 +7620,354 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
+ <#if extraFundInfo.mf != 'N' || extraFundInfo.ac != 'Y'>
+ <Worksheet ss:Name="H12000">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s63" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="102.75"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s63" ss:Width="133"/>
+   <Column ss:StyleID="s63" ss:Width="133" ss:Span="1"/>
+   <Column ss:StyleID="s63" ss:Width="133"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="170.25"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="133"/>
+   <Column ss:StyleID="s63" ss:Width="97.5"/>
+   <Column ss:StyleID="s63" ss:Width="96.75"/>
+   <Column ss:StyleID="s63" ss:Width="103.5" ss:Span="1"/>
+   <Row/>
+   <Row ss:StyleID="s50">
+    <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
+    <Cell ss:StyleID="s61"><Data ss:Type="String">${fundInfo.fundFullName}</Data></Cell>
+    <Cell ss:StyleID="s304"/>
+    <Cell ss:StyleID="s131"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s132"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s133"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:StyleID="s303"/>
+    <Cell ss:StyleID="s48"><Data ss:Type="String">WP Ref</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25" ss:StyleID="s50">
+    <Cell ss:StyleID="s86"><Data ss:Type="String">会计期末：</Data></Cell>
+    <Cell ss:StyleID="s130"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s304"/>
+    <Cell ss:StyleID="s136"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s137"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s138"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:StyleID="s303"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">H12000</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s50">
+    <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s44"><Data ss:Type="String">报表附注</Data></Cell>
+   </Row>
+   <Row/>
+   <Row/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.14 公允价值</Data></Cell>
+   </Row>
+   <Row/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.14.2 持续的以公允价值计量的金融工具</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.14.2.1 各层次金融工具公允价值</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="m1293278544"><Data ss:Type="String">公允价值计量结果所属的层次</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">本期末</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">上年度末</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell  ss:Index="3" ss:StyleID="s436"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s436"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s298"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">一层次</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=H300!R34C5"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.threeLevel.last.level1!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s298"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">二层次</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=H300!R35C5"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.threeLevel.last.level2!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s298"><Data ss:Type="String">H300</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">三层次</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=H300!R36C5"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271"><Data ss:Type="Number">${(H10000.threeLevel.last.level3!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s169"><Data ss:Type="String">合计</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=R[-3]C+R[-2]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row/>
+   <Row/>
+   <#if fundInfo.firmCode == 'JX' || fundInfo.firmCode == 'GY' || fundInfo.firmCode == 'YHA' || fundInfo.firmCode == 'HX' || fundInfo.firmCode == 'BS' || fundInfo.firmCode == 'JS'>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.14.2.3 第三层次公允价值余额及变动情况</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.14.2.3.1第三层次公允价值余额及变动情况</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:MergeDown="3" ss:StyleID="m1293278544"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="m1293278544"><Data ss:Type="String">本期</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="m1293278544"><Data
+      ss:Type="String">${period?string('0')}年1月1日至${period?string('0')}年${month?string('00')}月${day?string('00')}日</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:MergeAcross="1" ss:StyleID="m1293278544"><Data
+      ss:Type="String">交易性金融资产</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="m1293278544"><Data ss:Type="String">合计</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="m1293278544"><Data ss:Type="String">债券投资</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">股票投资</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">期初余额</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item1.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item1.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item1.AMOUNT!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">当期购买</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item2.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item2.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item2.AMOUNT!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">当期出售/结算</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item3.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item3.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item3.AMOUNT!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">转入第三层次</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item4.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item4.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item4.AMOUNT!0)?string('0.##')}</Data></Cell>
+    </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">转出第三层次</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item5.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item5.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item5.AMOUNT!0)?string('0.##')}</Data></Cell>
+    </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">当期利得或损失总额</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item6.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item6.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item6.AMOUNT!0)?string('0.##')}</Data></Cell>
+    </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">其中：计入损益的利得或损失</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item7.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item7.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item7.AMOUNT!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:Height="28.8" ss:StyleID="Default">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">      计入其他综合收益的利得或损失</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item8.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item8.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item8.AMOUNT!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">期末余额</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item9.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item9.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item9.AMOUNT!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:Height="57.6" ss:StyleID="Default">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">期末仍持有的第三层次金融资产计入本期损益的未实现利得或损失的变动——公允价值变动损益</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item10.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item10.AMOUNT!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item10.AMOUNT!0)?string('0.##')}</Data></Cell>
+   </Row>
+    <Row/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:MergeDown="3" ss:StyleID="m1293278544"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="m1293278544"><Data ss:Type="String">上年度可比期间</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="m1293278544"><Data
+      ss:Type="String">${(period-1)?string('0')}年1月1日至${(period-1)?string('0')}年12月31日</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:MergeAcross="1" ss:StyleID="m1293278544"><Data
+      ss:Type="String">交易性金融资产</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="m1293278544"><Data ss:Type="String">合计</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="m1293278544"><Data ss:Type="String">债券投资</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">股票投资</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">期初余额</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item1.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item1.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item1.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">当期购买</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item2.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item2.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item2.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">当期出售/结算</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item3.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item3.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item3.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">转入第三层次</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item4.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item4.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item4.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">转出第三层次</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item5.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item5.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item5.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">当期利得或损失总额</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item6.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item6.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item6.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">其中：计入损益的利得或损失</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item7.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item7.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item7.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:Height="28.8" ss:StyleID="Default">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">      计入其他综合收益的利得或损失</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item8.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item8.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item8.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">期末余额</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item9.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item9.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item9.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+   </Row>
+   <Row ss:Height="57.6" ss:StyleID="Default">
+    <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">期末仍持有的第三层次金融资产计入本期损益的未实现利得或损失的变动——公允价值变动损益</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.BOND.item10.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.STOCK.item10.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item10.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+   </Row>
+  <Row/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">7.4.14.2.3.2 使用重要不可观察输入值的第三层次公允价值计量的情况</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="m1293278544"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="m1293278544"><Data ss:Type="String">本期末公允价值</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="m1293278544"><Data ss:Type="String">采用的估值技术</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="m1293278544"><Data ss:Type="String">不可观察输入值</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="5" ss:StyleID="m1293278544"><Data ss:Type="String">名称</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">范围/加权平均值</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">与公允价值之间的关系</Data></Cell>
+   </Row>
+  <Row ss:AutoFitHeight="0">
+        <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">限售股票</Data></Cell>
+        <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item9.AMOUNT!0)?string('0.##')}</Data></Cell>
+        <Cell ss:StyleID="s415"><Data ss:Type="String">平均价格亚式期权模型</Data></Cell>
+        <Cell ss:StyleID="s415"><Data ss:Type="String">股票在剩余限售期内的股价的预期年化波动率</Data></Cell>
+        <Cell ss:StyleID="s415"><#if H10000.threeLevelMeasure0fUnobservableInput.weightedAvg??><Data ss:Type="String">${(H10000.threeLevelMeasure0fUnobservableInput.weightedAvg)}</Data></#if></Cell>
+        <Cell ss:StyleID="s415"><Data ss:Type="String">负相关</Data></Cell>
+  </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="m1176393924"/>
+    <Cell ss:StyleID="s418"/>
+    <Cell ss:StyleID="m1176393924"/>
+    <Cell ss:StyleID="m1176393924"/>
+    <Cell ss:StyleID="s418"/>
+    <Cell ss:StyleID="s418"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:MergeDown="1" ss:StyleID="m1293278544"><Data ss:Type="String">项目</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="m1293278544"><Data ss:Type="String">上年度末公允价值</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="m1293278544"><Data ss:Type="String">采用的估值技术</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="m1293278544"><Data ss:Type="String">不可观察输入值</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="5" ss:StyleID="m1293278544"><Data ss:Type="String">名称</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">范围/加权平均值</Data></Cell>
+    <Cell ss:StyleID="m1293278544"><Data ss:Type="String">与公允价值之间的关系</Data></Cell>
+   </Row>
+  <Row ss:AutoFitHeight="0">
+      <Cell ss:Index="2" ss:StyleID="s415"><Data ss:Type="String">限售股票</Data></Cell>
+      <Cell ss:StyleID="s418"><Data ss:Type="Number">${(H10000.threelevelchange.TOTAL.item9.AMOUNTLAST!0)?string('0.##')}</Data></Cell>
+      <Cell ss:StyleID="s415"><Data ss:Type="String">平均价格亚式期权模型</Data></Cell>
+      <Cell ss:StyleID="s415"><Data ss:Type="String">股票在剩余限售期内的股价的预期年化波动率</Data></Cell>
+      <Cell ss:StyleID="s415"><#if H10000.threeLevelMeasure0fUnobservableInput.weightedAvgLast??><Data ss:Type="String">${(H10000.threeLevelMeasure0fUnobservableInput.weightedAvgLast)}</Data></#if></Cell>
+      <Cell ss:StyleID="s415"><Data ss:Type="String">负相关</Data></Cell>
+  </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="m1176393924"/>
+    <Cell ss:StyleID="s418"/>
+    <Cell ss:StyleID="m1176393924"/>
+    <Cell ss:StyleID="m1176393924"/>
+    <Cell ss:StyleID="s418"/>
+    <Cell ss:StyleID="s418"/>
+   </Row>
+   </#if>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <HorizontalResolution>-4</HorizontalResolution>
+    <VerticalResolution>300</VerticalResolution>
+   </Print>
+   <Zoom>80</Zoom>
+   <PageBreakZoom>74</PageBreakZoom>
+   <FreezePanes/>
+   <FrozenNoSplit/>
+   <SplitHorizontal>5</SplitHorizontal>
+   <TopRowBottomPane>5</TopRowBottomPane>
+   <SplitVertical>1</SplitVertical>
+   <LeftColumnRightPane>1</LeftColumnRightPane>
+   <ActivePane>0</ActivePane>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>26</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+    <Pane>
+     <Number>1</Number>
+     <ActiveRow>26</ActiveRow>
+    </Pane>
+    <Pane>
+     <Number>2</Number>
+     <ActiveRow>26</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+    <Pane>
+     <Number>0</Number>
+     <ActiveRow>0</ActiveRow>
+     <ActiveCol>0</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ </#if>
 </Workbook>

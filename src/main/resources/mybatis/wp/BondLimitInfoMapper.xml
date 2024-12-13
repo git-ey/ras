@@ -29,6 +29,7 @@
 		RESMPATION_OPEN_PRICE,	
 		CREATOR,	
 		REVIEWER,	
+		LIMIT_LEN,<!-- 20220630 IRENE新增-->	
 		BONDLIMITINFO_ID
 	</sql>
 	
@@ -53,7 +54,8 @@
 		#{RESUMPTION_DATE},	
 		#{RESMPATION_OPEN_PRICE},	
 		#{CREATOR},	
-		#{REVIEWER},	
+		#{REVIEWER},
+		#{LIMIT_LEN},	<!-- 20220630 IRENE新增-->	
 		#{BONDLIMITINFO_ID}
 	</sql>
 	
@@ -105,6 +107,7 @@
 			</if>
 			CREATOR = #{CREATOR},
 			REVIEWER = #{REVIEWER},
+			LIMIT_LEN = #{LIMIT_LEN},<!-- 20220630IRENE新增 -->
 		BONDLIMITINFO_ID = BONDLIMITINFO_ID
 		where 
 		BONDLIMITINFO_ID = #{BONDLIMITINFO_ID}
@@ -188,6 +191,7 @@
 		#{pd.RESMPATION_OPEN_PRICE},	
 		#{pd.CREATOR},	
 		#{pd.REVIEWER},	
+		#{pd.LIMIT_LEN},	<!-- 20220630IRENE新增-->
 		#{pd.BONDLIMITINFO_ID}
          )
          </foreach >

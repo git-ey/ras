@@ -260,6 +260,7 @@ public class StockLimitController extends BaseController {
 		titles.add("期末估值总额");
 		titles.add("认购日");
 		titles.add("可流通日");
+		titles.add("披露的可流通日");
 		titles.add("停牌日期");
 		titles.add("停牌原因");
 		titles.add("复牌日期");
@@ -289,10 +290,12 @@ public class StockLimitController extends BaseController {
 			vpd.put("var15", varOList.get(i).get("MKT_VALUE").toString());
 			vpd.put("var16", varOList.get(i).get("SUBSCRIBE_DATE").toString());
 			vpd.put("var17", varOList.get(i).get("LIFTING_DATE").toString());
+			vpd.put("var25", varOList.get(i).get("PUB_LIFTING_DATE").toString());
 			vpd.put("var18", varOList.get(i).get("SUSPENSION_DATE").toString());
 			vpd.put("var19", varOList.get(i).getString("SUSPENSION_INFO"));
 			vpd.put("var20", varOList.get(i).get("RESUMPTION_DATE").toString());
 			vpd.put("var21", varOList.get(i).get("RESMPATION_OPEN_PRICE").toString());
+			vpd.put("var21", varOList.get(i).get("LIMIT_LEN").toString());// 20220630irene新增
 			vpd.put("var22", varOList.get(i).getString("DESCRIPTION"));
 			vpd.put("var23", varOList.get(i).getString("CREATOR"));
 			vpd.put("var24", varOList.get(i).getString("REVIEWER"));

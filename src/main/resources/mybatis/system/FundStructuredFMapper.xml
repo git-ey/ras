@@ -13,6 +13,7 @@
 		FUND_CODE,	
 		SHORT_NAME,	
 		LEVEL,	
+		EFFECTIVE_DATE,
 		FTYPE,	
 		ACTIVE,	
 		STATUS,	
@@ -24,7 +25,8 @@
 		#{FUND_ID},	
 		#{FUND_CODE},	
 		#{SHORT_NAME},	
-		#{LEVEL},	
+		#{LEVEL},
+		#{EFFECTIVE_DATE},	
 		#{FTYPE},	
 		#{ACTIVE},	
 		#{STATUS},	
@@ -60,6 +62,7 @@
 			SHORT_NAME = #{SHORT_NAME},
 			LEVEL = #{LEVEL},
 			FTYPE = #{FTYPE},
+			EFFECTIVE_DATE = #{EFFECTIVE_DATE},
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS},
 		FUNDSTRUCTUREDF_ID = FUNDSTRUCTUREDF_ID
@@ -132,6 +135,7 @@
 		#{pd.SHORT_NAME},
 		#{pd.LEVEL},
 		#{pd.FTYPE},
+		#{EFFECTIVE_DATE},
 		#{pd.ACTIVE},
 		#{pd.STATUS},
 		#{pd.FUNDSTRUCTUREDF_ID}

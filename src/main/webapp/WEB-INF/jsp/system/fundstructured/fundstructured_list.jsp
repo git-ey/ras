@@ -63,6 +63,7 @@
 									<th class="center">分级基金代码</th>
 									<th class="center">分级基金简称</th>
 									<th class="center">第几级</th>
+									<th class="center">生效日期</th>
 									<th class="center">启用</th>
 									<th class="center">操作</th>
 								</tr>
@@ -83,6 +84,7 @@
 											<td class='center'>${var.FUND_CODE}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
 											<td class='center'>${var.LEVEL}</td>
+											<td class='center'>${var.EFFECTIVE_DATE}</td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.ACTIVE == 'Y' }"> 是 </c:when>

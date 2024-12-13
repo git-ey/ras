@@ -38,7 +38,7 @@ public class SAExportService extends BaseExportService implements SAExportManage
      */
     private String generateFileContent(String firmCode, String periodStr, Map<String, String> companyInfo) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
-        
+
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
@@ -48,6 +48,39 @@ public class SAExportService extends BaseExportService implements SAExportManage
         dataMap.put("day", day);
         dataMap.put("companyInfo", companyInfo);
         
+        Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
+        List<Map<String,Object>> lraSummaryDataList = (List<Map<String,Object>>)this.dao.findForList("SAExportMapper.selectLRASummaryData", queryMap);
+        if(lraSummaryDataList == null) {
+            lraSummaryDataList = new ArrayList<>(); 
+        }
+        dataMap.put("lraSummaryDataList", lraSummaryDataList);
+        dataMap.put("lraSummaryDataCount", lraSummaryDataList.size());
+        
+        queryMap.put("item", "递延所得税资产");
+        @SuppressWarnings("unchecked")
+        Map<String, Object> DYSDSZCList= (Map<String, Object>)this.dao.findForObject("SAExportMapper.selectSASummaryData", queryMap);
+        dataMap.put("DYSDSZC", DYSDSZCList.get("amount"));
+
+        queryMap.put("item", "短期借款");
+        @SuppressWarnings("unchecked")
+        Map<String, Object> DQJKList= (Map<String, Object>)this.dao.findForObject("SAExportMapper.selectSASummaryData", queryMap);
+        dataMap.put("DQJK", DQJKList.get("amount"));
+
+        queryMap.put("item", "交易性金融负债");
+        @SuppressWarnings("unchecked")
+        Map<String, Object> JYXJRFZList= (Map<String, Object>)this.dao.findForObject("SAExportMapper.selectSASummaryData", queryMap);
+        dataMap.put("JYXJRFZ", DYSDSZCList.get("amount"));
+
+        queryMap.put("item", "应付投资顾问费");
+        @SuppressWarnings("unchecked")
+        Map<String, Object> YFTZGWFList= (Map<String, Object>)this.dao.findForObject("SAExportMapper.selectSASummaryData", queryMap);
+        dataMap.put("YFTZGWF", YFTZGWFList.get("amount"));
+
+        queryMap.put("item", "递延所得税负债");
+        @SuppressWarnings("unchecked")
+        Map<String, Object> DYSDSFZList= (Map<String, Object>)this.dao.findForObject("SAExportMapper.selectSASummaryData", queryMap);
+        dataMap.put("DYSDSFZ", DYSDSFZList.get("amount"));
+
         Map<String, Object> firmQueryParam = this.createBaseQueryMap(firmCode, periodStr);
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> fundInfos = (List<Map<String, Object>>) this.dao.findForList("SAExportMapper.selectSAFundInfos", firmQueryParam);
@@ -144,7 +177,7 @@ public class SAExportService extends BaseExportService implements SAExportManage
         if(fundInfos == null) {
             fundInfos = new ArrayList<>(1);
         }
-        
+
         for(Map<String,Object> fundInfo : fundInfos) {
             if(fundInfo == null) {
                 fundInfo = new HashMap<>();
@@ -163,8 +196,8 @@ public class SAExportService extends BaseExportService implements SAExportManage
                 }
                 seqMap.put(String.valueOf(seq), fundDetailData);
             }
-            List<Map<String,Object>> processedFundDetailDatas = new ArrayList<>(55);
-            for(int i=1 ; i<=55 ; i++) {
+            List<Map<String,Object>> processedFundDetailDatas = new ArrayList<>(62);
+            for(int i=1 ; i<=62 ; i++) {
                 Map<String, Object> fundDetailData = seqMap.get(String.valueOf(i));
                 if(fundDetailData == null) {
                     fundDetailData = new HashMap<>();
@@ -175,7 +208,6 @@ public class SAExportService extends BaseExportService implements SAExportManage
             fundInfo.put("fundDetailDatas", processedFundDetailDatas);
             fundInfo.put("fundDetailDatasCount", processedFundDetailDatas.size());
         }
-        
         return fundInfos;
     }
     

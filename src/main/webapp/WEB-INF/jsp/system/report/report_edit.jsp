@@ -39,7 +39,7 @@
 								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" maxlength="30" title="资产负债表日" placeholder="yyyymmdd" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">管理公司:</td>
 								<td>
-								    <select class="chosen-select form-control" name="FIRM_CODE" id="FIRM_CODE" data-placeholder="请选择公司" style="vertical-align:top;width: 98%;">
+								    <select class="chosen-select form-control" name="FIRM_CODE" id="FIRM_CODE" data-placeholder="请选择公司" style="vertical-align:top;width: 98%;" onchange="getTemplate();">
 									    <option value=""></option>
 									    <c:forEach items="${companyList}" var="var" varStatus="vs">
 									        <option value="${var.COMPANY_CODE}" <c:if test="${pd.FIRM_CODE == var.COMPANY_CODE}">selected</c:if>>${var.SHORT_NAME}</option>
@@ -88,7 +88,7 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">报告类型:</td>
 								<td>
 									<select class="chosen-select form-control" name="REPTYPE" id="REPTYPE" data-placeholder="请选择" style="width:49%;">
-										<option value=""></option>
+										<!-- <option value=""></option> -->
 										<option value="年审报告" <c:if test="${pd.REPTYPE == '年审报告'}">selected</c:if>>年审报告</option>
 										<option value="中期报告" <c:if test="${pd.REPTYPE == '中期报告'}">selected</c:if>>中期报告</option>
 									</select>
@@ -125,7 +125,7 @@
 								</td>
 							</tr>
 							<tr>	
-								<td style="width:100px;text-align: right;padding-top: 13px;">第四段:</td>
+								<!--<td style="width:100px;text-align: right;padding-top: 13px;">第四段:</td>
 								<td>
 								    <select class="chosen-select form-control" name="P4" id="P4" data-placeholder="请选模板" style="vertical-align:top;width: 98%;">
 									    <c:forEach items="${p4List}" var="var" varStatus="vs">
@@ -133,6 +133,7 @@
 									    </c:forEach>
 								  	</select>
 								</td>
+								-->
 								<td style="width:100px;text-align: right;padding-top: 13px;">第五段:</td>
 								<td>
 								    <select class="chosen-select form-control" name="P5" id="P5" data-placeholder="请选模板" style="vertical-align:top;width: 98%;">
@@ -261,16 +262,16 @@
 				$("#P3").focus();
 			return false;
 			}
-			if($("#P4").val()==""){
-				$("#P4").tips({
-					side:3,
-		            msg:'请输入第四段',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#P4").focus();
-			return false;
-			}
+			// if($("#P4").val()==""){
+			// 	$("#P4").tips({
+			// 		side:3,
+		    //         msg:'请输入第四段',
+		    //         bg:'#AE81FF',
+		    //         time:2
+		    //     });
+			// 	$("#P4").focus();
+			// return false;
+			// }
 			if($("#P5").val()==""){
 				$("#P5").tips({
 					side:3,
@@ -295,6 +296,66 @@
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();
 		}
+
+		//不同公司模板联动
+		//20230808irene修改
+		function getTemplate(){
+			var firmCode = document.querySelector('[name="FIRM_CODE"]');
+			var P1Template = document.querySelector('[name="P1"]');
+			var P2Template = document.querySelector('[name="P2"]');
+			var P3Template = document.querySelector('[name="P3"]');
+			var P5Template = document.querySelector('[name="P5"]');
+
+			//获取公司简称
+			var objFirmCode=document.getElementById("FIRM_CODE");
+
+			for(i=0;i<objFirmCode.length;i++) {
+				if(objFirmCode[i].selected==true) {
+						var varFirmCode=objFirmCode[i].value;
+				}
+			}
+					
+			//修改默认值
+			if(varFirmCode=="CJ"||varFirmCode=="TB"){
+				for(let i = 0;i<P1Template.options.length;i++){
+					if(P1Template.options[i].value=="P1_FSO_CJ"){
+						P1Template.options[i].selected = true;
+					}
+					if(P3Template.options[i].value=="P3_FSO_CJ"){
+						P3Template.options[i].selected = true;
+					}
+					if(P5Template.options[i].value=="P5_FSO_CJ"){
+						P5Template.options[i].selected = true;
+					}
+				}				
+			}else if(varFirmCode=="YHA"||varFirmCode=="JX"||varFirmCode=="JS"||varFirmCode=="BS"){
+				for(let i = 0;i<P1Template.options.length;i++){
+					if(P1Template.options[i].value=="P1_FSO_BJ"){
+						P1Template.options[i].selected = true;
+					}
+					if(P3Template.options[i].value=="P3_FSO_BJ"){
+						P3Template.options[i].selected = true;
+					}
+					if(P5Template.options[i].value=="P5_FSO_BJ"){
+						P5Template.options[i].selected = true;
+					}
+				}
+			}else{
+				for(let i = 0;i<P1Template.options.length;i++){
+					if(P1Template.options[i].value=="P1_FSO_SH"){
+						P1Template.options[i].selected = true;
+					}
+					if(P3Template.options[i].value=="P3_FSO_SH"){
+						P3Template.options[i].selected = true;
+					}
+					if(P5Template.options[i].value=="P5_FSO_SH"){
+						P5Template.options[i].selected = true;
+					}
+				}
+			}
+
+		}
+
 		
 		$(function() {
 			//日期框

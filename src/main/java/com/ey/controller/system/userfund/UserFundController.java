@@ -29,12 +29,13 @@ import com.ey.service.system.userfund.UserFundManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
 import com.ey.util.FileDownload;
-import com.ey.util.FileUpload;
+// import com.ey.util.FileUpload;
 import com.ey.util.Jurisdiction;
-import com.ey.util.ObjectExcelRead;
+// import com.ey.util.ObjectExcelRead;
 import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
 import com.ey.util.PathUtil;
+import com.ey.util.fileimport.MapResult;
 
 /**
  * 说明：用户基金权限 创建人：andychen 创建时间：2019-11-18
@@ -243,24 +244,34 @@ public class UserFundController extends BaseController {
 		if (!Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
 			return null;
 		}
-		if (null != file && !file.isEmpty()) {
-			String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE; // 文件上传路径
-			String fileName = FileUpload.fileUp(file, filePath, "User_Fund"); // 执行上传
-			List<PageData> listPd = (List) ObjectExcelRead.readExcel(filePath, fileName, 1, 0, 0); // 执行读EXCEL操作,读出的数据导入List
-			/**
-			 * var0 :用户名 var1 :基金ID
-			 */
-			for (int i = 0; i < listPd.size(); i++) {
-				pd.put("USERFUND_ID", this.get32UUID()); // ID
-				pd.put("USERNAME", listPd.get(i).getString("var0")); 
-				pd.put("OWNFUND_ID", listPd.get(i).getString("var1"));
-				userfundService.save(pd);
-			}
-			/* 存入数据库操作====================================== */
-			mv.addObject("msg", "success");
-		}
+        
+		// linnea 20231129-infoesc review修改
+		MapResult mapResult = readExcel(file, SUF_IMPORT_TEMPLATE_CODE);
+		/* 存入数据库操作====================================== */
+		List<Map> maps = mapResult.getResult();
+		userfundService.saveBatch(maps);
+		mv.addObject("msg", "success");
 		mv.setViewName("save_result");
 		return mv;
+
+		// if (null != file && !file.isEmpty()) {
+		// 	String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE; // 文件上传路径
+		// 	String fileName = FileUpload.fileUp(file, filePath, "User_Fund"); // 执行上传
+		// 	List<PageData> listPd = (List) ObjectExcelRead.readExcel(filePath, fileName, 1, 0, 0); // 执行读EXCEL操作,读出的数据导入List
+		// 	/**
+		// 	 * var0 :用户名 var1 :基金ID
+		// 	 */
+		// 	for (int i = 0; i < listPd.size(); i++) {
+		// 		pd.put("USERFUND_ID", this.get32UUID()); // ID
+		// 		pd.put("USERNAME", listPd.get(i).getString("var0")); 
+		// 		pd.put("OWNFUND_ID", listPd.get(i).getString("var1"));
+		// 		userfundService.save(pd);
+		// 	}
+		// 	/* 存入数据库操作====================================== */
+		// 	mv.addObject("msg", "success");
+		// }
+		// mv.setViewName("save_result");
+		// return mv;
 	}
 
 	/**

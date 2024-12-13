@@ -48,8 +48,6 @@ public class NExportService extends BaseExportService implements NExportManager{
         dataMap.put("N", this.getNData(fundId, periodStr));
         dataMap.put("N300", this.getN300Data(fundId, periodStr));
         dataMap.put("N400", this.getN400Data(fundId, periodStr));
-        dataMap.put("N500", this.getN500Data(fundId, periodStr));
-        dataMap.put("N510", this.getN510Data(fundId, periodStr));
         dataMap.put("N600", this.getN600Data(fundId, periodStr));
         dataMap.put("N800", this.getN800Data(fundId, periodStr));
         dataMap.put("N10000", this.getN10000Data(fundId, periodStr));
@@ -149,6 +147,8 @@ public class NExportService extends BaseExportService implements NExportManager{
     private Map<String,Object> getN400Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> rate = new HashMap<String,Object>();
+        Map<String, Object> title = new HashMap<>();
         
         Map<String, Object> KM2206 = new HashMap<String,Object>();
         Map<String, Object> KM2207 = new HashMap<String,Object>();
@@ -167,136 +167,28 @@ public class NExportService extends BaseExportService implements NExportManager{
         for(Map<String,Object> map : N400MetaDataList) {
             result.put("KM" + String.valueOf(map.get("accountNum")), map);
         }
+
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> N400RateMetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN400RateData", queryMap);
+        if(N400RateMetaDataList == null) {
+            N400RateMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
         
-        return result;
-    }
+        rate.put("list", N400RateMetaDataList);
+        rate.put("count", N400RateMetaDataList.size());
+
+        @SuppressWarnings("unchecked")
+        List<String> N400RateTitleMetaDataList = (List<String>)this.dao.findForList("NExportMapper.selectN400RateTitleData", queryMap);
+        if(N400RateTitleMetaDataList == null) {
+            N400RateTitleMetaDataList = new ArrayList<>();
+        }
     
-    /**
-     * 处理sheet页N400的数据
-     * @author Dai Zong 2017年9月14日
-     * 
-     * @param fundId
-     * @param periodStr
-     * @return
-     * @throws Exception
-     */
-    private Map<String,Object> getN500Data(String fundId, String periodStr) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
+        title.put("list", N400RateTitleMetaDataList);
+        title.put("count", N400RateTitleMetaDataList.size());
+
         
-        //========process dataMap for main view begin========
-        Map<String, Object> main = new HashMap<String,Object>();
-        
-        Map<String, Object> commission = new HashMap<String,Object>();
-        Map<String, Object> tradeCosts = new HashMap<String,Object>();
-        
-        List<Map<String, Object>> commissionList = new ArrayList<Map<String, Object>>();
-        Map<String, Object> bondSettlement = new HashMap<String,Object>();
-        Map<String, Object> repurchaseSettlement = new HashMap<String,Object>();
-        Map<String, Object> bondTrade = new HashMap<String,Object>();
-        Map<String, Object> repurchaseTrade = new HashMap<String,Object>();
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> N500MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN500MainData", queryMap);
-        if(N500MainMetaDataList == null) {
-            N500MainMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        for(Map<String, Object> map : N500MainMetaDataList){
-            if("应付佣金".equals(map.get("type"))) {
-                commissionList.add(map);
-            }
-            else if("银行间交易费用".equals(map.get("type"))) {
-                switch (String.valueOf(map.get("tradeDetailName"))) {
-                case "债券结算手续费":
-                    bondSettlement = map;
-                    break;
-                case "回购结算手续费":
-                    repurchaseSettlement = map;
-                    break;
-                case "债券交易手续费":
-                    bondTrade = map;
-                    break;
-                case "回购交易手续费":
-                    repurchaseTrade = map;
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
-        
-        commission.put("list", commissionList);
-        commission.put("count", commissionList.size());
-        
-        tradeCosts.put("bondSettlement", bondSettlement);
-        tradeCosts.put("repurchaseSettlement", repurchaseSettlement);
-        tradeCosts.put("bondTrade", bondTrade);
-        tradeCosts.put("repurchaseTrade", repurchaseTrade);
-        
-        main.put("commission", commission);
-        main.put("tradeCosts", tradeCosts);
-        
-        result.put("main", main);
-        //========process dataMap for main view end========
-        
-        //========process dataMap for related view begin========
-        Map<String, Object> related = new HashMap<String,Object>();
-        
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> N500RelatedMetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN500RelatedData", queryMap);
-        if(N500RelatedMetaDataList == null) {
-            N500RelatedMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        related.put("list", N500RelatedMetaDataList);
-        related.put("count", N500RelatedMetaDataList.size());
-        
-        result.put("related", related);
-        //========process dataMap for related view begin========
-        return result;
-    }
-    
-    /**
-     * 处理sheet页N510的数据
-     * @author Dai Zong 2017年9月17日
-     * 
-     * @param fundId
-     * @param periodStr
-     * @return
-     * @throws Exception
-     */
-    private Map<String,Object> getN510Data(String fundId, String periodStr) throws Exception{
-        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> result = new HashMap<String,Object>();
-        
-        Map<String, Object> main = new HashMap<String,Object>();
-        Map<String, Object> related = new HashMap<String,Object>();
-        
-        //========process dataMap for main view begin========
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> N510MetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN510Data", queryMap);
-        if(N510MetaDataList == null) {
-            N510MetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        main.put("list", N510MetaDataList);
-        main.put("count", N510MetaDataList.size());
-        //========process dataMap for main view end========
-        
-        //========process dataMap for related view begin========
-        @SuppressWarnings("unchecked")
-        List<Map<String,Object>> N510RelatedMetaDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN510RelatedData", queryMap);
-        if(N510RelatedMetaDataList == null) {
-            N510RelatedMetaDataList = new ArrayList<Map<String,Object>>(); 
-        }
-        
-        related.put("list", N510RelatedMetaDataList);
-        related.put("count", N510RelatedMetaDataList.size());
-        //========process dataMap for related view end========
-        
-        result.put("main", main);
-        result.put("related", related);
+        result.put("title", title);
+        result.put("rate", rate);
         
         return result;
     }
@@ -349,7 +241,11 @@ public class NExportService extends BaseExportService implements NExportManager{
         result.put("sz", sz);
         result.put("bank", bank);
         result.put("other", other);
+        result.put("shCount", sh.size());
+        result.put("szCount", sz.size());
+        result.put("bankCount", bank.size());
         result.put("etfCount", etfCount);
+        result.put("count", N600MetaDataList.size());
         
         return result;
     }

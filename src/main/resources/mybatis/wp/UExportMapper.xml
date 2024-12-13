@@ -21,6 +21,7 @@
     <select id="selectU300MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
             U300.ATTR1 as item,
+            U300.ATTR2 as item2,
             U300.AMOUNT_CURRENT_CNY as amountCurrent,
             U300.AMOUNT_LAST_CNY as amountLast
         FROM
@@ -58,6 +59,22 @@
         and U300I.STATUS = 'Y'
         and U300I.FUND_ID = #{fundId}
         and U300I.PERIOD = #{period}
+    </select>
+
+    <select id="selectC410Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            C410.PERIOD as period,
+            C410.BANK_NAME as bankName,
+            C410.AMOUNT as amount,
+            C410.INTEREST_RATE as interestRate,
+            C410.DATE_FROM as dateFrom,
+            C410.DATE_TO as dateTo
+        FROM
+            ds_tmpl_c410 C410
+        where 
+            1 = 1
+        and C410.FUND_ID = #{fundId}
+        and C410.PERIOD = #{period}
     </select>
     
     <select id="selectFinSys" parameterType="java.util.Map" resultType="java.lang.String">
@@ -164,7 +181,10 @@
 		    U500UTF.RATE_BROKERAGE as brokerageRate,
 		    U500UTF.RATE_SEC as setRate,
 		    U500UTF.RATE_TRANSFER as transferRate,
-            U500UTF.RATE_TRX as trxRate
+            U500UTF.RATE_TRX as trxRate,
+            U500UTF.RATE_SFC as sfcRate,
+            U500UTF.RATE_AFRC as afrcRate,
+            DATE_FORMAT(U500UTF.RATE_EFFECTIVE_DATE, '%Y-%m-%dT00:00:00.000') as rateEffectiveDate
 		FROM
 		    wp_u500_trx_fee U500UTF
         where 
@@ -176,6 +196,30 @@
             U500UTF.SORT
     </select>
     
+    <select id="checkIfBJHasDataForU330" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        select 
+            sum(END_BALANCE_CNY) as endBalance
+        FROM ey_balance eb
+        where 
+            1 = 1
+        and eb.EY_ACCOUNT_NUM = '1102'
+        and eb.FUND_ID = #{fundId}
+        and eb.PERIOD = #{period}
+        and eb.ATTR5 = '北交所'
+    </select>
+
+    <select id="checkIfHKHasDataForU330" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        select 
+            sum(END_BALANCE_CNY) as endBalance
+        FROM ey_balance eb
+        where 
+            1 = 1
+        and eb.EY_ACCOUNT_NUM = '1102'
+        and eb.FUND_ID = #{fundId}
+        and eb.PERIOD = #{period}
+        and eb.ATTR5 = '港股通'
+    </select>
+
     <select id="selectU500TestData" parameterType="java.util.Map" resultType="java.util.Map"> 
 	    SELECT
 		    U500T.COMMISSION as commission,
@@ -201,7 +245,7 @@
         where 
             1 = 1
         and U600.STATUS = 'Y'
-        and U600.FUND_ID = #{fundId}
+        and U600.FUND_ID = #{fundId} 
         and U600.PERIOD = #{period}
     </select>
     
@@ -221,12 +265,15 @@
         and U600T.PERIOD = #{period}
         LIMIT 1
     </select>
-    
+
+    <!-- linnea,20220920,U I9修改-->
     <select id="selectU600IndexFeeRateData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
 		    sfir.COSTODY_RATE AS costodyRate,
 		    sfir.INDEX_RATE AS indexRate,
-		    sfir.MIN_INDEX_FEE AS minIndexFee 
+		    sfir.MIN_INDEX_FEE AS minIndexFee,
+            sfir.MIN_RELEASE_CHARGE AS minReleaseCharge,
+            sfir.CHARGE_DESCRIPTION AS chargeDescription
 		FROM
 		    sys_fund_indexfee_rate sfir 
 		WHERE
@@ -266,6 +313,34 @@
 		AND U900.FUND_ID = #{fundId}
 		AND U900.PERIOD = #{period}
     </select>
+
+    <select id="selectU1000MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U1000.ATTR1 as item,
+            U1000.AMOUNT_CURRENT_CNY as amountCurrent,
+            U1000.AMOUNT_LAST_CNY as amountLast
+        FROM
+            wp_u1000 U1000
+        where 
+            1 = 1
+        and U1000.STATUS = 'Y'
+        and U1000.FUND_ID = #{fundId}
+        and U1000.PERIOD = #{period}
+    </select>
+
+    <select id="selectU1000TestData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U1000T.ATTR1 as item,
+            U1000T.AMOUNT_CURRENT_CNY as amountCurrent,
+            U1000T.AMOUNT_LAST_CNY as amountLast
+        FROM
+            wp_u1000_test U1000T
+        where 
+            1 = 1
+        and U1000T.STATUS = 'Y'
+        and U1000T.FUND_ID = #{fundId}
+        and U1000T.PERIOD = #{period}
+    </select>
     
     <select id="selectU10000InterestData" parameterType="java.util.Map" resultType="java.util.Map"> 
         SELECT
@@ -295,6 +370,33 @@
         and U10000RI.FUND_ID = #{fundId}
         and U10000RI.PERIOD = #{period}
         LIMIT 1
+    </select>
+	
+	<!--chenhy,20221213,新增投资收益大标题判断条件-->
+    <select id="selectU10000SumImportData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT 
+			(case when eb.attr1 = '股票投资收益' then 'STOCKS_ALL'
+				  when eb.attr1 = '债券投资收益' then 'BOND_ALL'
+				  when eb.attr1 = '资产支持证券投资收益' then 'ABS_ALL'
+				  when eb.attr1 = '贵金属投资收益' then 'GOLD_ALL'
+			end
+			)AS attr1,
+			SUM(eb.DR_AMOUNT_CNY) as amount
+		FROM 
+			ey_balance eb
+		WHERE
+		    1 = 1
+			AND eb.EY_ACCOUNT_NUM = '6111' 
+			AND eb.attr1 in ('股票投资收益','债券投资收益','资产支持证券投资收益','贵金属投资收益')
+			AND eb.FUND_ID = #{fundId}
+			AND eb.PERIOD = #{period}
+			AND eb.attr1 LIKE 
+				(case when #{type} =  'STOCKS_ALL' then '股票投资收益'
+				      when #{type} =  'BOND_ALL' then '债券投资收益'
+					  when #{type} =  'ABS_ALL' then '资产支持证券投资收益'
+					  when #{type} =  'GOLD_ALL' then '贵金属投资收益'
+			     end)
+		GROUP BY attr1
     </select>
     
     <select id="selectU10000ImportData" parameterType="java.util.Map" resultType="java.util.Map"> 
@@ -423,6 +525,7 @@
         and U10000RD.STATUS = 'Y'
         and U10000RD.FUND_ID = #{fundId}
         and U10000RD.PERIOD = #{period}
+        and U10000RD.SORT like '%0'
         limit 1
     </select>
     
@@ -532,12 +635,13 @@
             IF(U10000CO.AMOUNT_CURRENT = 0, null, U10000CO.AMOUNT_CURRENT) as amountCurrent,
             IF(U10000CO.AMOUNT_LAST = 0, null, U10000CO.AMOUNT_LAST) as amountLast
         FROM
-            wp_u10000_c_other U10000CO
+            wp_u10000_c_other U10000CO,SYS_FUND_INFO SFI
         where 
             1 = 1
         and U10000CO.STATUS = 'Y'
         and U10000CO.FUND_ID = #{fundId}
         and U10000CO.PERIOD = #{period}
+        and SFI.FUND_ID = U10000CO.FUND_ID
         order by
             U10000CO.SORT
     </select>
@@ -556,7 +660,7 @@
         and U10000CO.PERIOD = #{period}
         limit 1
     </select>
-    
+
     <select id="checkIfU10000OtherCHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
         SELECT
             SUM(IFNULL(U10000CO.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000CO.AMOUNT_LAST, 0))
@@ -567,6 +671,82 @@
         and U10000CO.STATUS = 'Y'
         and U10000CO.FUND_ID = #{fundId}
         and U10000CO.PERIOD = #{period}
+    </select>
+
+    <select id="selectU10000CreditData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U10000C.ITEM as item,
+            IF(U10000C.AMOUNT_CURRENT = 0, null, U10000C.AMOUNT_CURRENT) as amountCurrent,
+            IF(U10000C.AMOUNT_LAST = 0, null, U10000C.AMOUNT_LAST) as amountLast
+        FROM
+            wp_u10000_credit U10000C
+        where 
+            1 = 1
+        and U10000C.STATUS = 'Y'
+        and U10000C.FUND_ID = #{fundId}
+        and U10000C.PERIOD = #{period}
+		and (IF(U10000C.AMOUNT_CURRENT = 0, null, U10000C.AMOUNT_CURRENT) is not null
+        OR IF(U10000C.AMOUNT_LAST = 0, null, U10000C.AMOUNT_LAST) is not null)
+        order by
+            U10000C.SORT
+    </select>
+
+    <select id="selectU10000CreditNoteData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            U10000C.WEIGHT_OPTIMISM as weight_optimism,
+            U10000C.WEIGHT_PESSIMISM as weight_pessimism,
+            U10000C.WEIGHT_NEUTRALITY as weight_neturality,
+            U10000C.FORECAST_OPTIMISM as forecast_optimism,
+            U10000C.FORECAST_PESSIMISM as forecast_pessimism,
+            U10000C.FORECAST_NEUTRALITY as forecast_neturality
+        FROM
+            wp_u10000_credit_note_init U10000C
+        where 
+            1 = 1
+        and U10000C.STATUS = 'Y'
+        and U10000C.FUND_ID = #{fundId}
+        and U10000C.PERIOD = #{period}
+        limit 1
+    </select>
+
+    <select id="checkIfU10000CreditNoteDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer"> 
+        SELECT
+            count(*)
+        FROM
+            wp_u10000_credit_note_init U10000C
+        where 
+            1 = 1
+        and U10000C.STATUS = 'Y'
+        and U10000C.FUND_ID = #{fundId}
+        and U10000C.PERIOD = #{period}
+        limit 1
+    </select>
+    
+    <select id="selectU10000CreditSumData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            '合计' as item,
+            IF(SUM(U10000C.AMOUNT_CURRENT) = 0, null, SUM(U10000C.AMOUNT_CURRENT)) as amountCurrent,
+            IF(SUM(U10000C.AMOUNT_LAST) = 0, null, SUM(U10000C.AMOUNT_LAST)) as amountLast
+        FROM
+            wp_u10000_credit U10000C
+        where 
+            1 = 1
+        and U10000C.STATUS = 'Y'
+        and U10000C.FUND_ID = #{fundId}
+        and U10000C.PERIOD = #{period}
+        limit 1
+    </select>
+
+     <select id="checkIfU10000CreditHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            IFNULL(SUM(IFNULL(U10000C.AMOUNT_CURRENT, 0)) + SUM(IFNULL(U10000C.AMOUNT_LAST, 0)),0)
+        FROM
+            wp_u10000_credit U10000C
+        where 
+            1 = 1
+        and U10000C.STATUS = 'Y'
+        and U10000C.FUND_ID = #{fundId}
+        and U10000C.PERIOD = #{period}
     </select>
     
 </mapper>

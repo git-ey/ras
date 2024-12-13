@@ -62,11 +62,11 @@
 									<th class="center">上海代码</th>
 									<th class="center">深圳代码</th>
 									<th class="center">银行间代码</th>
-									<th class="center">全价</th>
-									<th class="center">到期收益率</th>
-									<th class="center">修正久期</th>
-									<th class="center">凸性</th>
-									<th class="center">净价</th>
+									<th class="center">全价1</th>
+									<th class="center">净价1</th>
+									<th class="center">全价2</th>
+									<th class="center">净价2</th>
+									<th class="center">推荐</th>
 									<th class="center">应收利息</th>
 									<th class="center">启用</th>
 									<th class="center">状态</th>
@@ -86,11 +86,11 @@
 											<td class='center'>${var.SHH_CODE}</td>
 											<td class='center'>${var.SHZ_CODE}</td>
 											<td class='center'>${var.INTER_BANK_CODE}</td>
-											<td class='center'>${var.CALCULATION_PRICE}</td>
-											<td class='center'>${var.YIELD_TO_MATURITY}</td>
-											<td class='center'>${var.MODIFIED_DURATION}</td>
-											<td class='center'>${var.CONVEXITY}</td>
-											<td class='center'>${var.CLEAN_PRICE}</td>
+											<td class='center'>${var.CLEAN_PRICE1}</td>
+											<td class='center'>${var.CALCULATION_PRICE1}</td>
+											<td class='center'>${var.CLEAN_PRICE2}</td>
+											<td class='center'>${var.CALCULATION_PRICE2}</td>
+											<td class='center'>${var.RECOMMENDATION}</td>
 											<td class='center'>${var.ACCRUED_INTEREST}</td>
                                             <td class='center'>
 											<c:choose>  

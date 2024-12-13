@@ -256,6 +256,7 @@ $(function () {
                                                                     a(this).attr("trueType", "selectTree");
                                                                     a(this).selectTreeRender()
                                                                 } catch (b) {
+                                                                    console.error("树形下拉框出错: ", b);
                                                                     alert("树形下拉框出错，注意脚本的引入：selectTree.js，ztree.js和ztree.css")
                                                                 }
                                                             } else {
@@ -2944,7 +2945,7 @@ function winScrollContent(c) {
                 f += (isNaN(c) ? 0 : c) + (isNaN(l) ? 0 : l)
             }
             f += Math.round(parseFloat(i.width())) + Math.round(parseFloat(b.width()));
-            if (a.browser.msie) {
+            if (/msie/.test(navigator.userAgent.toLowerCase())) {
                 a(this).width(180)
             } else {
                 a(this).width(120)

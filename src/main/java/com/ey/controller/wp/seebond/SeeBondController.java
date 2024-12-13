@@ -250,14 +250,22 @@ public class SeeBondController extends BaseController {
 		titles.add("上海代码");	//3
 		titles.add("深圳代码");	//4
 		titles.add("银行间代码");	//5
-		titles.add("全价");	//6
-		titles.add("到期收益率");	//7
-		titles.add("修正久期");	//8
-		titles.add("凸性");	//9
-		titles.add("净价");	//10
-		titles.add("应收利息");	//11
-		titles.add("启用");	//12
-		titles.add("状态");	//13
+		titles.add("全价1");	//6
+		titles.add("净价1");	//7
+		titles.add("到期收益率1");	//8
+		titles.add("修正久期1");	//9
+		titles.add("凸性1");	//10
+		titles.add("全价2");	//11
+		titles.add("净价2");	//12
+		titles.add("到期收益率2");	//13
+		titles.add("修正久期2");	//14
+		titles.add("凸性2");	//15
+		titles.add("推荐");	//16
+		titles.add("应收利息");	//16
+		titles.add("预计利息");	//17
+		titles.add("保留");	//18
+		titles.add("启用");	//19
+		titles.add("状态");	//20
 		dataMap.put("titles", titles);
 		List<PageData> varOList = seebondService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
@@ -268,14 +276,22 @@ public class SeeBondController extends BaseController {
 			vpd.put("var3", varOList.get(i).getString("SHH_CODE"));	    //3
 			vpd.put("var4", varOList.get(i).getString("SHZ_CODE"));	    //4
 			vpd.put("var5", varOList.get(i).getString("INTER_BANK_CODE"));	    //5
-			vpd.put("var6", varOList.get(i).get("CALCULATION_PRICE").toString());	//6
-			vpd.put("var7", varOList.get(i).get("YIELD_TO_MATURITY").toString());	//7
-			vpd.put("var8", varOList.get(i).get("MODIFIED_DURATION").toString());	//8
-			vpd.put("var9", varOList.get(i).get("CONVEXITY").toString());	//9
-			vpd.put("var10", varOList.get(i).get("CLEAN_PRICE").toString());	//10
-			vpd.put("var11", varOList.get(i).get("ACCRUED_INTEREST").toString());	//11
-			vpd.put("var12", varOList.get(i).getString("ACTIVE"));	    //12
-			vpd.put("var13", varOList.get(i).getString("STATUS"));	    //13
+			vpd.put("var6", varOList.get(i).get("CALCULATION_PRICE1").toString());	//6
+			vpd.put("var7", varOList.get(i).get("CLEAN_PRICE1").toString());	//7
+			vpd.put("var8", varOList.get(i).get("YIELD_TO_MATURITY1").toString());	//8
+			vpd.put("var9", varOList.get(i).get("MODIFIED_DURATION1").toString());	//9
+			vpd.put("var10", varOList.get(i).get("CONVEXITY1").toString());	//10
+			vpd.put("var11", varOList.get(i).get("CALCULATION_PRICE2").toString());	//11
+			vpd.put("var12", varOList.get(i).get("CLEAN_PRICE2").toString());	//12
+			vpd.put("var13", varOList.get(i).get("YIELD_TO_MATURITY2").toString());	//13
+			vpd.put("var14", varOList.get(i).get("MODIFIED_DURATION2").toString());	//14
+			vpd.put("var15", varOList.get(i).get("CONVEXITY2").toString());	//15
+			vpd.put("var16", varOList.get(i).get("RECOMMENDATION").toString());	//16
+			vpd.put("var17", varOList.get(i).get("ACCRUED_INTEREST").toString());	//17
+			vpd.put("var18", varOList.get(i).get("ESTIMATED_COUPON").toString());	//18
+			vpd.put("var19", varOList.get(i).get("RESERVE").toString());	//19
+			vpd.put("var20", varOList.get(i).getString("ACTIVE"));	    //20
+			vpd.put("var21", varOList.get(i).getString("STATUS"));	    //21
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

@@ -320,6 +320,7 @@ public class BondInfoController extends BaseController {
 			vpd.put("var34", varOList.get(i).getString("INTEREST_RATE_OPTION"));	    //34
 			vpd.put("var35", varOList.get(i).getString("SELL_BACK"));	    //35
 			vpd.put("var36", varOList.get(i).getString("REDEMPTION"));	    //36
+			vpd.put("var37", varOList.get(i).getString("FIRM_CODE")); // 37 irene20231011
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

@@ -54,6 +54,19 @@
         ORDER BY
             IT.SORT
     </select>
+
+	<!--chenhy,20240621,新增小FOF的判断-->
+	<select id="selectITransactionFundCountData" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+		    COUNT(*)
+		FROM
+		   EY_BALANCE eb where eb.fund_id = #{fundId}
+           and eb.PERIOD = #{period}
+           and eb.EY_ACCOUNT_NUM = '1105'
+           and (eb.BEGIN_BALANCE_CNY != 0 or eb.DR_AMOUNT_CNY != 0 or eb.CR_AMOUNT_CNY != 0 or eb.END_BALANCE_CNY != 0)
+		   and eb.ENTERABLE = 'Y'
+    </select>
+
     
     <select id="selectN500RelatedData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
@@ -85,12 +98,13 @@
     
     <select id="selectIManageFeeData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
+			IMF.SORT AS sort,
 		    IMF.TPYE AS tpye,
 		    IMF.ITEM AS item,
 		    IF(IMF.AMOUNT_CURRENT = 0, null, IMF.AMOUNT_CURRENT) AS amountCurrent,
 		    IF(IMF.AMOUNT_LAST = 0, null, IMF.AMOUNT_LAST) AS amountLast 
 		FROM
-		    wp_i_mge_fee IMF 
+		    wp_i_mge_fee IMF
 		WHERE
 		    1 = 1
 		AND IMF.STATUS = 'Y'
@@ -109,7 +123,7 @@
 		    IF(ISF.SALES_COMMISION_AMT_LAST = 0, null, ISF.SALES_COMMISION_AMT_LAST) AS salesCommisionAmtLast,
 		    IF(ISF.SALES_COMMISION_BAL_LAST = 0, null, ISF.SALES_COMMISION_BAL_LAST) AS salesCommisionBalLast 
 		FROM
-		    wp_i_sales_fee ISF 
+		    wp_i_sales_fee ISF
 		WHERE
             1 = 1 
         AND ISF.STATUS = 'Y'
@@ -199,6 +213,20 @@
         AND IMHF.FUND_ID = #{fundId}
         AND IMHF.PERIOD = #{period}
     </select>
+
+	<select id="checkIfIMgerHoldFundHasDataForReportByLevel" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(IFNULL(IMHF.AMOUNT, 0)) + SUM(IFNULL(IMHF.AMOUNT_LAST, 0))
+        FROM
+            wp_i_mger_hold_fund IMHF 
+        WHERE
+            1 = 1  
+        AND IMHF.STATUS = 'Y'
+        AND IMHF.SORT != 70
+        AND IMHF.FUND_ID = #{fundId}
+        AND IMHF.PERIOD = #{period}
+		AND IMHF.LEVEL = #{level}
+    </select>
     
     <select id="selectIUnmgerHoldFundData" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
@@ -273,6 +301,41 @@
 		AND I300.PERIOD = #{period}
 		ORDER BY
 			I300.SORT
+	</select>
+
+	<select id="selectIothernoteData" parameterType="java.util.Map" resultType = "java.util.Map">
+		SELECT
+		Iothernote.DESCRIPTION AS description
+		FROM
+			wp_i_other_note Iothernote
+		WHERE
+			1 = 1
+		AND Iothernote.status  = 'Y'
+		AND Iothernote.FUND_ID = #{fundId}
+		AND Iothernote.PERIOD = #{period}
+		ORDER BY
+			Iothernote.type,Iothernote.seq
+	</select>
+
+	<select id="selectIotherData" parameterType="java.util.Map" resultType = "java.util.Map">
+		select 
+		Iother.STOCK_TYPE as STOCK_TYPE,
+		Iother.STOCK_CODE as STOCK_CODE,
+		Iother.STOCK_NAME as STOCK_NAME,
+		Iother.DR_AMOUNT_CNY as DR_AMOUNT_CNY,
+		Iother.CR_AMOUNT_CNY as CR_AMOUNT_CNY,
+		Iother.END_BALANCE_CNY as END_BALANCE_CNY,
+		Iother.END_BALANCE_UNITS as END_BALANCE_UNITS,
+		Iother.SCALE as SCALE
+		from 
+			wp_i_other Iother
+		WHERE
+			1 = 1
+		AND Iother.status  = 'Y'
+		AND Iother.FUND_ID = #{fundId}
+		AND Iother.PERIOD = #{period}
+		ORDER BY
+			Iother.account_num
 	</select>
 
 </mapper>

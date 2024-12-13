@@ -292,6 +292,7 @@ public class FundController extends BaseController {
 		titles.add("沪港");	//12
 		titles.add("QD");	//13
 		titles.add("货基");	//14
+		titles.add("摊余成本");
 		titles.add("指数");	//15
 		titles.add("LOF");	//16
 		titles.add("ETF");	//17
@@ -323,6 +324,7 @@ public class FundController extends BaseController {
 			vpd.put("var12", varOList.get(i).getString("SHHK"));	    //12
 			vpd.put("var13", varOList.get(i).getString("QD"));	    //13
 			vpd.put("var14", varOList.get(i).getString("MF"));	    //14
+			vpd.put("var14", varOList.get(i).getString("AC"));
 			vpd.put("var15", varOList.get(i).getString("IDX"));	    //15
 			vpd.put("var16", varOList.get(i).getString("LOF"));	    //16
 			vpd.put("var17", varOList.get(i).getString("ETF"));	    //17

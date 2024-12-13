@@ -57,6 +57,18 @@
 								<td><input type="number" autocomplete="off" name="UNIT_NAV" id="UNIT_NAV" value="${pd.UNIT_NAV}" maxlength="32" title="单位净值" style="width:98%;"/></td>
 							</tr>
 							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">是否定期开放基金:</td>
+								<td><input type="text" autocomplete="off" name="REGULAR_OPEN_FUND" id="REGULAR_OPEN_FUND" value="${pd.REGULAR_OPEN_FUND}" maxlength="30" title="是否定期开放基金" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">证监会分类:</td>
+								<td><input type="number" autocomplete="off" name="SFC_TYPE" id="SFC_TYPE" value="${pd.SFC_TYPE}" maxlength="32" title="证监会分类" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">期末交易/估值状态:</td>
+								<td><input type="number" autocomplete="off" name="CLOSING_STATUS" id="CLOSING_STATUS" value="${pd.CLOSING_STATUS}" maxlength="32" title="期末交易/估值状态" style="width:98%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">基金子类型:</td>
+								<td><input type="text" autocomplete="off" name="FUND_SUB_TYPE" id="FUND_SUB_TYPE" value="${pd.FUND_SUB_TYPE}" maxlength="30" title="基金子类型" style="width:98%;"/></td>
+							</tr>
+							<tr>
 								<td style="text-align: center;" colspan="10">
 									<a class="btn btn-mini btn-primary" onclick="save();">保存</a>
 									<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>

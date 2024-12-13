@@ -249,6 +249,7 @@ public class LomdController extends BaseController {
 		titles.add("可流通日");	//4
 		titles.add("来源");	//5
 		titles.add("折扣率数字");	//6
+		titles.add("波动率数字");	//7
 		dataMap.put("titles", titles);
 		List<PageData> varOList = lomdService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
@@ -260,6 +261,7 @@ public class LomdController extends BaseController {
 			vpd.put("var4", varOList.get(i).get("LIFTING_DATE").toString());	//4
 			vpd.put("var5", varOList.get(i).getString("LOMD_SOURCE"));	    //5
 			vpd.put("var6", varOList.get(i).get("LOMD").toString());	//6
+			vpd.put("var7", varOList.get(i).get("ANN_VOL").toString());	//7
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

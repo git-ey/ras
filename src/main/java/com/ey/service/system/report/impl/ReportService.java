@@ -200,6 +200,7 @@ public class ReportService implements ReportManager {
      * @param dateFrom
      * @param dateTo
      * @param dateTransform
+     * @param
      * @return
      * 
      * 汇总：
@@ -224,11 +225,13 @@ public class ReportService implements ReportManager {
      * TABLE_PERIOD_CURRENT  ：表格中的当期时间段文字描述，有两种情况：
      *                         （1）${CURRENT_PERIOD}包含“年度”两个字，则为：2020年1月1日至2020年12月31日
      *                         （2）除以上情况，                     ，则为：${CURRENT_PERIOD}止期间
-     * TABLE_PERIOD_CURRENT_A：${TABLE_PERIOD_CURRENT}按照“至”分割后的第0个字符串
-     * TABLE_PERIOD_CURRENT_A：${TABLE_PERIOD_CURRENT}按照“至”分割后的第1个字符串
+     * TABLE_PERIOD_CURRENT_A：${TABLE_PERIOD_CURRENT}按照“至”分割后的第0个字符串（至在前）
+     * TABLE_PERIOD_CURRENT_A：${TABLE_PERIOD_CURRENT}按照“至”分割后的第1个字符串（至在前）
+     * TABLE_PERIOD_CURRENT_A1：${TABLE_PERIOD_CURRENT}按照“至”分割后的第0个字符串（至在后）
+     * TABLE_PERIOD_CURRENT_B1：${TABLE_PERIOD_CURRENT}按照“至”分割后的第0个字符串（至在后）
      */
     @Override
-    public Map<String, Object> getDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform)
+    public Map<String, Object> getDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform,String fundType) // chenhy,20240223,新增基金和产品的区分
             throws Exception {
         Map<String, Object> infoMap = Maps.newHashMap();
 
@@ -248,18 +251,37 @@ public class ReportService implements ReportManager {
         infoMap.put("CURRENT_YEAR", year);
         infoMap.put("CURRENT_YEAR_NUM", Integer.parseInt(year));
 
-        // 本期起始日来源&&本期起始日文本
-        if (DateUtils.truncatedCompareTo(dateFrom, yearFirstDate, Calendar.DATE) >= 0) {
-            if (dateTransform != null && DateUtils.truncatedEquals(dateFrom, dateTransform, Calendar.DATE)) {
-                infoMap.put("CURRENT_INIT_SOURCE", TRANSFORM_DATE);
-                infoMap.put("CURRENT_INIT_TEXT", "基金合同转型日");
+
+        if ("产品".equals(fundType)){ 
+            // 本期起始日来源&&本期起始日文本
+            if (DateUtils.truncatedCompareTo(dateFrom, yearFirstDate, Calendar.DATE) >= 0) {
+                if (dateTransform != null && DateUtils.truncatedEquals(dateFrom, dateTransform, Calendar.DATE)) {
+                    infoMap.put("CURRENT_INIT_SOURCE", TRANSFORM_DATE);
+                    infoMap.put("CURRENT_INIT_TEXT", "资产管理计划转型日");
+                } else {
+                    infoMap.put("CURRENT_INIT_SOURCE", CONTRACT_BEGIN_DATE);
+                    infoMap.put("CURRENT_INIT_TEXT", "资产管理计划成立日");
+                }
             } else {
-                infoMap.put("CURRENT_INIT_SOURCE", CONTRACT_BEGIN_DATE);
-                infoMap.put("CURRENT_INIT_TEXT", "基金合同生效日");
+                infoMap.put("CURRENT_INIT_SOURCE", BALANCE_SHEET_DATE);
+                infoMap.put("CURRENT_INIT_TEXT", "资产负债表日");
             }
-        } else {
-            infoMap.put("CURRENT_INIT_SOURCE", BALANCE_SHEET_DATE);
-            infoMap.put("CURRENT_INIT_TEXT", "资产负债表日");
+
+        } else { 
+            // 本期起始日来源&&本期起始日文本
+            if (DateUtils.truncatedCompareTo(dateFrom, yearFirstDate, Calendar.DATE) >= 0) {
+                if (dateTransform != null && DateUtils.truncatedEquals(dateFrom, dateTransform, Calendar.DATE)) {
+                    infoMap.put("CURRENT_INIT_SOURCE", TRANSFORM_DATE);
+                    infoMap.put("CURRENT_INIT_TEXT", "基金合同转型日");
+                } else {
+                    infoMap.put("CURRENT_INIT_SOURCE", CONTRACT_BEGIN_DATE);
+                    infoMap.put("CURRENT_INIT_TEXT", "基金合同生效日");
+                }
+            } else {
+                infoMap.put("CURRENT_INIT_SOURCE", BALANCE_SHEET_DATE);
+                infoMap.put("CURRENT_INIT_TEXT", "资产负债表日");
+            }
+
         }
 
         // 本期起始日
@@ -310,6 +332,9 @@ public class ReportService implements ReportManager {
         String[] pair = StringUtil.splitStringPair(tablePeriodCurrent, "至", false);
         infoMap.put("TABLE_PERIOD_CURRENT_A", pair[0]);
         infoMap.put("TABLE_PERIOD_CURRENT_B", pair[1]);
+        String[] pair1 = StringUtil.splitStringPair(tablePeriodCurrent, "至", true);
+        infoMap.put("TABLE_PERIOD_CURRENT_A1", pair1[0]);
+        infoMap.put("TABLE_PERIOD_CURRENT_B1", pair1[1]);
         return infoMap;
     }
 
@@ -321,15 +346,17 @@ public class ReportService implements ReportManager {
      * @param dateFrom
      * @param dateTo
      * @param dateTransform
+     * @param fundType
      * @return
      */
     @Override
-    public Map<String, Object> getLastDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform)
+    public Map<String, Object> getLastDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform, String fundType) //chenhy,20240223,新增基金和产品的区分
             throws Exception {
         // String lastPeriod = (Integer.parseInt(period.substring(0, 4)) - 1) +
         // period.substring(4, 8);
         String lastPeriod = (Integer.parseInt(period.substring(0, 4)) - 1) + "1231";
-        Map<String, Object> lastInfoMap = this.getDateInfo(lastPeriod, dateFrom, dateTo, dateTransform);
+        Map<String, Object> lastInfoMap = this.getDateInfo(lastPeriod, dateFrom, dateTo, dateTransform,fundType);
+
         Map<String, Object> infoMap = Maps.newHashMap();
         // 上期资产负债表日
         infoMap.put("LAST_BS_DATE", lastInfoMap.get("CURRENT_BS_DATE"));
@@ -344,8 +371,12 @@ public class ReportService implements ReportManager {
         infoMap.put("LAST_INIT_SOURCE", lastInfoMap.get("CURRENT_INIT_SOURCE"));
         // 上期起始日文本
         infoMap.put("LAST_INIT_TEXT", lastInfoMap.get("CURRENT_INIT_TEXT"));
+        // 上期起始日（日期）文本,chenhy,20220922
+        infoMap.put("LAST_INIT_DATE_TEXT", lastInfoMap.get("CURRENT_INIT_DATE_TEXT"));
         // 上期截止日
         infoMap.put("LAST_END_DATE", lastInfoMap.get("CURRENT_END_DATE"));
+        // 上期截止日（日期）文本,chenhy,20220922
+        infoMap.put("LAST_END_DATE_TEXT", lastInfoMap.get("CURRENT_END_DATE_TEXT"));
         // 上期截止日来源
         infoMap.put("LAST_END_SOURCE", lastInfoMap.get("CURRENT_END_SOURCE"));
         // 上期截止日文本
@@ -358,6 +389,10 @@ public class ReportService implements ReportManager {
         infoMap.put("TABLE_PERIOD_LAST_A", lastInfoMap.get("TABLE_PERIOD_CURRENT_A"));
         // 表格时间段-上期-B
         infoMap.put("TABLE_PERIOD_LAST_B", lastInfoMap.get("TABLE_PERIOD_CURRENT_B"));
+        // 表格时间段-上期-A1
+        infoMap.put("TABLE_PERIOD_LAST_A1", lastInfoMap.get("TABLE_PERIOD_CURRENT_A1"));
+        // 表格时间段-上期-B1
+        infoMap.put("TABLE_PERIOD_LAST_B1", lastInfoMap.get("TABLE_PERIOD_CURRENT_B1"));
         return infoMap;
     }
 
@@ -393,13 +428,13 @@ public class ReportService implements ReportManager {
         PageData p1 = dictionariesManager.findByCode(pd.getString("P1"));
         PageData p2 = dictionariesManager.findByCode(pd.getString("P2"));
         PageData p3 = dictionariesManager.findByCode(pd.getString("P3"));
-        PageData p4 = dictionariesManager.findByCode(pd.getString("P4"));
+        // PageData p4 = dictionariesManager.findByCode(pd.getString("P4"));
         PageData p5 = dictionariesManager.findByCode(pd.getString("P5"));
         // 英文名用于存文件名关键字
         String p1TempName = p1.getString("NAME_EN");
         String p2TempName = p2.getString("NAME_EN");
         String p3TempName = p3.getString("NAME_EN");
-        String p4TempName = p4.getString("NAME_EN");
+        // String p4TempName = p4.getString("NAME_EN");
         String p5TempName = p5.getString("NAME_EN");
 
         // 模板一期、二期关键字
@@ -411,14 +446,15 @@ public class ReportService implements ReportManager {
             for (PageData pfund : funds) {
                 Map<String, Object> exportParam = new HashMap<>();
                 // 获取日期信息
+                // chenhy,20240223,新增基金和产品的区分
                 dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"),
-                        (Date) pfund.get("DATE_TRANSFORM"));
-                dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"),
-                        (Date) pfund.get("DATE_TRANSFORM"));
+                        (Date) pfund.get("DATE_TRANSFORM"),(String) pfund.get("FUND_TYPE"));
+                dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), 
+                        (Date) pfund.get("DATE_TRANSFORM"), (String) pfund.get("FUND_TYPE"));
 
                 // 日期DEBUG程序
                 // String[] a =
-                // {"CURRENT_YEAR","CURRENT_YEAR_NUM","CURRENT_INIT_DATE","CURRENT_INIT_TEXT","CURRENT_INIT_SOURCE","CURRENT_PERIOD","CURRENT_BS_DATE","CURRENT_END_DATE","CURRENT_END_TXT","CURRENT_END_SOURCE","TXT_PERIOD_CURRENT","TABLE_PERIOD_CURRENT","TABLE_PERIOD_CURRENT_A","TABLE_PERIOD_CURRENT_B"};
+                // {"CURRENT_YEAR","CURRENT_YEAR_NUM","CURRENT_INIT_DATE","CURRENT_INIT_TEXT","CURRENT_INIT_SOURCE","CURRENT_PERIOD","CURRENT_BS_DATE","CURRENT_END_DATE","CURRENT_END_TXT","CURRENT_END_SOURCE","TXT_PERIOD_CURRENT","TABLE_PERIOD_CURRENT","TABLE_PERIOD_CURRENT_A","TABLE_PERIOD_CURRENT_B","TABLE_PERIOD_CURRENT_A1","TABLE_PERIOD_CURRENT_B1"};
                 // String[] b =
                 // {"LAST_YEAR","LAST_YEAR_NUM","LAST_INIT_DATE","LAST_INIT_TEXT","LAST_INIT_SOURCE","LAST_PERIOD","LAST_BS_DATE","LAST_END_DATE","LAST_END_TXT","LAST_END_SOURCE","TXT_PERIOD_LAST","TABLE_PERIOD_LAST","TABLE_PERIOD_LAST_A","TABLE_PERIOD_LAST_B"};
                 // for(String at : a) {
@@ -437,7 +473,7 @@ public class ReportService implements ReportManager {
                 String p1TempNameFinal = null;
                 String p2TempNameFinal = null;
                 String p3TempNameFinal = null;
-                String p4TempNameFinal = null;
+                // String p4TempNameFinal = null;
                 String p5TempNameFinal = null;
                 // P1
                 p1TempNameFinal = p1TempName + tempNameKey + ".ftl";
@@ -452,11 +488,11 @@ public class ReportService implements ReportManager {
                 p3TempNameFinal = reptype.equals("年审报告")? p3TempName + tempNameKey + ".ftl" : p3TempName + tempNameKey + "_Mid.ftl"; // 20200507,yury,新增年报或中期的判断，中期报告的P3有单独的模板
                 // P4
                 // 如果选择此种规则，则按照基金区分模板
-                if (pd.getString("P4").equals("P4_FSO_BF")) {
-                    p4TempNameFinal = p4TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
-                } else {
-                    p4TempNameFinal = p4TempName + ".xml";
-                }
+                // if (pd.getString("P4").equals("P4_FSO_BF")) {
+                //     p4TempNameFinal = p4TempName + "_" + pfund.getString("FUND_ID") + period + ".xml";
+                // } else {
+                //     p4TempNameFinal = p4TempName + ".xml";
+                // }
                 // P5
                 p5TempNameFinal = p5TempName + tempNameKey + ".ftl";
                 // 归档
@@ -464,7 +500,7 @@ public class ReportService implements ReportManager {
                 partName.put("P1", p1TempNameFinal);
                 partName.put("P2", p2TempNameFinal);
                 partName.put("P3", p3TempNameFinal);
-                partName.put("P4", p4TempNameFinal);
+                // partName.put("P4", p4TempNameFinal);
                 partName.put("P5", p5TempNameFinal);
                 // ↑-------获取报告模板地址-------↑//
 
@@ -537,13 +573,13 @@ public class ReportService implements ReportManager {
         PageData p1 = dictionariesManager.findByCode("P1_FSO_SH");
         PageData p2 = dictionariesManager.findByCode("P2_FSO_TY");
         PageData p3 = dictionariesManager.findByCode("P3_FSO_SH");
-        PageData p4 = dictionariesManager.findByCode("P4_FSO_TY");
+        // PageData p4 = dictionariesManager.findByCode("P4_FSO_TY");
         PageData p5 = dictionariesManager.findByCode("P5_FSO_SH");
         // 英文名用于存文件名关键字
         String p1TempName = p1.getString("NAME_EN");
         String p2TempName = p2.getString("NAME_EN");
         String p3TempName = p3.getString("NAME_EN");
-        String p4TempName = p4.getString("NAME_EN");
+        // String p4TempName = p4.getString("NAME_EN");
         String p5TempName = p5.getString("NAME_EN");
 
         // 模板一期、二期关键字
@@ -552,8 +588,9 @@ public class ReportService implements ReportManager {
         // 遍历处理基金导出
         Map<String, Object> exportParam = new HashMap<>();
         // 获取日期信息
-        dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
-        dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"));
+        // chenhy,20240223,新增基金和产品的区分
+        dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"), (String) pfund.get("FUND_TYPE"));
+        dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), (Date) pfund.get("DATE_TRANSFORM"), (String) pfund.get("FUND_TYPE"));
 
         // ↓-------获取报告模板地址-------↓//
         // 如果 本期起始日来源 为 “资产负债表日”取YOY,否则取Y
@@ -565,7 +602,7 @@ public class ReportService implements ReportManager {
         String p1TempNameFinal = null;
         String p2TempNameFinal = null;
         String p3TempNameFinal = null;
-        String p4TempNameFinal = null;
+        // String p4TempNameFinal = null;
         String p5TempNameFinal = null;
         // P1
         p1TempNameFinal = p1TempName + tempNameKey + ".ftl";
@@ -575,7 +612,7 @@ public class ReportService implements ReportManager {
         p3TempNameFinal = repType.equals("年审报告")? p3TempName + tempNameKey + ".ftl" : p3TempName + tempNameKey + "_Mid.ftl"; // 20200507,yury,新增年报或中期的判断，中期报告的P3有单独的模板
         // P4
         // 如果选择此种规则，则按照基金区分模板
-        p4TempNameFinal = p4TempName + ".xml";
+        // p4TempNameFinal = p4TempName + ".xml";
         // P5
         p5TempNameFinal = p5TempName + tempNameKey + ".ftl";
         // 归档
@@ -583,7 +620,7 @@ public class ReportService implements ReportManager {
         partName.put("P1", p1TempNameFinal);
         partName.put("P2", p2TempNameFinal);
         partName.put("P3", p3TempNameFinal);
-        partName.put("P4", p4TempNameFinal);
+        // partName.put("P4", p4TempNameFinal);
         partName.put("P5", p5TempNameFinal);
         // ↑-------获取报告模板地址-------↑//
 
@@ -591,6 +628,7 @@ public class ReportService implements ReportManager {
         exportParam.put("dateInfo", dateMap);
         exportParam.put("lastDateInfo", dateMapLast);
         exportParam.put("PEROID", period);
+        exportParam.put("FIRM_CODE", pfund.getString("FIRM_CODE"));
         exportParam.put("FUND_ID", pfund.getString("FUND_ID"));
         exportParam.put("partName", partName);
         exportParam.put("reportTempRootPath", reportTempRootPath);

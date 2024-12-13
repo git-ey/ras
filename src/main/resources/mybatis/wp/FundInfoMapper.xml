@@ -18,6 +18,10 @@
 		RE_STATUS,	
 		CLOSING_PRICE,	
 		UNIT_NAV,	
+		REGULAR_OPEN_FUND,
+		SFC_TYPE,
+		CLOSING_STATUS,
+		FUND_SUB_TYPE,
 		FUNDINFO_ID
 	</sql>
 	
@@ -32,6 +36,10 @@
 		#{RE_STATUS},	
 		#{CLOSING_PRICE},	
 		#{UNIT_NAV},	
+		#{REGULAR_OPEN_FUND},
+		#{SFC_TYPE},
+		#{CLOSING_STATUS},
+		#{FUND_SUB_TYPE},
 		#{FUNDINFO_ID}
 	</sql>
 	
@@ -71,6 +79,10 @@
 			</if>
 			<if test="UNIT_NAV != null and UNIT_NAV != ''">
 			UNIT_NAV = #{UNIT_NAV},
+			REGULAR_OPEN_FUND = #{REGULAR_OPEN_FUND},
+			SFC_TYPE = #{SFC_TYPE},
+			CLOSING_STATUS = #{CLOSING_STATUS},
+			FUND_SUB_TYPE = #{FUND_SUB_TYPE},
 			</if>
 		FUNDINFO_ID = FUNDINFO_ID
 		where 
@@ -149,6 +161,10 @@
 		#{pd.RE_STATUS},	
 		#{pd.CLOSING_PRICE},	
 		#{pd.UNIT_NAV},	
+		#{pd.REGULAR_OPEN_FUND},
+		#{pd.SFC_TYPE},
+		#{pd.CLOSING_STATUS},
+		#{pd.FUND_SUB_TYPE},
 		#{pd.FUNDINFO_ID},
 		#{pd.MODE}
          )

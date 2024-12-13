@@ -99,19 +99,43 @@
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();
 		}
-		function fileType(obj){
-			var fileType=obj.value.substr(obj.value.lastIndexOf(".")).toLowerCase();//获得文件后缀名
-		    if(fileType != '.xls'){
-		    	$("#excel").tips({
-					side:3,
-		            msg:'请上传xls格式的文件',
-		            bg:'#AE81FF',
-		            time:3
-		        });
-		    	$("#excel").val('');
-		    	document.getElementById("excel").files[0] = '请选择xls格式的文件';
-		    }
-		}
+		
+		function fileType(obj) {  
+			var maxSize = 5242880000; // 设置最大文件大小为50GB（5242880000字节）  
+			var fileSize = obj.files[0].size; // 获取文件大小（以字节为单位）  
+			var fileType = obj.value.substr(obj.value.lastIndexOf(".")).toLowerCase(); // 获得文件后缀名  
+			// 检查文件大小是否超过限制  
+			if (fileSize > maxSize) {  
+				$("#excel").tips({  
+					side: 3,  
+					msg: '文件大小不能超过50GB',  
+					bg: '#AE82FF',  
+					time: 3  
+				});  
+				$("#excel").val('');   
+			}  
+			// 读取文件的二进制数据  
+			var file = obj.files[0];  
+			var reader = new FileReader();  
+			reader.onload = function(e) {
+				var data = new Uint8Array(e.target.result);  
+				var signature = '';  
+				for (var i = 0; i < data.length && signature.length < 16; i++) { // 修改循环条件，确保读取到足够的数据  
+					signature += data[i].toString(16);  
+				}
+				// 检查文件头签名是否符合xls或xlsx格式  
+				if (signature !== 'd0cf11e0a1b11ae1' && signature !== '504b3414060800021') { // 添加对较旧的BIFF5格式的xls文件的支持  
+					$("#excel").tips({  
+						side: 3,  
+						msg: '请上传Excel格式的文件',  
+						bg: '#AE82FF',  
+						time: 3  
+					});
+					$('#excel').ace_file_input('reset_input');
+				}
+			}; 
+			reader.readAsArrayBuffer(file);  
+		}	
 	</script>
 
 

@@ -92,6 +92,10 @@
 											<td class='center'>${var.MARKET}</td>
 											<td class='center'>${var.TRX_STATUS}</td>
 											<td class='center'>${var.RE_STATUS}</td>
+											<td class='center'>${var.REGULAR_OPEN_FUND}</td>
+											<td class='center'>${var.SFC_TYPE}</td>
+											<td class='center'>${var.CLOSING_STATUS}</td>
+											<td class='center'>${var.FUND_SUB_TYPE}</td>
 											<td class='center'>${var.CLOSING_PRICE}</td>
 											<td class='center'>${var.UNIT_NAV}</td>
 											<td class="center">

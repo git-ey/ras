@@ -96,6 +96,7 @@ public class FundSignoffService implements FundSignoffManager{
 				pd.put("SIGNOFF_1", map.get("SIGNOFF_1"));
 				pd.put("SIGNOFF_2", map.get("SIGNOFF_2"));
 				pd.put("SIGNOFF_3", map.get("SIGNOFF_3"));
+				pd.put("DB_NUM", map.get("DB_NUM"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 				pds.add(pd);

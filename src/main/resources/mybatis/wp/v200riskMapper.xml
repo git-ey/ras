@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="v200riskMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		EY_V200_RISK
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		V200RISK_ID,
+		FUND_ID,
+		PERIOD,
+		FIRM_CODE,
+		MMF,
+		MAC,
+		ACCOUNT_NUM,
+		BOND_CODE,
+		BOND_NAME,
+		MARKET,
+		TYPE,
+		SUB_TYPE,
+		V_TYPE,
+		QUANTITY,
+		MKT_VALUE_CLIENT,
+		BOND_RATING_ORG,
+		BOND_RATING,
+		ENTITY_RATING_ORG,
+		ENTITY_RATING,
+		DURATING_NUM,
+		DURATION,
+		V_RATING,
+		RATING,
+		DESCRIPTION,
+		STATUS
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{V200RISK_ID},
+		#{FUND_ID},
+		#{PERIOD},
+		#{FIRM_CODE},
+		#{MMF},
+		#{MAC},
+		#{ACCOUNT_NUM},
+		#{BOND_CODE},
+		#{BOND_NAME},
+		#{MARKET},
+		#{TYPE},
+		#{SUB_TYPE},
+		#{V_TYPE},
+		#{QUANTITY},
+		#{MKT_VALUE_CLIENT},
+		#{BOND_RATING_ORG},
+		#{BOND_RATING},
+		#{ENTITY_RATING_ORG},
+		#{ENTITY_RATING},
+		#{DURATING_NUM},
+		#{DURATION},
+		#{V_RATING},
+		#{RATING},
+		#{DESCRIPTION},
+		#{STATUS}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+		V200RISK_ID = #{V200RISK_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			FUND_ID = #{FUND_ID},
+			PERIOD = #{PERIOD},
+			FIRM_CODE = #{FIRM_CODE},
+			MMF = #{MMF},
+			MAC = #{MAC},
+			ACCOUNT_NUM = #{ACCOUNT_NUM},
+			BOND_CODE = #{BOND_CODE},
+			BOND_NAME = #{BOND_NAME},
+			MARKET = #{MARKET},
+			TYPE = #{TYPE},
+			SUB_TYPE = #{SUB_TYPE},
+			V_TYPE = #{V_TYPE},
+			QUANTITY = #{QUANTITY},
+			MKT_VALUE_CLIENT = #{MKT_VALUE_CLIENT},
+			BOND_RATING_ORG = #{BOND_RATING_ORG},
+			BOND_RATING = #{BOND_RATING},
+			ENTITY_RATING_ORG = #{ENTITY_RATING_ORG},
+			ENTITY_RATING = #{ENTITY_RATING},
+			DURATING_NUM = #{DURATING_NUM},
+			DURATION = #{DURATION},
+			V_RATING = #{V_RATING},
+			RATING = #{RATING},
+			DESCRIPTION = #{DESCRIPTION},
+			STATUS = #{STATUS},
+		V200RISK_ID = V200RISK_ID
+		where 
+		V200RISK_ID = #{V200RISK_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			V200RISK_ID = #{V200RISK_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					FIRM_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+						or 
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				    	or 
+					BOND_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+						or 
+					BOND_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+						or
+					ACCOUNT_NUM  LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+		<if test="pd.PERIOD != null and pd.PERIOD != ''">
+		    and PERIOD = #{pd.PERIOD}
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+		v200risk_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.V200RISK_ID},
+		#{pd.FUND_ID},
+		#{pd.PERIOD},
+		#{pd.FIRM_CODE},
+		#{pd.MMF},
+		#{pd.MAC},
+		#{pd.ACCOUNT_NUM},
+		#{pd.BOND_CODE},
+		#{pd.BOND_NAME},
+		#{pd.MARKET},
+		#{pd.TYPE},
+		#{pd.SUB_TYPE},
+		#{pd.V_TYPE},
+		#{pd.QUANTITY},
+		#{pd.MKT_VALUE_CLIENT},
+		#{pd.BOND_RATING_ORG},
+		#{pd.BOND_RATING},
+		#{pd.ENTITY_RATING_ORG},
+		#{pd.ENTITY_RATING},
+		#{pd.DURATING_NUM},
+		#{pd.DURATION},
+		#{pd.V_RATING},
+		#{pd.RATING},
+		#{pd.DESCRIPTION},
+		#{pd.STATUS}
+         )
+         </foreach >
+	</insert>
+	
+</mapper>

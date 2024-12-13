@@ -170,9 +170,9 @@
 					<table style="width:100%;">
 						<tr>
 							<td style="vertical-align:top;">
-								<c:if test="${QX.add == 1 }">
+								<!-- <c:if test="${QX.add == 1 }">
 								<a class="btn btn-mini btn-success" onclick="add();">新增</a>
-								</c:if>
+								</c:if> -->
 								<c:if test="${QX.del == 1 }">
 								<a title="批量删除" class="btn btn-mini btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" ><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
 								</c:if>

@@ -75,14 +75,14 @@ public class ExcelImportor extends FileImportor {
 		Sheet sheet = workbook.getSheetAt(configuration.getSheetNo() == null ? 0 : configuration.getSheetNo());
 		int startRow = configuration.getStartRowNo();
 		List<ImportConfigCell> lists = configuration.getImportCells();
-		int phyRow = sheet.getPhysicalNumberOfRows();
+		int phyRow = sheet.getLastRowNum();
 		List<Map> results = Lists.newLinkedList();
 		// 引号，处理MySQL插入数据返回的Map用到
 		String quotes = "";
 		if (StringUtils.isNotBlank(configuration.getTableName())) {
 			quotes = "'";
 		}
-		for (int t = startRow; t < phyRow; t++) {
+		for (int t = startRow; t <= phyRow; t++) {
 			Row row = sheet.getRow(t);
 			if (row == null) {
 				continue;
@@ -213,7 +213,7 @@ public class ExcelImportor extends FileImportor {
 					break;
 				}
 				if (rawCellType == Cell.CELL_TYPE_STRING) {
-					temp = cell.getStringCellValue();
+					temp = cell.getStringCellValue().replace("'", "\\'"); // 解析excel时将单引号转义
 					maps.put(key, StringUtils.isBlank(temp) ? "''" : quotes + temp + quotes);
 					break;
 				}

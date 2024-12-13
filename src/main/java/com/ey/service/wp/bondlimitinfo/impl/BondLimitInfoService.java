@@ -119,6 +119,7 @@ public class BondLimitInfoService implements BondLimitInfoManager{
 				pd.put("RESMPATION_OPEN_PRICE", map.get("RESMPATION_OPEN_PRICE"));
 				pd.put("CREATOR", "CREATOR");
 				pd.put("REVIEWER", "REVIEWER");
+				pd.put("LIMIT_LEN", map.get("LIMIT_LEN"));
 				pds.add(pd);
 				idx++;
 			}

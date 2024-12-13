@@ -103,6 +103,10 @@ public class FundControlService implements FundControlManager{
 				pd.put("BOND_BS", map.get("BOND_BS"));
 				pd.put("BOND_R", map.get("BOND_R"));
 				pd.put("BOND_P", map.get("BOND_P"));
+				pd.put("ABS_ALL", map.get("ABS_ALL"));// IRENE20220715
+				pd.put("ABS_BS", map.get("ABS_BS"));// IRENE20220715
+				pd.put("ABS_R", map.get("ABS_R"));// IRENE20220715
+				pd.put("ABS_P", map.get("ABS_P"));// IRENE20220715
 				pd.put("GOLD_ALL", map.get("GOLD_ALL"));
 				pd.put("GOLD_BS", map.get("GOLD_BS"));
 				pd.put("GOLD_R", map.get("GOLD_R"));
@@ -121,6 +125,9 @@ public class FundControlService implements FundControlManager{
 				pd.put("RISK_E_PRICE", map.get("RISK_E_PRICE"));
 				pd.put("RISK_E_FOREIGN_EXCHANGE", map.get("RISK_E_FOREIGN_EXCHANGE")); // yury,20200910,新增外汇风险敞口及敏感性分析
 				pd.put("RISK_S_FOREIGN_EXCHANGE", map.get("RISK_S_FOREIGN_EXCHANGE")); // yury,20200910,新增外汇风险敞口及敏感性分析
+				pd.put("FUND_BS", map.get("FUND_BS"));// IRENE20231011
+				pd.put("DI_WARRAMT", map.get("DI_WARRAMT"));// IRENE20231011
+				pd.put("DI_OTHER", map.get("DI_OTHER"));// IRENE20231011
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pds.add(pd);
 				idx++;

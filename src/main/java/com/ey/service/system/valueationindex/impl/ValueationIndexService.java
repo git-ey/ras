@@ -99,6 +99,7 @@ public class ValueationIndexService implements ValueationIndexManager{
 			if (null != map.get("TYPE")) {
 				PageData pd = new PageData();
 				pd.put("VALUEATIONINDEX_ID", UuidUtil.get32UUID());
+				pd.put("FIRM_CODE", map.get("FIRM_CODE"));
 				pd.put("MMF", map.get("MMF"));
 				pd.put("TYPE", map.get("TYPE"));
 				pd.put("MARKET", map.get("MARKET"));
@@ -111,6 +112,7 @@ public class ValueationIndexService implements ValueationIndexManager{
 				pd.put("VAL_BASE_SOURCE", map.get("VAL_BASE_SOURCE"));
 				pd.put("VAL_COLUMN", map.get("VAL_COLUMN"));
 				pd.put("THREE_LEVEL", map.get("THREE_LEVEL"));
+				pd.put("firm_code", map.get("firm_code"));
 				pds.add(pd);
 				idx++;
 			}

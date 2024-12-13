@@ -48,10 +48,12 @@ public class VExportService extends BaseExportService implements VExportManager{
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("fundInfo", fundInfo);
+        dataMap.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
         
         dataMap.put("V300", this.getV300Data(fundId, periodStr));
         dataMap.put("V400", this.getV400Data(fundId, periodStr));
         dataMap.put("V500", this.getV500Data(fundId, periodStr));
+        dataMap.put("V600", this.getV600Data(fundId, periodStr));
 
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_V);
     }
@@ -74,6 +76,50 @@ public class VExportService extends BaseExportService implements VExportManager{
         return true;
     }
     
+    
+	/**
+     * 获取基金额外属性
+     * @author Dai Zong 2017年12月2日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getExtraFundInfo(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("PExportMapper.selectExtraFundInfo", queryMap);
+        if(fundInfo == null) {
+            fundInfo = new HashMap<>();
+        }
+        
+        Integer startYear = 2000, startMonth = 01, startDay = 01;
+        if(fundInfo.get("dateFrom") != null) {
+            String[] splits = String.valueOf(fundInfo.get("dateFrom")).split("-");
+            try {
+                if(splits.length == 1) {
+                    startYear = Integer.parseInt(splits[0]);
+                }else if(splits.length == 2) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                }else if(splits.length >= 3) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                    startDay = Integer.parseInt(splits[2]);
+                }
+            }catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        fundInfo.put("startYear", startYear);
+        fundInfo.put("startMonth", startMonth);
+        fundInfo.put("startDay", startDay);
+        return fundInfo;
+    }
+
     /**
      * 处理sheet页V300的数据
      * @author Dai Zong 2017年11月27日
@@ -93,6 +139,14 @@ public class VExportService extends BaseExportService implements VExportManager{
             V300IntRistPeriodsDataList = new ArrayList<>(); 
         }
         
+        // -----------------irene20230904新增 应交税费/应付税费-----------------------
+        @SuppressWarnings("unchecked")
+        List<String> V300TaxPayableNameDataList = (List<String>) this.dao
+                .findForList("VExportMapper.selectV300IntRiskTaxPayableNameData", queryMap);
+        if (V300TaxPayableNameDataList == null) {
+            V300TaxPayableNameDataList = new ArrayList<>();
+        }
+        // -----------------irene20230904新增 应交税费/应付税费 结束-----------------------
         List<Integer> emptyList = new ArrayList<>();
         for(int i=0 ; i<V300IntRistPeriodsDataList.size(); i++) {
             emptyList.add(0);
@@ -175,6 +229,24 @@ public class VExportService extends BaseExportService implements VExportManager{
         Map<String, Object> attr25 = new HashMap<String, Object>();
         attr25.put("list", emptyList);
         attr25.put("count", 0);
+        Map<String, Object> attr26 = new HashMap<String, Object>();
+        attr26.put("list", emptyList);
+        attr26.put("count", 0);
+        Map<String, Object> attr27 = new HashMap<String, Object>();
+        attr27.put("list", emptyList);
+        attr27.put("count", 0);
+        Map<String, Object> attr28 = new HashMap<String, Object>();
+        attr28.put("list", emptyList);
+        attr28.put("count", 0);
+        Map<String, Object> attr29 = new HashMap<String, Object>();
+        attr29.put("list", emptyList);
+        attr29.put("count", 0);
+        Map<String, Object> attr30 = new HashMap<String, Object>();
+        attr30.put("list", emptyList);
+        attr30.put("count", 0);
+        Map<String, Object> attr31 = new HashMap<String, Object>();
+        attr31.put("list", emptyList);
+        attr31.put("count", 0);
         
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V300MetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV300Data", queryMap);
@@ -203,7 +275,7 @@ public class VExportService extends BaseExportService implements VExportManager{
             list = tempList;
             int count = list.size();
             switch (type) {
-                case "银行存款":
+                case "货币资金":
                     attr1.put("list", list);
                     attr1.put("count", count);
                     break;
@@ -303,6 +375,30 @@ public class VExportService extends BaseExportService implements VExportManager{
                     attr25.put("list", list);
                     attr25.put("count", count);
                     break;
+                case "债权投资":
+                    attr26.put("list", list);
+                    attr26.put("count", count);
+                    break;
+                case "其他债权投资":
+                    attr27.put("list", list);
+                    attr27.put("count", count);
+                    break;
+                case "其他权益工具投资":
+                    attr28.put("list", list);
+                    attr28.put("count", count);
+                    break;
+                case "递延所得税资产":
+                    attr29.put("list", list);
+                    attr29.put("count", count);
+                    break;
+                case "应付投资顾问费":
+                    attr30.put("list", list);
+                    attr30.put("count", count);
+                    break;
+                case "递延所得税负债":
+                    attr31.put("list", list);
+                    attr31.put("count", count);
+                    break;
                 default:
                     break;
             }
@@ -333,10 +429,17 @@ public class VExportService extends BaseExportService implements VExportManager{
         detail.put("attr23", attr23);
         detail.put("attr24", attr24);
         detail.put("attr25", attr25);
+        detail.put("attr26", attr26);
+        detail.put("attr27", attr27);
+        detail.put("attr28", attr28);
+        detail.put("attr29", attr29);
+        detail.put("attr30", attr30);
+        detail.put("attr31", attr31);
         
         result.put("intRistPeriods", V300IntRistPeriodsDataList);
         result.put("intRistPeriodsCount", V300IntRistPeriodsDataList.size());
         result.put("detail", detail);
+        result.put("TaxPayableName", V300TaxPayableNameDataList);
         
         return result;
     }
@@ -617,6 +720,74 @@ public class VExportService extends BaseExportService implements VExportManager{
         result.put("betaOneJson", betaOneJson);
         result.put("test", V500TestData);
         result.put("dayOfYear", dayOfYear);
+        return result;
+    }
+
+    
+    /**
+     * 处理sheet页V600的数据
+     * @author irenewu 2022年11月03日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getV600Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        Map<String, Object> lastQueryMap = new HashMap<String,Object>(); 
+        queryMap.forEach((k,v) -> {
+            lastQueryMap.put(k, v);
+        });
+        lastQueryMap.put("period", (Integer.parseInt(String.valueOf(lastQueryMap.get("period")).substring(0, 4)) - 1) + "1231");
+                
+        Map<String, Object> exposure = new HashMap<String,Object>();
+        Map<String, Object> current = new HashMap<String,Object>();
+        Map<String, Object> last = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V600ExposureDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600ExposureData", queryMap);
+        if(V600ExposureDataList == null) {
+            V600ExposureDataList = new ArrayList<>(); 
+        }
+        current.put("list", V600ExposureDataList);
+        current.put("count", V600ExposureDataList.size());
+        
+        exposure.put("current", current);
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> LastV600ExposureDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600ExposureData", lastQueryMap);
+        if(LastV600ExposureDataList == null) {
+            LastV600ExposureDataList = new ArrayList<>(); 
+        }
+        last.put("list", LastV600ExposureDataList);
+        last.put("count", LastV600ExposureDataList.size());
+        
+        exposure.put("last", last);
+        
+        Map<String, Object> test = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> V600TestDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600Test", queryMap);
+        if(V600TestDataList == null) {
+            V600TestDataList = new ArrayList<>(); 
+        }
+        test.put("list", V600TestDataList);
+        test.put("count", V600TestDataList.size());
+
+        //chenhy,20240401,新增专户其他价格敏感性分析
+        Map<String, Object> delta = new HashMap<String,Object>();
+        @SuppressWarnings("unchecked")
+        Map<String,Object> V600OtherPriceSumData = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV600OtherPriceSumData", queryMap);
+        if(V600OtherPriceSumData == null) {
+            V600OtherPriceSumData = new HashMap<>(); 
+        }
+        delta.put("otherPriceSumData",V600OtherPriceSumData);
+
+        result.put("exposure", exposure);
+        result.put("test", test);
+        result.put("delta", delta);
+        
         return result;
     }
 

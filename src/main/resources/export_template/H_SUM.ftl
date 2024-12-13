@@ -963,6 +963,110 @@
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
  </Styles>
+ <Worksheet ss:Name="H00">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s43" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="80"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="80"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="80"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="80"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="80"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="80"/>
+   <Column ss:StyleID="s43" ss:Width="100"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="80"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="100"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="100"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="100"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="100"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="100"/>
+   <Row ss:Height="14.25"/>
+   <Row>
+    <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${companyInfo.fullName}旗下基金</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s95"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="11" ss:StyleID="s93"><Data ss:Type="String">WP Ref</Data></Cell>
+    <Cell ss:Index="18" ss:StyleID="s68"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s45"><Data ss:Type="String">会计期末：</Data></Cell>
+    <Cell ss:StyleID="s123"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s98"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s100"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="11" ss:StyleID="s94"><Data ss:Type="String">H10</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">估值类型、三层次及流通受限汇总对照表</Data></Cell>
+   </Row>
+   <Row/>
+   <Row ss:StyleID="s38">
+    <Cell ss:Index="7" ss:StyleID="s38"><Data ss:Type="String">注：仅基金适用</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s38">
+    <Cell ss:StyleID="s38"><Data ss:Type="String">底稿索引</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">特殊基金类型</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">投资标的</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">交易市场</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">子类型</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">期末交易状态</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">期末估值状态</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">计息方式</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">索引估值类型代码</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">估值类型代码</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">估值类型</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">估值基价来源</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">流通受限类型</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">三层次类型</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">备注</Data></Cell>
+   </Row>
+   <#if H00.count != 0>
+   <#list H00.list as item>
+   <Row>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.WPindex!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.MMF!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.type!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.market!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.subType!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.trxStatus!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.intMode!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.valTypeIndex!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.valTypeDexs!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.valBaseSource!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.valColumn!}</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
+    </Row>
+   </#list>
+   </#if>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>300</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>20</ActiveRow>
+     <ActiveCol>4</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
  <Worksheet ss:Name="H10">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s43" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="101.25"/>
@@ -981,6 +1085,7 @@
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="16.5"/>
    <Column ss:StyleID="s43" ss:Width="76.5"/>
    <Column ss:StyleID="s43" ss:Width="127.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="103.5"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="103.5"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="16.5"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90.75"/>
@@ -1071,8 +1176,13 @@
    </Row>
    <Row/>
    <Row>
-    <Cell ss:Index="16" ss:MergeAcross="2" ss:StyleID="s167"><Data ss:Type="String">因新发流通受限</Data></Cell>
-    <Cell ss:Index="20" ss:MergeAcross="3" ss:StyleID="s167"><Data ss:Type="String">暂时流通受限</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Note 2</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">我们根据企业会计准则，关联方判断规则系证券发行人为基金托管人、基金管理人的股东的情况。</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:Index="16" ss:MergeAcross="3" ss:StyleID="s167"><Data ss:Type="String">因新发流通受限</Data></Cell>
+    <Cell ss:Index="21" ss:MergeAcross="3" ss:StyleID="s167"><Data ss:Type="String">暂时流通受限</Data></Cell>
    </Row>
    <Row ss:StyleID="s44">
     <Cell><Data ss:Type="String">基金代码</Data></Cell>
@@ -1088,8 +1198,9 @@
     <Cell ss:Index="14"><Data ss:Type="String">流通受限类型</Data></Cell>
     <Cell ss:Index="16"><Data ss:Type="String">成功认购日</Data></Cell>
     <Cell><Data ss:Type="String">认购价格</Data></Cell>
-    <Cell><Data ss:Type="String">可流通日</Data></Cell>
-    <Cell ss:Index="20"><Data ss:Type="String">停牌日期</Data></Cell>
+    <Cell><Data ss:Type="String">受限期</Data></Cell>
+    <Cell><Data ss:Type="String">解禁日期</Data></Cell>
+    <Cell ss:Index="21"><Data ss:Type="String">停牌日期</Data></Cell>
     <Cell><Data ss:Type="String">停牌原因</Data></Cell>
     <Cell><Data ss:Type="String">复牌日期</Data></Cell>
     <Cell><Data ss:Type="String">复牌开盘单价</Data></Cell>
@@ -1105,7 +1216,7 @@
     <Cell ss:Index="16" ss:StyleID="s41"><Data ss:Type="String">From JE</Data></Cell>
     <Cell ss:StyleID="s41"/>
     <Cell ss:StyleID="s119"><Data ss:Type="String">From 公开市场信息</Data></Cell>
-    <Cell ss:Index="20" ss:StyleID="s41"/>
+    <Cell ss:Index="21" ss:StyleID="s41"/>
    </Row>
    <#if H10.count != 0>
    <#list H10.list as item>
@@ -1123,8 +1234,9 @@
     <Cell ss:Index="14"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
     <Cell ss:Index="16" ss:StyleID="s103"><#if item.subscribeDate??><Data ss:Type="DateTime">${item.subscribeDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.subscribePrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">${item.limitlen!}</Data></Cell>
     <Cell ss:StyleID="s103"><#if item.liftingDate??><Data ss:Type="DateTime">${item.liftingDate!}</Data></#if></Cell>
-    <Cell ss:Index="20" ss:StyleID="s103"><#if item.suspensionDate??><Data ss:Type="DateTime">${item.suspensionDate!}</Data></#if></Cell>
+    <Cell ss:Index="21" ss:StyleID="s103"><#if item.suspensionDate??><Data ss:Type="DateTime">${item.suspensionDate!}</Data></#if></Cell>
     <Cell><Data ss:Type="String">${item.suspensionInfo!}</Data></Cell>
     <Cell ss:StyleID="s103"><#if item.resumptionDate??><Data ss:Type="DateTime">${item.resumptionDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.resmpationOpenPrice!0)?string('0.##')}</Data></Cell>
@@ -1227,82 +1339,24 @@
     <Cell><Data ss:Type="String">第二步：根据第一步所得的收益率计算该股票当日的公允价值。</Data></Cell>
    </Row>
    <Row/>
-   <Row>
-    <Cell ss:StyleID="s48"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s50"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s51"/>
-    <Cell ss:StyleID="s49"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s52"><Data ss:Type="String">基金会计每日手工计算潜在估值调整并与托管人核对，当潜在估值调整不超过基金前一估值日净值的0.25%时，以停牌前一交易日收盘价作为估值价格；</Data></Cell>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s50"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s51"/>
-    <Cell ss:StyleID="s49"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s52"><Data ss:Type="String">当潜在估值调整超过基金前一估值日净值的0.25%时，估值委员会就停牌股票是否采用指数收益法估值进行讨论。当认为指数收益法估值公允时，采用指数收益法进行估值。</Data></Cell>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s50"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s51"/>
-    <Cell ss:StyleID="s49"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s52"><Data ss:Type="String">当估值委员会认为采用指数收益法估值不公允时，采用估值委员会商议的方法进行估值。</Data></Cell>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s50"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s51"/>
-    <Cell ss:StyleID="s49"/>
    </Row>
    <Row/>
    <Row/>
    <Row>
     <Cell ss:StyleID="s48"><Data ss:Type="String">我们对于审计范围内所有基金所持有的停牌股票进行了估值价格的测试</Data></Cell>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s50"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s54"/>
-    <Cell ss:StyleID="s49"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:Index="7" ss:StyleID="s54"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s53"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s50"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:Index="7" ss:StyleID="s54"/>
-   </Row>
-   <Row>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:Index="7" ss:StyleID="s54"/>
-   </Row>
+   <Row/>
+   <Row/>
+   <Row/>
    <#if H11.count != 0>
    <#list H11.list as head>
    <Row>
@@ -1618,146 +1672,59 @@
     <Cell ss:StyleID="s99"><Data ss:Type="String">XX</Data></Cell>
     <Cell ss:StyleID="s100"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
     <Cell ss:Index="13" ss:StyleID="s94"><Data ss:Type="String">H20</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s73"/>
-    <Cell ss:Index="21" ss:StyleID="s43"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s38"><Data ss:Type="String">固定收益类三层次、估值及流通受限汇总表（非货币基金）</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s73"/>
-    <Cell ss:Index="21" ss:StyleID="s43"/>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">固定收益类三层次、估值及流通受限汇总表（非货币基金非摊余成本债基）</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s40"/>
-    <Cell ss:StyleID="s40"/>
-    <Cell ss:Index="16" ss:StyleID="s73"/>
-    <Cell ss:Index="21" ss:StyleID="s43"/>
-   </Row>
+   <Row/>
    <Row>
     <Cell ss:StyleID="s91"><Data ss:Type="String">Note 1</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="String">我们根据企业会计准则以及估值相关的法律法规，判断本期末固定收益类投资的估值类型如下：</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s73"/>
-    <Cell ss:Index="21" ss:StyleID="s43"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s91"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:Index="16" ss:StyleID="s73"/>
-    <Cell ss:Index="21" ss:StyleID="s43"/>
-   </Row>
+   <Row/>
    <Row ss:Height="27" ss:StyleID="s69">
     <Cell ss:StyleID="s147"><Data ss:Type="String">估值类型&#10;Per EY</Data></Cell>
     <Cell ss:StyleID="s79"><Data ss:Type="String">概述</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">数据来源</Data></Cell>
-    <Cell ss:Index="10" ss:StyleID="s43"/>
-    <Cell ss:Index="16" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
    </Row>
    <Row ss:StyleID="s69">
     <Cell ss:StyleID="s43"><Data ss:Type="String">债A</Data></Cell>
     <Cell><Data ss:Type="String">净价</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="String">公开市场信息</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
    </Row>
    <Row ss:StyleID="s69">
     <Cell ss:StyleID="s43"><Data ss:Type="String">债B</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="String">全价</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="String">公开市场信息</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
    </Row>
    <Row ss:StyleID="s69">
     <Cell ss:StyleID="s43"><Data ss:Type="String">债C</Data></Cell>
     <Cell><Data ss:Type="String">净价+利息税</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="String">公开市场信息</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
    </Row>
    <Row ss:StyleID="s69">
     <Cell ss:StyleID="s43"><Data ss:Type="String">债D</Data></Cell>
     <Cell><Data ss:Type="String">全价-税后应收利息</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="String">公开市场信息</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
    </Row>
    <Row ss:StyleID="s69">
     <Cell ss:StyleID="s43"><Data ss:Type="String">债E</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="String">成本</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="String">各基金</Data></Cell>
-    <Cell ss:Index="16" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
    </Row>
    <Row ss:StyleID="s69">
     <Cell ss:StyleID="s43"><Data ss:Type="String">债F</Data></Cell>
     <Cell ss:StyleID="s43"><Data ss:Type="String">其他估值方法</Data></Cell>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="5" ss:StyleID="s43"/>
-    <Cell ss:Index="16" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
    </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="15" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Note 2</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">我们根据企业会计准则，关联方判断规则系证券发行人为基金托管人、基金管理人的股东的情况。</Data></Cell>
    </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:Index="2" ss:StyleID="s70"/>
-    <Cell ss:Index="16" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-   </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:Index="2" ss:StyleID="s70"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:Index="17" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-   </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:Index="2" ss:StyleID="s70"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:Index="17" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:Index="30" ss:StyleID="s70"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s70"/>
-   </Row>
+   <Row/>
+   <Row/>
+   <Row/>
    <Row ss:AutoFitHeight="0" ss:Height="15.75">
     <Cell ss:MergeAcross="7" ss:StyleID="s170"><Data ss:Type="String">证券基本信息</Data></Cell>
     <Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s170"><Data ss:Type="String">每单位债券/资产支持证券估值</Data></Cell>
@@ -2138,7 +2105,6 @@
     <Cell ss:Index="10"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.valBaseSource!}</Data></Cell>
     <Cell ss:StyleID="s155"><Data ss:Type="Number">${(item.valBasePrice!0)?string('0.##')}</Data></Cell>
-    <!--<Cell ss:StyleID="s155" ss:Formula="=IF(RC[-3]=&quot;MMF债C&quot;,INDEX(H31!C[12],MATCH(RC[-10],H31!C[-10],0)),0)"><Data ss:Type="Number"></Data></Cell> -->
     <Cell ss:StyleID="s155" ss:Formula="=IF(RC[-3]=&quot;MMF债C&quot;,INDEX(H31!C[13],MATCH(RC[-10],H31!C[-10],0)),0)"><Data ss:Type="Number"></Data></Cell> <!--YURY,20200902,更新H21K列利息调整公式 -->
     <Cell ss:StyleID="s155" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="String"><#if item_index == 0>&lt;各基金底稿H500&gt;</#if></Data></Cell>
@@ -2152,6 +2118,218 @@
     <Cell ss:StyleID="s103"><#if item.resumptionDate??><Data ss:Type="DateTime">${item.resumptionDate!}</Data></#if></Cell>
     <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.resmpationOpenPrice!0)?string('0.##')}</Data></Cell>
     <!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
+    <Cell/>
+    <Cell ss:StyleID="s155"><Data ss:Type="Number">${(item.val_price!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s155" ss:Formula="=RC[-17]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s155" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   </#list>
+   </#if>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>23</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="H22">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s43" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:StyleID="s43" ss:Width="84.75"/>
+   <Column ss:StyleID="s43" ss:Width="83.25"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="133.5"/>
+   <Column ss:StyleID="s43" ss:Width="96.75"/>
+   <Column ss:StyleID="s43" ss:Width="127.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="114.75" ss:Span="1"/>
+   <Column ss:Index="8" ss:StyleID="s43" ss:Width="90"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="10.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="120"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="84"/>
+   <Column ss:StyleID="s43" ss:Width="134.25"/>
+   <Column ss:StyleID="s43" ss:Width="96.75"/>
+   <Column ss:StyleID="s43" ss:Width="123"/>
+   <Column ss:StyleID="s43" ss:Width="120.75"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="17.25"/>
+   <Column ss:StyleID="s73" ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:StyleID="s73" ss:AutoFitWidth="0" ss:Width="10.5"/>
+   <Column ss:StyleID="s73" ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:StyleID="s73" ss:AutoFitWidth="0" ss:Width="13.5"/>
+   <Column ss:StyleID="s73" ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90" ss:Span="1"/>
+   <Column ss:Index="24" ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="16.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90" ss:Span="3"/>
+   <Column ss:Index="29" ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90" ss:Span="1"/>
+   <Column ss:Index="32" ss:StyleID="s43" ss:Width="118.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:StyleID="s43" ss:Width="67.5"/>
+   <Column ss:StyleID="s43" ss:Width="61.5" ss:Span="1"/>
+   <Column ss:Index="37" ss:StyleID="s43" ss:Width="70.5" ss:Span="2"/>
+   <Row ss:Height="14.25">
+    <Cell ss:Index="15" ss:StyleID="s73"/>
+    <Cell ss:StyleID="s73"/>
+    <Cell ss:Index="20" ss:StyleID="s43"/>
+    <Cell ss:StyleID="s43"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${companyInfo.fullName}旗下基金</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s95"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="13" ss:StyleID="s93"><Data ss:Type="String">WP Ref</Data></Cell>
+    <Cell ss:Index="16" ss:StyleID="s73"/>
+    <Cell ss:Index="21" ss:StyleID="s43"/>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s45"><Data ss:Type="String">会计期末：</Data></Cell>
+    <Cell ss:StyleID="s123"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s98"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s100"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="13" ss:StyleID="s94"><Data ss:Type="String">H22</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">固定收益类三层次、估值及流通受限汇总表（摊余成本债基）</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">我们根据企业会计准则以及估值相关的法律法规，判断本期末固定收益类投资的估值类型如下：</Data></Cell>
+   </Row>
+   <Row/>
+   <Row ss:Height="27" ss:StyleID="s69">
+    <Cell ss:StyleID="s147"><Data ss:Type="String">估值类型&#10;Per EY</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">概述</Data></Cell>
+    <Cell ss:StyleID="s44"><Data ss:Type="String">数据来源</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s69">
+    <Cell ss:StyleID="s43"><Data ss:Type="String">MMF债A</Data></Cell>
+    <Cell><Data ss:Type="String">净价</Data></Cell>
+    <Cell ss:StyleID="s43"><Data ss:Type="String">公开市场信息</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s69">
+    <Cell ss:StyleID="s43"><Data ss:Type="String">MMF债B</Data></Cell>
+    <Cell ss:StyleID="s43"><Data ss:Type="String">全价</Data></Cell>
+    <Cell ss:StyleID="s43"><Data ss:Type="String">公开市场信息</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s69">
+    <Cell ss:StyleID="s43"><Data ss:Type="String">MMF债C</Data></Cell>
+    <Cell><Data ss:Type="String">净价+利息税</Data></Cell>
+    <Cell ss:StyleID="s43"><Data ss:Type="String">公开市场信息</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s69">
+    <Cell ss:StyleID="s43"><Data ss:Type="String">MMF债D</Data></Cell>
+    <Cell ss:StyleID="s43"><Data ss:Type="String">成本</Data></Cell>
+    <Cell ss:StyleID="s43"><Data ss:Type="String">各基金</Data></Cell>
+   </Row>
+   <Row ss:StyleID="s69">
+    <Cell ss:StyleID="s43"><Data ss:Type="String">MMF债E</Data></Cell>
+    <Cell ss:StyleID="s43"><Data ss:Type="String">其他估值方法</Data></Cell>
+   </Row>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row/>
+   <Row ss:AutoFitHeight="0" ss:Height="15.75">
+    <Cell ss:MergeAcross="7" ss:StyleID="s170"><Data ss:Type="String">证券基本信息</Data></Cell>
+    <Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s170"><Data ss:Type="String">每单位债券/资产支持证券影子定价</Data></Cell>
+    <Cell ss:StyleID="s62"/>
+    <Cell ss:StyleID="s62"/>
+    <Cell ss:MergeDown="1" ss:StyleID="s63"><Data ss:Type="String">三层次类型</Data></Cell>
+    <Cell ss:Index="19" ss:MergeDown="1" ss:StyleID="s63"><Data ss:Type="String">流通受限类型</Data></Cell>
+    <Cell ss:Index="21" ss:MergeAcross="2" ss:StyleID="s167"><Data ss:Type="String">因新发流通受限</Data></Cell>
+    <Cell ss:Index="25" ss:MergeAcross="3" ss:StyleID="s167"><Data ss:Type="String">暂时流通受限</Data></Cell>
+    <Cell ss:Index="30" ss:MergeAcross="2" ss:StyleID="s167"><Data ss:Type="String">影子定价</Data></Cell> <!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较 -->
+   </Row>
+   <Row ss:StyleID="s44">
+    <Cell><Data ss:Type="String">基金代码</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="String">类型</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="String">代码</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="String">简称</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="String">交易市场</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="String">子类型</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="String">关联方</Data></Cell>
+    <Cell><Data ss:Type="String">期末交易状态</Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s79"><Data ss:Type="String">估值类型</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">估值基价来源</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">估值基价</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">利息调整</Data></Cell>
+    <Cell>
+     <Data ss:Type="String">影子定价</Data>
+      <Comment ss:Author="Sherrill Shen" ss:ShowAlways="1"><ss:Data xmlns="http://www.w3.org/TR/REC-html40">
+       <B>
+        <Font html:Size="9" html:Color="#000000">Sherrill Shen:</Font>
+       </B>
+       <Font html:Size="9" html:Color="#000000">&#10;保留小数点后12位</Font>
+      </ss:Data>
+     </Comment>
+    </Cell>
+    <Cell ss:Index="18" ss:StyleID="s63"/>
+    <Cell ss:Index="20" ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">成功认购日</Data></Cell>
+    <Cell><Data ss:Type="String">认购价格</Data></Cell>
+    <Cell><Data ss:Type="String">可流通日</Data></Cell>
+    <Cell ss:Index="25"><Data ss:Type="String">停牌日期</Data></Cell>
+    <Cell><Data ss:Type="String">停牌原因</Data></Cell>
+    <Cell><Data ss:Type="String">复牌日期</Data></Cell>
+    <Cell><Data ss:Type="String">复牌开盘单价</Data></Cell>
+    <!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
+    <Cell/>
+    <Cell><Data ss:Type="String">系统数据</Data></Cell>
+    <Cell><Data ss:Type="String">EXCEL数据</Data></Cell>
+    <Cell><Data ss:Type="String">DIFF</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">From 估值表</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s41"/>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">From 公开市场信息</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s41"><Data ss:Type="String">From 公开市场信息</Data></Cell>
+    <Cell ss:StyleID="s61"><Data ss:Type="String">H31</Data></Cell>
+    <Cell ss:Index="17" ss:StyleID="s75"/>
+    <Cell ss:Index="21" ss:StyleID="s76"><Data ss:Type="String">From JE</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">From 公开市场信息</Data></Cell>
+    <Cell ss:Index="25" ss:StyleID="s41"/>
+   </Row>
+   <Row/>
+   <#if H22.count != 0>
+   <#list H22.list as item>
+   <Row>
+    <Cell><Data ss:Type="String">${item.fundId!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.type!}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">${item.bondName!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.market!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.subType!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.releated!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.trxStatus!}</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.valBaseSource!}</Data></Cell>
+    <Cell ss:StyleID="s155"><Data ss:Type="Number">${(item.valBasePrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s155" ss:Formula="=IF(RC[-3]=&quot;MMF债C&quot;,INDEX(H32!C[13],MATCH(RC[-10],H32!C[-10],0)),0)"><Data ss:Type="Number"></Data></Cell> <!--YURY,20200902,更新H21K列利息调整公式 -->
+    <Cell ss:StyleID="s155" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String"><#if item_index == 0>&lt;各基金底稿H500&gt;</#if></Data></Cell>
+    <Cell ss:Index="17" ss:StyleID="s43"><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
+    <Cell ss:Index="19" ss:StyleID="s43"><Data ss:Type="String">${item.restrictType!}</Data></Cell>
+    <Cell ss:Index="21" ss:StyleID="s103"><#if item.subscribeDate??><Data ss:Type="DateTime">${item.subscribeDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.subscribePrice!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s103"><#if item.liftingDate??><Data ss:Type="DateTime">${item.liftingDate!}</Data></#if></Cell>
+    <Cell ss:Index="25" ss:StyleID="s103"><#if item.suspensionDate??><Data ss:Type="DateTime">${item.suspensionDate!}</Data></#if></Cell>
+    <Cell><Data ss:Type="String">${item.suspensionInfo!}</Data></Cell>
+    <Cell ss:StyleID="s103"><#if item.resumptionDate??><Data ss:Type="DateTime">${item.resumptionDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.resmpationOpenPrice!0)?string('0.##')}</Data></Cell>
     <Cell/>
     <Cell ss:StyleID="s155"><Data ss:Type="Number">${(item.val_price!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s155" ss:Formula="=RC[-17]"><Data ss:Type="Number"></Data></Cell>
@@ -2234,60 +2412,60 @@
     <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
     <Cell ss:StyleID="s38"><Data ss:Type="String">固定收益类计息、估值及利率风险敞口期限（非货币基金）</Data></Cell>
    </Row>
+   <Row/>
    <Row>
-    <Cell ss:StyleID="s40"/>
-    <Cell ss:Index="21" ss:StyleID="Default"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">固定收益类投资利率风险敞口期限按照合约规定的重新定价日或到期日孰早者进行分类，具体划分口径如下：</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">计息方式</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">期限敞口计算口径</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s40"/>
-    <Cell ss:StyleID="s40"/>
-    <Cell ss:Index="16" ss:StyleID="s64"/>
-    <Cell ss:Index="22" ss:StyleID="Default"/>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">固定利率</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期兑付日与提前行权日孰早</Data></Cell>
    </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:Index="3" ss:StyleID="s70"/>
-    <Cell ss:Index="6" ss:StyleID="s160"/>
-    <Cell ss:Index="9" ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="24" ss:StyleID="Default"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="29" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s43"/>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">浮动利率</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">下一付息日</Data></Cell>
    </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:Index="3" ss:StyleID="s70"/>
-    <Cell ss:Index="6" ss:StyleID="s160"/>
-    <Cell ss:Index="9" ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="24" ss:StyleID="Default"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:Index="29" ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">其中如下类型投资标的适用特殊计算口径</Data></Cell>
    </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:Index="3" ss:StyleID="s70"/>
-    <Cell ss:Index="6" ss:StyleID="s160"/>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">子类型</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">期限敞口计算口径</Data></Cell>
    </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">可转换债券</Data></Cell>
+   <#if companyInfo.shortName == '永赢' || companyInfo.shortName == '财通' || companyInfo.shortName == '华宸未来'>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期日</Data></Cell>
+   <#else>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">下一付息日</Data></Cell>
+   </#if>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">商业银行二级债</Data></Cell>
+   <#if companyInfo.shortName == '永赢'>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期日</Data></Cell>
+   <#else>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期兑付日与提前行权日孰早</Data></Cell>
+   </#if>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">资产支持证券</Data></Cell>
+   <#if companyInfo.shortName == '永赢'>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期日</Data></Cell>
+   <#else>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期兑付日与提前行权日孰早</Data></Cell>
+   </#if>
+   </Row>
+   <Row/>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s40"/>
     <Cell ss:Index="9" ss:StyleID="s40"><ss:Data ss:Type="String"
@@ -2497,35 +2675,59 @@
     <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
     <Cell ss:StyleID="s38"><Data ss:Type="String">固定收益类计息、估值及利率风险敞口期限（货币基金）</Data></Cell>
    </Row>
+   <Row/>
    <Row>
-    <Cell ss:StyleID="s40"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">固定收益类投资利率风险敞口期限按照合约规定的重新定价日或到期日孰早者进行分类，具体划分口径如下：</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">计息方式</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">期限敞口计算口径</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:Index="2" ss:StyleID="s40"/>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">固定利率</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期兑付日与提前行权日孰早</Data></Cell>
    </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:Index="3" ss:StyleID="s70"/>
-    <Cell ss:Index="29" ss:StyleID="s60"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s43"/>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">浮动利率</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">下一付息日</Data></Cell>
    </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:Index="3" ss:StyleID="s70"/>
-    <Cell ss:Index="29" ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
-    <Cell ss:StyleID="s43"/>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">其中如下类型投资标的适用特殊计算口径</Data></Cell>
    </Row>
-   <Row ss:StyleID="s69">
-    <Cell ss:Index="3" ss:StyleID="s70"/>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">子类型</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">期限敞口计算口径</Data></Cell>
    </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">可转换债券</Data></Cell>
+   <#if companyInfo.shortName == '永赢' || companyInfo.shortName == '财通' || companyInfo.shortName == '华宸未来'>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期日</Data></Cell>
+   <#else>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">下一付息日</Data></Cell>
+   </#if>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">商业银行二级债</Data></Cell>
+   <#if companyInfo.shortName == '永赢'>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期日</Data></Cell>
+   <#else>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期兑付日与提前行权日孰早</Data></Cell>
+   </#if>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">资产支持证券</Data></Cell>
+   <#if companyInfo.shortName == '永赢'>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期日</Data></Cell>
+   <#else>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期兑付日与提前行权日孰早</Data></Cell>
+   </#if>
+   </Row>
+   <Row/>
+   <Row/>
    <Row>
     <Cell ss:Index="3" ss:StyleID="s40"/>
     <Cell ss:Index="9" ss:StyleID="s40"><ss:Data ss:Type="String"
@@ -2638,10 +2840,263 @@
     <Cell ss:Formula="=RC[-3]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Formula="=RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.taxRate!0)?string('0.######')}</Data></Cell>
-    <!-- <Cell ss:StyleID="s155"
-     ss:Formula="=IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),0,IF(RC[-23]=&quot;资产支持证券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(RC[-11]=&quot;实际天数/365&quot;,RC[-17]*RC[-16]*RC[-3]/365,IF(RC[-11]=&quot;实际天数/360&quot;,RC[-17]*RC[-16]*RC[-3]/360,IF(RC[-11]=&quot;实际天数/实际天数(ACT/ACT)&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1))))),RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-4]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365),IF(RC[-23]=&quot;债券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-14]=&quot;到期一次性还本付息&quot;,RC[-17]*RC[-16]*INT((RC[-6]-RC[-10])/365)+RC[-17]*RC[-16]*(RC[-6]-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))+1)/(DATE(YEAR(RC[-6])+1,MONTH(RC[-10]),DAY(RC[-10]))-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))),IF(RC[-13]=1,RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-13]&gt;1,IF(RC[-12]=&quot;按平均值付息&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2]/RC[-13],IF(RC[-12]=&quot;按实际天数付息&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1)))))))),IF(RC[-14]=&quot;贴现&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2],RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-4]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365)))))"><Data
-      ss:Type="Number"></Data></Cell> -->
-    <!-- yury,20200902,更新H31V列期末应计利息税前公式 -->
+    <Cell ss:StyleID="s155"
+          ss:Formula="=IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),0,IF(RC[-23]=&quot;资产支持证券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(RC[-11]=&quot;实际天数/365&quot;,RC[-17]*RC[-16]*RC[-3]/365,IF(RC[-11]=&quot;实际天数/360&quot;,RC[-17]*RC[-16]*RC[-3]/360,IF(RC[-11]=&quot;实际天数/实际天数(ACT/ACT)&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1))))),RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-6]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365),IF(RC[-23]=&quot;债券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-14]=&quot;到期一次性还本付息&quot;,RC[-17]*RC[-16]*INT((RC[-6]-RC[-10])/365)+RC[-17]*RC[-16]*(RC[-6]-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))+1)/(DATE(YEAR(RC[-6])+1,MONTH(RC[-10]),DAY(RC[-10]))-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))),IF(RC[-13]=1,RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-13]&gt;1,IF(RC[-12]=&quot;按平均值付息&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2]/RC[-13],IF(RC[-12]=&quot;按实际天数付息&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1)))))))),IF(RC[-14]=&quot;贴现&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2],RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-6]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365)))))"><Data
+             ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s155" ss:Formula="=RC[-1]*RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s155" ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="30"><Data ss:Type="String">${item.earlyExercise!}</Data></Cell>
+    <Cell ss:StyleID="s103"><#if item.exerciseDate??><Data ss:Type="DateTime">${item.exerciseDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s103"><#if item.earlyDate??><Data ss:Type="DateTime">${item.earlyDate!}</Data></#if></Cell>
+    <Cell><Data ss:Type="String">${item.intRiskPeriod!}</Data></Cell>
+    <Cell ss:Index="35" ss:StyleID="s40"><Data ss:Type="String">${item.interestRateOption!}</Data></Cell>
+    <Cell ss:StyleID="s40"><Data ss:Type="String">${item.sellBack!}</Data></Cell>
+    <Cell ss:StyleID="s40"><Data ss:Type="String">${item.redemption!}</Data></Cell>
+    <Cell ss:Index="39" ss:StyleID="s157"><Data ss:Type="Number">${(item.unitInterestAt!0)?string('0.############')}</Data></Cell>
+    <Cell ss:StyleID="s157" ss:Formula="=RC[-1]-RC[-13]"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   </#list>
+   </#if>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>27</ActiveRow>
+     <ActiveCol>26</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="H32">
+  <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s43" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="83.25" ss:Span="1"/>
+   <Column ss:Index="3" ss:StyleID="s43" ss:Width="84.75"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="79.5"/>
+   <Column ss:StyleID="s43" ss:Width="127.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="96.75"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="13.5"/>
+   <Column ss:StyleID="s43" ss:Width="70.5" ss:Span="2"/>
+   <Column ss:Index="11" ss:StyleID="s43" ss:Width="122.25"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="82.5"/>
+   <Column ss:StyleID="s43" ss:Width="106.5"/>
+   <Column ss:StyleID="s43" ss:Width="122.25"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="79.5" ss:Span="2"/>
+   <Column ss:Index="18" ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="11.25"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="94.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="87.75" ss:Span="1"/>
+   <Column ss:Index="22" ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="109.5"/>
+   <Column ss:StyleID="s43" ss:Width="103.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="127.5"/>
+   <Column ss:StyleID="s43" ss:Width="96.75"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="85.5"/>
+   <Column ss:StyleID="s43" ss:Width="120.75"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="10.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="112.5"/>
+   <Column ss:StyleID="s43" ss:Width="76.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="124.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="79.5"/>
+   <Column ss:StyleID="s43" ss:Width="127.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="144.75"/>
+   <Column ss:StyleID="s43" ss:Width="67.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="90.75"/>
+   <Column ss:StyleID="s43" ss:Width="61.5"/>
+   <Column ss:StyleID="s43" ss:Width="120" ss:Span="2"/>
+   <Column ss:StyleID="s43" ss:Width="120" ss:Span="2"/>
+   <Row ss:Height="14.25"/>
+   <Row>
+    <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">${companyInfo.fullName}旗下基金</Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s95"><Data ss:Type="String" x:Ticked="1">Prepared by</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="15" ss:StyleID="s93"><Data ss:Type="String">WP Ref</Data></Cell>
+   </Row>
+   <Row ss:Height="14.25">
+    <Cell ss:StyleID="s45"><Data ss:Type="String">会计期末：</Data></Cell>
+    <Cell ss:StyleID="s123"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s98"><Data ss:Type="String">Reviewed by</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">XX</Data></Cell>
+    <Cell ss:StyleID="s100"><Data ss:Type="String">XXXX/XX/XX</Data></Cell>
+    <Cell ss:Index="15" ss:StyleID="s94"><Data ss:Type="String">H32</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s46"><Data ss:Type="String">科目：</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">固定收益类计息、估值及利率风险敞口期限（摊余成本债基）</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">固定收益类投资利率风险敞口期限按照合约规定的重新定价日或到期日孰早者进行分类，具体划分口径如下：</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">计息方式</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">期限敞口计算口径</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">固定利率</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期兑付日与提前行权日孰早</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">浮动利率</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">下一付息日</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">其中如下类型投资标的适用特殊计算口径</Data></Cell>
+   </Row>
+   <Row/>
+   <Row>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">子类型</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">期限敞口计算口径</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">可转换债券</Data></Cell>
+   <#if companyInfo.shortName == '永赢' || companyInfo.shortName == '财通' || companyInfo.shortName == '华宸未来'>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期日</Data></Cell>
+   <#else>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">下一付息日</Data></Cell>
+   </#if>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">商业银行二级债</Data></Cell>
+   <#if companyInfo.shortName == '永赢'>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期日</Data></Cell>
+   <#else>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期兑付日与提前行权日孰早</Data></Cell>
+   </#if>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">资产支持证券</Data></Cell>
+   <#if companyInfo.shortName == '永赢'>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期日</Data></Cell>
+   <#else>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">到期兑付日与提前行权日孰早</Data></Cell>
+   </#if>
+   </Row>
+   <Row/>
+   <Row/>
+   <Row>
+    <Cell ss:Index="3" ss:StyleID="s40"/>
+    <Cell ss:Index="9" ss:StyleID="s40"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#FF0000">Note</Font></B><Font
+       html:Color="#000000">：零息债、贴现债票面利率为 (票面面值-发行价格)/票面面值*100%</Font></ss:Data></Cell>
+    <Cell ss:Index="11" ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15.75">
+    <Cell ss:MergeAcross="16" ss:StyleID="s170"><Data ss:Type="String">证券基本信息</Data></Cell>
+    <Cell ss:StyleID="s62"/>
+    <Cell ss:MergeAcross="8" ss:StyleID="s170"><Data ss:Type="String">每单位债券/资产支持证券应收利息</Data></Cell>
+    <Cell ss:Index="30" ss:MergeAcross="3" ss:StyleID="s170"><Data ss:Type="String">利率风险敞口期限</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s170"><Data ss:Type="String">行权条款摘录（如有）</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="1" ss:StyleID="s10181"><Data ss:Type="String">系统计算结果（确认diff后请删除）</Data></Cell>
+   </Row>
+   <Row ss:Height="27" ss:StyleID="s63">
+    <Cell><Data ss:Type="String">基金代码</Data></Cell>
+    <Cell><Data ss:Type="String">类型</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">代码</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">简称</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">交易市场</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">子类型</Data></Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">面值</Data></Cell>
+    <Cell><Data ss:Type="String">票面利率</Data></Cell>
+    <Cell><Data ss:Type="String">计息方式</Data></Cell>
+    <Cell><Data ss:Type="String">付息方式</Data></Cell>
+    <Cell><Data ss:Type="String">年付息次数（次）</Data></Cell>
+    <Cell><Data ss:Type="String">一年多次付息应计利息处理规则</Data></Cell>
+    <Cell><Data ss:Type="String">计息规则</Data></Cell>
+    <Cell><Data ss:Type="String">原始起息日</Data></Cell>
+    <Cell><Data ss:Type="String">止息日</Data></Cell>
+    <Cell><Data ss:Type="String">兑付日</Data></Cell>
+    <Cell ss:Index="19"><Data ss:Type="String">估值日</Data></Cell>
+    <Cell><Data ss:Type="String">上一付息日</Data></Cell>
+    <Cell><Data ss:Type="String">下一付息日</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">本期起息日至&#10;估值日实际天数</Data></Cell>
+    <Cell><Data ss:Type="String">本计息周期天数</Data></Cell>
+    <Cell><Data ss:Type="String">利息税税率</Data></Cell>
+    <Cell><Data ss:Type="String">期末应计利息（税前）</Data></Cell>
+    <Cell><Data ss:Type="String">利息税</Data></Cell>
+    <Cell><Data ss:Type="String">期末应计利息（税后）</Data><Comment
+      ss:Author="Sherrill Shen"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9" html:Color="#000000">Sherrill Shen:</Font></B><Font
+        html:Size="9" html:Color="#000000">&#10;保留小数点后12位</Font></ss:Data></Comment></Cell>
+    <Cell ss:Index="30"><Data ss:Type="String">是否存在提前行权</Data></Cell>
+    <Cell><Data ss:Type="String">行权起始日</Data></Cell>
+    <Cell><Data ss:Type="String">重新定价日或&#10;到期日孰早日</Data></Cell>
+    <Cell><Data ss:Type="String">敞口期限</Data></Cell>
+    <Cell ss:Index="35"><Data ss:Type="String">发行人利率选择权</Data></Cell>
+    <Cell><Data ss:Type="String">回售权</Data></Cell>
+    <Cell><Data ss:Type="String">赎回权</Data></Cell>
+    <Cell ss:Index="39"><Data ss:Type="String">期末应计利息（税后）</Data></Cell>
+    <Cell><Data ss:Type="String">公式diff</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">From 估值表</Data></Cell>
+    <Cell ss:StyleID="s41"/>
+    <Cell ss:Index="4" ss:StyleID="s41"/>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">From 公开市场信息</Data></Cell>
+    <Cell ss:Index="28" ss:StyleID="s65"><Data ss:Type="String">&lt;各基金底稿H500&gt;</Data></Cell>
+    <Cell ss:Index="34" ss:StyleID="s65"><Data ss:Type="String">&lt;各基金底稿H500&gt;</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">From 公开市场信息</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3" ss:StyleID="s41"/>
+    <Cell ss:StyleID="s41"/>
+    <Cell ss:StyleID="s41"/>
+    <Cell ss:Index="8" ss:StyleID="s47"><Data ss:Type="String">a</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">b</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">c</Data></Cell>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"/>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">d</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">e</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">f</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">g=d-e+1</Data></Cell>
+    <Cell ss:StyleID="s47"><Data ss:Type="String">h=f-e</Data></Cell>
+    <Cell ss:Index="28" ss:StyleID="s65"/>
+    <Cell ss:Index="34" ss:StyleID="s65"/>
+    <Cell ss:StyleID="s41"/>
+   </Row>
+   <#if H32.count != 0>
+   <#list H32.list as item>
+   <Row>
+    <Cell><Data ss:Type="String">${item.fundId!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.type!}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">${item.bondCode!}</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">${item.bongName!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.market!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.subType!}</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s104"><Data ss:Type="Number">${(item.parValueLast!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s124"><Data ss:Type="Number">${(item.couponRate!0)?string('0.######')}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.interestMode!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.paymentMethod!}</Data></Cell>
+    <Cell><Data ss:Type="Number">${(item.paymentTimesYear!0)?string('0.##')}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.interestPayMethod!}</Data></Cell>
+    <Cell><Data ss:Type="String">${item.interestRuleType!}</Data></Cell>
+    <Cell ss:StyleID="s103"><#if item.dateFrom??><Data ss:Type="DateTime">${item.dateFrom!}</Data></#if></Cell>
+    <Cell ss:StyleID="s103"><#if item.dateTo??><Data ss:Type="DateTime">${item.dateTo!}</Data></#if></Cell>
+    <Cell ss:StyleID="s103"><#if item.datePay??><Data ss:Type="DateTime">${item.datePay!}</Data></#if></Cell>
+    <Cell ss:Index="19" ss:StyleID="s103"><#if item.valDate??><Data ss:Type="DateTime">${item.valDate!}</Data></#if></Cell>
+    <Cell ss:StyleID="s103"><#if item.payDateLast??><Data ss:Type="DateTime">${item.payDateLast!}</Data></#if></Cell>
+    <Cell ss:StyleID="s103"><#if item.payDateNext??><Data ss:Type="DateTime">${item.payDateNext!}</Data></#if></Cell>
+    <Cell ss:Formula="=RC[-3]-RC[-2]+1"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-3]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s122"><Data ss:Type="Number">${(item.taxRate!0)?string('0.######')}</Data></Cell>
     <Cell ss:StyleID="s155"
           ss:Formula="=IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),0,IF(RC[-23]=&quot;资产支持证券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(RC[-11]=&quot;实际天数/365&quot;,RC[-17]*RC[-16]*RC[-3]/365,IF(RC[-11]=&quot;实际天数/360&quot;,RC[-17]*RC[-16]*RC[-3]/360,IF(RC[-11]=&quot;实际天数/实际天数(ACT/ACT)&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1))))),RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-6]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365),IF(RC[-23]=&quot;债券&quot;,IF(RC[-20]=&quot;银行间&quot;,IF(OR(RC[-14]=&quot;零息&quot;,RC[-14]=&quot;贴现&quot;),RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-14]=&quot;到期一次性还本付息&quot;,RC[-17]*RC[-16]*INT((RC[-6]-RC[-10])/365)+RC[-17]*RC[-16]*(RC[-6]-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))+1)/(DATE(YEAR(RC[-6])+1,MONTH(RC[-10]),DAY(RC[-10]))-DATE(YEAR(RC[-6]),MONTH(RC[-10]),DAY(RC[-10]))),IF(RC[-13]=1,RC[-17]*RC[-16]*RC[-3]/RC[-2],IF(RC[-13]&gt;1,IF(RC[-12]=&quot;按平均值付息&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2]/RC[-13],IF(RC[-12]=&quot;按实际天数付息&quot;,RC[-17]*RC[-16]*RC[-3]/(DATE(YEAR(RC[-6])+1,1,1)-DATE(YEAR(RC[-6]),1,1)))))))),IF(RC[-14]=&quot;贴现&quot;,RC[-17]*RC[-16]*RC[-3]/RC[-2],RC[-17]*RC[-16]*(RC[-3]-(ROUNDUP((RC[-6]-1521)/1461,0)-ROUNDUP((RC[-5]-1521)/1461,0)))/365)))))"><Data
              ss:Type="Number"></Data></Cell>
@@ -2684,14 +3139,12 @@
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="112.5"/>
    <Column ss:StyleID="s43" ss:Width="127.5"/>
    <Column ss:StyleID="s43" ss:Width="76.5"/>
-   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="107.25"/>
-   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="13.5"/>
-   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="101.25" ss:Span="1"/>
-   <Column ss:Index="10" ss:StyleID="s43" ss:Width="76.5"/>
-   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="13.5"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="130"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="100"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="70" ss:Span="1"/>
+   <Column ss:Index="10" ss:StyleID="s43" ss:Width="100"/>
+   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="100"/>
    <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="101.25"/>
-   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="16.5"/>
-   <Column ss:StyleID="s43" ss:AutoFitWidth="0" ss:Width="12.75"/>
    <Row ss:Height="14.25"/>
    <Row>
     <Cell ss:StyleID="s45"><Data ss:Type="String">客户：</Data></Cell>
@@ -2729,23 +3182,28 @@
    </Row>
    <Row>
     <Cell><Data ss:Type="String">基A1</Data></Cell>
-    <Cell ss:StyleID="s40"><Data ss:Type="String">收盘价</Data></Cell>
+    <Cell ss:StyleID="s40"><Data ss:Type="String">份额净值</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">基AC</Data></Cell>
+    <Cell ss:StyleID="s40"><Data ss:Type="String">份额净值+万份收益计提</Data></Cell>
    </Row>
    <Row>
     <Cell><Data ss:Type="String">基A2</Data></Cell>
-    <Cell ss:StyleID="s40"><Data ss:Type="String">最近交易日收盘价</Data></Cell>
+    <Cell ss:StyleID="s40"><Data ss:Type="String">份额净值参考</Data></Cell>
    </Row>
    <Row>
-    <Cell><Data ss:Type="String">基B</Data></Cell>
-    <Cell ss:StyleID="s40"><Data ss:Type="String">单位净值</Data></Cell>
+    <Cell><Data ss:Type="String">基B1</Data></Cell>
+    <Cell ss:StyleID="s40"><Data ss:Type="String">收盘价</Data></Cell>
    </Row>
    <Row>
-    <Cell><Data ss:Type="String">基C</Data></Cell>
-    <Cell ss:StyleID="s40"><Data ss:Type="String">成本</Data></Cell>
+    <Cell><Data ss:Type="String">基B2</Data></Cell>
+    <Cell ss:StyleID="s40"><Data ss:Type="String">前收盘价</Data></Cell>
    </Row>
+   <Row/>
    <Row>
-    <Cell><Data ss:Type="String">基D</Data></Cell>
-    <Cell ss:StyleID="s40"><Data ss:Type="String">其他估值方法</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Note 2</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">我们根据企业会计准则，关联方判断规则系所持有基金管理人为同一管理人或同一管理人的股东控制的子公司的情况。</Data></Cell>
    </Row>
    <Row/>
    <Row/>
@@ -2755,24 +3213,20 @@
     <Cell ss:StyleID="s42"><Data ss:Type="String">简称</Data></Cell>
     <Cell ss:StyleID="s42"><Data ss:Type="String">交易市场</Data></Cell>
     <Cell ss:StyleID="s42"><Data ss:Type="String">关联方</Data></Cell>
-    <Cell><Data ss:Type="String">期末交易状态</Data></Cell>
-    <Cell ss:Index="8"><Data ss:Type="String">估值类型</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="String">子类型</Data></Cell>
+    <Cell><Data ss:Type="String">期末交易/申赎状态</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">估值类型</Data></Cell>
     <Cell><Data ss:Type="String">估值单价</Data></Cell>
     <Cell><Data ss:Type="String">三层次类型</Data></Cell>
    </Row>
    <Row>
-    <Cell ss:StyleID="s41"><Data ss:Type="String">From 估值表</Data></Cell>
-    <Cell ss:Index="3" ss:StyleID="s41"/>
-    <Cell ss:StyleID="s41"><Data ss:Type="String">From 公开市场信息</Data></Cell>
-    <Cell ss:StyleID="s41"/>
-    <Cell ss:Index="8" ss:StyleID="s47"><Data ss:Type="String">Per EY</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">From 估值表</Data></Cell>=
+    <Cell ss:Index="4" ss:StyleID="s41"><Data ss:Type="String">From 公开市场信息</Data></Cell>=
+    <Cell ss:Index="9" ss:StyleID="s47"><Data ss:Type="String">Per EY</Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">Per EY</Data></Cell>
     <Cell ss:StyleID="s47"><Data ss:Type="String">Per EY</Data></Cell>
    </Row>
-   <Row>
-    <Cell ss:Index="2" ss:StyleID="s37"/>
-    <Cell ss:StyleID="s41"/>
-   </Row>
+   <Row/>
    <#if H40.count != 0>
    <#list H40.list as item>
    <Row>
@@ -2781,8 +3235,9 @@
     <Cell ss:StyleID="s102"><Data ss:Type="String">${item.fundName!}</Data></Cell>
     <Cell ss:StyleID="s37"><Data ss:Type="String">${item.market!}</Data></Cell>
     <Cell ss:StyleID="s37"><Data ss:Type="String">${item.releated!}</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">${item.subType!}</Data></Cell>
     <Cell><Data ss:Type="String">${item.trxStatus!}</Data></Cell>
-    <Cell ss:Index="8"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">${item.valTypeCode!}</Data></Cell>
     <Cell ss:StyleID="s104"><Data ss:Type="Number">${(item.valPrice!0)?string('0.####')}</Data></Cell>
     <Cell><Data ss:Type="String">${item.threeLevel!}</Data></Cell>
    </Row>
@@ -2848,26 +3303,22 @@
    <Row/>
    <Row>
     <Cell ss:StyleID="s91"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">根据《中国金融期货交易所交易规则》及相关实施细则，合约的交易单位为手，合约交易以交易单位的整数倍进行。股指期货1手合约价值为股指期货指数点乘以合约乘数。</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="String">我们根据企业会计准则以及估值相关的法律法规，判断本期末期货及现货投资应使用交易市场的结算价乘以合约乘数作为估值单价。</Data></Cell>
    </Row>
+   <#if H50.count != 0>
    <Row>
     <Cell ss:StyleID="s91"><Data ss:Type="String">Note 2</Data></Cell>
     <Cell ss:StyleID="s148"><Data ss:Type="String">期货投资由于每日无负债结算制度，期末期货投资净额为零，无需进行三层次分类。</Data></Cell>
-    <Cell ss:StyleID="s148"/>
-    <Cell ss:StyleID="s148"/>
-    <Cell ss:StyleID="s148"/>
-    <Cell ss:StyleID="s149"/>
-    <Cell ss:StyleID="s166"/>
    </Row>
+   </#if>
+   <Row/>
    <Row>
-    <Cell ss:StyleID="s91"/>
-    <Cell ss:StyleID="s70"/>
-   </Row>
-   <Row>
-    <Cell ss:Index="3" ss:StyleID="s91"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:Index="9" ss:StyleID="s92"><Data ss:Type="String">Note 1</Data></Cell>
-    <Cell ss:Index="11" ss:StyleID="s92"><Data ss:Type="String">Note 2</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s92"><Data ss:Type="String">Note 1</Data></Cell>
+    <Cell ss:Index="10" ss:StyleID="s92"><Data ss:Type="String">Note 2</Data></Cell>
    </Row>
    <Row ss:StyleID="s44">
     <Cell><Data ss:Type="String">基金代码</Data></Cell>

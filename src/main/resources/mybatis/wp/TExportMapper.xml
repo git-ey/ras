@@ -20,9 +20,13 @@
     
     <select id="selectExtraFundInfo" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
+            sfi.FIRM_CODE as firmCode,
+            sm.SHORT_NAME as shortName,  <!--chenhy,20240621,新增公司全称-->
+            IFNULL(sfi.FUND_TYPE,'基金') as fundType,
             IFNULL(sfi.DATE_FROM,'2000-01-01') as dateFrom,
             IFNULL(sfi.STRUCTURED,'N') as structured,
             IFNULL(sfi.MF,'N') as mf,
+            IFNULL(sfi.AC,'N') as ac,
             IFNULL(sfi.ETF,'N') as etf,
             IFNULL(sfi.COMPOUND,'单利') as compound,
             IFNULL(sfi.NAV_ROUND, 4) as navRound,
@@ -35,7 +39,19 @@
             IFNULL(sfi.LEVEL_SHARE,'N') as levelShare,
             IFNULL(sfi.ETF_CONNECTION,'N') as etfConnection,
             IFNULL(sfi.FOF,'N') as fof,
-            SM.FUTURE_MATTERS_DISCLOSURE_MODE AS fmdm <!--  yury,20200908,新增日后事项文字段-->
+            IF(IFNULL(sfi.DATE_FROM,'2000-01-01')>=concat(left(#{period},4),'-11-01'),'Y','N') as newFlag,
+            IF(IFNULL(sfi.DATE_FROM,'2000-01-01')>=concat(left(#{period},4)-1,'-11-01'),'Y','N') as twoYearFlag,
+            SM.FUTURE_MATTERS_DISCLOSURE_MODE AS fmdm, <!--  yury,20200908,新增日后事项文字段-->
+            (select SFRP.PARTY_FULL_NAME 
+                from sys_fund_related_party SFRP 
+                where SFRP.FUND_ID = SFI.FUND_ID 
+                AND SFRP.RELATIONSHIP like '%产品管理人%' 
+                LIMIT 1) AS ManagerFullName,
+            (select SFRP.PARTY_SHORT_NAME_1 
+                from sys_fund_related_party SFRP 
+                where SFRP.FUND_ID = SFI.FUND_ID 
+                AND SFRP.RELATIONSHIP like '%产品托管人%' 
+                LIMIT 1) AS TrusteesFullName
         FROM
             SYS_FUND_INFO sfi,
             SYS_MGRCOMPANY SM
@@ -49,6 +65,7 @@
     
     <select id="selectFundDateInfo" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
+            IFNULL(sfi.FUND_TYPE,'基金') as fundType, <!--chenhy,20240223,新增基金和产品区分-->
             IFNULL(sfi.DATE_FROM, SYSDATE()) as dateFrom,
             sfi.DATE_TO as dateTo,
             sfi.DATE_TRANSFORM as dateTransform
@@ -243,7 +260,9 @@
             IF(T500.ATTR4 = 0, null, T500.ATTR4) AS attr4,
             IF(T500.ATTR5 = 0, null, T500.ATTR5) AS attr5,
             IF(T500.ATTR6 = 0, null, T500.ATTR6) AS attr6,
-            IF(T500.ATTR7 = 0, null, T500.ATTR7) AS attr7
+            IF(T500.ATTR7 = 0, null, T500.ATTR7) AS attr7,
+            IF(T500.ATTR11 = 0, null, T500.ATTR11) AS attr11,
+            IF(T500.ATTR12 = 0, null, T500.ATTR12) AS attr12
         FROM
             wp_t500 T500 
         WHERE
@@ -303,6 +322,24 @@
         and T10000.PERIOD = #{period}
         ORDER BY
             T10000.SORT
+    </select>
+
+    <!-- chenhy,2024-06-21,查询是否为新增分级 -->
+    <select id="selectNewLevelData" parameterType="java.util.Map" resultType="java.util.Map"> 
+	    SELECT
+		    sfs.SHORT_NAME AS shortName,
+            sfs.`LEVEL` AS level,
+            date_format(sfs.EFFECTIVE_DATE, '%Y年%c月%e日') effectiveDate
+		FROM
+		    sys_fund_info sfi,sys_fund_structured sfs 
+		WHERE
+		    1 = 1
+	    AND sfs.ACTIVE = 'Y' 
+        AND sfi.FUND_ID = sfs.FUND_ID
+	    AND sfs.FUND_ID = #{fundId}
+	    AND sfs.`LEVEL` = #{level}
+		AND YEAR(sfs.EFFECTIVE_DATE) = LEFT(#{period},4)
+		AND IFNULL(sfs.EFFECTIVE_DATE,sfi.DATE_FROM) > sfi.DATE_FROM
     </select>
     
     <select id="selectT11000P4104Data" parameterType="java.util.Map" resultType="java.util.Map"> 
@@ -404,5 +441,7 @@
         and sfi.active = 'Y'
         order by seq;
     </select>
+
+    
     
 </mapper>

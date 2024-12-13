@@ -271,19 +271,26 @@ public class FundControlController extends BaseController {
 			vpd.put("var3", varOList.get(i).getString("STOCK_BS"));	    //3
 			vpd.put("var4", varOList.get(i).getString("STOCK_R"));	    //4
 			vpd.put("var5", varOList.get(i).getString("STOCK_P"));	    //5
-			vpd.put("var6", varOList.get(i).getString("BOND_ALL"));	    //6
-			vpd.put("var7", varOList.get(i).getString("BOND_BS"));	    //7
-			vpd.put("var8", varOList.get(i).getString("BOND_R"));	    //8
-			vpd.put("var9", varOList.get(i).getString("BOND_P"));	    //9
-			vpd.put("var10", varOList.get(i).getString("GOLD_ALL"));	    //10
-			vpd.put("var11", varOList.get(i).getString("GOLD_BS"));	    //11
-			vpd.put("var12", varOList.get(i).getString("GOLD_R"));	    //12
-			vpd.put("var13", varOList.get(i).getString("GOLD_P"));	    //13
-			vpd.put("var14", varOList.get(i).getString("RISK_LOC"));	    //14
-			vpd.put("var15", varOList.get(i).getString("RISK_S_INT"));	    //15
-			vpd.put("var16", varOList.get(i).getString("RISK_S_PRICE"));	    //16
-			vpd.put("var17", varOList.get(i).getString("RISK_E_PRICE"));	    //17
-			vpd.put("var18", varOList.get(i).getString("ACTIVE"));	    //18
+			vpd.put("var6", varOList.get(i).getString("FUND_BS"));	    //5
+			vpd.put("var7", varOList.get(i).getString("BOND_ALL"));	    //6
+			vpd.put("var8", varOList.get(i).getString("BOND_BS"));	    //7
+			vpd.put("var9", varOList.get(i).getString("BOND_R"));	    //8
+			vpd.put("var10", varOList.get(i).getString("BOND_P"));	    //9
+			vpd.put("var11", varOList.get(i).getString("GOLD_ALL"));	    //10
+			vpd.put("var12", varOList.get(i).getString("GOLD_BS"));	    //11
+			vpd.put("var13", varOList.get(i).getString("GOLD_R"));	    //12
+			vpd.put("var14", varOList.get(i).getString("GOLD_P"));	    //13
+			vpd.put("var15", varOList.get(i).getString("DI_WARRAMT"));	    //13
+			vpd.put("var16", varOList.get(i).getString("DI_OTHER"));	    //13
+			vpd.put("var17", varOList.get(i).getString("RISK_LOC"));	    //14
+			vpd.put("var18", varOList.get(i).getString("RISK_S_INT"));	    //15
+			vpd.put("var19", varOList.get(i).getString("RISK_S_PRICE"));	    //16
+			vpd.put("var20", varOList.get(i).getString("RISK_E_PRICE"));	    //17
+			vpd.put("var21", varOList.get(i).getString("ABS_ALL"));	    //19
+			vpd.put("var22", varOList.get(i).getString("ABS_BS"));	    //20
+			vpd.put("var23", varOList.get(i).getString("ABS_R"));	    //21
+			vpd.put("var24", varOList.get(i).getString("ABS_P"));	    //22
+			vpd.put("var25", varOList.get(i).getString("ACTIVE"));	    //18
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

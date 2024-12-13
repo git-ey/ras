@@ -17,15 +17,28 @@
 		and C.PERIOD = #{period}
     </select>
     
+	<!--IRENE20220919修改-->
     <select id="selectC300MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
 		SELECT
-		    C300.EY_ACCOUNT_NUM as accountNum,
-		    C300.ATTR1 as type,
-		    C300.ATTR2 as calculateInterest,
-		    C300.ATTR5 as storageOrganization,
-		    C300.ATTR6 as related,
-		    C300.BEGIN_BALANCE_CNY as beginBalance,
-		    C300.END_BALANCE_CNY as endBalance
+		C300.EY_ACCOUNT_NUM as accountNum,
+		C300.ATTR1 as type,
+		C300.ATTR5 as storageOrganization,
+		C300.ATTR6 as related,
+		IF(C300.ATTR2='本金（不计息）','不计息','计息') as calculateInterest,
+		SUM(Case C300.ATTR2 
+			when '本金' then IFNULL(C300.BEGIN_BALANCE_CNY,0) 
+			when '本金（不计息）' then IFNULL(C300.BEGIN_BALANCE_CNY,0) 
+			else 0 end) as capitalbeginBalance,
+		SUM(Case C300.ATTR2 
+			when '本金' then IFNULL(C300.END_BALANCE_CNY,0) 
+			when '本金（不计息）' then IFNULL(C300.END_BALANCE_CNY,0) 
+			else 0 end) as capitalendBalance,
+		SUM(Case C300.ATTR2 when '应计利息' then IFNULL(C300.BEGIN_BALANCE_CNY,0) else 0 end) as interestbeginBalance,
+		SUM(Case C300.ATTR2 when '应计利息' then IFNULL(C300.END_BALANCE_CNY,0) else 0 end) as interestendBalance,
+		SUM(Case C300.ATTR2 when '坏账准备' then IFNULL(C300.BEGIN_BALANCE_CNY,0) else 0 end) as badDebtbeginBalance,
+		SUM(Case C300.ATTR2 when '坏账准备' then IFNULL(C300.END_BALANCE_CNY,0) else 0 end) as badDebtendBalance,
+		SUM(IFNULL(C300.BEGIN_BALANCE_CNY,0)) as sumbeginBalance,
+		SUM(IFNULL(C300.END_BALANCE_CNY,0)) as sumendBalance
 		FROM
 		    wp_c300 C300
 		where
@@ -33,7 +46,9 @@
 	    and C300.STATUS = 'Y'
 		and C300.FUND_ID = #{fundId}
 		and C300.PERIOD = #{period}
+        group by C300.FUND_ID,C300.PERIOD,C300.EY_ACCOUNT_NUM,C300.ATTR1,C300.ATTR5;
     </select>
+	<!--IRENE20220919修改-->
     
     <select id="selectC300IntRiskPeriods" parameterType="java.util.Map" resultType="java.lang.String">
 		SELECT DISTINCT
@@ -77,12 +92,33 @@
 	    and C300R.PERIOD = #{period}
     </select>
     
+	<select id="selectC310MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		select
+			C310.TYPE as type,
+			C310.STORAGE_NAME as storageName,
+			IFNULL(C310.DATE_TO,'N/A') as dateTo,
+			C310.AT_CALL as atCall,
+			C310.AMT as amt,
+			C310.INTEREST as interest,
+			C310.TOTAL_AMOUNT as totalAmount,
+			C310.ECL_RATE as eclRate
+		from
+		    wp_c310 C310
+		where
+		    1 = 1
+		and C310.STATUS = 'Y'
+        and C310.FUND_ID = #{fundId}
+		and C310.PERIOD = #{period}
+    </select>
+
     <select id="selectC400MainData" parameterType="java.util.Map" resultType="java.util.Map">
 		select
 		    C400.CONFIRMATION_NUM as confirmationNum,
 		    C400.BANK_NAME as bankName,
 		    C400.RELATED as related,
+			C400.AT_CALL as atCall,
 		    C400.AMT as amount,
+		    C400.INTEREST as interestClient,
 		    C400.INTEREST_RATE as interestRate,
 		    CONCAT(C400.DATE_FROM,'T00:00:00.000') as dateFrom,
 		    CONCAT(C400.DATE_TO,'T00:00:00.000') as dateTo,
@@ -155,9 +191,26 @@
 		ORDER BY C10000.SORT
     </select>
     
+	<select id="selectC10000ItemData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    C10000.SORT as sort,
+		    C10000.DETAIL_FLAG as detailFlag,
+		    IFNULL(C10000.BEGIN_BALANCE, 0) as beginBalance,
+		    IFNULL(C10000.END_BALANCE, 0) as endBalance
+		from 
+		    wp_c10000 C10000
+		where
+		    1 = 1
+	    and C10000.STATUS = 'Y'
+		and C10000.FUND_ID = #{fundId}
+		and C10000.PERIOD = #{period}
+		ORDER BY C10000.SORT
+    </select>
+    
     <select id="selectC10000DataForReport" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
 		    C10000.ITEM AS item,
+		    CAST(C10000.SORT as CHAR) AS sort,
 		    IF(C10000.END_BALANCE = 0, null, C10000.END_BALANCE) AS endBalance,
 		    IF(C10000.BEGIN_BALANCE = 0, null, C10000.BEGIN_BALANCE) AS beginBalance 
 		FROM
@@ -185,5 +238,17 @@
         AND C10000.ITEM IN ('活期存款', '定期存款', '其他存款')
         LIMIT 1
     </select>
+
+	<!--chenhy,20240621,新增券结附注-->
+	<select id="selectQsjsFlag"  parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT 
+			IF (COUNT(*) > 1,'Y','N')
+		FROM ey_balance wc 
+		WHERE 
+			wc.fund_id = #{fundId}
+			AND wc.period = #{period}
+			AND wc.EY_ACCOUNT_NUM = '1002'
+			AND wc.ATTR1 = '券商结算资金'
+	</select>
     
 </mapper>

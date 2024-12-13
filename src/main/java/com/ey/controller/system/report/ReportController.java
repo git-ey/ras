@@ -125,7 +125,7 @@ public class ReportController extends BaseController {
 		List<PageData> p1List = Lists.newArrayList();
 		List<PageData> p2List = Lists.newArrayList();
 		List<PageData> p3List = Lists.newArrayList();
-		List<PageData> p4List = Lists.newArrayList();
+		// List<PageData> p4List = Lists.newArrayList();
 		List<PageData> p5List = Lists.newArrayList();
 		List<PageData> pList = reportService.listParagraphAll(pd);
 		for (PageData pds : pList) {
@@ -139,9 +139,9 @@ public class ReportController extends BaseController {
 			case "RP03":
 				p3List.add(pds);
 				break;
-			case "RP04":
-				p4List.add(pds);
-				break;
+			// case "RP04":
+			// 	p4List.add(pds);
+			// 	break;
 			case "RP05":
 				p5List.add(pds);
 				break;
@@ -156,7 +156,7 @@ public class ReportController extends BaseController {
 		mv.addObject("p1List", p1List);
 		mv.addObject("p2List", p2List);
 		mv.addObject("p3List", p3List);
-		mv.addObject("p4List", p4List);
+		// mv.addObject("p4List", p4List);
 		mv.addObject("p5List", p5List);
 		mv.addObject("outbondPath", configValue);
 		mv.addObject("msg", "save");
