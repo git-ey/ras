@@ -46,6 +46,7 @@ public class FundService implements FundManager{
 		for (Map<String, Object> map : maps) {
 			PageData pd = new PageData();
 			pd.put("FUND_ID", map.get("FUND_ID"));
+			pd.put("FUND_TYPE", map.get("FUND_TYPE")); //chenhy,20240218,新增基金类型
 			pd.put("FUND_CODE", map.get("FUND_CODE"));
 			pd.put("FIRM_CODE", map.get("FIRM_CODE"));
 			pd.put("SHORT_NAME", map.get("SHORT_NAME"));
@@ -60,6 +61,7 @@ public class FundService implements FundManager{
 			pd.put("SHHK", map.get("SHHK"));
 			pd.put("QD", map.get("QD"));
 			pd.put("MF", map.get("MF"));
+			pd.put("AC", map.get("AC"));
 			pd.put("IDX", map.get("IDX"));
 			pd.put("LOF", map.get("LOF"));
 			pd.put("ETF", map.get("ETF"));
@@ -101,6 +103,11 @@ public class FundService implements FundManager{
 			pd.put("ROR", map.get("ROR"));
 			pd.put("LEVERAGE", map.get("LEVERAGE"));
 			pd.put("EXERCISE_DATE_METHOD", map.get("EXERCISE_DATE_METHOD"));
+			pd.put("SSF", map.get("SSF"));
+			pd.put("TA", map.get("TA"));
+			pd.put("AIM_FUND", map.get("AIM_FUND"));
+			pd.put("PUB_FUND", map.get("PUB_FUND"));
+			pd.put("IS", map.get("IS"));
 			pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 			pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 			pds.add(pd);

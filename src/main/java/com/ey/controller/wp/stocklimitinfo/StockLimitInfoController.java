@@ -284,6 +284,7 @@ public class StockLimitInfoController extends BaseController {
 			vpd.put("var15", varOList.get(i).getString("REVIEWER"));	    //15
 			vpd.put("var16", varOList.get(i).getString("ACTIVE"));	    //16
 			vpd.put("var17", varOList.get(i).getString("STATUS"));	    //17
+			vpd.put("var18", varOList.get(i).getString("LIMIT_LEN"));	    //18 20220630新增
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

@@ -3456,9 +3456,9 @@
    <Row>
     <Cell ss:MergeDown="1" ss:StyleID="s188"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s188"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s445"><Data ss:Type="String">${month?string('0')}/${day?string('0')}/${period?string('0')}(RMB)</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s445"><Data ss:Type="String">${month?string('0')}/${day?string('0')}/${period?string('0')}</Data></Cell>
     <Cell ss:StyleID="s50"/>
-    <Cell ss:StyleID="s188"><Data ss:Type="String">12/31/${(period-1)?string('0')}(RMB)</Data></Cell>
+    <Cell ss:StyleID="s188"><Data ss:Type="String">01/01/${period?string('0')}</Data></Cell>
     <Cell ss:StyleID="s188"/>
     <Cell ss:StyleID="s188"><Data ss:Type="String">波动</Data></Cell>
    </Row>
@@ -3645,6 +3645,7 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
+ <!--T300非分级非货基-->
  <#if extraFundInfo.structured != 'T' && extraFundInfo.mf != 'Y' && extraFundInfo.etf != 'Y'>
  <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -3654,7 +3655,7 @@
    <Column ss:StyleID="s75" ss:Width="157.5"/>
    <Column ss:StyleID="s75" ss:Width="130.5"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="157.5"/>
-   <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="58.5"/>
+   <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="89.5"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="72"/>
    <Row ss:Height="14.25" ss:StyleID="s49">
     <Cell ss:StyleID="s48"/>
@@ -3691,7 +3692,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s87"/>
-    <Cell ss:Index="3" ss:StyleID="s88"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
@@ -3743,7 +3744,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^ / &lt;T&gt;</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
@@ -3862,8 +3863,8 @@
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s105"><Data ss:Type="String">应收申购款-本期增加</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="String">E400</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">应收申购款-本期增加（不含息）</Data></Cell>
+    <Cell ss:StyleID="s106"><Data ss:Type="String">E300</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note1.item1!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s297"><Data ss:Type="String">A1</Data></Cell>
     <Cell ss:StyleID="s108"/>
@@ -4133,8 +4134,8 @@
    </#list>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s112"><Data ss:Type="String">Control</Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R${(17+T300.main.count)?string('0')}C6"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R11C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R${(17+2*T300.main.count)?string('0')}C6"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s205" ss:Formula="=R[-1]C-R13C6"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s198"/>
@@ -4198,6 +4199,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <!--T300分级非货基-->
  <#if extraFundInfo.structured == 'T' && extraFundInfo.mf != 'Y' && extraFundInfo.etf != 'Y'>
  <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s75" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -4207,7 +4209,7 @@
    <Column ss:StyleID="s75" ss:Width="157.5"/>
    <Column ss:StyleID="s75" ss:Width="130.5"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="157.5"/>
-   <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="58.5"/>
+   <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="89.5"/>
    <Column ss:StyleID="s75" ss:AutoFitWidth="0" ss:Width="72"/>
    <Row ss:Height="14.25" ss:StyleID="s49">
     <Cell ss:StyleID="s48"/>
@@ -4261,7 +4263,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s87"/>
-    <Cell ss:Index="3" ss:StyleID="s88"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
@@ -4313,7 +4315,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^ / &lt;T&gt</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
@@ -4423,8 +4425,8 @@
     <Cell ss:StyleID="s76"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s105"><Data ss:Type="String">应收申购款-本期增加</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="String">E400</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">应收申购款-本期增加（不含息）</Data></Cell>
+    <Cell ss:StyleID="s106"><Data ss:Type="String">E300</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note1.item1!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s297"><Data ss:Type="String">A1</Data></Cell>
     <Cell ss:StyleID="s108"/>
@@ -4459,7 +4461,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s105"><Data ss:Type="String">本期分红转份额</Data></Cell>
-    <Cell ss:StyleID="s106"><Data ss:Type="String">T301</Data></Cell>
+    <Cell ss:StyleID="s106"><Data ss:Type="String">T310</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="Number">${(T300.note.note1.item6!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s297"><Data ss:Type="String">C</Data></Cell>
     <Cell ss:StyleID="s76"/>
@@ -4773,6 +4775,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <!--T300非分级货基-->
  <#if extraFundInfo.structured != 'T' && extraFundInfo.mf == 'Y' && extraFundInfo.etf != 'Y'>
  <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s72" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -4835,7 +4838,7 @@
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s88"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
@@ -4892,7 +4895,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^ / &lt;T&gt;</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
@@ -5011,7 +5014,7 @@
    </Row>
    <Row ss:StyleID="s73">
     <Cell ss:StyleID="s295"><Data ss:Type="String">应收申购款的本期增加数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">E400</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">E300</Data></Cell>
     <Cell ss:StyleID="s329"><Data ss:Type="Number">${(T300.note.note1.item1!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">A</Data></Cell>
     <Cell ss:StyleID="s178"/>
@@ -5022,7 +5025,7 @@
    </Row>
    <Row ss:StyleID="s73">
     <Cell ss:StyleID="s295"><Data ss:Type="String">本期基金收益分配转份额数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N600</Data></Cell>
     <Cell ss:StyleID="s329"><Data ss:Type="Number">${(T300.note.note1.item2!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">B</Data></Cell>
     <Cell ss:StyleID="s178"/>
@@ -5120,7 +5123,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s295"><Data ss:Type="String">应付收益中赎回转出数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N600</Data></Cell>
     <Cell ss:StyleID="s333"><Data ss:Type="Number">${(T300.note.note2.item3!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">G</Data></Cell>
     <Cell ss:StyleID="s179"/>
@@ -5131,7 +5134,7 @@
    </Row>
    <Row ss:StyleID="s70">
     <Cell ss:StyleID="s335"><Data ss:Type="String">应付收益中转出数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N600</Data></Cell>
     <Cell ss:StyleID="s333"><Data ss:Type="Number">${(T300.note.note2.item4!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">H</Data></Cell>
     <Cell ss:StyleID="s318"/>
@@ -5368,6 +5371,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <!--T300分级货基-->
  <#if extraFundInfo.structured == 'T' && extraFundInfo.mf == 'Y' && extraFundInfo.etf != 'Y'>
  <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s72" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -5442,7 +5446,7 @@
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s88"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
@@ -5507,7 +5511,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^ / &lt;T&gt;</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
@@ -5631,7 +5635,7 @@
    </Row>
    <Row ss:StyleID="s73">
     <Cell ss:StyleID="s295"><Data ss:Type="String">应收申购款的本期增加数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">E400</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">E300</Data></Cell>
     <Cell ss:StyleID="s329"><Data ss:Type="Number">${(T300.note.note1.item1!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">A</Data></Cell>
     <Cell ss:StyleID="s178"/>
@@ -5643,7 +5647,7 @@
    </Row>
    <Row ss:StyleID="s73">
     <Cell ss:StyleID="s295"><Data ss:Type="String">本期基金收益分配转份额数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N600</Data></Cell>
     <Cell ss:StyleID="s329"><Data ss:Type="Number">${(T300.note.note1.item2!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">B</Data></Cell>
     <Cell ss:StyleID="s178"/>
@@ -5791,7 +5795,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s295"><Data ss:Type="String">应付收益中赎回转出数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N600</Data></Cell>
     <Cell ss:StyleID="s333"><Data ss:Type="Number">${(T300.note.note2.item3!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">G</Data></Cell>
     <Cell ss:StyleID="s179"/>
@@ -5803,7 +5807,7 @@
    </Row>
    <Row ss:StyleID="s70">
     <Cell ss:StyleID="s335"><Data ss:Type="String">应付收益中转出数</Data></Cell>
-    <Cell ss:StyleID="s328"><Data ss:Type="String">N800</Data></Cell>
+    <Cell ss:StyleID="s328"><Data ss:Type="String">N600</Data></Cell>
     <Cell ss:StyleID="s333"><Data ss:Type="Number">${(T300.note.note2.item4!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s330"><Data ss:Type="String">H</Data></Cell>
     <Cell ss:StyleID="s318"/>
@@ -6183,6 +6187,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <!--T300ETF-->
  <#if extraFundInfo.etf == 'Y'>
  <Worksheet ss:Name="T300">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s56" ss:DefaultColumnWidth="108.75" ss:DefaultRowHeight="17.25">
@@ -6239,7 +6244,7 @@
    <Row ss:Height="13.5" ss:StyleID="s75">
     <Cell ss:StyleID="s266"/>
     <Cell ss:StyleID="s144"/>
-    <Cell ss:StyleID="s88"><Data ss:Type="String">W/P</Data></Cell>
+    <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"><Data ss:Type="String">S/L</Data></Cell>
@@ -6292,7 +6297,7 @@
    </Row>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s86"/>
-    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s238"><Data ss:Type="String">^ / &lt;T&gt;</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s238"><Data ss:Type="String">^</Data></Cell>
@@ -6403,18 +6408,18 @@
     <Cell ss:StyleID="s60"/>
    </Row>
    <Row ss:Height="13.5">
-    <Cell ss:StyleID="s105"><Data ss:Type="String">股票投资</Data></Cell>
+    <Cell ss:StyleID="s346"><Data ss:Type="String">股票投资</Data></Cell>
     <Cell ss:StyleID="s126"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note1.item1!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s128"><Data ss:Type="String">A</Data></Cell>
     <Cell ss:StyleID="s46"/>
-    <Cell ss:StyleID="s60"/>
+    <Cell ss:StyleID="s348"><Data ss:Type="String">[手动]非股票型ETF注意相应修改措辞</Data></Cell>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
    </Row>
    <Row ss:Height="13.5">
     <Cell ss:StyleID="s105"><Data ss:Type="String">结算备付金ETF</Data></Cell>
-    <Cell ss:StyleID="s126"/>
+    <Cell ss:StyleID="s126"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note1.item2!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s128"><Data ss:Type="String">B</Data></Cell>
     <Cell ss:StyleID="s46"/>
@@ -6424,27 +6429,27 @@
    </Row>
    <Row ss:Height="13.5">
     <Cell ss:StyleID="s105"><Data ss:Type="String">现金替代款</Data></Cell>
-    <Cell ss:StyleID="s127"/>
+    <Cell ss:StyleID="s126"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note1.item3!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s128"><Data ss:Type="String">B</Data></Cell>
     <Cell ss:StyleID="s46"/>
-    <Cell ss:StyleID="s348"><Data ss:Type="String">[手动]除黄金ETF，删除本行</Data></Cell>
+    <Cell ss:StyleID="s60"/>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
    </Row>
    <Row ss:Height="13.5">
     <Cell ss:StyleID="s105"><Data ss:Type="String">现金差额</Data></Cell>
-    <Cell ss:StyleID="s127"/>
+    <Cell ss:StyleID="s126"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">${(T300.note.note1.item4!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s128"><Data ss:Type="String">C</Data></Cell>
     <Cell ss:StyleID="s46"/>
-    <Cell ss:StyleID="s348"><Data ss:Type="String">[手动]黄金ETF删除本行</Data></Cell>
+    <Cell ss:StyleID="s60"/>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
    </Row>
    <Row ss:Height="13.5">
     <Cell ss:StyleID="s105"><Data ss:Type="String">可退替代款</Data></Cell>
-    <Cell ss:StyleID="s127"/>
+    <Cell ss:StyleID="s126"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">${(T300.note.note1.item5!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s128"><Data ss:Type="String">D</Data></Cell>
     <Cell ss:StyleID="s46"/>
@@ -6533,44 +6538,44 @@
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note2.item1!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s128"><Data ss:Type="String">G</Data></Cell>
     <Cell ss:StyleID="s46"/>
-    <Cell ss:Index="7" ss:StyleID="s46"/>
+    <Cell ss:StyleID="s348"><Data ss:Type="String">[手动]非股票型ETF注意相应修改措辞</Data></Cell>
+    <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
    </Row>
    <Row ss:Height="13.5">
     <Cell ss:StyleID="s105"><Data ss:Type="String">可退替代款-赎回</Data></Cell>
-    <Cell ss:StyleID="s126"/>
+    <Cell ss:StyleID="s126"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note2.item2!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s128"><Data ss:Type="String">H1</Data></Cell>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">H</Data></Cell>
     <Cell ss:StyleID="s46"/>
-    <Cell ss:StyleID="s348"><Data ss:Type="String">[手动]除黄金ETF，删除本行</Data></Cell>
-    <Cell ss:StyleID="s46"/>
-    <Cell ss:StyleID="s46"/>
-   </Row>
-   <Row ss:Height="13.5">
-    <Cell ss:StyleID="s105"><Data ss:Type="String">应付替代款-赎回</Data></Cell>
-    <Cell ss:StyleID="s126"/>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note2.item3!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s128"><Data ss:Type="String">H2</Data></Cell>
-    <Cell ss:StyleID="s46"/>
-    <Cell ss:StyleID="s348"><Data ss:Type="String">[手动]除黄金ETF，删除本行</Data></Cell>
     <Cell ss:StyleID="s60"/>
+    <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
    </Row>
    <Row ss:Height="13.5">
     <Cell ss:StyleID="s61"><Data ss:Type="String">现金替代款</Data></Cell>
-    <Cell ss:StyleID="s126"/>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note2.item4!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s128"><Data ss:Type="String">H</Data></Cell>
+    <Cell ss:StyleID="s126"><Data ss:Type="String">S/L</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note2.item3!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">I</Data></Cell>
     <Cell ss:StyleID="s46"/>
-    <Cell ss:StyleID="s348"><Data ss:Type="String">[手动]黄金ETF删除本行</Data></Cell>
+    <Cell ss:StyleID="s60"/>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
    </Row>
    <Row ss:Height="13.5">
     <Cell ss:StyleID="s61"><Data ss:Type="String">现金差额</Data></Cell>
-    <Cell ss:StyleID="s126"/>
+    <Cell ss:StyleID="s126"><Data ss:Type="String">S/L</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note2.item4!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">J</Data></Cell>
+    <Cell ss:StyleID="s46"/>
+    <Cell ss:Index="7" ss:StyleID="s46"/>
+    <Cell ss:StyleID="s46"/>
+   </Row>
+   <Row ss:Height="13.5">
+    <Cell ss:StyleID="s61"><Data ss:Type="String">赎回损益</Data></Cell>
+    <Cell ss:StyleID="s126"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note2.item5!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s128"><Data ss:Type="String">I</Data></Cell>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">K</Data></Cell>
     <Cell ss:StyleID="s46"/>
     <Cell ss:Index="7" ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
@@ -6579,7 +6584,7 @@
     <Cell ss:StyleID="s61"><Data ss:Type="String">损益平准金-已实现-赎回</Data></Cell>
     <Cell ss:StyleID="s126"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note2.item6!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s128"><Data ss:Type="String">J1</Data></Cell>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">L1</Data></Cell>
     <Cell ss:StyleID="s46"/>
     <Cell ss:Index="7" ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
@@ -6588,7 +6593,7 @@
     <Cell ss:StyleID="s61"><Data ss:Type="String">损益平准金-未实现-赎回</Data></Cell>
     <Cell ss:StyleID="s126"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${(T300.note.note2.item7!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s128"><Data ss:Type="String">J2</Data></Cell>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">L2</Data></Cell>
     <Cell ss:StyleID="s46"/>
     <Cell ss:Index="7" ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
@@ -6607,7 +6612,7 @@
     <Cell ss:StyleID="s61"><Data ss:Type="String">实收基金-本期减少</Data></Cell>
     <Cell ss:StyleID="s126"/>
     <Cell ss:StyleID="s62" ss:Formula="=SUM(R[-8]C:R[-4]C)-SUM(R[-3]C:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s128"><Data ss:Type="String">K=G+H+I-J</Data></Cell>
+    <Cell ss:StyleID="s128"><Data ss:Type="String">M=G+H+I+J+K-L</Data></Cell>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
@@ -6880,12 +6885,12 @@
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s49"/>
     <Cell ss:StyleID="s130"/>
-    <Cell ss:StyleID="s49"/>
+    <Cell ss:StyleID="s130"/>
+    <Cell ss:StyleID="s130"/>
+    <Cell ss:StyleID="s49"><#if extraFundInfo.structured == 'T'><Data ss:Type="String">分级基金收益发放总额</Data></#if></Cell>
     <Cell ss:StyleID="s49"/>
     <Cell ss:StyleID="s132"/>
    </Row>
-   <#if T310.levelCount != 0>
-   <#list T310.levels as outer>
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s131"/>
     <Cell ss:StyleID="s131"/>
@@ -6899,14 +6904,22 @@
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s49"/>
     <Cell ss:StyleID="s130"/>
-    <Cell ss:StyleID="s49"/>
-    <Cell ss:StyleID="s49"/>
+    <Cell ss:StyleID="s130"/>
+    <Cell ss:StyleID="s130"/>
+    <#if extraFundInfo.structured == 'T'>
+    <Cell ss:StyleID="s71" ss:Formula="=<#if T310.levelCount == 0>0<#else><#list T310.levels as outer><#if outer_index == 0>R[${(8+outer.accDivCount)?string('0')}]C<#else>+R[${(8+10*outer_index+outer.accDivCount)?string('0')}]C</#if></#list></#if>"><Data ss:Type="Number"></Data></Cell>
+    <#else>
+    <Cell ss:StyleID="s131"/>
+    </#if>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">&lt;T300&gt;</Data></Cell>
     <Cell ss:StyleID="s132"/>
    </Row>
+   <#if T310.levelCount != 0>
+   <#list T310.levels as outer>
    <#if extraFundInfo.structured == 'T'>
    <Row ss:StyleID="s75">
     <Cell ss:StyleID="s48"><Data ss:Type="String">${outer.levelName!}基金份额本年分红如下：</Data></Cell>
-    <Cell ss:StyleID="s131"/>
+    <Cell ss:StyleID="s48"/>
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s43"/>
     <Cell ss:StyleID="s43"/>
@@ -7065,7 +7078,7 @@
     <Cell ss:StyleID="s147"/>
     <Cell ss:Index="13" ss:StyleID="s147"/>
     <Cell ss:StyleID="s147"/>
-    <Cell ss:StyleID="s147"><Data ss:Type="String">&lt;T11000&gt;</Data></Cell>
+    <Cell ss:StyleID="s147"><Data ss:Type="String"><#if extraFundInfo.structured == 'T'>&lt;T11000&gt;<#else>&lt;T11000&gt;/&lt;T300&gt;</#if></Data></Cell>
     <Cell ss:StyleID="s147"><Data ss:Type="String">&lt;T11000&gt;</Data></Cell>
     <Cell ss:StyleID="s147"><Data ss:Type="String">&lt;NXXX&gt;</Data></Cell>
    </Row>
@@ -7170,7 +7183,9 @@
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
+ 
  <#if extraFundInfo.structured != 'T' && extraFundInfo.mf != 'Y'>
+ <!--T400非货基非分级-->
  <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
@@ -7268,6 +7283,26 @@
    </#if>
    </#list>
    </#if>
+   <!--chenhy,20221018,新增会计政策变更和前期差错更正-->
+   <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
+    <Cell ss:StyleID="s175"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s176"/>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s170"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
+    <Cell ss:StyleID="s175"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s176"/>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s170"/>
+   </Row>
+   
    <#if T400.levelCount == 0>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
     <Cell ss:StyleID="s175"><Data ss:Type="String">U</Data></Cell>
@@ -7361,9 +7396,9 @@
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
     <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">本期末</Data></Cell>
     <Cell ss:StyleID="s176"/>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s170"><Data ss:Type="String">&lt;T&gt;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
@@ -7377,6 +7412,8 @@
     <Cell ss:Index="2" ss:StyleID="s352"/>
     <Cell ss:StyleID="s352"/>
     <Cell ss:StyleID="s352"/>
+	<Cell ss:StyleID="s112"><Data ss:Type="String">ctrl</Data></Cell>
+	<Cell ss:StyleID="s357" ss:Formula="=R[-2]C-T!R[-7]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="16.5">
     <Cell ss:Index="2" ss:StyleID="s354"><Data ss:Type="String">损益平准金：</Data></Cell>
@@ -7544,7 +7581,9 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+
  <#if extraFundInfo.structured == 'T' && extraFundInfo.mf != 'Y'>
+  <!--T400非货基分级-->
  <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
@@ -7705,6 +7744,42 @@
     </#list>
     </#if>
    </Row>
+   <!--chenhy,20221018,新增会计政策变更和前期差错更正-->
+   <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
+    <Cell ss:StyleID="s175"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s176"/>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s170"/>
+    <#if T400.levelCount != 0>
+    <#list T400.levels as item>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s351"/>
+    </#list>
+    </#if>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
+    <Cell ss:StyleID="s175"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s176"/>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s170"/>
+    <#if T400.levelCount != 0>
+    <#list T400.levels as item>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s351"/>
+    </#list>
+    </#if>	
+   </Row>
+   
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
     <Cell ss:StyleID="s175"><Data ss:Type="String">U</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期已实现利润</Data></Cell>
@@ -7807,15 +7882,15 @@
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
     <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">本期末</Data></Cell>
     <Cell ss:StyleID="s176"/>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s170"><Data ss:Type="String">&lt;T&gt;</Data></Cell>
     <#if T400.levelCount != 0>
     <#list T400.levels as item>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s351"/>
     </#list>
     </#if>
@@ -7838,6 +7913,8 @@
     <Cell ss:Index="2" ss:StyleID="s352"/>
     <Cell ss:StyleID="s352"/>
     <Cell ss:StyleID="s352"/>
+	<Cell ss:StyleID="s112"><Data ss:Type="String">ctrl</Data></Cell>
+	<Cell ss:StyleID="s357" ss:Formula="=R[-2]C-T!R[-7]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s352"/>
     <Cell ss:Index="11" ss:StyleID="s351"/>
     <Cell ss:StyleID="s352"/>
@@ -7995,7 +8072,9 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+
  <#if extraFundInfo.structured != 'T' && extraFundInfo.mf == 'Y'>
+  <!--T400货基非分级-->
  <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
@@ -8096,6 +8175,26 @@
    </#if>
    </#list>
    </#if>
+   <!--chenhy,20221018,新增会计政策变更和前期差错更正-->
+   <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
+    <Cell ss:StyleID="s175"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s176"/>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s170"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
+    <Cell ss:StyleID="s175"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s176"/>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s170"/>
+   </Row>
+   
    <#if T400.levelCount == 0>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
     <Cell ss:StyleID="s175"><Data ss:Type="String">U</Data></Cell>
@@ -8217,9 +8316,9 @@
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
     <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">本期末</Data></Cell>
     <Cell ss:StyleID="s176"/>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s170"><Data ss:Type="String">&lt;T&gt;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
@@ -8233,6 +8332,8 @@
     <Cell ss:Index="2" ss:StyleID="s352"/>
     <Cell ss:StyleID="s352"/>
     <Cell ss:StyleID="s352"/>
+	<Cell ss:StyleID="s112"><Data ss:Type="String">ctrl</Data></Cell>
+	<Cell ss:StyleID="s357" ss:Formula="=R[-2]C-T!R[-7]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s353"/>
@@ -8288,7 +8389,9 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+
  <#if extraFundInfo.structured == 'T' && extraFundInfo.mf == 'Y'>
+  <!-- T400货基分级 -->
  <Worksheet ss:Name="T400">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s153" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:StyleID="s153" ss:AutoFitWidth="0" ss:Width="140.25"/>
@@ -8450,7 +8553,43 @@
     <Cell ss:StyleID="s351"/>
     </#list>
     </#if>
+   </Row>  
+   <!--chenhy,20221018,新增会计政策变更和前期差错更正-->
+   <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
+    <Cell ss:StyleID="s175"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s176"/>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s170"/>
+    <#if T400.levelCount != 0>
+    <#list T400.levels as item>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s351"/>
+    </#list>
+    </#if>
    </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
+    <Cell ss:StyleID="s175"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s176"><Data ss:Type="String">前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s176"/>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s170"/>
+    <#if T400.levelCount != 0>
+    <#list T400.levels as item>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s180" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s351"/>
+    </#list>
+    </#if>
+   </Row>   
+   
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
     <Cell ss:StyleID="s175"><Data ss:Type="String">U</Data></Cell>
     <Cell ss:StyleID="s176"><Data ss:Type="String">本期已实现利润</Data></Cell>
@@ -8553,15 +8692,15 @@
    <Row ss:AutoFitHeight="0" ss:Height="16.5" ss:StyleID="s168">
     <Cell ss:Index="2" ss:StyleID="s176"><Data ss:Type="String">本期末</Data></Cell>
     <Cell ss:StyleID="s176"/>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s170"><Data ss:Type="String">&lt;T&gt;</Data></Cell>
     <#if T400.levelCount != 0>
     <#list T400.levels as item>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s357" ss:Formula="=SUM(R[-9]C:R[-1]C)-R[-4]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s351"/>
     </#list>
     </#if>
@@ -8584,6 +8723,8 @@
     <Cell ss:Index="2" ss:StyleID="s352"/>
     <Cell ss:StyleID="s352"/>
     <Cell ss:StyleID="s352"/>
+	<Cell ss:StyleID="s112"><Data ss:Type="String">ctrl</Data></Cell>
+	<Cell ss:StyleID="s357" ss:Formula="=R[-2]C-T!R[-7]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:Index="8" ss:StyleID="s352"/>
     <Cell ss:Index="11" ss:StyleID="s351"/>
     <Cell ss:StyleID="s352"/>
@@ -8643,6 +8784,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <!--T500 货基-->
  <#if extraFundInfo.mf == 'Y'>
  <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -8688,7 +8830,7 @@
    </Row>
    <Row ss:StyleID="s118">
     <Cell ss:StyleID="s154"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s155"><Data ss:Type="String">所有者权益变动表</Data></Cell>
+    <Cell ss:StyleID="s155"><Data ss:Type="String">净资产变动表</Data></Cell>
     <Cell ss:StyleID="s160"/>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s165"/>
@@ -8712,11 +8854,11 @@
    <Row ss:StyleID="s118">
     <Cell ss:Index="2" ss:StyleID="s260"><Data ss:Type="String">实收基金</Data></Cell>
     <Cell ss:StyleID="s260"><Data ss:Type="String">未分配利润</Data></Cell>
-    <Cell ss:StyleID="s260"><Data ss:Type="String">所有者权益合计</Data></Cell>
+    <Cell ss:StyleID="s260"><Data ss:Type="String">净资产合计</Data></Cell>
     <Cell ss:StyleID="s260"/>
     <Cell ss:StyleID="s260"><Data ss:Type="String">实收基金</Data></Cell>
     <Cell ss:StyleID="s260"><Data ss:Type="String">未分配利润</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="String">所有者权益合计</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="String">净资产合计</Data></Cell>
    </Row>
    <Row ss:StyleID="s118">
     <Cell ss:StyleID="s262"/>
@@ -8729,10 +8871,10 @@
     <Cell ss:StyleID="s261"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">一、上期期末净资产</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.WFPOLD!0)?string('0.##')}</Data></Cell>
@@ -8740,28 +8882,77 @@
     <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
-   <Row ss:Height="27">
-    <Cell ss:StyleID="s262"><Data ss:Type="String">二、本期经营活动产生的基金净值变动数&#10;  （本期净利润）</Data></Cell>
-    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr2.SS!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr2.WFP!0)?string('0.##')}</Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">加：会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr2.SSOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr2.WFPOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr2.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s267"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s262"><Data ss:Type="String">三、本期基金份额交易产生的基金净值变动数</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">    前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s267"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">二、本期期初净资产</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">三、本期增减变动额（减少以“-”号填列）</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">（一）、综合收益总额</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr2.SS!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr2.WFP!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s300"/>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr2.SSOLD!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr2.WFPOLD!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr2.SYZOLD!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row ss:Height="27">
+    <Cell ss:StyleID="s262"><Data ss:Type="String">（二）、本期基金份额交易产生的净资产变动数（净资产减少以“-”号填列）</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr3.SS!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr3.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s300"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr3.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr3.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr3.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
@@ -8773,7 +8964,7 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr4.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr4.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr4.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
@@ -8785,11 +8976,11 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr5.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr5.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr5.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row ss:Height="27">
-    <Cell ss:StyleID="s262"><Data ss:Type="String">四、本期向基金份额持有人分配利润产生的基金净值变动数</Data></Cell>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">（三）、本期向基金份额持有人分配利润产生的净资产变动（净资产减少以“-”号填列）</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr6.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr6.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -8797,19 +8988,19 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr6.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr6.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr6.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s270"><Data ss:Type="String">五、期末所有者权益（基金净值）</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270"><Data ss:Type="String">四、本期期末净资产</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C-R[-6]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C-R[-6]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s272"/>
     <Cell ss:StyleID="s273"><Data ss:Type="Number">${(T500.main.attr7.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s273"><Data ss:Type="Number">${(T500.main.attr7.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s274"><Data ss:Type="Number">${(T500.main.attr7.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
@@ -8818,8 +9009,8 @@
     <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-T!R14C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s277"/>
     <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-11]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-11]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s278"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -8856,6 +9047,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <!--T500非货基假分级复利,目前已无假分级-->
  <#if extraFundInfo.mf != 'Y' && extraFundInfo.structured == 'F' && extraFundInfo.compound == '复利'>
  <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -8946,7 +9138,7 @@
     <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.WFPOLD!0)?string('0.##')}</Data></Cell>
@@ -9209,6 +9401,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <!--T500非货基假分级单利,目前已无假分级-->
  <#if extraFundInfo.mf != 'Y' && extraFundInfo.structured == 'F' && extraFundInfo.compound != '复利'>
  <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -9255,7 +9448,7 @@
    </Row>
    <Row ss:StyleID="s118">
     <Cell ss:StyleID="s154"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s155"><Data ss:Type="String">所有者权益变动表</Data></Cell>
+    <Cell ss:StyleID="s155"><Data ss:Type="String">净资产（基金净值）变动表</Data></Cell>
     <Cell ss:StyleID="s160"/>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s165"/>
@@ -9299,7 +9492,7 @@
     <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.WFPOLD!0)?string('0.##')}</Data></Cell>
@@ -9569,6 +9762,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <!--T500非货基真分级-->
  <#if extraFundInfo.mf != 'Y' && extraFundInfo.structured == 'T'>
  <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -9615,7 +9809,7 @@
    </Row>
    <Row ss:StyleID="s118">
     <Cell ss:StyleID="s154"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s155"><Data ss:Type="String">所有者权益变动表</Data></Cell>
+    <Cell ss:StyleID="s155"><Data ss:Type="String">净资产变动表</Data></Cell>
     <Cell ss:StyleID="s160"/>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s165"/>
@@ -9639,11 +9833,11 @@
    <Row ss:StyleID="s118">
     <Cell ss:Index="2" ss:StyleID="s260"><Data ss:Type="String">实收基金</Data></Cell>
     <Cell ss:StyleID="s260"><Data ss:Type="String">未分配利润</Data></Cell>
-    <Cell ss:StyleID="s260"><Data ss:Type="String">所有者权益合计</Data></Cell>
+    <Cell ss:StyleID="s260"><Data ss:Type="String">净资产合计</Data></Cell>
     <Cell ss:StyleID="s260"/>
     <Cell ss:StyleID="s260"><Data ss:Type="String">实收基金</Data></Cell>
     <Cell ss:StyleID="s260"><Data ss:Type="String">未分配利润</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="String">所有者权益合计</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="String">净资产合计</Data></Cell>
    </Row>
    <Row ss:StyleID="s118">
     <Cell ss:StyleID="s262"/>
@@ -9656,10 +9850,10 @@
     <Cell ss:StyleID="s261"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">一、上期期末净资产</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.WFPOLD!0)?string('0.##')}</Data></Cell>
@@ -9667,8 +9861,56 @@
     <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
-   <Row ss:Height="27">
-    <Cell ss:StyleID="s262"><Data ss:Type="String">二、本期经营活动产生的基金净值变动数&#10;  （本期净利润）</Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">加：会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s267"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">    前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s267"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">二、本期期初净资产</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">三、本期增减变动额（减少以“-”号填列）</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">（一）、综合收益总额</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr2.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr2.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -9676,11 +9918,11 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr2.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr2.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr2.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s262"><Data ss:Type="String">三、本期基金份额交易产生的基金净值变动数</Data></Cell>
+   <Row ss:Height="27">
+    <Cell ss:StyleID="s262"><Data ss:Type="String">（二）、本期基金份额交易产生的净资产变动数（净资产减少以“-”号填列）</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -9688,7 +9930,7 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr3.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr3.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr3.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
@@ -9700,7 +9942,7 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr4.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr4.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr4.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
@@ -9712,11 +9954,11 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr5.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr5.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr5.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row ss:Height="27">
-    <Cell ss:StyleID="s262"><Data ss:Type="String">四、本期向基金份额持有人分配利润产生的基金净值变动数</Data></Cell>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">（三）、本期向基金份额持有人分配利润产生的净资产变动（净资产减少以“-”号填列）</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr6.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr6.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -9724,19 +9966,19 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr6.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr6.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr6.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s270"><Data ss:Type="String">五、期末所有者权益（基金净值）</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270"><Data ss:Type="String">四、本期期末净资产</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C-R[-6]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C-R[-6]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s272"/>
     <Cell ss:StyleID="s273"><Data ss:Type="Number">${(T500.main.attr7.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s273"><Data ss:Type="Number">${(T500.main.attr7.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s274"><Data ss:Type="Number">${(T500.main.attr7.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
@@ -9745,8 +9987,8 @@
     <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-T!R14C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s277"/>
     <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-11]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-11]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s278"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -9814,7 +10056,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s269"/>
-    <Cell ss:StyleID="s118"><Data ss:Type="String">所有者权益合计</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">净资产合计</Data></Cell>
     <#if T500.n_test.count != 0>
     <#list T500.n_test.list as item>
     <Cell ss:StyleID="s369" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
@@ -9843,7 +10085,7 @@
     <Cell ss:StyleID="s118"><Data ss:Type="String">单位净值 Per EY</Data></Cell>
     <#if T500.n_test.count != 0>
     <#list T500.n_test.list as item>
-    <Cell ss:StyleID="s371" ss:Formula="=ROUND(R[-3]C/R[-1]C,R19C2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s371" ss:Formula="=ROUND(R[-3]C/R[-1]C,R23C2)"><Data ss:Type="Number"></Data></Cell>
     </#list>
     </#if>
     <Cell ss:StyleID="s375"/>
@@ -9896,6 +10138,7 @@
   </WorksheetOptions>
  </Worksheet>
  </#if>
+ <!--T500 普通-->
  <#if extraFundInfo.mf != 'Y' && extraFundInfo.structured == 'N'>
  <Worksheet ss:Name="T500">
   <Table x:FullColumns="1" x:FullRows="1" ss:StyleID="s269" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
@@ -9942,7 +10185,7 @@
    </Row>
    <Row ss:StyleID="s118">
     <Cell ss:StyleID="s154"><Data ss:Type="String">科目：</Data></Cell>
-    <Cell ss:StyleID="s155"><Data ss:Type="String">所有者权益变动表</Data></Cell>
+    <Cell ss:StyleID="s155"><Data ss:Type="String">净资产变动表</Data></Cell>
     <Cell ss:StyleID="s160"/>
     <Cell ss:StyleID="s151"/>
     <Cell ss:StyleID="s165"/>
@@ -9966,11 +10209,11 @@
    <Row ss:StyleID="s118">
     <Cell ss:Index="2" ss:StyleID="s260"><Data ss:Type="String">实收基金</Data></Cell>
     <Cell ss:StyleID="s260"><Data ss:Type="String">未分配利润</Data></Cell>
-    <Cell ss:StyleID="s260"><Data ss:Type="String">所有者权益合计</Data></Cell>
+    <Cell ss:StyleID="s260"><Data ss:Type="String">净资产合计</Data></Cell>
     <Cell ss:StyleID="s260"/>
     <Cell ss:StyleID="s260"><Data ss:Type="String">实收基金</Data></Cell>
     <Cell ss:StyleID="s260"><Data ss:Type="String">未分配利润</Data></Cell>
-    <Cell ss:StyleID="s261"><Data ss:Type="String">所有者权益合计</Data></Cell>
+    <Cell ss:StyleID="s261"><Data ss:Type="String">净资产合计</Data></Cell>
    </Row>
    <Row ss:StyleID="s118">
     <Cell ss:StyleID="s262"/>
@@ -9983,10 +10226,10 @@
     <Cell ss:StyleID="s261"/>
    </Row>
    <Row>
-    <Cell ss:StyleID="s262"><Data ss:Type="String">一、期初所有者权益（基金净值）</Data></Cell>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">一、上期期末净资产</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr1.WFP!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[6]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s265"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr1.WFPOLD!0)?string('0.##')}</Data></Cell>
@@ -9994,8 +10237,56 @@
     <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
-   <Row ss:Height="27">
-    <Cell ss:StyleID="s262"><Data ss:Type="String">二、本期经营活动产生的基金净值变动数&#10;  （本期净利润）</Data></Cell>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">加：会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s267"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">    前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s266"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s267"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">二、本期期初净资产</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">三、本期增减变动额（减少以“-”号填列）</Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s265"/>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s266" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s267" ss:Formula="=SUM(R[1]C:R[2]C,R[5]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s118"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">（一）、综合收益总额</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr2.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr2.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -10003,19 +10294,19 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr2.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr2.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr2.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
-   <Row>
-    <Cell ss:StyleID="s262"><Data ss:Type="String">三、本期基金份额交易产生的基金净值变动数</Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s264" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+   <Row ss:Height="27">
+    <Cell ss:StyleID="s262"><Data ss:Type="String">（二）、本期基金份额交易产生的净资产变动数（净资产减少以“-”号填列）</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr3.SS!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr3.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s300"/>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr3.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr3.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr3.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
@@ -10027,7 +10318,7 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr4.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr4.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr4.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
@@ -10039,11 +10330,11 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr5.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr5.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr5.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row ss:Height="27">
-    <Cell ss:StyleID="s262"><Data ss:Type="String">四、本期向基金份额持有人分配利润产生的基金净值变动数</Data></Cell>
+    <Cell ss:StyleID="s262"><Data ss:Type="String">（三）、本期向基金份额持有人分配利润产生的净资产变动（净资产减少以“-”号填列）</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr6.SS!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264"><Data ss:Type="Number">${(T500.main.attr6.WFP!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s264" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -10051,19 +10342,19 @@
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr6.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s266"><Data ss:Type="Number">${(T500.main.attr6.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s267"><Data ss:Type="Number">${(T500.main.attr6.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row ss:Height="14.25">
-    <Cell ss:StyleID="s270"><Data ss:Type="String">五、期末所有者权益（基金净值）</Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s271" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s270"><Data ss:Type="String">四、本期期末净资产</Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C-R[-6]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s271" ss:Formula="=SUM(R[-7]C:R[-1]C)-R[-4]C-R[-6]C"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s271" ss:Formula="=RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s272"/>
     <Cell ss:StyleID="s273"><Data ss:Type="Number">${(T500.main.attr7.SSOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s273"><Data ss:Type="Number">${(T500.main.attr7.WFPOLD!0)?string('0.##')}</Data></Cell>
     <Cell ss:StyleID="s274"><Data ss:Type="Number">${(T500.main.attr7.SYZOLD!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s230"/>
+    <Cell ss:StyleID="s268"><Data ss:Type="String">&lt;审定财务报表&gt;</Data></Cell>
     <Cell ss:StyleID="s118"/>
    </Row>
    <Row>
@@ -10072,8 +10363,8 @@
     <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-T!R14C6"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s277"/>
     <Cell ss:StyleID="s278"/>
-    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-7]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-11]C[-4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s276" ss:Formula="=R[-1]C-R[-11]C[-4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s278"/>
     <Cell ss:StyleID="s118"/>
     <Cell ss:StyleID="s118"/>
@@ -10155,7 +10446,7 @@
    <Row>
     <Cell ss:StyleID="s269"/>
     <Cell ss:StyleID="s118"><Data ss:Type="String">单位净值 Per EY</Data></Cell>
-    <Cell ss:StyleID="s371" ss:Formula="=ROUND(R[-3]C/R[-1]C,R19C2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s371" ss:Formula="=ROUND(R[-3]C/R[-1]C,R23C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s370"/>
     <Cell ss:StyleID="s370"/>
    </Row>
@@ -10201,7 +10492,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s269"/>
-    <Cell ss:StyleID="s118"><Data ss:Type="String">所有者权益合计</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">净资产合计</Data></Cell>
     <Cell ss:StyleID="s369" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s370"/>
     <Cell ss:StyleID="s370"/>
@@ -10222,7 +10513,7 @@
    <Row>
     <Cell ss:StyleID="s269"/>
     <Cell ss:StyleID="s118"><Data ss:Type="String">单位净值 Per EY</Data></Cell>
-    <Cell ss:StyleID="s371" ss:Formula="=ROUND(R[-3]C/R[-1]C,R19C2)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s371" ss:Formula="=ROUND(R[-3]C/R[-1]C,R23C2)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s370"/>
     <Cell ss:StyleID="s370"/>
    </Row>
@@ -10384,8 +10675,8 @@
     <#else>
     <#list T300.main.dataFor10000.cr as item>
     <#if item_index == 0>
-    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.unit!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(item.amount!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s304" ss:Formula="=T300!R${(18+2*(T300.main.count))?string('0')}C5"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s304" ss:Formula="=T300!R${(12+T300.main.count)?string('0')}C5"><Data ss:Type="Number"></Data></Cell>
     </#if>
     </#list>
     </#if>
@@ -10399,8 +10690,8 @@
     <#else>
     <#list T300.main.dataFor10000.dr as item>
     <#if item_index == 0>
-    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(-1*(item.unit!0))?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s304"><Data ss:Type="Number">${(-1*(item.amount!0))?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s304" ss:Formula="=-1*(T300!R${(18+2*(T300.main.count))?string('0')}C4)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s304" ss:Formula="=-1*(T300!R${(12+T300.main.count)?string('0')}C4)"><Data ss:Type="Number"></Data></Cell>
     </#if>
     </#list>
     </#if>
@@ -11078,6 +11369,27 @@
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">加：会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">    前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">本期期初</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=SUM(R[-3]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s229"><Data ss:Type="String">本期利润</Data></Cell>
     <Cell ss:StyleID="s42"><Data ss:Type="Number">${(item.attr2.realized!0)?string('0.##')}</Data></Cell>
@@ -11147,6 +11459,27 @@
     <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">上年度末</Data></Cell>
     <Cell ss:StyleID="s41"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s41"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">加：会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">    前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">本期期初</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
@@ -11223,45 +11556,66 @@
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">加：会计政策变更</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">    前期差错更正</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:StyleID="s229"><Data ss:Type="String">本期期初</Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=SUM(R[-2]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s230"/>
+   </Row>
+  <Row>
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s229"><Data ss:Type="String">本期利润</Data></Cell>
-    <Cell ss:StyleID="s42"><Data ss:Type="Number">${(item.attr2.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s42"><Data ss:Type="Number">${(item.attr2.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R13C4+T400!R14C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R13C5+T400!R14C5"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row ss:Height="27">
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s232"><Data ss:Type="String">本期基金份额交易产生的变动数</Data></Cell>
-    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s253" ss:Formula="=R[1]C+R[2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R15C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R15C5"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s229"><Data ss:Type="String">其中：基金申购款</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr4.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr4.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R16C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R16C5"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row ss:Height="27">
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s252"><Data ss:Type="String">      基金赎回款&#10;    （以“-”号填列）</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr5.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr5.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R17C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R17C5"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
    </Row>
    <Row>
     <Cell ss:StyleID="s231"><Data ss:Type="String">T400</Data></Cell>
     <Cell ss:StyleID="s232"><Data ss:Type="String">本期已分配利润</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr6.realized!0)?string('0.##')}</Data></Cell>
-    <Cell ss:StyleID="s253"><Data ss:Type="Number">${(item.attr6.unrealized!0)?string('0.##')}</Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R18C4"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s253" ss:Formula="=T400!R18C5"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s254" ss:Formula="=RC[-2]+RC[-1]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s230"/>
-   </Row>
+    </Row>
    <Row>
     <Cell ss:Index="2" ss:StyleID="s232"><Data ss:Type="String">本期末</Data></Cell>
     <Cell ss:StyleID="s255" ss:Formula="=R[-6]C+R[-5]C+R[-4]C+R[-1]C"><Data ss:Type="Number"></Data></Cell>

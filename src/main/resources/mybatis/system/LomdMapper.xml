@@ -15,6 +15,7 @@
         LIFTING_DATE,
         LOMD_SOURCE,
         LOMD,
+		ANN_VOL,
 		ACTIVE,	
 		LOMD_ID
 	</sql>
@@ -27,6 +28,7 @@
         #{LIFTING_DATE},
         #{LOMD_SOURCE},
         #{LOMD},
+		#{ANN_VOL},
         #{ACTIVE},
         #{LOMD_ID}
 	</sql>
@@ -63,6 +65,7 @@
 			<if test="LOMD != null and LOMD != ''">
             LOMD = #{LOMD},
 			</if>
+			ANN_VOL = #{ANN_VOL},
 			ACTIVE = #{ACTIVE}
 		where 
 		LOMD_ID = #{LOMD_ID}
@@ -94,6 +97,8 @@
 					TRX_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 					 or 
 					LOMD_SOURCE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					 or
+					ANN_VOL LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
 		</if>
 	</select>
@@ -132,6 +137,7 @@
         #{pd.LIFTING_DATE},
         #{pd.LOMD_SOURCE},
         #{pd.LOMD},
+		#{pd.ANN_VOL},
         #{pd.ACTIVE},
 		#{pd.LOMD_ID}
          )

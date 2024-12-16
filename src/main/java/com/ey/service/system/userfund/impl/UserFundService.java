@@ -1,11 +1,16 @@
 package com.ey.service.system.userfund.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
+import com.ey.util.AppUtil;
 import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 import com.ey.service.system.userfund.UserFundManager;
 
 /** 
@@ -76,6 +81,35 @@ public class UserFundService implements UserFundManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("UserFundMapper.deleteAll", ArrayDATA_IDS);
+	}
+
+	/**批量新增
+	 * @param pds
+	 * @throws Exception
+	 */
+	@Override
+    public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			PageData pd = new PageData();
+			pd.put("USERFUND_ID", UuidUtil.get32UUID());
+			pd.put("USERNAME", map.get("USERNAME"));
+			pd.put("OWNFUND_ID", map.get("OWNFUND_ID"));
+			pds.add(pd);
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("UserFundMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+			idx++;
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("UserFundMapper.saveBatch", pds);
+		}
 	}
 	
 }

@@ -23,7 +23,7 @@
             V2CRN.DURATION as duration,
             V2CRN.NOTE as note
         FROM
-            WP_V200_CREDIT_RISK_NOTE_INIT V2CRN
+            WP_V200_CREDIT_RISK_NOTE V2CRN
         WHERE
             1 = 1 
         AND V2CRN.FUND_ID = #{fundId}
@@ -60,6 +60,33 @@
             V300.SORT
     </select>
     
+
+    <!-- irene20230904新增 应交税费/应付税费 -->
+    <select id="selectV300IntRiskTaxPayableNameData" parameterType="java.util.Map" resultType="java.lang.String"> 
+        select 
+            ifnull(ifnull(a.pbc,a.rep),'应交税费') as TaxPayableItem 
+        from
+            (select 
+                (select 
+                    trim(dbs.LIAB_ITEM) 
+                from 
+                    ds_balance_sheet_init dbs,ds_import_file dif 
+                where 
+                    dif.IMPORT_FILE_ID = dbs.IMPORT_FILE_ID 
+                    AND dbs.LIAB_ITEM like '应%税费%' 
+                    AND dif.NAME_SEG_2 = #{fundId} 
+                    AND dif.NAME_SEG_4= CONCAT(SUBSTR(#{period}, 1, 4) - 1,'1231') limit 1) as rep,
+                (select 
+                    trim(dbs.LIAB_ITEM) 
+                from 
+                    ds_balance_sheet dbs,ds_import_file	dif 
+                where 
+                    dif.IMPORT_FILE_ID = dbs.IMPORT_FILE_ID 
+                    AND dbs.LIAB_ITEM like '应%税费%' 
+                    AND dif.NAME_SEG_2 = #{fundId} 
+                    AND dif.NAME_SEG_4= #{period} limit 1) as pbc) a
+    </select>
+
     <select id="selectV400FundInfoData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             IFNULL(sfi.INT_SEN_METHOD,'久期法') as intSenMethod,
@@ -166,13 +193,14 @@
         AND V500REV.PERIOD = #{period}
     </select>
     
+    <!--chenhy,20240625,修改合计数比例计算方式-->
     <select id="selectV500riskExposureSumData" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             IF(SUM(V500REV.NET_VALUE_CURRENT) = 0, null, SUM(V500REV.NET_VALUE_CURRENT)) as netValue,
             IF(SUM(V500REV.AMOUNT_CURRENT) = 0, null, SUM(V500REV.AMOUNT_CURRENT)) as amountCurrent,
             IF(SUM(V500REV.AMOUNT_LAST) = 0, null, SUM(V500REV.AMOUNT_LAST)) as amountLast,
-            IF(SUM(V500REV.RATIO_LAST) = 0, null, SUM(V500REV.RATIO_LAST)) as ratioLast,
-            IF(SUM(V500REV.RATIO_CURRENT) = 0, null, SUM(V500REV.RATIO_CURRENT)) as ratioCurrent
+            IF(SUM(V500REV.AMOUNT_LAST) = 0, null, SUM(V500REV.AMOUNT_LAST))/NET_VALUE_LAST as ratioLast,
+            IF(SUM(V500REV.AMOUNT_CURRENT) = 0, null, SUM(V500REV.AMOUNT_CURRENT))/NET_VALUE_CURRENT as ratioCurrent
         FROM
             wp_v500_risk_exposure_view V500REV
         where
@@ -180,7 +208,7 @@
         and V500REV.STATUS = 'Y'
         and V500REV.FUND_ID = #{fundId}
         and V500REV.PERIOD = #{period}
-        <!-- and V500REV.ITEM != '交易性金融资产-基金投资' -->
+        and if(FIRM_CODE = 'JS',V500REV.SORT != '30','1= 1')
         LIMIT 1
     </select>
 
@@ -304,5 +332,62 @@
         AND sh.ACTIVE = 'Y'
         AND sh.HYPOTHESIS_TPYE = '外汇'
         ORDER BY sh.HYPOTHESIS_NUM
+    </select>
+
+    <!--chenhy,20240308,建信专户，外汇风险文字部分金额-->
+    <select id="selectForeignRiskAmount" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT 
+            SUM(ev.MKT_VALUE_ENTERED) *0.05
+        FROM 
+            ey_valuation ev
+        WHERE 
+            1 = 1
+        AND ev.fund_id = #{fundId}
+        AND ev.period = #{period} 
+        AND ev.ATTR5 = '港股通'
+        AND ev.EY_ACCOUNT_NUM = '1102'
+        AND ev.ENTERABLE = 'Y'
+        LIMIT 1
+    </select>
+
+    <!--chenhy,20240308,建信专户，判断其他价格风险文字部分是否输出-->
+    <select id="selectV600OtherPriceSumData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT 
+            detail.mkv AS dMkv,
+            total.mkv tMkv,
+            IF(detail.mkv/total.mkv &gt;= 0.3,'Y','N') flag,
+            total.mkv*0.05 mkValue,
+            detail.mkvLast AS dMkvLast,
+            total.mkvLast tMkvLast,
+            IF(detail.mkvLast/total.mkvLast &gt;= 0.3,'Y','N') flagLast,
+            total.mkvLast*0.05 mkValueLast
+        FROM
+            (SELECT SUM(IFNULL(MV.mkv,0)) mkv,SUM(IFNULL(MV.mkvLast,0)) mkvLast FROM 
+            (select sum(IFNULL(MKT_VALUE,0)) mkv,sum(IFNULL(MKT_VALUE_LAST,0)) mkvLast from wp_h10000_tfa where fund_id = #{fundId} and period = #{period} and ITEM = '股票'
+            UNION ALL
+            select SUM(IFNULL(ev.MKT_VALUE_ENTERED,0)) mkv,0 from ey_valuation ev 
+            left join ey_fund_info efi
+            on ev.ATTR3 = efi.FUND_CODE
+            AND ev.PERIOD = efi.PERIOD
+            WHERE 
+            ev.fund_id = #{fundId} 
+            AND ev.period = #{period}
+            AND ev.EY_ACCOUNT_NUM = '1105'
+            AND ev.ENTERABLE = 'Y'
+            AND efi.SFC_TYPE IN ('股票型基金','混合型基金','REITs')
+            UNION ALL
+            select 0,SUM(IFNULL(ev.MKT_VALUE_ENTERED,0)) mkv from ey_valuation ev 
+            left join ey_fund_info efi
+            on ev.ATTR3 = efi.FUND_CODE
+            AND ev.PERIOD = efi.PERIOD
+            WHERE 
+            ev.fund_id = #{fundId} 
+            AND ev.period = concat(left(#{period},4),'1231')
+            AND ev.EY_ACCOUNT_NUM = '1105'
+            AND ev.ENTERABLE = 'Y'
+            AND efi.SFC_TYPE IN ('股票型基金','混合型基金','REITs')
+            ) MV) detail, 
+            (select sum(IFNULL(MKT_VALUE,0)) mkv,sum(IFNULL(MKT_VALUE_LAST,0)) mkvLast from wp_h10000_tfa where fund_id = #{fundId} and period = #{period}) total
+        LIMIT 1
     </select>
 </mapper>

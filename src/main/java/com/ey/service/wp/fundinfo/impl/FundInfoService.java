@@ -104,6 +104,10 @@ public class FundInfoService implements FundInfoManager{
 				pd.put("MARKET", map.get("MARKET"));
 				pd.put("TRX_STATUS", map.get("TRX_STATUS"));
 				pd.put("RE_STATUS", map.get("RE_STATUS"));
+				pd.put("REGULAR_OPEN_FUND", map.get("REGULAR_OPEN_FUND"));
+				pd.put("SFC_TYPE", map.get("SFC_TYPE"));
+				pd.put("CLOSING_STATUS", map.get("CLOSING_STATUS"));
+				pd.put("FUND_SUB_TYPE", map.get("FUND_SUB_TYPE"));
 				pd.put("CLOSING_PRICE", map.get("CLOSING_PRICE"));
 				pd.put("UNIT_NAV", map.get("UNIT_NAV"));
 				pd.put("MODE", map.get("MODE")); // yury，20200910，EY_BOND_INFO新增MODE基金运作方式字段

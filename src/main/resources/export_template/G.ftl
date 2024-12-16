@@ -45,12 +45,11 @@
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
    <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
-  <Style ss:ID="s27">
+  <Style ss:ID="s27">  <!--chenhy,20220927,修改单元格背景色为白色-->
    <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
    <Borders/>
    <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#FF0000" ss:Bold="1"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
    <Protection ss:Protected="0"/>
   </Style>
   <Style ss:ID="s34" ss:Name="Comma 2">
@@ -709,10 +708,57 @@
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s80"/>
    </Row>
+   <!--chenhy,20220927,新增应收利息和应计利息-->
+   <Row>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">应收利息</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">G300</Data></Cell>
+    <Cell ss:StyleID="s81" ss:Formula="=G300!R[${(-1+G300.KM1221_1Count+G300.KM1221_2Count)?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221_yslx.drAmountAdj)??>${(G.KM1221_yslx.drAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221_yslx.crAmountAdj)??>${(G.KM1221_yslx.crAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
+    <Cell ss:StyleID="s80" ss:Formula="=RC[-3]-RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"><Data ss:Type="Number"><#if (G.KM1221_yslx.amountAuditLast)??>${(G.KM1221_yslx.amountAuditLast)?string('0.##')}<#else>0</#if></Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s115" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:Index="4" ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">应计利息</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">G300</Data></Cell>
+    <Cell ss:StyleID="s81" ss:Formula="=G300!R[${(2+G300.KM1221_1Count+G300.KM1221_2Count+G300.KM1221_3Count+G300.KM1221_4Count)?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221_yjlx.drAmountAdj)??>${(G.KM1221_yjlx.drAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
+    <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221_yjlx.crAmountAdj)??>${(G.KM1221_yjlx.crAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
+    <Cell ss:StyleID="s80" ss:Formula="=RC[-3]-RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81"><Data ss:Type="Number"><#if (G.KM1221_yjlx.amountAuditLast)??>${(G.KM1221_yjlx.amountAuditLast)?string('0.##')}<#else>0</#if></Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s115" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:Index="4" ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s79"/>
+   </Row>   
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">其他应收款</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">G300</Data></Cell>
-    <Cell ss:StyleID="s81" ss:Formula="=G300!R[${(-3+G300.KM1221Count)?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s81" ss:Formula="=G300!R[${(4+G300.KM1221_1Count+G300.KM1221_2Count+G300.KM1221_3Count+G300.KM1221_4Count+G300.KM1221Count)?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221.drAmountAdj)??>${(G.KM1221.drAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1221.crAmountAdj)??>${(G.KM1221.crAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80" ss:Formula="=RC[-3]-RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
@@ -735,12 +781,36 @@
    <Row>
     <Cell ss:StyleID="s109"><Data ss:Type="String">待摊费用</Data></Cell>
     <Cell ss:StyleID="s110"><Data ss:Type="String">G300</Data></Cell>
-    <Cell ss:StyleID="s81" ss:Formula="=G300!R[${(-1+G300.KM1221Count+G300.KM1501Count)?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s81" ss:Formula="=G300!R[${(6+G300.KM1221_1Count+G300.KM1221_2Count+G300.KM1221_3Count+G300.KM1221_4Count+G300.KM1221Count+G300.KM1501Count)?string('0')}]C[4]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1501.drAmountAdj)??>${(G.KM1501.drAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number"><#if (G.KM1501.crAmountAdj)??>${(G.KM1501.crAmountAdj)?string('0.##')}<#else>0</#if></Data></Cell>
     <Cell ss:StyleID="s80" ss:Formula="=RC[-3]-RC[-1]+RC[-2]"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s81"><Data ss:Type="Number"><#if (G.KM1501.amountAuditLast)??>${(G.KM1501.amountAuditLast)?string('0.##')}<#else>0</#if></Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s115" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
+   </Row>
+   <!--chenhy,20220927,新增其他资产合计-->
+   <Row>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:Index="4" ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s87"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">其他资产合计</Data></Cell>
+    <Cell ss:StyleID="s110"/>
+    <Cell ss:StyleID="s81" ss:Formula="=SUM(R[-8]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80" ss:Formula="=SUM(R[-8]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80" ss:Formula="=SUM(R[-8]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80" ss:Formula="=SUM(R[-8]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s81" ss:Formula="=SUM(R[-8]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s80"/>
     <Cell ss:StyleID="s115" ss:Formula="=IF(RC[-2]&lt;&gt;0,(RC[-4]-RC[-2])/RC[-2],&quot;N/A&quot;)"><Data ss:Type="Number"></Data></Cell>
    </Row>
@@ -800,7 +870,7 @@
    </Row>
    <Row>
     <Cell ss:StyleID="s25"><Data ss:Type="String">Note 2</Data></Cell>
-    <Cell ss:StyleID="s26"><Data ss:Type="String">本期未发生其他应收款/待摊费用相关业务，无余额及发生额，符合预期。</Data></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">本期未发生应收利息/其他应收款/待摊费用相关业务，无余额及发生额，符合预期。</Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -836,7 +906,7 @@
    <Column ss:StyleID="s105" ss:AutoFitWidth="0" ss:Width="18.75"/>
    <Column ss:StyleID="s105" ss:AutoFitWidth="0" ss:Width="150"/>
    <Column ss:StyleID="s105" ss:AutoFitWidth="0" ss:Width="123.75"/>
-   <Column ss:StyleID="s105" ss:AutoFitWidth="0" ss:Width="62.25"/>
+   <Column ss:StyleID="s105" ss:AutoFitWidth="0" ss:Width="83.5"/>
    <Row ss:Height="14.25">
     <Cell ss:StyleID="s106"/>
    </Row>
@@ -866,7 +936,7 @@
    <Row ss:StyleID="s86">
     <Cell ss:StyleID="s104"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s104"><Data ss:Type="String">明细</Data></Cell>
-    <Cell ss:StyleID="s137"><Data ss:Type="String">${(period-1)?string('0')}-12-31</Data></Cell>
+    <Cell ss:StyleID="s137"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s104"><Data ss:Type="String">本期增加</Data></Cell>
     <Cell ss:StyleID="s104"/>
     <Cell ss:StyleID="s104"><Data ss:Type="String">本期减少</Data></Cell>
@@ -882,6 +952,165 @@
     <Cell ss:StyleID="s139"><Data ss:Type="String">S/L</Data></Cell>
     <Cell ss:StyleID="s88"/>
    </Row>
+   
+   <!--chenhy,20220927,新增应收利息 -->
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="3" ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:StyleID="s121"/>
+   </Row>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"><Data ss:Type="String">应收利息</Data></Cell>
+   </Row>
+   <#if G300.KM1221_1Count != 0>
+   <#list G300.KM1221_1 as item>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell><Data ss:Type="String">应收黄金合约拆借孳息</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.beginBalance)??>${(item.beginBalance)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.drAmount)??>${(item.drAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s87"/>
+   </Row>
+   </#list>
+   </#if>
+   <#if G300.KM1221_2Count != 0>
+   <#list G300.KM1221_2 as item>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell><Data ss:Type="String">应收出借证券利息</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.beginBalance)??>${(item.beginBalance)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.drAmount)??>${(item.drAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s87"/>
+   </Row>
+   </#list>
+   </#if>   
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number">-</Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s87"/>
+   </Row>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="3" ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:StyleID="s121"/>
+   </Row>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(2+G300.KM1221_1Count+G300.KM1221_2Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(2+G300.KM1221_1Count+G300.KM1221_2Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="String">v</Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(2+G300.KM1221_1Count+G300.KM1221_2Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;/&lt;G10000&gt;</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:Index="4" ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s79"/>
+   </Row>   
+   <!--chenhy,20220927,新增应计利息 -->   
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"><Data ss:Type="String">应计利息</Data></Cell>
+   </Row>
+   <#if G300.KM1221_3Count != 0>
+   <#list G300.KM1221_3 as item>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell><Data ss:Type="String">应收黄金合约拆借孳息</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.beginBalance)??>${(item.beginBalance)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.drAmount)??>${(item.drAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s87"/>
+   </Row>
+   </#list>
+   </#if>
+   <#if G300.KM1221_4Count != 0>
+   <#list G300.KM1221_4 as item>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell><Data ss:Type="String">应收出借证券利息</Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.beginBalance)??>${(item.beginBalance)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.drAmount)??>${(item.drAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s87"/>
+   </Row>
+   </#list>
+   </#if>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell><Data ss:Type="String">其他</Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.drAmount)??>${(item.drAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"><Data ss:Type="Number"><#if (item.crAmount)??>${(item.crAmount)?string('0.##')}</#if></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s87"/>
+   </Row>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="3" ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:StyleID="s122"/>
+    <Cell ss:StyleID="s87"/>
+    <Cell ss:StyleID="s121"/>
+   </Row>
+   <Row ss:StyleID="s86">
+    <Cell ss:StyleID="s88"/>
+    <Cell><Data ss:Type="String">小计</Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(2+G300.KM1221_3Count+G300.KM1221_4Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(2+G300.KM1221_3Count+G300.KM1221_4Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s143"><Data ss:Type="String">v</Data></Cell>
+    <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(2+G300.KM1221_3Count+G300.KM1221_4Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;/&lt;G10000&gt;</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s109"/>
+    <Cell ss:Index="4" ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s79"/>
+   </Row>      
    <Row ss:StyleID="s86">
     <Cell ss:StyleID="s88"><Data ss:Type="String">其他应收款</Data></Cell>
    </Row>
@@ -917,7 +1146,7 @@
     <Cell ss:StyleID="s143"><Data ss:Type="String">v</Data></Cell>
     <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1221Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;</Data></Cell>
+    <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;/&lt;G10000&gt;</Data></Cell>
     <Cell ss:StyleID="s121"><Data ss:Type="String">Note 1</Data></Cell>
    </Row>
    <Row ss:StyleID="s86">
@@ -972,26 +1201,28 @@
     <Cell ss:StyleID="s143"><Data ss:Type="String">v</Data></Cell>
     <Cell ss:StyleID="s146" ss:Formula="=SUM(R[${(-(1+G300.KM1501Count))?string('0')}]C:R[-1]C)"><Data ss:Type="Number"></Data></Cell>
     <Cell ss:StyleID="s122" ss:Formula="=RC[-4]+RC[-3]-RC[-1]"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;</Data></Cell>
+    <Cell ss:StyleID="s87"><Data ss:Type="String">&lt;G&gt;/&lt;G10000&gt;</Data></Cell>
     <Cell ss:StyleID="s121"/>
    </Row>
    <Row ss:StyleID="s86">
-    <Cell ss:Index="5" ss:StyleID="s136"/>
-    <Cell ss:StyleID="s136"><!--<Data ss:Type="String">&lt;P400&gt;</Data>--></Cell>
+    <Cell ss:Index="3" ss:StyleID="s87"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s123"/>
     <Cell ss:StyleID="s123"/>
+	<Cell ss:StyleID="s123"/>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s86">
     <Cell ss:Index="2"><Data ss:Type="String">合计</Data></Cell>
-    <Cell ss:StyleID="s120" ss:Formula="=R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s120" ss:Formula="=R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s120" ss:Formula="=R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
-    <Cell ss:StyleID="s124" ss:Formula="=R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number">1236</Data></Cell>
+    <Cell ss:StyleID="s120" ss:Formula="=R[${(-(15+G300.KM1501Count+G300.KM1221_3Count+G300.KM1221_4Count))?string('0')}]C+R[${(-(10+G300.KM1501Count+G300.KM1221Count))?string('0')}]C+R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s120" ss:Formula="=R[${(-(15+G300.KM1501Count+G300.KM1221_3Count+G300.KM1221_4Count))?string('0')}]C+R[${(-(10+G300.KM1501Count+G300.KM1221Count))?string('0')}]C+R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s120" ss:Formula="=R[${(-(15+G300.KM1501Count+G300.KM1221_3Count+G300.KM1221_4Count))?string('0')}]C+R[${(-(10+G300.KM1501Count+G300.KM1221Count))?string('0')}]C+R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
+    <Cell ss:StyleID="s124" ss:Formula="=R[${(-(15+G300.KM1501Count+G300.KM1221_3Count+G300.KM1221_4Count))?string('0')}]C+R[${(-(10+G300.KM1501Count+G300.KM1221Count))?string('0')}]C+R[${(-(6+G300.KM1501Count))?string('0')}]C+R[-2]C"><Data ss:Type="Number"></Data></Cell>
    </Row>
    <Row ss:Height="14.25" ss:StyleID="s86">
     <Cell ss:Index="3" ss:StyleID="s125"><Data ss:Type="String">^</Data></Cell>
     <Cell ss:StyleID="s125"><Data ss:Type="String">^</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s125"><Data ss:Type="String">^ / &lt;P400&gt;</Data></Cell>
-    <Cell ss:StyleID="s125"><Data ss:Type="String">^</Data></Cell>
+    <Cell ss:StyleID="s125"/>
+	<Cell ss:StyleID="s125"><Data ss:Type="String">^</Data></Cell>
+	<Cell ss:StyleID="s125"><Data ss:Type="String">^</Data></Cell>
    </Row>
    <Row ss:StyleID="s86"/>
    <Row ss:StyleID="s102">

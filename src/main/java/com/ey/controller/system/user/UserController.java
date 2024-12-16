@@ -41,6 +41,7 @@ import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
 import com.ey.util.PathUtil;
 import com.ey.util.Tools;
+import com.ey.util.fileimport.MapResult;
 
 /**
  * 用户管理控制类
@@ -518,59 +519,70 @@ public class UserController extends BaseController {
 		logManager.save(Jurisdiction.getUsername(), "从EXCEL导入到数据库");
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
+
 		if (!Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
 			return null;
 		}
-		if (null != file && !file.isEmpty()) {
-			String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE; // 文件上传路径
-			String fileName = FileUpload.fileUp(file, filePath, "userexcel"); // 执行上传
-			List<PageData> listPd = (List) ObjectExcelRead.readExcel(filePath, fileName, 2, 0, 0); // 执行读EXCEL操作,读出的数据导入List
-																									// 2:从第3行开始；0:从第A列开始；0:第0个sheet
-			/* 存入数据库操作====================================== */
-			pd.put("RIGHTS", ""); // 权限
-			pd.put("LAST_LOGIN", ""); // 最后登录时间
-			pd.put("IP", ""); // IP
-			pd.put("STATUS", "0"); // 状态
-			pd.put("SKIN", "default"); // 默认皮肤
-			pd.put("ROLE_ID", "0");
-			List<Role> roleList = roleService.listAllRoles(pd);// 列出所有系统用户角色
-			pd.put("ROLE_ID", roleList.get(0).getROLE_ID()); // 设置角色ID为随便第一个
-			/**
-			 * var0 :编号 var1 :姓名 var2 :手机 var3 :邮箱 var4 :备注
-			 */
-			for (int i = 0; i < listPd.size(); i++) {
-				pd.put("USER_ID", this.get32UUID()); // ID
-				pd.put("NAME", listPd.get(i).getString("var1")); // 姓名
 
-				String USERNAME = GetPinyin.getPingYin(listPd.get(i).getString("var1")); // 根据姓名汉字生成全拼
-				pd.put("USERNAME", USERNAME);
-				if (userService.findByUsername(pd) != null) { // 判断用户名是否重复
-					USERNAME = GetPinyin.getPingYin(listPd.get(i).getString("var1")) + Tools.getRandomNum();
-					pd.put("USERNAME", USERNAME);
-				}
-				pd.put("BZ", listPd.get(i).getString("var4")); // 备注
-				if (Tools.checkEmail(listPd.get(i).getString("var3"))) { // 邮箱格式不对就跳过
-					pd.put("EMAIL", listPd.get(i).getString("var3"));
-					if (userService.findByUE(pd) != null) { // 邮箱已存在就跳过
-						continue;
-					}
-				} else {
-					continue;
-				}
-				pd.put("NUMBER", listPd.get(i).getString("var0")); // 编号已存在就跳过
-				pd.put("PHONE", listPd.get(i).getString("var2")); // 手机号
-
-				pd.put("PASSWORD", new SimpleHash("SHA-1", USERNAME, "123").toString()); // 默认密码123
-				if (userService.findByUN(pd) != null) {
-					continue;
-				}
-				userService.saveU(pd);
-			}
-			/* 存入数据库操作====================================== */
-			mv.addObject("msg", "success");
-		}
+		// linnea 20231211-infoesc review修改
+		MapResult mapResult = readExcel(file, SU_IMPORT_TEMPLATE_CODE);
+		/* 存入数据库操作====================================== */
+		List<Map> maps = mapResult.getResult();
+		userService.saveBatch(maps);
+		mv.addObject("msg", "success");
 		mv.setViewName("save_result");
 		return mv;
+
+		// if (null != file && !file.isEmpty()) {
+			// String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE; // 文件上传路径
+			// String fileName = FileUpload.fileUp(file, filePath, "userexcel"); // 执行上传
+			// List<PageData> listPd = (List) ObjectExcelRead.readExcel(filePath, fileName, 2, 0, 0); // 执行读EXCEL操作,读出的数据导入List
+			// 																						// 2:从第3行开始；0:从第A列开始；0:第0个sheet
+			// /* 存入数据库操作====================================== */
+			// pd.put("RIGHTS", ""); // 权限
+			// pd.put("LAST_LOGIN", ""); // 最后登录时间
+			// pd.put("IP", ""); // IP
+			// pd.put("STATUS", "0"); // 状态
+			// pd.put("SKIN", "default"); // 默认皮肤
+			// pd.put("ROLE_ID", "0");
+			// List<Role> roleList = roleService.listAllRoles(pd);// 列出所有系统用户角色
+			// pd.put("ROLE_ID", roleList.get(0).getROLE_ID()); // 设置角色ID为随便第一个
+			// /**
+			//  * var0 :编号 var1 :姓名 var2 :手机 var3 :邮箱 var4 :备注
+			//  */
+			// for (int i = 0; i < listPd.size(); i++) {
+			// 	pd.put("USER_ID", this.get32UUID()); // ID
+			// 	pd.put("NAME", listPd.get(i).getString("var1")); // 姓名
+
+			// 	String USERNAME = GetPinyin.getPingYin(listPd.get(i).getString("var1")); // 根据姓名汉字生成全拼
+			// 	pd.put("USERNAME", USERNAME);
+			// 	if (userService.findByUsername(pd) != null) { // 判断用户名是否重复
+			// 		USERNAME = GetPinyin.getPingYin(listPd.get(i).getString("var1")) + Tools.getRandomNum();
+			// 		pd.put("USERNAME", USERNAME);
+			// 	}
+			// 	pd.put("BZ", listPd.get(i).getString("var4")); // 备注
+			// 	if (Tools.checkEmail(listPd.get(i).getString("var3"))) { // 邮箱格式不对就跳过
+			// 		pd.put("EMAIL", listPd.get(i).getString("var3"));
+			// 		if (userService.findByUE(pd) != null) { // 邮箱已存在就跳过
+			// 			continue;
+			// 		}
+			// 	} else {
+			// 		continue;
+			// 	}
+			// 	pd.put("NUMBER", listPd.get(i).getString("var0")); // 编号已存在就跳过
+			// 	pd.put("PHONE", listPd.get(i).getString("var2")); // 手机号
+
+			// 	pd.put("PASSWORD", new SimpleHash("SHA-1", USERNAME, "123").toString()); // 默认密码123
+			// 	if (userService.findByUN(pd) != null) {
+			// 		continue;
+			// 	}
+			// 	userService.saveU(pd);
+			// }
+			// /* 存入数据库操作====================================== */
+			// mv.addObject("msg", "success");
+		// }
+		// mv.setViewName("save_result");
+		//  return mv;
 	}
 
 	/**

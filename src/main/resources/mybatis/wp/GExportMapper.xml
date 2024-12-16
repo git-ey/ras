@@ -20,6 +20,7 @@
         SELECT
 		    G300.EY_ACCOUNT_NUM as accountNum,
 		    G300.ATTR1 as detail,
+            G300.ATTR5 as attr5,
 		    G300.DR_AMOUNT_CNY as drAmount,
 		    G300.CR_AMOUNT_CNY as crAmount,
 		    G300.BEGIN_BALANCE_CNY as beginBalance

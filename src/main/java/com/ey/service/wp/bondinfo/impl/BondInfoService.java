@@ -134,6 +134,7 @@ public class BondInfoService implements BondInfoManager{
 				pd.put("INTEREST_RATE_OPTION", map.get("INTEREST_RATE_OPTION"));
 				pd.put("SELL_BACK", map.get("SELL_BACK"));
 				pd.put("REDEMPTION", map.get("REDEMPTION"));
+				pd.put("FIRM_CODE", map.get("FIRM_CODE"));  //  irene20231011
 				pds.add(pd);
 				idx++;
 			}

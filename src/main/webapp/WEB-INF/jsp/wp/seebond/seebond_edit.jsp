@@ -37,8 +37,6 @@
 								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="255" title="期间" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值日:</td>
 								<td><input class="span10 date-picker" name="VALUE_DATE" id="VALUE_DATE" value="${pd.VALUE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="估值日" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">上海代码:</td>
 								<td><input type="text" autocomplete="off" name="SHH_CODE" id="SHH_CODE" value="${pd.SHH_CODE}" maxlength="255" title="上海代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">深圳代码:</td>
@@ -47,24 +45,40 @@
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">银行间代码:</td>
 								<td><input type="text" autocomplete="off" name="INTER_BANK_CODE" id="INTER_BANK_CODE" value="${pd.INTER_BANK_CODE}" maxlength="255" title="银行间代码" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">全价:</td>
-								<td><input type="number" autocomplete="off" name="CALCULATION_PRICE" id="CALCULATION_PRICE" value="${pd.CALCULATION_PRICE}" maxlength="32" title="全价" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">全价1:</td>
+								<td><input type="number" autocomplete="off" name="CALCULATION_PRICE1" id="CALCULATION_PRICE1" value="${pd.CALCULATION_PRICE1}" maxlength="32" title="全价" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">净价1:</td>
+								<td><input type="number" autocomplete="off" name="CLEAN_PRICE1" id="CLEAN_PRICE1" value="${pd.CLEAN_PRICE1}" maxlength="32" title="净价1" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">到期收益率1:</td>
+								<td><input type="number" autocomplete="off" name="YIELD_TO_MATURITY1" id="YIELD_TO_MATURITY1" value="${pd.YIELD_TO_MATURITY1}" maxlength="32" title="到期收益率1" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">到期收益率:</td>
-								<td><input type="number" autocomplete="off" name="YIELD_TO_MATURITY" id="YIELD_TO_MATURITY" value="${pd.YIELD_TO_MATURITY}" maxlength="32" title="到期收益率" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">修正久期:</td>
-								<td><input type="number" autocomplete="off" name="MODIFIED_DURATION" id="MODIFIED_DURATION" value="${pd.MODIFIED_DURATION}" maxlength="32" title="修正久期" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">修正久期1:</td>
+								<td><input type="number" autocomplete="off" name="MODIFIED_DURATION1" id="MODIFIED_DURATION1" value="${pd.MODIFIED_DURATION1}" maxlength="32" title="修正久期1" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">凸性1:</td>
+								<td><input type="number" autocomplete="off" name="CONVEXITY1" id="CONVEXITY1" value="${pd.CONVEXITY1}" maxlength="32" title="凸性1" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">全价2:</td>
+								<td><input type="number" autocomplete="off" name="CALCULATION_PRICE2" id="CALCULATION_PRICE2" value="${pd.CALCULATION_PRICE2}" maxlength="32" title="全价2" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">净价2:</td>
+								<td><input type="number" autocomplete="off" name="CLEAN_PRICE2" id="CLEAN_PRICE2" value="${pd.CLEAN_PRICE2}" maxlength="32" title="净价2" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">凸性:</td>
-								<td><input type="number" autocomplete="off" name="CONVEXITY" id="CONVEXITY" value="${pd.CONVEXITY}" maxlength="32" title="凸性" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">净价:</td>
-								<td><input type="number" autocomplete="off" name="CLEAN_PRICE" id="CLEAN_PRICE" value="${pd.CLEAN_PRICE}" maxlength="32" title="净价" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">到期收益率2:</td>
+								<td><input type="number" autocomplete="off" name="YIELD_TO_MATURITY2" id="YIELD_TO_MATURITY2" value="${pd.YIELD_TO_MATURITY2}" maxlength="32" title="到期收益率2" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">修正久期2:</td>
+								<td><input type="number" autocomplete="off" name="MODIFIED_DURATION2" id="MODIFIED_DURATION2" value="${pd.MODIFIED_DURATION2}" maxlength="32" title="修正久期2" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">凸性2:</td>
+								<td><input type="number" autocomplete="off" name="CONVEXITY2" id="CONVEXITY2" value="${pd.CONVEXITY2}" maxlength="32" title="凸性2" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">推荐:</td>
+								<td><input type="text" autocomplete="off" name="RECOMMENDATION " id="RECOMMENDATION " value="${pd.RECOMMENDATION }" maxlength="32" title="推荐" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">应收利息:</td>
 								<td><input type="number" autocomplete="off" name="ACCRUED_INTEREST" id="ACCRUED_INTEREST" value="${pd.ACCRUED_INTEREST}" maxlength="32" title="应收利息" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">预计利息:</td>
+								<td><input type="number" autocomplete="off" name="ESTIMATED_COUPON" id="ESTIMATED_COUPON" value="${pd.ESTIMATED_COUPON}" maxlength="32" title="预计利息" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">保留:</td>
+								<td><input type="number" autocomplete="off" name="RESERVE" id="RESERVE" value="${pd.RESERVE}" maxlength="32" title="保留" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">
@@ -119,96 +133,6 @@
 		            time:2
 		        });
 				$("#VALUE_DATE").focus();
-			return false;
-			}
-			if($("#SHH_CODE").val()==""){
-				$("#SHH_CODE").tips({
-					side:3,
-		            msg:'请输入上海代码',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#SHH_CODE").focus();
-			return false;
-			}
-			if($("#SHZ_CODE").val()==""){
-				$("#SHZ_CODE").tips({
-					side:3,
-		            msg:'请输入深圳代码',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#SHZ_CODE").focus();
-			return false;
-			}
-			if($("#INTER_BANK_CODE").val()==""){
-				$("#INTER_BANK_CODE").tips({
-					side:3,
-		            msg:'请输入银行间代码',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#INTER_BANK_CODE").focus();
-			return false;
-			}
-			if($("#CALCULATION_PRICE").val()==""){
-				$("#CALCULATION_PRICE").tips({
-					side:3,
-		            msg:'请输入全价',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#CALCULATION_PRICE").focus();
-			return false;
-			}
-			if($("#YIELD_TO_MATURITY").val()==""){
-				$("#YIELD_TO_MATURITY").tips({
-					side:3,
-		            msg:'请输入到期收益率',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#YIELD_TO_MATURITY").focus();
-			return false;
-			}
-			if($("#MODIFIED_DURATION").val()==""){
-				$("#MODIFIED_DURATION").tips({
-					side:3,
-		            msg:'请输入修正久期',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#MODIFIED_DURATION").focus();
-			return false;
-			}
-			if($("#CONVEXITY").val()==""){
-				$("#CONVEXITY").tips({
-					side:3,
-		            msg:'请输入凸性',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#CONVEXITY").focus();
-			return false;
-			}
-			if($("#CLEAN_PRICE").val()==""){
-				$("#CLEAN_PRICE").tips({
-					side:3,
-		            msg:'请输入净价',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#CLEAN_PRICE").focus();
-			return false;
-			}
-			if($("#ACCRUED_INTEREST").val()==""){
-				$("#ACCRUED_INTEREST").tips({
-					side:3,
-		            msg:'请输入应收利息',
-		            bg:'#AE81FF',
-		            time:2
-		        });
-				$("#ACCRUED_INTEREST").focus();
 			return false;
 			}
 			$("#Form").submit();

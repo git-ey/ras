@@ -277,7 +277,7 @@
   <Style ss:ID="s54" ss:Parent="s21">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
-   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11" ss:Bold="1"/>
    <Interior/>
    <NumberFormat ss:Format="yyyy\-mm\-dd"/>
   </Style>
@@ -287,7 +287,7 @@
   <Style ss:ID="s56" ss:Parent="s23">
    <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
    <Borders/>
-   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11" ss:Bold="1"/>
    <Interior/>
   </Style>
   <Style ss:ID="s57" ss:Parent="s24">
@@ -551,13 +551,19 @@
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
    </Borders>
-   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11"/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11" ss:Bold="1"/>
    <Interior/>
    <NumberFormat ss:Format="yyyy\-mm\-dd"/>
   </Style>
   <Style ss:ID="s10099">
    <Font ss:FontName="宋体" x:CharSet="134" x:Family="Modern" ss:Size="11"
     ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s10100" ss:Parent="s18">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="黑体" x:CharSet="134" x:Family="Modern" ss:Size="11" ss:Bold="1"/>
    <Interior/>
   </Style>
  </Styles>
@@ -608,7 +614,7 @@
    <Row ss:Index="7">
     <Cell ss:StyleID="s30"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s44"/>
-    <Cell ss:MergeAcross="3" ss:StyleID="s99"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s99"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}</Data></Cell>
     <Cell ss:StyleID="s44"/>
     <Cell ss:StyleID="s54"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s55"/>
@@ -617,11 +623,11 @@
    <Row>
     <Cell ss:StyleID="s30"/>
     <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">未审数</Data></Cell>
-    <Cell ss:MergeAcross="1" ss:StyleID="s44"><Data ss:Type="String">审计调整</Data></Cell>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">审定数</Data></Cell>
+    <Cell ss:StyleID="s10100"><Data ss:Type="String">未审数</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s10100"><Data ss:Type="String">审计调整</Data></Cell>
+    <Cell ss:StyleID="s10100"><Data ss:Type="String">审定数</Data></Cell>
     <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s44"><Data ss:Type="String">审定数</Data></Cell>
+    <Cell ss:StyleID="s10100"><Data ss:Type="String">审定数</Data></Cell>
     <Cell ss:StyleID="s55"/>
     <Cell ss:StyleID="s56"><Data ss:Type="String">%</Data></Cell>
    </Row>
@@ -629,8 +635,8 @@
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
-    <Cell ss:StyleID="s46"><Data ss:Type="String">借</Data></Cell>
-    <Cell ss:StyleID="s46"><Data ss:Type="String">贷</Data></Cell>
+    <Cell ss:StyleID="s10100"><Data ss:Type="String">借</Data></Cell>
+    <Cell ss:StyleID="s10100"><Data ss:Type="String">贷</Data></Cell>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
     <Cell ss:StyleID="s46"/>
@@ -744,11 +750,11 @@
    <Row ss:Index="6">
     <Cell ss:StyleID="s44"><Data ss:Type="String">项目</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">明细</Data></Cell>
-    <Cell ss:StyleID="s77"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s54"><Data ss:Type="DateTime">${(period-1)?string('0')}-12-31T00:00:00.000</Data></Cell>
     <Cell ss:StyleID="s44"><Data ss:Type="String">本期借方</Data></Cell>
     <Cell ss:Index="6" ss:StyleID="s44"><Data ss:Type="String">本期贷方</Data></Cell>
     <Cell ss:StyleID="s44"/>
-    <Cell ss:StyleID="s77"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="DateTime">${period?string('0')}-${month?string('00')}-${day?string('00')}</Data></Cell>
    </Row>
    <Row>
     <Cell ss:StyleID="s62"/>
@@ -931,7 +937,7 @@
    <Row>
     <Cell ss:StyleID="s62"/>
     <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s60"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String"></Data></Cell>
     <Cell ss:StyleID="s60"/>
     <Cell ss:Index="6" ss:StyleID="s60"/>
     <Cell ss:StyleID="s60"/>
@@ -994,7 +1000,7 @@
    <Row/>
    <Row>
      <Cell ss:StyleID="s70"><Data ss:Type="String">Note</Data></Cell>
-     <Cell ss:StyleID="s65"><Data ss:Type="String">附加税通过本科目计提，除了1月的附加税费直接借记本科目支付外，其余月份均结转至应交城建税附加、教育费附加、地方教育费附加后向税务机关缴纳。</Data></Cell>
+     <Cell ss:StyleID="s65"><Data ss:Type="String">附加税通过本科目计提，结转至应交城建税附加、教育费附加、地方教育费附加后向税务机关缴纳。</Data></Cell>
    </Row>
    </#if>
   </Table>

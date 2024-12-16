@@ -13,12 +13,20 @@
 <title>${pd.SYSNAME}</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="static/js/jquery.js"></script>
+<script type="text/javascript" src="static/login/js/jquery.min.js"></script>
+<script src="static/login/js/bootstrap.min.js"></script>
+<script src="static/login/js/jquery.easing.js"></script>
+<script src="static/login/js/jquery.mobile.customized.min.js"></script>
+<script type="text/javascript" src="static/js/jQuery.md5.js"></script>
+<script type="text/javascript" src="static/js/jquery.tips.js"></script>
+<script type="text/javascript" src="static/js/jquery.cookie.js"></script>
 
 <link rel="stylesheet" href="static/login/bootstrap.min.css" />
 <link rel="stylesheet" href="static/login/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="static/login/matrix-login.css" />
 <link href="static/login/font-awesome.css" rel="stylesheet" />
-<script type="text/javascript" src="static/login/js/jquery.min.js"></script>
+
  <style type="text/css">
       .cavs{
     	z-index:1;
@@ -215,13 +223,7 @@
 			}
 		</script>
 	</c:if>
-	<script src="static/login/js/bootstrap.min.js"></script>
-	<script src="static/js/jquery.js"></script>
-	<script src="static/login/js/jquery.easing.js"></script>
-	<script src="static/login/js/jquery.mobile.customized.min.js"></script>
-	<script type="text/javascript" src="static/js/jQuery.md5.js"></script>
-	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
-	<script type="text/javascript" src="static/js/jquery.cookie.js"></script>
+
 	
 </body>
 

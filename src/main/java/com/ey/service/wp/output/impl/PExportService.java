@@ -45,6 +45,7 @@ public class PExportService extends BaseExportService implements PExportManager{
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("fundInfo", fundInfo);
+        dataMap.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
         
         dataMap.put("P", this.getPData(fundId, periodStr));
         dataMap.put("P300", this.getP300Data(fundId, periodStr));
@@ -52,6 +53,8 @@ public class PExportService extends BaseExportService implements PExportManager{
         dataMap.put("P500", this.getP500Data(fundId, periodStr));
         dataMap.put("P600", this.getP600Data(fundId, periodStr));
         dataMap.put("P800", this.getP800Data(fundId, periodStr));
+        dataMap.put("P810", this.getP810Data(fundId, periodStr));
+        dataMap.put("P900", this.getP900Data(fundId, periodStr));
         dataMap.put("P10000", this.getP10000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_P);
@@ -110,12 +113,60 @@ public class PExportService extends BaseExportService implements PExportManager{
         result.put("KM2241", temp.get("2241")==null?new HashMap<>():temp.get("2241"));
         result.put("KM2501", temp.get("2501")==null?new HashMap<>():temp.get("2501"));
         result.put("KM2204", temp.get("2204")==null?new HashMap<>():temp.get("2204"));
+        result.put("KM2209", temp.get("2209")==null?new HashMap<>():temp.get("2209"));
         result.put("KM2202", temp.get("2202")==null?new HashMap<>():temp.get("2202"));
         result.put("KM3003Can", temp.get("3003c")==null?new HashMap<>():temp.get("3003c"));
         result.put("KM3003Should", temp.get("3003s")==null?new HashMap<>():temp.get("3003s"));
+
+        String P3003Flag = (String)this.dao.findForObject("PExportMapper.selectP3003Flag", queryMap);
+        result.put("P3003Flag", P3003Flag);
         
         return result;
     }
+    
+	/**
+     * 获取基金额外属性
+     * @author Dai Zong 2017年12月2日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getExtraFundInfo(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        
+        @SuppressWarnings("unchecked")
+        Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("PExportMapper.selectExtraFundInfo", queryMap);
+        if(fundInfo == null) {
+            fundInfo = new HashMap<>();
+        }
+        
+        Integer startYear = 2000, startMonth = 01, startDay = 01;
+        if(fundInfo.get("dateFrom") != null) {
+            String[] splits = String.valueOf(fundInfo.get("dateFrom")).split("-");
+            try {
+                if(splits.length == 1) {
+                    startYear = Integer.parseInt(splits[0]);
+                }else if(splits.length == 2) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                }else if(splits.length >= 3) {
+                    startYear = Integer.parseInt(splits[0]);
+                    startMonth = Integer.parseInt(splits[1]);
+                    startDay = Integer.parseInt(splits[2]);
+                }
+            }catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        fundInfo.put("startYear", startYear);
+        fundInfo.put("startMonth", startMonth);
+        fundInfo.put("startDay", startDay);
+        return fundInfo;
+    }
+	
     
     /**
      * 处理sheet页P300的数据
@@ -293,7 +344,29 @@ public class PExportService extends BaseExportService implements PExportManager{
         test.put("list", P600TestMetaDataList);
         test.put("count", P600TestMetaDataList.size());
         //========process dataMap for test view end========
-        
+
+        Map<String, Object> testOTC = new HashMap<>();
+        List<Map<String, Object>> P600TestOTCMetaDataList = (List<Map<String, Object>>)this.dao.findForList("PExportMapper.selectP600TestOTCData", queryMap);
+        if (P600TestOTCMetaDataList == null) {
+            P600TestOTCMetaDataList =new ArrayList<Map<String,Object>>(); 
+        }
+        testOTC.put("list", P600TestOTCMetaDataList);
+        testOTC.put("count", Integer.valueOf(P600TestOTCMetaDataList.size()));
+        Map<String, Object> testEX = new HashMap<>();
+        List<Map<String, Object>> P600TestEXMetaDataList = (List<Map<String, Object>>)this.dao.findForList("PExportMapper.selectP600TestEXData", queryMap);
+        if (P600TestEXMetaDataList == null) {
+            P600TestEXMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        testEX.put("list", P600TestEXMetaDataList);
+        testEX.put("count", Integer.valueOf(P600TestEXMetaDataList.size()));
+        Map<String, Object> hp100p600 = new HashMap<>();
+        List<Map<String, Object>> hp100p600DataList = (List<Map<String, Object>>)this.dao.findForList("PExportMapper.selectHP100P600Data", queryMap);
+        if (hp100p600DataList == null){
+            hp100p600DataList = new ArrayList<Map<String,Object>>();
+        }
+        hp100p600.put("list", hp100p600DataList);
+        hp100p600.put("count", Integer.valueOf(hp100p600DataList.size()));
+
         //========process dataMap for summary view begin========
         @SuppressWarnings("unchecked")
         Map<String,Object> P600TestSummaryMetaData = (Map<String,Object>)this.dao.findForObject("PExportMapper.selectP600TestSummaryData", queryMap);
@@ -301,7 +374,14 @@ public class PExportService extends BaseExportService implements PExportManager{
             P600TestSummaryMetaData = new HashMap<>();
         }
         //========process dataMap for summary view end========
-        
+        Map<String, Object> trxcalendarData = new HashMap<>();
+        List<Map<String, Object>> trxcalendarDataList = (List<Map<String, Object>>)this.dao.findForList("HExportMapper.selecttrxcalendarData", queryMap);
+        if (trxcalendarDataList == null){
+            trxcalendarDataList = new ArrayList<Map<String,Object>>();
+        }
+        trxcalendarData.put("list", trxcalendarDataList);
+        trxcalendarData.put("count", Integer.valueOf(trxcalendarDataList.size()));
+
         //========process dataMap for testDetail view begin========
         Map<String, Object> testDetail = new HashMap<>();
         Map<String, Object> note2 = new HashMap<>();
@@ -378,16 +458,20 @@ public class PExportService extends BaseExportService implements PExportManager{
         
         result.put("main", main);
         result.put("test", test);
+        result.put("testOTC", testOTC);
+        result.put("testEX", testEX);
+        result.put("hp100p600", hp100p600);
         result.put("summary", P600TestSummaryMetaData);
         result.put("testDetail", testDetail);
         result.put("exposurePeriod", exposurePeriod);
-        
+        result.put("trxcalendarData", trxcalendarData);
         return result;
     }
+
     
     /**
      * 处理sheet页P800的数据
-     * @author Dai Zong 2017年9月19日
+     * @author Dai Zong 2017年9月14日
      * 
      * @param fundId
      * @param periodStr
@@ -396,16 +480,172 @@ public class PExportService extends BaseExportService implements PExportManager{
      */
     private Map<String,Object> getP800Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        //========process dataMap for main view begin========
+        Map<String, Object> main = new HashMap<String,Object>();
+        
+        Map<String, Object> commission = new HashMap<String,Object>();
+        Map<String, Object> tradeCosts = new HashMap<String,Object>();
+        
+        List<Map<String, Object>> commissionList = new ArrayList<Map<String, Object>>();
+        Map<String, Object> bondSettlement = new HashMap<String,Object>();
+        Map<String, Object> repurchaseSettlement = new HashMap<String,Object>();
+        Map<String, Object> bondTrade = new HashMap<String,Object>();
+        Map<String, Object> repurchaseTrade = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P800MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP800MainData", queryMap);
+        if(P800MainMetaDataList == null) {
+            P800MainMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        for(Map<String, Object> map : P800MainMetaDataList){
+            if("应付佣金".equals(map.get("type"))) {
+                commissionList.add(map);
+            }
+            else if("银行间交易费用".equals(map.get("type"))) {
+                switch (String.valueOf(map.get("tradeDetailName"))) {
+                case "债券结算手续费":
+                    bondSettlement = map;
+                    break;
+                case "回购结算手续费":
+                    repurchaseSettlement = map;
+                    break;
+                case "债券交易手续费":
+                    bondTrade = map;
+                    break;
+                case "回购交易手续费":
+                    repurchaseTrade = map;
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+        
+        commission.put("list", commissionList);
+        commission.put("count", commissionList.size());
+        
+        tradeCosts.put("bondSettlement", bondSettlement);
+        tradeCosts.put("repurchaseSettlement", repurchaseSettlement);
+        tradeCosts.put("bondTrade", bondTrade);
+        tradeCosts.put("repurchaseTrade", repurchaseTrade);
+        
+        main.put("commission", commission);
+        main.put("tradeCosts", tradeCosts);
+        
+        result.put("main", main);
+        //========process dataMap for main view end========
+        
+        //========process dataMap for related view begin========
+        Map<String, Object> related = new HashMap<String,Object>();
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P800RelatedMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP800RelatedData", queryMap);
+        if(P800RelatedMetaDataList == null) {
+            P800RelatedMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        related.put("list", P800RelatedMetaDataList);
+        related.put("count", P800RelatedMetaDataList.size());
+        
+        result.put("related", related);
+        //========process dataMap for related view begin========
+        return result;
+    }
+    
+    /**
+     * 处理sheet页P810的数据
+     * @author Dai Zong 2017年9月17日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getP810Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+        
+        Map<String, Object> main = new HashMap<String,Object>();
+        Map<String, Object> related = new HashMap<String,Object>();
+        Map<String, Object> commission = new HashMap<String,Object>();
+        Map<String, Object> commissionComparable = new HashMap<String,Object>();
+        
+        //========process dataMap for main view begin========
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P810MetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP810Data", queryMap);
+        if(P810MetaDataList == null) {
+            P810MetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        main.put("list", P810MetaDataList);
+        main.put("count", P810MetaDataList.size());
+        //========process dataMap for main view end========
+        
+        //========process dataMap for related view begin========
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P810RelatedMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP810RelatedData", queryMap);
+        if(P810RelatedMetaDataList == null) {
+            P810RelatedMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        related.put("list", P810RelatedMetaDataList);
+        related.put("count", P810RelatedMetaDataList.size());
+        //========process dataMap for related view end========
+        
+        //========process dataMap for related view begin========
+        @SuppressWarnings("unchecked")
+        Map<String,Object> P810CommissionMetaDataList = (Map<String,Object>)this.dao.findForObject("PExportMapper.selectP810CommissionData", queryMap);
+        if(P810CommissionMetaDataList == null) {
+            P810CommissionMetaDataList = new HashMap<>(); 
+        }        
+        
+        //========process dataMap for related view end========
+        
+        //========process dataMap for related view begin========
+        @SuppressWarnings("unchecked")
+        List<Map<String,Object>> P810CommissionComparableMetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP810CommissionComparableData", queryMap);
+        if(P810CommissionComparableMetaDataList == null) {
+            P810CommissionComparableMetaDataList = new ArrayList<Map<String,Object>>(); 
+        }
+        
+        commissionComparable.put("list", P810CommissionComparableMetaDataList);
+        commissionComparable.put("count", P810CommissionComparableMetaDataList.size());
+        //========process dataMap for related view end========
+        
+        result.put("main", main);
+        result.put("related", related);
+        result.put("commission", P810CommissionMetaDataList);
+        result.put("commissionComparable", commissionComparable);
+        
+        return result;
+    }
+    
+    
+    
+    /**
+     * 处理sheet页P900的数据
+     * @author Dai Zong 2017年9月19日
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    private Map<String,Object> getP900Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
         
         @SuppressWarnings("unchecked")
-        List<Map<String,Object>> P800MetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP800Data", queryMap);
-        if(P800MetaDataList == null) {
-            P800MetaDataList = new ArrayList<Map<String,Object>>(); 
+        List<Map<String,Object>> P900MetaDataList = (List<Map<String,Object>>)this.dao.findForList("PExportMapper.selectP900Data", queryMap);
+        if(P900MetaDataList == null) {
+            P900MetaDataList = new ArrayList<Map<String,Object>>(); 
         }
         
-        result.put("list", P800MetaDataList);
-        result.put("count", P800MetaDataList.size());
+        result.put("list", P900MetaDataList);
+        result.put("count", P900MetaDataList.size());
         
         return result;
     }

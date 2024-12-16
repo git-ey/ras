@@ -89,6 +89,7 @@
 											<td class='center'>${var.LIFTING_DATE}</td>
 											<td class='center'>${var.LOMD_SOURCE}</td>
 											<td class='center'>${var.LOMD}</td>
+											<td class='center'>${var.ANN_VOL}</td>
 											<td class='center'>${var.ACTIVE}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">

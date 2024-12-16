@@ -1,6 +1,8 @@
 package com.ey.service.system.user.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -10,7 +12,9 @@ import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
 import com.ey.entity.system.User;
 import com.ey.service.system.user.UserManager;
+import com.ey.util.AppUtil;
 import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 
 
 /** 
@@ -192,6 +196,37 @@ public class UserService implements UserManager{
 	@Override
 	public void updateUser(PageData pd) throws Exception {
 		dao.update("UserMapper.updateUser", pd);
+	}
+
+	/**批量新增
+	 * @param pds
+	 * @throws Exception
+	 */
+	@Override
+    public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			PageData pd = new PageData();
+			pd.put("USER_ID", UuidUtil.get32UUID());
+			pd.put("USERNAME", map.get("USERNAME"));
+			pd.put("BZ", map.get("BZ"));
+			pd.put("EMAIL", map.get("EMAIL"));
+			pd.put("ROLE_ID", map.get("ROLE_ID"));
+			pds.add(pd);
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("UserMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+			idx++;
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("UserMapper.saveBatch", pds);
+		}
 	}
 	
 }

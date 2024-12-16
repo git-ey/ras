@@ -114,6 +114,7 @@ public class StockLimitInfoService implements StockLimitInfoManager{
 				pd.put("REVIEWER", map.get("REVIEWER"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pd.put("STATUS", null == map.get("STATUS") ? "Y" : map.get("STATUS"));
+				pd.put("LIMIT_LEN", map.get("LIMIT_LEN")); // 20220630irene新增
 				pds.add(pd);
 				idx++;
 			}

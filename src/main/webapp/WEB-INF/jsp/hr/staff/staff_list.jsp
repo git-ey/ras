@@ -229,6 +229,19 @@
 	<script src="static/ace/js/ace/ace.js"></script>
 	<!--提示框-->
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
+
+	<script type="text/javascript">
+		jQuery.browser = {};
+		(function () {
+			jQuery.browser.msie = false;
+			jQuery.browser.version = 0;
+			if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+				jQuery.browser.msie = true;
+				jQuery.browser.version = RegExp.$1;
+			}
+		})();
+	</script>
+
 	<script type="text/javascript">
 		$(top.hangge());//关闭加载状态
 		//检索

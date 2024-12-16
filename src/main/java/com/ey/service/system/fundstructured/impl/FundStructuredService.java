@@ -97,6 +97,7 @@ public class FundStructuredService implements FundStructuredManager{
 				pd.put("FUND_CODE", map.get("FUND_CODE"));
 				pd.put("SHORT_NAME", map.get("SHORT_NAME"));
 				pd.put("LEVEL", map.get("LEVEL"));
+				pd.put("EFFECTIVE_DATE", map.get("EFFECTIVE_DATE"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 				pds.add(pd);

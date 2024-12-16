@@ -9,6 +9,7 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
+		FIRM_CODE,	
 		PERIOD,	
 		BOND_CODE,	
 		BOND_NAME,	
@@ -51,6 +52,7 @@
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
+		#{FIRM_CODE},	
 		#{PERIOD},	
 		#{BOND_CODE},	
 		#{BOND_NAME},	
@@ -115,6 +117,7 @@
 		update
 		<include refid="tableName"></include>
 		set 
+			FIRM_CODE = #{FIRM_CODE},
 			PERIOD = #{PERIOD},
 			BOND_CODE = #{BOND_CODE},
 			BOND_NAME = #{BOND_NAME},
@@ -222,6 +225,7 @@
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
+		#{pd.FIRM_CODE},	
 		#{pd.PERIOD},	
 		#{pd.BOND_CODE},	
 		#{pd.BOND_NAME},	

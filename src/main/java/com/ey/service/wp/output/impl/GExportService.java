@@ -89,12 +89,19 @@ public class GExportService extends BaseExportService implements GExportManager{
         if(GMetaDataList == null) {
             GMetaDataList = new ArrayList<>();
         }
-        
+		
+        /*20221011,chenhy,新增应收利息和应计利息*/
         Map<String,Object> KM1221 = new HashMap<>();
+		Map<String,Object> KM1221_yslx = new HashMap<>();
+		Map<String,Object> KM1221_yjlx = new HashMap<>();
         Map<String,Object> KM1501 = new HashMap<>();
         
         for(Map<String,Object> map : GMetaDataList) {
-            if("1221".equals(map.get("accountNum"))) {
+            if("1221".equals(map.get("accountNum")) && "应收利息".equals(map.get("attr5"))){
+                KM1221_yslx = map;
+            }else if("1221".equals(map.get("accountNum")) && (!"应收利息".equals(map.get("detail"))) && ("应收黄金合约拆借孳息".equals(map.get("attr5")) || "应收出借证券利息".equals(map.get("attr5")))){
+                KM1221_yjlx = map;
+            }else if("1221".equals(map.get("accountNum"))) {
                 KM1221 = map;
             }else if("1501".equals(map.get("accountNum"))) {
                 KM1501 = map;
@@ -102,6 +109,8 @@ public class GExportService extends BaseExportService implements GExportManager{
         }
         
         result.put("KM1221", KM1221);
+		result.put("KM1221_yslx", KM1221_yslx);
+		result.put("KM1221_yjlx", KM1221_yjlx);
         result.put("KM1501", KM1501);
         
         return result;
@@ -120,7 +129,12 @@ public class GExportService extends BaseExportService implements GExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         
+        /*20220929,chenhy,新增应收利息和应计利息明细项*/
         List<Map<String, Object>> KM1221 = new ArrayList<>();
+        List<Map<String, Object>> KM1221_1 = new ArrayList<>();
+        List<Map<String, Object>> KM1221_2 = new ArrayList<>();
+        List<Map<String, Object>> KM1221_3 = new ArrayList<>();
+        List<Map<String, Object>> KM1221_4 = new ArrayList<>();
         List<Map<String, Object>> KM1501 = new ArrayList<>(); 
         
         @SuppressWarnings("unchecked")
@@ -128,16 +142,30 @@ public class GExportService extends BaseExportService implements GExportManager{
         if(CollectionUtils.isEmpty(metaDataList)) {
             metaDataList = new ArrayList<>();
         }
-        
+
         for(Map<String,Object> map : metaDataList) {
-            if("1221".equals(map.get("accountNum"))) {
+            if("1221".equals(map.get("accountNum")) && "应收黄金合约拆借孳息".equals(map.get("detail")) && "应收利息".equals(map.get("attr5"))) {
+                KM1221_1.add(map);
+            }else if("1221".equals(map.get("accountNum")) && "应收出借证券利息".equals(map.get("detail")) && "应收利息".equals(map.get("attr5"))) {
+                KM1221_2.add(map);
+            }else if("1221".equals(map.get("accountNum")) && "应收黄金合约拆借孳息".equals(map.get("detail"))) {
+                KM1221_3.add(map);
+            }else if("1221".equals(map.get("accountNum")) && "应收出借证券利息".equals(map.get("detail"))) {
+                KM1221_4.add(map);
+            }else if("1221".equals(map.get("accountNum"))) {
                 KM1221.add(map);
-            }
-            if("1501".equals(map.get("accountNum"))) {
+            }else if("1501".equals(map.get("accountNum"))) {
                 KM1501.add(map);
-            }
+            }               
         }
-        
+        result.put("KM1221_1", KM1221_1);
+        result.put("KM1221_1Count", KM1221_1.size());
+        result.put("KM1221_2", KM1221_2);
+        result.put("KM1221_2Count", KM1221_2.size());
+        result.put("KM1221_3", KM1221_3);
+        result.put("KM1221_3Count", KM1221_3.size());
+        result.put("KM1221_4", KM1221_4);
+        result.put("KM1221_4Count", KM1221_4.size());
         result.put("KM1221", KM1221);
         result.put("KM1221Count", KM1221.size());
         result.put("KM1501", KM1501);

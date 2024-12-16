@@ -30,6 +30,7 @@
 		REVIEWER,	
 		ACTIVE,	
 		STATUS,	
+		LIMIT_LEN,
 		STOCKLIMITINFO_ID
 	</sql>
 	
@@ -56,6 +57,7 @@
 		#{REVIEWER},	
 		#{ACTIVE},	
 		#{STATUS},	
+		#{LIMIT_LEN},
 		#{STOCKLIMITINFO_ID}
 	</sql>
 	
@@ -102,6 +104,7 @@
             RESMPATION_OPEN_PRICE = #{RESMPATION_OPEN_PRICE},
 			CREATOR = #{CREATOR},
 			REVIEWER = #{REVIEWER},
+			LIMIT_LEN = #{LIMIT_LEN},
 		STOCKLIMITINFO_ID = STOCKLIMITINFO_ID
 		where 
 		STOCKLIMITINFO_ID = #{STOCKLIMITINFO_ID}
@@ -191,6 +194,7 @@
 		#{pd.REVIEWER},	
 		#{pd.ACTIVE},	
 		#{pd.STATUS},	
+		#{pd.LIMIT_LEN},
 		#{pd.STOCKLIMITINFO_ID}
          )
          </foreach >

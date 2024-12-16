@@ -13,83 +13,98 @@ import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
 import com.ey.service.system.fundindexfeerate.FundIndexfeeRateManager;
 
-/** 
+/**
  * 说明： 基金指数使用费率
  * 创建人：andychen
  * 创建时间：2017-11-25
+ * 
  * @version
  */
 @Service("fundindexfeerateService")
-public class FundIndexfeeRateService implements FundIndexfeeRateManager{
+public class FundIndexfeeRateService implements FundIndexfeeRateManager {
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
-	
-	/**新增
+
+	/**
+	 * 新增
+	 * 
 	 * @param pd
 	 * @throws Exception
 	 */
 	@Override
-    public void save(PageData pd)throws Exception{
+	public void save(PageData pd) throws Exception {
 		dao.save("FundIndexfeeRateMapper.save", pd);
 	}
-	
-	/**删除
+
+	/**
+	 * 删除
+	 * 
 	 * @param pd
 	 * @throws Exception
 	 */
 	@Override
-    public void delete(PageData pd)throws Exception{
+	public void delete(PageData pd) throws Exception {
 		dao.delete("FundIndexfeeRateMapper.delete", pd);
 	}
-	
-	/**修改
+
+	/**
+	 * 修改
+	 * 
 	 * @param pd
 	 * @throws Exception
 	 */
 	@Override
-    public void edit(PageData pd)throws Exception{
+	public void edit(PageData pd) throws Exception {
 		dao.update("FundIndexfeeRateMapper.edit", pd);
 	}
-	
-	/**列表
+
+	/**
+	 * 列表
+	 * 
 	 * @param page
 	 * @throws Exception
 	 */
 	@Override
-    @SuppressWarnings("unchecked")
-	public List<PageData> list(Page page)throws Exception{
-		return (List<PageData>)dao.findForList("FundIndexfeeRateMapper.datalistPage", page);
+	@SuppressWarnings("unchecked")
+	public List<PageData> list(Page page) throws Exception {
+		return (List<PageData>) dao.findForList("FundIndexfeeRateMapper.datalistPage", page);
 	}
-	
-	/**列表(全部)
+
+	/**
+	 * 列表(全部)
+	 * 
 	 * @param pd
 	 * @throws Exception
 	 */
 	@Override
-    @SuppressWarnings("unchecked")
-	public List<PageData> listAll(PageData pd)throws Exception{
-		return (List<PageData>)dao.findForList("FundIndexfeeRateMapper.listAll", pd);
+	@SuppressWarnings("unchecked")
+	public List<PageData> listAll(PageData pd) throws Exception {
+		return (List<PageData>) dao.findForList("FundIndexfeeRateMapper.listAll", pd);
 	}
-	
-	/**通过id获取数据
+
+	/**
+	 * 通过id获取数据
+	 * 
 	 * @param pd
 	 * @throws Exception
 	 */
 	@Override
-    public PageData findById(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("FundIndexfeeRateMapper.findById", pd);
+	public PageData findById(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("FundIndexfeeRateMapper.findById", pd);
 	}
-	
-	/**批量删除
+
+	/**
+	 * 批量删除
+	 * 
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
 	 */
 	@Override
-    public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
+	public void deleteAll(String[] ArrayDATA_IDS) throws Exception {
 		dao.delete("FundIndexfeeRateMapper.deleteAll", ArrayDATA_IDS);
 	}
-	
+
 	@Override
 	public void saveBatch(List<Map> maps) throws Exception {
 		int idx = 1;
@@ -102,6 +117,8 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 				pd.put("COSTODY_RATE", map.get("COSTODY_RATE"));
 				pd.put("INDEX_RATE", map.get("INDEX_RATE"));
 				pd.put("MIN_INDEX_FEE", map.get("MIN_INDEX_FEE"));
+				pd.put("MIN_RELEASE_CHARGE", map.get("MIN_RELEASE_CHARGE"));
+				pd.put("CHARGE_DESCRIPTION", map.get("CHARGE_DESCRIPTION"));
 				pd.put("ACTIVE", null == map.get("ACTIVE") ? "Y" : map.get("ACTIVE"));
 				pd.put("STATUS", null == map.get("STATUS") ? "INITIAL" : map.get("STATUS"));
 				pds.add(pd);
@@ -120,6 +137,5 @@ public class FundIndexfeeRateService implements FundIndexfeeRateManager{
 			dao.save("FundIndexfeeRateMapper.saveBatch", pds);
 		}
 	}
-	
-}
 
+}

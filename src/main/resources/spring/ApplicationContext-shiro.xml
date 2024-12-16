@@ -20,12 +20,12 @@
 	<bean id="shiroRealm" class="com.ey.interceptor.shiro.ShiroRealm"></bean>
 
 	<!-- Shiro Filter -->
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+	 <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/" />
 		<property name="successUrl" value="/main/index" />
 		<property name="unauthorizedUrl" value="/login_toLogin" />
-		<property name="filterChainDefinitions">
+		<!--<property name="filterChainDefinitions">
 			<value>
 				/static/login/** = anon
 				/plugins/keypad/** = anon
@@ -33,11 +33,11 @@
 				/static/js/** = anon
 				/uploadFiles/uploadImgs/** = anon
 				/code.do = anon
-				/login_login = anon
+			/login_login = anon 
 				/app**/** = anon
 				/** = authc
 			</value>
-		</property>
+		</property>-->
 	</bean>
 
 	<!-- Session 管理器 -->
@@ -49,6 +49,7 @@
 		<property name="sessionValidationSchedulerEnabled" value="true" />
 		<property name="sessionDAO" ref="sessionDAO" />
 		<property name="sessionIdCookie" ref="simpleCookie"/>
+		<property name="sessionIdUrlRewritingEnabled" value="false" />
 	</bean>
 
 	<!-- Session DAO -->

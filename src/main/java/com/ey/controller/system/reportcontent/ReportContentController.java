@@ -276,7 +276,10 @@ public class ReportContentController extends BaseController {
 		titles.add("其他价格风险敞口");	//31
 		titles.add("他价格风险的敏感性分析"); //32
 		titles.add("公允价值所属层次间的重大变动");	//33
-		titles.add("启用");	//34
+		titles.add("金融工具风险及管理"); //34
+		titles.add("风险管理政策和组织架构"); //34
+		titles.add("信用风险");	//35
+		titles.add("启用");	//36
 		dataMap.put("titles", titles);
 		List<PageData> varOList = reportcontentService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
@@ -315,7 +318,12 @@ public class ReportContentController extends BaseController {
 			vpd.put("var31", varOList.get(i).getString("PR_ATTR2"));	    //31
 			vpd.put("var33", varOList.get(i).getString("PR_ATTR3"));	    //32
 			vpd.put("var34", varOList.get(i).getString("FV_ATTR1"));	    //33
-			vpd.put("var35", varOList.get(i).getString("ACTIVE"));	    //34
+			vpd.put("var35", varOList.get(i).getString("FV_ATTR2"));	    //35
+			vpd.put("var36", varOList.get(i).getString("FI"));
+			vpd.put("var37", varOList.get(i).getString("RM"));	    //34
+			vpd.put("var38", varOList.get(i).getString("CR"));	    //34
+			vpd.put("var39", varOList.get(i).getString("CR_LOSS"));	    //34
+			vpd.put("var40", varOList.get(i).getString("ACTIVE"));	    //34
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);

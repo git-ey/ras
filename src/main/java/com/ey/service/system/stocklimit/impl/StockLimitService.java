@@ -117,10 +117,12 @@ public class StockLimitService implements StockLimitManager{
 				pd.put("MKT_VALUE", map.get("MKT_VALUE"));
 				pd.put("SUBSCRIBE_DATE", map.get("SUBSCRIBE_DATE"));
 				pd.put("LIFTING_DATE", map.get("LIFTING_DATE"));
+				pd.put("PUB_LIFTING_DATE", map.get("PUB_LIFTING_DATE"));
 				pd.put("SUSPENSION_DATE", map.get("SUSPENSION_DATE"));
 				pd.put("SUSPENSION_INFO", map.get("SUSPENSION_INFO"));
 				pd.put("RESUMPTION_DATE", map.get("RESUMPTION_DATE"));
 				pd.put("RESMPATION_OPEN_PRICE", map.get("RESMPATION_OPEN_PRICE"));
+				pd.put("LIMIT_LEN", map.get("LIMIT_LEN"));// 20220630irene新增
 				pd.put("DESCRIPTION", map.get("DESCRIPTION"));
 				pd.put("CREATOR", map.get("CREATOR"));
 				pd.put("REVIEWER", map.get("REVIEWER"));

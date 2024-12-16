@@ -224,6 +224,11 @@ public class IExportService extends BaseExportService implements IExportManager{
         Map<String, Object> item3 = new HashMap<String,Object>();
         Map<String, Object> item4 = new HashMap<String,Object>();
         Map<String, Object> item5 = new HashMap<String,Object>();
+        Map<String, Object> item21 = new HashMap<String,Object>();
+
+        Map<String, Object> item11 = new HashMap<String,Object>();
+        Map<String, Object> item22 = new HashMap<String,Object>();
+        Map<String, Object> item41 = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> manageFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIManageFeeData", queryMap);
         if(manageFeeMetaDataList == null) {
@@ -233,16 +238,24 @@ public class IExportService extends BaseExportService implements IExportManager{
             if("MANAGE".equals(map.get("tpye"))) {
                 if("当期发生的基金应支付的管理费".equals(map.get("item"))) {
                     item1 = map;
-                }else  if("其中：支付销售机构的客户维护费".equals(map.get("item"))) {
+                }else  if("其中：应支付销售机构的客户维护费".equals(map.get("item"))) {
                     item2 = map;
+                }else  if("应支付基金管理人的净管理费".equals(map.get("item"))) {
+                    item21 = map;               
                 }else  if("期末未支付管理费余额".equals(map.get("item"))) {
                     item3 = map;
+                }else  if("当期发生的应支付的管理费".equals(map.get("item"))) {  //chenhy,20240401,新增建信专户表项
+                    item11 = map; 
+                }else  if("其中：当期发生的应支付的业绩报酬".equals(map.get("item"))) {  
+                    item22 = map; 
                 }
             }else if("TRUSTEE".equals(map.get("tpye"))) {
                 if("当期发生的基金应支付的托管费".equals(map.get("item"))) {
                     item4 = map;
                 }else  if("期末未支付托管费余额".equals(map.get("item"))) {
                     item5 = map;
+                }else  if("当期发生的应支付的托管费".equals(map.get("item"))) { //chenhy,20240401,新增建信专户表项
+                    item41 = map;
                 }
             }
         }
@@ -251,6 +264,10 @@ public class IExportService extends BaseExportService implements IExportManager{
         manageFee.put("item3", item3);
         manageFee.put("item4", item4);
         manageFee.put("item5", item5);
+        manageFee.put("item21", item21);
+        manageFee.put("item22", item22);
+        manageFee.put("item11", item11);
+        manageFee.put("item41", item41);
         //========process dataMap for manageFee view end========
         
         //========process dataMap for salesFee view end========

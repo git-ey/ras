@@ -54,6 +54,10 @@
 								    <option value="进取型" <c:if test="${pd.FTYPE == '进取型'}">selected</c:if>>进取型</option>
 								    </select>
 								</td>
+								<td style="width:110px;text-align: right;padding-top: 13px;">生效日期:</td>
+								<td><input class="span10 date-picker" name="EFFECTIVE_DATE" id="EFFECTIVE_DATE" value="${pd.EFFECTIVE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" title="生效日期" style="width:98%;"/></td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">

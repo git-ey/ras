@@ -57,6 +57,10 @@
 								<td><input type="number" autocomplete="off" name="LOMD" id="LOMD" value="${pd.LOMD}" maxlength="32" title="折扣率数字" style="width:49%;"/></td>
 							</tr>
 							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">波动率数字:</td>
+								<td><input type="number" autocomplete="off" name="ANN_VOL" id="ANN_VOL" value="${pd.ANN_VOL}" maxlength="32" title="波动率数字" style="width:49%;"/></td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>
 								<td>
 									<select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">
@@ -158,6 +162,16 @@
 		            time:2
 		        });
 				$("#LOMD").focus();
+			return false;
+			}
+			if($("#ANN_VOL").val()==""){
+				$("#ANN_VOL").tips({
+					side:3,
+		            msg:'请输入波动率数字',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#ANN_VOL").focus();
 			return false;
 			}
 			$("#Form").submit();

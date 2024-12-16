@@ -109,9 +109,10 @@ public interface ReportManager {
 	 * @param dateFrom
 	 * @param dateTo
 	 * @param dateTransform
+	 * @param fundType
 	 * @return
 	 */
-	public Map<String, Object> getDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform)
+	public Map<String, Object> getDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform,String fundType) // chenhy,20240223,新增基金和产品的区分
 			throws Exception;
 
 	/**
@@ -122,9 +123,10 @@ public interface ReportManager {
 	 * @param dateFrom
 	 * @param dateTo
 	 * @param dateTransform
+	 * @param fundType
 	 * @return
 	 */
-	public Map<String, Object> getLastDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform)
+	public Map<String, Object> getLastDateInfo(String period, Date dateFrom, Date dateTo, Date dateTransform,String fundType) // chenhy,20240223,新增基金和产品的区分
 			throws Exception;
 
 }

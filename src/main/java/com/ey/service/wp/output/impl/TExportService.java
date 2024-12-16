@@ -236,7 +236,8 @@ public class TExportService extends BaseExportService implements TExportManager{
         
         @SuppressWarnings("unchecked")
         Map<String,Object> fundDateInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectFundDateInfo", queryMap);
-        Map<String, Object> dateInfo = this.reportService.getDateInfo(periodStr, (Date)fundDateInfo.get("dateFrom"), (Date)fundDateInfo.get("dateTo"), (Date)fundDateInfo.get("dateTransform"));
+        // chenhy,20240223,新增基金和产品的区分
+        Map<String, Object> dateInfo = this.reportService.getDateInfo(periodStr, (Date)fundDateInfo.get("dateFrom"), (Date)fundDateInfo.get("dateTo"), (Date)fundDateInfo.get("dateTransform"),(String)fundDateInfo.get("fundType"));
         if("合同生效日".equals(dateInfo.get("CURRENT_INIT_SOURCE"))) {
             note3Flag = "Y";
         }
@@ -373,15 +374,20 @@ public class TExportService extends BaseExportService implements TExportManager{
             return String.valueOf(map.get("level"));
         }));
         List<Object> levelMaps = new ArrayList<>();
+        int accDivCount = 0; // chenhy,231214,增加累计分红次数
         for(String level : levelNames) {
             List<Object> tempList = new ArrayList<>();
             Map<String,Object> tempMap = new HashMap<>();
             if(groups.get(level) != null) {
                 tempList.addAll(groups.get(level));
             }
+
+            accDivCount = accDivCount + tempList.size();// chenhy,231214,增加累计分红次数
+
             tempMap.put("list", tempList);
             tempMap.put("count", tempList.size());
             tempMap.put("levelName", level);
+            tempMap.put("accDivCount", accDivCount);
             levelMaps.add(tempMap);
         }
         
@@ -482,7 +488,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         for(Map<String,Object> map : mainOldMetaDataList) {
             mainOldContainer.put(String.valueOf(map.get("type")), map);
         }
-        for(int i=1 ; i<=7 ; i++) {
+        for(int i=1 ; i<=12 ; i++) {
             String tag = "attr" + i;
             Map<String,Object> temp = new HashMap<>();
             if(mainContainer.get("实收基金") != null) {
@@ -491,8 +497,8 @@ public class TExportService extends BaseExportService implements TExportManager{
             if(mainContainer.get("未分配利润") != null) {
                 temp.put("WFP", mainContainer.get("未分配利润").get(tag));
             }
-            if(mainContainer.get("所有者权益合计") != null) {
-                temp.put("SYZ", mainContainer.get("所有者权益合计").get(tag));
+            if(mainContainer.get("净资产合计") != null) {
+                temp.put("SYZ", mainContainer.get("净资产合计").get(tag));
             }
             if(mainOldContainer.get("实收基金") != null) {
                 temp.put("SSOLD", mainOldContainer.get("实收基金").get(tag));
@@ -500,8 +506,8 @@ public class TExportService extends BaseExportService implements TExportManager{
             if(mainOldContainer.get("未分配利润") != null) {
                 temp.put("WFPOLD", mainOldContainer.get("未分配利润").get(tag));
             }
-            if(mainOldContainer.get("所有者权益合计") != null) {
-                temp.put("SYZOLD", mainOldContainer.get("所有者权益合计").get(tag));
+            if(mainOldContainer.get("净资产合计") != null) {
+                temp.put("SYZOLD", mainOldContainer.get("净资产合计").get(tag));
             }
             main.put(tag, temp);
         }

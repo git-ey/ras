@@ -380,4 +380,26 @@
 		from 
 		<include refid="tableName"></include>
 	</select>
+
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        USER_ID,
+			USERNAME,
+			BZ,
+			EMAIL,
+			ROLE_ID
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+        #{pd.USER_ID},
+		#{pd.USERNAME},
+		#{pd.BZ},
+		#{pd.EMAIL},
+		#{pd.ROLE_ID}
+         )
+         </foreach >
+	</insert>
 </mapper>

@@ -44,6 +44,16 @@ public class BaseController {
 	protected Logger logger = Logger.getLogger(this.getClass());
 
 	/**
+	 * 用户管理权限导入模版代码
+	 */
+	protected final static String SU_IMPORT_TEMPLATE_CODE = "SU";
+
+	/**
+	 * 数据访问权限导入模版代码
+	 */
+	protected final static String SUF_IMPORT_TEMPLATE_CODE = "SUF";
+
+	/**
 	 * AM科目映射导入模版代码
 	 */
 	protected final static String AM_IMPORT_TEMPLATE_CODE = "AM";
@@ -212,6 +222,14 @@ public class BaseController {
 	 * ESL股票流通受限清单导入模版代码
 	 */
 	protected final static String ESL_IMPORT_TEMPLATE_CODE = "ESL";
+
+	/**
+	 * EIR转融通导入模版代码
+	 */
+	protected final static String EIR_IMPORT_TEMPLATE_CODE = "EIR";
+
+	protected static final String EVR_IMPORT_TEMPLATE_CODE = "EVR";
+
 
 	/**
 	 * EL折扣率表导入模版代码

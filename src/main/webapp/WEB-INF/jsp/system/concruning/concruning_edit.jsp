@@ -145,7 +145,7 @@
 			});
 		function addTr(trHtml,tab, row){
 		    var $tr=$("#"+tab+" tr").eq(row);
-		     if($tr.size()==0){
+		     if($tr.length==0){
 		        return;
 		     }
 		     $tr.after(trHtml);

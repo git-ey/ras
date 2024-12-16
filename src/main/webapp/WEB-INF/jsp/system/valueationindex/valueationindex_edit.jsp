@@ -33,11 +33,13 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">是否货基:</td>
+								<td style="width:75px;text-align: right;padding-top: 13px;">公司代码:</td>
+								<td><input type="text" autocomplete="off" name="FIRM_CODE" id="FIRM_CODE" value="${pd.FIRM_CODE}" maxlength="10" title="公司代码" style="width:98%;"/></td>
+								<td style="width:75px;text-align: right;padding-top: 13px;">是否货基:</td>
 								<td><input type="text" autocomplete="off" name="MMF" id="MMF" value="${pd.MMF}" maxlength="10" title="是否货基" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">投资标的:</td>
+								<td style="width:75px;text-align: right;padding-top: 13px;">投资标的:</td>
 								<td><input type="text" autocomplete="off" name="TYPE" id="TYPE" value="${pd.TYPE}" maxlength="255" title="投资标的" style="width:98%;"/></td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">交易市场:</td>
+								<td style="width:75px;text-align: right;padding-top: 13px;">交易市场:</td>
 								<td><input type="text" autocomplete="off" name="MARKET" id="MARKET" value="${pd.MARKET}" maxlength="255" title="交易市场" style="width:98%;"/></td>
 							</tr>
 							<tr>
@@ -47,20 +49,21 @@
 								<td><input type="text" autocomplete="off" name="TRX_STATUS" id="TRX_STATUS" value="${pd.TRX_STATUS}" maxlength="30" title="期末交易状态" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">计息方式:</td>
 								<td><input type="text" autocomplete="off" name="INTEREST_MODE" id="INTEREST_MODE" value="${pd.INTEREST_MODE}" maxlength="255" title="计息方式" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">索引估值类型代码:</td>
 								<td><input type="text" autocomplete="off" name="VAL_TYPE_INDEX" id="VAL_TYPE_INDEX" value="${pd.VAL_TYPE_INDEX}" maxlength="60" title="索引估值类型代码" style="width:98%;"/></td>
+								
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值类型代码:</td>
 								<td><input type="text" autocomplete="off" name="VAL_TYPE_CODE" id="VAL_TYPE_CODE" value="${pd.VAL_TYPE_CODE}" maxlength="255" title="估值类型代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值类型:</td>
 								<td><input type="text" autocomplete="off" name="VAL_TYPE_DEXS" id="VAL_TYPE_DEXS" value="${pd.VAL_TYPE_DEXS}" maxlength="255" title="估值类型" style="width:98%;"/></td>
-							</tr>
-							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值基价来源:</td>
 								<td><input type="text" autocomplete="off" name="VAL_BASE_SOURCE" id="VAL_BASE_SOURCE" value="${pd.VAL_BASE_SOURCE}" maxlength="255" title="估值基价来源" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">估值基价字段:</td>
 								<td><input type="text" autocomplete="off" name="VAL_COLUMN" id="VAL_COLUMN" value="${pd.VAL_COLUMN}" maxlength="255" title="估值基价字段" style="width:98%;"/></td>
+							</tr>
+							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">三层次类型:</td>
 								<td><input type="text" autocomplete="off" name="THREE_LEVEL" id="THREE_LEVEL" value="${pd.THREE_LEVEL}" maxlength="255" title="三层次类型" style="width:98%;"/></td>
 							</tr>

@@ -13,7 +13,8 @@
 		PERIOD,	
 		SIGNOFF_1,	
 		SIGNOFF_2,	
-		SIGNOFF_3,	
+		SIGNOFF_3,
+		DB_NUM,	
 		ACTIVE,	
 		STATUS,	
 		FUNDSIGNOFF_ID
@@ -26,6 +27,7 @@
 		#{SIGNOFF_1},	
 		#{SIGNOFF_2},	
 		#{SIGNOFF_3},	
+		#{DB_NUM},
 		#{ACTIVE},	
 		#{STATUS},	
 		#{FUNDSIGNOFF_ID}
@@ -60,6 +62,7 @@
 			SIGNOFF_1 = #{SIGNOFF_1},
 			SIGNOFF_2 = #{SIGNOFF_2},
 			SIGNOFF_3 = #{SIGNOFF_3},
+			DB_NUM = #{DB_NUM},
 			ACTIVE = #{ACTIVE},
 		FUNDSIGNOFF_ID = FUNDSIGNOFF_ID
 		where 
@@ -127,7 +130,8 @@
 		#{pd.PERIOD},	
 		#{pd.SIGNOFF_1},	
 		#{pd.SIGNOFF_2},	
-		#{pd.SIGNOFF_3},	
+		#{pd.SIGNOFF_3},
+		#{pd.DB_NUM},
 		#{pd.ACTIVE},	
 		#{pd.STATUS},	
 		#{pd.FUNDSIGNOFF_ID}

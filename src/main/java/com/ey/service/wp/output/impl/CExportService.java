@@ -49,6 +49,7 @@ public class CExportService extends BaseExportService implements CExportManager{
         dataMap.put("C", this.getCData(fundId, periodStr));
         dataMap.put("C300", this.getC300Data(fundId, periodStr));
         dataMap.put("C400", this.getC400Data(fundId, periodStr));
+        dataMap.put("C310", this.getC310Data(fundId, periodStr));
         dataMap.put("C10000", this.getC10000Data(fundId, periodStr));
         
         return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_C);
@@ -118,6 +119,7 @@ public class CExportService extends BaseExportService implements CExportManager{
      * @return
      * @throws Exception
      */
+
     @SuppressWarnings("unchecked")
     private Map<String,Object> getC300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
@@ -129,12 +131,18 @@ public class CExportService extends BaseExportService implements CExportManager{
         //========process dataMap for main view begin========
         List<Map<String,Object>> demandDepositsList = new ArrayList<>();//one part of KM1002
         List<Map<String,Object>> timeDepositsList = new ArrayList<>();// another part of KM1002
+        List<Map<String,Object>> otherDepositsList = new ArrayList<>();// another part of KM1002,chenhy,231205
+        List<Map<String,Object>> ttyqDepositsList = new ArrayList<>();// another part of KM1002,chenhy,231205
+        List<Map<String,Object>> futuresKM1021List = new ArrayList<>();// ,chenhy,231205,期货备付金
         List<Map<String,Object>> KM1021List = new ArrayList<>();
         List<Map<String,Object>> KM1031List = new ArrayList<>();
         int demandDepositsListCount = 0;
         int timeDepositsListCount = 0;
         int KM1021ListCount = 0;
         int KM1031ListCount = 0;
+        int otherDepositsListCount = 0;
+        int futuresKM1021ListCount = 0;
+        
         List<Map<String,Object>> mainData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC300MainData", queryMap);
         if(CollectionUtils.isEmpty(mainData)) {
             mainData = new ArrayList<Map<String,Object>>();
@@ -145,20 +153,39 @@ public class CExportService extends BaseExportService implements CExportManager{
                 demandDepositsList.add(map);
             }else if("1002".equals(map.get("accountNum")) && "定期".equals(map.get("type"))) {
                 timeDepositsList.add(map);
+            }else if("1002".equals(map.get("accountNum")) && "券商结算资金".equals(map.get("type"))) {
+                otherDepositsList.add(map);
+            }else if("1002".equals(map.get("accountNum")) && "同业约期存款".equals(map.get("type"))) {
+                ttyqDepositsList.add(map);
             }else if("1021".equals(map.get("accountNum"))) {
                 KM1021List.add(map);
             }else if("1031".equals(map.get("accountNum"))) {
                 KM1031List.add(map);
             }
         }
+
+        // chenhy,20231214,期货备付金
+        for(Map<String,Object> map : mainData) {
+            if("1021".equals(map.get("accountNum")) && "期货".equals(map.get("type"))) {
+                futuresKM1021List.add(map);
+            }
+        }
+
+        int otherDepositsListForDisclosureCount = otherDepositsList.size();
+        int ttyqDepositsListForDisclosureCount = ttyqDepositsList.size();
+        int ttyqDepositsListCount = ttyqDepositsList.size();
         //Anti Null
         if(demandDepositsList.size() == 0) {demandDepositsList.add(new HashMap<String,Object>());}
         if(timeDepositsList.size() == 0) {timeDepositsList.add(new HashMap<String,Object>());}
+        if(otherDepositsList.size() == 0) {otherDepositsList.add(new HashMap<String,Object>());}
+        if(ttyqDepositsList.size() == 0) {ttyqDepositsList.add(new HashMap<String,Object>());}
         if(KM1021List.size() == 0) {KM1021List.add(new HashMap<String,Object>());}
         if(KM1031List.size() == 0) {KM1031List.add(new HashMap<String,Object>());}
-        // calculate count
+        // calculate count 
         demandDepositsListCount = demandDepositsList.size();
         timeDepositsListCount = timeDepositsList.size();
+        otherDepositsListCount = otherDepositsList.size();
+        futuresKM1021ListCount = futuresKM1021List.size();
         KM1021ListCount = KM1021List.size();
         KM1031ListCount = KM1031List.size();
         // store
@@ -167,6 +194,16 @@ public class CExportService extends BaseExportService implements CExportManager{
         KM1002Map.put("demandDepositsCount", demandDepositsListCount);
         KM1002Map.put("timeDepositsList", timeDepositsList);
         KM1002Map.put("timeDepositsCount", timeDepositsListCount);
+        KM1002Map.put("otherDepositsList", otherDepositsList);
+        KM1002Map.put("otherDepositsCount", otherDepositsListCount);
+        KM1002Map.put("ttyqDepositsList", ttyqDepositsList);
+        KM1002Map.put("ttyqDepositsCount", ttyqDepositsListCount);
+        KM1002Map.put("otherDepositsForDisclosureCount", otherDepositsListForDisclosureCount);
+        KM1002Map.put("ttyqDepositsForDisclosureCount", ttyqDepositsListForDisclosureCount);
+
+        Map<String,Object> futuresKM1021Map = new HashMap<>();
+        futuresKM1021Map.put("list", futuresKM1021List);
+        futuresKM1021Map.put("count", futuresKM1021ListCount);
         
         Map<String,Object> KM1021Map = new HashMap<>();
         KM1021Map.put("list", KM1021List);
@@ -176,6 +213,7 @@ public class CExportService extends BaseExportService implements CExportManager{
         KM1031Map.put("list", KM1031List);
         KM1031Map.put("count", KM1031ListCount);
         
+        mainMap.put("futuresKM1021", futuresKM1021Map);
         mainMap.put("KM1002", KM1002Map);
         mainMap.put("KM1021", KM1021Map);
         mainMap.put("KM1031", KM1031Map);
@@ -186,6 +224,8 @@ public class CExportService extends BaseExportService implements CExportManager{
         List<Map<String,Object>> RelatedMetaData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC300RelatedData", queryMap);
         List<Map<String,Object>> RdemandDepositsList = new ArrayList<>();
         List<Map<String,Object>> RTimeDepositsList = new ArrayList<>();
+        List<Map<String,Object>> ROtherDepositsList = new ArrayList<>();
+        List<Map<String,Object>> TYYQDepositsList = new ArrayList<>(); //chenhy,20240624,新增同业约期存款
         List<Map<String,Object>> RKM1021List = new ArrayList<>();
         List<Map<String,Object>> RKM1031List = new ArrayList<>();
         for(Map<String,Object> map : RelatedMetaData) {
@@ -193,6 +233,10 @@ public class CExportService extends BaseExportService implements CExportManager{
                 RdemandDepositsList.add(map);
             }else if("定期存款".equals(map.get("depositType"))) {
                 RTimeDepositsList.add(map);
+            }else if("券商结算资金".equals(map.get("depositType"))) {
+                ROtherDepositsList.add(map);
+            }else if("同业约期存款".equals(map.get("depositType"))) {  //chenhy,20240624,新增同业约期存款
+                TYYQDepositsList.add(map);
             }else if("结算备付金".equals(map.get("depositType"))) {
                 RKM1021List.add(map);
             }else if("存出保证金".equals(map.get("depositType"))) {
@@ -201,6 +245,8 @@ public class CExportService extends BaseExportService implements CExportManager{
         }
         int RdemandDepositsCount = RdemandDepositsList.size();
         int RTimeDepositsCount = RTimeDepositsList.size();
+        int ROtherDepositsCount = ROtherDepositsList.size();
+        int TYYQDepositCount = TYYQDepositsList.size(); //chenhy,20240624,新增同业约期存款
         int RKM1021Count = RKM1021List.size();
         int RKM1031Count = RKM1031List.size();
         
@@ -208,6 +254,10 @@ public class CExportService extends BaseExportService implements CExportManager{
         RelatedData.put("demandDepositsCount", RdemandDepositsCount);
         RelatedData.put("timeDepositsList", RTimeDepositsList);
         RelatedData.put("timeDepositsCount", RTimeDepositsCount);
+        RelatedData.put("otherDepositsList", ROtherDepositsList);
+        RelatedData.put("TYYQDepositsCount", TYYQDepositCount); //chenhy,20240624,新增同业约期存款
+        RelatedData.put("TYYQDepositsList", TYYQDepositsList);
+        RelatedData.put("otherDepositsCount", ROtherDepositsCount);
         RelatedData.put("KM1021", RKM1021List);
         RelatedData.put("KM1021Count", RKM1021Count);
         RelatedData.put("KM1031", RKM1031List);
@@ -264,6 +314,46 @@ public class CExportService extends BaseExportService implements CExportManager{
         return result;
     }
     
+    /**
+     * 处理sheet页C310的数据
+     * @author chenhy 20231207
+     * 
+     * @param fundId
+     * @param periodStr
+     * @return
+     * @throws Exception
+     */
+    @SuppressWarnings("unchecked")
+    private Map<String,Object> getC310Data(String fundId, String periodStr) throws Exception{
+        Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
+        Map<String, Object> result = new HashMap<String,Object>();
+
+         Map<String,Object> C310MainMap = new HashMap<>();
+
+        List<Map<String,Object>> monetaryCapitalList = new ArrayList<>();//货币资金
+        List<Map<String,Object>> receivablesList = new ArrayList<>();//应收申购款
+
+        List<Map<String,Object>> C310MainData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC310MainData", queryMap);
+        if(CollectionUtils.isEmpty(C310MainData)) {
+            C310MainData = new ArrayList<Map<String,Object>>();
+        }
+        // classification
+        for(Map<String,Object> map : C310MainData) {
+            if("应收申购款".equals(map.get("type"))) {
+                receivablesList.add(map);
+            }else  {
+                monetaryCapitalList.add(map);
+            }
+        }
+        // store
+        C310MainMap.put("monetaryCapitalList", monetaryCapitalList);
+        C310MainMap.put("monetaryCapitalListCount", monetaryCapitalList.size());
+        C310MainMap.put("receivablesList", receivablesList);
+
+        result.put("main", C310MainMap);
+        return result;
+    }
+
     /**
      * 处理sheet页C400的数据
      * @author Dai Zong 2017年8月30日
@@ -349,6 +439,53 @@ public class CExportService extends BaseExportService implements CExportManager{
         result.put("other", other);
         result.put("detailList", detailList);
         result.put("detailListCount", detailList.size());
+
+		//--------20220901,chenhy,新增各项目明细项--------
+        List<Map<String,Object>> C10000ItemData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC10000ItemData", queryMap);
+        if(C10000ItemData == null) {
+			C10000ItemData = new ArrayList<>();
+		}
+		Map<String,Object> C101 = new HashMap<>();
+        Map<String,Object> C102 = new HashMap<>();
+        Map<String,Object> C103 = new HashMap<>();
+        Map<String,Object> C201 = new HashMap<>();
+        Map<String,Object> C202 = new HashMap<>();
+        Map<String,Object> C203 = new HashMap<>();
+        Map<String,Object> C301 = new HashMap<>();
+        Map<String,Object> C302 = new HashMap<>();
+        Map<String,Object> C303 = new HashMap<>();
+        for(Map<String,Object> map : C10000ItemData) {
+            if(Integer.valueOf(101).equals(map.get("sort"))) {
+                    C101 = map;
+            }else {
+				if(Integer.valueOf(102).equals(map.get("sort"))) {
+                    C102 = map;
+				}else if(Integer.valueOf(103).equals(map.get("sort"))) {
+                    C103 = map;
+                }else if(Integer.valueOf(201).equals(map.get("sort"))) {
+                    C201 = map;
+				}else if(Integer.valueOf(202).equals(map.get("sort"))) {
+                    C202 = map;
+				}else if(Integer.valueOf(203).equals(map.get("sort"))) {
+                    C203 = map;
+				}else if(Integer.valueOf(301).equals(map.get("sort"))) {
+                    C301 = map;
+				}else if(Integer.valueOf(302).equals(map.get("sort"))) {
+                    C302 = map;
+				}else if(Integer.valueOf(303).equals(map.get("sort"))) {
+                    C303 = map;
+				}
+            }
+        }
+        result.put("C101", C101);
+        result.put("C102", C102);
+		result.put("C103", C103);
+		result.put("C201", C201);
+		result.put("C202", C202);
+		result.put("C203", C203);
+		result.put("C301", C301);
+		result.put("C302", C302);
+		result.put("C303", C303);
         //========process dataMap for main view end========
         return result;
     }

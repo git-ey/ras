@@ -243,6 +243,7 @@ public class ValueationIndexController extends BaseController {
 		pd = this.getPageData();
 		Map<String,Object> dataMap = new HashMap<String,Object>();
 		List<String> titles = new ArrayList<String>();
+		titles.add("公司代码");	//0
 		titles.add("是否货基");	//1
 		titles.add("投资标的");	//2
 		titles.add("交易市场");	//3
@@ -255,11 +256,13 @@ public class ValueationIndexController extends BaseController {
 		titles.add("估值基价来源");	//10
 		titles.add("估值基价字段");	//11
 		titles.add("三层次类型");	//12
+		titles.add("客户简称");	//13
 		dataMap.put("titles", titles);
 		List<PageData> varOList = valueationindexService.listAll(pd);
 		List<PageData> varList = new ArrayList<PageData>();
 		for(int i=0;i<varOList.size();i++){
 			PageData vpd = new PageData();
+			vpd.put("var0", varOList.get(i).getString("FIRM_CODE"));	    //0
 			vpd.put("var1", varOList.get(i).getString("MMF"));	    //1
 			vpd.put("var2", varOList.get(i).getString("TYPE"));	    //2
 			vpd.put("var3", varOList.get(i).getString("MARKET"));	    //3
@@ -272,6 +275,7 @@ public class ValueationIndexController extends BaseController {
 			vpd.put("var10", varOList.get(i).getString("VAL_BASE_SOURCE"));	    //10
 			vpd.put("var11", varOList.get(i).getString("VAL_COLUMN"));	    //11
 			vpd.put("var12", varOList.get(i).getString("THREE_LEVEL"));	    //12
+			vpd.put("var13", varOList.get(i).getString("firm_code"));	    //13
 			varList.add(vpd);
 		}
 		dataMap.put("varList", varList);
