@@ -8,8 +8,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
+import com.ey.util.File.FileTransferUtil;
 import org.apache.commons.lang3.StringUtils;
-
 import com.ey.entity.system.ImportConfig;
 import com.ey.service.data.fileimport.ImportManager;
 import com.ey.service.system.importconfig.ImportConfigManager;
@@ -79,7 +79,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 导入文件数据
-	 * 
+	 *
 	 * @return
 	 * @throws Exception
 	 */
@@ -87,6 +87,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 		for (String importTempCode : importConfigs) {
 			ImportConfig configuration = null;
 			try {
+				//数据导入设置配置解析
 				configuration = importConfigParser.getConfig(importTempCode);
 			} catch (Exception e) {
 				throw new Exception("获取数据导入配置失败:" + importTempCode + "," + e.getMessage());
@@ -97,6 +98,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 			}
 			List<File> pathFiles = FileUtil.getPathFile(pd.getString("IMPORT_FILE_PATH"),
 					configuration.getFileNameFormat());
+			//将过滤后的文件转存到本地
+			 pathFiles = FileTransferUtil.localFiles(pathFiles,pd.getString("IMPORT_FILE_PATH"));
 			// 遍历导入文件
 			for (File pathFile : pathFiles) {
 				// 导入消息
@@ -154,12 +157,13 @@ public class ImportDataWroker implements Callable<Boolean> {
 					}
 				}
 			}
+			FileTransferUtil.deleteFolder();//清空转存文件夹
 		}
 	}
 
 	/**
 	 * 检查导入文件是否已导入
-	 * 
+	 *
 	 * @param pathFiles
 	 * @return
 	 * @throws Exception
@@ -174,7 +178,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 导入CSV数据文件
-	 * 
+	 *
 	 * @param pathFile
 	 * @param configuration
 	 * @throws Exception
@@ -200,7 +204,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 			break;
 		}
 		// 强制释放资源
-		System.gc();
+//		System.gc();
 		MapResult mapResult = null;
 		File csvFile = new File(csvFilePath);
 		if(!csvFile.exists()){
@@ -223,7 +227,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 导入Excel数据文件
-	 * 
+	 *
 	 * @param pathFile
 	 * @param configuration
 	 * @throws Exception
@@ -240,7 +244,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 拼接SQL插入脚本并插入数据库
-	 * 
+	 *
 	 * @param mapResult
 	 * @param configuration
 	 * @param fileName
@@ -303,12 +307,12 @@ public class ImportDataWroker implements Callable<Boolean> {
 		}
 		return cnt;
 	}
-	
+
 	/**
 	 * 执行存储过程
 	 * @param callable
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private String callProcedure(String callable,String importFileId) throws Exception{
 		PageData procedurePd = new PageData();
@@ -319,7 +323,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 保存解析文件数据至数据库
-	 * 
+	 *
 	 * @param tableName
 	 * @param tableFiled
 	 * @param tableValue
@@ -335,10 +339,10 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 保存导入表信息数据至数据库
-	 * 
+	 *
 	 * @param importFileId
 	 * @param importId
-	 * @param sheetNo 
+	 * @param sheetNo
 	 * @param pathFile
 	 * @param tableName
 	 * @param cnt
@@ -360,7 +364,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 		importFilePd.put("CNT", (cnt - 1));
 		importService.saveImportFile(importFilePd);
 	}
-	
+
 	/**
 	 * 更新导入文件信息
 	 * @param importFileId
@@ -373,7 +377,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 文件名分析器
-	 * 
+	 *
 	 * @param importFilePd
 	 * @param pathFileName
 	 * @param nameSection
@@ -396,7 +400,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 获取继续文件名段索引
-	 * 
+	 *
 	 * @param nameSection
 	 * @return
 	 */
@@ -412,7 +416,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 回写导入操作状态
-	 * 
+	 *
 	 * @param importStatus
 	 * @throws Exception
 	 */
