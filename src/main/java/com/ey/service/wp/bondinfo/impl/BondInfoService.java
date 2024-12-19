@@ -13,7 +13,7 @@ import com.ey.util.PageData;
 import com.ey.util.UuidUtil;
 import com.ey.service.wp.bondinfo.BondInfoManager;
 
-/** 
+/**
  * 说明： 债券投资信息
  * 创建人：andychen
  * 创建时间：2017-12-03
@@ -24,7 +24,7 @@ public class BondInfoService implements BondInfoManager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
-	
+
 	/**新增
 	 * @param pd
 	 * @throws Exception
@@ -32,7 +32,7 @@ public class BondInfoService implements BondInfoManager{
 	public void save(PageData pd)throws Exception{
 		dao.save("BondInfoMapper.save", pd);
 	}
-	
+
 	/**删除
 	 * @param pd
 	 * @throws Exception
@@ -40,7 +40,7 @@ public class BondInfoService implements BondInfoManager{
 	public void delete(PageData pd)throws Exception{
 		dao.delete("BondInfoMapper.delete", pd);
 	}
-	
+
 	/**修改
 	 * @param pd
 	 * @throws Exception
@@ -48,7 +48,7 @@ public class BondInfoService implements BondInfoManager{
 	public void edit(PageData pd)throws Exception{
 		dao.update("BondInfoMapper.edit", pd);
 	}
-	
+
 	/**列表
 	 * @param page
 	 * @throws Exception
@@ -57,7 +57,7 @@ public class BondInfoService implements BondInfoManager{
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("BondInfoMapper.datalistPage", page);
 	}
-	
+
 	/**列表(全部)
 	 * @param pd
 	 * @throws Exception
@@ -66,7 +66,7 @@ public class BondInfoService implements BondInfoManager{
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("BondInfoMapper.listAll", pd);
 	}
-	
+
 	/**通过id获取数据
 	 * @param pd
 	 * @throws Exception
@@ -74,7 +74,7 @@ public class BondInfoService implements BondInfoManager{
 	public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("BondInfoMapper.findById", pd);
 	}
-	
+
 	/**批量删除
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
@@ -82,10 +82,10 @@ public class BondInfoService implements BondInfoManager{
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("BondInfoMapper.deleteAll", ArrayDATA_IDS);
 	}
-	
+
 	/**
 	 * 批量新增
-	 * 
+	 *
 	 * @param maps
 	 * @throws Exception
 	 */
@@ -151,6 +151,6 @@ public class BondInfoService implements BondInfoManager{
 			dao.save("BondInfoMapper.saveBatch", pds);
 		}
 	}
-	
+
 }
 

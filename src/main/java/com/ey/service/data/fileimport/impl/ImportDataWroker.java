@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.Callable;
-
 import com.ey.util.File.FileTransferUtil;
 import org.apache.commons.lang3.StringUtils;
 import com.ey.entity.system.ImportConfig;
@@ -84,6 +83,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * @throws Exception
 	 */
 	private void saveFileData(List<String> importConfigs) throws Exception {
+		String importId  = pd.getString("IMPORT_ID");
+		String importFilePath  = pd.getString("IMPORT_FILE_PATH");
 		for (String importTempCode : importConfigs) {
 			ImportConfig configuration = null;
 			try {
@@ -96,10 +97,10 @@ public class ImportDataWroker implements Callable<Boolean> {
 			if (configuration == null || configuration.getStartRowNo() == null) {
 				throw new Exception("配置代码：" + importTempCode + ",数据导入信息维护不完整");
 			}
-			List<File> pathFiles = FileUtil.getPathFile(pd.getString("IMPORT_FILE_PATH"),
+			List<File> pathFiles = FileUtil.getPathFile(importFilePath,
 					configuration.getFileNameFormat());
 			//将过滤后的文件转存到本地
-			 pathFiles = FileTransferUtil.localFiles(pathFiles,pd.getString("IMPORT_FILE_PATH"));
+			 pathFiles = FileTransferUtil.localFiles(pathFiles,importFilePath,importId);
 			// 遍历导入文件
 			for (File pathFile : pathFiles) {
 				// 导入消息
@@ -133,7 +134,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 				}
 				// 回写导入文件信息表
 				try {
-					this.saveImportFile(importFileId, pd.get("IMPORT_ID").toString(), pathFile.getName(),configuration.getSheetNo(), nameSection,
+					this.saveImportFile(importFileId, importId, pathFile.getName(),configuration.getSheetNo(), nameSection,
 							configuration.getFileNameDelimiter(), configuration.getTableName(), importMessage, cnt);
 				} catch (Exception e) {
 					throw new Exception("回写导入文件信息表失败:" + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
@@ -157,14 +158,14 @@ public class ImportDataWroker implements Callable<Boolean> {
 					}
 				}
 			}
-			FileTransferUtil.deleteFolder();//清空转存文件夹
+			FileTransferUtil.deleteFolder(importId);//清空转存文件夹
 		}
 	}
 
 	/**
 	 * 检查导入文件是否已导入
 	 *
-	 * @param pathFiles
+	 * @param pathFile
 	 * @return
 	 * @throws Exception
 	 */
@@ -188,39 +189,38 @@ public class ImportDataWroker implements Callable<Boolean> {
 		String extension = fileName.lastIndexOf(".") == -1 ? "" : fileName.substring(fileName.lastIndexOf(".") + 1);
 		String csvFilePath = pathFile.getParent() + File.separator + UuidUtil.get32UUID() + ".csv";
 		String excelFilePath = pathFile.getPath();
+		MapResult mapResult;
+		Long cnt = null ;
+		File csvFile;
+		//将源代码类别拆分，方便日后后续进行分别处理
 		switch (extension) {
 		case "xls":
 			// 先执行Excel转换成CSV
 			XlsToCsv xlsTocsv = new XlsToCsv(excelFilePath, csvFilePath);
 			xlsTocsv.process();
+			csvFile = new File(csvFilePath);
+			if(!csvFile.exists()){ throw new Exception(excelFilePath+" 未生成临时的CSV文件"); }
+			mapResult = (MapResult) FileImportExecutor.importFile(configuration, csvFile, csvFile.getName());
+			cnt = this.insertData(mapResult, configuration, excelFilePath, importFileId);
+			xlsTocsv.close();
+			csvFile.delete();
 			break;
 		case "xlsx":
 			// 先执行Excel转换成CSV
 			XlsxToCsv xlsxTocsv = new XlsxToCsv(excelFilePath, csvFilePath);
 			xlsxTocsv.process();
+			csvFile = new File(csvFilePath);
+			if(!csvFile.exists()){ throw new Exception(excelFilePath+" 未生成临时的CSV文件"); }
+			mapResult = (MapResult) FileImportExecutor.importFile(configuration, csvFile, csvFile.getName());
+			cnt = this.insertData(mapResult, configuration, excelFilePath, importFileId);
+			xlsxTocsv.close();
+			csvFile.delete();
 			break;
 		case "csv":
-			csvFilePath = excelFilePath;
+			csvFile = new File(excelFilePath);
+			mapResult = (MapResult) FileImportExecutor.importFileCsv(configuration, csvFile, csvFile.getName());
+			cnt = this.insertData(mapResult, configuration, excelFilePath, importFileId);
 			break;
-		}
-		// 强制释放资源
-//		System.gc();
-		MapResult mapResult = null;
-		File csvFile = new File(csvFilePath);
-		if(!csvFile.exists()){
-			throw new Exception(excelFilePath+" 未生成临时的CSV文件");
-		}
-		try {
-			mapResult = (MapResult) FileImportExecutor.importFile(configuration, csvFile, csvFile.getName());
-		} catch (FileImportException e) {
-			throw new Exception("导入CSV文件数据失败:" + csvFile.getName() + "," + e.getMessage());
-		}
-		Long cnt = this.insertData(mapResult, configuration, excelFilePath, importFileId);
-		// 删除CSV临时过渡文件，删除不了，强制回收
-		boolean result = csvFile.delete();
-		if(!result){
-			System.gc();//系统进行资源强制回收
-			csvFile.delete();
 		}
 		return cnt;
 	}
@@ -343,7 +343,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * @param importFileId
 	 * @param importId
 	 * @param sheetNo
-	 * @param pathFile
+	 * @param fileNameDelimiter
 	 * @param tableName
 	 * @param cnt
 	 * @throws Exception
@@ -367,8 +367,8 @@ public class ImportDataWroker implements Callable<Boolean> {
 
 	/**
 	 * 更新导入文件信息
-	 * @param importFileId
-	 * @param message
+	 * @param importFilePd
+	 * @param
 	 * @throws Exception
 	 */
 	private void updateImportFile(PageData importFilePd) throws Exception {

@@ -4,26 +4,30 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
 import org.codehaus.jackson.map.util.JSONPObject;
 
-/** 
+/**
  * 接口参数校验
  */
 public class AppUtil  {
-	
+
 	protected static Logger logger = Logger.getLogger(AppUtil.class);
-	
+
 	/**
 	 * 批量导入的默认条数
 	 */
 	public static int BATCH_INSERT_COUNT = 500;
-	
+
 	/**
 	 * 全局CVS文件分隔符
 	 */
 	public static String CSV_DELIMITER = "♈";
-	
+
+	/**
+	 * 源文件CVS文件分隔符
+	 */
+	public static String LCSV_DELIMITER = ",";
+
 	/**检查参数是否完整
 	 * @param method
 	 * @param pd
@@ -31,18 +35,18 @@ public class AppUtil  {
 	 */
 	public static boolean checkParam(String method, PageData pd){
 		boolean result = false;
-		
+
 		int falseCount = 0;
 		String[] paramArray = new String[20];
 		String[] valueArray = new String[20];
 		String[] tempArray  = new String[20];  //临时数组
-		
+
 		if("registerSysUser".equals(method)){// 注册
 			paramArray = Const.SYSUSER_REGISTERED_PARAM_ARRAY;  //参数
 			valueArray = Const.SYSUSER_REGISTERED_VALUE_ARRAY;  //参数名称
-			
+
 		}else if("getAppuserByUsernmae".equals(method)){//根据用户名获取会员信息
-			paramArray = Const.APP_GETAPPUSER_PARAM_ARRAY;  
+			paramArray = Const.APP_GETAPPUSER_PARAM_ARRAY;
 			valueArray = Const.APP_GETAPPUSER_VALUE_ARRAY;
 		}
 		int size = paramArray.length;
@@ -61,10 +65,10 @@ public class AppUtil  {
 		} else {
 			result = true;
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * 设置分页的参数
 	 * @param pd
@@ -81,7 +85,7 @@ public class AppUtil  {
 		pd.put("page_start", page_start);
 		return pd;
 	}
-	
+
 	/**
 	 * @param pd
 	 * @param map
@@ -95,7 +99,7 @@ public class AppUtil  {
 			return map;
 		}
 	}
-	
+
 	/**
 	 * 过滤特殊字符
 	 * @param str
@@ -110,5 +114,5 @@ public class AppUtil  {
 		Matcher m = p.matcher(str);
 		return m.replaceAll("").trim();
 	}
-	
+
 }

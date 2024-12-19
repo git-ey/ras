@@ -82,7 +82,7 @@ public class XlsToCsv implements HSSFListener {
 
 	/**
 	 * Creates a new XLS -> CSV converter
-	 * 
+	 *
 	 * @param fs
 	 *            The POIFSFileSystem to process
 	 * @param output
@@ -102,9 +102,18 @@ public class XlsToCsv implements HSSFListener {
 		minColumns = -1;
 	}
 
+	public void close() throws Exception {
+		if (output != null) {
+			output.close();
+		}
+		if (fs != null) {
+			fs.close();
+		}
+	}
+
 	/**
 	 * Creates a new XLS -> CSV converter
-	 * 
+	 *
 	 * @param filename
 	 *            The file to process
 	 * @param minColumns

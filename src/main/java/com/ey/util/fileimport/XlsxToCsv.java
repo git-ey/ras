@@ -103,7 +103,7 @@ public class XlsxToCsv {
 
 		/**
 		 * Accepts objects needed while parsing.
-		 * 
+		 *
 		 * @param styles
 		 *            Table of styles
 		 * @param strings
@@ -126,7 +126,7 @@ public class XlsxToCsv {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see
 		 * org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
 		 * java.lang.String, java.lang.String, org.xml.sax.Attributes)
@@ -184,7 +184,7 @@ public class XlsxToCsv {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
 		 * java.lang.String, java.lang.String)
 		 */
@@ -293,7 +293,7 @@ public class XlsxToCsv {
 
 		/**
 		 * Converts an Excel column name like "C" to a zero-based index.
-		 * 
+		 *
 		 * @param name
 		 * @return Index corresponding to the specified name
 		 */
@@ -317,7 +317,7 @@ public class XlsxToCsv {
 
 	/**
 	 * Creates a new XLSX -> CSV converter
-	 * 
+	 *
 	 * @param pkg
 	 *            The XLSX package to process
 	 * @param output
@@ -338,10 +338,19 @@ public class XlsxToCsv {
 		minColumns = -1;
 	}
 
+	public void close() throws Exception {
+		if (output != null) {
+			output.close();
+		}
+		if (xlsxPackage != null) {
+			xlsxPackage.close();
+		}
+	}
+
 	/**
 	 * Parses and shows the content of one sheet using the specified styles and
 	 * shared-strings tables.
-	 * 
+	 *
 	 * @param styles
 	 * @param strings
 	 * @param sheetInputStream
@@ -360,7 +369,7 @@ public class XlsxToCsv {
 
 	/**
 	 * Initiates the processing of the XLS workbook file to CSV.
-	 * 
+	 *
 	 * @throws IOException
 	 * @throws OpenXML4JException
 	 * @throws ParserConfigurationException

@@ -33,14 +33,44 @@ import com.google.common.collect.Maps;
  * Excel文件导入处理器
  *
  */
-public class ExcelImportor extends FileImportor {
-	
+public class ExcelImportor extends FileImportor  {
+
 	protected Logger logger = Logger.getLogger(ExcelImportor.class);
 
 	private ImportConfig configuration;
 
 	@Override
 	public ImportResult getImportResult(File file, String fileName) throws FileImportException {
+		if (configuration == null) {
+			throw new FileImportException("configuration is null");
+		}
+		StringBuilder stringbuilder = new StringBuilder();
+		Workbook workbook = null;
+		String extension = fileName.lastIndexOf(".") == -1 ? "" : fileName.substring(fileName.lastIndexOf(".") + 1);
+		if ("xls".equals(extension)) {
+			try {
+				workbook = new HSSFWorkbook(new FileInputStream(file));
+			} catch (IOException e) {
+				throw new FileImportException(e, e.getMessage());
+			}
+		} else if ("xlsx".equals(extension)) {
+			try {
+				workbook = new XSSFWorkbook(new FileInputStream(file));
+			} catch (IOException e) {
+				throw new FileImportException(e, e.getMessage());
+			}
+		} else {
+			throw new FileImportException("unsupport file style");
+		}
+		List<Map> result = readExcel(workbook, configuration, stringbuilder);
+		MapResult mapResult = new MapResult();
+		mapResult.setResult(result);
+		mapResult.setResMsg(stringbuilder.toString());
+		return mapResult;
+	}
+
+	@Override
+	public ImportResult getImportResult(File file, String fileName, boolean flag) throws FileImportException {
 		if (configuration == null) {
 			throw new FileImportException("configuration is null");
 		}
