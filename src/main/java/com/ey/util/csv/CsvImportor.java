@@ -20,6 +20,7 @@ import com.ey.util.fileimport.ImportResult;
 import com.ey.util.fileimport.MapResult;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.mozilla.universalchardet.UniversalDetector;
 
 /**
  * CSV文件导入处理器
@@ -70,8 +71,9 @@ public class CsvImportor extends FileImportor {
 	 */
 	private List<Map> readCsv(File csvFile, ImportConfig configuration, StringBuilder sb){
 		BufferedReader br = null;
+		InputStreamReader isr = null;
 		try {
-			InputStreamReader isr = new InputStreamReader(new FileInputStream(csvFile), "UTF-8");
+			isr =new InputStreamReader(new FileInputStream(csvFile), "UTF-8");
 			br = new BufferedReader(isr);
 		} catch (Exception ex) {
 			sb.append("读取CSV文件失败:" + ex.getMessage());
@@ -110,71 +112,10 @@ public class CsvImportor extends FileImportor {
 			}
 		} catch (IOException ex) {
 			sb.append("读取CSV文件行出错:" + com.ey.util.StringUtil.getStringByLength(ex.getMessage(), 480));
-		}
-		if (br != null) {
-			try {
-				br.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return results;
-	}
-
-	/**
-	 * 读取源文件为CSV文件
-	 *
-	 * @param csvFile
-	 * @param configuration
-	 * @param sb
-	 * @return
-	 * @throws FileImportException
-	 */
-	private List<Map> readCsv2(File csvFile, ImportConfig configuration, StringBuilder sb) {
-		BufferedReader br = null;
-		try {
-			InputStreamReader isr = new InputStreamReader(new FileInputStream(csvFile), "GBK");
-			br = new BufferedReader(isr);
-		} catch (Exception ex) {
-			sb.append("读取CSV文件失败:" + ex.getMessage());
-		}
-		List<ImportConfigCell> lists = configuration.getImportCells();
-		List<Map> results = Lists.newLinkedList();
-		// CSV字段分隔符
-		String delimiter = AppUtil.LCSV_DELIMITER;
-		// 引号，处理MySQL插入数据返回的Map用到
-		String quotes = "";
-		if (StringUtils.isNotBlank(configuration.getTableName())) {
-			quotes = "'";
-		}
-		String readline = "";
-		String line = "";
-		int startRow = configuration.getStartRowNo();
-		int idx = 0;
-		try {
-			while ((readline = br.readLine()) != null) // 读取到的内容给line变量
-			{
-				if (idx >= startRow) {
-					line = readline.replace("\"", quotes);
-					Map<String, Object> map = Maps.newLinkedHashMap();
-					map.put(MapResult.IS_LINE_LEGAL_KEY, true);
-					String[] rowLine = line.split(delimiter);// 按照`符号分割处理
-					// 行过滤规则
-					if (configuration.getIgnoreRule() != null && isIgnoreRow(configuration.getIgnoreRule(), rowLine)) {
-						continue;
-					}
-					for (ImportConfigCell importCell : lists) {
-						setValue2(map, importCell, rowLine, rowLine.length, sb, idx, startRow, quotes);
-					}
-					results.add(map);
-				}
-				idx++;
-			}
-		} catch (IOException ex) {
-			sb.append("读取CSV文件行出错:" + com.ey.util.StringUtil.getStringByLength(ex.getMessage(), 480));
 		}finally {
 			try {
 				br.close();
+				isr.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -258,6 +199,87 @@ public class CsvImportor extends FileImportor {
 		}
 	}
 
+	//juniversalchardet库来检测文件编码
+	public  String detectEncoding(String filePath) throws IOException {
+		FileInputStream fis = new FileInputStream(filePath);
+		UniversalDetector detector = new UniversalDetector(null);
+		byte[] buf = new byte[4096];
+		int numBytesRead;
+		while ((numBytesRead = fis.read(buf)) > 0) {
+			detector.handleData(buf, 0, numBytesRead);
+			if (detector.isDone()) {
+				break;
+			}
+		}
+		detector.dataEnd();
+		String encoding = detector.getDetectedCharset();
+		fis.close();
+		detector.reset();
+		return encoding;
+	}
+	/**
+	 * 读取源文件为CSV文件
+	 *
+	 * @param csvFile
+	 * @param configuration
+	 * @param sb
+	 * @return
+	 * @throws FileImportException
+	 */
+	private List<Map> readCsv2(File csvFile, ImportConfig configuration, StringBuilder sb) {
+		BufferedReader br = null;
+		InputStreamReader isr =null;
+		try {
+			isr = new InputStreamReader(new FileInputStream(csvFile), detectEncoding(csvFile.getPath()));
+			br = new BufferedReader(isr);
+		} catch (Exception ex) {
+			sb.append("读取CSV文件失败:" + ex.getMessage());
+		}
+		List<ImportConfigCell> lists = configuration.getImportCells();
+		List<Map> results = Lists.newLinkedList();
+		// CSV字段分隔符
+		String delimiter = AppUtil.LCSV_DELIMITER;
+		// 引号，处理MySQL插入数据返回的Map用到
+		String quotes = "";
+		if (StringUtils.isNotBlank(configuration.getTableName())) {
+			quotes = "'";
+		}
+		String readline = "";
+		String line = "";
+		int startRow = configuration.getStartRowNo();
+		int idx = 0;
+		try {
+			while ((readline = br.readLine()) != null) // 读取到的内容给line变量
+			{
+				if (idx >= startRow) {
+					line = readline.replace("\"", quotes);
+					Map<String, Object> map = Maps.newLinkedHashMap();
+					map.put(MapResult.IS_LINE_LEGAL_KEY, true);
+					String[] rowLine = line.split(delimiter);// 按照`符号分割处理
+					// 行过滤规则
+					if (configuration.getIgnoreRule() != null && isIgnoreRow(configuration.getIgnoreRule(), rowLine)) {
+						continue;
+					}
+					for (ImportConfigCell importCell : lists) {
+						setValue2(map, importCell, rowLine, rowLine.length, sb, idx, startRow, quotes);
+					}
+					results.add(map);
+				}
+				idx++;
+			}
+		} catch (IOException ex) {
+			sb.append("读取CSV文件行出错:" + com.ey.util.StringUtil.getStringByLength(ex.getMessage(), 480));
+		}finally {
+			try {
+				br.close();
+				isr.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return results;
+	}
+
 
 	private void setValue2(Map<String, Object> maps, ImportConfigCell importCell, String[] rowLine, int rows,
 						  StringBuilder sb, int line, int startRow, String quotes) {
@@ -288,8 +310,8 @@ public class CsvImportor extends FileImportor {
 				break;
 			case STRING:
 				if (rows > importCell.getNumber()) {
-					maps.put(key,
-							StringUtils.isBlank(rowLine[importCell.getNumber()]) ? "''" : rowLine[importCell.getNumber()].replace("\"", "'"));
+					String value = StringUtils.isBlank(rowLine[importCell.getNumber()]) ? "''" : rowLine[importCell.getNumber()].replace("\"", "'");
+					maps.put(key, value.startsWith("'") && value.endsWith("'") ? value : "'" + value + "'");
 				} else {
 					maps.put(key, null);
 				}
