@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -34,7 +37,6 @@ public class FileTransferUtil {
                     long trasferred = inputChannel.transferTo(position,size,outputChannel);
                     outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
                     transferFiles.add(localFolder);
-                    System.out.println("传输字节数:"+trasferred);
                     inputChannel.close();
                     outputChannel.close();
                 } catch (IOException e) {
@@ -89,6 +91,7 @@ public class FileTransferUtil {
                     try {
                         Files.delete(rootPath);
                         deleted = true; // 删除成功
+                        deleteFolder();
                     } catch (IOException e) {
                         attempt++; // 增加重试次数
 
@@ -109,8 +112,53 @@ public class FileTransferUtil {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                // 在这里可以添加额外的错误处理逻辑
             }
+        }
+    }
+
+
+    public static void deleteFolder( ){
+        // 获取目标目录路径
+        Path rootPath = Paths.get(System.getProperty("user.dir"), "transferFiles");
+        // 遍历目录下的所有文件夹
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(rootPath)) {
+            for (Path path : stream) {
+                // 检查是否为目录
+                if (Files.isDirectory(path)) {
+                    // 获取文件夹的最后修改时间
+                    BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
+                    LocalDateTime lastModifiedTime = attrs.lastModifiedTime()
+                            .toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime();
+
+                    // 计算与当前时间的差值
+                    long daysBetween = ChronoUnit.DAYS.between(lastModifiedTime, LocalDateTime.now());
+
+                    // 如果超过一天，则删除该文件夹
+                    if (daysBetween > 1) {
+                        deleteDirectory(path); // 删除文件夹及其内容
+                        System.out.println("Deleted folder: " + path);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 删除文件夹及其内容的辅助方法
+    private static void deleteDirectory(Path directory) throws IOException {
+        if (Files.exists(directory)) {
+            Files.walk(directory)
+                    .sorted((a, b) -> b.compareTo(a)) // 从最深层的文件开始删除
+                    .forEach(path -> {
+                        try {
+                            Files.delete(path);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
         }
     }
 

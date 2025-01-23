@@ -23,11 +23,6 @@ public class AppUtil  {
 	 */
 	public static String CSV_DELIMITER = "♈";
 
-	/**
-	 * 源文件CVS文件分隔符
-	 */
-	public static String LCSV_DELIMITER = ",";
-
 	/**检查参数是否完整
 	 * @param method
 	 * @param pd
@@ -109,7 +104,7 @@ public class AppUtil  {
 	public static String StringFilter(String str) throws PatternSyntaxException {
 		// 只允许字母和数字 // String regEx ="[^a-zA-Z0-9]";
 		// 清除掉所有特殊字符
-		String regEx = "[`~!@#$%^&*()+=|{}':;',\\[\\]<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+		String regEx = "[`~!@#$%^&*()+=|{}':;',\\[\\]\\\"<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
 		Pattern p = Pattern.compile(regEx);
 		Matcher m = p.matcher(str);
 		return m.replaceAll("").trim();

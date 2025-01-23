@@ -21,6 +21,8 @@ public class ConcRunWorker implements Callable<Boolean> {
 	@Override
 	public Boolean call() throws Exception {
 		try {
+			pd.put("RESULT", "R"); // 运行状态
+			concruningService.edit(pd);
 			concruningService.runProcedure(pd);
 		} catch (Exception ex) {
 			pd.put("RESULT", "E");

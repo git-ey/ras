@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -46,21 +45,23 @@ public class ExcelImportor extends FileImportor  {
 		}
 		StringBuilder stringbuilder = new StringBuilder();
 		Workbook workbook = null;
+
 		String extension = fileName.lastIndexOf(".") == -1 ? "" : fileName.substring(fileName.lastIndexOf(".") + 1);
-		if ("xls".equals(extension)) {
-			try {
-				workbook = new HSSFWorkbook(new FileInputStream(file));
-			} catch (IOException e) {
-				throw new FileImportException(e, e.getMessage());
-			}
-		} else if ("xlsx".equals(extension)) {
-			try {
+//		System.out.println("fis:"+file.getPath());
+		try (FileInputStream fis = new FileInputStream(file)) {
+			if ("xls".equals(extension)) {
+				workbook = new HSSFWorkbook(fis); // 读取 .xls 文件
+			} else if ("xlsx".equals(extension)) {
 				workbook = new XSSFWorkbook(new FileInputStream(file));
-			} catch (IOException e) {
-				throw new FileImportException(e, e.getMessage());
+//				workbook = StreamingReader.builder()
+//						.rowCacheSize(300)
+//						.bufferSize(4096)
+//						.open(fis);  // 只能打开 XLSX 格式的文件
+			} else {
+				throw new FileImportException("不支持的文件格式");
 			}
-		} else {
-			throw new FileImportException("unsupport file style");
+		} catch (IOException e) {
+			throw new FileImportException(e, "解析异常");
 		}
 		List<Map> result = readExcel(workbook, configuration, stringbuilder);
 		MapResult mapResult = new MapResult();
@@ -77,20 +78,20 @@ public class ExcelImportor extends FileImportor  {
 		StringBuilder stringbuilder = new StringBuilder();
 		Workbook workbook = null;
 		String extension = fileName.lastIndexOf(".") == -1 ? "" : fileName.substring(fileName.lastIndexOf(".") + 1);
-		if ("xls".equals(extension)) {
-			try {
-				workbook = new HSSFWorkbook(new FileInputStream(file));
-			} catch (IOException e) {
-				throw new FileImportException(e, e.getMessage());
-			}
-		} else if ("xlsx".equals(extension)) {
-			try {
+		try (FileInputStream fis = new FileInputStream(file)) {
+			if ("xls".equals(extension)) {
+				workbook = new HSSFWorkbook(fis); // 读取 .xls 文件
+			} else if ("xlsx".equals(extension)) {
 				workbook = new XSSFWorkbook(new FileInputStream(file));
-			} catch (IOException e) {
-				throw new FileImportException(e, e.getMessage());
+//				workbook = StreamingReader.builder()
+//						.rowCacheSize(100)
+//						.bufferSize(4096)
+//						.open(fis);  // 只能打开 XLSX 格式的文件
+			} else {
+				throw new FileImportException("unsupport file style");
 			}
-		} else {
-			throw new FileImportException("unsupport file style");
+		} catch (IOException e) {
+			throw new FileImportException(e, "解析异常");
 		}
 		List<Map> result = readExcel(workbook, configuration, stringbuilder);
 		MapResult mapResult = new MapResult();

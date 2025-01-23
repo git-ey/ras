@@ -49,6 +49,8 @@ public class ConcRuningController extends BaseController {
 	@Resource(name = "concParamService")
 	private ConcParamManager concParamService;
 	@Autowired
+	@Qualifier("taskQueueExecutor")
+	private ThreadPoolTaskExecutor taskQueueExecutor;
 	@Qualifier("taskExecutor")
 	private ThreadPoolTaskExecutor taskExecutor;
 
@@ -71,6 +73,7 @@ public class ConcRuningController extends BaseController {
 		String concRuningId = this.get32UUID();
 		// 获取并发程序定义
 		PageData concPd = concService.findByCode(pd);
+		String ENABLED_FLAG = concPd.getString("ENABLED_FLAG");
 		// 构建并发程序参数
 		StringBuilder concParam = new StringBuilder();
 		@SuppressWarnings("unchecked")
@@ -98,11 +101,15 @@ public class ConcRuningController extends BaseController {
 		// 记录日志
 		pd.put("CONCRUNING_ID", concRuningId); // 主键
 		pd.put("START_DATETIME", Tools.date2Str(new Date())); // 开始时间
-		pd.put("RESULT", "R"); // 运行状态
+		pd.put("RESULT", "W"); // 运行状态
 		pd.put("OPERATOR", Jurisdiction.getUsername()); // 运行人
 		concruningService.save(pd);
 		// 执行并发程序
-		taskExecutor.submit(new ConcRunWorker(concruningService, pd));
+		if(ENABLED_FLAG.equals("Y")){
+			taskQueueExecutor.submit(new ConcRunWorker(concruningService, pd));
+		}else{
+			taskExecutor.submit(new ConcRunWorker(concruningService, pd));
+		}
 		mv.addObject("msg", "success");
 		mv.setViewName("save_result");
 		return mv;

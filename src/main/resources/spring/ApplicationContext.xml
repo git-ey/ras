@@ -2,13 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop
 						http://www.springframework.org/schema/aop/spring-aop.xsd
-						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context
 						http://www.springframework.org/schema/context/spring-context.xsd
-						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- 启用注解 -->
@@ -45,6 +45,19 @@
 		<property name="keepAliveSeconds" value="120" />
 	</bean>
 
+	<!-- 队列池 -->
+	<bean id="taskQueueExecutor"
+		  class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 核心线程数 -->
+		<property name="corePoolSize" value="2" />
+		<!-- 最大线程数 -->
+		<property name="maxPoolSize" value="2" />
+		<!-- 队列最大长度 -->
+		<property name="queueCapacity" value="1000" />
+		<!-- 线程池维护线程所允许的空闲时间，默认为60s -->
+		<property name="keepAliveSeconds" value="120" />
+	</bean>
+
 	<bean id="ldapContextSource" class="com.ey.service.system.ldap.SSLLdapContextSource">
 		<property name="url" value="${ldapUrl}" />
 		<property name="userDn" value="${ldapUserDn}" />
@@ -53,8 +66,8 @@
 		<property name="pooled" value="false" />
 		<property name="referral" value="throw" />
 	</bean>
-	
-	<bean id="systemConfig" class="com.ey.service.system.config.impl.SystemConfig"> 
+
+	<bean id="systemConfig" class="com.ey.service.system.config.impl.SystemConfig">
 	   <property name="ldapFlag" value="${ldapFlag}" />
 	   <property name="serverPort" value="${serverPort}" />
 	   <property name="serverAddr" value="${serverAddr}" />
