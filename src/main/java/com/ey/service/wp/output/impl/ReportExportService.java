@@ -63,11 +63,11 @@ public class ReportExportService implements ReportExportManager {
         return a.compareTo(b);
     };
     private String firmCode;
-    
+
     /**
      * 根据基金ID获取基金信息
      * @author Dai Zong 2017年11月8日
-     * 
+     *
      * @param fundId 基金ID
      * @return 基金信息
      * @throws Exception 基金ID无效
@@ -90,23 +90,23 @@ public class ReportExportService implements ReportExportManager {
     /**
      * 生成文件内容
      * @author Dai Zong 2017年10月17日
-     * 
+     *
      * @param exportParam
      * @param fundInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(Map<String,Object> exportParam, Map<String, String> fundInfo) throws Exception {
+    private String generateFileContent(Map<String,Object> exportParam, Map<String, String> fundInfo, String templatePath) throws Exception {
         Map<String, Object> dataMap = new HashMap<>();
         Map<String, Object> content = new HashMap<>();
-        
+
         String firmCode = String.valueOf(exportParam.get("FIRM_CODE"));
         String fundId = String.valueOf(exportParam.get("FUND_ID"));
         String periodStr = String.valueOf(exportParam.get("PEROID"));
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
-        
+
         exportParam.put("period", period);
         exportParam.put("month", month);
         exportParam.put("day", day);
@@ -118,12 +118,12 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> reportExtendInfo = (Map<String,Object>)this.dao.findForObject("ReportMapper.selectReportExtendInfo", queryMap);
         if(reportExtendInfo == null) {
-            reportExtendInfo = new HashMap<>(); 
+            reportExtendInfo = new HashMap<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> fundControl = (Map<String,Object>)this.dao.findForObject("ReportMapper.selectFundControlData", queryMap);
         if(fundControl == null) {
-            fundControl = new HashMap<>(); 
+            fundControl = new HashMap<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> reportContent = (Map<String,Object>)this.dao.findForObject("ReportMapper.selectReportContentData", queryMap);
@@ -142,13 +142,13 @@ public class ReportExportService implements ReportExportManager {
         if (temp != null){
             reportContent.put("PLR", temp.split("\n"));
         }
-        
+
         exportParam.put("reportExtendInfo", reportExtendInfo);
         exportParam.put("fundControl", fundControl);
         exportParam.put("reportContent", reportContent);
         exportParam.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
-        
-        
+
+
         exportParam.forEach((k,v) -> {
             dataMap.put(k, v);
         });
@@ -156,31 +156,31 @@ public class ReportExportService implements ReportExportManager {
         dataMap.put("content", content);
 
 
-        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_REPORT);
+        return FreeMarkerUtils.processTemplateToString(dataMap, templatePath, Constants.EXPORT_TEMPLATE_FILE_NAME_REPORT);
     }
-    
+
     @Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, Map<String,Object> exportParam) throws Exception {
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, Map<String,Object> exportParam, String templatePath) throws Exception {
         String fundId = String.valueOf(exportParam.get("FUND_ID"));
         String periodStr = String.valueOf(exportParam.get("PEROID"));
         String repType = String.valueOf(exportParam.get("REPTYPE")); // 20200507,yury
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
         fundInfo.put("repType", repType); // 20200507,yury
-        String fileStr = this.generateFileContent(exportParam, fundInfo);
+        String fileStr = this.generateFileContent(exportParam, fundInfo, templatePath);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_REPORT, fundInfo), fileStr);
         return true;
     }
 
     @Override
-    public boolean doExport(String folederName, String fileName, Map<String,Object> exportParam) throws Exception {
+    public boolean doExport(String folederName, String fileName, Map<String,Object> exportParam, String templatePath) throws Exception {
         String fundId = String.valueOf(exportParam.get("FUND_ID"));
         String periodStr = String.valueOf(exportParam.get("PEROID"));
         String repType = String.valueOf(exportParam.get("REPTYPE")); // 20200507,yury
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
         fundInfo.put("repType", repType); // 20200507,yury
-        String fileStr = this.generateFileContent(exportParam, fundInfo);
+        String fileStr = this.generateFileContent(exportParam, fundInfo, templatePath);
         // ↓ daigaokuo@hotmail.com 2019-02-13 ↓
         // [IMP] 最终输出文件夹路径中添加firm code
         folederName += fundInfo.get("firmCode") + File.separatorChar;
@@ -188,11 +188,11 @@ public class ReportExportService implements ReportExportManager {
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), fileStr);
         return true;
     }
-    
+
     /**
      * 处理报告各个组件
      * @author Dai Zong 2017年12月20日
-     * 
+     *
      * @param exportParam
      * @param content
      * @param queryParam
@@ -207,11 +207,11 @@ public class ReportExportService implements ReportExportManager {
         // content.put("P4", this.processP4(exportParam, partName));
         content.put("P5", this.processP5(exportParam, partName, queryParam));
     }
-    
+
     /**
      * 处理Part1
      * @author Dai Zong 2017年12月20日
-     * 
+     *
      * @param exportParam
      * @param partName
      * @param queryParam
@@ -229,7 +229,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> BsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("ReportMapper.selectBsData", queryParam);
         if(BsMetaDataList == null) {
-            BsMetaDataList = new ArrayList<>(); 
+            BsMetaDataList = new ArrayList<>();
         }
         Map<String,Object> A01 = new HashMap<>();
         Map<String,Object> A02 = new HashMap<>();
@@ -504,7 +504,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> PlMetaDataList = (List<Map<String,Object>>)this.dao.findForList("ReportMapper.selectPlData", queryParam);
         if(PlMetaDataList == null) {
-            PlMetaDataList = new ArrayList<>(); 
+            PlMetaDataList = new ArrayList<>();
         }
         Map<String,Object> D01 = new HashMap<>();
         Map<String,Object> D02 = new HashMap<>();
@@ -539,7 +539,7 @@ public class ReportExportService implements ReportExportManager {
         SUM1 = new HashMap<>();
         SUM2 = new HashMap<>();
         SUM3 = new HashMap<>();
-				
+
         for(Map<String,Object> map : PlMetaDataList) {
             if ("D01".equals(map.get("plCode"))) {
                 D01 = map;
@@ -643,7 +643,7 @@ public class ReportExportService implements ReportExportManager {
         PL.put("SUM2", SUM2);
         PL.put("SUM3", SUM3);
         //====================↑PL↑====================
-        
+
         //====================↓T500↓====================
         Map<String,Object> T500 = new HashMap<>();
         String periodStr = String.valueOf(queryParam.get("period"));
@@ -654,7 +654,7 @@ public class ReportExportService implements ReportExportManager {
             oldPeriodStr = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)-1)+"1231";
         }
         Map<String, Object> oldQueryParam = this.createBaseQueryMap(String.valueOf(queryParam.get("fundId")), oldPeriodStr);
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT500MainData", queryParam);
         if(mainMetaDataList == null) {
@@ -697,7 +697,7 @@ public class ReportExportService implements ReportExportManager {
             T500.put(tag, temp);
         }
         //====================↑T500↑====================
-        
+
         // -----------------irene20230904新增 应交税费/应付税费-----------------------
         @SuppressWarnings("unchecked")
         List<String> V300TaxPayableNameDataForBS = (List<String>) this.dao
@@ -716,11 +716,11 @@ public class ReportExportService implements ReportExportManager {
         exportParam.put("P1", P1);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P1")));
     }
-    
+
     /**
      * 处理Part2
      * @author Dai Zong 2017年12月20日
-     * 
+     *
      * @param exportParam
      * @param partName
      * @return
@@ -733,20 +733,20 @@ public class ReportExportService implements ReportExportManager {
         }
         return xml2003Content;
     }
-    
+
     /**
      * 处理Part3
      * @author Dai Zong 2017年12月22日
-     * 
+     *
      * @param exportParam
      * @param partName
      * @param queryParam
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     private String processP3(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws Exception{
         Map<String,Object> P3 = new HashMap<>();
-        
+
         P3.put("sec1", this.processP3Sec1(queryParam));
         P3.put("sec2", this.processP3Sec2(queryParam));
         P3.put("sec3", this.processP3Sec3(queryParam));
@@ -758,11 +758,11 @@ public class ReportExportService implements ReportExportManager {
         exportParam.put("P3", P3);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P3")));
     }
-    
+
     /**
      * 处理Part3 第一部分
      * @author Dai Zong 2017年12月23日
-     * 
+     *
      * @param queryParam
      * @return
      * @throws Exception
@@ -786,7 +786,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> C10000MetaDataList = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC10000DataForReport", queryParam);
         if(C10000MetaDataList == null) {
-            C10000MetaDataList = new ArrayList<>(); 
+            C10000MetaDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : C10000MetaDataList) {
             if("100".equals(map.get("sort")) || "活期存款".equals(map.get("item"))) {
@@ -808,7 +808,7 @@ public class ReportExportService implements ReportExportManager {
         if(C10000SumMetaData == null) {
             C10000SumMetaData = new HashMap<>();
         }
-        
+
         //chenhy,20240621,新增券商结算Flag
         String QsjsFlag = (String)this.dao.findForObject("CExportMapper.selectQsjsFlag", queryParam);
         C10000.put("QsjsFlag", QsjsFlag);
@@ -829,12 +829,12 @@ public class ReportExportService implements ReportExportManager {
         C10000.put("SumDemandandOther", C10000SumDemandandOtherMetaData);
 
         //====================↑C10000↑====================
-        
+
         //====================↓H10000↓====================
         Map<String,Object> H10000 = new HashMap<>();
         //--------------------↓H10000.tfa↓--------------------
         Map<String,Object> tfa = new HashMap<>();
-        
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -845,7 +845,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000BondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000TFAData", queryParam);
         if(H10000BondDataList == null) {
-            H10000BondDataList = new ArrayList<>(); 
+            H10000BondDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : H10000BondDataList) {
             if("交易所".equals(map.get("subItem"))) {
@@ -857,7 +857,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000NotBondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000TFANotBondDataForReport", queryParam);
         if(H10000NotBondDataList == null) {
-            H10000NotBondDataList = new ArrayList<>(); 
+            H10000NotBondDataList = new ArrayList<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000BondSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000TFABondSumDataForReport", queryParam);
@@ -907,13 +907,13 @@ public class ReportExportService implements ReportExportManager {
         bondAndItem5Sum.put("mktValueLast", this.addNumber(item5.get("mktValueLast"), H10000BondSumData.get("mktValueLast")));
         bondAndItem5Sum.put("appreciationLast", this.addNumber(item5.get("appreciationLast"), H10000BondSumData.get("appreciationLast")));
         tfa.put("bondAndItem5Sum", bondAndItem5Sum);
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> diviatonMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH500DiviatonData", queryParam);
         if(diviatonMetaData == null) {
             diviatonMetaData = new HashMap<>();
         }
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> lastDiviatonMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH500DiviatonData", queryParamLast);
         if(lastDiviatonMetaData == null) {
@@ -921,25 +921,25 @@ public class ReportExportService implements ReportExportManager {
         }
         diviatonMetaData.put("lastDiviatonEy", lastDiviatonMetaData.get("diviatonEy"));
         tfa.put("diviaton", diviatonMetaData);
-        
+
         H10000.put("tfa", tfa);
         //--------------------↑H10000.tfa↑--------------------
-        
+
         //--------------------↓H10000.mac↓--------------------
         //--------------------20220615新增macbond--------------------
         Map<String,Object> mac = new HashMap<>();
-        
+
         Map<String,Object> item8 = new HashMap<>();
         Map<String,Object> item9 = new HashMap<>();
         Map<String,Object> item10 = new HashMap<>();
         Map<String,Object> item11 = new HashMap<>();
         Map<String,Object> item12 = new HashMap<>();
         Map<String,Object> item13 = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000MacBondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000MACData", queryParam);
         if(H10000MacBondDataList == null) {
-            H10000MacBondDataList = new ArrayList<>(); 
+            H10000MacBondDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : H10000MacBondDataList) {
             if("交易所".equals(map.get("subItem"))) {
@@ -951,7 +951,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000MacABSDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000MacABSDataForReport", queryParam);
         if(H10000MacABSDataList == null) {
-            H10000MacABSDataList = new ArrayList<>(); 
+            H10000MacABSDataList = new ArrayList<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000MacBondSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000MacBondSumDataForReport", queryParam);
@@ -996,11 +996,11 @@ public class ReportExportService implements ReportExportManager {
             bondAndABSSum.put("impairmentLast", this.addNumber(item10.get("impairmentLast"), H10000MacBondSumData.get("impairmentLast")));
             bondAndABSSum.put("appreciationLast", this.addNumber(item10.get("appreciationLast"), H10000MacBondSumData.get("appreciationLast")));
         mac.put("bondAndABSSum", bondAndABSSum);
-        
-        
+
+
         H10000.put("mac", mac);
         //--------------------↑H10000.mac↑--------------------
-        
+
         //--------------------↓H10000.macbad↓--------------------
         Map<String, Object> MACBad = new HashMap<String,Object>();
         item1 = new HashMap<>();
@@ -1013,7 +1013,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> MacBadDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000MACBad", queryParam);
         if(MacBadDataList == null) {
-            MacBadDataList = new ArrayList<>(); 
+            MacBadDataList = new ArrayList<>();
         }
         Map<String,Object> tempMac = new HashMap<>();
         for(Map<String,Object> map : MacBadDataList) {
@@ -1031,20 +1031,20 @@ public class ReportExportService implements ReportExportManager {
         MACBad.put("macbaddataSumCheck", macbaddataSumCheck == null ? 0d : macbaddataSumCheck);
 
         H10000.put("macBad", MACBad);
-        
+
         //--------------------↑H10000.macbad↑--------------------
         //--------------------↓H10000.derivative↓--------------------
         Map<String,Object> derivative = new HashMap<>();
-        
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
         item4 = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000DerivativeDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000DerivativeData", queryParam);
         if(H10000DerivativeDataList == null) {
-            H10000DerivativeDataList = new ArrayList<>(); 
+            H10000DerivativeDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : H10000DerivativeDataList) {
             if("利率衍生工具".equals(map.get("item"))) {
@@ -1060,15 +1060,15 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000DerivativeSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000DerivativeSumDataForReport", queryParam);
         if(H10000DerivativeSumData == null) {
-            H10000DerivativeSumData = new HashMap<>(); 
+            H10000DerivativeSumData = new HashMap<>();
         }
 
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000DerivativeSumDataForTotal = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000DerivativeSumData", queryParam);
         if(H10000DerivativeSumDataForTotal == null) {
-            H10000DerivativeSumDataForTotal = new HashMap<>(); 
+            H10000DerivativeSumDataForTotal = new HashMap<>();
         }
-        
+
         derivative.put("item1", item1);
         derivative.put("item2", item2);
         derivative.put("item3", item3);
@@ -1080,7 +1080,7 @@ public class ReportExportService implements ReportExportManager {
         dataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000DerivativeHasDataForReport", queryParam);
         derivative.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         H10000.put("derivative", derivative);
-        
+
         //--------------------↑H10000.derivative↑--------------------
         //--------------------↓H10000.derivative_note(目前只有专户有)↓--------------------
 
@@ -1090,38 +1090,38 @@ public class ReportExportService implements ReportExportManager {
 
         derivative_note.put("note", derivativeNote);
         H10000.put("derivative_note", derivative_note);
-        
+
         //--------------------↑H10000.derivative_note(目前只有专户有)↑--------------------
         //--------------------↓H10000.futures↓--------------------
         Map<String,Object> futures = new HashMap<>();
         Map<String,Object> goldfutures = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000futuresDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FuturesData", queryParam);
         if(H10000futuresDataList == null) {
-            H10000futuresDataList = new ArrayList<>(); 
+            H10000futuresDataList = new ArrayList<>();
         }
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000futuresGoldDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FuturesGoldData", queryParam);
         if(H10000futuresGoldDataList == null) {
-            H10000futuresGoldDataList = new ArrayList<>(); 
+            H10000futuresGoldDataList = new ArrayList<>();
         }
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000futuresSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FuturesSumDataForReport", queryParam);
         if(H10000futuresSumData == null) {
-            H10000futuresSumData = new HashMap<>(); 
+            H10000futuresSumData = new HashMap<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000futuresGoldSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FuturesGoldSumDataForReport", queryParam);
         if(H10000futuresGoldSumData == null) {
-            H10000futuresGoldSumData = new HashMap<>(); 
+            H10000futuresGoldSumData = new HashMap<>();
         }
-        
+
         Object futuresdataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000FuturesHasDataForReport", queryParam);
         Object goldfuturesdataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000FuturesGoldHasDataForReport", queryParam);
-        
+
         futures.put("list", H10000futuresDataList);
         futures.put("sum", H10000futuresSumData);
         futures.put("dataSumCheck", futuresdataSumCheck == null ? 0d : futuresdataSumCheck);
@@ -1135,7 +1135,7 @@ public class ReportExportService implements ReportExportManager {
         Map<String, Object> rmcfs = new HashMap<>();
         item1 = new HashMap<>();
         item2 = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> rmcfsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000RmcfsData", queryParam);
         if(rmcfsMetaDataList == null) {
@@ -1151,9 +1151,9 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000rmcfsSumLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000RmcfsSumDataForReport", queryParam);
         if(H10000rmcfsSumLastData == null) {
-            H10000rmcfsSumLastData = new HashMap<>(); 
+            H10000rmcfsSumLastData = new HashMap<>();
         }
-        
+
         rmcfs.put("item1", item1);
         rmcfs.put("item2", item2);
         rmcfs.put("sum", H10000rmcfsSumLastData);
@@ -1164,7 +1164,7 @@ public class ReportExportService implements ReportExportManager {
         //--------------------↑H10000.rmcfs↑--------------------
         //--------------------↓H10000.fairValues↓--------------------
         Map<String, Object> fairValues = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000FairValuesDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000FairValuesData", queryParam);
         if(H10000FairValuesDataList == null) {
@@ -1173,9 +1173,9 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000FairValuesSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000FairValuesSumDataForReport", queryParam);
         if(H10000FairValuesSumData == null) {
-            H10000FairValuesSumData = new HashMap<>(); 
+            H10000FairValuesSumData = new HashMap<>();
         }
-        
+
         fairValues.put("list", H10000FairValuesDataList);
         fairValues.put("count", H10000FairValuesDataList.size());
         fairValues.put("sum", H10000FairValuesSumData);
@@ -1183,16 +1183,16 @@ public class ReportExportService implements ReportExportManager {
         fairValues.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         H10000.put("fairValues", fairValues);
         //--------------------↑H10000.fairValues↑--------------------
-        
-        
-        //--------------------↓H10000.three_level_change↓--------------------  
+
+
+        //--------------------↓H10000.three_level_change↓--------------------
         /*
             * 第三层次公允价值余额及变动情况
             * @author chenhy irenewu
             *20220623
-        */ 
+        */
 
-        //20220628 irenewu修改  
+        //20220628 irenewu修改
 
         Map<String, Object> threelevelchange = new HashMap<>();
         Map<String,Object> BOND = new HashMap<>();
@@ -1216,7 +1216,7 @@ public class ReportExportService implements ReportExportManager {
         List<Map<String,Object>> H10000ThreeLevelChangeDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeData", queryParam);
         if(H10000ThreeLevelChangeDataList == null) {
             H10000ThreeLevelChangeDataList = new ArrayList<>();
-        }     
+        }
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000ThreeLevelChangeDataTypeHasDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.checkIfH10000ThreeLevelChangeHasDataForWP", queryParam);
         if(H10000ThreeLevelChangeDataTypeHasDataList == null) {
@@ -1244,8 +1244,8 @@ public class ReportExportService implements ReportExportManager {
         WARRANT.put("sum", item4);
         FUND.put("sum", item5);
         TOTAL.put("sum", item6);
-        
-        //20220628 irenewu修改  
+
+        //20220628 irenewu修改
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -1260,7 +1260,7 @@ public class ReportExportService implements ReportExportManager {
         List<Map<String,Object>> H10000ThreeLevelChangeBondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeBondData", queryParam);
         if(H10000ThreeLevelChangeBondDataList == null) {
             H10000ThreeLevelChangeBondDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeBondDataList) {
             if("1".equals(map.get("SORT"))) {
                 item1 = map;
@@ -1294,7 +1294,7 @@ public class ReportExportService implements ReportExportManager {
         BOND.put("item8",item8);
         BOND.put("item9",item9);
         BOND.put("item10",item10);
-        
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -1309,7 +1309,7 @@ public class ReportExportService implements ReportExportManager {
         List<Map<String,Object>> H10000ThreeLevelChangeStockDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeStockData", queryParam);
         if(H10000ThreeLevelChangeStockDataList == null) {
             H10000ThreeLevelChangeStockDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeStockDataList) {
             if("1".equals(map.get("SORT"))) {
                 item1 = map;
@@ -1343,7 +1343,7 @@ public class ReportExportService implements ReportExportManager {
         STOCK.put("item8",item8);
         STOCK.put("item9",item9);
         STOCK.put("item10",item10);
-        
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -1358,7 +1358,7 @@ public class ReportExportService implements ReportExportManager {
         List<Map<String,Object>> H10000ThreeLevelChangeRepoDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeRepoData", queryParam);
         if(H10000ThreeLevelChangeRepoDataList == null) {
             H10000ThreeLevelChangeRepoDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeRepoDataList) {
             if("1".equals(map.get("SORT"))) {
                 item1 = map;
@@ -1407,7 +1407,7 @@ public class ReportExportService implements ReportExportManager {
         List<Map<String,Object>> H10000ThreeLevelChangeWarrantDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeWarrantData", queryParam);
         if(H10000ThreeLevelChangeWarrantDataList == null) {
             H10000ThreeLevelChangeWarrantDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeWarrantDataList) {
             if("1".equals(map.get("SORT"))) {
                 item1 = map;
@@ -1441,7 +1441,7 @@ public class ReportExportService implements ReportExportManager {
         WARRANT.put("item8",item8);
         WARRANT.put("item9",item9);
         WARRANT.put("item10",item10);
-        
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -1456,7 +1456,7 @@ public class ReportExportService implements ReportExportManager {
         List<Map<String,Object>> H10000ThreeLevelChangeFundDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeFundData", queryParam);
         if(H10000ThreeLevelChangeFundDataList == null) {
             H10000ThreeLevelChangeFundDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeFundDataList) {
             if("1".equals(map.get("SORT"))) {
                 item1 = map;
@@ -1505,7 +1505,7 @@ public class ReportExportService implements ReportExportManager {
         List<Map<String,Object>> H10000ThreeLevelChangeTotalDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeTotalData", queryParam);
         if(H10000ThreeLevelChangeTotalDataList == null) {
             H10000ThreeLevelChangeTotalDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeTotalDataList) {
             if("1".equals(map.get("SORT"))) {
                 item1 = map;
@@ -1543,9 +1543,9 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000ThreeLevelChangeSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000ThreeLevelChangeSumDataForReport", queryParam);
         if(H10000ThreeLevelChangeSumData == null) {
-            H10000ThreeLevelChangeSumData = new HashMap<>(); 
+            H10000ThreeLevelChangeSumData = new HashMap<>();
         }
-        
+
         threelevelchange.put("list", H10000ThreeLevelChangeDataList);
         threelevelchange.put("count", H10000ThreeLevelChangeDataList.size());
         threelevelchange.put("sum", H10000ThreeLevelChangeSumData);
@@ -1560,7 +1560,7 @@ public class ReportExportService implements ReportExportManager {
         H10000.put("threelevelchange", threelevelchange);
 
         //--------------------↑H10000.three_level_change↑--------------------
-        //--------------------↓H10000.three_level_measurement_of_unobservable_input_values↓-------------------- 
+        //--------------------↓H10000.three_level_measurement_of_unobservable_input_values↓--------------------
         Map<String, Object> threeLevelMeasure0fUnobservableInput = new HashMap<>();
 
         Object weightedAvg = this.dao.findForObject("HExportMapper.selecteylomdthreeLevelWeightValues", queryParam);
@@ -1571,8 +1571,8 @@ public class ReportExportService implements ReportExportManager {
 
         H10000.put("threeLevelMeasure0fUnobservableInput", threeLevelMeasure0fUnobservableInput);
 
-        //--------------------↑H10000.three_level_measurement_of_unobservable_input_values↑--------------------  
-        //--------------------↓H10000.fi_not_meaure_with_fv↓-------------------- 
+        //--------------------↑H10000.three_level_measurement_of_unobservable_input_values↑--------------------
+        //--------------------↓H10000.fi_not_meaure_with_fv↓--------------------
         Map<String, Object> fiNotMeasureWithFv = new HashMap<>();
 
         Object fiNotMeasureWithFvNoteLast = this.dao.findForObject("HExportMapper.selectfiNotMeasureWithFv", queryParamLast);
@@ -1581,9 +1581,9 @@ public class ReportExportService implements ReportExportManager {
 
         H10000.put("fiNotMeasureWithFv", fiNotMeasureWithFv);
 
-        //--------------------↑H10000.three_level_measurement_of_unobservable_input_values↑--------------------  
+        //--------------------↑H10000.three_level_measurement_of_unobservable_input_values↑--------------------
         //====================↑H10000↑====================
-        
+
         //====================↓H800↓====================
         Map<String,Object> H800 = new HashMap<>();
         //--------------------↓H800.intestDetail↓--------------------
@@ -1596,7 +1596,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> H800intestDetailCurrentSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH800InterestDetailSumDataForReport", queryParam);
         if(H800intestDetailCurrentSumData == null) {
-            H800intestDetailCurrentSumData = new HashMap<>(); 
+            H800intestDetailCurrentSumData = new HashMap<>();
         }
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H800intestDetailLastDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH800InterestDetailDataForReport", queryParamLast);
@@ -1606,9 +1606,9 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> H800intestDetailLastSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH800InterestDetailSumDataForReport", queryParamLast);
         if(H800intestDetailLastSumData == null) {
-            H800intestDetailLastSumData = new HashMap<>(); 
+            H800intestDetailLastSumData = new HashMap<>();
         }
-        
+
         intestDetail.put("listCurrent", H800intestDetailCurrentDataList);
         intestDetail.put("sumCurrent", H800intestDetailCurrentSumData);
         intestDetail.put("countCurrent", H800intestDetailCurrentDataList.size());
@@ -1639,7 +1639,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> H800MainSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH800MainSumData", queryParam);
         if(H800MainSumData == null) {
-            H800MainSumData = new HashMap<>(); 
+            H800MainSumData = new HashMap<>();
         }
 
         Map<String,Object> exchange = new HashMap<>();
@@ -1651,7 +1651,7 @@ public class ReportExportService implements ReportExportManager {
         H800.put("Main", Main);
         //--------------------↑H800.Main↑--------------------
         //====================↑H800↑====================
-        
+
         //====================↓E300↓====================
         Map<String, Object> E300 = new HashMap<>();
         //--------------------↓E300.disc↓--------------------
@@ -1659,12 +1659,12 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> E300DiscDataList = (List<Map<String,Object>>)this.dao.findForList("EExportMapper.selectE300DiscData", queryParam);
         if(E300DiscDataList == null) {
-            E300DiscDataList = new ArrayList<Map<String,Object>>(); 
+            E300DiscDataList = new ArrayList<Map<String,Object>>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> E300DiscSumData = (Map<String,Object>)this.dao.findForObject("EExportMapper.selectE300DiscSumDataForReport", queryParam);
         if(E300DiscSumData == null) {
-            E300DiscSumData = new HashMap<>(); 
+            E300DiscSumData = new HashMap<>();
         }
         disc.put("list", E300DiscDataList);
         disc.put("count", E300DiscDataList.size());
@@ -1674,7 +1674,7 @@ public class ReportExportService implements ReportExportManager {
         //--------------------↑E300.disc↑--------------------
         E300.put("disc", disc);
         //====================↑E300↑====================
-        
+
         //====================↓G10000↓====================
         Map<String, Object> G10000 = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -1685,16 +1685,16 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> G10000SumData = (Map<String,Object>)this.dao.findForObject("GExportMapper.selectG10000SUmDataForReport", queryParam);
         if(G10000SumData == null) {
-            G10000SumData = new HashMap<>(); 
+            G10000SumData = new HashMap<>();
         }
-        
+
         G10000.put("list", G10000DataList);
         G10000.put("count", G10000DataList.size());
         G10000.put("sum", G10000SumData);
         dataSumCheck = this.dao.findForObject("GExportMapper.checkIfG10000HasDataForReport", queryParam);
         G10000.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //====================↑G10000↑====================
-        
+
         //====================↓N10000↓====================
         Map<String, Object> N10000 = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -1705,16 +1705,16 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> N10000SumData = (Map<String,Object>)this.dao.findForObject("NExportMapper.selectN10000SumDataForReport", queryParam);
         if(N10000SumData == null) {
-            N10000SumData = new HashMap<>(); 
+            N10000SumData = new HashMap<>();
         }
-        
+
         N10000.put("list", N10000DataList);
         N10000.put("count", N10000DataList.size());
         N10000.put("sum", N10000SumData);
         dataSumCheck = this.dao.findForObject("NExportMapper.checkIfN10000HasDataForReport", queryParam);
         N10000.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //====================↑N10000↑====================
-        
+
         //====================↓P10000↓====================
         Map<String, Object> P10000 = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -1725,19 +1725,19 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> P10000SumData = (Map<String,Object>)this.dao.findForObject("PExportMapper.selectP10000SumDataForReport", queryParam);
         if(P10000SumData == null) {
-            P10000SumData = new HashMap<>(); 
+            P10000SumData = new HashMap<>();
         }
-        
+
         P10000.put("list", P10000DataList);
         P10000.put("count", P10000DataList.size());
         P10000.put("sum", P10000SumData);
         dataSumCheck = this.dao.findForObject("PExportMapper.checkIfP10000HasDataForReport", queryParam);
         P10000.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //====================↑G10000↑====================
-        
+
         //====================↓T10000↓====================
         Map<String, Object> T10000 = new HashMap<>();
-        
+
         List<Map<String, Object>> levels1 = new ArrayList<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> T10000DataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT10000DataForReport", queryParam);
@@ -1784,7 +1784,7 @@ public class ReportExportService implements ReportExportManager {
         T10000.put("levels", levels1);
         T10000.put("levelCount", levels1.size());
         //====================↑T10000↑====================
-        
+
         //====================20221220irene新增====================
         //====================↓T10000forP↓====================
         Map<String, Object> T10000forP = new HashMap<>();
@@ -1794,7 +1794,7 @@ public class ReportExportService implements ReportExportManager {
         item2 = new HashMap<String,Object>();
         item3 = new HashMap<String,Object>();
         item4 = new HashMap<String,Object>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> T10000forPCurrentDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT10000DataForReport", queryParam);
         if(T10000DataList == null) {
@@ -1901,7 +1901,7 @@ public class ReportExportService implements ReportExportManager {
             }
             levels.add(level);
         }
-        
+
         P4104.put("levels", levels);
         P4104.put("levelCount", levels.size());
         //--------------------↑T11000.P4104↑--------------------
@@ -1912,7 +1912,7 @@ public class ReportExportService implements ReportExportManager {
         Map<String, Object> T11000forP = new HashMap<>();
         Current = new HashMap<>();
         Last = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> T11000forPCurrentDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT11000P4104Data", queryParam);
         if(T11000forPCurrentDataList == null) {
@@ -1938,7 +1938,7 @@ public class ReportExportService implements ReportExportManager {
         T11000forP.put("Current", Current);
         T11000forP.put("Last", Last);
         //====================↑T10000↑====================
-        
+
         //====================↓U10000↓====================
         Map<String, Object> U10000 = new HashMap<>();
         //--------------------↓U10000.interest↓--------------------
@@ -1951,16 +1951,16 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> U10000IntSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000InterestSumDataForReport", queryParam);
         if(U10000IntSumData == null) {
-            U10000IntSumData = new HashMap<>(); 
+            U10000IntSumData = new HashMap<>();
         }
-        
+
         interest.put("list", U10000IntDataList);
         interest.put("count", U10000IntDataList.size());
         interest.put("sum", U10000IntSumData);
         //--------------------↑U10000.interest↑--------------------
         //--------------------↓U10000.import↓--------------------
         Map<String, Object> importData = new HashMap<>();
-        
+
 		Map<String, Object> STOCKS_ALL = new HashMap<>();
         Map<String, Object> STOCKS = new HashMap<>();
         Map<String, Object> STOCKS_BS = new HashMap<>();
@@ -1985,21 +1985,21 @@ public class ReportExportService implements ReportExportManager {
         Map<String, Object> GOLD_P = new HashMap<>();
         Map<String, Object> DI_WARRANT = new HashMap<>();
         Map<String, Object> DI_OTHER = new HashMap<>();
-        
+
         queryParam.put("reportFlag", "Y");
-		
+
 		queryParam.put("type", "STOCKS_ALL");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000SumImportData", queryParam);
         if(U10000StocksDataList == null) {
-            U10000StocksDataList = new ArrayList<>(); 
+            U10000StocksDataList = new ArrayList<>();
         }
-		
+
         queryParam.put("type", "STOCKS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksSummaryDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryParam);
         if(U10000StocksSummaryDataList == null) {
-            U10000StocksSummaryDataList = new ArrayList<>(); 
+            U10000StocksSummaryDataList = new ArrayList<>();
         }
         String[] pair;
         for(Map<String,Object> map : U10000StocksSummaryDataList) {
@@ -2016,27 +2016,27 @@ public class ReportExportService implements ReportExportManager {
             U10000StocksSummarySumData.put("item_a", U10000StocksSummarySumData.get("item"));
             U10000StocksSummaryDataList.add(U10000StocksSummarySumData);
         }
-		
+
         queryParam.put("type", "STOCKS_BS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksBsDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000StocksBsDataList == null) {
-            U10000StocksBsDataList = new ArrayList<>(); 
+            U10000StocksBsDataList = new ArrayList<>();
         }
-		
+
         queryParam.put("type", "STOCKS_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000StocksRDataList == null) {
-            U10000StocksRDataList = new ArrayList<>(); 
+            U10000StocksRDataList = new ArrayList<>();
         }
         queryParam.put("type", "STOCKS_P");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksPDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000StocksPDataList == null) {
-            U10000StocksPDataList = new ArrayList<>(); 
+            U10000StocksPDataList = new ArrayList<>();
         }
-		
+
         queryParam.put("type", "STOCKS_L");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksLDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
@@ -2048,20 +2048,20 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000FUNDDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000FUNDDataList == null) {
-            U10000FUNDDataList = new ArrayList<>(); 
+            U10000FUNDDataList = new ArrayList<>();
         }
 
 		queryParam.put("type", "BOND_ALL");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000SumImportData", queryParam);
         if(U10000BondDataList == null) {
-            U10000BondDataList = new ArrayList<>(); 
-        }		
+            U10000BondDataList = new ArrayList<>();
+        }
         queryParam.put("type", "BOND");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondSummaryDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryParam);
         if(U10000BondSummaryDataList == null) {
-            U10000BondSummaryDataList = new ArrayList<>(); 
+            U10000BondSummaryDataList = new ArrayList<>();
         }
         if(U10000BondSummaryDataList.size() != 0) {
             @SuppressWarnings("unchecked")
@@ -2071,25 +2071,25 @@ public class ReportExportService implements ReportExportManager {
             }
             U10000BondSummaryDataList.add(U10000BondSummarySumData);
         }
-		
+
         queryParam.put("type", "BOND_BS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondBsDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000BondBsDataList == null) {
-            U10000BondBsDataList = new ArrayList<>(); 
+            U10000BondBsDataList = new ArrayList<>();
         }
 
         queryParam.put("type", "BOND_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000BondRDataList == null) {
-            U10000BondRDataList = new ArrayList<>(); 
+            U10000BondRDataList = new ArrayList<>();
         }
         queryParam.put("type", "BOND_P");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondPDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000BondPDataList == null) {
-            U10000BondPDataList = new ArrayList<>(); 
+            U10000BondPDataList = new ArrayList<>();
         }
 
 
@@ -2097,14 +2097,14 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000AbsDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000SumImportData", queryParam);
         if(U10000AbsDataList == null) {
-            U10000AbsDataList = new ArrayList<>(); 
+            U10000AbsDataList = new ArrayList<>();
         }
 
         queryParam.put("type", "ABS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000ABSSummaryDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryParam);
         if(U10000ABSSummaryDataList == null) {
-            U10000ABSSummaryDataList = new ArrayList<>(); 
+            U10000ABSSummaryDataList = new ArrayList<>();
         }
 		if(U10000ABSSummaryDataList.size() != 0) {
             @SuppressWarnings("unchecked")
@@ -2119,35 +2119,35 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000ABSBSDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000ABSBSDataList == null) {
-            U10000ABSBSDataList = new ArrayList<>(); 
+            U10000ABSBSDataList = new ArrayList<>();
         }
 
 		queryParam.put("type", "ABS_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000ABSRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000ABSRDataList == null) {
-            U10000ABSRDataList = new ArrayList<>(); 
+            U10000ABSRDataList = new ArrayList<>();
         }
 
 		queryParam.put("type", "ABS_P");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000ABSPDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000ABSPDataList == null) {
-            U10000ABSPDataList = new ArrayList<>(); 
+            U10000ABSPDataList = new ArrayList<>();
         }
 
 		queryParam.put("type", "GOLD_ALL");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000SumImportData", queryParam);
         if(U10000GoldDataList == null) {
-            U10000GoldDataList = new ArrayList<>(); 
+            U10000GoldDataList = new ArrayList<>();
         }
 
         queryParam.put("type", "GOLD");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldSummaryDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryParam);
         if(U10000GoldSummaryDataList == null) {
-            U10000GoldSummaryDataList = new ArrayList<>(); 
+            U10000GoldSummaryDataList = new ArrayList<>();
         }
         if(U10000GoldSummaryDataList.size() != 0) {
             @SuppressWarnings("unchecked")
@@ -2157,56 +2157,56 @@ public class ReportExportService implements ReportExportManager {
             }
             U10000GoldSummaryDataList.add(U10000GoldSummarySumData);
         }
-		
+
         queryParam.put("type", "GOLD_BS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldBsDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000GoldBsDataList == null) {
-            U10000GoldBsDataList = new ArrayList<>(); 
+            U10000GoldBsDataList = new ArrayList<>();
         }
 
         queryParam.put("type", "GOLD_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000GoldRDataList == null) {
-            U10000GoldRDataList = new ArrayList<>(); 
+            U10000GoldRDataList = new ArrayList<>();
         }
-		
+
         queryParam.put("type", "GOLD_P");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldPDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000GoldPDataList == null) {
-            U10000GoldPDataList = new ArrayList<>(); 
+            U10000GoldPDataList = new ArrayList<>();
         }
-		
+
         queryParam.put("type", "DI_WARRANT");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000diWarrantDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000diWarrantDataList == null) {
-            U10000diWarrantDataList = new ArrayList<>(); 
+            U10000diWarrantDataList = new ArrayList<>();
         }
         queryParam.put("type", "DI_OTHER");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000diOtherDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryParam);
         if(U10000diOtherDataList == null) {
-            U10000diOtherDataList = new ArrayList<>(); 
+            U10000diOtherDataList = new ArrayList<>();
         }
         queryParam.remove("type");
         queryParam.remove("reportFlag");
 
-		
+
         STOCKS_ALL.put("list", U10000StocksDataList);
         STOCKS_ALL.put("count", U10000StocksDataList.size());
-		
+
         STOCKS.put("list", U10000StocksSummaryDataList);
         STOCKS.put("count", U10000StocksSummaryDataList.size());
-      
+
         STOCKS_BS.put("list", U10000StocksBsDataList);
         STOCKS_BS.put("count", U10000StocksBsDataList.size());
-        
+
         STOCKS_R.put("list", U10000StocksRDataList);
         STOCKS_R.put("count", U10000StocksRDataList.size());
-        
+
         STOCKS_P.put("list", U10000StocksPDataList);
         STOCKS_P.put("count", U10000StocksPDataList.size());
 
@@ -2215,77 +2215,77 @@ public class ReportExportService implements ReportExportManager {
 
         FUND.put("list", U10000FUNDDataList);
         FUND.put("count", U10000FUNDDataList.size());
-		
+
         BOND_ALL.put("list", U10000BondDataList);
         BOND_ALL.put("count", U10000BondDataList.size());
-		
+
         BOND.put("list", U10000BondSummaryDataList);
         BOND.put("count", U10000BondSummaryDataList.size());
 
         BOND_BS.put("list", U10000BondBsDataList);
         BOND_BS.put("count", U10000BondBsDataList.size());
-        
+
         BOND_R.put("list", U10000BondRDataList);
         BOND_R.put("count", U10000BondRDataList.size());
-        
+
         BOND_P.put("list", U10000BondPDataList);
         BOND_P.put("count", U10000BondPDataList.size());
-		
+
         ABS_ALL.put("list", U10000AbsDataList);
         ABS_ALL.put("count", U10000AbsDataList.size());
-        
+
         ABS.put("list", U10000ABSSummaryDataList);
         ABS.put("count", U10000ABSSummaryDataList.size());
-		
+
 		ABS_BS.put("list", U10000ABSBSDataList);
         ABS_BS.put("count", U10000ABSBSDataList.size());
-		
+
 		ABS_R.put("list", U10000ABSRDataList);
         ABS_R.put("count", U10000ABSRDataList.size());
-		
+
 		ABS_P.put("list", U10000ABSPDataList);
         ABS_P.put("count", U10000ABSPDataList.size());
-		
+
         GOLD_ALL.put("list", U10000GoldDataList);
         GOLD_ALL.put("count", U10000GoldDataList.size());
-		
+
         GOLD.put("list", U10000GoldSummaryDataList);
         GOLD.put("count", U10000GoldSummaryDataList.size());
-		
+
         GOLD_BS.put("list", U10000GoldBsDataList);
         GOLD_BS.put("count", U10000GoldBsDataList.size());
-        
+
         GOLD_R.put("list", U10000GoldRDataList);
         GOLD_R.put("count", U10000GoldRDataList.size());
-        
+
         GOLD_P.put("list", U10000GoldPDataList);
         GOLD_P.put("count", U10000GoldPDataList.size());
-        
+
         DI_WARRANT.put("list", U10000diWarrantDataList);
         DI_WARRANT.put("count", U10000diWarrantDataList.size());
-        
+
         DI_OTHER.put("list", U10000diOtherDataList);
         DI_OTHER.put("count", U10000diOtherDataList.size());
 
-        importData.put("STOCKS_ALL", STOCKS_ALL); 
-		importData.put("STOCKS", STOCKS);         
+        importData.put("STOCKS_ALL", STOCKS_ALL);
+		importData.put("STOCKS", STOCKS);
         importData.put("STOCKS_BS", STOCKS_BS);
         importData.put("STOCKS_R", STOCKS_R);
         importData.put("STOCKS_P", STOCKS_P);
         importData.put("STOCKS_L", STOCKS_L);
         importData.put("FUND", FUND);
-        importData.put("BOND_ALL", BOND_ALL);		
-		importData.put("BOND", BOND);  
+        importData.put("BOND_ALL", BOND_ALL);
+		importData.put("BOND", BOND);
         importData.put("BOND_BS", BOND_BS);
         importData.put("BOND_R", BOND_R);
         importData.put("BOND_P", BOND_P);
         importData.put("ABS_ALL", ABS_ALL);
-		importData.put("ABS", ABS);  
+		importData.put("ABS", ABS);
 		importData.put("ABS_BS", ABS_BS);
 		importData.put("ABS_R", ABS_R);
 		importData.put("ABS_P", ABS_P);
         importData.put("GOLD_ALL", GOLD_ALL);
-		importData.put("GOLD", GOLD);  
+		importData.put("GOLD", GOLD);
         importData.put("GOLD_BS", GOLD_BS);
         importData.put("GOLD_R", GOLD_R);
         importData.put("GOLD_P", GOLD_P);
@@ -2294,11 +2294,11 @@ public class ReportExportService implements ReportExportManager {
         //--------------------↑U10000.import↑--------------------
         //--------------------↓U10000.dividend↓--------------------
         Map<String,Object> dividend = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000DividendDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000DividendData", queryParam);
         if(U10000DividendDataList == null) {
-            U10000DividendDataList = new ArrayList<>(); 
+            U10000DividendDataList = new ArrayList<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> U10000DividendSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000DividendSumDataForReport", queryParam);
@@ -2313,11 +2313,11 @@ public class ReportExportService implements ReportExportManager {
         //--------------------↑U10000.dividend↑--------------------
         //--------------------↓U10000.other_r↓--------------------
         Map<String,Object> other_r = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000OtherRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherRData", queryParam);
         if(U10000OtherRDataList == null) {
-            U10000OtherRDataList = new ArrayList<>(); 
+            U10000OtherRDataList = new ArrayList<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> U10000OtherRSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000OtherRSumDataForReport", queryParam);
@@ -2332,13 +2332,13 @@ public class ReportExportService implements ReportExportManager {
         //--------------------↑U10000.other_r↑--------------------
         //--------------------↓U10000.trxFee↓--------------------
         Map<String,Object> trxFee = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000TrxFeeData", queryParam);
         if(U10000TrxFeeMetaDataList == null) {
-        	U10000TrxFeeMetaDataList = new ArrayList<>(); 
+        	U10000TrxFeeMetaDataList = new ArrayList<>();
         }
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> U10000TrxFeeSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000TrxFeeSumDataForReport", queryParam);
         if(U10000TrxFeeSumData == null) {
@@ -2352,11 +2352,11 @@ public class ReportExportService implements ReportExportManager {
         //--------------------↑U10000.trxFee↑--------------------
         //--------------------↓U10000.other_c↓--------------------
         Map<String,Object> other_c = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000OtherCDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherCData", queryParam);
         if(U10000OtherCDataList == null) {
-            U10000OtherCDataList = new ArrayList<>(); 
+            U10000OtherCDataList = new ArrayList<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> U10000OtherCSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000OtherCSumData", queryParam);
@@ -2364,7 +2364,7 @@ public class ReportExportService implements ReportExportManager {
             U10000OtherCSumData = new HashMap<>();
         }
         U10000OtherCDataList.add(U10000OtherCSumData);
-        other_c.put("list", U10000OtherCDataList); 
+        other_c.put("list", U10000OtherCDataList);
         other_c.put("count", U10000OtherCDataList.size());
         dataSumCheck = this.dao.findForObject("UExportMapper.checkIfU10000OtherCHasDataForReport", queryParam);
         other_c.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
@@ -2376,11 +2376,11 @@ public class ReportExportService implements ReportExportManager {
         credit.put("S3", new HashMap<>());
 		credit.put("S4", new HashMap<>());
 		credit.put("S5", new HashMap<>());
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000CreditDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000CreditData", queryParam);
         if(U10000CreditDataList == null) {
-            U10000CreditDataList = new ArrayList<>(); 
+            U10000CreditDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000CreditDataList) {
@@ -2397,18 +2397,18 @@ public class ReportExportService implements ReportExportManager {
 			}
 		}
 
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> U10000CreditSumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000CreditSumData", queryParam);
         if(U10000CreditSumData == null) {
             U10000CreditSumData = new HashMap<>();
         }
         U10000CreditDataList.add(U10000CreditSumData);
-        credit.put("list", U10000CreditDataList); 
+        credit.put("list", U10000CreditDataList);
         credit.put("count", U10000CreditDataList.size());
         dataSumCheck = this.dao.findForObject("UExportMapper.checkIfU10000CreditHasDataForReport", queryParam);
         credit.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
-        //--------------------↑U10000.credit↑-------------------- 
+        //--------------------↑U10000.credit↑--------------------
         //--------------------↓U10000.credit_note↓--------------------
         Map<String,Object> credit_note = new HashMap<>();
 
@@ -2416,14 +2416,14 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> U10000CreditNoteData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000CreditNoteData", queryParamLast);
         if(U10000CreditNoteData == null) {
-            U10000CreditNoteData = new HashMap<>(); 
+            U10000CreditNoteData = new HashMap<>();
         }
 
         credit_note.put("credit_note", U10000CreditNoteData);
         dataSumCheck = this.dao.findForObject("UExportMapper.checkIfU10000CreditNoteDataForReport", queryParamLast);
         credit_note.put("dataSumCheck",dataSumCheck);
 
-        //--------------------↑U10000.credit_note↑--------------------       
+        //--------------------↑U10000.credit_note↑--------------------
         U10000.put("interest", interest);
         U10000.put("importData", importData);
         U10000.put("dividend", dividend);
@@ -2433,7 +2433,7 @@ public class ReportExportService implements ReportExportManager {
 		U10000.put("credit", credit);
         U10000.put("credit_note", credit_note);
         //====================↑U10000↑====================
-        
+
         result.put("C10000", C10000);
         result.put("H10000", H10000);
         result.put("H800", H800);
@@ -2448,37 +2448,37 @@ public class ReportExportService implements ReportExportManager {
         result.put("U10000", U10000);
         return result;
     }
-    
+
     /**
      * 处理Part3 第二部分
      * @author Dai Zong 2017年12月25日
-     * 
+     *
      * @param queryParam
      * @return
      * @throws Exception
      */
     private Map<String,Object> processP3Sec2(Map<String,Object> queryParam) throws Exception{
         Map<String,Object> result = new HashMap<>();
-        
+
         //====================↓T11000↓====================
         Map<String,Object> T11000 = new HashMap<>();
         //--------------------↓T11000.main↓--------------------
-        Map<String,Object> main = new HashMap<>(); 
+        Map<String,Object> main = new HashMap<>();
         List<Map<String,Object>> levels = new ArrayList<>();
         final BigDecimal zero = new BigDecimal(0);
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> T11000DataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT11000MainData", queryParam);
         if(T11000DataList == null) {
-            T11000DataList = new ArrayList<>(); 
+            T11000DataList = new ArrayList<>();
         }
         List<String> levelNames = T11000DataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
         }).distinct().sorted(LEVEL_COMPARATOR).collect(Collectors.toList());
-        
+
         Map<String, List<Map<String, Object>>> groupsT11000 = T11000DataList.stream().collect(Collectors.groupingBy(item -> {
             return String.valueOf(item.get("level"));
         }));
-        
+
         for(String levelName : levelNames) {
             Map<String,Object> level = new HashMap<>();
             List<Map<String, Object>> list_t = groupsT11000.get(levelName);
@@ -2492,7 +2492,7 @@ public class ReportExportService implements ReportExportManager {
             level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
             level.put("list_t", list_t);
             level.put("count_t", list_t.size());
-            
+
             Map<String, Object> sumData = list_t.stream().reduce(new HashMap<>(), (sum, item) -> {
                 BigDecimal bonusUnit = (sum.get("bonusUnit") == null ? zero : new BigDecimal(String.valueOf(sum.get("bonusUnit")))).add(
                         (item.get("bonusUnit") == null ? zero : new BigDecimal(String.valueOf(item.get("bonusUnit")))));
@@ -2506,10 +2506,10 @@ public class ReportExportService implements ReportExportManager {
                 sum.put("cashAmount", (cashAmount.doubleValue() == 0d? null : cashAmount));
                 sum.put("reinvestAmount", (reinvestAmount.doubleValue() == 0d? null : reinvestAmount));
                 sum.put("totalAmount", (totalAmount.doubleValue() == 0d? null : totalAmount));
-                return sum;  
+                return sum;
             });
             level.put("sum", sumData);
-            
+
             levels.add(level);
         }
         main.put("levels", levels);
@@ -2533,15 +2533,15 @@ public class ReportExportService implements ReportExportManager {
         //--------------------↑T11000Words↑--------------------
 
         //====================↑T11000↑====================
-        
+
         result.put("T11000", T11000);
         return result;
     }
-    
+
     /**
      * 处理Part3 第三部分
      * @author Dai Zong 2017年12月25日
-     * 
+     *
      * @param queryParam
      * @return
      * @throws Exception
@@ -2553,18 +2553,18 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> relatedPartyDataList = (List<Map<String,Object>>)this.dao.findForList("FundRelatedPartyMapper.selectRelatedPartyDataForReport", queryParam);
         if(relatedPartyDataList == null) {
-            relatedPartyDataList = new ArrayList<>(); 
+            relatedPartyDataList = new ArrayList<>();
         }
         relatedParty.put("list", relatedPartyDataList);
         relatedParty.put("count", relatedPartyDataList.size());
         //====================↑relatedParty↑====================
-        
+
         //====================↓IRP↓====================
         Map<String,Object> IRP = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> IRPDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIRpData", queryParam);
         if(IRPDataList == null) {
-            IRPDataList = new ArrayList<>(); 
+            IRPDataList = new ArrayList<>();
         }
         IRP.put("list", IRPDataList);
         IRP.put("count", IRPDataList.size());
@@ -2573,24 +2573,24 @@ public class ReportExportService implements ReportExportManager {
         result.put("IRP", IRP);
         return result;
     }
-    
+
     /**
      * 处理Part3 第四部分
      * @author Dai Zong 2017年12月26日
-     * 
+     *
      * @param queryParam
      * @return
      * @throws Exception
      */
     private Map<String,Object> processP3Sec4(Map<String,Object> queryParam) throws Exception{
         Map<String,Object> result = new HashMap<>();
-        
+
         Map<String,Object> queryParamLast= new HashMap<>();
         queryParam.forEach((k,v) -> {
             queryParamLast.put(k, v);
         });
         queryParamLast.put("period", (Integer.parseInt(String.valueOf(queryParamLast.get("period")).substring(0, 4)) - 1) + "1231");
-        
+
         //====================↓I↓====================
         Map<String,Object> I = new HashMap<>();
         //--------------------↓I.transaction↓--------------------
@@ -2600,7 +2600,7 @@ public class ReportExportService implements ReportExportManager {
         Map<String, Object> warrant = new HashMap<>();
         Map<String, Object> repo = new HashMap<>();
         Map<String, Object> fund = new HashMap<>();
-        
+
         List<Map<String, Object>> tempList = null;
         tempList = this.selectITransactionDataList(queryParam, "STOCK");
         stock.put("list", tempList);
@@ -2617,7 +2617,7 @@ public class ReportExportService implements ReportExportManager {
         tempList = this.selectITransactionDataList(queryParam, "FUND");
         fund.put("list", tempList);
         fund.put("count", tempList.size());
-        
+
         transaction.put("stock", stock);
         transaction.put("bond", bond);
         transaction.put("warrant", warrant);
@@ -2625,7 +2625,7 @@ public class ReportExportService implements ReportExportManager {
         transaction.put("fund", fund);
         transaction.put("count", transaction.size());  // 20230815,chenhy,北京-若所有明细节点均无数，则删除所有明细节点
         transaction.put("fundCount", this.dao.findForObject("IExportMapper.selectITransactionFundCountData", queryParam)); //chenhy,20240621,新增小FOF的判断
-        
+
         Map<String, Object> related = new HashMap<>();
         Map<String, Object> current = new HashMap<>();
         Map<String, Object> last = new HashMap<>();
@@ -2636,7 +2636,7 @@ public class ReportExportService implements ReportExportManager {
         }
         current.put("list", n500RelatedCurrentMetaDataList);
         current.put("count", n500RelatedCurrentMetaDataList.size());
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> n500RelatedLastMetaDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectN500RelatedData", queryParamLast);
         if(n500RelatedLastMetaDataList == null) {
@@ -2650,12 +2650,12 @@ public class ReportExportService implements ReportExportManager {
         Double dataSumCheckLast = (Double)this.dao.findForObject("IExportMapper.checkIfN500RelatedHasDataForReport", queryParamLast);
         Double dataSumCheck = (dataSumCheckCurrent == null ? 0 : dataSumCheckCurrent) + (dataSumCheckLast == null ? 0 : dataSumCheckLast);
         related.put("dataSumCheck", dataSumCheck);
-        
+
         transaction.put("related", related);
         //--------------------↑I.transaction↑--------------------
         //--------------------↓I.manageFee↓--------------------
         Map<String, Object> manageFee = new HashMap<>();
-        
+
         List<Map<String, Object>> manage = new ArrayList<>();
         List<Map<String, Object>> trustee = new ArrayList<>();
         @SuppressWarnings("unchecked")
@@ -2670,7 +2670,7 @@ public class ReportExportService implements ReportExportManager {
                 trustee.add(map);
             }
         }
-        
+
         manageFee.put("manageList", manage);
         manageFee.put("manageCount", manage.size());
         manageFee.put("trusteeList", trustee);
@@ -2715,7 +2715,7 @@ public class ReportExportService implements ReportExportManager {
 
             String partyShortName = entry.getKey();
             Map<String, List<Map<String, Object>>> levelMap = entry.getValue();
-            
+
             Double salesCommisionAmtSum = Double.valueOf(0d);
             Double salesCommisionAmtLastSum = Double.valueOf(0d);
             for(String levelName : levelNames) {
@@ -2727,14 +2727,14 @@ public class ReportExportService implements ReportExportManager {
                     salesCommisionAmtLastSum += (temp.get("salesCommisionAmtLast")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmtLast"))));
                 }
             }
-            
+
             Map<String, Object> one = null;
             if(CollectionUtils.isNotEmpty(levelDataList)) {
                 one = levelDataList.get(0);
             }else {
                 one = new HashMap<>();
             }
-            
+
             middleMap.put("partyShortName", partyShortName);
             middleMap.put("leves", levelDataList);
             middleMap.put("count", levelDataList.size());
@@ -2756,7 +2756,7 @@ public class ReportExportService implements ReportExportManager {
             Map<String, List<Map<String, Object>>> levelMap = salesFeeSumDataList.stream().collect(Collectors.groupingBy(item -> {
                 return String.valueOf(item.get("level"));
             }));
-            
+
             Double salesCommisionAmtSum = Double.valueOf(0d);
             Double salesCommisionAmtLastSum = Double.valueOf(0d);
             for(String levelName : levelNames) {
@@ -2768,14 +2768,14 @@ public class ReportExportService implements ReportExportManager {
                     salesCommisionAmtLastSum += (temp.get("salesCommisionAmtLast")==null?0d:Double.parseDouble(String.valueOf(temp.get("salesCommisionAmtLast"))));
                 }
             }
-            
+
             Map<String, Object> one = null;
             if(CollectionUtils.isNotEmpty(levelDataSumList)) {
                 one = levelDataSumList.get(0);
             }else {
                 one = new HashMap<>();
             }
-            
+
             sumMap.put("partyShortName", "合计");
             sumMap.put("leves", levelDataSumList);
             sumMap.put("count", levelDataSumList.size());
@@ -2792,12 +2792,12 @@ public class ReportExportService implements ReportExportManager {
         salesFee.put("count", salesFeeResultList.size());
         salesFee.put("levelFullNames", levelFullNames);
         salesFee.put("levelFullNamesCount", levelFullNames.size());
-        
+
         //--------------------↑I.salesFee↑--------------------
 
         //--------------------↓I.consultFee↓(专户),20240221,chenhy--------------------
         Map<String, Object> consultFee = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> consultFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("ReportMapper.selectPlData", queryParam);
         if(consultFeeMetaDataList == null) {
@@ -2826,7 +2826,7 @@ public class ReportExportService implements ReportExportManager {
         //--------------------↑I.bankThx↑--------------------
         //--------------------↓I.mgerHoldFund↓--------------------
         Map<String, Object> mgerHoldFund = new HashMap<>();
-        List<Map<String,Object>> levels = new ArrayList<>(); 
+        List<Map<String,Object>> levels = new ArrayList<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> mgerHoldFundDataList = (List<Map<String,Object>>)this.dao.findForList("IExportMapper.selectIMgerHoldFundData", queryParam);
         if(mgerHoldFundDataList == null) {
@@ -2844,7 +2844,7 @@ public class ReportExportService implements ReportExportManager {
             if(levelList == null) {
                 levelList = new ArrayList<>();
             }
-            
+
             Map<String,Object> levelQueryMap = new HashMap<>();
             levelQueryMap.put("fundId", queryParam.get("fundId"));
             levelQueryMap.put("level", levelName);
@@ -2857,7 +2857,7 @@ public class ReportExportService implements ReportExportManager {
             levels.add(level);
 
         }
-        
+
         mgerHoldFund.put("levels", levels);
         mgerHoldFund.put("levelsCount", levels.size());
         Object dataSumCheck2 = this.dao.findForObject("IExportMapper.checkIfIMgerHoldFundHasDataForReport", queryParam);
@@ -2933,7 +2933,7 @@ public class ReportExportService implements ReportExportManager {
         Map<String, Object> othernote = new HashMap<>();
         List<Map<String, Object>> othernoteList = (List<Map<String, Object>>)this.dao.findForList("IExportMapper.selectIothernoteData", queryParam);
         if (othernoteList == null)
-        othernoteList = new ArrayList<>(); 
+        othernoteList = new ArrayList<>();
         int count = othernoteList.size();
         othernote.put("list", othernoteList);
         othernote.put("count", Integer.valueOf(othernoteList.size()));
@@ -2942,12 +2942,12 @@ public class ReportExportService implements ReportExportManager {
         Map<String, Object> last3 = new HashMap<>();
         List<Map<String, Object>> otherDataList = (List<Map<String, Object>>)this.dao.findForList("IExportMapper.selectIotherData", queryParam);
         if (otherDataList == null)
-        otherDataList = new ArrayList<>(); 
+        otherDataList = new ArrayList<>();
         current3.put("list", otherDataList);
         current3.put("count", Integer.valueOf(otherDataList.size()));
         List<Map<String, Object>> otherlastDataList = (List<Map<String, Object>>)this.dao.findForList("IExportMapper.selectIotherData", queryParamLast);
         if (otherlastDataList == null)
-        otherlastDataList = new ArrayList<>(); 
+        otherlastDataList = new ArrayList<>();
         last3.put("list", otherlastDataList);
         last3.put("count", Integer.valueOf(otherlastDataList.size()));
         other.put("current", current3);
@@ -2968,11 +2968,11 @@ public class ReportExportService implements ReportExportManager {
         result.put("I", I);
         return result;
     }
-    
+
     /**
      * 处理Part3 第五部分
      * @author Dai Zong 2017年12月27日
-     * 
+     *
      * @param queryParam
      * @return
      * @throws Exception
@@ -2983,11 +2983,11 @@ public class ReportExportService implements ReportExportManager {
         Map<String,Object> T310 = new HashMap<>();
         List<Map<String,Object>> levels = new ArrayList<>();
         final BigDecimal zero = new BigDecimal(0);
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> T310DataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT310DataForReport", queryParam);
         if(T310DataList == null) {
-            T310DataList = new ArrayList<>(); 
+            T310DataList = new ArrayList<>();
         }
         List<String> levelNames= T310DataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
@@ -2998,7 +2998,7 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> N800DisDataList = (List<Map<String,Object>>)this.dao.findForList("NExportMapper.selectN800DisDataForReport", queryParam);
         if(N800DisDataList == null) {
-            N800DisDataList = new ArrayList<>(); 
+            N800DisDataList = new ArrayList<>();
         }
         List<String> levelNamesN800Dis = N800DisDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
@@ -3031,7 +3031,7 @@ public class ReportExportService implements ReportExportManager {
             levelQueryMap.put("level", levelName);
             level.put("levelFullName", this.dao.findForObject("FundStructuredMapper.selectLevelNameData", levelQueryMap));
             level.put("T11000Count", this.dao.findForObject("TExportMapper.selectT11000MainCountDataForReport", levelQueryMap));
-            
+
             Map<String, Object> sumData = list_t.stream().reduce(new HashMap<>(), (sum, item) -> {
                 BigDecimal bonus = (sum.get("bonus") == null ? zero : new BigDecimal(String.valueOf(sum.get("bonus")))).add(
                         (item.get("bonus") == null ? zero : new BigDecimal(String.valueOf(item.get("bonus")))));
@@ -3045,10 +3045,10 @@ public class ReportExportService implements ReportExportManager {
                 sum.put("cash", (cash.doubleValue() == 0d? null : cash));
                 sum.put("reinvestAmount", (reinvestAmount.doubleValue() == 0d? null : reinvestAmount));
                 sum.put("profitEy", (profitEy.doubleValue() == 0d? null : profitEy));
-                return sum;  
+                return sum;
             });
             level.put("sum", sumData);
-            
+
             levels.add(level);
         }
         T310.put("levels", levels);
@@ -3056,15 +3056,15 @@ public class ReportExportService implements ReportExportManager {
         Object dataSumCheck = this.dao.findForObject("TExportMapper.checkIfT310DataHasDataForReport", queryParam);
         T310.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //====================↑T310↑====================
-        
+
         result.put("T310", T310);
         return result;
     }
-    
+
     /**
      * 处理Part3 第六部分
      * @author Dai Zong 2017年12月27日
-     * 
+     *
      * @param queryParam
      * @return
      * @throws Exception
@@ -3106,14 +3106,14 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> additianSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH11000AdditianSumDataForReport", queryParam);
         if(additianSumData == null) {
-            additianSumData = new HashMap<>(); 
+            additianSumData = new HashMap<>();
         }
         additian.put("sum", additianSumData);
 
         @SuppressWarnings("unchecked")
         Map<String,Object> additianSumLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH11000AdditianSumDataForReport", queryParamLast);
         if(additianSumLastData == null) {
-            additianSumLastData = new HashMap<>(); 
+            additianSumLastData = new HashMap<>();
         }
         additian.put("sumLast", additianSumLastData);
         //--------------------↑H11000.additian↑--------------------
@@ -3143,7 +3143,7 @@ public class ReportExportService implements ReportExportManager {
         }
         saleIn.put("sum", saleInSumData);
         saleIn.put("P600BankSum", this.dao.findForObject("PExportMapper.selectP600BankSumDataForReport", queryParam));
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> P600BankSumForP = (Map<String,Object>)this.dao.findForObject("PExportMapper.selectP600BankSumDataForP", queryParam);
         if(P600BankSumForP == null) {
@@ -3189,7 +3189,7 @@ public class ReportExportService implements ReportExportManager {
         noteData.put("noteDates", noteDates);
         noteData.put("noteDatesCount", distinctNoteDateList.size());
         //--------------------↑H11000.note↑--------------------
-        
+
         H11000.put("additian", additian);
         H11000.put("suspension", suspension);
         H11000.put("saleIn", saleIn);
@@ -3198,12 +3198,12 @@ public class ReportExportService implements ReportExportManager {
         result.put("H11000", H11000);
         return result;
     }
-    
+
 
     /**
      * 查询I表交易信息
      * @author Dai Zong 2017年12月16日
-     * 
+     *
      * @param queryMap 基本查询Map
      * @param type 交易类型
      * @return I表交易信息
@@ -3219,11 +3219,11 @@ public class ReportExportService implements ReportExportManager {
         queryMap.remove("type");
         return metaDataList;
     }
-    
+
     // /**
     //  * 处理Part4
     //  * @author Dai Zong 2017年12月22日
-    //  * 
+    //  *
     //  * @param exportParam
     //  * @param partName
     //  * @return
@@ -3236,16 +3236,16 @@ public class ReportExportService implements ReportExportManager {
     //     }
     //     return xml2003Content;
     // }
-    
+
     /**
      * 处理Part5
      * @author Dai Zong 2017年12月22日
-     * 
+     *
      * @param exportParam
      * @param partName
      * @param queryParam
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     private String processP5(Map<String,Object> exportParam, Map<String,Object> partName, Map<String,Object> queryParam) throws Exception{
         Map<String,Object> P5 = new HashMap<>();
@@ -3253,21 +3253,21 @@ public class ReportExportService implements ReportExportManager {
         String Period = String.valueOf(queryParam.get("period"));
         String PeriodLast = (Integer.parseInt(Period.substring(0, 4)) - 1) + "1231";
         Map<String, Object> queryParamLast = this.createBaseQueryMap(FundId, PeriodLast);
-        
+
         // yury,20201112,V200按自定义形式披露信用风险评级
         //====================↓V200↓====================
         Map<String,Object> V200 = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V200CreditRiskRating = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV200CreditRiskRating", queryParam);
         if(V200CreditRiskRating == null) {
-            V200CreditRiskRating = new ArrayList<>(); 
+            V200CreditRiskRating = new ArrayList<>();
         }
-        List<Map<String,Object>> ShortBondRatingList = new ArrayList<>(); 
-        List<Map<String,Object>> ShortABSRatingList = new ArrayList<>(); 
-        List<Map<String,Object>> ShortNCDRatingList = new ArrayList<>(); 
-        List<Map<String,Object>> LongBondRatingList = new ArrayList<>(); 
-        List<Map<String,Object>> LongABSRatingList = new ArrayList<>(); 
-        List<Map<String,Object>> LongNCDRatingList = new ArrayList<>(); 
+        List<Map<String,Object>> ShortBondRatingList = new ArrayList<>();
+        List<Map<String,Object>> ShortABSRatingList = new ArrayList<>();
+        List<Map<String,Object>> ShortNCDRatingList = new ArrayList<>();
+        List<Map<String,Object>> LongBondRatingList = new ArrayList<>();
+        List<Map<String,Object>> LongABSRatingList = new ArrayList<>();
+        List<Map<String,Object>> LongNCDRatingList = new ArrayList<>();
         Double ShortBondRatingSumCurrent = 0d;
         Double ShortABSRatingSumCurrent = 0d;
         Double ShortNCDRatingSumCurrent = 0d;
@@ -3339,11 +3339,11 @@ public class ReportExportService implements ReportExportManager {
         if(V200CreditRiskNote == null) {
             V200CreditRiskNote = new ArrayList<>();
         }
-        Map<String,Object> ShortBondNote = new HashMap<>(); 
-        Map<String,Object> ShortABSNote = new HashMap<>(); 
-        Map<String,Object> ShortNCDNote = new HashMap<>(); 
-        Map<String,Object> LongBondNote = new HashMap<>(); 
-        Map<String,Object> LongABSNote = new HashMap<>(); 
+        Map<String,Object> ShortBondNote = new HashMap<>();
+        Map<String,Object> ShortABSNote = new HashMap<>();
+        Map<String,Object> ShortNCDNote = new HashMap<>();
+        Map<String,Object> LongBondNote = new HashMap<>();
+        Map<String,Object> LongABSNote = new HashMap<>();
         Map<String,Object> LongNCDNote = new HashMap<>();
         ShortBondNote.put("note", "");
         ShortABSNote.put("note", "");
@@ -3380,9 +3380,9 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<String> V300IntRistPeriodsDataList = (List<String>)this.dao.findForList("VExportMapper.selectV300IntRiskPeriodData", queryParam);
         if(V300IntRistPeriodsDataList == null) {
-            V300IntRistPeriodsDataList = new ArrayList<>(); 
+            V300IntRistPeriodsDataList = new ArrayList<>();
         }
-        
+
         // -----------------irene20230904新增 应交税费/应付税费-----------------------
         @SuppressWarnings("unchecked")
         List<String> V300TaxPayableNameDataList = (List<String>) this.dao
@@ -3395,9 +3395,9 @@ public class ReportExportService implements ReportExportManager {
         for(int i=0 ; i<V300IntRistPeriodsDataList.size(); i++) {
             emptyList.add(0);
         }
-        
+
         Map<String, Object> detail = new HashMap<>();
-        
+
         Map<String, Object> attr1 = new HashMap<>();
         attr1.put("list", emptyList);
         attr1.put("count", 0);
@@ -3486,17 +3486,17 @@ public class ReportExportService implements ReportExportManager {
         sum2.put("list", emptyList);
         sum2.put("count", 0);
         Map<String, Object> sum = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V300MetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV300Data", queryParam);
         if(V300MetaDataList == null) {
-            V300MetaDataList = new ArrayList<>(); 
+            V300MetaDataList = new ArrayList<>();
         }
-        
+
         Map<String, List<Map<String, Object>>> groups = V300MetaDataList.parallelStream().collect(Collectors.groupingBy(item ->
             String.valueOf(item.get("type"))
         ));
-        
+
         final List<String> V300IntRistPeriodsDataListFinal = V300IntRistPeriodsDataList;
         List<Map<String,Double>> sum1List = new ArrayList<>();
         List<Map<String,Double>> sum2List = new ArrayList<>();
@@ -4016,7 +4016,7 @@ public class ReportExportService implements ReportExportManager {
                     break;
             }
         }
-        
+
         Double sum1LineAmountSum = Double.valueOf(0d);
         Double sum1LineAmountLastSum = Double.valueOf(0d);
         for(Map<String,Double> sum1Map : sum1List) {
@@ -4050,7 +4050,7 @@ public class ReportExportService implements ReportExportManager {
         sum.put("count", V300IntRistPeriodsDataList.size());
         sum.put("lineAmountSum", (sum1.get("lineAmountSum")==null ? 0 :Double.parseDouble(String.valueOf(sum1.get("lineAmountSum")))) - (sum2.get("lineAmountSum")==null ? 0 :Double.parseDouble(String.valueOf(sum2.get("lineAmountSum")))));
         sum.put("lineAmountLastSum", Double.parseDouble(String.valueOf(sum1.get("lineAmountLastSum"))) - Double.parseDouble(String.valueOf(sum2.get("lineAmountLastSum"))));
-        
+
         detail.put("attr1", attr1);
         detail.put("attr2", attr2);
         detail.put("attr3", attr3);
@@ -4081,21 +4081,21 @@ public class ReportExportService implements ReportExportManager {
         detail.put("sum1", sum1);
         detail.put("sum2", sum2);
         detail.put("sum", sum);
-        
+
         V300.put("intRistPeriods", V300IntRistPeriodsDataList);
         V300.put("intRistPeriodsCount", V300IntRistPeriodsDataList.size());
         V300.put("detail", detail);
         V300.put("TaxPayableName", V300TaxPayableNameDataList);
 
         //====================↑V300↑====================
-        
+
         //====================↓V400↓====================
         Map<String,Object> V400 = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V400HypothesisDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400HypothesisDataForReport", queryParam);
         if(V400HypothesisDataList == null) {
-            V400HypothesisDataList = new ArrayList<>(); 
+            V400HypothesisDataList = new ArrayList<>();
         }
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V400TestMetaData = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400TestData", queryParam);
@@ -4105,21 +4105,21 @@ public class ReportExportService implements ReportExportManager {
         }
         Map<String,Object> summaryCurrent = V400TestMetaData.get(0);
         Map<String,Object> summaryLast = V400TestMetaData.get(1);
-        
+
         V400.put("hypothesis", V400HypothesisDataList);
         V400.put("hypothesisCount", V400HypothesisDataList.size());
         V400.put("summaryCurrent", summaryCurrent);
         V400.put("summaryLast", summaryLast);
-        //====================↑V400↑====================        
+        //====================↑V400↑====================
         //====================↓V500↓====================
         Map<String, Object> V500 = new HashMap<>();
-        
+
         Map<String, Object> riskExposure = new HashMap<>();
         Double netValue = 0D;
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500riskExposureMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500riskExposureData", queryParam);
         if(CollectionUtils.isEmpty(V500riskExposureMetaDataList)) {
-            V500riskExposureMetaDataList = new ArrayList<>(); 
+            V500riskExposureMetaDataList = new ArrayList<>();
         }else {
             netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValueCurrent")));
         }
@@ -4132,13 +4132,13 @@ public class ReportExportService implements ReportExportManager {
             sum = V500riskExposureSumMetaDataList;
         }
         riskExposure.put("sum", sum);
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500HypothesisDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500HypothesisDataForReport", queryParam);
         if(V500HypothesisDataList == null) {
-            V500HypothesisDataList = new ArrayList<>(); 
+            V500HypothesisDataList = new ArrayList<>();
         }
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500TestMetaData = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500TestData", queryParam);
         V500TestMetaData = ListUtils.emptyIfNull(V500TestMetaData);
@@ -4147,13 +4147,13 @@ public class ReportExportService implements ReportExportManager {
         }
         Map<String,Object> summaryCurrent2 = V500TestMetaData.get(0);
         Map<String,Object> summaryLast2 = V500TestMetaData.get(1);
-        
+
         V500.put("riskExposure", riskExposure);
         V500.put("hypothesis", V500HypothesisDataList);
         V500.put("hypothesisCount", V500HypothesisDataList.size());
         V500.put("summaryCurrent", summaryCurrent2);
         V500.put("summaryLast", summaryLast2);
-        //====================↑V500↑====================        
+        //====================↑V500↑====================
 
         //====================↓V600↓====================
         // yury，20200909，新增外汇风险敞口及敏感性分析
@@ -4237,13 +4237,13 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         Map<String,Object> V600OtherPriceSumData = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV600OtherPriceSumData", queryParam);
         if(V600OtherPriceSumData == null) {
-            V600OtherPriceSumData = new HashMap<>(); 
+            V600OtherPriceSumData = new HashMap<>();
         }
 
         //@SuppressWarnings("unchecked")
         //Map<String,Object> V600OtherPriceLastSumData = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV600OtherPriceSumData", queryParamLast);
         //if(V600OtherPriceLastSumData == null) {
-        //    V600OtherPriceLastSumData = new HashMap<>(); 
+        //    V600OtherPriceLastSumData = new HashMap<>();
         //}
 
         V600.put("otherPriceSumData",V600OtherPriceSumData);
@@ -4256,29 +4256,29 @@ public class ReportExportService implements ReportExportManager {
         V600.put("foreignRiskAmount", foreignRiskAmount == null ? 0d : foreignRiskAmount);
         V600.put("foreignRiskAmountlast", foreignRiskAmountlast == null ? 0d : foreignRiskAmountlast);
 
-        
+
         //====================↑V600↑====================
 
         //====================↓H10000↓====================
         Map<String,Object> H10000 = new HashMap<>();
         Map<String,Object> threeLevel = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000ThreeLevelCurrentData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000ThreeLevelData", queryParam);
         if(H10000ThreeLevelCurrentData == null) {
-            H10000ThreeLevelCurrentData = new HashMap<>(); 
+            H10000ThreeLevelCurrentData = new HashMap<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000ThreeLevelLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000ThreeLevelData", queryParamLast);
         if(H10000ThreeLevelLastData == null) {
-            H10000ThreeLevelLastData = new HashMap<>(); 
+            H10000ThreeLevelLastData = new HashMap<>();
         }
         threeLevel.put("current", H10000ThreeLevelCurrentData);
         threeLevel.put("last", H10000ThreeLevelLastData);
-        
+
         H10000.put("threeLevel", threeLevel);
-        //====================↑H10000↑====================        
-        
+        //====================↑H10000↑====================
+
         P5.put("V200", V200); // yury,20201112,新增投资的长短期信用评级
         P5.put("V300", V300);
         P5.put("V400", V400);
@@ -4288,11 +4288,11 @@ public class ReportExportService implements ReportExportManager {
         exportParam.put("P5", P5);
         return FreeMarkerUtils.processTemplateToStrUseAbsPath(exportParam, String.valueOf(exportParam.get("reportTempRootPath")), String.valueOf(partName.get("P5")));
     }
-    
+
     /**
      * 构建基本查询Map
      * @author Dai Zong 2017年9月12日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -4303,11 +4303,11 @@ public class ReportExportService implements ReportExportManager {
         res.put("period", periodStr);
         return res;
     }
-    
+
     /**
      * 获取基金额外属性
      * @author Dai Zong 2017年12月2日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -4315,13 +4315,13 @@ public class ReportExportService implements ReportExportManager {
      */
     private Map<String,Object> getExtraFundInfo(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectExtraFundInfo", queryMap);
         if(fundInfo == null) {
             fundInfo = new HashMap<>();
         }
-        
+
         Integer startYear = 2000, startMonth = 01, startDay = 01;
         if(fundInfo.get("dateFrom") != null) {
             String[] splits = String.valueOf(fundInfo.get("dateFrom")).split("-");
@@ -4340,18 +4340,18 @@ public class ReportExportService implements ReportExportManager {
                 ex.printStackTrace();
             }
         }
-        
+
         fundInfo.put("startYear", startYear);
         fundInfo.put("startMonth", startMonth);
         fundInfo.put("startDay", startDay);
         return fundInfo;
     }
-    
+
     /**
      * 计算map中两个对象的和<br/>
      * 计算时null会记为0<br/>
      * 计算后0会记为null
-     * 
+     *
      * @param o1 对象1
      * @param o2 对象2
      * @return 结果
@@ -4375,7 +4375,7 @@ public class ReportExportService implements ReportExportManager {
     /**
      * 处理转融通业务
      * @author 吴老师 2021年08月04日
-     * 
+     *
      * @param queryParam
      * @return
      * @throws Exception
@@ -4387,16 +4387,16 @@ public class ReportExportService implements ReportExportManager {
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> IRefinancingDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectIRefinancingData", queryParam);
         if(IRefinancingDataList == null) {
-            IRefinancingDataList = new ArrayList<>(); 
+            IRefinancingDataList = new ArrayList<>();
         }
-        
+
         IRefinancingData.put("list", IRefinancingDataList);
         IRefinancingData.put("Count", IRefinancingDataList.size());
         //--------------------selectIRefinancingData↑--------------------
         result.put("IRefinancingData", IRefinancingData);
         return result;
     }
-    
-   
-    
+
+
+
 }

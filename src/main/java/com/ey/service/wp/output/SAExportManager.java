@@ -5,15 +5,15 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @name SAExportManager
- * @description 底稿SA导出服务类  
+ * @description 底稿SA导出服务类
  * @author Dai Zong	2018年11月11日
  */
 public interface SAExportManager extends BaseExportManager{
-    
+
     /**
      * 导出底稿到HttpServletResponse
      * @author Dai Zong 2018年11月11日
-     * 
+     *
      * @param firmCode 公司代码
      * @param periodStr 期间[例:"20172131"]
      * @param request HttpServletRequest对象
@@ -21,12 +21,12 @@ public interface SAExportManager extends BaseExportManager{
      * @return
      * @throws Exception
      */
-    boolean doExport(String firmCode, String periodStr, HttpServletRequest request, HttpServletResponse response) throws Exception;
-    
+    boolean doExport(String firmCode, String periodStr, HttpServletRequest request, HttpServletResponse response, String templatePath) throws Exception;
+
     /**
      * 导出底稿到磁盘
      * @author Dai Zong 2018年11月11日
-     * 
+     *
      * @param folederName 文件夹名(有效路径)
      * @param fileName 文件名
      * @param firmCode 公司代码
@@ -34,6 +34,6 @@ public interface SAExportManager extends BaseExportManager{
      * @return
      * @throws Exception
      */
-    boolean doExport(String folederName, Object fileName, String firmCode, String periodStr) throws Exception;
-    
+    boolean doExport(String folederName, Object fileName, String firmCode, String periodStr, String templatePath) throws Exception;
+
 }

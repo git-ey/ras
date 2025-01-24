@@ -30,33 +30,33 @@ import com.ey.util.fileexport.FreeMarkerUtils;
  */
 @Service("tExportService")
 public class TExportService extends BaseExportService implements TExportManager{
-    
+
     @Resource(name = "reportService")
     private ReportManager reportService;
-    
+
     /**
      * 生成文件内容
      * @author Dai Zong 2017年10月17日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @param fundInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
+    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo, String templatePath) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
-        
+
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
-        
+
         dataMap.put("period", period);
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("fundInfo", fundInfo);
         dataMap.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
-        
+
         dataMap.put("T", this.getTData(fundId, periodStr));
         dataMap.put("T300", this.getT300Data(fundId, periodStr));
         dataMap.put("T310", this.getT310Data(fundId, periodStr));
@@ -64,31 +64,31 @@ public class TExportService extends BaseExportService implements TExportManager{
         dataMap.put("T500", this.getT500Data(fundId, periodStr));
         dataMap.put("T11000", this.getT11000Data(fundId, periodStr));
 
-        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_T);
+        return FreeMarkerUtils.processTemplateToString(dataMap, templatePath, Constants.EXPORT_TEMPLATE_FILE_NAME_T);
     }
 
     @Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr, String templatePath) throws Exception {
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_T, fundInfo), xmlStr);
         return true;
     }
 
     @Override
-    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr, String templatePath) throws Exception {
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), xmlStr);
         return true;
     }
-    
+
     /**
      * 获取基金额外属性
      * @author Dai Zong 2017年12月2日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -96,13 +96,13 @@ public class TExportService extends BaseExportService implements TExportManager{
      */
     private Map<String,Object> getExtraFundInfo(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectExtraFundInfo", queryMap);
         if(fundInfo == null) {
             fundInfo = new HashMap<>();
         }
-        
+
         Integer startYear = 2000, startMonth = 01, startDay = 01;
         if(fundInfo.get("dateFrom") != null) {
             String[] splits = String.valueOf(fundInfo.get("dateFrom")).split("-");
@@ -121,17 +121,17 @@ public class TExportService extends BaseExportService implements TExportManager{
                 ex.printStackTrace();
             }
         }
-        
+
         fundInfo.put("startYear", startYear);
         fundInfo.put("startMonth", startMonth);
         fundInfo.put("startDay", startDay);
         return fundInfo;
     }
-    
+
     /**
      * 处理sheet页T的数据
      * @author Dai Zong 2017年12月02日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -140,7 +140,7 @@ public class TExportService extends BaseExportService implements TExportManager{
     private Map<String,Object> getTData(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         Map<String, Object> KM4001 = new HashMap<>();
         Map<String, Object> KM4104 = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -160,7 +160,7 @@ public class TExportService extends BaseExportService implements TExportManager{
                 KM4104 = entry.getValue();
             }
         }
-        
+
         result.put("KM4001", KM4001);
         result.put("KM4104", KM4104);
         return result;
@@ -169,7 +169,7 @@ public class TExportService extends BaseExportService implements TExportManager{
     /**
      * 处理sheet页T的数据
      * @author Dai Zong 2017年12月02日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -178,7 +178,7 @@ public class TExportService extends BaseExportService implements TExportManager{
     private Map<String,Object> getT300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         //========process dataMap for main view begin========
         Map<String, Object> main = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -225,7 +225,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         dataFor10000.put("dr", dr);
         main.put("dataFor10000", dataFor10000);
         //========process dataMap for main view end========
-        
+
         //========process dataMap for note view begin========
         Map<String, Object> note = new HashMap<>();
         Map<String, Object> note1 = new HashMap<>();
@@ -233,7 +233,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         List<Map<String,Object>> note1ItemList = new ArrayList<>();
         List<Map<String,Object>> note2ItemList = new ArrayList<>();
         String note3Flag = "N";
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> fundDateInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectFundDateInfo", queryMap);
         // chenhy,20240223,新增基金和产品的区分
@@ -241,7 +241,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         if("合同生效日".equals(dateInfo.get("CURRENT_INIT_SOURCE"))) {
             note3Flag = "Y";
         }
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> noteMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT300NoteData", queryMap);
         if(noteMetaDataList == null) {
@@ -266,7 +266,7 @@ public class TExportService extends BaseExportService implements TExportManager{
             temp2.put("level", level);
             temp2.put("value", note2.get("item" + (i + 5)));
             note2ItemList.add(temp2);
-            
+
         }
         note1.put("levelDataList", note1ItemList);
         note1.put("levelDataCount", note1ItemList.size());
@@ -276,7 +276,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         note.put("note2", note2);
         note.put("note3Flag", note3Flag);
         //========process dataMap for note view end========
-        
+
         //========process dataMap for raise view begin========
         Map<String, Object> raise = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -287,7 +287,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         raise.put("list", raiseMetaDataList);
         raise.put("count", raiseMetaDataList.size());
         //========process dataMap for raise view end========
-        
+
         //========process dataMap for adj view begin========
         Map<String, Object> adj = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -315,7 +315,7 @@ public class TExportService extends BaseExportService implements TExportManager{
                 Map<String,Object> map = (Map<String,Object>) item;
                 return String.valueOf(map.get("level"));
             })));
-            
+
             List<Map<String,Object>> itemMaps = new ArrayList<>();
             for(String item : items) {
                 Map<String, List<Map<String, Object>>> outMap = groups.get(item);
@@ -340,18 +340,18 @@ public class TExportService extends BaseExportService implements TExportManager{
             adj.put("levels", levels);
         }
         //========process dataMap for adj view end========
-        
+
         result.put("main", main);
         result.put("note", note);
         result.put("raise", raise);
         result.put("adj", adj);
         return result;
     }
-    
+
     /**
      * 处理sheet页T310的数据
      * @author Dai Zong 2017年12月04日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -360,7 +360,7 @@ public class TExportService extends BaseExportService implements TExportManager{
     private Map<String,Object> getT310Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT310Data", queryMap);
         if(metaDataList == null) {
@@ -390,16 +390,16 @@ public class TExportService extends BaseExportService implements TExportManager{
             tempMap.put("accDivCount", accDivCount);
             levelMaps.add(tempMap);
         }
-        
+
         result.put("levels", levelMaps);
         result.put("levelCount", levelMaps.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页T400的数据
      * @author Dai Zong 2017年12月04日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -409,13 +409,13 @@ public class TExportService extends BaseExportService implements TExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> levels = new ArrayList<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT400Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         List<String> levelNames = metaDataList.stream().map(item -> {
             return String.valueOf(item.get("level"));
         }).distinct().sorted(LEVEL_COMPARATOR).collect(Collectors.toList());
@@ -442,16 +442,16 @@ public class TExportService extends BaseExportService implements TExportManager{
             }
             levels.add(level);
         }
-        
+
         result.put("levels", levels);
         result.put("levelCount", levels.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页T500的数据
      * @author Dai Zong 2017年12月05日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -468,7 +468,7 @@ public class TExportService extends BaseExportService implements TExportManager{
             oldPeriodStr = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)-1)+"1231";
         }
         Map<String, Object> oldQueryMap = this.createBaseQueryMap(fundId, oldPeriodStr);
-        
+
         Map<String, Object> main = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("TExportMapper.selectT500MainData", queryMap);
@@ -550,11 +550,11 @@ public class TExportService extends BaseExportService implements TExportManager{
         result.put("f_test", f_test);
         return result;
     }
-    
+
     /**
      * 处理sheet页T11000D的数据
      * @author Dai Zong 2017年12月10日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -597,11 +597,11 @@ public class TExportService extends BaseExportService implements TExportManager{
             }
             levels.add(level);
         }
-        
+
         P4104.put("levels", levels);
         P4104.put("levelCount", levels.size());
         //========process dataMap for P4104 view end========
-        
+
         //========process dataMap for profitDist view begin========
         Map<String, Object> profitDist = new HashMap<>();
         List<Map<String,Object>> profitDistList = new ArrayList<>();
@@ -624,7 +624,7 @@ public class TExportService extends BaseExportService implements TExportManager{
         profitDist.put("list", profitDistList);
         profitDist.put("count", profitDistList.size());
         //========process dataMap for profitDist view end========
-        
+
         //========process dataMap for main view begin========
         Map<String, Object> main = new HashMap<>();
         List<Map<String, Object>> mainList = new ArrayList<>();
@@ -659,5 +659,5 @@ public class TExportService extends BaseExportService implements TExportManager{
         result.put("main", main);
         return result;
     }
-    
+
 }
