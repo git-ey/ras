@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PExportMapper">
+    
+    <select id="selectExtraFundInfo" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IFNULL(sfi.DATE_FROM,'2000-01-01') as dateFrom,
+            IFNULL(sfi.STRUCTURED,'N') as structured,
+            IFNULL(sfi.MF,'N') as mf,
+            IFNULL(sfi.AC,'N') as ac,
+            IFNULL(sfi.ETF,'N') as etf,
+            IFNULL(sfi.COMPOUND,'单利') as compound,
+            IFNULL(sfi.NAV_ROUND, 4) as navRound,
+            sfi.ROR_BASELINE as rorBaseline,
+            sfi.ROR as ror,
+            sfi.LEVERAGE as leverage,
+            IFNULL(sfi.LOF,'N') as lof,
+            'N' as interestSensitivity,
+            IFNULL(sfi.dealer_seperate,'N') as dealerSeperate,
+            IFNULL(sfi.LEVEL_SHARE,'N') as levelShare,
+            IFNULL(sfi.ETF_CONNECTION,'N') as etfConnection,
+            IFNULL(sfi.FOF,'N') as fof,
+            IF(IFNULL(sfi.DATE_FROM,'2000-01-01')>=concat(left(#{period},4)-1,'-11-01'),'Y','N') as newFlag,
+            IF(IFNULL(sfi.DATE_FROM,'2000-01-01')>=concat(left(#{period},4),'-01-01'),'Y','N') as newFundFlag,  <!--  chenhy,20240401,新增新老基金判断-->
+            SM.FUTURE_MATTERS_DISCLOSURE_MODE AS fmdm <!--  yury,20200908,新增日后事项文字段-->
+        FROM
+            SYS_FUND_INFO sfi,
+            SYS_MGRCOMPANY SM
+        WHERE
+            1 = 1
+        AND SFI.FIRM_CODE = SM.COMPANY_CODE
+        AND sfi.ACTIVE = 'Y'
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+
+    <select id="selectPData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P.EY_ACCOUNT_NUM AS accountNum,
+		    p.REVEAL_ITEM as revealItem,
+		    P.AMOUNT_CURRENT AS amountCurrent,
+		    P.AMOUNT_ADJ_CR AS crAmountAdj,
+		    P.AMOUNT_ADJ_DR AS drAmountAdj,
+		    P.AMOUNT_AUDIT_LAST AS amountAuditLast
+		FROM
+		    wp_p P
+        where 
+            1 = 1
+        and P.STATUS = 'Y'
+        and P.FUND_ID = #{fundId}
+        and P.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP3003Flag" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT 
+            SFI.FUND_ID 
+        FROM 
+            SYS_FUND_INFO SFI 
+        WHERE 
+            SFI.FUND_ID = #{fundId} 
+        AND NOT exists 
+                (SELECT 
+                    1 
+                FROM 
+                    sys_acctmapping SA 
+                WHERE 
+                    SA.FUND_ID = SFI.FUND_ID 
+                AND  SA.EY_ACCOUNT_NUM = '3003'  
+                AND SA.ATTR1="ETF_证券清算款")
+        AND SFI.ACTIVE = 'Y'
+    </select>
+    
+    
+    <select id="selectP300Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P300.ATTR1 AS detailName,
+		    IFNULL(P300.BEGIN_BALANCE_CNY,0) AS beginBalance,
+		    IFNULL(P300.DR_AMOUNT_CNY,0) AS drAmount,
+		    IFNULL(P300.CR_AMOUNT_CNY,0) AS crAmount,
+		    P300.ATTR5 as disc
+		FROM
+		    wp_p300 P300
+        where 
+            1 = 1
+        and P300.STATUS = 'Y'
+        and P300.FUND_ID = #{fundId}
+        and P300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP400MainData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            P400.ATTR1 AS detailName,
+            IFNULL(P400.BEGIN_BALANCE_CNY,0) AS beginBalance,
+            IFNULL(P400.DR_AMOUNT_CNY,0) AS drAmount,
+            IFNULL(P400.CR_AMOUNT_CNY,0) AS crAmount,
+            P400.ATTR5 as disc
+        FROM
+            wp_p400 P400
+        where 
+            1 = 1
+        and P400.STATUS = 'Y'
+        and P400.FUND_ID = #{fundId}
+        and P400.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP400SummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P400S.ITEM as item,
+		    P400S.CONTRACT_AMOUNT as contractAmount,
+		    DATE_FORMAT(P400S.CONTRACT_FROM_DATE,'%Y-%m-%dT00:00:00.000') as contractBeginDate,
+            DATE_FORMAT(P400S.CONTRACT_TO_DATE,'%Y-%m-%dT00:00:00.000') as contractEndDate,
+		    P400S.PERIOD_EXPENSE as thisPeriodFee,
+		    P400S.EXPENSE_ENTERED as incomeFee,
+		    P400S.ACCURED_EXPENSE as quota,
+		    P400S.DEFERRED_EXPENSE as amortization,
+		    P400S.EXPENSE_DIRECT_ENTERED as directFee
+		FROM
+		    wp_p400_summary P400S
+        where 
+            1 = 1
+        and P400S.STATUS = 'Y'
+        and P400S.FUND_ID = #{fundId}
+        and P400S.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP400DetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P400D.PAPER as detailName,
+		    P400D.CONFIRMATION_NUM as confirmationNum,
+		    P400D.CONTRACT_AMOUNT as contractAmount,
+		    DATE_FORMAT(P400D.CONTRACT_FROM_DATE,'%Y-%m-%dT00:00:00.000') as contractBeginDate,
+		    DATE_FORMAT(P400D.CONTRACT_TO_DATE,'%Y-%m-%dT00:00:00.000') as contractEndDate,
+		    P400D.TOTAL_DATE as contractTotalDays,
+		    P400D.PERIOD_DATE as daysOfThisPeriod
+		FROM
+		    wp_p400_detail P400D
+        where 
+            1 = 1
+        and P400D.ITEM = '信息披露费'
+        and P400D.STATUS = 'Y'
+        and P400D.FUND_ID = #{fundId}
+        and P400D.PERIOD = #{period}
+        order by
+            P400D.SEQ
+    </select>
+    
+    <select id="selectP500Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            P500.ATTR1 AS detailName,
+            IFNULL(P500.BEGIN_BALANCE_CNY,0) AS beginBalance,
+            IFNULL(P500.DR_AMOUNT_CNY,0) AS drAmount,
+            IFNULL(P500.CR_AMOUNT_CNY,0) AS crAmount,
+            P500.ATTR5 as disc
+        FROM
+            wp_p500 P500
+        where 
+            1 = 1
+        and P500.STATUS = 'Y'
+        and P500.FUND_ID = #{fundId}
+        and P500.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP600Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P600.ATTR5 as tradeMarket,
+		    P600.ATTR2 as subType,
+		    sum(case when P600.ATTR1 = '成本' then ifnull(P600.BEGIN_BALANCE_CNY,0) else 0 end) as costBeginBalance,
+		    sum(case when P600.ATTR1 = '成本' then ifnull(P600.END_BALANCE_CNY,0) else 0 end) as costEndBalance,
+		    sum(case when P600.ATTR1 = '利息支出' then ifnull(P600.BEGIN_BALANCE_CNY,0) else 0 end) as interestBeginBalance,
+		    sum(case when P600.ATTR1 = '利息支出' then ifnull(P600.END_BALANCE_CNY,0) else 0 end) as interestEndBalance
+		FROM
+		    wp_p600 P600
+        where 
+            1 = 1
+        and P600.STATUS = 'Y'
+        and P600.FUND_ID = #{fundId}
+        and P600.PERIOD = #{period}
+        GROUP BY  
+            P600.EY_ACCOUNT_NUM,P600.ATTR5,P600.ATTR2 
+    </select>
+    
+    <select id="selectP600BankSumDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+            IF(SUM(P600.END_BALANCE_CNY) = 0, null, SUM(P600.END_BALANCE_CNY)) as endBalance
+        FROM
+            wp_p600 P600
+        where 
+            1 = 1
+        and P600.STATUS = 'Y'
+        and P600.ATTR5 = '银行间'
+        and P600.FUND_ID = #{fundId}
+        and P600.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectP600BankSumDataForP" parameterType="java.util.Map" resultType="java.util.Map">
+         SELECT
+            IF(SUM(P600.END_BALANCE_CNY) = 0, null, SUM(P600.END_BALANCE_CNY)) as endBalance,
+            IF(SUM(P600.BEGIN_BALANCE_CNY) = 0, null, SUM(P600.BEGIN_BALANCE_CNY)) as beginBalance
+        FROM
+            wp_p600 P600
+        where 
+            1 = 1
+        and P600.STATUS = 'Y'
+        and P600.ATTR5 = '银行间'
+        and P600.FUND_ID = #{fundId}
+        and P600.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectP600ExchangSumDataForP" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(P600.END_BALANCE_CNY) = 0, null, SUM(P600.END_BALANCE_CNY)) as endBalance,
+            IF(SUM(P600.BEGIN_BALANCE_CNY) = 0, null, SUM(P600.BEGIN_BALANCE_CNY)) as beginBalance
+        FROM
+            wp_p600 P600
+        where 
+            1 = 1
+        and P600.STATUS = 'Y'
+        and P600.ATTR5 != '银行间'
+        and P600.FUND_ID = #{fundId}
+        and P600.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectP600SumDataForP" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(P600.END_BALANCE_CNY) = 0, null, SUM(P600.END_BALANCE_CNY)) as endBalance,
+            IF(SUM(P600.BEGIN_BALANCE_CNY) = 0, null, SUM(P600.BEGIN_BALANCE_CNY)) as beginBalance
+        FROM
+            wp_p600 P600
+        where 
+            1 = 1
+        and P600.STATUS = 'Y'
+        and P600.FUND_ID = #{fundId}
+        and P600.PERIOD = #{period}
+        LIMIT 1
+   </select>
+   
+    
+    <select id="selectP600TestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P600T.ATTR3 as `code`,
+		    P600T.ATTR4 as simpleName,
+		    P600T.ATTR5 as market,
+		    P600T.ATTR2 as subType,
+		    P600T.EY_INDEX as `index`,
+		    P600T.END_BALANCE_CNY as endBalance,
+		    P600T.FIRST_ACCOUNT_DAY as firstAccountDay,
+		    P600T.DUE_ACCOUNT_DAY as dueAccountDay,
+		    P600T.PERIOD_LEFT as periodLeft,
+		    P600T.DUE_AMOUNT as dueAmount,
+		    P600T.BUY_OUT_BOND as byOutBond,
+		    P600T.VALUATION_DAY as valuationDay,
+		    P600T.ACCRUED_INTEREST_CLIENT AS accruedInterestClient 
+		FROM
+		    wp_p600_test P600T
+		WHERE
+		    1 = 1
+        and P600T.STATUS = 'Y'
+        and P600T.FUND_ID = #{fundId}
+        and P600T.PERIOD = #{period}
+    </select>
+
+    <select id="selectP600TestOTCData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P600T.ATTR3 as `code`,
+		    P600T.ATTR4 as simpleName,
+		    P600T.ATTR5 as market,
+		    P600T.ATTR2 as subType,
+		    P600T.EY_INDEX as `index`,
+		    P600T.END_BALANCE_CNY as endBalance,
+		    P600T.FIRST_ACCOUNT_DAY as firstAccountDay,
+		    P600T.DUE_ACCOUNT_DAY as dueAccountDay,
+		    P600T.PERIOD_LEFT as periodLeft,
+		    P600T.DUE_AMOUNT as dueAmount,
+		    P600T.BUY_OUT_BOND as byOutBond,
+		    P600T.VALUATION_DAY as valuationDay,
+		    P600T.ACCRUED_INTEREST_CLIENT AS accruedInterestClient 
+		FROM
+		    wp_p600_test P600T
+		WHERE
+		    1 = 1
+        and P600T.STATUS = 'Y'
+        and P600T.ATTR5 = '银行间'
+        and P600T.FUND_ID = #{fundId}
+        and P600T.PERIOD = #{period}
+    </select>
+
+    <select id="selectP600TestEXData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    P600T.ATTR3 as `code`,
+		    P600T.ATTR4 as simpleName,
+		    P600T.ATTR5 as market,
+		    P600T.ATTR2 as subType,
+		    P600T.EY_INDEX as `index`,
+		    P600T.END_BALANCE_CNY as endBalance,
+		    P600T.FIRST_ACCOUNT_DAY as firstAccountDay,
+		    P600T.DUE_ACCOUNT_DAY as dueAccountDay,
+		    P600T.PERIOD_LEFT as periodLeft,
+		    P600T.DUE_AMOUNT as dueAmount,
+		    P600T.BUY_OUT_BOND as byOutBond,
+		    P600T.VALUATION_DAY as valuationDay,
+		    P600T.ACCRUED_INTEREST_CLIENT AS accruedInterestClient 
+		FROM
+		    wp_p600_test P600T
+		WHERE
+		    1 = 1
+        and P600T.STATUS = 'Y'
+        and P600T.ATTR5 != '银行间'
+        and P600T.FUND_ID = #{fundId}
+        and P600T.PERIOD = #{period}
+    </select>
+   
+    <select id="selectHP100P600Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+        HP100.HEAD_ID AS headId,
+        HP100.ATTR3 AS `code`,
+        HP100.ATTR4 AS shortName,
+        HP100.ATTR5 AS market,
+        HP100.ATTR2 AS subtype,
+        HP100.END_BALANCE_CNY AS endBalanceCny,
+        HP100.FIRST_ACCOUNT_DAY AS firstAccountDay,
+        HP100.DUE_ACCOUNT_DAY AS dueAccountDay,
+        HP100.DUE_AMOUNT AS dueAmount,
+        HP100.BUY_OUT_BOND AS buyOutBond,
+        HP100.VALUATION_DAY AS valuationDay,
+        HP100.EXPOSURE_PERIOD AS exposurePeriod,
+        HP100.ACCRUED_INTEREST_CLIENT AS accruedInterestClient 
+		FROM
+            wp_hp100 HP100
+		WHERE 
+            1 = 1
+        AND HP100.STATUS = 'Y'
+        AND HP100.TYPE= 'P600'
+        AND HP100.FUND_ID = #{fundId}
+        AND HP100.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP600TestSummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT
+		    P600S.ACCRUED_INTEREST_EY AS accruedInterestEy,
+		    P600S.ACCRUED_INTEREST_CLIENT AS accruedInterestClient,
+		    P600S.DIFF AS diff 
+		FROM
+		    wp_p600_summary P600S
+		WHERE
+            1 = 1
+        and P600S.STATUS = 'Y'
+        and P600S.FUND_ID = #{fundId}
+        and P600S.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
+    <select id="selectP600TestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P600TD.HEAD_ID as headerId,
+		    P600TD.BOND_CODE AS bondCode,
+		    P600TD.BOND_NAME AS bondName,
+		    P600TD.RETURN_DAY AS returnDay,
+		    P600TD.PRICE AS price,
+		    P600TD.QUANTITY AS quantity,
+		    P600TD.AMOUNT AS amount,
+		    P600T.BUY_OUT_BOND AS byOutBond 
+		FROM
+		    wp_p600_test P600T
+		    INNER JOIN wp_p600_test_detail P600TD ON P600TD.HEAD_ID = P600T.HEAD_ID  AND P600TD.STATUS = 'Y' 
+		WHERE
+		    1 = 1 
+        and P600T.STATUS = 'Y'
+        and P600T.FUND_ID = #{fundId}
+        and P600T.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP600ExposurePeriodData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    P600EP.PERIOD_LEFT as periodLeft,
+		    P600EP.AMOUNT as amount
+		FROM
+		    wp_p600_exposure_period P600EP
+		WHERE
+		    1 = 1
+        and P600EP.STATUS = 'Y'
+        and P600EP.FUND_ID = #{fundId}
+        and P600EP.PERIOD = #{period}
+        ORDER BY P600EP.SORT
+    </select>
+
+    
+    <select id="selectP800MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    P800.ATTR1 as type,
+		    P800.ATTR2 as tradeDetailName,
+		    P800.ATTR5 as commissionDetailName,
+		    P800.ATTR6 as related,
+		    P800.BEGIN_BALANCE_CNY as beginBalance,
+		    P800.DR_AMOUNT_CNY as drAmount,
+		    P800.CR_AMOUNT_CNY as crAmount
+		FROM
+		    wp_N500 P800
+        where 
+            1 = 1
+        and P800.STATUS = 'Y'
+        and P800.FUND_ID = #{fundId}
+        and P800.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP800RelatedData" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+		    P800R.RELEATED_PARTY as `name`,
+		    P800R.COMMISSION as commission,
+		    P800R.PROPORTION_TOTAL as proportionTotal,
+		    P800R.END_BALANCE as endBalance,
+		    P800R.PROPORTION_BALANCE as proportionBalance
+		FROM
+		    wp_N500_related P800R
+        where 
+            1 = 1
+        and P800R.STATUS = 'Y'
+        and P800R.FUND_ID = #{fundId}
+        and P800R.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP810Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            P810.AGENCY_NAME as `name`,
+		    P810.RELEATED as related,
+		    P810.AMOUNT_BOND as bond,
+		    P810.AMOUNT_FUND as fund,
+		    P810.AMOUNT_REPO as repo,
+		    P810.AMOUNT_STOCK as stock,
+		    P810.AMOUNT_WARRANT as warrant,
+		    P810.ACTUAL_COMMISSION_EY as  perEY,
+		    P810.ACTUAL_COMMISSION_CLIENT as perClient
+		FROM
+		    wp_N510 P810
+        where 
+            1 = 1
+        and P810.STATUS = 'Y'
+        and P810.FUND_ID = #{fundId}
+        and P810.PERIOD = #{period}
+        order by P810.SEQ
+    </select>
+    
+    <select id="selectP810RelatedData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    P810R.AGENCY_NAME as `name`,
+		    P810R.AMOUNT_BOND as bond,
+		    P810R.AMOUNT_FUND AS fund,
+		    P810R.AMOUNT_REPO as repo,
+		    P810R.AMOUNT_STOCK as stock,
+		    P810R.AMOUNT_WARRANT as warrant
+		FROM
+		    wp_N510_related P810R
+        where 
+            1 = 1
+        and P810R.STATUS = 'Y'
+        and P810R.FUND_ID = #{fundId}
+        and P810R.PERIOD = #{period}
+        order by P810R.SEQ
+    </select>
+    
+    <select id="selectP810CommissionData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+        P810C.SAHRE_TURNOVER_AMOUNT AS ShareTurnoverAmount,
+        P810C.COMMISSION_AMOUNT_ESTIMATE AS CommissionAmountEstimate,
+        P810C.COMMISSION_AMOUNT_ACTUAL AS CommissionAmountActual,
+        P810C.COMMISSION_RATE_ESTIMATE AS CommissionRateEstimate,
+        P810C.COMMISSION_RATE_ACTUAL AS CommissionRateActual,
+        P810C.SAHRE_TURNOVER_AMOUNT_LAST AS ShareTurnoverAmountLast,
+        P810C.COMMISSION_AMOUNT_LAST AS CommissionAmountLast,
+        P810C.COMMISSION_RATE_LAST AS CommissionRateLast,
+        P810C.TE AS TE,
+        P810C.DEVIATION_AMOUNT AS DeviationAmount,
+        P810C.DEVIATION_RATE AS DeviationRate
+    FROM
+        wp_p810_commission P810C
+    where 
+        1 = 1
+    and P810C.FUND_ID = #{fundId}
+    and P810C.PERIOD = #{period}
+    and P810C.STATUS = 'Y'
+    LIMIT 1
+    </select>
+        
+    <select id="selectP810CommissionComparableData" parameterType="java.util.Map" resultType="java.util.Map"> 
+                
+    SELECT
+        P810CC.FUND_ID_COMPARABLE AS FundIdComparable,
+        P810CC.SHORT_NAME_COMPARABLE AS ShortNameComparable,
+        P810CC.SAHRE_TURNOVER_AMOUNT AS ShareTurnoverAmount,
+        P810CC.COMMISSION_AMOUNT AS CommissionAmount,
+        P810CC.COMMISSION_RATE AS commissionRate
+    FROM
+        wp_p810_commission_comparable P810CC
+    where 
+        1 = 1
+        and P810CC.STATUS = 'Y'
+        and P810CC.FUND_ID = #{fundId}
+        and P810CC.PERIOD = #{period}
+    order by 
+        P810CC.SORT
+    </select>
+        
+    <select id="selectP900Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            P800.ATTR1 AS detailName,
+            IFNULL(P800.BEGIN_BALANCE_CNY,0) AS beginBalance,
+            IFNULL(P800.DR_AMOUNT_CNY,0) AS drAmount,
+            IFNULL(P800.CR_AMOUNT_CNY,0) AS crAmount,
+            P800.ATTR5 as disc
+        FROM
+            wp_p800 P800
+        where 
+            1 = 1
+        and P800.STATUS = 'Y'
+        and P800.FUND_ID = #{fundId}
+        and P800.PERIOD = #{period}
+    </select>
+    
+    <select id="selectP10000Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            P10000.ITEM as item,
+            P10000.REF_NUM as refnum,
+            IF(P10000.BEGIN_BALANCE = 0, null, P10000.BEGIN_BALANCE) as beginBalance,
+            IF(P10000.END_BALANCE = 0, null, P10000.END_BALANCE) as endBalance
+        FROM
+            wp_p10000 AS P10000
+        where 
+            1 = 1
+        and P10000.STATUS = 'Y'
+        and P10000.FUND_ID = #{fundId}
+        and P10000.PERIOD = #{period}
+        ORDER BY P10000.SORT
+    </select>
+    
+    <select id="selectP10000SumDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            IF(SUM(P10000.BEGIN_BALANCE) = 0, null, SUM(P10000.BEGIN_BALANCE)) as beginBalance,
+            IF(SUM(P10000.END_BALANCE) = 0, null, SUM(P10000.END_BALANCE)) as endBalance
+        FROM
+            wp_p10000 AS P10000
+        where 
+            1 = 1
+        and P10000.STATUS = 'Y'
+        and P10000.FUND_ID = #{fundId}
+        and P10000.PERIOD = #{period}
+        and P10000.SORT NOT IN ('5','6')   
+        LIMIT 1
+    </select>
+    
+    <select id="checkIfP10000HasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(IFNULL(P10000.END_BALANCE, 0)) + SUM(IFNULL(P10000.BEGIN_BALANCE, 0))
+        FROM
+            wp_p10000 AS P10000
+        where 
+            1 = 1
+        and P10000.STATUS = 'Y'
+        and P10000.FUND_ID = #{fundId}
+        and P10000.PERIOD = #{period}
+    </select>
+
+    <select id="selecttrxcalendarData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            DATE_FORMAT( st.TRX_DATE, '%Y-%m-%dT00:00:00.000' ) AS TRX_DATE,
+            st.COMMENTS AS COMMENTS
+        FROM
+            sys_trxcalendar st 
+        WHERE
+            1 = 1 
+        AND st.COMMENTS is not null
+        ORDER BY st.TRX_DATE
+    </select>
+    
+</mapper>

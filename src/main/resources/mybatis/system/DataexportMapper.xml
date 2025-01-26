@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DataexportMapper">
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		SELECT sfi.FUND_ID,
+		<choose>
+		    <when test="pd.PERIOD != null and pd.PERIOD != ''">
+		        #{pd.PERIOD}
+		    </when>
+		    <otherwise>
+                concat(YEAR(now())-1,'1231')
+            </otherwise>
+		</choose> PERIOD,
+        sfi.SHORT_NAME,
+        smc.SHORT_NAME MGR_COMPANY,
+        (SELECT COUNT(*) FROM sys_concrecord c where c.WP_TYPE = 'C' AND c.STATUS='S' AND c.FUND_ID = sfi.FUND_ID AND c.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) CFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord e where e.WP_TYPE = 'E' AND e.STATUS='S' AND e.FUND_ID = sfi.FUND_ID AND e.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) EFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord g where g.WP_TYPE = 'G' AND g.STATUS='S' AND g.FUND_ID = sfi.FUND_ID AND g.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) GFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord h where h.WP_TYPE = 'H' AND h.STATUS='S' AND h.FUND_ID = sfi.FUND_ID AND h.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) HFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord n where n.WP_TYPE = 'N' AND n.STATUS='S' AND n.FUND_ID = sfi.FUND_ID AND n.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) NFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord p where p.WP_TYPE = 'P' AND p.STATUS='S' AND p.FUND_ID = sfi.FUND_ID AND p.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) PFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord t where t.WP_TYPE = 'T' AND t.STATUS='S' AND t.FUND_ID = sfi.FUND_ID AND t.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) TFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord u where u.WP_TYPE = 'U' AND u.STATUS='S' AND u.FUND_ID = sfi.FUND_ID AND u.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) UFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord v where v.WP_TYPE = 'V' AND v.STATUS='S' AND v.FUND_ID = sfi.FUND_ID AND v.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) VFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord i where i.WP_TYPE = 'I' AND i.STATUS='S' AND i.FUND_ID = sfi.FUND_ID AND i.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) IFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord o where o.WP_TYPE = 'O' AND o.STATUS='S' AND o.FUND_ID = sfi.FUND_ID AND o.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) OFLAG,
+        (SELECT COUNT(*) FROM sys_concrecord sa where sa.WP_TYPE = 'SA' AND sa.STATUS='S' AND sa.FUND_ID = sfi.FUND_ID AND sa.PERIOD = IF('${pd.PERIOD}'='',concat(YEAR(now())-1,'1231'),'${pd.PERIOD}')) SAFLAG
+          FROM sys_fund_info sfi
+     LEFT JOIN sys_mgrcompany smc
+            ON sfi.FIRM_CODE = smc.COMPANY_CODE
+         WHERE 1 = 1 <!-- sfi.`STATUS` = 'REVIEWED' -->
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				    <!-- 根据需求自己加检索条件 -->
+					sfi.FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					sfi.FULL_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				     or
+				    smc.SHORT_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+		<if test="pd.FIRM_CODE != null and pd.FIRM_CODE != ''">
+		    and sfi.FIRM_CODE = #{pd.FIRM_CODE}
+		</if>
+		<if test="pd.FUND_ID != null and pd.FUND_ID != ''">
+		    and sfi.FUND_ID = #{pd.FUND_ID}
+		</if>
+	</select>
+	
+	
+	<!-- 列表期间 -->
+	<select id="listPeriod" parameterType="pd" resultType="pd">
+		select d.BIANMA PERIOD,
+               d.`NAME` PERIOD_NAME
+          from sys_dictionaries d 
+         where d.PARENT_ID in (select sd.DICTIONARIES_ID 
+                                 from sys_dictionaries sd 
+                                where sd.BIANMA = 'PERIOD')
+         order by d.ORDER_BY asc
+	</select>	
+	
+</mapper>

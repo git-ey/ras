@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TrxSettlementMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		EY_TRX_SETTLEMENT
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		FUND_ID,	
+		PERIOD,	
+		TRANSACTION_DATE,	
+		CURRENCY,	
+		EY_BUYSELL_TYPE,	
+		EY_STOCKBOND_TYPE,	
+		STOCK_CODE,	
+		STOCK_NAME,	
+		QUANTITY,	
+		AMOUNT,	
+		SEAT_COMMISSION,	
+		STAMPS,	
+		BROKERAGE_FEE,	
+		TRANSFER_FEE,	
+		SEC_FEE,	
+		CONTINGENCY_FEE,	
+		OTHER_FEE,	
+		BROKERAGE_TRANSFER_FEE,	
+		BOND_INTEREST,	
+		REPO_EARNINGS,	
+		NET_AMOUNT,	
+		TRX_TYPE,	
+		MARKET,	
+		AGENT,	
+		SEAT_NUM,	
+		AVERAGE_PRICE,	
+		EY_SECURITY_CODE,	
+		EY_SECURITY_NAME,	
+		ACTIVE,	
+		STATUS,	
+		TRXSETTLEMENT_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{FUND_ID},	
+		#{PERIOD},	
+		#{TRANSACTION_DATE},	
+		#{CURRENCY},	
+		#{EY_BUYSELL_TYPE},	
+		#{EY_STOCKBOND_TYPE},	
+		#{STOCK_CODE},	
+		#{STOCK_NAME},	
+		#{QUANTITY},	
+		#{AMOUNT},	
+		#{SEAT_COMMISSION},	
+		#{STAMPS},	
+		#{BROKERAGE_FEE},	
+		#{TRANSFER_FEE},	
+		#{SEC_FEE},	
+		#{CONTINGENCY_FEE},	
+		#{OTHER_FEE},	
+		#{BROKERAGE_TRANSFER_FEE},	
+		#{BOND_INTEREST},	
+		#{REPO_EARNINGS},	
+		#{NET_AMOUNT},	
+		#{TRX_TYPE},	
+		#{MARKET},	
+		#{AGENT},	
+		#{SEAT_NUM},	
+		#{AVERAGE_PRICE},	
+		#{EY_SECURITY_CODE},	
+		#{EY_SECURITY_NAME},	
+		#{ACTIVE},	
+		#{STATUS},	
+		#{TRXSETTLEMENT_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			TRXSETTLEMENT_ID = #{TRXSETTLEMENT_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			FUND_ID = #{FUND_ID},
+			PERIOD = #{PERIOD},
+			TRANSACTION_DATE = #{TRANSACTION_DATE},
+			CURRENCY = #{CURRENCY},
+			EY_BUYSELL_TYPE = #{EY_BUYSELL_TYPE},
+			EY_STOCKBOND_TYPE = #{EY_STOCKBOND_TYPE},
+			STOCK_CODE = #{STOCK_CODE},
+			STOCK_NAME = #{STOCK_NAME},
+			<if test="QUANTITY != null and QUANTITY != ''">
+			QUANTITY = #{QUANTITY},
+			</if>
+			<if test="AMOUNT != null and AMOUNT != ''">
+			AMOUNT = #{AMOUNT},
+			</if>
+			<if test="SEAT_COMMISSION != null and SEAT_COMMISSION != ''">
+			SEAT_COMMISSION = #{SEAT_COMMISSION},
+			</if>
+			<if test="STAMPS != null and STAMPS != ''">
+			STAMPS = #{STAMPS},
+			</if>
+			<if test="BROKERAGE_FEE != null and BROKERAGE_FEE != ''">
+			BROKERAGE_FEE = #{BROKERAGE_FEE},
+			</if>
+			<if test="TRANSFER_FEE != null and TRANSFER_FEE != ''">
+			TRANSFER_FEE = #{TRANSFER_FEE},
+			</if>
+			<if test="SEC_FEE != null and SEC_FEE != ''">
+			SEC_FEE = #{SEC_FEE},
+			</if>
+			<if test="CONTINGENCY_FEE != null and CONTINGENCY_FEE != ''">
+			CONTINGENCY_FEE = #{CONTINGENCY_FEE},
+			</if>
+			<if test="OTHER_FEE != null and OTHER_FEE != ''">
+			OTHER_FEE = #{OTHER_FEE},
+			</if>
+			<if test="BROKERAGE_TRANSFER_FEE != null and BROKERAGE_TRANSFER_FEE != ''">
+			BROKERAGE_TRANSFER_FEE = #{BROKERAGE_TRANSFER_FEE},
+			</if>
+			<if test="BOND_INTEREST != null and BOND_INTEREST != ''">
+			BOND_INTEREST = #{BOND_INTEREST},
+			</if>
+			<if test="REPO_EARNINGS != null and REPO_EARNINGS != ''">
+			REPO_EARNINGS = #{REPO_EARNINGS},
+			</if>
+			<if test="NET_AMOUNT != null and NET_AMOUNT != ''">
+			NET_AMOUNT = #{NET_AMOUNT},
+			</if>
+			TRX_TYPE = #{TRX_TYPE},
+			MARKET = #{MARKET},
+			AGENT = #{AGENT},
+			SEAT_NUM = #{SEAT_NUM},
+			<if test="AVERAGE_PRICE != null and AVERAGE_PRICE != ''">
+			AVERAGE_PRICE = #{AVERAGE_PRICE},
+			</if>
+			EY_SECURITY_CODE = #{EY_SECURITY_CODE},
+			EY_SECURITY_NAME = #{EY_SECURITY_NAME},
+			ACTIVE = #{ACTIVE},
+			STATUS = #{STATUS}
+		where 
+		TRXSETTLEMENT_ID = #{TRXSETTLEMENT_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			TRXSETTLEMENT_ID = #{TRXSETTLEMENT_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+                    FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				     or 
+                    PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				     or 
+					EY_BUYSELL_TYPE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					EY_STOCKBOND_TYPE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				     or
+				    EY_SECURITY_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+		<if test="pd.PERIOD != null and pd.PERIOD != ''">
+		    and PERIOD = #{pd.PERIOD}
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			TRXSETTLEMENT_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+</mapper>

@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="EyBalanceMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		EY_BALANCE
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		FUND_ID,	
+		PERIOD,	
+		BDATE,	
+		EY_ACCOUNT_NUM,	
+		APAR,	
+		CURRENCY,
+		EXCHANGE_RATE,
+		BEGIN_DRCR,	
+		BEGIN_BALANCE_CNY,	
+		DR_AMOUNT_CNY,	
+		CR_AMOUNT_CNY,
+		END_DRCR,	
+		END_BALANCE_CNY,	
+		BEGIN_BALANCE_ENTERED,	
+		DR_AMOUNT_ENTERED,	
+		CR_AMOUNT_ENTERED,	
+		END_BALANCE_ENTERED,	
+		ACTIVE,	
+		STATUS,	
+		ATTR1,	
+		ATTR2,	
+		ATTR3,	
+		ATTR4,	
+		ATTR5,	
+		ATTR6,	
+		BALANCE_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{FUND_ID},	
+		#{PERIOD},	
+		#{BDATE},	
+		#{EY_ACCOUNT_NUM},	
+		#{APAR},	
+		#{CURRENCY},
+		#{EXCHANGE_RATE},
+		#{BEGIN_DRCR},	
+		#{BEGIN_BALANCE_CNY},	
+		#{DR_AMOUNT_CNY},	
+		#{CR_AMOUNT_CNY},	
+		#{END_DRCR},	
+		#{END_BALANCE_CNY},	
+		#{BEGIN_BALANCE_ENTERED},	
+		#{DR_AMOUNT_ENTERED},	
+		#{CR_AMOUNT_ENTERED},	
+		#{END_BALANCE_ENTERED},	
+		#{ACTIVE},	
+		#{STATUS},	
+		#{ATTR1},	
+		#{ATTR2},	
+		#{ATTR3},	
+		#{ATTR4},	
+		#{ATTR5},	
+		#{ATTR6},	
+		#{BALANCE_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			BALANCE_ID = #{BALANCE_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			FUND_ID = #{FUND_ID},
+			PERIOD = #{PERIOD},
+			BDATE = #{BDATE},
+			EY_ACCOUNT_NUM = #{EY_ACCOUNT_NUM},
+			APAR = #{APAR},
+			CURRENCY = #{CURRENCY},
+			<if test="EXCHANGE_RATE != null and EXCHANGE_RATE != ''">
+			EXCHANGE_RATE = #{EXCHANGE_RATE},
+			</if>
+			BEGIN_DRCR = #{BEGIN_DRCR},
+			BEGIN_BALANCE_CNY = #{BEGIN_BALANCE_CNY},
+			DR_AMOUNT_CNY = #{DR_AMOUNT_CNY},
+			CR_AMOUNT_CNY = #{CR_AMOUNT_CNY},
+			END_DRCR = #{END_DRCR},
+			END_BALANCE_CNY = #{END_BALANCE_CNY},
+			<if test="BEGIN_BALANCE_ENTERED != null and BEGIN_BALANCE_ENTERED != ''">
+			BEGIN_BALANCE_ENTERED = #{BEGIN_BALANCE_ENTERED},
+			</if>
+		    <if test="DR_AMOUNT_ENTERED != null and DR_AMOUNT_ENTERED != ''">
+			DR_AMOUNT_ENTERED = #{DR_AMOUNT_ENTERED},
+			</if>
+		    <if test="CR_AMOUNT_ENTERED != null and CR_AMOUNT_ENTERED != ''">
+			CR_AMOUNT_ENTERED = #{CR_AMOUNT_ENTERED},
+			</if>
+			<if test="END_BALANCE_ENTERED != null and END_BALANCE_ENTERED != ''">
+			END_BALANCE_ENTERED = #{END_BALANCE_ENTERED},
+			</if>
+			ACTIVE = #{ACTIVE},
+			STATUS = #{STATUS},
+			ATTR1 = #{ATTR1},
+			ATTR2 = #{ATTR2},
+			ATTR3 = #{ATTR3},
+			ATTR4 = #{ATTR4},
+			ATTR5 = #{ATTR5},
+			ATTR6 = #{ATTR6},
+		BALANCE_ID = BALANCE_ID
+		where 
+		BALANCE_ID = #{BALANCE_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			BALANCE_ID = #{BALANCE_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+					or 
+					EY_ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+		<if test="pd.lastStart!= null and pd.lastStart != ''">
+		    and BDATE &gt;= #{pd.lastStart}
+		</if>
+		
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
+		    and BDATE &lt;= #{pd.lastEnd}
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			BALANCE_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+</mapper>

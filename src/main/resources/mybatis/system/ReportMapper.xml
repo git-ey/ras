@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReportMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_REPORT
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		RUN_PARAM,
+		P1,
+		P2,
+		P3,
+		<!--P4,-->
+		P5,
+		OPERATOR,
+		RUN_DATETIME,
+		OUTBOND_PATH,
+		RESULT,
+		MESSAGE,
+		REPORT_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{RUN_PARAM},
+		#{P1},
+		#{P2},
+		#{P3},
+		<!-- #{P4},-->
+		#{P5},
+		#{OPERATOR},
+		#{RUN_DATETIME},
+		#{OUTBOND_PATH},
+		#{RESULT},
+		#{MESSAGE},
+		#{REPORT_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			REPORT_ID = #{REPORT_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set RESULT = #{RESULT},
+			MESSAGE = #{MESSAGE}
+		where REPORT_ID = #{REPORT_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			REPORT_ID = #{REPORT_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		  CONCAT(RUN_PARAM,',',P1,',',P2,',',P3,',',P5) REPORT_PARAM,
+		  OPERATOR,
+		  RUN_DATETIME,
+		  OUTBOND_PATH,
+		  RESULT,
+		  MESSAGE,
+		  REPORT_ID
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					RUN_PARAM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					OUTBOND_PATH LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+		<if test="pd.lastStart!= null and pd.lastStart != ''">
+		    and RUN_DATETIME &gt;= #{pd.lastStart}
+		</if>
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
+		    and RUN_DATETIME &lt;= #{pd.lastEnd}
+		</if>
+		<if test="pd.RESULT != null and pd.RESULT != ''">
+		    and RESULT = #{pd.RESULT}
+		</if>
+		order by RUN_DATETIME desc
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			REPORT_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 列表报告段落模板 -->
+	<select id="listParagraph" parameterType="String" resultType="pd">
+        select d.BIANMA PARAGRAPH,
+               d.`NAME` PARAGRAPH_NAME,
+               d.NAME_EN PARAGRAPH_PATH
+          from sys_dictionaries d 
+         where d.PARENT_ID in (select sd.DICTIONARIES_ID 
+                                 from sys_dictionaries sd 
+                                where sd.BIANMA = #{paragraphCode})
+         order by d.ORDER_BY asc
+	</select>
+	
+	<!-- 列表报告段落模板 -->
+	<select id="listParagraphAll" parameterType="pd" resultType="pd">
+	   SELECT sd.BIANMA PARAGRAPH_TYPE,
+               d.BIANMA PARAGRAPH_CODE,
+               d.`NAME` PARAGRAPH_NAME,
+               d.NAME_EN PARAGRAPH_PATH
+          FROM sys_dictionaries d,
+               sys_dictionaries sd
+         WHERE d.PARENT_ID = sd.DICTIONARIES_ID 
+           AND sd.BIANMA IN ('RP01','RP02','RP03','RP04','RP05')
+         ORDER BY sd.BIANMA,d.ORDER_BY ASC
+	</select>
+	
+	<!-- 报告导出基金范围列表 -->
+	<select id="listReportFund" parameterType="pd" resultType="pd">
+		select sf.FUND_CODE,	
+		       sf.FUND_ID,
+			   sf.FUND_TYPE, <!--chenhy,20240223,新增基金和产品的区分-->
+		       sf.FIRM_CODE,	
+		       sf.SHORT_NAME,	
+		       sf.FULL_NAME,	
+		       sf.FULL_NAME_ORIGINAL,	
+		       sf.TA_NAME,
+		       sf.MF,
+		       sf.ETF,
+		       sf.STRUCTURED,
+		       sf.DATE_FROM,	
+		       sf.DATE_TO,	
+		       sf.DATE_TRANSFORM
+		from sys_fund_info sf
+		where sf.FIRM_CODE = #{FIRM_CODE}
+		and sf.active = 'Y'
+		and sf.`STATUS` = 'REVIEWED'
+		<if test="FUND_ID != null and FUND_ID != ''">
+		    and sf.FUND_ID = #{FUND_ID}
+		</if>
+		<if test="MF != null and MF != ''">
+		    and sf.MF = #{MF}
+		</if>
+		<if test="ETF != null and ETF != ''">
+		    and sf.ETF = #{ETF}
+		</if>
+		<if test="STRUCTURED != null and STRUCTURED != ''">
+		    and sf.STRUCTURED = #{STRUCTURED}
+		</if>
+	</select>
+	
+	<!-- 报告导出基金范围列表 -->
+    <select id="selectReportFundById" parameterType="pd" resultType="pd">
+        select sf.FUND_CODE,    
+               sf.FUND_ID,
+               sf.FIRM_CODE,    
+               sf.SHORT_NAME,   
+               sf.FULL_NAME,    
+               sf.FULL_NAME_ORIGINAL,   
+               sf.TA_NAME,
+               sf.MF,
+               sf.ETF,
+               sf.STRUCTURED,
+               sf.DATE_FROM,    
+               sf.DATE_TO,  
+               sf.DATE_TRANSFORM
+        from sys_fund_info sf
+        where sf.`STATUS` = 'REVIEWED'
+		and sf.active = 'Y'
+        and sf.FUND_ID = #{FUND_ID}
+        LIMIT 1
+    </select>
+	
+	<!-- 报告需要的基金额外信息 -->
+	<!-- daigaokuo@hotmail.com -->
+	<!-- 2017-12-20 -->
+	<select id="selectReportExtendInfo" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    sm.FULL_NAME AS mgrFullName,
+		    sfs.SIGNOFF_1 as signOff1,
+		    sfs.SIGNOFF_2 as signOff2,
+			sfs.DB_NUM as DB_NUM
+		FROM
+		    sys_fund_info sfi
+	    LEFT JOIN sys_mgrcompany sm ON sm.COMPANY_CODE = sfi.FIRM_CODE 
+	    LEFT JOIN sys_fund_signoff sfs ON sfs.FUND_ID = sfi.FUND_ID
+		WHERE
+		    1 = 1 
+	    AND sfi.ACTIVE = 'Y' 
+	    AND sm.ACTIVE = sfi.ACTIVE
+	    AND sfs.ACTIVE = 'Y'
+	    AND sfi.FUND_ID = #{fundId}
+	    AND sfs.PERIOD = #{period}
+	    LIMIT 1
+	</select>
+	
+	<!-- BS数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-20 -->
+    <select id="selectBsData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            wb.BTCODE as bsCode,
+            IF(wb.BEGIN_BALANCE_EY = 0, null, wb.BEGIN_BALANCE_EY) as beginBalance,
+            IF(wb.END_BALANCE_EY = 0, null, wb.END_BALANCE_EY) as endBalance
+        FROM
+            wp_bs wb 
+        WHERE
+            1 = 1 
+        AND wb.FUND_ID = #{fundId}
+        AND wb.PERIOD = #{period}
+    </select>
+    
+    <!-- BS表注释文字段数据 -->
+    <!-- yury,20200907,新增资产负债表下注释 -->
+    <select id = "selectBsNote" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        WBN.DESCRIPTION AS description
+        FROM SYS_FUND_INFO SFI, WP_BS_NOTE WBN
+        WHERE SFI.FUND_ID = WBN.FUND_ID
+		AND WBN.fund_id = #{fundId}
+        AND WBN.PERIOD = #{period}
+        AND SFI.ACTIVE = 'Y'
+        ORDER BY WBN.SEQ;
+    </select>
+
+    <!-- PL数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-20 -->
+    <select id="selectPlData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            WP.BSCODE AS plCode,
+            IF( WP.AMOUNT_CURRENT_EY = 0, NULL, WP.AMOUNT_CURRENT_EY ) AS periodAcct,
+            IF( WP.AMOUNT_LAST_EY = 0, NULL, WP.AMOUNT_LAST_EY ) AS lastPeriodAcct 
+        FROM
+            wp_pl WP 
+        WHERE
+            1 = 1 
+        AND WP.FUND_ID = #{fundId}
+        AND WP.PERIOD = #{period}
+    </select>
+    
+    <!-- fundControl数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-31 -->
+	<!-- yury，20200909，新增外汇风险敞口及敏感性分析 -->
+    <select id="selectFundControlData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			IFNULL(sfc.STOCK_ALL, 'N') AS stockAll,
+			IFNULL(sfc.STOCK_BS, 'N') AS stockBs,
+			IFNULL(sfc.STOCK_R, 'N') AS stockR,
+			IFNULL(sfc.STOCK_P, 'N') AS stockP,
+			IFNULL(sfc.STOCK_L, 'N') AS stockL,
+			IFNULL(sfc.FUND_BS, 'N') AS fundBs,
+			IFNULL(sfc.BOND_ALL, 'N') AS bondAll,
+			IFNULL(sfc.BOND_BS, 'N') AS bondBs,
+			IFNULL(sfc.BOND_R, 'N') AS bondR,
+			IFNULL(sfc.BOND_P, 'N') AS bondP,
+			IFNULL(sfc.ABS_ALL, 'N') AS ABSAll,
+			IFNULL(sfc.ABS_BS, 'N') AS ABSBS,
+			IFNULL(sfc.ABS_R, 'N') AS ABSR,
+			IFNULL(sfc.ABS_P, 'N') AS ABSP,
+			IFNULL(sfc.GOLD_ALL, 'N') AS goldAll,
+			IFNULL(sfc.GOLD_BS, 'N') AS goldBs,
+			IFNULL(sfc.GOLD_R, 'N') AS goldR,
+			IFNULL(sfc.GOLD_P, 'N') AS goldP,
+			IFNULL(sfc.SHORT_BOND_RATING, 'N') AS shortbondrating,
+			IFNULL(sfc.SHORT_ABS_RATING, 'N') AS shortabsrating,
+			IFNULL(sfc.SHORT_NCD_RATING, 'N') AS shortncdrating,
+			IFNULL(sfc.LONG_BOND_RATING, 'N') AS longbondrating,
+			IFNULL(sfc.LONG_ABS_RATING, 'N') AS longabsrating,
+			IFNULL(sfc.LONG_NCD_RATING, 'N') AS longncdrating,
+			IFNULL(sfc.EXPIRE_PERIOD_ANALYSIS, 'N') AS EXPIRE_PERIOD_ANALYSIS,
+			IFNULL(sfc.PORTFOLIO_LIQUID_RISK, 'N') AS PORTFOLIO_LIQUID_RISK,
+			IFNULL(sfc.RISK_S_INT, 'N') AS riskSInt,
+			IFNULL(sfc.RISK_S_PRICE, 'N') AS riskSPrice,
+			IFNULL(sfc.RISK_E_PRICE, 'N') AS riskEPrice,
+            IFNULL(sfc.RISK_E_FOREIGN_EXCHANGE, 'N') AS riskEForeignExchange,
+            IFNULL(sfc.RISK_S_FOREIGN_EXCHANGE, 'N') AS riskSForeignExchange,
+			IFNULL(sfc.RISK_LOC, 'N') AS riskLoc
+		FROM
+		    sys_fund_control sfc 
+		WHERE
+		    1 = 1 
+		AND sfc.ACTIVE = 'Y'
+		AND sfc.FUND_ID = #{fundId}
+		LIMIT 1
+    </select>
+    
+    <!-- reportContent数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-31 -->
+    <select id="selectReportContentData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+            IFNULL( src.FS_ATTR1, '' ) AS FS_ATTR1,
+            IFNULL( src.FS_ATTR2, '' ) AS FS_ATTR2,
+            IFNULL( src.FS_ATTR3, '' ) AS FS_ATTR3,
+            IFNULL( src.COMISSION_NOTE, '' ) AS COMISSION_NOTE,
+            IFNULL( src.MF_ATTR1, '' ) AS MF_ATTR1,
+            IFNULL( src.MF_ATTR2, '' ) AS MF_ATTR2,
+            IFNULL( src.MF_ATTR3, '' ) AS MF_ATTR3,
+            IFNULL( src.MF_ATTR4, '' ) AS MF_ATTR4,
+            IFNULL( src.MF_ATTR5, '' ) AS MF_ATTR5,
+            IFNULL( src.CF_ATTR1, '' ) AS CF_ATTR1,
+            IFNULL( src.CF_ATTR2, '' ) AS CF_ATTR2,
+            IFNULL( src.CF_ATTR3, '' ) AS CF_ATTR3,
+            IFNULL( src.CF_ATTR4, '' ) AS CF_ATTR4,
+            IFNULL( src.CF_ATTR5, '' ) AS CF_ATTR5,
+            IFNULL( src.SF_ATTR1, '' ) AS SF_ATTR1,
+            IFNULL( src.SF_ATTR2, '' ) AS SF_ATTR2,
+            IFNULL( src.SF_ATTR3, '' ) AS SF_ATTR3,
+            IFNULL( src.SF_ATTR4, '' ) AS SF_ATTR4,
+            IFNULL( src.SF_ATTR5, '' ) AS SF_ATTR5,
+            IFNULL( src.LR, '' ) AS LR,<!-- yury,20201119,V200按自定义形式披露信用风险评级 -->
+            IFNULL( src.EPA, '' ) AS EPA,<!-- yury,20201119,V200按自定义形式披露信用风险评级 -->
+            IFNULL( src.PLR, '' ) AS PLR,<!-- yury,20201119,V200按自定义形式披露信用风险评级 -->
+            IFNULL( src.IR_ATTR1, '' ) AS IR_ATTR1,
+            IFNULL( src.IR_UP, '' ) AS IR_UP,
+            IFNULL( src.IR_DOWN, '' ) AS IR_DOWN,
+            IFNULL( src.PR_UP, '' ) AS PR_UP,
+            IFNULL( src.PR_DOWN, '' ) AS PR_DOWN,
+            IFNULL( src.PR_ATTR1, '' ) AS PR_ATTR1,
+            IFNULL( src.PR_ATTR2, '' ) AS PR_ATTR2,
+            IFNULL( src.PR_ATTR3, '' ) AS PR_ATTR3,
+            IFNULL( src.FV_ATTR1, '' ) AS FV_ATTR1,
+            IFNULL( src.FV_ATTR2, '' ) AS FV_ATTR2, <!-- 20220628,新增 金融工具公允价值计量的方法 -->
+            IFNULL( src.MR, '' ) AS MR,
+			IFNULL( src.IR, '' ) AS IR,
+			IFNULL( src.ER, '' ) AS ER,
+			IFNULL( src.IR_EXP, '' ) AS IR_EXP,
+			IFNULL( src.FI, '' ) AS FI,<!-- 20210805,新增 风险管理政策和组织架构 -->
+			IFNULL( src.RM, '' ) AS RM,<!-- 20210805,新增 风险管理政策和组织架构 -->
+			IFNULL( src.CR, '' ) AS CR, <!-- 20210805,新增 信用风险 -->
+			IFNULL( src.CR_LOSS, '' ) AS CR_LOSS, <!-- 20210805,新增 信用风险 -->
+			IFNULL( src.ADDITAN_NOTE, '' ) AS ADDITAN_NOTE, <!-- 20230807,新增 流通受限证券文字说明 -->
+			IFNULL( src.THREE_LEVEL_CHANGE_NOTE, '' ) AS THREE_LEVEL_CHANGE_NOTE <!-- 20231121,新增 第三层次公允价值余额及变动情况 -->
+			<!-- ,
+			IFNULL( src.ER, '' ) AS ER  -->
+        FROM
+            sys_report_content src 
+        WHERE
+            1 = 1 
+        AND src.ACTIVE = 'Y' 
+        AND src.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+	
+</mapper>

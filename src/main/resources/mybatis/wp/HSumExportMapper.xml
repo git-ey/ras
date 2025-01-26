@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HSumExportMapper">
+
+    <select id="selectH00Data" parameterType="java.util.Map" resultType="java.util.Map">
+				
+		select * from
+ 			(SELECT 
+				(case when svi.TYPE = '股票' 
+					then 'H10' 
+				when svi.TYPE = '债券' AND IFNULL(svi.MMF,'') = 'N'
+					THEN 'H20'
+				when svi.TYPE = '债券' AND IFNULL(svi.MMF,'') = 'Y'
+					THEN 'H21'
+				when svi.TYPE = '基金' 
+					then 'H40' 
+				when svi.TYPE = '期货' or svi.TYPE = '现货'
+					THEN 'H50' 
+				else '' end) as WPindex,
+				IF(IFNULL(svi.MMF,'')='Y','MMF','') as MMF,
+				IFNULL(svi.TYPE,'') AS type,
+				IFNULL(svi.MARKET,'') AS market,
+				IFNULL(svi.SUB_TYPE,'') AS subType,
+				IFNULL(svi.TRX_STATUS,'') AS trxStatus,
+				IFNULL(svi.INTEREST_MODE,'') AS intMode,
+				IFNULL(svi.VAL_TYPE_INDEX,'') AS valTypeIndex,
+				IFNULL(svi.VAL_TYPE_CODE,'') AS valTypeCode,
+				IFNULL(svi.VAL_TYPE_DEXS,'') AS valTypeDexs,
+				IFNULL(svi.VAL_BASE_SOURCE,'') AS valBaseSource,
+				IFNULL(svi.VAL_COLUMN,'') AS valColumn,
+				IFNULL(svi.THREE_LEVEL,'') AS threeLevel
+			from
+				(select 
+					A.*,
+					row_number()over(partition by a.MMF,a.TYPE,a.MARKET,a.SUB_TYPE,a.TRX_STATUS,
+							a.INTEREST_MODE,a.VAL_TYPE_INDEX,a.VAL_TYPE_DEXS order by A.FIRM_CODE DESC) RN 
+				from 
+					sys_valueation_index a
+				where 
+					(ifnull(a.FIRM_CODE,'') =#{firmCode} or ifnull(a.FIRM_CODE,'') = '') ) svi
+			WHERE 
+				svi.RN = 1) a 
+		order by a.WPindex;;
+    </select>
+
+    <select id="selectH10Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    H10.FUND_ID AS fundId,
+		    H10.STOCK_CODE AS stockCode,
+		    H10.STOCK_NAME AS stockName,
+		    H10.MARKET AS market,
+		    H10.SUB_TYPE AS subType,
+		    H10.RELEATED AS releated,
+		    H10.TRX_STATUS AS trxStatus,
+		    H10.VAL_TYPE_CODE AS valTypeCode,
+		    H10.VAL_PRICE AS valPrice,
+		    H10.THREE_LEVEL AS threeLevel,
+		    H10.RESTRICT_TYPE AS restrictType,
+		    DATE_FORMAT(H10.SUBSCRIBE_DATE,'%Y-%m-%dT00:00:00.000') AS subscribeDate,
+		    H10.SUBSCRIBE_PRICE AS subscribePrice,
+		    DATE_FORMAT(H10.LIFTING_DATE,'%Y-%m-%dT00:00:00.000') AS liftingDate,
+			H10.LIMIT_LEN AS limitlen,
+		    DATE_FORMAT(H10.SUSPENSION_DATE,'%Y-%m-%dT00:00:00.000') AS suspensionDate,
+		    H10.SUSPENSION_INFO AS suspensionInfo,
+		    DATE_FORMAT(H10.RESUMPTION_DATE,'%Y-%m-%dT00:00:00.000') AS resumptionDate,
+		    H10.RESMPATION_OPEN_PRICE AS resmpationOpenPrice 
+		FROM
+		    wp_h10 H10 
+		WHERE
+		    1 = 1 
+		AND H10.STATUS = 'Y'
+	    AND H10.PERIOD = #{period}
+	    AND H10.FIRM_CODE = #{firmCode}
+	    ORDER BY H10.SORT
+    </select>
+    
+    <select id="selectH11HeadData" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT
+		    H11H.STOCK_CODE AS stockCode,
+		    H11H.STOCK_NAME AS stockName,
+		    H11H.VAL_PRICE AS valPrice,
+		    H11H.RESULT AS result 
+		FROM
+		    wp_h11_head H11H 
+		WHERE
+		    1 = 1 
+	    AND H11H.`STATUS` = 'Y' 
+	    AND H11H.FIRM_CODE = #{firmCode}
+	    AND H11H.PERIOD = #{period}
+    </select>
+    
+    <select id="selectH11LineData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    H11L.INDUSTRY AS industry,
+		    H11L.VALUATION_DATE AS valuationDate,
+		    DATE_FORMAT( H11L.VALUATION_DATE, '%Y-%m-%dT00:00:00.000' ) AS valuationDateStr,
+		    H11L.INDUSTRY_INDEX AS industryIndex,
+		    H11L.UNIT_PRICE AS unitPrice 
+		FROM
+		    wp_h11_line H11L 
+		WHERE
+		    1 = 1 
+	    AND H11L.`STATUS` = 'Y' 
+	    AND H11L.FIRM_CODE = #{firmCode}
+	    AND H11L.PERIOD = #{period}
+	    AND H11L.STOCK_CODE = #{stockCode}
+    </select>
+    
+    <select id="selectH11TestTitleData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT DISTINCT
+		    H11T.FUND_ID AS fundId,
+		    sfi.FULL_NAME AS fullName 
+		FROM
+		    wp_h11_test H11T
+		    INNER JOIN sys_fund_info sfi ON sfi.FUND_ID = H11T.FUND_ID  AND sfi.ACTIVE = 'Y' 
+		WHERE
+		    1 = 1 
+	    AND H11T.`STATUS` = 'Y' 
+	    AND H11T.FIRM_CODE = #{firmCode}
+	    AND H11T.PERIOD = #{period}
+	    AND H11T.STOCK_CODE = #{stockCode}
+    </select>
+    
+    <select id="selectH11TestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H11T.FUND_ID as fundId,
+		    H11T.QUANTITY AS quantity,
+		    H11T.NAV AS nav 
+		FROM
+		    wp_h11_test H11T 
+		WHERE
+		    1 = 1 
+	    AND H11T.`STATUS` = 'Y' 
+	    AND H11T.FIRM_CODE = #{firmCode}
+	    AND H11T.PERIOD = #{period}
+	    AND H11T.STOCK_CODE = #{stockCode}
+	    AND H11T.VALUATION_DATE = #{valuationDate}
+    </select>
+    
+    <select id="selectH12Data" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    H12V.TRX_STATUS AS trxStatus,
+		    H12V.STOCK_CODE AS stockCode,
+		    H12V.STOCK_NAME AS stockName,
+		    H12V.LOMD AS lomd,
+		    H12V.VAL_TYPE_NAME AS valTypeName,
+		    H12V.VAL_PRICE_REF AS valPriceRef,
+		    DATE_FORMAT( H12V.LEFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS leftingDate 
+		FROM
+		    wp_h12_view H12V
+        WHERE
+            1 = 1 
+        AND H12V.PERIOD = #{period}
+        AND H12V.FIRM_CODE = #{firmCode}
+    </select>
+    
+	<!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
+    <select id="selectH20Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H20.FUND_ID AS fundId,
+		    H20.BOND_CODE AS bondCode,
+		    H20.BOND_NAME AS bondName,
+		    H20.MARKET AS market,
+		    H20.TYPE AS type,
+		    H20.SUB_TYPE AS subType,
+		    H20.RELEATED AS releated,
+		    H20.TRX_STATUS AS trxStatus,
+		    H20.VAL_TYPE_CODE AS valTypeCode,
+		    H20.VAL_BASE_SOURCE AS valBaseSource,
+		    H20.VAL_BASE_PRICE AS valBasePrice,
+		    H20.THREE_LEVEL AS threeLevel,
+			H20.VAL_PRICE AS val_price,
+		    H20.RESTRICT_TYPE AS restrictType,
+		    DATE_FORMAT( H20.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
+		    H20.SUBSCRIBE_PRICE AS subscribePrice,
+		    DATE_FORMAT( H20.LIFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS liftingDate,
+		    DATE_FORMAT( H20.SUSPENSION_DATE, '%Y-%m-%dT00:00:00.000' ) AS suspensionDate,
+		    H20.SUSPENSION_INFO AS suspensionInfo,
+		    DATE_FORMAT( H20.RESUMPTION_DATE, '%Y-%m-%dT00:00:00.000' ) AS resumptionDate,
+		    H20.RESMPATION_OPEN_PRICE AS resmpationOpenPrice
+		FROM
+		    wp_h20 H20 
+		WHERE
+		    1 = 1 
+		AND H20.STATUS = 'Y'
+        AND H20.PERIOD = #{period}
+        AND H20.FIRM_CODE = #{firmCode}
+    </select>
+    
+	<!-- yury, 20200902, H20/H21增加估值单价/影子定价的系统数据和excel数据的diff比较-->
+    <select id="selectH21Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H21.FUND_ID AS fundId,
+		    H21.BOND_CODE AS bondCode,
+		    H21.BOND_NAME AS bondName,
+		    H21.MARKET AS market,
+		    H21.TYPE AS type,
+		    H21.SUB_TYPE AS subType,
+		    H21.RELEATED AS releated,
+		    H21.TRX_STATUS AS trxStatus,
+		    H21.VAL_TYPE_CODE AS valTypeCode,
+		    H21.VAL_BASE_SOURCE AS valBaseSource,
+		    H21.VAL_BASE_PRICE AS valBasePrice,
+		    H21.THREE_LEVEL AS threeLevel,
+			H21.VAL_PRICE AS val_price,
+		    H21.RESTRICT_TYPE AS restrictType,
+		    DATE_FORMAT( H21.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
+		    H21.SUBSCRIBE_PRICE AS subscribePrice,
+		    DATE_FORMAT( H21.LIFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS liftingDate,
+		    DATE_FORMAT( H21.SUSPENSION_DATE, '%Y-%m-%dT00:00:00.000' ) AS suspensionDate,
+		    H21.SUSPENSION_INFO AS suspensionInfo,
+		    DATE_FORMAT( H21.RESUMPTION_DATE, '%Y-%m-%dT00:00:00.000' ) AS resumptionDate,
+		    H21.RESMPATION_OPEN_PRICE AS resmpationOpenPrice 
+		FROM
+		    wp_h21 H21 
+		WHERE
+		    1 = 1 
+		AND H21.STATUS = 'Y'
+        AND H21.PERIOD = #{period}
+        AND H21.FIRM_CODE = #{firmCode}
+    </select>
+    
+	<!-- IRENE20231205新增 摊余成本法-->
+    <select id="selectH22Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H22.FUND_ID AS fundId,
+		    H22.BOND_CODE AS bondCode,
+		    H22.BOND_NAME AS bondName,
+		    H22.MARKET AS market,
+		    H22.TYPE AS type,
+		    H22.SUB_TYPE AS subType,
+		    H22.RELEATED AS releated,
+		    H22.TRX_STATUS AS trxStatus,
+		    H22.VAL_TYPE_CODE AS valTypeCode,
+		    H22.VAL_BASE_SOURCE AS valBaseSource,
+		    H22.VAL_BASE_PRICE AS valBasePrice,
+		    H22.THREE_LEVEL AS threeLevel,
+			H22.VAL_PRICE AS val_price,
+		    H22.RESTRICT_TYPE AS restrictType,
+		    DATE_FORMAT( H22.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
+		    H22.SUBSCRIBE_PRICE AS subscribePrice,
+		    DATE_FORMAT( H22.LIFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS liftingDate,
+		    DATE_FORMAT( H22.SUSPENSION_DATE, '%Y-%m-%dT00:00:00.000' ) AS suspensionDate,
+		    H22.SUSPENSION_INFO AS suspensionInfo,
+		    DATE_FORMAT( H22.RESUMPTION_DATE, '%Y-%m-%dT00:00:00.000' ) AS resumptionDate,
+		    H22.RESMPATION_OPEN_PRICE AS resmpationOpenPrice 
+		FROM
+		    wp_h22 H22 
+		WHERE
+		    1 = 1 
+		AND H22.STATUS = 'Y'
+        AND H22.PERIOD = #{period}
+        AND H22.FIRM_CODE = #{firmCode}
+    </select>
+    
+    <select id="selectH30Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H30.FUND_ID AS fundId,
+		    H30.BOND_CODE AS bondCode,
+		    H30.BOND_NAME AS bongName,
+		    H30.MARKET AS market,
+		    H30.TYPE AS type,
+		    H30.SUB_TYPE AS subType,
+		    H30.PAR_VALUE_LAST AS parValueLast,
+		    H30.COUPON_RATE AS couponRate,
+		    H30.INTEREST_MODE AS interestMode,
+		    H30.PAYMENT_METHOD AS paymentMethod,
+		    H30.PAYMENT_TIMES_YEAR AS paymentTimesYear,
+		    H30.INTEREST_PAY_METHOD AS interestPayMethod,
+			H30.INTEREST_RULE_TYPE AS interestRuleType,
+		    DATE_FORMAT( H30.DATE_FROM, '%Y-%m-%dT00:00:00.000' ) AS dateFrom,
+		    DATE_FORMAT( H30.DATE_TO, '%Y-%m-%dT00:00:00.000' ) AS dateTo,
+		    DATE_FORMAT( H30.DATE_PAY, '%Y-%m-%dT00:00:00.000' ) AS datePay,
+		    DATE_FORMAT( H30.VAL_DATE, '%Y-%m-%dT00:00:00.000' ) AS valDate,
+		    DATE_FORMAT( H30.PAY_DATE_LAST, '%Y-%m-%dT00:00:00.000' ) AS payDateLast,
+		    DATE_FORMAT( H30.PAY_DATE_NEXT, '%Y-%m-%dT00:00:00.000' ) AS payDateNext,
+		    H30.TAX_RATE AS taxRate,
+		    H30.EARLY_EXERCISE AS earlyExercise,
+		    DATE_FORMAT( H30.EXERCISE_DATE, '%Y-%m-%dT00:00:00.000' ) AS exerciseDate,
+		    DATE_FORMAT( H30.EARLY_DATE, '%Y-%m-%dT00:00:00.000' ) AS earlyDate,
+		    H30.INT_RISK_PERIOD AS intRiskPeriod,
+		    H30.INTEREST_RATE_OPTION AS interestRateOption,
+		    H30.SELL_BACK AS sellBack,
+		    H30.REDEMPTION AS redemption,
+			H30.UNIT_INTEREST_AT as unitInterestAt
+		FROM
+		    wp_h30 H30 
+		WHERE
+		    1 = 1 
+		AND H30.STATUS = 'Y'
+        AND H30.PERIOD = #{period}
+        AND H30.FIRM_CODE = #{firmCode}
+    </select>
+    
+    <select id="selectH31Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H31.FUND_ID AS fundId,
+		    H31.BOND_CODE AS bondCode,
+		    H31.BOND_NAME AS bongName,
+		    H31.MARKET AS market,
+		    H31.TYPE AS type,
+		    H31.SUB_TYPE AS subType,
+		    H31.PAR_VALUE_LAST AS parValueLast,
+		    H31.COUPON_RATE AS couponRate,
+		    H31.INTEREST_MODE AS interestMode,
+		    H31.PAYMENT_METHOD AS paymentMethod,
+		    H31.PAYMENT_TIMES_YEAR AS paymentTimesYear,
+		    H31.INTEREST_PAY_METHOD AS interestPayMethod,
+			H31.INTEREST_RULE_TYPE AS interestRuleType,
+		    DATE_FORMAT( H31.DATE_FROM, '%Y-%m-%dT00:00:00.000' ) AS dateFrom,
+		    DATE_FORMAT( H31.DATE_TO, '%Y-%m-%dT00:00:00.000' ) AS dateTo,
+		    DATE_FORMAT( H31.DATE_PAY, '%Y-%m-%dT00:00:00.000' ) AS datePay,
+		    DATE_FORMAT( H31.VAL_DATE, '%Y-%m-%dT00:00:00.000' ) AS valDate,
+		    DATE_FORMAT( H31.PAY_DATE_LAST, '%Y-%m-%dT00:00:00.000' ) AS payDateLast,
+		    DATE_FORMAT( H31.PAY_DATE_NEXT, '%Y-%m-%dT00:00:00.000' ) AS payDateNext,
+		    H31.TAX_RATE AS taxRate,
+		    H31.EARLY_EXERCISE AS earlyExercise,
+		    DATE_FORMAT( H31.EXERCISE_DATE, '%Y-%m-%dT00:00:00.000' ) AS exerciseDate,
+		    DATE_FORMAT( H31.EARLY_DATE, '%Y-%m-%dT00:00:00.000' ) AS earlyDate,
+		    H31.INT_RISK_PERIOD AS intRiskPeriod,
+		    H31.INTEREST_RATE_OPTION AS interestRateOption,
+		    H31.SELL_BACK AS sellBack,
+		    H31.REDEMPTION AS redemption,
+			H31.UNIT_INTEREST_AT as unitInterestAt
+		FROM
+		    wp_h31 H31 
+		WHERE
+		    1 = 1 
+		AND H31.STATUS = 'Y'
+        AND H31.PERIOD = #{period}
+        AND H31.FIRM_CODE = #{firmCode}
+    </select>
+    
+    <select id="selectH32Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H32.FUND_ID AS fundId,
+		    H32.BOND_CODE AS bondCode,
+		    H32.BOND_NAME AS bongName,
+		    H32.MARKET AS market,
+		    H32.TYPE AS type,
+		    H32.SUB_TYPE AS subType,
+		    H32.PAR_VALUE_LAST AS parValueLast,
+		    H32.COUPON_RATE AS couponRate,
+		    H32.INTEREST_MODE AS interestMode,
+		    H32.PAYMENT_METHOD AS paymentMethod,
+		    H32.PAYMENT_TIMES_YEAR AS paymentTimesYear,
+		    H32.INTEREST_PAY_METHOD AS interestPayMethod,
+			H32.INTEREST_RULE_TYPE AS interestRuleType,
+		    DATE_FORMAT( H32.DATE_FROM, '%Y-%m-%dT00:00:00.000' ) AS dateFrom,
+		    DATE_FORMAT( H32.DATE_TO, '%Y-%m-%dT00:00:00.000' ) AS dateTo,
+		    DATE_FORMAT( H32.DATE_PAY, '%Y-%m-%dT00:00:00.000' ) AS datePay,
+		    DATE_FORMAT( H32.VAL_DATE, '%Y-%m-%dT00:00:00.000' ) AS valDate,
+		    DATE_FORMAT( H32.PAY_DATE_LAST, '%Y-%m-%dT00:00:00.000' ) AS payDateLast,
+		    DATE_FORMAT( H32.PAY_DATE_NEXT, '%Y-%m-%dT00:00:00.000' ) AS payDateNext,
+		    H32.TAX_RATE AS taxRate,
+		    H32.EARLY_EXERCISE AS earlyExercise,
+		    DATE_FORMAT( H32.EXERCISE_DATE, '%Y-%m-%dT00:00:00.000' ) AS exerciseDate,
+		    DATE_FORMAT( H32.EARLY_DATE, '%Y-%m-%dT00:00:00.000' ) AS earlyDate,
+		    H32.INT_RISK_PERIOD AS intRiskPeriod,
+		    H32.INTEREST_RATE_OPTION AS interestRateOption,
+		    H32.SELL_BACK AS sellBack,
+		    H32.REDEMPTION AS redemption,
+			H32.UNIT_INTEREST_AT as unitInterestAt
+		FROM
+		    wp_H32 H32 
+		WHERE
+		    1 = 1 
+		AND H32.STATUS = 'Y'
+        AND H32.PERIOD = #{period}
+        AND H32.FIRM_CODE = #{firmCode}
+    </select>
+    
+    <select id="selectH40Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H40.FUND_ID AS fundId,
+		    H40.FUND_CODE AS fundCode,
+		    H40.FUND_NAME AS fundName,
+		    H40.MARKET AS market,
+		    H40.RELEATED AS releated,
+		    H40.SUB_TYPE AS subType,
+		    H40.TRX_STATUS AS trxStatus,
+		    H40.VAL_TYPE_CODE AS valTypeCode,
+		    H40.VAL_PRICE AS valPrice,
+		    H40.THREE_LEVEL AS threeLevel 
+		FROM
+		    wp_h40 H40 
+		WHERE
+		    1 = 1 
+		AND H40.STATUS = 'Y'
+        AND H40.PERIOD = #{period}
+        AND H40.FIRM_CODE = #{firmCode}
+        ORDER BY H40.SORT
+    </select>
+    
+    <select id="selectH50Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H50.FUND_ID AS fundId,
+		    H50.FUTURE_CODE AS futureCode,
+		    H50.FUTURE_NAME AS futureName,
+		    H50.MARKET AS market,
+		    H50.SUB_TYPE AS subType,
+		    H50.MULTIPLIER AS multiplier,
+		    H50.UNIT_SETTL_PRICE AS unitSettlPrice,
+		    H50.THREE_LEVEL AS threeLevel 
+		FROM
+		    wp_h50 H50 
+		WHERE
+            1 = 1 
+        AND H50.STATUS = 'Y'
+        AND H50.PERIOD = #{period}
+        AND H50.FIRM_CODE = #{firmCode}
+        ORDER BY H50.SORT
+    </select>
+    
+</mapper>

@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NExportMapper">
+    <select id="selectNData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            N.EY_ACCOUNT_NUM as accountNum,
+            N.AMOUNT_CURRENT as amountCurrent,
+            N.AMOUNT_ADJ_CR as crAmountAdj,
+            N.AMOUNT_ADJ_DR as drAmountAdj,
+            N.AMOUNT_AUDIT_LAST as amountAuditLast
+        FROM
+            wp_n N
+        where 
+            1 = 1
+        and N.STATUS = 'Y'
+        and N.FUND_ID = #{fundId}
+        and N.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN300Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+		SELECT
+            N300.ATTR1 as detailName,
+	        N300.BEGIN_BALANCE_CNY as beginBalance,
+	        N300.DR_AMOUNT_CNY as drAmount,
+	        N300.CR_AMOUNT_CNY as crAmount
+		FROM
+	        wp_n300 N300
+		where 
+	        1 = 1
+		and N300.STATUS = 'Y'
+		and N300.FUND_ID = #{fundId}
+		and N300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN400Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            N400.EY_ACCOUNT_NUM as accountNum,
+            N400.BEGIN_BALANCE_CNY as beginBalance,
+            N400.DR_AMOUNT_CNY as drAmount,
+            N400.CR_AMOUNT_CNY as crAmount
+        FROM
+            wp_n400 N400
+        where 
+            1 = 1
+        and N400.STATUS = 'Y'
+        and N400.FUND_ID = #{fundId}
+        and N400.PERIOD = #{period}
+    </select>
+    
+    <!-- 20221024新增三费率 -->
+    <select id="selectN400RateTitleData" parameterType="java.util.Map" resultType="java.lang.String">
+        select 
+            W.LEVEL as SaleFeeTitle
+        FROM 
+            ds_tmpl_n400 W 
+        where 
+            1 = 1
+        AND W.FUND_ID = #{fundId}
+        AND W.PERIOD =  #{period}
+        AND W.TYPE = '销售服务费'
+        GROUP BY W.FUND_CODE,W.LEVEL,W.TYPE
+        ORDER BY W.LEVEL
+    </select>
+    
+    <select id="selectN400RateData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT 
+        W.TRX_DATE as TrxDate,
+        W.NET_VALUE NetValue,
+        MAX(CASE WHEN  IFNULL(W.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 0,1),'') 
+            then W.LEVEL_NET_VALUE else 0 end) as NetValue1,
+        MAX(CASE WHEN  IFNULL(W.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 1,1),'') 
+            then W.LEVEL_NET_VALUE else 0 end) as NetValue2,
+        MAX(CASE WHEN  IFNULL(W.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 2,1),'') 
+            then W.LEVEL_NET_VALUE else 0 end) as NetValue3,
+        MAX(CASE WHEN  IFNULL(W.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 3,1),'') 
+            then W.LEVEL_NET_VALUE else 0 end) as NetValue4,
+        MAX(CASE WHEN  IFNULL(W.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 4,1),'') 
+            then W.LEVEL_NET_VALUE else 0 end) as NetValue5,
+        SUM(CASE WHEN W.TYPE='销售服务费'and IFNULL(w.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 0,1),'') 
+            then IFNULL(rate,0) else 0 end) as SalesFeeRate1,
+        SUM(CASE WHEN W.TYPE='销售服务费'and IFNULL(w.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 1,1),'') 
+            then IFNULL(rate,0) else 0 end) as SalesFeeRate2,
+        SUM(CASE WHEN W.TYPE='销售服务费'and IFNULL(w.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 2,1),'') 
+            then IFNULL(rate,0) else 0 end) as SalesFeeRate3,
+        SUM(CASE WHEN W.TYPE='销售服务费'and IFNULL(w.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 3,1),'') 
+            then IFNULL(rate,0) else 0 end) as SalesFeeRate4,
+        SUM(CASE WHEN W.TYPE='销售服务费'and IFNULL(w.LEVEL,'') = IFNULL((select DT400.LEVEL as SaleFeeTiltle from ds_tmpl_n400 DT400 
+                    where DT400.FUND_ID = #{fundId} AND DT400.PERIOD = #{period}  AND DT400.TYPE = '销售服务费'
+                    GROUP BY DT400.FUND_CODE,DT400.LEVEL,DT400.TYPE ORDER BY DT400.LEVEL limit 0,1),'') 
+            then IFNULL(rate,0) else 0 end) as SalesFeeRate5,
+        SUM(CASE WHEN W.TYPE='管理费' then IFNULL(rate,0) else 0 end) as ManagementFeeRate,
+        SUM(CASE WHEN W.TYPE='托管费' then IFNULL(rate,0) else 0 end) as CustodyFeeRate
+         FROM wp_n400_rate W
+        where W.FUND_ID = #{fundId} 
+        AND W.PERIOD = #{period}
+        group by W.FUND_ID,W.PERIOD,w.TRX_DATE
+        ORDER BY W.TRX_DATE
+    </select>
+    <!-- 20221024新增三费率 -->
+
+    <select id="selectN600Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N600.ATTR1 as `name`,
+		    N600.BEGIN_BALANCE_CNY as beginBalance,
+		    N600.END_BALANCE_CNY as endBalance
+		FROM
+		    wp_n600 N600
+        where 
+            1 = 1
+        and N600.STATUS = 'Y'
+        and N600.FUND_ID = #{fundId}
+        and N600.PERIOD = #{period}
+    </select>
+    
+    <select id="selectN800MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    CONCAT(N800.ATTR1,N800.ATTR4,N800.ATTR3) as  detailName,
+		    N800.BEGIN_BALANCE_CNY as beginBalance,
+		    N800.DR_AMOUNT_CNY as drAmount,
+		    N800.CR_AMOUNT_CNY as crAmount
+		FROM
+		    wp_n800 N800
+        where 
+            1 = 1
+        and N800.STATUS = 'Y'
+        and N800.FUND_ID = #{fundId}
+        and N800.PERIOD = #{period}
+    </select>
+    
+    <select id="selectMFFlag" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT DISTINCT
+		    IFNULL(sfi.MF, 'N') as MFFlag
+		FROM
+		    sys_fund_info sfi 
+		WHERE
+		    sfi.FUND_ID = #{fundId}
+		AND sfi.ACTIVE = 'Y'
+    </select>
+    
+    <select id="selectN800NoteLevels" parameterType="java.util.Map" resultType="java.lang.String"> 
+        SELECT DISTINCT
+		    IFNULL(N800N.`LEVEL`,'发生额') as levels
+		FROM
+		    wp_n800_note N800N
+        where 
+            1 = 1
+        and N800N.STATUS = 'Y'
+        and N800N.FUND_ID = #{fundId}
+        and N800N.PERIOD = #{period}
+        ORDER BY N800N.LEVEL
+    </select>
+    
+    <select id="selectN800NoteData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    IFNULL(N800N.`LEVEL`,'发生额') as `level`,
+		    IFNULL(N800N.ITEM1,0) as item1,
+		    IFNULL(N800N.ITEM2,0) as item2,
+		    IFNULL(N800N.ITEM3,0) as item3,
+		    IFNULL(N800N.ITEM4,0) as item4,
+		    IFNULL(N800N.ITEM5,0) as item5,
+		    IFNULL(N800N.ITEM6,0) as item6
+		FROM
+		    wp_n800_note N800N
+        where 
+            1 = 1
+        and N800N.STATUS = 'Y'
+        and N800N.FUND_ID = #{fundId}
+        and N800N.PERIOD = #{period}
+        ORDER BY N800N.LEVEL
+    </select>
+    
+    <select id="selectN800DisDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            N800D.`LEVEL` as `level`,
+            IF(N800D.ITEM1 = 0, null, N800D.ITEM1) as item1,
+            IF(N800D.ITEM2 = 0, null, N800D.ITEM2) as item2,
+            IF(N800D.ITEM3 = 0, null, N800D.ITEM3) as item3,
+            IF(N800D.ITEM4 = 0, null, N800D.ITEM4) as item4
+        FROM
+            wp_n800_dis N800D
+        where 
+            1 = 1
+        and N800D.STATUS = 'Y'
+        and N800D.FUND_ID = #{fundId}
+        and N800D.PERIOD = #{period}
+        ORDER BY N800D.LEVEL
+    </select>
+    
+    <select id="selectN10000Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+		    N10000.ITEM as item,
+		    IF(N10000.BEGIN_BALANCE = 0, null, N10000.BEGIN_BALANCE) as beginBalance,
+		    IF(N10000.END_BALANCE = 0, null, N10000.END_BALANCE) as endBalance
+		FROM
+		    wp_n10000 AS N10000
+        where 
+            1 = 1
+        and N10000.STATUS = 'Y'
+        and N10000.FUND_ID = #{fundId}
+        and N10000.PERIOD = #{period}
+        ORDER BY N10000.SORT
+    </select>
+    
+    <select id="selectN10000SumDataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            IF(SUM(N10000.BEGIN_BALANCE) = 0, null, SUM(N10000.BEGIN_BALANCE)) as beginBalance,
+            IF(SUM(N10000.END_BALANCE) = 0, null, SUM(N10000.END_BALANCE)) as endBalance
+        FROM
+            wp_n10000 AS N10000
+        where 
+            1 = 1
+        and N10000.STATUS = 'Y'
+        and N10000.FUND_ID = #{fundId}
+        and N10000.PERIOD = #{period}
+        LIMIT 1
+    </select>
+    
+    <select id="checkIfN10000HasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(IFNULL(N10000.END_BALANCE, 0)) + SUM(IFNULL(N10000.BEGIN_BALANCE, 0))
+        FROM
+            wp_n10000 AS N10000
+        where 
+            1 = 1
+        and N10000.STATUS = 'Y'
+        and N10000.FUND_ID = #{fundId}
+        and N10000.PERIOD = #{period}
+    </select>
+    
+</mapper>

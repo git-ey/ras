@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FundRelatedPartyMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_FUND_RELATED_PARTY
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		FUND_ID,
+		SORT,
+		PARTY_FULL_NAME,	
+		PARTY_SHORT_NAME_1,	
+		PARTY_SHORT_NAME_2,	
+		PARTY_SHORT_NAME_3,	
+		RELATIONSHIP,	
+		STOCK_CODE,	
+		BOND_CODE,	
+		FUND_CODE,
+		RELATED_FLAG,
+		ACTIVE,	
+		STATUS,	
+		PARTY_ID,	
+		FUNDRELATEDPARTY_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{FUND_ID},	
+		#{SORT},
+		#{PARTY_FULL_NAME},	
+		#{PARTY_SHORT_NAME_1},	
+		#{PARTY_SHORT_NAME_2},	
+		#{PARTY_SHORT_NAME_3},	
+		#{RELATIONSHIP},	
+		#{STOCK_CODE},	
+		#{BOND_CODE},	
+		#{FUND_CODE},
+		#{RELATED_FLAG},
+		#{ACTIVE},	
+		#{STATUS},	
+		#{PARTY_ID},	
+		#{FUNDRELATEDPARTY_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			FUNDRELATEDPARTY_ID = #{FUNDRELATEDPARTY_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			FUND_ID = #{FUND_ID},
+			SORT = #{SORT},
+			PARTY_FULL_NAME = #{PARTY_FULL_NAME},
+			PARTY_SHORT_NAME_1 = #{PARTY_SHORT_NAME_1},
+			PARTY_SHORT_NAME_2 = #{PARTY_SHORT_NAME_2},
+			PARTY_SHORT_NAME_3 = #{PARTY_SHORT_NAME_3},
+			RELATIONSHIP = #{RELATIONSHIP},
+			STOCK_CODE = #{STOCK_CODE},
+			BOND_CODE = #{BOND_CODE},
+			FUND_CODE = #{FUND_CODE},
+			RELATED_FLAG = #{RELATED_FLAG},
+			ACTIVE = #{ACTIVE},
+			STATUS = #{STATUS},
+			PARTY_ID = #{PARTY_ID},
+		FUNDRELATEDPARTY_ID = FUNDRELATEDPARTY_ID
+		where 
+		FUNDRELATEDPARTY_ID = #{FUNDRELATEDPARTY_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			FUNDRELATEDPARTY_ID = #{FUNDRELATEDPARTY_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					PARTY_FULL_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				     or 
+					STOCK_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			FUNDRELATEDPARTY_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.FUND_ID},
+		#{pd.SORT},
+		#{pd.PARTY_FULL_NAME},	
+		#{pd.PARTY_SHORT_NAME_1},	
+		#{pd.PARTY_SHORT_NAME_2},	
+		#{pd.PARTY_SHORT_NAME_3},	
+		#{pd.RELATIONSHIP},	
+		#{pd.STOCK_CODE},	
+		#{pd.BOND_CODE},	
+		#{pd.FUND_CODE},
+		#{pd.RELATED_FLAG},
+		#{pd.ACTIVE},	
+		#{pd.STATUS},	
+		#{pd.PARTY_ID},	
+		#{pd.FUNDRELATEDPARTY_ID}
+         )
+         </foreach >
+	</insert>
+	
+	<!-- 关联方数据 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-26 -->
+    <select id="selectRelatedPartyDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IR.RP_NAME AS partyFullName,
+            IR.RELATIONSHIP AS relationship,
+            IR.RP_NAME_ABBR AS rpNameAbbr,
+            IR.TRX_STATUS AS trxSatus,
+            IR.SORT AS sort
+        FROM
+            wp_i_related IR 
+        WHERE
+            1 = 1 
+            AND IR.FUND_ID = #{fundId}
+            AND IR.PERIOD = #{period}
+            AND IR.STATUS = 'Y'
+        ORDER BY IR.SORT
+    </select>
+	
+</mapper>

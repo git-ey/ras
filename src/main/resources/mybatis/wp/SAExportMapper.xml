@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SAExportMapper">
+
+    <select id="selectSAFundInfos" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    TEMP.FUND_ID AS fundId,
+		    sfi.full_name AS fundFullName,
+		    sfs.SIGNOFF_1 AS FIC
+		FROM
+		    (
+		        SELECT
+		            SAD.FUND_ID
+		        FROM
+		            wp_sa_detail SAD
+		        WHERE
+		            1 = 1
+		        AND SAD. STATUS = 'Y'
+		        AND SAD.PERIOD = #{period}
+		        AND SAD.FIRM_CODE = #{firmCode}
+		        GROUP BY
+		            SAD.FUND_ID
+		    ) TEMP
+		INNER JOIN sys_fund_info sfi ON sfi.FUND_ID = TEMP.FUND_ID
+		LEFT JOIN sys_fund_signoff sfs on sfs.FUND_ID = sfi.FUND_ID AND sfs.period = #{period}
+		ORDER BY
+		    TEMP.FUND_ID
+    </select>
+
+	<select id="selectLRASummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    LRA.LRAS,
+			LRA.JSBFJ,
+			LRA.CCBZJ,
+			LRA.YSQSK,
+			LRA.YSGL,
+			LRA.YSSGK,
+			LRA.QTZC,
+			LRA.YFQSK,
+			LRA.YFSHK,
+			LRA.YFLR,
+			LRA.QTFZ,
+			LRA.WFPLR,
+			LRA.GLF,
+			LRA.LXSR,
+			LRA.HDSY,
+			LRA.QTSR,
+			LRA.QTFY
+		FROM
+		    SYS_SA_LRA_SUMMARY LRA
+    </select>
+
+	<select id="selectSASummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 
+		    SUM(SAD.AMOUNT) as amount 
+		FROM 
+		    wp_sa_detail SAD
+		WHERE
+		    1 = 1	 
+		AND SAD.FIRM_CODE = #{firmCode} 
+		AND SAD.PERIOD = #{period}
+		AND SAD.ITEM = #{item}
+    </select>
+    
+    <select id="selectSADetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    SAD.SEQ as seq,
+		    SAD.ITEM as item,
+		    SAD.AMOUNT as amount,
+		    SAD.RISK as risk,
+		    SAD.SCHANGE as schange,
+		    SAD.CONCERN as concern,
+		    SAD.PROPERTY as property,
+		    SAD.UTRANSACTION as utransaction
+		FROM
+		    wp_sa_detail SAD
+		WHERE
+		    1 = 1
+		AND SAD. STATUS = 'Y'
+		AND SAD.PERIOD = #{period}
+		AND SAD.FIRM_CODE = #{firmCode}
+		AND SAD.FUND_ID = #{fundId}
+		AND SAD.AFS_CODE != 'TE'
+		ORDER BY SAD.SEQ
+    </select>
+    
+</mapper>

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ImportConfigMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_IMPORTCONFIG
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		IMPORT_TEMP_CODE,
+		IMPORT_TEMP_NAME,
+		TEMP_TYPE,
+		SHEET_NO,
+		START_ROW_NO,
+		TABLE_NAME,
+		IMPORT_FILE_TYPE,
+		FILENAME_FROMAT,
+		IGNORE_RULE,
+		NAME_SECTION,
+		ENABLED_FLAG,
+		CALLABLE,
+		IMPORTCONFIG_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{IMPORT_TEMP_CODE},
+		#{IMPORT_TEMP_NAME},
+		#{TEMP_TYPE},
+		#{SHEET_NO},
+		#{START_ROW_NO},
+		#{TABLE_NAME},
+		#{IMPORT_FILE_TYPE},
+		#{FILENAME_FROMAT},
+		#{IGNORE_RULE},
+		#{NAME_SECTION},
+		#{ENABLED_FLAG},
+		#{CALLABLE},
+		#{IMPORTCONFIG_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			IMPORTCONFIG_ID = #{IMPORTCONFIG_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			IMPORT_TEMP_CODE = #{IMPORT_TEMP_CODE},
+			IMPORT_TEMP_NAME = #{IMPORT_TEMP_NAME},
+			TEMP_TYPE = #{TEMP_TYPE},
+			SHEET_NO = #{SHEET_NO},
+			START_ROW_NO = #{START_ROW_NO},
+			TABLE_NAME = #{TABLE_NAME},
+			IMPORT_FILE_TYPE = #{IMPORT_FILE_TYPE},
+			FILENAME_FROMAT = #{FILENAME_FROMAT},
+			IGNORE_RULE = #{IGNORE_RULE},
+			NAME_SECTION = #{NAME_SECTION},
+			ENABLED_FLAG = #{ENABLED_FLAG},
+			CALLABLE = #{CALLABLE}
+		where 
+		IMPORTCONFIG_ID = #{IMPORTCONFIG_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			IMPORTCONFIG_ID = #{IMPORTCONFIG_ID}
+	</select>
+	
+	<!-- 通过CODE获取数据 -->
+	<select id="findByCode" parameterType="java.lang.String" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from
+		<include refid="tableName"></include>
+		where
+			IMPORT_TEMP_CODE = #{importTempCode,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 通过导入类型获取数据 -->
+	<select id="findByImportTempCode" parameterType="pd" resultType="java.lang.String">
+		select
+		   IMPORT_TEMP_CODE
+		from
+		<include refid="tableName"></include>
+		where ENABLED_FLAG = 'Y'
+		  and TABLE_NAME != ''
+          and FILENAME_FROMAT != ''
+          and TEMP_TYPE != 'JM'
+        <if test="TEMP_TYPE != null and TEMP_TYPE != ''">
+		  and TEMP_TYPE = #{TEMP_TYPE,jdbcType=VARCHAR}
+		</if>
+		<if test="IMPORT_TEMP_CODE != null and IMPORT_TEMP_CODE != ''">
+		  and IMPORT_TEMP_CODE = #{IMPORT_TEMP_CODE,jdbcType=VARCHAR}
+		</if>
+		order by IMPORT_TEMP_CODE ASC
+	</select>	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					IMPORT_TEMP_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or
+					IMPORT_TEMP_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				     or
+				    TABLE_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+		<if test="pd.TEMP_TYPE != null and pd.TEMP_TYPE != ''">
+		    and TEMP_TYPE != #{pd.TEMP_TYPE}
+		</if>
+		<if test="pd.TEMP_TYPE_CODE != null and pd.TEMP_TYPE_CODE != ''">
+		    and TEMP_TYPE = #{pd.TEMP_TYPE_CODE}
+		</if>
+		order by IMPORT_TEMP_CODE ASC
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			IMPORTCONFIG_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+</mapper>
