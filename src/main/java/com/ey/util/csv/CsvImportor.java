@@ -8,6 +8,7 @@ import java.util.concurrent.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.ey.util.StringUtil;
+import com.opencsv.exceptions.CsvValidationException;
 import org.apache.commons.lang3.StringUtils;
 import com.ey.entity.system.ImportConfig;
 import com.ey.entity.system.ImportConfigCell;
@@ -201,129 +202,75 @@ public class CsvImportor extends FileImportor {
 	}
 
 	//juniversalchardet库来检测文件编码
-	public String detectEncoding(String filePath) throws IOException {
-		FileInputStream fis = new FileInputStream(filePath);
-		UniversalDetector detector = new UniversalDetector(null);
-		byte[] buf = new byte[4096];
-		int numBytesRead;
-		while ((numBytesRead = fis.read(buf)) > 0) {
-			detector.handleData(buf, 0, numBytesRead);
-			if (detector.isDone()) {
-				break;
-			}
-		}
-		detector.dataEnd();
-		String encoding = detector.getDetectedCharset();
-		fis.close();
-		detector.reset();
-		return encoding;
-	}
-
-
-
-
-	public List<Map<String, Object>> readCSVFile(File csvFile, ImportConfig configuration, StringBuilder sb) {
-		List<Map<String, Object>> results = new ArrayList<>();
-		int startRow = configuration.getStartRowNo();
-		int totalLines = 0;
-
-		try {
-			totalLines = countLines(csvFile); // 获取总行数
-		} catch (IOException e) {
-			sb.append("处理CSV文件时发生错误: ").append(e.getMessage());
-			e.printStackTrace();
-			return results; // 出现异常时返回空结果
-		}
-		if (totalLines == 0) {
-			return results; // 如果总行数为0，直接返回空结果
-		}
-		// 根据总行数决定是否使用多线程// 总行数小于等于10，使用单线程处理
-		if (totalLines <= 10) {
-			try {
-				results = processSegment(csvFile, startRow, totalLines, configuration, sb);
-			} catch (Exception e) {
-				sb.append("处理CSV文件时发生错误: ").append(StringUtil.getStringByLength(e.getMessage(), 480));
-				e.printStackTrace();
-			}
-		} else {
-			// 总行数大于10，使用多线程处理
-			int numThreads = 3; // 设置线程数量
-			List<CompletableFuture<List<Map<String, Object>>>> futures = new ArrayList<>();
-			// 计算每段的起始行和结束行
-			int linesPerThread = (totalLines - startRow + numThreads - 1) / numThreads;
-			for (int i = 0; i < numThreads; i++) {
-				int startLine = startRow + i * linesPerThread;
-				int endLine = Math.min(startLine + linesPerThread - 1, totalLines);
-				// 提交任务到线程池
-				CompletableFuture<List<Map<String, Object>>> future = CompletableFuture.supplyAsync(() -> {
-					try {
-						return processSegment(csvFile, startLine, endLine, configuration, sb);
-					} catch (Exception e) {
-						throw new CompletionException(e); // 封装异常
-					}
-				}, executor);
-
-				futures.add(future);
-			}
-			// 收集所有线程的结果
-			for (CompletableFuture<List<Map<String, Object>>> future : futures) {
-				try {
-					results.addAll(future.get());
-				} catch (CompletionException e) {
-					sb.append("处理CSV文件时发生CompletionException错误: ").append(StringUtil.getStringByLength(e.getMessage(), 480));
-				} catch (InterruptedException | ExecutionException e) {
-					sb.append("处理CSV文件时发生InterruptedException | ExecutionException错误: ").append(StringUtil.getStringByLength(e.getMessage(), 480));
+	public String detectEncoding(String filePath) {
+		UniversalDetector detector;
+		String encoding;
+		try (FileInputStream fis = new FileInputStream(filePath)) {
+			detector = new UniversalDetector(null);
+			byte[] buf = new byte[4096];
+			int numBytesRead;
+			while ((numBytesRead = fis.read(buf)) > 0) {
+				detector.handleData(buf, 0, numBytesRead);
+				if (detector.isDone()) {
+					break;
 				}
 			}
+			detector.dataEnd();
+			encoding = detector.getDetectedCharset();
+			fis.close();
+			detector.reset();
+			return encoding;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return "UTF-8";
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "UTF-8";
 		}
-		executor.shutdown(); // 关闭线程池
-		return results;
 	}
 
-
-	private List<Map<String, Object>> processSegment(File csvFile, int startLine, int endLine, ImportConfig configuration, StringBuilder sb) throws IOException {
-		List<Map<String, Object>> segmentResults = new ArrayList<>();
+	public List<Map<String, Object>> readCSVFile(File csvFile, ImportConfig configuration, StringBuilder sb) {
 		List<ImportConfigCell> importCells = configuration.getImportCells();
+		List<Map<String, Object>> results = new ArrayList<>();
+
+		// 引号，处理MySQL插入数据返回的Map用到
 		String quotes = StringUtils.isNotBlank(configuration.getTableName()) ? "'" : "";
 
-		try (BufferedReader br = Files.newBufferedReader(csvFile.toPath(), Charset.forName(detectEncoding(csvFile.getPath())));
-			 CSVReader csvReader = new CSVReaderBuilder(br)
-					 .withCSVParser(new CustomCSVParser(',', '"', '\\', true, true))
-					 .build()) {
+		// 创建自定义的ICSVParser
+		CustomCSVParser customParser = new CustomCSVParser(',', '"', '\\', true, true);
+
+		try (BufferedReader br = Files.newBufferedReader(csvFile.toPath(), Charset.forName(detectEncoding(csvFile.getPath())))) {
+			CSVReader csvReader = new CSVReaderBuilder(br)
+					.withCSVParser(customParser)
+					.build();
+
 			String[] line;
-			int currentLine = 0;
+			int startRow = configuration.getStartRowNo();
+			int idx = 0;
 
 			while ((line = csvReader.readNext()) != null) {
-				if (currentLine >= startLine && currentLine < endLine) {
+				if (idx >= startRow) {
 					Map<String, Object> map = new LinkedHashMap<>();
 					map.put(MapResult.IS_LINE_LEGAL_KEY, true);
-
+					// 行过滤规则
 					if (configuration.getIgnoreRule() != null && isIgnoreRow(configuration.getIgnoreRule(), line)) {
 						continue;
 					}
 					for (ImportConfigCell importCell : importCells) {
-						setValue2(map, importCell, line, line.length, sb, currentLine, startLine, quotes);
+						setValue2(map, importCell, line, line.length, sb, idx, startRow, quotes);
 					}
-					segmentResults.add(map);
+					results.add(map);
 				}
-				currentLine++;
+				idx++;
 			}
 		} catch (IOException ex) {
-			throw new IOException("读取CSV文件时发生错误: " + StringUtil.getStringByLength(ex.getMessage(), 480), ex);
+			sb.append("读取CSV文件时发生错误: ").append(StringUtil.getStringByLength(ex.getMessage(), 480));
+		} catch (CsvValidationException ex) {
+			sb.append("CSV验证错误: ").append(StringUtil.getStringByLength(ex.getMessage(), 480));
 		} catch (Exception ex) {
-			throw new RuntimeException("文件异常: " + StringUtil.getStringByLength(ex.getMessage(), 480), ex);
+			sb.append("文件异常: ").append(StringUtil.getStringByLength(ex.getMessage(), 480));
 		}
-		return segmentResults;
-	}
-
-	private int countLines(File file) throws IOException {
-		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-			int lines = 0;
-			while (reader.readLine() != null) {
-				lines++;
-			}
-			return lines;
-		}
+		return results;
 	}
 
 

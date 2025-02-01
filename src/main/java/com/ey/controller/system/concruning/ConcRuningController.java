@@ -56,7 +56,7 @@ public class ConcRuningController extends BaseController {
 
 	/**
 	 * 保存
-	 * 
+	 *
 	 * @param
 	 * @throws Exception
 	 */
@@ -101,7 +101,7 @@ public class ConcRuningController extends BaseController {
 		// 记录日志
 		pd.put("CONCRUNING_ID", concRuningId); // 主键
 		pd.put("START_DATETIME", Tools.date2Str(new Date())); // 开始时间
-		pd.put("RESULT", "W"); // 运行状态
+		pd.put("RESULT", "P"); // 运行状态
 		pd.put("OPERATOR", Jurisdiction.getUsername()); // 运行人
 		concruningService.save(pd);
 		// 执行并发程序
@@ -117,7 +117,7 @@ public class ConcRuningController extends BaseController {
 
 	/**
 	 * 列表
-	 * 
+	 *
 	 * @param page
 	 * @throws Exception
 	 */
@@ -144,7 +144,7 @@ public class ConcRuningController extends BaseController {
 
 	/**
 	 * 去新增页面
-	 * 
+	 *
 	 * @param
 	 * @throws Exception
 	 */
@@ -180,7 +180,7 @@ public class ConcRuningController extends BaseController {
 
 	/**
 	 * 导出到excel
-	 * 
+	 *
 	 * @param
 	 * @throws Exception
 	 */
