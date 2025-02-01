@@ -29,7 +29,7 @@
 				<div class="page-content">
 					<div class="row">
 						<div class="col-xs-12">
-							
+
 						<!-- 检索  -->
 						<form action="workpaper/list.do" method="post" name="Form" id="Form">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -49,6 +49,7 @@
 								 	<select class="chosen-select form-control" name="RESULT" id="RESULT" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
 									<option value=""></option>
 									<option value="R" <c:if test="${pd.RESULT == 'R'}">selected</c:if>>运行中</option>
+									<option value="P" <c:if test="${pd.RESULT == 'P'}">selected</c:if>>等待中</option>
 									<option value="S" <c:if test="${pd.RESULT == 'S'}">selected</c:if>>成功</option>
 									<option value="E" <c:if test="${pd.RESULT == 'E'}">selected</c:if>>失败</option>
 									<option value="W" <c:if test="${pd.RESULT == 'W'}">selected</c:if>>警告</option>
@@ -66,8 +67,8 @@
 							</tr>
 						</table>
 						<!-- 检索  -->
-					
-						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
+
+						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">
 							<thead>
 								<tr>
 									<th class="center" style="width:50px;">序号</th>
@@ -80,9 +81,9 @@
 									<th class="center">操作</th>
 								</tr>
 							</thead>
-													
+
 							<tbody>
-							<!-- 开始循环 -->	
+							<!-- 开始循环 -->
 							<c:choose>
 								<c:when test="${not empty varList}">
 									<c:if test="${QX.cha == 1 }">
@@ -96,7 +97,7 @@
 											<td class='center'>${var.RESULT}</td>
 											<td class='center'>${var.MESSAGE}</td>
 										</tr>
-									
+
 									</c:forEach>
 									</c:if>
 									<c:if test="${QX.cha == 0 }">
@@ -121,7 +122,7 @@
 						</table>
 						</div>
 						</form>
-					
+
 						</div>
 						<!-- /.col -->
 					</div>
@@ -161,16 +162,16 @@
 			$("#Form").submit();
 		}
 		$(function() {
-		
+
 			//日期框
 			$('.date-picker').datepicker({
 				autoclose: true,
 				todayHighlight: true
 			});
-			
+
 			//下拉框
 			if(!ace.vars['touch']) {
-				$('.chosen-select').chosen({allow_single_deselect:true}); 
+				$('.chosen-select').chosen({allow_single_deselect:true});
 				$(window)
 				.off('resize.chosen')
 				.on('resize.chosen', function() {
@@ -193,8 +194,8 @@
 					 else $('#form-field-select-4').removeClass('tag-input-style');
 				});
 			}
-			
-			
+
+
 			//复选框全选控制
 			var active_class = 'active';
 			$('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
@@ -206,7 +207,7 @@
 				});
 			});
 		});
-		
+
 		//新增
 		function add(){
 			 top.jzts();
@@ -231,7 +232,7 @@
 			 };
 			 diag.show();
 		}
-	
+
 	</script>
 
 
