@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FundControlMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_FUND_CONTROL
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		FUND_ID,	
+		STOCK_ALL,	
+		STOCK_BS,	
+		STOCK_R,	
+		STOCK_P,	
+		FUND_BS,	
+		BOND_ALL,	
+		BOND_BS,	
+		BOND_R,	
+		BOND_P,		
+		ABS_ALL,	
+		ABS_BS,	
+		ABS_R,	
+		ABS_P,		
+		GOLD_ALL,	
+		GOLD_BS,	
+		GOLD_R,	
+		GOLD_P,
+		DI_WARRAMT,
+		DI_OTHER,
+		RISK_LOC,	
+		RISK_S_INT,	
+		RISK_S_PRICE,	
+		RISK_E_PRICE,
+		ACTIVE,	
+		FUNDCONTROL_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{FUND_ID},	
+		#{STOCK_ALL},	
+		#{STOCK_BS},	
+		#{STOCK_R},	
+		#{STOCK_P},	
+		#{FUND_BS},
+		#{BOND_ALL},	
+		#{BOND_BS},	
+		#{BOND_R},	
+		#{BOND_P},	
+		#{ABS_ALL},	
+		#{ABS_BS},	
+		#{ABS_R},	
+		#{ABS_P},	
+		#{GOLD_ALL},	
+		#{GOLD_BS},	
+		#{GOLD_R},	
+		#{GOLD_P},
+		#{DI_WARRAMT},
+		#{DI_OTHER},
+		#{RISK_LOC},	
+		#{RISK_S_INT},	
+		#{RISK_S_PRICE},	
+		#{RISK_E_PRICE},	
+		#{ACTIVE},	
+		#{FUNDCONTROL_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			FUNDCONTROL_ID = #{FUNDCONTROL_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			FUND_ID = #{FUND_ID},
+			STOCK_ALL = #{STOCK_ALL},
+			STOCK_BS = #{STOCK_BS},
+			STOCK_R = #{STOCK_R},
+			STOCK_P = #{STOCK_P},
+			FUND_BS = #{FUND_BS},
+			BOND_ALL = #{BOND_ALL},
+			BOND_BS = #{BOND_BS},
+			BOND_R = #{BOND_R},
+			BOND_P = #{BOND_P},
+			ABS_ALL = #{ABS_ALL},
+			ABS_BS = #{ABS_BS},
+			ABS_R = #{ABS_R},
+			ABS_P = #{ABS_P},
+			GOLD_ALL = #{GOLD_ALL},
+			GOLD_BS = #{GOLD_BS},
+			GOLD_R = #{GOLD_R},
+			GOLD_P = #{GOLD_P},
+			DI_WARRAMT = #{DI_WARRAMT},
+			DI_OTHER = #{DI_OTHER},
+		    RISK_LOC = #{RISK_LOC},
+			RISK_S_INT = #{RISK_S_INT},
+			RISK_S_PRICE = #{RISK_S_PRICE},
+			RISK_E_PRICE = #{RISK_E_PRICE},
+			ACTIVE = #{ACTIVE},
+		FUNDCONTROL_ID = FUNDCONTROL_ID
+		where 
+		FUNDCONTROL_ID = #{FUNDCONTROL_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			FUNDCONTROL_ID = #{FUNDCONTROL_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			FUNDCONTROL_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 批量新增-->
+	<!-- yury,20200910,新增报告7.4.7.12.5证券出借差价收入,新增外汇风险敞口及敏感性分析 -->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>,
+			STOCK_L,
+		RISK_E_FOREIGN_EXCHANGE,
+		RISK_S_FOREIGN_EXCHANGE,
+		SHORT_BOND_RATING,
+		SHORT_ABS_RATING,
+		SHORT_NCD_RATING,
+		LONG_BOND_RATING,
+		LONG_ABS_RATING,
+		LONG_NCD_RATING,
+		EXPIRE_PERIOD_ANALYSIS,
+		PORTFOLIO_LIQUID_RISK
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.FUND_ID},	
+		#{pd.STOCK_ALL},	
+		#{pd.STOCK_BS},	
+		#{pd.STOCK_R},	
+		#{pd.STOCK_P},	
+		#{pd.FUND_BS},
+		#{pd.BOND_ALL},	
+		#{pd.BOND_BS},	
+		#{pd.BOND_R},	
+		#{pd.BOND_P},	
+		#{pd.ABS_ALL},	
+		#{pd.ABS_BS},	
+		#{pd.ABS_R},	
+		#{pd.ABS_P},
+		#{pd.GOLD_ALL},	
+		#{pd.GOLD_BS},	
+		#{pd.GOLD_R},	
+		#{pd.GOLD_P},	
+		#{pd.DI_WARRAMT},	
+		#{pd.DI_OTHER},
+        #{pd.RISK_LOC},	
+		#{pd.RISK_S_INT},	
+		#{pd.RISK_S_PRICE},	
+		#{pd.RISK_E_PRICE},	
+		#{pd.ACTIVE},	
+		#{pd.FUNDCONTROL_ID},
+		#{pd.STOCK_L},
+		#{pd.RISK_E_FOREIGN_EXCHANGE},
+		#{pd.RISK_S_FOREIGN_EXCHANGE},
+		#{pd.SHORT_BOND_RATING},
+		#{pd.SHORT_ABS_RATING},
+		#{pd.SHORT_NCD_RATING},
+		#{pd.LONG_BOND_RATING},
+		#{pd.LONG_ABS_RATING},
+		#{pd.LONG_NCD_RATING},
+		#{pd.EXPIRE_PERIOD_ANALYSIS},
+		#{pd.PORTFOLIO_LIQUID_RISK}	
+         )
+         </foreach >
+	</insert>	
+	
+</mapper>

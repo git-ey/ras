@@ -11,7 +11,6 @@
 	<sql id="Field">
 		FUND_ID,	
 		PERIOD,	
-		VDATE,	
 		EY_ACCOUNT_NUM,	
 		CURRENCY,	
 		EXCHANGE_RATE,	
@@ -41,7 +40,6 @@
 	<sql id="FieldValue">
 		#{FUND_ID},	
 		#{PERIOD},	
-		#{VDATE},	
 		#{EY_ACCOUNT_NUM},	
 		#{CURRENCY},	
 		#{EXCHANGE_RATE},	
@@ -93,19 +91,34 @@
 		set 
 			FUND_ID = #{FUND_ID},
 			PERIOD = #{PERIOD},
-			VDATE = #{VDATE},
 			EY_ACCOUNT_NUM = #{EY_ACCOUNT_NUM},
 			CURRENCY = #{CURRENCY},
+			<if test="EXCHANGE_RATE != null and EXCHANGE_RATE != ''">
 			EXCHANGE_RATE = #{EXCHANGE_RATE},
+			</if>
+			<if test="QUANTITY != null and QUANTITY != ''">
 			QUANTITY = #{QUANTITY},
+			</if>
+			<if test="UNIT_COST != null and UNIT_COST != ''">	
 			UNIT_COST = #{UNIT_COST},
+			</if>
 			TOTAL_COST_ENTERED = #{TOTAL_COST_ENTERED},
 			TOTAL_COST_CNY = #{TOTAL_COST_CNY},
+			<if test="UNIT_PRICE != null and UNIT_PRICE != ''">			
 			UNIT_PRICE = #{UNIT_PRICE},
+			</if>
+			<if test="MKT_VALUE_ENTERED != null and MKT_VALUE_ENTERED != ''">	
 			MKT_VALUE_ENTERED = #{MKT_VALUE_ENTERED},
+			</if>
+			<if test="MKT_VALUE_CNY != null and MKT_VALUE_CNY != ''">	
 			MKT_VALUE_CNY = #{MKT_VALUE_CNY},
+			</if>
+			<if test="APPRECIATION_ENTERED != null and APPRECIATION_ENTERED != ''">	
 			APPRECIATION_ENTERED = #{APPRECIATION_ENTERED},
+			</if>
+			<if test="APPRECIATION_CNY != null and APPRECIATION_CNY != ''">					
 			APPRECIATION_CNY = #{APPRECIATION_CNY},
+			</if>
 			SUSPENSION_INFO = #{SUSPENSION_INFO},
 			DESCRIPTION = #{DESCRIPTION},
 			ACTIVE = #{ACTIVE},
@@ -142,17 +155,14 @@
 			and
 				(
 				<!-- 根据需求自己加检索条件 -->
+				    FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				     or
+				    PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				     or
 					EY_ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
 					DESCRIPTION LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
-		</if>
-		<if test="pd.lastStart!= null and pd.lastStart != ''">
-		    and VDATE &gt;= #{pd.lastStart}
-		</if>
-		
-		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
-		    and VDATE &lt;= #{pd.lastEnd}
 		</if>
 	</select>
 	

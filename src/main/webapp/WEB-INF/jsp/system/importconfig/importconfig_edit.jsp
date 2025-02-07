@@ -28,14 +28,15 @@
 					<div class="col-xs-12">
 					
 					<form action="importconfig/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="IMPORTCONFIG_ID" id="IMPORTCONFIG_ID" value="${pd.IMPORTCONFIG_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">模版代码:</td>
-								<td><input type="text" name="IMPORT_TEMP_CODE" id="IMPORT_TEMP_CODE" value="${pd.IMPORT_TEMP_CODE}" maxlength="60" placeholder="这里输入导入模版代码" title="导入模版代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="IMPORT_TEMP_CODE" id="IMPORT_TEMP_CODE" value="${pd.IMPORT_TEMP_CODE}" maxlength="60" placeholder="这里输入导入模版代码" title="导入模版代码" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">模板名称:</td>
-								<td><input type="text" name="IMPORT_TEMP_NAME" id="IMPORT_TEMP_NAME" value="${pd.IMPORT_TEMP_NAME}" maxlength="240" placeholder="这里输入导入模板名称" title="导入模板名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="IMPORT_TEMP_NAME" id="IMPORT_TEMP_NAME" value="${pd.IMPORT_TEMP_NAME}" maxlength="240" placeholder="这里输入导入模板名称" title="导入模板名称" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">模板类型:</td>
 								<td>
 								    <select class="chosen-select form-control" name="TEMP_TYPE" id="TEMP_TYPE" data-placeholder="请选择" style="width:49%;">
@@ -47,8 +48,10 @@
 								</td>
 							</tr>
 							<tr>
+							<td style="width:100px;text-align: right;padding-top: 13px;">读取Sheet页:</td>
+								<td><input type="number" autocomplete="off" name="SHEET_NO" id="SHEET_NO" value="${pd.SHEET_NO == null ? 0 : pd.SHEET_NO}" maxlength="32" placeholder="起始页为0" style="width:49%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">读取起始行:</td>
-								<td><input type="number" name="START_ROW_NO" id="START_ROW_NO" value="${pd.START_ROW_NO}" maxlength="32" placeholder="这里输入读取的起始行" title="读取的起始行" style="width:49%;"/></td>
+								<td><input type="number" autocomplete="off" name="START_ROW_NO" id="START_ROW_NO" value="${pd.START_ROW_NO}" maxlength="32" placeholder="这里输入读取的起始行" title="读取的起始行" style="width:49%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">文件类型:</td>
 								<td>
 								    <select class="chosen-select form-control" name="IMPORT_FILE_TYPE" id="IMPORT_FILE_TYPE" data-placeholder="请选择" style="width:49%;">
@@ -56,18 +59,18 @@
 								    <option value="CSV" <c:if test="${pd.IMPORT_FILE_TYPE == 'CSV'}">selected</c:if>>CSV</option>
 								    </select>
 								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">导入目标表:</td>
-								<td><input type="text" name="TABLE_NAME" id="TABLE_NAME" value="${pd.TABLE_NAME}" maxlength="60" placeholder="这里输入导入目标表" title="导入目标表" style="width:98%;"/></td>
 						   </tr>
 							<tr>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">导入目标表:</td>
+								<td><input type="text" autocomplete="off" name="TABLE_NAME" id="TABLE_NAME" value="${pd.TABLE_NAME}" maxlength="60" placeholder="这里输入导入目标表" title="导入目标表" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">文件名格式:</td>
-							    <td><input type="text" name="FILENAME_FROMAT" id="FILENAME_FROMAT" value="${pd.FILENAME_FROMAT}" maxlength="60" placeholder="这里输入文件名格式" title="文件名格式" style="width:98%;"/></td>
+							    <td><input type="text" autocomplete="off" name="FILENAME_FROMAT" id="FILENAME_FROMAT" value="${pd.FILENAME_FROMAT}" maxlength="60" placeholder="这里输入文件名格式" title="文件名格式" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">行过滤规则:</td>
-								<td><input type="text" name="IGNORE_RULE" id="IGNORE_RULE" value="${pd.IGNORE_RULE}" maxlength="60" placeholder="列号1:^$,列号2:[\u4e00-\u9fa5]" title="行过滤规则" style="width:98%;"/></td>
-							    <td style="width:100px;text-align: right;padding-top: 13px;">名称解析段:</td>
-								<td><input type="text" name="NAME_SECTION" id="NAME_SECTION" value="${pd.NAME_SECTION}" maxlength="240" placeholder="段1,段2" title="文件名解析段" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="IGNORE_RULE" id="IGNORE_RULE" value="${pd.IGNORE_RULE}" maxlength="60" placeholder="列号1:^$,列号2:[\u4e00-\u9fa5]" title="行过滤规则" style="width:98%;"/></td>
 							</tr>
 							<tr>
+							    <td style="width:100px;text-align: right;padding-top: 13px;">名称解析段:</td>
+								<td><input type="text" autocomplete="off" name="NAME_SECTION" id="NAME_SECTION" value="${pd.NAME_SECTION}" maxlength="240" placeholder="段1,段2" title="文件名解析段" style="width:98%;"/></td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>
 								<td>
 								    <select class="chosen-select form-control" name="ENABLED_FLAG" id="ENABLED_FLAG" data-placeholder="请选择" style="width:49%;">
@@ -76,7 +79,7 @@
 								    </select>
 								</td>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">执行存储过程:</td>
-							    <td><input type="text" name="CALLABLE" id="CALLABLE" value="${pd.CALLABLE}" maxlength="240" placeholder="MySQL存储过程" title="存储过程" style="width:98%;"/></td>
+							    <td><input type="text" autocomplete="off" name="CALLABLE" id="CALLABLE" value="${pd.CALLABLE}" maxlength="240" placeholder="MySQL存储过程" title="存储过程" style="width:98%;"/></td>
 							</tr>
 						</table>
 						</div>
@@ -170,7 +173,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="表创建SQL";
-			 diag.URL = '<%=basePath%>importconfig/goSqlView.do?IMPORTCONFIG_ID='+Id;
+			 diag.URL = '<%=path%>/importconfig/goSqlView.do?IMPORTCONFIG_ID='+Id;
 			 diag.Width = 500;
 			 diag.Height = 300;
 			 diag.Modal = true;				//有无遮罩窗口

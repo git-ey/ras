@@ -166,8 +166,10 @@
 		<script type="text/javascript" src="plugins/attention/drag/dialog.js"></script>
 		<link type="text/css" rel="stylesheet" href="plugins/attention/drag/style.css"  />
 		<!--引入弹窗组件end-->
-		
 		<!--提示框-->
 		<script type="text/javascript" src="static/js/jquery.tips.js"></script>
+	    <script type="text/javascript"> 
+			setSkin('${pd.SKIN}');
+		</script>
 	</body>
 </html>

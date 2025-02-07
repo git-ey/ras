@@ -21,3 +21,9 @@
 **/.tmp
 **/bin/**
 /.metadata/**
+
+#JRebel
+**/rebel.xml
+.vscode/settings.json
+
+.vscode/

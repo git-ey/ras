@@ -1,6 +1,7 @@
 package com.ey.service.system.user;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ey.entity.Page;
 import com.ey.entity.system.User;
@@ -123,5 +124,17 @@ public interface UserManager {
 	 * @throws Exception
 	 */
 	public PageData getUserCount(String value)throws Exception;
+
+	/**
+	 * 更新用户
+	 * @param pd
+	 */
+	public void updateUser(PageData pd) throws Exception;
 	
+	/**批量新增
+	 * @param pds
+	 * @throws Exception
+	 */
+	public void saveBatch(List<Map> maps) throws Exception;
+
 }

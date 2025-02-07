@@ -8,7 +8,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -16,14 +19,15 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.ey.controller.base.BaseController;
 import com.ey.entity.Page;
+import com.ey.service.system.fund.FundManager;
 import com.ey.service.wp.eyje.EyJeManager;
 import com.ey.util.AppUtil;
+import com.ey.util.Jurisdiction;
 import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
-import com.ey.util.Jurisdiction;
-import com.ey.util.Tools;
 
 /** 
  * 说明：日记账凭证
@@ -37,6 +41,8 @@ public class EyJeController extends BaseController {
 	String menuUrl = "eyje/list.do"; //菜单地址(权限用)
 	@Resource(name="eyjeService")
 	private EyJeManager eyjeService;
+	@Resource(name="fundService")
+	private FundManager fundService;
 	
 	/**保存
 	 * @param
@@ -49,7 +55,7 @@ public class EyJeController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("EYJE_ID", this.get32UUID());	//主键
+		pd.put("JE_ID", this.get32UUID());	//主键
 		eyjeService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
@@ -103,9 +109,18 @@ public class EyJeController extends BaseController {
 		if(null != keywords && !"".equals(keywords)){
 			pd.put("keywords", keywords.trim());
 		}
+		// 动态构建表名
+		if(StringUtils.isBlank(pd.getString("FUND_ID"))){
+			pd.put("TABLE_NAME","`ey_je`");
+		}else{
+			PageData resultPd = fundService.findById(pd);
+			pd.put("TABLE_NAME","`ey_je_"+resultPd.getString("FIRM_CODE")+"`");
+		}
 		page.setPd(pd);
-		List<PageData>	varList = eyjeService.list(page);	//列出EyJe列表
+		List<PageData> fundList = fundService.listAllFund(pd);	//列出所有基金列表
+		List<PageData> varList = eyjeService.list(page);	//列出EyJe列表
 		mv.setViewName("wp/eyje/eyje_list");
+		mv.addObject("fundList", fundList);
 		mv.addObject("varList", varList);
 		mv.addObject("pd", pd);
 		mv.addObject("QX",Jurisdiction.getHC());	//按钮权限

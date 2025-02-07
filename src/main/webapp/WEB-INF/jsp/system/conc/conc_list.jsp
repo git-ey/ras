@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="conc/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -261,7 +262,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>conc/goAdd.do';
+			 diag.URL = '<%=path%>/conc/goAdd.do';
 			 diag.Width = 700;
 			 diag.Height = 300;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -314,7 +315,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>conc/goEdit.do?CONC_ID='+Id;
+			 diag.URL = '<%=path%>/conc/goEdit.do?CONC_ID='+Id;
 			 diag.Width = 800;
 			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口

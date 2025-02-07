@@ -45,7 +45,7 @@ public interface DictionariesManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findByBianma(PageData pd)throws Exception;
+	public PageData findByCode(PageData pd)throws Exception;
 	
 	/**
 	 * 通过ID获取其子级列表
@@ -67,7 +67,13 @@ public interface DictionariesManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findFromTbs(PageData pd)throws Exception;
+	public PageData findFromTbs(PageData pd) throws Exception;
+	
+	/**通过编码获取数据
+	 * @param code
+	 * @throws Exception
+	 */
+    public PageData findByCode(String code) throws Exception;
 	
 }
 

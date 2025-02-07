@@ -88,12 +88,20 @@
 			EFFECTIVE_DATE = #{EFFECTIVE_DATE},
 			ACCOUNT_NUM = #{ACCOUNT_NUM},
 			CURRENCY = #{CURRENCY},
+			<if test="EXCHANGE_RATE != null and EXCHANGE_RATE != ''">
 			EXCHANGE_RATE = #{EXCHANGE_RATE},
+			</if>
 			DRCR = #{DRCR},
+			<if test="AMOUNT_ENTERED != null and AMOUNT_ENTERED != ''">
 			AMOUNT_ENTERED = #{AMOUNT_ENTERED},
+			</if>
+			<if test="AMOUNT_CNY != null and AMOUNT_CNY != ''">
 			AMOUNT_CNY = #{AMOUNT_CNY},
+			</if>
 			AMOUNT_CNY_DRCR = #{AMOUNT_CNY_DRCR},
+			<if test="QUANTITY != null and QUANTITY != ''">
 			QUANTITY = #{QUANTITY},
+			</if>
 			DESCRIPTION = #{DESCRIPTION},
 			MAKER = #{MAKER},
 			CHECKER = #{CHECKER},
@@ -120,25 +128,25 @@
 	<select id="datalistPage" parameterType="page" resultType="pd">
 		select
 		<include refid="Field"></include>
-		from 
-		<include refid="tableName"></include>
+		from ${pd.TABLE_NAME}
 		where 1=1
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
 				<!-- 根据需求自己加检索条件 -->
-					ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					ACCOUNT_NUM LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%')
 					 or 
-					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%') 
+				     or
+				    FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords,jdbcType=VARCHAR}),'%') 
 				)
 		</if>
 		<if test="pd.lastStart!= null and pd.lastStart != ''">
-		    and EFFECTIVE_DATE &gt;= #{pd.lastStart}
+		    and EFFECTIVE_DATE &gt;= #{pd.lastStart,jdbcType=DATE}
 		</if>
 		
 		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
-		    and EFFECTIVE_DATE &lt;= #{pd.lastEnd}
+		    and EFFECTIVE_DATE &lt;= #{pd.lastEnd,jdbcType=DATE}
 		</if>
 	</select>
 	

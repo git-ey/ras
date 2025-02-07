@@ -15,7 +15,6 @@ public class LoginHandlerInterceptor extends HandlerInterceptorAdapter{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		// TODO Auto-generated method stub
 		String path = request.getServletPath();
 		if(path.matches(Const.NO_INTERCEPTOR_PATH)){
 			return true;

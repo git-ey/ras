@@ -28,21 +28,22 @@
 					<div class="col-xs-12">
 					
 					<form action="importconfigcell/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="IMPORTCONFIGCELL_ID" id="IMPORTCONFIGCELL_ID" value="${pd.IMPORTCONFIGCELL_ID}"/>
 						<input type="hidden" name="IMPORTCONFIG_ID" id="IMPORTCONFIG_ID" value="${pd.IMPORTCONFIG_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">对应列号:</td>
-								<td><input type="number" name="NUMBER" id="NUMBER" value="${pd.NUMBER}" maxlength="32" placeholder="这里输入对应的序列" title="对应的序列" style="width:60%;"/></td>
-							</tr>
-							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">列说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="32" placeholder="这里输入列说明" title="列说明" style="width:60%;"/></td>
+								<td><input type="number" autocomplete="off" name="NUMBER" id="NUMBER" value="${pd.NUMBER}" maxlength="32" placeholder="这里输入对应的序列" title="对应的序列" style="width:60%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">存储KEY:</td>
-								<td><input type="text" name="MAPKEY" id="MAPKEY" value="${pd.MAPKEY}" maxlength="60" placeholder="这里输入存储的KEY" title="存储的KEY" style="width:60%;"/></td>
+								<td><input type="text" autocomplete="off" name="MAPKEY" id="MAPKEY" value="${pd.MAPKEY}" maxlength="60" placeholder="这里输入存储的KEY" title="存储的KEY" style="width:60%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: right;padding-top: 13px;">列说明:</td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="32" placeholder="这里输入列说明" title="列说明" style="width:60%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">单元格类型:</td>

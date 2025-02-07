@@ -33,8 +33,8 @@ import com.google.common.collect.Maps;
  * Excel文件导入处理器
  *
  */
-public class ExcelImportor extends FileImportor {
-	
+public class ExcelImportor extends FileImportor  {
+
 	protected Logger logger = Logger.getLogger(ExcelImportor.class);
 
 	private ImportConfig configuration;
@@ -47,20 +47,51 @@ public class ExcelImportor extends FileImportor {
 		StringBuilder stringbuilder = new StringBuilder();
 		Workbook workbook = null;
 		String extension = fileName.lastIndexOf(".") == -1 ? "" : fileName.substring(fileName.lastIndexOf(".") + 1);
-		if ("xls".equals(extension)) {
-			try {
-				workbook = new HSSFWorkbook(new FileInputStream(file));
-			} catch (IOException e) {
-				throw new FileImportException(e, e.getMessage());
-			}
-		} else if ("xlsx".equals(extension)) {
-			try {
+//		System.out.println("fis:"+file.getPath());
+		try (FileInputStream fis = new FileInputStream(file)) {
+			if ("xls".equals(extension)) {
+				workbook = new HSSFWorkbook(fis); // 读取 .xls 文件
+			} else if ("xlsx".equals(extension)) {
 				workbook = new XSSFWorkbook(new FileInputStream(file));
-			} catch (IOException e) {
-				throw new FileImportException(e, e.getMessage());
+//				workbook = StreamingReader.builder()
+//						.rowCacheSize(300)
+//						.bufferSize(4096)
+//						.open(fis);  // 只能打开 XLSX 格式的文件
+			} else {
+				throw new FileImportException("不支持的文件格式");
 			}
-		} else {
-			throw new FileImportException("unsupport file style");
+		} catch (IOException e) {
+			throw new FileImportException(e, "解析异常");
+		}
+		List<Map> result = readExcel(workbook, configuration, stringbuilder);
+		MapResult mapResult = new MapResult();
+		mapResult.setResult(result);
+		mapResult.setResMsg(stringbuilder.toString());
+		return mapResult;
+	}
+
+	@Override
+	public ImportResult getImportResult(File file, String fileName, boolean flag) throws FileImportException {
+		if (configuration == null) {
+			throw new FileImportException("configuration is null");
+		}
+		StringBuilder stringbuilder = new StringBuilder();
+		Workbook workbook = null;
+		String extension = fileName.lastIndexOf(".") == -1 ? "" : fileName.substring(fileName.lastIndexOf(".") + 1);
+		try (FileInputStream fis = new FileInputStream(file)) {
+			if ("xls".equals(extension)) {
+				workbook = new HSSFWorkbook(fis); // 读取 .xls 文件
+			} else if ("xlsx".equals(extension)) {
+				workbook = new XSSFWorkbook(new FileInputStream(file));
+//				workbook = StreamingReader.builder()
+//						.rowCacheSize(100)
+//						.bufferSize(4096)
+//						.open(fis);  // 只能打开 XLSX 格式的文件
+			} else {
+				throw new FileImportException("unsupport file style");
+			}
+		} catch (IOException e) {
+			throw new FileImportException(e, "解析异常");
 		}
 		List<Map> result = readExcel(workbook, configuration, stringbuilder);
 		MapResult mapResult = new MapResult();
@@ -72,17 +103,17 @@ public class ExcelImportor extends FileImportor {
 	private List<Map> readExcel(Workbook workbook, ImportConfig configuration, StringBuilder sb)
 			throws FileImportException {
 		// 选择第一个sheet
-		Sheet sheet = workbook.getSheetAt(0);
+		Sheet sheet = workbook.getSheetAt(configuration.getSheetNo() == null ? 0 : configuration.getSheetNo());
 		int startRow = configuration.getStartRowNo();
 		List<ImportConfigCell> lists = configuration.getImportCells();
-		int phyRow = sheet.getPhysicalNumberOfRows();
+		int phyRow = sheet.getLastRowNum();
 		List<Map> results = Lists.newLinkedList();
 		// 引号，处理MySQL插入数据返回的Map用到
 		String quotes = "";
 		if (StringUtils.isNotBlank(configuration.getTableName())) {
 			quotes = "'";
 		}
-		for (int t = startRow; t < phyRow; t++) {
+		for (int t = startRow; t <= phyRow; t++) {
 			Row row = sheet.getRow(t);
 			if (row == null) {
 				continue;
@@ -113,7 +144,24 @@ public class ExcelImportor extends FileImportor {
 				int cellKey = Integer.parseInt(ir[0]);
 				String ignoreValue = ir[1];
 				Pattern p = Pattern.compile(ignoreValue);
-				Matcher m = p.matcher(isCellEmpty(row.getCell(cellKey)) ? "" : row.getCell(cellKey).getStringCellValue());
+				String matchStr = "";
+				switch(row.getCell(cellKey).getCellType()){
+				case Cell.CELL_TYPE_STRING :
+					matchStr = row.getCell(cellKey).getStringCellValue();
+					break;
+				case Cell.CELL_TYPE_BLANK :
+					matchStr = "";
+					break;
+				case Cell.CELL_TYPE_FORMULA :
+					matchStr = row.getCell(cellKey).getCellFormula();
+					break;
+				case Cell.CELL_TYPE_NUMERIC :
+					matchStr = String.valueOf(row.getCell(cellKey).getNumericCellValue());
+					break;
+				default:
+					break;
+				}
+				Matcher m = p.matcher(matchStr);
 				// 任意一个条件满足则过滤
 				if (m.find()) {
 					return true;
@@ -125,7 +173,7 @@ public class ExcelImportor extends FileImportor {
 				}*/
 			} catch (Exception ex) {
 				logger.error("过滤条件解析异常:"+ex.getMessage());
-				return false;
+				return true;
 			}
 		}
 		return false;
@@ -153,7 +201,7 @@ public class ExcelImportor extends FileImportor {
 			int startRow, String quotes) throws FileImportException {
 		int num = importCell.getNumber();
 		int showLine = line + startRow;
-		int showColumn = num + startRow;
+		int showColumn = num;
 		maps.put(MapResult.LINE_NUM_KEY, showLine);
 		ImportConfigCell.CellType cellType = importCell.getCellType();
 		ImportConfigCell.NullAble nullable = importCell.getNullAble();
@@ -188,24 +236,21 @@ public class ExcelImportor extends FileImportor {
 					maps.put(key, temp.intValue());
 				}
 				break;
-
 			case STRING:
 				String temp = null;
-				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
+				if (rawCellType == Cell.CELL_TYPE_NUMERIC || rawCellType == Cell.CELL_TYPE_FORMULA) {
 					temp = String.valueOf(cell.getNumericCellValue());
 					maps.put(key, StringUtils.isBlank(temp) ? "''" : quotes + temp + quotes);
 					break;
 				}
 				if (rawCellType == Cell.CELL_TYPE_STRING) {
-					temp = cell.getStringCellValue();
+					temp = cell.getStringCellValue().replace("'", "\\'"); // 解析excel时将单引号转义
 					maps.put(key, StringUtils.isBlank(temp) ? "''" : quotes + temp + quotes);
 					break;
 				}
-
 				errMsg = String.format("line:%d,column:%d is not string\n", showLine, showColumn);
 				setErrMsg(errMsg, maps, sb);
 				break;
-
 			case FLOAT:
 				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
 					Double temp1 = cell.getNumericCellValue();
@@ -215,18 +260,19 @@ public class ExcelImportor extends FileImportor {
 					setErrMsg(errMsg, maps, sb);
 				}
 				break;
-
 			case DATE:
 				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
 					Date date = DateUtil.getJavaDate(cell.getNumericCellValue());
-					maps.put(key, quotes + com.ey.util.DateUtil.getDateTimeStr(date) + quotes); // 转换成字符串便于数据库存储
+					maps.put(key, quotes + com.ey.util.DateUtil.getDateTimeStr(date,importCell.getDateFormat()) + quotes); // 转换成字符串便于数据库存储
+				}else if((rawCellType == Cell.CELL_TYPE_STRING)){
+					maps.put(key, StringUtils.isBlank(cell.getStringCellValue()) ? "''" : quotes + cell.getStringCellValue() + quotes);
 				} else {
 					errMsg = String.format("line:%d,column:%d is not date\n", showLine, showColumn);
 					setErrMsg(errMsg, maps, sb);
 				}
 				break;
 			case BIGDECIMAL:
-				if (rawCellType == Cell.CELL_TYPE_NUMERIC) {
+				if (rawCellType == Cell.CELL_TYPE_NUMERIC || rawCellType == Cell.CELL_TYPE_FORMULA) {
 					Double temp1 = cell.getNumericCellValue();
 					maps.put(key, BigDecimal.valueOf(temp1));
 				} else {
@@ -251,5 +297,13 @@ public class ExcelImportor extends FileImportor {
 	public ExcelImportor(ImportConfig configuration) {
 		this.configuration = configuration;
 	}
+
+	// public static void main() {
+	// 	String file = "C:\\Users\\EYHIVE\\Desktop\\华宝股票流通受限表-EY_STOCK_LIMIT.xlsx";
+	// 	workbook = new XSSFWorkbook(new FileInputStream(file));
+	// 	StringBuilder sb = new StringBuilder();
+	// 	List<Map> map = this.readExcel(Workbook workbook, ImportConfig configuration, sb)
+	// 	this.readExcel()
+	// }
 
 }

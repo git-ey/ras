@@ -28,14 +28,15 @@
 					<div class="col-xs-12">
 					
 					<form action="conc/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="CONC_ID" id="CONC_ID" value="${pd.CONC_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">程序代码:</td>
-								<td><input type="text" name="CONC_CODE" id="CONC_CODE" value="${pd.CONC_CODE}" maxlength="60" placeholder="这里输入程序代码" title="程序代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CONC_CODE" id="CONC_CODE" value="${pd.CONC_CODE}" maxlength="60" placeholder="这里输入程序代码" title="程序代码" style="width:98%;"/></td>
 								<td style="width:75px;text-align: right;padding-top: 13px;">程序描述:</td>
-								<td><input type="text" name="CONC_DESCRIPTION" id="CONC_DESCRIPTION" value="${pd.CONC_DESCRIPTION}" maxlength="255" placeholder="这里输入程序描述" title="程序描述" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CONC_DESCRIPTION" id="CONC_DESCRIPTION" value="${pd.CONC_DESCRIPTION}" maxlength="255" placeholder="这里输入程序描述" title="程序描述" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">程序类型:</td>
@@ -45,7 +46,7 @@
 								    </select>
 								</td>
 								<td style="width:75px;text-align: right;padding-top: 13px;">程序入口:</td>
-								<td><input type="text" name="CONC_PROGRAM" id="CONC_PROGRAM" value="${pd.CONC_PROGRAM}" maxlength="255" placeholder="这里输入程序入口" title="程序入口" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CONC_PROGRAM" id="CONC_PROGRAM" value="${pd.CONC_PROGRAM}" maxlength="255" placeholder="这里输入程序入口" title="程序入口" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">是否启用:</td>

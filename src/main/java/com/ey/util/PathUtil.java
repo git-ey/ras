@@ -70,6 +70,10 @@ public class PathUtil {
 		return path;
 	}
 	
+	public static String getWebResourcePath(HttpServletRequest request) {
+	    return request.getSession().getServletContext().getRealPath("/") + "resources" + File.separator;
+	}
+	
 	public static String PathAddress() {
 		String strResult = "";
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder

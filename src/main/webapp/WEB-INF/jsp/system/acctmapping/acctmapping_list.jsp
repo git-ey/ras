@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="acctmapping/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -43,13 +44,13 @@
 									</div>
 								</td>
 								<td style="vertical-align:top;padding-left:2px;">
-								    <input type="text" style="width:98%;" placeholder="基金ID" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }"/>
+								    <input type="text" autocomplete="off" style="width:98%;" placeholder="基金ID" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }"/>
 								</td>
 								<td style="vertical-align:top;padding-left:2px;">
-								    <input type="text" style="width:98%;" placeholder="科目代码" class="nav-search-input" name="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM }"/>
+								    <input type="text" autocomplete="off" style="width:98%;" placeholder="科目代码" class="nav-search-input" name="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM }"/>
 								</td>
 								<td style="vertical-align:top;padding-left:2px;">
-								    <input type="text" style="width:98%;" placeholder="EY科目ID" class="nav-search-input" name="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM }"/>
+								    <input type="text" autocomplete="off" style="width:98%;" placeholder="EY科目ID" class="nav-search-input" name="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM }"/>
 								</td>
 								<td style="vertical-align:top;padding-left:2px;">
 								 	<select class="chosen-select form-control" name="LEVEL" id="id" data-placeholder="科目级别" style="vertical-align:top;width: 120px;">
@@ -64,7 +65,9 @@
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
+								<!--  
 								<c:if test="${QX.FromExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="ace-icon fa fa-cloud-upload bigger-110 nav-search-icon blue"></i></a></td></c:if>
+							    -->
 							</tr>
 						</table>
 						<!-- 检索  -->
@@ -73,7 +76,7 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									<label class="pos-rel"><input type="checkbox" autocomplete="off" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center" style="width:8%;">基金ID</th>
@@ -98,7 +101,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.ACCTMAPPING_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' autocomplete="off" name='ids' value="${var.ACCTMAPPING_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.FUND_ID}</td>
@@ -292,7 +295,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>acctmapping/goAdd.do';
+			 diag.URL = '<%=path%>/acctmapping/goAdd.do';
 			 diag.Width = 800;
 			 diag.Height = 480;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -316,8 +319,8 @@
 			 top.jzts();
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
-			 diag.Title ="EXCEL 导入到数据库";
-			 diag.URL = '<%=basePath%>acctmapping/goUploadExcel.do';
+			 diag.Title ="EXCEL导入到数据库";
+			 diag.URL = '<%=path%>/acctmapping/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -353,7 +356,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>acctmapping/goEdit.do?ACCTMAPPING_ID='+Id;
+			 diag.URL = '<%=path%>/acctmapping/goEdit.do?ACCTMAPPING_ID='+Id;
 			 diag.Width = 800;
 			 diag.Height = 480;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -415,7 +418,6 @@
 		};
 		
 	</script>
-
 
 </body>
 </html>

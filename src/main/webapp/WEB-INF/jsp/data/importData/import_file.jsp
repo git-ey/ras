@@ -31,6 +31,7 @@
 						<div class="col-xs-12">
 						<!-- 检索  -->
 						<form action="importData/listImportFile.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="IMPORT_ID" id="IMPORT_ID" value="${pd.IMPORT_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table style="margin-top:5px;">
@@ -52,11 +53,13 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:50px;">序号</th>
-									<th class="center" style="width:30%;">导入文件名</th>
+									<th class="center" style="width:25%;">导入文件ID</th>
+									<th class="center" style="width:25%;">导入文件名</th>
+									<th class="center" style="width:8%;">Sheet</th>
 									<th class="center" style="width:15%;">目标表名</th>
-									<th class="center" style="width:10%;">条数</th>
+									<th class="center" style="width:7%;">条数</th>
 									<th class="center">导入消息</th>
-									<th class="center" style="width:10%;">操作</th>
+									<th class="center" style="width:7%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -67,7 +70,9 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
+											<td class='center'>${var.IMPORT_FILE_ID}</td>
 											<td class='center'>${var.IMPORT_FILE_NAME}</td>
+											<td class='center'>${var.SHEET_NO}</td>
 											<td class='center'>${var.TABLE_NAME}</td>
 											<td class='center'>${var.CNT}</td>
 											<td class='center'><font color="red">${var.MESSAGE}</font></td>

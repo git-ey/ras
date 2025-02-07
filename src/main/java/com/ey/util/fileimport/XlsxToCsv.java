@@ -40,6 +40,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.ey.util.AppUtil;
+
 public class XlsxToCsv {
 
 	/**
@@ -101,7 +103,7 @@ public class XlsxToCsv {
 
 		/**
 		 * Accepts objects needed while parsing.
-		 * 
+		 *
 		 * @param styles
 		 *            Table of styles
 		 * @param strings
@@ -124,12 +126,13 @@ public class XlsxToCsv {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see
 		 * org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
 		 * java.lang.String, java.lang.String, org.xml.sax.Attributes)
 		 */
-		public void startElement(String uri, String localName, String name, Attributes attributes) throws SAXException {
+		@Override
+        public void startElement(String uri, String localName, String name, Attributes attributes) throws SAXException {
 
 			if ("inlineStr".equals(name) || "v".equals(name)) {
 				vIsOpen = true;
@@ -181,14 +184,15 @@ public class XlsxToCsv {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
 		 * java.lang.String, java.lang.String)
 		 */
-		public void endElement(String uri, String localName, String name) throws SAXException {
+		@Override
+        public void endElement(String uri, String localName, String name) throws SAXException {
 
 			String thisStr = null;
-			String delimiter = "`"; // CSV字段分隔符
+			String delimiter = AppUtil.CSV_DELIMITER; // CSV字段分隔符
 
 			// v => contents of a cell
 			if ("v".equals(name)) {
@@ -281,14 +285,15 @@ public class XlsxToCsv {
 		 * Captures characters only if a suitable element is open. Originally
 		 * was just "v"; extended for inlineStr also.
 		 */
-		public void characters(char[] ch, int start, int length) throws SAXException {
+		@Override
+        public void characters(char[] ch, int start, int length) throws SAXException {
 			if (vIsOpen)
 				value.append(ch, start, length);
 		}
 
 		/**
 		 * Converts an Excel column name like "C" to a zero-based index.
-		 * 
+		 *
 		 * @param name
 		 * @return Index corresponding to the specified name
 		 */
@@ -312,7 +317,7 @@ public class XlsxToCsv {
 
 	/**
 	 * Creates a new XLSX -> CSV converter
-	 * 
+	 *
 	 * @param pkg
 	 *            The XLSX package to process
 	 * @param output
@@ -333,10 +338,19 @@ public class XlsxToCsv {
 		minColumns = -1;
 	}
 
+	public void close() throws Exception {
+		if (output != null) {
+			output.close();
+		}
+		if (xlsxPackage != null) {
+			xlsxPackage.close();
+		}
+	}
+
 	/**
 	 * Parses and shows the content of one sheet using the specified styles and
 	 * shared-strings tables.
-	 * 
+	 *
 	 * @param styles
 	 * @param strings
 	 * @param sheetInputStream
@@ -355,7 +369,7 @@ public class XlsxToCsv {
 
 	/**
 	 * Initiates the processing of the XLS workbook file to CSV.
-	 * 
+	 *
 	 * @throws IOException
 	 * @throws OpenXML4JException
 	 * @throws ParserConfigurationException

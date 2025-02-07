@@ -120,6 +120,8 @@
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include>
+		where
+		ENABLED_FLAG = #{ENABLED_FLAG}
 	</select>
 	
 	<!-- 批量删除 -->

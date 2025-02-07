@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
 <base href="<%=basePath%>">
-<script type="text/javascript" src="static/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="static/js/jquery.js"></script>
 <!-- jsp文件头和头部 -->
 <%@ include file="../../system/index/top.jsp"%>
 <!-- 树形下拉框start -->
@@ -36,6 +36,7 @@
 							
 						<!-- 检索  -->
 						<form action="staff/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input name="ZDEPARTMENT_ID" id="ZDEPARTMENT_ID" type="hidden" value="${pd.ZDEPARTMENT_ID }" />
 						<input name="DEPARTMENT_ID" id="DEPARTMENT_ID" type="hidden" value="${pd.DEPARTMENT_ID }" />
 						<table style="margin-top:5px;">
@@ -63,7 +64,7 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									<label class="pos-rel"><input type="checkbox" autocomplete="off" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">姓名</th>
@@ -84,7 +85,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.STAFF_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' autocomplete="off" name='ids' value="${var.STAFF_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.NAME}</td>
@@ -228,6 +229,19 @@
 	<script src="static/ace/js/ace/ace.js"></script>
 	<!--提示框-->
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
+
+	<script type="text/javascript">
+		jQuery.browser = {};
+		(function () {
+			jQuery.browser.msie = false;
+			jQuery.browser.version = 0;
+			if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+				jQuery.browser.msie = true;
+				jQuery.browser.version = RegExp.$1;
+			}
+		})();
+	</script>
+
 	<script type="text/javascript">
 		$(top.hangge());//关闭加载状态
 		//检索
@@ -254,7 +268,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>staff/goAdd.do';
+			 diag.URL = '<%=path%>/staff/goAdd.do';
 			 diag.Width = 800;
 			 diag.Height = 500;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -293,7 +307,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>staff/goEdit.do?STAFF_ID='+Id;
+			 diag.URL = '<%=path%>/staff/goEdit.do?STAFF_ID='+Id;
 			 diag.Width = 800;
 			 diag.Height = 500;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -379,7 +393,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="授予组织机构数据权限";
-			 diag.URL = '<%=basePath%>datajur/goEdit.do?DATAJUR_ID='+Id;
+			 diag.URL = '<%=path%>/datajur/goEdit.do?DATAJUR_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -400,7 +414,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="绑定用户";
-			 diag.URL = '<%=basePath%>user/listUsersForWindow.do';
+			 diag.URL = '<%=path%>/user/listUsersForWindow.do';
 			 diag.Width = 700;
 			 diag.Height = 545;
 			 diag.Modal = true;				//有无遮罩窗口

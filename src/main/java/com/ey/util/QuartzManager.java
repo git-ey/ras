@@ -31,7 +31,7 @@ public class QuartzManager {
         try {  
             Scheduler sched = gSchedulerFactory.getScheduler();  										//通过SchedulerFactory构建Scheduler对象
             JobDetail jobDetail= JobBuilder.newJob(cls).withIdentity(jobName,JOB_GROUP_NAME).build();	//用于描叙Job实现类及其他的一些静态信息，构建一个作业实例
-        	CronTrigger trigger = (CronTrigger) TriggerBuilder
+        	CronTrigger trigger = TriggerBuilder
         			.newTrigger()	 																	//创建一个新的TriggerBuilder来规范一个触发器
     				.withIdentity(jobName, TRIGGER_GROUP_NAME)											//给触发器起一个名字和组名
     				.withSchedule(CronScheduleBuilder.cronSchedule(time))
@@ -55,7 +55,7 @@ public class QuartzManager {
             Scheduler sched = gSchedulerFactory.getScheduler();  										//通过SchedulerFactory构建Scheduler对象
             JobDetail jobDetail= JobBuilder.newJob(cls).withIdentity(jobName,JOB_GROUP_NAME).build();	//用于描叙Job实现类及其他的一些静态信息，构建一个作业实例
             jobDetail.getJobDataMap().put("parameterList", parameter);								//传参数
-        	CronTrigger trigger = (CronTrigger) TriggerBuilder
+        	CronTrigger trigger = TriggerBuilder
         			.newTrigger()	 																	//创建一个新的TriggerBuilder来规范一个触发器
     				.withIdentity(jobName, TRIGGER_GROUP_NAME)											//给触发器起一个名字和组名
     				.withSchedule(CronScheduleBuilder.cronSchedule(time))
@@ -83,7 +83,7 @@ public class QuartzManager {
         try {  
             Scheduler sched = gSchedulerFactory.getScheduler();  
             JobDetail jobDetail= JobBuilder.newJob(jobClass).withIdentity(jobName,jobGroupName).build();// 任务名，任务组，任务执行类
-            CronTrigger trigger = (CronTrigger) TriggerBuilder	 // 触发器  
+            CronTrigger trigger = TriggerBuilder	 // 触发器  
     				.newTrigger()
     				.withIdentity(triggerName, triggerGroupName)
     				.withSchedule(CronScheduleBuilder.cronSchedule(time))
@@ -112,7 +112,7 @@ public class QuartzManager {
             Scheduler sched = gSchedulerFactory.getScheduler();  
             JobDetail jobDetail= JobBuilder.newJob(jobClass).withIdentity(jobName,jobGroupName).build();// 任务名，任务组，任务执行类
             jobDetail.getJobDataMap().put("parameterList", parameter);								//传参数
-            CronTrigger trigger = (CronTrigger) TriggerBuilder	 // 触发器  
+            CronTrigger trigger = TriggerBuilder	 // 触发器  
     				.newTrigger()
     				.withIdentity(triggerName, triggerGroupName)
     				.withSchedule(CronScheduleBuilder.cronSchedule(time))
@@ -165,7 +165,7 @@ public class QuartzManager {
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(trigger.getCronExpression());
             String oldTime = trigger.getCronExpression();  
             if (!oldTime.equalsIgnoreCase(time)) {  
-            	trigger = (CronTrigger)trigger.getTriggerBuilder()		//重新构建trigger
+            	trigger = trigger.getTriggerBuilder()		//重新构建trigger
             			.withIdentity(triggerKey)
             			.withSchedule(scheduleBuilder)
             			.withSchedule(CronScheduleBuilder.cronSchedule(time))

@@ -26,7 +26,8 @@ public class MenuService implements MenuManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<Menu> listSubMenuByParentId(String parentId) throws Exception {
 		return (List<Menu>) dao.findForList("MenuMapper.listSubMenuByParentId", parentId);
 	}
@@ -37,7 +38,8 @@ public class MenuService implements MenuManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData getMenuById(PageData pd) throws Exception {
+	@Override
+    public PageData getMenuById(PageData pd) throws Exception {
 		return (PageData) dao.findForObject("MenuMapper.getMenuById", pd);
 	}
 	
@@ -46,7 +48,8 @@ public class MenuService implements MenuManager{
 	 * @param menu
 	 * @throws Exception
 	 */
-	public void saveMenu(Menu menu) throws Exception {
+	@Override
+    public void saveMenu(Menu menu) throws Exception {
 		dao.save("MenuMapper.insertMenu", menu);
 	}
 	
@@ -56,7 +59,8 @@ public class MenuService implements MenuManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findMaxId(PageData pd) throws Exception {
+	@Override
+    public PageData findMaxId(PageData pd) throws Exception {
 		return (PageData) dao.findForObject("MenuMapper.findMaxId", pd);
 	}
 	
@@ -65,7 +69,8 @@ public class MenuService implements MenuManager{
 	 * @param MENU_ID
 	 * @throws Exception
 	 */
-	public void deleteMenuById(String MENU_ID) throws Exception {
+	@Override
+    public void deleteMenuById(String MENU_ID) throws Exception {
 		dao.save("MenuMapper.deleteMenuById", MENU_ID);
 	}
 	
@@ -75,7 +80,8 @@ public class MenuService implements MenuManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public void edit(Menu menu) throws Exception {
+	@Override
+    public void edit(Menu menu) throws Exception {
 		 dao.update("MenuMapper.updateMenu", menu);
 	}
 	
@@ -85,7 +91,8 @@ public class MenuService implements MenuManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData editicon(PageData pd) throws Exception {
+	@Override
+    public PageData editicon(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("MenuMapper.editicon", pd);
 	}
 	
@@ -95,7 +102,8 @@ public class MenuService implements MenuManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Menu> listAllMenu(String MENU_ID) throws Exception {
+	@Override
+    public List<Menu> listAllMenu(String MENU_ID) throws Exception {
 		List<Menu> menuList = this.listSubMenuByParentId(MENU_ID);
 		for(Menu menu : menuList){
 			menu.setMENU_URL("menu/toEdit.do?MENU_ID="+menu.getMENU_ID());
@@ -111,7 +119,8 @@ public class MenuService implements MenuManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Menu> listAllMenuQx(String MENU_ID) throws Exception {
+	@Override
+    public List<Menu> listAllMenuQx(String MENU_ID) throws Exception {
 		List<Menu> menuList = this.listSubMenuByParentId(MENU_ID);
 		for(Menu menu : menuList){
 			menu.setSubMenu(this.listAllMenuQx(menu.getMENU_ID()));

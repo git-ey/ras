@@ -28,62 +28,63 @@
 					<div class="col-xs-12">
 					
 					<form action="eyje/${msg }.do" name="Form" id="Form" method="post">
-						<input type="hidden" name="EYJE_ID" id="EYJE_ID" value="${pd.EYJE_ID}"/>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						<input type="hidden" name="JE_ID" id="JE_ID" value="${pd.JE_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="120" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="120" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">期间:</td>
-								<td><input type="text" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="10" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD" id="PERIOD" value="${pd.PERIOD}" maxlength="10" placeholder="这里输入期间" title="期间" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">凭证序号:</td>
-								<td><input type="text" name="SEQUENCE_NUM" id="SEQUENCE_NUM" value="${pd.SEQUENCE_NUM}" maxlength="60" placeholder="这里输入凭证序号" title="凭证序号" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SEQUENCE_NUM" id="SEQUENCE_NUM" value="${pd.SEQUENCE_NUM}" maxlength="60" placeholder="这里输入凭证序号" title="凭证序号" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">唯一凭证号:</td>
-								<td><input type="text" name="UNIQUE_JE_NUM" id="UNIQUE_JE_NUM" value="${pd.UNIQUE_JE_NUM}" maxlength="120" placeholder="这里输入唯一凭证号" title="唯一凭证号" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="UNIQUE_JE_NUM" id="UNIQUE_JE_NUM" value="${pd.UNIQUE_JE_NUM}" maxlength="120" placeholder="这里输入唯一凭证号" title="唯一凭证号" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">入账日期:</td>
 								<td><input class="span10 date-picker" name="EFFECTIVE_DATE" id="EFFECTIVE_DATE" value="${pd.EFFECTIVE_DATE}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" placeholder="入账日期" title="入账日期" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">科目代码:</td>
-								<td><input type="text" name="ACCOUNT_NUM" id="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM}" maxlength="120" placeholder="这里输入科目代码" title="科目代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ACCOUNT_NUM" id="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM}" maxlength="120" placeholder="这里输入科目代码" title="科目代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">币种:</td>
-								<td><input type="text" name="CURRENCY" id="CURRENCY" value="${pd.CURRENCY}" maxlength="20" placeholder="这里输入币种" title="币种" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CURRENCY" id="CURRENCY" value="${pd.CURRENCY}" maxlength="20" placeholder="这里输入币种" title="币种" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">汇率:</td>
-								<td><input type="number" name="EXCHANGE_RATE" id="EXCHANGE_RATE" value="${pd.EXCHANGE_RATE}" maxlength="32" placeholder="这里输入汇率" title="汇率" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="EXCHANGE_RATE" id="EXCHANGE_RATE" value="${pd.EXCHANGE_RATE}" maxlength="32" placeholder="这里输入汇率" title="汇率" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">借贷方向:</td>
-								<td><input type="text" name="DRCR" id="DRCR" value="${pd.DRCR}" maxlength="30" placeholder="这里输入借贷方向" title="借贷方向" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DRCR" id="DRCR" value="${pd.DRCR}" maxlength="30" placeholder="这里输入借贷方向" title="借贷方向" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">原币金额:</td>
-								<td><input type="number" name="AMOUNT_ENTERED" id="AMOUNT_ENTERED" value="${pd.AMOUNT_ENTERED}" maxlength="32" placeholder="这里输入原币金额" title="原币金额" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="AMOUNT_ENTERED" id="AMOUNT_ENTERED" value="${pd.AMOUNT_ENTERED}" maxlength="32" placeholder="这里输入原币金额" title="原币金额" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">本位币金额:</td>
-								<td><input type="number" name="AMOUNT_CNY" id="AMOUNT_CNY" value="${pd.AMOUNT_CNY}" maxlength="32" placeholder="这里输入本位币金额" title="本位币金额" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="AMOUNT_CNY" id="AMOUNT_CNY" value="${pd.AMOUNT_CNY}" maxlength="32" placeholder="这里输入本位币金额" title="本位币金额" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">借正贷负金额:</td>
-								<td><input type="number" name="AMOUNT_CNY_DRCR" id="AMOUNT_CNY_DRCR" value="${pd.AMOUNT_CNY_DRCR}" maxlength="32" placeholder="这里输入借正贷负金额" title="借正贷负金额" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="AMOUNT_CNY_DRCR" id="AMOUNT_CNY_DRCR" value="${pd.AMOUNT_CNY_DRCR}" maxlength="32" placeholder="这里输入借正贷负金额" title="借正贷负金额" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
-								<td><input type="text" name="QUANTITY" id="QUANTITY" value="${pd.QUANTITY}" maxlength="120" placeholder="这里输入数量" title="数量" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="QUANTITY" id="QUANTITY" value="${pd.QUANTITY}" maxlength="120" placeholder="这里输入数量" title="数量" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">摘要:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入摘要" title="摘要" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入摘要" title="摘要" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">制单人:</td>
-								<td><input type="text" name="MAKER" id="MAKER" value="${pd.MAKER}" maxlength="255" placeholder="这里输入制单人" title="制单人" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="MAKER" id="MAKER" value="${pd.MAKER}" maxlength="255" placeholder="这里输入制单人" title="制单人" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">审核人:</td>
-								<td><input type="text" name="CHECKER" id="CHECKER" value="${pd.CHECKER}" maxlength="255" placeholder="这里输入审核人" title="审核人" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CHECKER" id="CHECKER" value="${pd.CHECKER}" maxlength="255" placeholder="这里输入审核人" title="审核人" style="width:98%;"/></td>
 							</tr>
 							<tr>
 							    <td style="width:100px;text-align: right;padding-top: 13px;">记账人:</td>
-								<td><input type="text" name="POSTER" id="POSTER" value="${pd.POSTER}" maxlength="60" placeholder="这里输入记账人" title="记账人" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="POSTER" id="POSTER" value="${pd.POSTER}" maxlength="60" placeholder="这里输入记账人" title="记账人" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">凭证类别:</td>
-								<td><input type="text" name="CATEGORY" id="CATEGORY" value="${pd.CATEGORY}" maxlength="255" placeholder="这里输入凭证类别" title="凭证类别" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CATEGORY" id="CATEGORY" value="${pd.CATEGORY}" maxlength="255" placeholder="这里输入凭证类别" title="凭证类别" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">启用:</td>

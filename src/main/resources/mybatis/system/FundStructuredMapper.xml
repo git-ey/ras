@@ -12,7 +12,10 @@
 		FUND_ID,	
 		FUND_CODE,	
 		SHORT_NAME,	
-		LEVEL,	
+		LEVEL,
+		EFFECTIVE_DATE, 
+		ACTIVE,
+		STATUS,
 		FUNDSTRUCTURED_ID
 	</sql>
 	
@@ -21,7 +24,10 @@
 		#{FUND_ID},	
 		#{FUND_CODE},	
 		#{SHORT_NAME},	
-		#{LEVEL},	
+		#{LEVEL},
+		#{EFFECTIVE_DATE},
+		#{ACTIVE},
+		#{STATUS},
 		#{FUNDSTRUCTURED_ID}
 	</sql>
 	
@@ -52,7 +58,11 @@
 			FUND_ID = #{FUND_ID},
 			FUND_CODE = #{FUND_CODE},
 			SHORT_NAME = #{SHORT_NAME},
-			LEVEL = #{LEVEL}
+			LEVEL = #{LEVEL},
+			EFFECTIVE_DATE = #{EFFECTIVE_DATE},
+			ACTIVE = #{ACTIVE},
+		    STATUS = #{STATUS},
+		FUNDSTRUCTURED_ID = FUNDSTRUCTURED_ID
 		where 
 		FUNDSTRUCTURED_ID = #{FUNDSTRUCTURED_ID}
 	</update>
@@ -73,7 +83,18 @@
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include>
-		where FUND_ID = #{pd.FUND_ID}
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					FUND_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				     or 
+					SHORT_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
 	</select>
 	
 	<!-- 列表(全部) -->
@@ -94,4 +115,58 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.FUND_ID},	
+		#{pd.FUND_CODE},	
+		#{pd.SHORT_NAME},	
+		#{pd.LEVEL},
+		#{pd.EFFECTIVE_DATE},
+		#{pd.ACTIVE},
+		#{pd.STATUS},
+		#{pd.FUNDSTRUCTURED_ID}
+         )
+         </foreach >
+	</insert>
+	
+	<!-- 查询分级名称 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-20 -->
+    <select id="selectLevelNameData" parameterType="java.util.Map" resultType="java.lang.String">
+	    SELECT
+		    sfs.SHORT_NAME AS shortName 
+		FROM
+		    sys_fund_structured sfs 
+		WHERE
+		    1 = 1 
+	    AND sfs.ACTIVE = 'Y' 
+	    AND sfs.FUND_ID = #{fundId}
+	    AND sfs.`LEVEL` = #{level}
+	    LIMIT 1
+    </select>
+    
+    <!-- 查询假分级名称 -->
+    <!-- daigaokuo@hotmail.com -->
+    <!-- 2017-12-26 -->
+    <select id="selectFakeLevelNameData" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+            sfs.SHORT_NAME AS shortName 
+        FROM
+            sys_fund_structured_f sfs 
+        WHERE
+            1 = 1 
+        AND sfs.ACTIVE = 'Y' 
+        AND sfs.FUND_ID = #{fundId}
+        AND sfs.`LEVEL` = #{level}
+        LIMIT 1
+    </select>
+	
 </mapper>

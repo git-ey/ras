@@ -30,13 +30,14 @@
 					<div class="row">
 						<div class="col-xs-12">
 						<form action="concparam/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="CONC_ID" id="CONC_ID" value="${pd.CONC_ID}"/>
 						<div style="overflow-x: scroll; scrolling: auto;width: 100%;">
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
 									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									<label class="pos-rel"><input type="checkbox" autocomplete="off" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">参数代码</th>
@@ -56,7 +57,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.CONC_PARAM_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' autocomplete="off" name='ids' value="${var.CONC_PARAM_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${var.SEQ}</td>
 											<td class='center'>${var.PARAM_CODE}</td>
@@ -246,7 +247,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>concparam/goAdd.do?CONC_ID=${pd.CONC_ID}';
+			 diag.URL = '<%=path%>/concparam/goAdd.do?CONC_ID=${pd.CONC_ID}';
 			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -280,7 +281,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>concparam/goEdit.do?CONC_PARAM_ID='+Id;
+			 diag.URL = '<%=path%>/concparam/goEdit.do?CONC_PARAM_ID='+Id;
 			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口

@@ -97,6 +97,7 @@
 					</div>
 				
 					<form action="createCode/proCode.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="zindex" id="zindex" value="0">
 						<input type="hidden" name="FIELDLIST" id="FIELDLIST" value="">
 						<input type="hidden" name="faobject" id="faobject" value="">
@@ -104,7 +105,7 @@
 						<table style="margin-top: 10px;">
 							<tr>
 								<td style="width:76px;text-align: right;">模块说明：</td>
-								<td><div class="nav-search"><input class="nav-search-input" type="text" name="TITLE" id="TITLE" value="${pd.TITLE }" placeholder="这里输入模块说明内容" style="width:543px;" title="说明"/></div></td>
+								<td><div class="nav-search"><input class="nav-search-input" type="text" autocomplete="off" name="TITLE" id="TITLE" value="${pd.TITLE }" placeholder="这里输入模块说明内容" style="width:543px;" title="说明"/></div></td>
 								<td style="width:76px;text-align: right;">模块类型：</td>
 								<td>
 									<select name="TYPE" id="TYPE" data-placeholder="请选择数据库"  style="vertical-align:top;width: 87px;" onchange="selectType(this.value)">
@@ -119,7 +120,7 @@
 						<table style="margin-top: 5px;">
 							<tr>
 								<td style="width:76px;text-align: right;">上级包名：</td>
-								<td colspan="1"><input type="text" name="packageName" id="packageName" value="${pd.PACKAGENAME }" placeholder="包名  (不要输入特殊字符,请用纯字母)" style="width:259px" title="包名称"/></td>
+								<td colspan="1"><input type="text" autocomplete="off" name="packageName" id="packageName" value="${pd.PACKAGENAME }" placeholder="包名  (不要输入特殊字符,请用纯字母)" style="width:259px" title="包名称"/></td>
 								<td>&nbsp;&nbsp;例如:com.ey.controller.<font color="red" style="font-weight: bold;">system</font>&nbsp;&nbsp;只输入红色部分</td>
 								<td style="padding-left: 10px;">
 									<select name="faobjectid" id="faobjectid" data-placeholder="请选择" disabled="disabled" style="vertical-align:top;width:150px;background-color: #F5F5F5;" onchange="selectFa(this.value)">
@@ -134,10 +135,10 @@
 						<table style="margin-top: 5px;">
 							<tr>
 								<td style="width:76px;text-align: right;">处理类名：</td>
-								<td><input type="text" name="objectName" id="objectName" value="${pd.OBJECTNAME }" placeholder="这里输入处理类名称" style="width:200px" title="类名称"/></td>
+								<td><input type="text" autocomplete="off" name="objectName" id="objectName" value="${pd.OBJECTNAME }" placeholder="这里输入处理类名称" style="width:200px" title="类名称"/></td>
 								<td>&nbsp;&nbsp;<font color="red" style="font-weight: bold;">类名首字母必须为大写字母或下划线</font></td>
 								<td style="width:76px;text-align: right;">表前缀：</td>
-								<td><input type="text" name="tabletop" id="tabletop" value="${msg == 'add' ? 'TB_' : ''}${fn:split(pd.TABLENAME, ',')[0]}" placeholder="这里输入表前缀" style="width:156px" title="表前缀"/></td>
+								<td><input type="text" autocomplete="off" name="tabletop" id="tabletop" value="${msg == 'add' ? 'TB_' : ''}${fn:split(pd.TABLENAME, ',')[0]}" placeholder="这里输入表前缀" style="width:156px" title="表前缀"/></td>
 							</tr>
 						</table>
 						

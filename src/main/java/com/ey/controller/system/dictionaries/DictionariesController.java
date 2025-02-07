@@ -219,7 +219,7 @@ public class DictionariesController extends BaseController {
 		PageData pd = new PageData();
 		try{
 			pd = this.getPageData();
-			if(dictionariesService.findByBianma(pd) != null){
+			if(dictionariesService.findByCode(pd) != null){
 				errInfo = "error";
 			}
 		} catch(Exception e){

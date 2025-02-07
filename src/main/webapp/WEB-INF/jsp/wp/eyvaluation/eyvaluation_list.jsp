@@ -32,12 +32,13 @@
 							
 						<!-- 检索  -->
 						<form action="eyvaluation/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
 									<div class="nav-search">
 										<span class="input-icon">
-											<input type="text" placeholder="这里输入关键词" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }" placeholder="这里输入关键词"/>
+											<input type="text" placeholder="基金ID|期间|EY科目代码|备注" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }" />
 											<i class="ace-icon fa fa-search nav-search-icon"></i>
 										</span>
 									</div>
@@ -61,7 +62,6 @@
 									<th class="center">序号</th>
 									<th class="center">基金ID</th>
 									<th class="center">期间</th>
-									<th class="center">估值日期</th>
 									<th class="center">EY科目代码</th>
 									<th class="center">币种</th>
 									<th class="center">汇率</th>
@@ -95,7 +95,6 @@
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.FUND_ID}</td>
 											<td class='center'>${var.PERIOD}</td>
-											<td class='center'>${var.VDATE}</td>
 											<td class='center'>${var.EY_ACCOUNT_NUM}</td>
 											<td class='center'>${var.CURRENCY}</td>
 											<td class='center'>${var.EXCHANGE_RATE}</td>
@@ -283,9 +282,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>eyvaluation/goAdd.do';
-			 diag.Width = 800;
-			 diag.Height = 450;
+			 diag.URL = '<%=path%>/eyvaluation/goAdd.do';
+			 diag.Width = 900;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮
@@ -321,9 +320,9 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>eyvaluation/goEdit.do?VALUATION_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 450;
+			 diag.URL = '<%=path%>/eyvaluation/goEdit.do?VALUATION_ID='+Id;
+			 diag.Width = 900;
+			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
 		     diag.ShowMinButton = true;		//最小化按钮 

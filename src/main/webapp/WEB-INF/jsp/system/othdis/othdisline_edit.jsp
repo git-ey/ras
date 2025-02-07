@@ -28,21 +28,22 @@
 					<div class="col-xs-12">
 					
 					<form action="othdisline/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="OTHDISLINE_ID" id="OTHDISLINE_ID" value="${pd.OTHDISLINE_ID}"/>
 						<input type="hidden" name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">排序:</td>
-								<td><input type="number" name="SORT" id="SORT" value="${pd.SORT}" maxlength="32" placeholder="这里输入排序" title="排序" style="width:49%;"/></td>
+								<td><input type="number" autocomplete="off" name="SORT" id="SORT" value="${pd.SORT}" maxlength="32" placeholder="这里输入排序" title="排序" style="width:49%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">批路名称:</td>
-								<td><input type="text" name="REVEAL_NAME" id="REVEAL_NAME" value="${pd.REVEAL_NAME}" maxlength="120" placeholder="这里输入批路名称" title="批路名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="REVEAL_NAME" id="REVEAL_NAME" value="${pd.REVEAL_NAME}" maxlength="120" placeholder="这里输入批路名称" title="批路名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="255" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="importData/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="IMPORT_ID" id="IMPORT_ID" value="${pd.IMPORT_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
@@ -43,11 +44,11 @@
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">模板代码:</td>
-								<td><input type="text" name="IMPORT_TEMP_CODE" id="IMPORT_TEMP_CODE" value="${pd.IMPORT_TEMP_CODE}" maxlength="60" placeholder="这里输入模板代码" title="模板代码" style="width:49%;"/></td>
+								<td><input type="text" name="IMPORT_TEMP_CODE" id="IMPORT_TEMP_CODE" autocomplete="off" value="${pd.IMPORT_TEMP_CODE}" maxlength="60" placeholder="这里输入模板代码" title="模板代码" style="width:49%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">文件路径:</td>
-								<td><input type="text" name="IMPORT_FILE_PATH" id="IMPORT_FILE_PATH" value="${pd.IMPORT_FILE_PATH}" maxlength="240" placeholder="这里输入文件路径" title="文件路径" style="width:98%;"/></td>
+								<td><input type="text" name="IMPORT_FILE_PATH" id="IMPORT_FILE_PATH" autocomplete="off" value="${pd.IMPORT_FILE_PATH}" maxlength="240" placeholder="这里输入文件路径" title="文件路径" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

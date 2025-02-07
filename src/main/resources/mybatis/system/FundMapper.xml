@@ -9,7 +9,8 @@
 	
 	<!-- 字段 -->
 	<sql id="Field">
-		FUND_CODE,	
+		FUND_CODE,
+		FUND_TYPE, <!--chenhy,20240218,新增基金类型-->
 		FIRM_CODE,	
 		SHORT_NAME,	
 		FULL_NAME,	
@@ -23,9 +24,11 @@
 		SHHK,	
 		QD,	
 		MF,	
+		AC,	
 		IDX,	
 		LOF,	
-		ETF,	
+		ETF,
+		ETF_CONNECTION,
 		FOF,	
 		UNIT,	
 		DATE_FROM,	
@@ -33,15 +36,42 @@
 		DATE_TRANSFORM,
 		DEPOSIT_TERM_PERIOD,
 		INTEREST_RATE_PERIOD,	
-		OTHER_LIABILITIES,	
+		OTHER_LIABILITIES,
+		DIRECT_DEALER_NAME,
+		DEALER_SEPERATE,
+		INT_SEN_METHOD,
+		INT_SEN_SOURCE_TYPE,
+		INT_SEN_ASSET_EXCL,
+		INT_VAR,
+		PRI_SEN_METHOD,
+		PRI_SEN_SOURCE_TYPE,
+		PRI_VAR,
+		PRI_SEN_ASSET,
+		U_ROW_SET,
+		INDEX_SOURSE,
+		PRICE_SENSTVT_BETA,
+		BETA_SOURSE,
+		LEVEL_SHARE,
+		NAV_ROUND,
+		COMPOUND,
+		ROR_BASELINE,
+		ROR,
+		LEVERAGE,
+		EXERCISE_DATE_METHOD,
 		ACTIVE,	
-		STATUS,	
+		STATUS,
+		SSF,
+		TA,
+		AIM_FUND,
+		PUB_FUND,
+		`IS`,	
 		FUND_ID
 	</sql>
 	
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-		#{FUND_CODE},	
+		#{FUND_CODE},
+		#{FUND_TYPE}, 
 		#{FIRM_CODE},	
 		#{SHORT_NAME},	
 		#{FULL_NAME},	
@@ -54,10 +84,12 @@
 		#{CLOSED},	
 		#{SHHK},	
 		#{QD},	
-		#{MF},	
+		#{MF},
+		#{AC},	
 		#{IDX},	
 		#{LOF},	
-		#{ETF},	
+		#{ETF},
+		#{ETF_CONNECTION},
 		#{FOF},	
 		#{UNIT},	
 		#{DATE_FROM},	
@@ -65,9 +97,35 @@
 		#{DATE_TRANSFORM},
 		#{DEPOSIT_TERM_PERIOD},
 		#{INTEREST_RATE_PERIOD},	
-		#{OTHER_LIABILITIES},	
+		#{OTHER_LIABILITIES},
+		#{DIRECT_DEALER_NAME},
+		#{DEALER_SEPERATE},
+		#{INT_SEN_METHOD},
+		#{INT_SEN_SOURCE_TYPE},
+		#{INT_SEN_ASSET_EXCL},
+		#{INT_VAR},
+		#{PRI_SEN_METHOD},
+		#{PRI_SEN_SOURCE_TYPE},
+		#{PRI_VAR},
+		#{PRI_SEN_ASSET},
+		#{U_ROW_SET},
+		#{INDEX_SOURSE},
+		#{PRICE_SENSTVT_BETA},
+		#{BETA_SOURSE},
+		#{LEVEL_SHARE},
+		#{NAV_ROUND},
+		#{COMPOUND},
+		#{ROR_BASELINE},
+		#{ROR},
+		#{LEVERAGE},
+		#{EXERCISE_DATE_METHOD},
 		#{ACTIVE},	
-		#{STATUS},	
+		#{STATUS},
+		#{SSF},
+		#{TA},
+		#{AIM_FUND},
+		#{PUB_FUND},
+		#{`IS`},		
 		#{FUND_ID}
 	</sql>
 	
@@ -96,6 +154,7 @@
 		<include refid="tableName"></include>
 		set 
 			FUND_CODE = #{FUND_CODE},
+			FUND_TYPE = #{FUND_TYPE},
 			FIRM_CODE = #{FIRM_CODE},
 			SHORT_NAME = #{SHORT_NAME},
 			FULL_NAME = #{FULL_NAME},
@@ -109,11 +168,15 @@
 			SHHK = #{SHHK},
 			QD = #{QD},
 			MF = #{MF},
+			AC = #{AC},
 			IDX = #{IDX},
 			LOF = #{LOF},
 			ETF = #{ETF},
+			ETF_CONNECTION = #{ETF_CONNECTION},
 			FOF = #{FOF},
+			<if test="UNIT != null and UNIT != ''">
 			UNIT = #{UNIT},
+			</if>
 			<if test="DATE_FROM != null and DATE_FROM != ''">
 			DATE_FROM = #{DATE_FROM},
 			</if>
@@ -126,8 +189,49 @@
 			DEPOSIT_TERM_PERIOD = #{DEPOSIT_TERM_PERIOD},
 			INTEREST_RATE_PERIOD = #{INTEREST_RATE_PERIOD},
 			OTHER_LIABILITIES = #{OTHER_LIABILITIES},
+			DIRECT_DEALER_NAME = #{DIRECT_DEALER_NAME},
+		    DEALER_SEPERATE = #{DEALER_SEPERATE},
+			INT_SEN_METHOD=#{INT_SEN_METHOD},
+			INT_SEN_SOURCE_TYPE=#{INT_SEN_SOURCE_TYPE},
+			INT_SEN_ASSET_EXCL=#{INT_SEN_ASSET_EXCL},
+			<if test="INT_VAR != null and INT_VAR != ''">
+			INT_VAR=#{INT_VAR},
+		    </if>
+			PRI_SEN_METHOD=#{PRI_SEN_METHOD},
+			PRI_SEN_SOURCE_TYPE=#{PRI_SEN_SOURCE_TYPE},
+			<if test="PRI_VAR != null and PRI_VAR != ''">
+			PRI_VAR=#{PRI_VAR},
+			</if>
+			PRI_SEN_ASSET=#{PRI_SEN_ASSET},
+		    U_ROW_SET = #{U_ROW_SET},
+		    INDEX_SOURSE = #{INDEX_SOURSE},
+		    PRICE_SENSTVT_BETA = #{PRICE_SENSTVT_BETA},
+		    BETA_SOURSE = #{BETA_SOURSE},
+		    LEVEL_SHARE = #{LEVEL_SHARE},
+		    <if test="NAV_ROUND != null and NAV_ROUND != ''">
+			NAV_ROUND = #{NAV_ROUND},
+			</if>
+		    COMPOUND = #{COMPOUND},
+		    ROR_BASELINE = #{ROR_BASELINE},
+		    <if test="ROR != null and ROR != ''">
+			ROR = #{ROR},
+			</if>
+			<if test="LEVERAGE != null and LEVERAGE != ''">
+			LEVERAGE = #{LEVERAGE},
+			</if>
+			EXERCISE_DATE_METHOD = #{EXERCISE_DATE_METHOD},
 			ACTIVE = #{ACTIVE},
 			STATUS = #{STATUS},
+			<if test="SSF != null and SSF != ''">
+			SSF = #{SSF},</if>
+			<if test="TA != null and TA != ''">
+			TA = #{TA},</if>
+			<if test="AIM_FUND != null and AIM_FUND != ''">
+			AIM_FUND = #{AIM_FUND},</if>
+			<if test="PUB_FUND != null and PUB_FUND != ''">
+			PUB_FUND = #{PUB_FUND},</if>
+			<if test="IS != null and IS != ''">
+			`IS` = #{`IS`},</if>
 		FUND_ID = FUND_ID
 		where 
 		FUND_ID = #{FUND_ID}
@@ -145,7 +249,8 @@
 	
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">
-		select sf.FUND_CODE,	
+		select sf.FUND_CODE,
+			   sf.FUND_TYPE,	
 		       sf.FIRM_CODE,	
 		       sf.SHORT_NAME,	
 		       sf.FULL_NAME,	
@@ -158,10 +263,12 @@
 		       sf.CLOSED,	
 		       sf.SHHK,	
 		       sf.QD,	
-		       sf.MF,	
+			   sf.MF,
+			   sf.AC,	
 		       sf.IDX,	
 		       sf.LOF,	
-		       sf.ETF,	
+		       sf.ETF,
+		       sf.ETF_CONNECTION,
 		       sf.FOF,	
 		       sf.UNIT,	
 		       sf.DATE_FROM,	
@@ -169,14 +276,41 @@
 		       sf.DATE_TRANSFORM,
 		       sf.DEPOSIT_TERM_PERIOD,
 		       sf.INTEREST_RATE_PERIOD,	
-		       sf.OTHER_LIABILITIES,	
+		       sf.OTHER_LIABILITIES,
+		       sf.DIRECT_DEALER_NAME,
+		       sf.DEALER_SEPERATE,
+			   sf.INT_SEN_METHOD,
+			   sf.INT_SEN_SOURCE_TYPE,
+			   sf.INT_SEN_ASSET_EXCL,
+			   sf.INT_VAR,
+			   sf.PRI_SEN_METHOD,
+			   sf.PRI_SEN_SOURCE_TYPE,
+			   sf.PRI_VAR,
+			   sf.PRI_SEN_ASSET,
+		       sf.U_ROW_SET,
+		       sf.INDEX_SOURSE,
+		       sf.PRICE_SENSTVT_BETA,
+		       sf.BETA_SOURSE,
+		       sf.LEVEL_SHARE,
+		       sf.NAV_ROUND,
+		       sf.COMPOUND,
+		       sf.ROR_BASELINE,
+		       sf.ROR,
+		       sf.LEVERAGE,
+		       sf.EXERCISE_DATE_METHOD,
 		       sf.ACTIVE,	
-		       sf.STATUS,	
+		       sf.STATUS,
+			   sf.SSF,
+			   sf.TA,
+			   sf.AIM_FUND,
+			   sf.PUB_FUND,
+			   sf.`IS`,
 		       sf.FUND_ID,
-		       sm.SHORT_NAME COMPANY_SHORT_NAME 
-		from sys_fund_info sf,sys_mgrcompany sm
-		where 1=1
-		  and sf.firm_code = sm.company_code
+		       IFNULL(sm.SHORT_NAME,sf.firm_code) COMPANY_SHORT_NAME 
+		from sys_fund_info sf
+		left join sys_mgrcompany sm
+		 on sf.firm_code = sm.company_code
+		where 1 = 1
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
@@ -204,6 +338,83 @@
 		<include refid="tableName"></include>
 	</select>
 	
+	<!-- 列表全部基金 -->
+	<select id="listAllFund" parameterType="pd" resultType="pd">
+		select FUND_ID,
+		       FIRM_CODE,	
+		       SHORT_NAME,	
+		       FULL_NAME
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 底稿导出时查询基金基本信息 daigaokuo@hotmail.com 17-12-03 -->
+    <select id="selectFundInfo" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            sfi.FUND_ID as fundId,
+            sfi.SHORT_NAME as fundShortName,
+            IF(sfi.FULL_NAME_ORIGINAL IS NULL,sfi.FULL_NAME, CONCAT(sfi.FULL_NAME,'（原名：',sfi.FULL_NAME_ORIGINAL,'）')) as fundFullName,
+            smc.SHORT_NAME as companyShortName,
+            sfi.FIRM_CODE as firmCode
+        FROM
+            SYS_FUND_INFO sfi
+        inner join sys_mgrcompany smc on smc.COMPANY_CODE = sfi.FIRM_CODE
+        WHERE
+            1 = 1
+        AND sfi.ACTIVE = 'Y'
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+    
+    <!-- 底稿导出时查询基金ETF信息 daigaokuo@hotmail.com 17-12-03 -->
+    <select id="selectETFFlag" parameterType="java.util.Map" resultType="java.util.Map"> 
+       SELECT
+            ifnull( sfi.ETF, 'N' ) AS ETF,
+            ifnull( sfi.ETF_CONNECTION, 'N') as ETF_CONNECTION
+        FROM
+            SYS_FUND_INFO sfi 
+        WHERE
+            1 = 1 
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+
+	<!-- 底稿导出时查询基金FOF信息 chenhy，20220704 -->
+    <select id="selectFOFFlag" parameterType="java.util.Map" resultType="java.util.Map"> 
+       SELECT
+            ifnull( sfi.FOF, 'N' ) AS FOF
+        FROM
+            SYS_FUND_INFO sfi 
+        WHERE
+            1 = 1 
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+	
+	<!-- 底稿导出时查询基金AC信息 chenhy，20220902 -->
+    <select id="selectACFlag" parameterType="java.util.Map" resultType="java.util.Map"> 
+       SELECT
+            ifnull( sfi.AC, 'N' ) AS AC
+        FROM
+            SYS_FUND_INFO sfi 
+        WHERE
+            1 = 1 
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+	
+	<!-- 底稿导出时查询基金MF信息 chenhy，20220902 -->
+    <select id="selectMFFlag" parameterType="java.util.Map" resultType="java.util.Map"> 
+       SELECT
+            ifnull( sfi.MF, 'N' ) AS MF
+        FROM
+            SYS_FUND_INFO sfi 
+        WHERE
+            1 = 1 
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+	
 	<!-- 批量删除 -->
 	<delete id="deleteAll" parameterType="String">
 		delete from
@@ -218,43 +429,69 @@
 	<!-- 批量新增-->
 	<insert id="saveBatch" parameterType="java.util.List">
 		insert into 
-	    <include refid="tableName"></include>
+	        <include refid="tableName"></include>
 		(
-	     FUND_ID,
-		 FUND_CODE,	
-		 FIRM_CODE,	
-		 SHORT_NAME,	
-		 FULL_NAME,	
-		 FULL_NAME_ORIGINAL,	
-		 TA_NAME,	
-		 FIN_SYSTEM,	
-		 STRUCTURED,	
-		 SHHK,	
-		 QD,	
-		 MF,	
-		 DATE_FROM,	
-		 DATE_TO,	
-		 ACTIVE,	
-		 STATUS
+	        <include refid="Field"></include>
 		) values 
 		<foreach collection ="list" item="pd" index= "index" separator =",">
          (
-         #{pd.FUND_ID},
-		 #{pd.FUND_CODE},	
-		 #{pd.FIRM_CODE},	
-		 #{pd.SHORT_NAME},	
-		 #{pd.FULL_NAME},	
-		 #{pd.FULL_NAME_ORIGINAL},	
-		 #{pd.TA_NAME},	
-		 #{pd.FIN_SYSTEM},	
-		 #{pd.STRUCTURED},	
-		 #{pd.SHHK},	
-		 #{pd.QD},	
-		 #{pd.MF},	
-		 #{pd.DATE_FROM},	
-		 ${pd.DATE_TO},	
-		 #{pd.ACTIVE},	
-		 #{pd.STATUS}
+        #{pd.FUND_CODE},
+		#{pd.FUND_TYPE},	
+		#{pd.FIRM_CODE},	
+		#{pd.SHORT_NAME},	
+		#{pd.FULL_NAME},	
+		#{pd.FULL_NAME_ORIGINAL},	
+		#{pd.LEDGER_NUM},	
+		#{pd.TA_NAME},	
+		#{pd.FIN_SYSTEM},	
+		#{pd.STRUCTURED},	
+		#{pd.GUARANTEED},	
+		#{pd.CLOSED},	
+		#{pd.SHHK},	
+		#{pd.QD},	
+		#{pd.MF},
+		#{pd.AC},	
+		#{pd.IDX},	
+		#{pd.LOF},	
+		#{pd.ETF},
+		#{pd.ETF_CONNECTION},
+		#{pd.FOF},	
+		#{pd.UNIT},	
+		#{pd.DATE_FROM},	
+		#{pd.DATE_TO},	
+		#{pd.DATE_TRANSFORM},
+		#{pd.DEPOSIT_TERM_PERIOD},
+		#{pd.INTEREST_RATE_PERIOD},	
+		#{pd.OTHER_LIABILITIES},
+		#{pd.DIRECT_DEALER_NAME},
+		#{pd.DEALER_SEPERATE},
+		#{pd.INT_SEN_METHOD},
+		#{pd.INT_SEN_SOURCE_TYPE},
+		#{pd.INT_SEN_ASSET_EXCL},
+		#{pd.INT_VAR},
+		#{pd.PRI_SEN_METHOD},
+		#{pd.PRI_SEN_SOURCE_TYPE},
+		#{pd.PRI_VAR},
+		#{pd.PRI_SEN_ASSET},
+		#{pd.U_ROW_SET},
+		#{pd.INDEX_SOURSE},
+		#{pd.PRICE_SENSTVT_BETA},
+		#{pd.BETA_SOURSE},
+		#{pd.LEVEL_SHARE},
+		#{pd.NAV_ROUND},
+		#{pd.COMPOUND},
+		#{pd.ROR_BASELINE},
+		#{pd.ROR},
+		#{pd.LEVERAGE},
+		#{pd.EXERCISE_DATE_METHOD},
+		#{pd.ACTIVE},	
+		#{pd.STATUS},
+		#{pd.SSF},
+		#{pd.TA},
+		#{pd.AIM_FUND},
+		#{pd.PUB_FUND},
+		#{pd.`IS`},
+		#{pd.FUND_ID}
          )
          </foreach >
 	</insert>
@@ -264,7 +501,7 @@
 	   select (select count(*) from sys_fund_related_party where FUND_ID = #{FUND_ID}) + 
        (select count(*) from sys_fund_signoff where FUND_ID = #{FUND_ID}) +
        (select count(*) from sys_fund_structured where FUND_ID = #{FUND_ID}) +
-       (select count(*) from sys_fund_trx_rule where FUND_ID = #{FUND_ID}) zs;
+	   (select count(*) from sys_fund_structured_f where FUND_ID = #{FUND_ID}) zs;
 	</select>
 	
 	<!-- 批量更新-->
@@ -279,10 +516,12 @@
 		       fi.CLOSED = REPLACE(fi.CLOSED,'''',null),
 		       fi.SHHK = REPLACE(fi.SHHK,'''',null),
 		       fi.QD = REPLACE(fi.QD,'''',null),
-		       fi.MF = REPLACE(fi.MF,'''',null),
+			   fi.MF = REPLACE(fi.MF,'''',null),
+			   fi.AC = REPLACE(fi.AC,'''',null),
 		       fi.IDX = REPLACE(fi.IDX,'''',null),
 		       fi.LOF = REPLACE(fi.LOF,'''',null),
 		       fi.ETF = REPLACE(fi.ETF,'''',null),
+		       fi.ETF_CONNECTION = REPLACE(fi.ETF_CONNECTION,'''',null),
 		       fi.FOF = REPLACE(fi.FOF,'''',null),
 		       fi.UNIT = REPLACE(fi.UNIT,'''',null),
 		       fi.DATE_FROM = REPLACE(fi.DATE_FROM,'''',null),
@@ -291,8 +530,34 @@
 		       fi.DEPOSIT_TERM_PERIOD = REPLACE(fi.DEPOSIT_TERM_PERIOD,'''',null),
 		       fi.INTEREST_RATE_PERIOD = REPLACE(fi.INTEREST_RATE_PERIOD,'''',null),
 		       fi.OTHER_LIABILITIES = REPLACE(fi.OTHER_LIABILITIES,'''',null),
+		       fi.DIRECT_DEALER_NAME = REPLACE(fi.DIRECT_DEALER_NAME,'''',null),
+		       fi.DEALER_SEPERATE = REPLACE(fi.DEALER_SEPERATE,'''',null),
+			   fi.INT_SEN_METHOD = REPLACE(fi.INT_SEN_METHOD,'''',null),
+			   fi.INT_SEN_SOURCE_TYPE = REPLACE(fi.INT_SEN_SOURCE_TYPE,'''',null),
+			   fi.INT_SEN_ASSET_EXCL = REPLACE(fi.INT_SEN_ASSET_EXCL,'''',null),
+			   fi.INT_VAR = REPLACE(fi.INT_VAR,'''',null),
+			   fi.PRI_SEN_METHOD = REPLACE(fi.PRI_SEN_METHOD,'''',null),
+			   fi.PRI_SEN_SOURCE_TYPE = REPLACE(fi.PRI_SEN_SOURCE_TYPE,'''',null),
+			   fi.PRI_VAR = REPLACE(fi.PRI_VAR,'''',null),
+			   fi.PRI_SEN_ASSET = REPLACE(fi.PRI_SEN_ASSET,'''',null),
+		       fi.U_ROW_SET = REPLACE(fi.U_ROW_SET,'''',null),
+		       fi.PRICE_SENSTVT_BETA = REPLACE(fi.PRICE_SENSTVT_BETA,'''',null),
+		       fi.LEVEL_SHARE = REPLACE(fi.LEVEL_SHARE,'''',null),
+		       fi.NAV_ROUND = REPLACE(fi.NAV_ROUND,'''',null),
+		       fi.COMPOUND = REPLACE(fi.COMPOUND,'''',null),
+		       fi.ROR_BASELINE = REPLACE(fi.ROR_BASELINE,'''',null),
+		       fi.ROR = REPLACE(fi.ROR,'''',null),
+		       fi.LEVERAGE = REPLACE(fi.LEVERAGE,'''',null),
+		       fi.EXERCISE_DATE_METHOD = REPLACE(fi.EXERCISE_DATE_METHOD,'''',null),
 		       fi.ACTIVE = REPLACE(fi.ACTIVE,'''',null),
-		       fi.`STATUS` = REPLACE(fi.`STATUS`,'''',null)
+		       fi.`STATUS` = REPLACE(fi.`STATUS`,'''',null),
+			   fi.`SSF` = REPLACE(fi.`SSF`,'''',null),
+			   fi.`TA` = REPLACE(fi.`TA`,'''',null),
+			   fi.`AIM_FUND` = REPLACE(fi.`AIM_FUND`,'''',null),
+			   fi.`PUB_FUND` = REPLACE(fi.`PUB_FUND`,'''',null),
+			   fi.`IS` = REPLACE(fi.`IS`,'''',null),
+			    fi.`FUND_TYPE` = REPLACE(fi.`FUND_TYPE`,'''',null)
+		  WHERE 1 = 0
 	</update>
-	
+
 </mapper>

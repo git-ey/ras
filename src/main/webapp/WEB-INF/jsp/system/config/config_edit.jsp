@@ -28,16 +28,21 @@
 					<div class="col-xs-12">
 					
 					<form action="config/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="CONFIG_ID" id="CONFIG_ID" value="${pd.CONFIG_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">配置代码:</td>
-								<td><input type="text" name="CONFIG_CODE" id="CONFIG_CODE" value="${pd.CONFIG_CODE}" maxlength="120" placeholder="这里输入配置代码" title="配置代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CONFIG_CODE" id="CONFIG_CODE" value="${pd.CONFIG_CODE}" maxlength="120" placeholder="这里输入配置代码" title="配置代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">配置值:</td>
-								<td><input type="text" name="CONFIG_VALUE" id="CONFIG_VALUE" value="${pd.CONFIG_VALUE}" maxlength="480" placeholder="这里输入配置值" title="配置值" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CONFIG_VALUE" id="CONFIG_VALUE" value="${pd.CONFIG_VALUE}" maxlength="480" placeholder="这里输入配置值" title="配置值" style="width:98%;"/></td>
+							</tr>
+							<tr>
+								<td style="width:75px;text-align: right;padding-top: 13px;">描述:</td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" title="描述" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">是否启用:</td>

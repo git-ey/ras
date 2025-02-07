@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ey</groupId>
@@ -11,7 +12,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<javax-activation.version>1.1</javax-activation.version>
 		<spring.version>4.3.7.RELEASE</spring.version>
-		<mysql-connector-java.version>5.1.34</mysql-connector-java.version>
+		<mysql-connector-java.version>8.0.17</mysql-connector-java.version>
 		<maven-compiler.version>2.4</maven-compiler.version>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -54,6 +55,24 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-dao</artifactId>
 			<version>2.0.8</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -69,6 +88,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-mock</artifactId>
 			<version>2.0.8</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -102,6 +127,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector-java.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>1.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -117,6 +147,12 @@
 			<groupId>org.apache.james</groupId>
 			<artifactId>apache-mime4j</artifactId>
 			<version>0.6.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>asm</groupId>
@@ -137,6 +173,12 @@
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
@@ -152,11 +194,23 @@
 			<groupId>commons-discovery</groupId>
 			<artifactId>commons-discovery</artifactId>
 			<version>0.5</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-io</artifactId>
+					<groupId>commons-io</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -181,7 +235,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.0.9</version>
+			<version>1.1.12</version>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
@@ -249,14 +303,20 @@
 			<version>4.0.2206.100</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.quartz-scheduler</groupId>
-		    <artifactId>quartz</artifactId>
-		    <version>2.2.1</version>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
-		    <groupId>org.quartz-scheduler</groupId>
-		    <artifactId>quartz-jobs</artifactId>
-		    <version>2.2.1</version>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -264,31 +324,37 @@
 			<version>2.4.2</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.alibaba</groupId>
-		    <artifactId>fastjson</artifactId>
-		    <version>1.2.12</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.12</version>
 		</dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>19.0-rc1</version>
-        </dependency>
-        <!-- poi -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.16</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.16</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0-rc1</version>
+		</dependency>
+		<!-- juniversalchardet -->
+		<dependency>
+			<groupId>com.googlecode.juniversalchardet</groupId>
+			<artifactId>juniversalchardet</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+		<!-- poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.16</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.16</version>
+		</dependency>
 		<!-- fctl -->
 		<dependency>
 			<groupId>fctl</groupId>
@@ -343,7 +409,7 @@
 			<artifactId>shiro</artifactId>
 			<version>1.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/shiro-all-1.2.3.jar</systemPath>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/shiro-all-1.11.0.jar</systemPath>
 		</dependency>
 		<!-- sun.misc.BASE64Decoder -->
 		<dependency>
@@ -377,68 +443,151 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ezmorph-1.0.6.jar</systemPath>
 		</dependency>
+		<!-- opencsv -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.5.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-collections4</artifactId>
+					<groupId>org.apache.commons</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-lang3</artifactId>
+					<groupId>org.apache.commons</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-beanutils</artifactId>
+					<groupId>commons-beanutils</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- for upper than jdk9 -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>jsr250-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ldap</groupId>
+			<artifactId>spring-ldap-core</artifactId>
+			<version>2.3.2.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-tx</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>ras</finalName>
 		<plugins>
-		    <!-- 编译插件 -->  
-            <plugin>  
-            <groupId>org.apache.maven.plugins</groupId>  
-            <artifactId>maven-compiler-plugin</artifactId>  
-            <version>${maven-compiler.version}</version>  
-            <configuration>  
-                <source>${java.version}</source>  
-                <target>${java.version}</target>  
-                <encoding>${project.build.sourceEncoding}</encoding>  
-	        </configuration>  
-	    </plugin>
+			<!-- 编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<profiles>
-        <profile>  
-            <id>dev</id>
-            <activation>  
-                <activeByDefault>true</activeByDefault>  
-            </activation> 
-            <build>  
-                <resources>  
-                    <resource>  
-                        <directory>src/main/resources/profiles/dev</directory>  
-                    </resource>
-                    <resource>  
-                        <directory>src/main/resources</directory>  
-                    </resource>
-                </resources>  
-            </build>  
-        </profile>
-        <profile>  
-            <id>uat</id>
-            <activation/>
-            <build>  
-                <resources>  
-                    <resource>  
-                        <directory>src/main/resources/profiles/uat</directory>  
-                    </resource>
-                    <resource>  
-                        <directory>src/main/resources</directory>  
-                    </resource> 
-                </resources>  
-            </build>  
-        </profile>
-        <profile>  
-            <id>pro</id>
-            <activation/>
-            <build>  
-                <resources>  
-                    <resource>  
-                        <directory>src/main/resources/profiles/pro</directory>  
-                    </resource>
-                    <resource>  
-                        <directory>src/main/resources</directory>  
-                    </resource>
-                </resources>  
-            </build>  
-        </profile>
-    </profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/profiles/dev</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>sit</id>
+			<activation />
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/profiles/sit</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>uat</id>
+			<activation />
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/profiles/uat</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<!-- <profile>
+			<id>pro</id>
+			<activation />
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/profiles/pro</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile> -->
+	</profiles>
 	<artifactId>ras</artifactId>
 </project>

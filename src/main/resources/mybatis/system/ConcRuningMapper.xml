@@ -14,7 +14,8 @@
 		END_DATETIME,	
 		RESULT,	
 		MESSAGE,	
-		OPERATOR,	
+		OPERATOR,
+		RUN_PARAM,
 		CONCRUNING_ID
 	</sql>
 	
@@ -25,7 +26,8 @@
 		#{END_DATETIME},	
 		#{RESULT},	
 		#{MESSAGE},	
-		#{OPERATOR},	
+		#{OPERATOR},
+		#{RUN_PARAM},
 		#{CONCRUNING_ID}
 	</sql>
 	
@@ -56,7 +58,8 @@
 			CONC_CODE = #{CONC_CODE},
 		    END_DATETIME = #{END_DATETIME},	
 		    RESULT = #{RESULT},	
-		    MESSAGE = #{MESSAGE}
+		    MESSAGE = #{MESSAGE},
+		    RUN_PARAM = #{RUN_PARAM}
 		where 
 		CONCRUNING_ID = #{CONCRUNING_ID}
 	</update>
@@ -79,7 +82,8 @@
 		      sr.END_DATETIME,	
 		      sr.RESULT,	
 		      sr.MESSAGE,	
-		      sr.OPERATOR,	
+		      sr.OPERATOR,
+		      sr.RUN_PARAM,
 		      sr.CONCRUNING_ID
 		 from sys_concruning sr,
 		      sys_conc sc
@@ -123,7 +127,32 @@
 		  LOG_MSG_2,
 		  LOG_MSG_3,
 		  LOG_MSG_4,
-		  LOG_MSG_5
+		  LOG_MSG_5,
+		  LOG_MSG_6,
+		  LOG_MSG_7,
+		  LOG_MSG_8,
+		  LOG_MSG_9,
+		  LOG_MSG_10,
+		  LOG_MSG_11,
+		  LOG_MSG_12,
+		  LOG_MSG_13,
+		  LOG_MSG_14,
+		  LOG_MSG_15,
+		  LOG_MSG_16,
+		  LOG_MSG_17,
+		  LOG_MSG_18,
+		  LOG_MSG_19,
+		  LOG_MSG_20,
+		  LOG_MSG_21,
+		  LOG_MSG_22,
+		  LOG_MSG_23,
+		  LOG_MSG_24,
+		  LOG_MSG_25,
+		  LOG_MSG_26,
+		  LOG_MSG_27,
+		  LOG_MSG_28,
+		  LOG_MSG_29,
+		  LOG_MSG_30
 		from sys_concrun_log
 	   where CONCRUNING_ID = #{CONCRUNING_ID}
 	</select>	
@@ -140,12 +169,12 @@
 	</delete>
 	
 	<!-- 执行存储过程 -->
-	<select id="runProcedure" statementType="CALLABLE" parameterType="pd">
+	<update id="runProcedure" statementType="CALLABLE" parameterType="pd">
       <![CDATA[call ${CONC_PROGRAM}(]]>
       <foreach item="item" index="index" collection="CONC_PARAM" separator=",">
           #{item}
       </foreach>
       <![CDATA[,#{RESULT,mode=OUT,jdbcType=VARCHAR},#{MESSAGE,mode=OUT,jdbcType=VARCHAR});]]>
-	</select>
+	</update>
 	
 </mapper>

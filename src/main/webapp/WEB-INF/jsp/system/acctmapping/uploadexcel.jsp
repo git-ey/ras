@@ -28,10 +28,11 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<form action="acctmapping/readExcel.do" name="Form" id="Form" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								<div id="zhongxin">
 								<table style="width:95%;" >
 									<tr>
-										<td style="padding-top: 20px;"><input type="file" id="excel" name="excel" style="width:50px;" onchange="fileType(this)" /></td>
+										<td style="padding-top: 20px;"><input type="file" autocomplete="off" id="excel" name="excel" style="width:50px;" onchange="fileType(this)" /></td>
 									</tr>
 									<tr>
 										<td style="text-align: center;padding-top: 10px;">
@@ -99,7 +100,21 @@
 			$("#zhongxin2").show();
 		}
 		function fileType(obj){
-			var fileType=obj.value.substr(obj.value.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+			var maxSize = 5242880000; // 设置最大文件大小为5GB（5242880000字节） 
+			var fileSize = obj.files[0].size; // 获取文件大小（以字节为单位）  
+			var fileType = obj.value.substr(obj.value.lastIndexOf(".")).toLowerCase(); // 获得文件后缀名  
+			// 检查文件大小是否超过限制  
+			if (fileSize > maxSize) {  
+				$("#excel").tips({  
+					side: 3,  
+					msg: '文件大小不能超过5GB',  
+					bg: '#AE82FF',  
+					time: 3  
+				});  
+				$("#excel").val('');  
+				document.getElementById("excel").files[0] = '请选择xls格式的文件';  
+			}  
+			
 		    if(fileType != '.xls' && fileType != '.xlsx'){
 		    	$("#excel").tips({
 					side:3,

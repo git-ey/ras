@@ -32,12 +32,13 @@
 							
 						<!-- 检索  -->
 						<form action="eyje/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
 									<div class="nav-search">
 										<span class="input-icon">
-											<input type="text" placeholder="这里输入关键词" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }" placeholder="这里输入关键词"/>
+											<input type="text" placeholder="基金ID|期间|科目代码" class="nav-search-input" id="nav-search-input" autocomplete="off" name="keywords" value="${pd.keywords }"/>
 											<i class="ace-icon fa fa-search nav-search-icon"></i>
 										</span>
 									</div>
@@ -91,7 +92,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.EYJE_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.JE_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.FUND_ID}</td>
@@ -120,12 +121,12 @@
 												</c:if>
 												<div class="hidden-sm hidden-xs btn-group">
 													<c:if test="${QX.edit == 1 }">
-													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.EYJE_ID}');">
+													<a class="btn btn-xs btn-success" title="编辑" onclick="edit('${var.JE_ID}');">
 														<i class="ace-icon fa fa-pencil-square-o bigger-120" title="编辑"></i>
 													</a>
 													</c:if>
 													<c:if test="${QX.del == 1 }">
-													<a class="btn btn-xs btn-danger" onclick="del('${var.EYJE_ID}');">
+													<a class="btn btn-xs btn-danger" onclick="del('${var.JE_ID}');">
 														<i class="ace-icon fa fa-trash-o bigger-120" title="删除"></i>
 													</a>
 													</c:if>
@@ -139,7 +140,7 @@
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 															<c:if test="${QX.edit == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="edit('${var.EYJE_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
+																<a style="cursor:pointer;" onclick="edit('${var.JE_ID}');" class="tooltip-success" data-rel="tooltip" title="修改">
 																	<span class="green">
 																		<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																	</span>
@@ -148,7 +149,7 @@
 															</c:if>
 															<c:if test="${QX.del == 1 }">
 															<li>
-																<a style="cursor:pointer;" onclick="del('${var.EYJE_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
+																<a style="cursor:pointer;" onclick="del('${var.JE_ID}');" class="tooltip-error" data-rel="tooltip" title="删除">
 																	<span class="red">
 																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																	</span>
@@ -285,7 +286,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>eyje/goAdd.do';
+			 diag.URL = '<%=path%>/eyje/goAdd.do';
 			 diag.Width = 800;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -309,7 +310,7 @@
 			bootbox.confirm("确定要删除吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>eyje/delete.do?EYJE_ID="+Id+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>eyje/delete.do?JE_ID="+Id+"&tm="+new Date().getTime();
 					$.get(url,function(data){
 						tosearch();
 					});
@@ -323,7 +324,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>eyje/goEdit.do?EYJE_ID='+Id;
+			 diag.URL = '<%=path%>/eyje/goEdit.do?JE_ID='+Id;
 			 diag.Width = 800;
 			 diag.Height = 450;
 			 diag.Modal = true;				//有无遮罩窗口

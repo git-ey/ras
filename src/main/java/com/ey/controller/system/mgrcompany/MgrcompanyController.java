@@ -22,7 +22,6 @@ import com.ey.util.AppUtil;
 import com.ey.util.ObjectExcelView;
 import com.ey.util.PageData;
 import com.ey.util.Jurisdiction;
-import com.ey.util.Tools;
 import com.ey.service.system.mgrcompany.MgrcompanyManager;
 
 /** 

@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="othdishead/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -247,7 +248,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>othdishead/goAdd.do';
+			 diag.URL = '<%=path%>/othdishead/goAdd.do';
 			 diag.Width = 800;
 			 diag.Height = 300;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -300,7 +301,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>othdishead/goEdit.do?OTHDISHEAD_ID='+Id;
+			 diag.URL = '<%=path%>/othdishead/goEdit.do?OTHDISHEAD_ID='+Id;
 			 diag.Width = 800;
 			 diag.Height = 600;
 			 diag.Modal = true;				//有无遮罩窗口

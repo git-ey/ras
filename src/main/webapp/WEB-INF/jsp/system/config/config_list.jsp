@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="config/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -59,6 +60,7 @@
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">配置代码</th>
 									<th class="center">配置值</th>
+									<th class="center">描述</th>
 									<th class="center" style="width: 120px;">是否启用</th>
 									<th class="center" style="width: 180px;">操作</th>
 								</tr>
@@ -77,6 +79,7 @@
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.CONFIG_CODE}</td>
 											<td class='center'>${var.CONFIG_VALUE}</td>
+											<td class='center'>${var.DESCRIPTION}</td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.ENABLED_FLAG == 'Y' }">
@@ -258,7 +261,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>config/goAdd.do';
+			 diag.URL = '<%=path%>/config/goAdd.do';
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -296,7 +299,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>config/goEdit.do?CONFIG_ID='+Id;
+			 diag.URL = '<%=path%>/config/goEdit.do?CONFIG_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口

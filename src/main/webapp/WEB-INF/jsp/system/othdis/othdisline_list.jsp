@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="othdisline/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}"/>
 						<!-- 检索  -->
 						<div style="overflow-x: scroll; scrolling: auto;width: 100%;">
@@ -236,7 +237,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>othdisline/goAdd.do?OTHDISHEAD_ID=${pd.OTHDISHEAD_ID}';
+			 diag.URL = '<%=path%>/othdisline/goAdd.do?OTHDISHEAD_ID=${pd.OTHDISHEAD_ID}';
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -270,7 +271,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>othdisline/goEdit.do?OTHDISLINE_ID='+Id;
+			 diag.URL = '<%=path%>/othdisline/goEdit.do?OTHDISLINE_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口

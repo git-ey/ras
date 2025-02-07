@@ -13,7 +13,10 @@
 		PERIOD,	
 		SIGNOFF_1,	
 		SIGNOFF_2,	
-		SIGNOFF_3,	
+		SIGNOFF_3,
+		DB_NUM,	
+		ACTIVE,	
+		STATUS,	
 		FUNDSIGNOFF_ID
 	</sql>
 	
@@ -24,6 +27,9 @@
 		#{SIGNOFF_1},	
 		#{SIGNOFF_2},	
 		#{SIGNOFF_3},	
+		#{DB_NUM},
+		#{ACTIVE},	
+		#{STATUS},	
 		#{FUNDSIGNOFF_ID}
 	</sql>
 	
@@ -55,7 +61,10 @@
 			PERIOD = #{PERIOD},
 			SIGNOFF_1 = #{SIGNOFF_1},
 			SIGNOFF_2 = #{SIGNOFF_2},
-			SIGNOFF_3 = #{SIGNOFF_3}
+			SIGNOFF_3 = #{SIGNOFF_3},
+			DB_NUM = #{DB_NUM},
+			ACTIVE = #{ACTIVE},
+		FUNDSIGNOFF_ID = FUNDSIGNOFF_ID
 		where 
 		FUNDSIGNOFF_ID = #{FUNDSIGNOFF_ID}
 	</update>
@@ -76,7 +85,17 @@
 		<include refid="Field"></include>
 		from 
 		<include refid="tableName"></include>
-		where FUND_ID = #{pd.FUND_ID}
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				<!-- 根据需求自己加检索条件 -->
+					FUND_ID LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				
+				)
+		</if>
 	</select>
 	
 	<!-- 列表(全部) -->
@@ -97,4 +116,27 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.FUND_ID},	
+		#{pd.PERIOD},	
+		#{pd.SIGNOFF_1},	
+		#{pd.SIGNOFF_2},	
+		#{pd.SIGNOFF_3},
+		#{pd.DB_NUM},
+		#{pd.ACTIVE},	
+		#{pd.STATUS},	
+		#{pd.FUNDSIGNOFF_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>

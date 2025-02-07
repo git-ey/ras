@@ -33,6 +33,7 @@
 						<div id="zhongxin" style="padding-top: 13px;">
 						<!-- 检索  -->
 						<form action="user/listUsersForWindow.do" method="post" name="userForm" id="userForm">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -213,7 +214,7 @@ function viewUser(USERNAME){
 	 var diag = new top.Dialog();
 	 diag.Drag=true;
 	 diag.Title ="资料";
-	 diag.URL = '<%=basePath%>user/view.do?USERNAME='+USERNAME;
+	 diag.URL = '<%=path%>/user/view.do?USERNAME='+USERNAME;
 	 diag.Width = 469;
 	 diag.Height = 380;
 	 diag.CancelEvent = function(){ //关闭事件

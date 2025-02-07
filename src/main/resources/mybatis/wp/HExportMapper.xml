@@ -1,0 +1,1667 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HExportMapper">
+
+    <select id="selectHData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            H.EY_ACCOUNT_NUM as accountNum,
+            H.ITEM as item,
+            IF(H.TYPE IS NULL OR H.TYPE = '', 'NULL', H.TYPE) as type,
+            H.AMOUNT_ADJ_CR as crAmountAdj,
+            H.AMOUNT_ADJ_DR as drAmountAdj,
+            H.AMOUNT_AUDIT_LAST as amountAuditLast
+        FROM
+            wp_h H
+        where 
+            1 = 1
+        and H.STATUS = 'Y'
+        and H.FUND_ID = #{fundId}
+        and H.PERIOD = #{period}
+    </select>
+
+    <select id="selectH300Data" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT
+		    H300.TYPE as type,
+		    H300.SUBTYPE as subtype,
+		    H300.COST as cost,
+			H300.FAIR_VALUE as fairValue,
+			H300.END_APPRECIATION as endAppreciation,
+		    H300.BEGIN_APPRECIATION as beginAppreciation 
+		FROM
+		    wp_h300 H300
+        where 
+            1 = 1
+        and H300.STATUS = 'Y'
+        and H300.FUND_ID = #{fundId}
+        and H300.PERIOD = #{period}
+    </select>
+
+    <select id="selectH300InterestRatePeriodsData" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT
+		    stl.REVEAL_NAME AS revealName 
+		FROM
+		    sys_term_line stl
+		INNER JOIN sys_fund_info sfi ON sfi.INTEREST_RATE_PERIOD = stl.TERMHEAD_ID 
+		WHERE
+		    1 = 1 
+		AND sfi.ACTIVE = 'Y' 
+		AND sfi.FUND_ID = #{fundId}
+		ORDER BY
+		    stl.SORT
+    </select>
+
+    <select id="selectH400MainData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    'H400' as source,
+		    H400M.PARTY_SHORT_NAME AS partyShortName,
+		    H400M.RELATIONSHIP AS relationship,
+		    H400M.`CODE` AS `code`,
+		    H400M.`NAME` AS `name`,
+		    H400M.TOTAL_COST AS totalCost,
+		    H400M.MKT_VALUE_CLIENT AS mktValueClient,
+		    H400M.APPRECIATION_CLIENT AS appreciationClient,
+        <!-- 以上部分共H300使用 -->
+        H400M.TYPE as type,
+		    H400M.ACCOUNT_NUM as accountNum,
+		    H400M.MARKET as market,
+		    H400M.SUB_TYPE as subType,
+		    H400M.QUANTITY as quantity,
+		    H400M.UNIT_PRICE as unitPrice,
+		    H400M.VAL_PRICE as valPrice,
+		    H400M.RELEATED as releated,
+		    H400M.THREE_LEVEL as threeLevel,
+		    H400M.RESTRICT_TYPE as restrictType
+		FROM
+		    wp_h400_main H400M
+		where 
+            1 = 1
+        and H400M.STATUS = 'Y'
+        <if test="related != null and related != ''">
+            AND H400M.RELEATED = #{related}
+        </if>
+        and H400M.FUND_ID = #{fundId}
+        and H400M.PERIOD = #{period}
+    </select>
+
+    <select id="selectH400OptionData" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT
+		    H400O.OPTION_CODE AS optionCode,
+		    H400O.OPTION_NAME AS optionName 
+		FROM
+		    wp_h400_option H400O
+		where 
+            1 = 1
+        and H400O.STATUS = 'Y'
+        and H400O.FUND_ID = #{fundId}
+        and H400O.PERIOD = #{period}
+    </select>
+    <select id="selectH400MacMainData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    'H400' as source,
+		    H400M.PARTY_SHORT_NAME AS partyShortName,
+		    H400M.RELATIONSHIP AS relationship,
+		    H400M.`CODE` AS `code`,
+		    H400M.`NAME` AS `name`,
+		    H400M.TOTAL_COST AS totalCost,
+		    H400M.MKT_VALUE_CLIENT AS mktValueClient,
+		    H400M.APPRECIATION_CLIENT AS appreciationClient,
+            H400M.TYPE as type,
+		    H400M.ACCOUNT_NUM as accountNum,
+		    H400M.MARKET as market,
+		    H400M.SUB_TYPE as subType,
+		    H400M.QUANTITY as quantity,
+		    H400M.UNIT_PRICE as unitPrice,
+		    H400M.VAL_PRICE as valPrice,
+		    H400M.RELEATED as releated,
+		    H400M.THREE_LEVEL as threeLevel,
+		    H400M.RESTRICT_TYPE as restrictType,
+		    H400M.DATE_TO as dateTo,
+		    IF(H400M.IS_REDEMPTION='Y','是','否') as isRedemption,
+		    IF(H400M.IS_SELL_BACK='Y','是','否') as isSellBack,
+		    IF(H400M.IS_CONVERTIBLE_BOND='Y','是','否') as isConertibleBond
+		FROM
+		    wp_h400_mac_main H400M
+		where 
+            1 = 1
+        and H400M.STATUS = 'Y'
+        and H400M.FUND_ID = #{fundId}
+        and H400M.PERIOD = #{period}
+    </select>
+
+
+    <select id="selectH500MainData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    'H500' as source,
+		    H500M.PARTY_SHORT_NAME AS partyShortName,
+		    H500M.RELATIONSHIP AS relationship,
+		    H500M.BOND_CODE AS `code`,
+		    H500M.BOND_NAME AS `name`,
+		    H500M.TOTAL_COST AS totalCost,
+		    H500M.MKT_VALUE_CLIENT AS mktValueClient,
+		    H500M.APPRECIATION_CLIENT AS appreciationClient,
+        <!-- 以上部分共H300使用 -->
+        H500M.TYPE AS type,
+		    H500M.ACCOUNT_NUM AS accountNum,
+		    H500M.MARKET AS market,
+		    H500M.SUB_TYPE AS subType,
+		    H500M.QUANTITY AS quantity,
+		    H500M.PAR_VALUE_LAST AS parValueLast,
+		    H500M.UNIT_PRICE AS unitPrice,
+		    H500M.INTEREST_AR_CLIENT AS interestArClient,
+		    H500M.VAL_PRICE AS valPrice,
+		    H500M.UNIT_INTEREST_AT AS unitInterestAt,
+		    H500M.RELEATED AS releated,
+		    H500M.THREE_LEVEL AS threeLevel,
+		    H500M.RESTRICT_TYPE AS restrictType,
+		    H500M.EXPOSURE_PERIOD AS exposurePeriod
+		FROM
+		    wp_h500_main H500M
+        where 
+            1 = 1
+        and H500M.STATUS = 'Y'
+        <if test="related != null and related != ''">
+            AND H500M.RELEATED = #{related}
+        </if>
+        and H500M.FUND_ID = #{fundId}
+        and H500M.PERIOD = #{period}
+    </select>
+
+    
+    <!-- 20221008IRENE新增摊余成本债基H500 -->
+    <select id="selectH500MacMainData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    'H500' as source,
+		    H500M.PARTY_SHORT_NAME AS partyShortName,
+		    H500M.RELATIONSHIP AS relationship,
+		    H500M.BOND_CODE AS `code`,
+		    H500M.BOND_NAME AS `name`,
+		    H500M.TOTAL_COST AS totalCost,
+		    H500M.MKT_VALUE_CLIENT AS mktValueClient,
+		    H500M.APPRECIATION_CLIENT AS appreciationClient,
+        <!-- 以上部分共H300使用 -->
+        H500M.TYPE AS type,
+		    H500M.ACCOUNT_NUM AS accountNum,
+		    H500M.MARKET AS market,
+		    H500M.SUB_TYPE AS subType,
+		    H500M.QUANTITY AS quantity,
+		    H500M.PAR_VALUE_LAST AS parValueLast,
+		    H500M.UNIT_PRICE AS unitPrice,
+		    H500M.INTEREST_AR_CLIENT AS interestArClient,
+		    H500M.BAD_DEBT AS badDebt,
+		    H500M.INTEREST_ADJUSTMENT AS interestAdjustment,
+		    H500M.VAL_PRICE AS valPrice,
+		    H500M.UNIT_INTEREST_AT AS unitInterestAt,
+		    H500M.RELEATED AS releated,
+		    H500M.THREE_LEVEL AS threeLevel,
+		    H500M.RESTRICT_TYPE AS restrictType,
+		    H500M.EXPOSURE_PERIOD AS exposurePeriod,
+            H500M.ECL_RATE AS eclRate,
+            H500M.ECL_AMOUNT AS eclAmount
+            
+		FROM
+		    wp_h500_mac_main H500M
+        where 
+            1 = 1
+        and H500M.STATUS = 'Y'
+        <if test="related != null and related != ''">
+            AND H500M.RELEATED = #{related}
+        </if>
+        and H500M.FUND_ID = #{fundId}
+        and H500M.PERIOD = #{period}
+    </select>
+    <!-- 20221008IRENE新增摊余成本债基H500 -->
+
+    <select id="selectH500DiviatonData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H500MD.NET_AMOUNT AS netAmount,
+		    H500MD.DIVIATON_CLIENT AS diviatonClient,
+		    H500MD.DIVIATON_EY as diviatonEy
+		FROM
+		    wp_h500_mmf_diviaton H500MD
+        where 
+            1 = 1
+        and H500MD.STATUS = 'Y'
+        and H500MD.FUND_ID = #{fundId}
+        and H500MD.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectH800MainData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800M.ATTR5 AS market,
+		    H800M.ATTR2 AS subType,
+		    SUM(IFNULL(H800M.END_BALANCE_CNY,0)) AS endBalance,
+		    SUM(Case H800M.ATTR1 
+			when '成本' then IFNULL(H800M.END_BALANCE_CNY,0) 
+			else 0 end) AS endBalanceCostCny,
+		    SUM(Case H800M.ATTR1 
+			when '应计利息' then IFNULL(H800M.END_BALANCE_CNY,0) 
+			else 0 end) AS endBalanceInterstCny,
+		    SUM(Case H800M.ATTR1 
+			when '减值准备' then IFNULL(H800M.END_BALANCE_CNY,0) 
+			else 0 end) AS endBalanceBadDebtCny,
+		    SUM(IFNULL(H800M.BEGIN_BALANCE_CNY,0)) AS beginBalance,
+		    SUM(Case H800M.ATTR1 
+			when '成本' then IFNULL(H800M.BEGIN_BALANCE_CNY,0) 
+			else 0 end) AS beginBalanceCostCny, 
+		    SUM(Case H800M.ATTR1 
+			when '应计利息' then IFNULL(H800M.BEGIN_BALANCE_CNY,0) 
+			else 0 end) AS beginBalanceInterstCny,
+		    SUM(Case H800M.ATTR1 
+			when '减值准备' then IFNULL(H800M.BEGIN_BALANCE_CNY,0) 
+			else 0 end) AS beginBalanceBadDebtCny
+		FROM
+		    wp_h800_main H800M
+		WHERE 
+            1 = 1
+        AND H800M.STATUS = 'Y'
+        AND H800M.FUND_ID = #{fundId}
+        AND H800M.PERIOD = #{period}
+        GROUP BY H800M.ATTR2, H800M.ATTR5, H800M.CURRENCY
+    </select>
+
+    <select id="selectH800MainSumData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            SUM(IFNULL(H800M.END_BALANCE_CNY,0)) AS endBalance,
+		    SUM(IFNULL(H800M.BEGIN_BALANCE_CNY,0)) AS beginBalance
+        FROM
+            wp_h800_main H800M
+        WHERE 
+            1 = 1
+        AND H800M.STATUS = 'Y'
+        AND H800M.FUND_ID = #{fundId}
+        AND H800M.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectH800InterestTestOTCData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800IT.HEAD_ID AS headId,
+		    H800IT.ATTR3 AS `code`,
+		    H800IT.ATTR4 AS shortName,
+		    H800IT.ATTR5 AS market,
+		    H800IT.ATTR2 AS subtype,
+		    H800IT.END_BALANCE_CNY AS endBalanceCny,
+		    H800IT.FIRST_ACCOUNT_DAY AS firstAccountDay,
+		    H800IT.DUE_ACCOUNT_DAY AS dueAccountDay,
+		    H800IT.DUE_AMOUNT AS dueAmount,
+		    H800IT.BUY_OUT_BOND AS buyOutBond,
+		    H800IT.VALUATION_DAY AS valuationDay,
+		    H800IT.EXPOSURE_PERIOD AS exposurePeriod,
+		    H800IT.ACCRUED_INTEREST_CLIENT AS accruedInterestClient 
+		FROM
+		    wp_h800_interest_test H800IT
+		WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.ATTR5 = '银行间'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+    </select>
+
+    <select id="selectH800InterestTestEXData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800IT.HEAD_ID AS headId,
+		    H800IT.ATTR3 AS `code`,
+		    H800IT.ATTR4 AS shortName,
+		    H800IT.ATTR5 AS market,
+		    H800IT.ATTR2 AS subtype,
+		    H800IT.END_BALANCE_CNY AS endBalanceCny,
+		    H800IT.FIRST_ACCOUNT_DAY AS firstAccountDay,
+		    H800IT.DUE_ACCOUNT_DAY AS dueAccountDay,
+		    H800IT.DUE_AMOUNT AS dueAmount,
+		    H800IT.BUY_OUT_BOND AS buyOutBond,
+		    H800IT.VALUATION_DAY AS valuationDay,
+		    H800IT.EXPOSURE_PERIOD AS exposurePeriod,
+		    H800IT.ACCRUED_INTEREST_CLIENT AS accruedInterestClient 
+		FROM
+		    wp_h800_interest_test H800IT
+		WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.ATTR5 != '银行间'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+    </select>
+
+    <select id="selectHP100H800Data" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+        HP100.HEAD_ID AS headId,
+        HP100.ATTR3 AS `code`,
+        HP100.ATTR4 AS shortName,
+        HP100.ATTR5 AS market,
+        HP100.ATTR2 AS subtype,
+        HP100.END_BALANCE_CNY AS endBalanceCny,
+        HP100.FIRST_ACCOUNT_DAY AS firstAccountDay,
+        HP100.DUE_ACCOUNT_DAY AS dueAccountDay,
+        HP100.DUE_AMOUNT AS dueAmount,
+        HP100.BUY_OUT_BOND AS buyOutBond,
+        HP100.VALUATION_DAY AS valuationDay,
+        HP100.EXPOSURE_PERIOD AS exposurePeriod,
+        HP100.ACCRUED_INTEREST_CLIENT AS accruedInterestClient 
+		FROM
+            wp_hp100 HP100
+		WHERE 
+            1 = 1
+        AND HP100.STATUS = 'Y'
+        AND HP100.TYPE= 'H800'
+        AND HP100.FUND_ID = #{fundId}
+        AND HP100.PERIOD = #{period}
+    </select>
+
+    <select id="selectH800InterestTestData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800IT.HEAD_ID AS headId,
+		    H800IT.ATTR3 AS `code`,
+		    H800IT.ATTR4 AS shortName,
+		    H800IT.ATTR5 AS market,
+		    H800IT.ATTR2 AS subtype,
+		    H800IT.END_BALANCE_CNY AS endBalanceCny,
+		    H800IT.FIRST_ACCOUNT_DAY AS firstAccountDay,
+		    H800IT.DUE_ACCOUNT_DAY AS dueAccountDay,
+		    H800IT.DUE_AMOUNT AS dueAmount,
+		    H800IT.BUY_OUT_BOND AS buyOutBond,
+		    H800IT.VALUATION_DAY AS valuationDay,
+		    H800IT.EXPOSURE_PERIOD AS exposurePeriod,
+		    H800IT.ACCRUED_INTEREST_CLIENT AS accruedInterestClient 
+		FROM
+		    wp_h800_interest_test H800IT
+		WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+    </select>
+
+    <select id="selectH800TMPLData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800TMPL.EYINDEX AS EYindex,
+		    H800TMPL.COUNTERPARTY_NAME AS counterpartyName,
+		    H800TMPL.TRX_NUMBER AS trxNum,
+		    H800TMPL.ATTR3 AS trxCode,
+		    CAST(H800TMPL.FIRST_ACCOUNT_DAY AS CHAR) AS firstAccountDay,
+		    CAST(H800TMPL.DUE_ACCOUNT_DAY AS CHAR) AS dueAccountDay,
+		    H800TMPL.DUE_AMOUNT AS dueAmount,
+		    H800TMPL.BOND_CODE AS bondCode,
+		    H800TMPL.BOND_NAME AS bondName,
+		    H800TMPL.QUANTITY AS quantity,
+		    H800TMPL.PRICE AS price,
+		    H800TMPL.AMOUNT AS amount
+		FROM
+		    ds_tmpl_h800 H800TMPL
+		WHERE 
+            1 = 1
+        AND H800TMPL.FUND_ID = #{fundId}
+        AND H800TMPL.PERIOD = #{period}
+        AND H800TMPL.ATTR5 = '银行间'   #chenhy,20240724,修改H800底稿为只取银行间
+    </select>
+
+    <select id="selectH800IntestSummaryData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800IS.ACCRUED_INTEREST_EY AS accruedInterestEy,
+		    H800IS.ACCRUED_INTEREST_CLIENT AS accruedInterestClient,
+		    H800IS.DIFF AS diff 
+		FROM
+		    wp_h800_intest_summary H800IS
+		WHERE 
+            1 = 1
+        AND H800IS.STATUS = 'Y'
+        AND H800IS.FUND_ID = #{fundId}
+        AND H800IS.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectH800InterestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+            H800ID.HEAD_ID as headId,
+		    H800ID.ACCOUNT_NUM as accountNum,
+		    H800ID.ACCOUNT_DES as accountDes,
+		    H800ID.BOND_CODE as bondCode,
+		    H800ID.BOND_NAME as bondName,
+		    H800ID.RETURN_DAY as returnDay,
+		    H800ID.PRICE as price,
+		    H800ID.QUANTITY as quantity,
+		    H800ID.REDUCE_AMT as reduceAmt,
+		    H800ID.VALUATION_PRICE as valuationPrice
+		FROM
+		    wp_h800_interest_test H800IT
+		INNER JOIN wp_h800_intest_detail H800ID ON H800ID.HEAD_ID = H800IT.HEAD_ID AND H800ID.`STATUS` = 'Y'
+		WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+        AND H800IT.ATTR2 = '买断式'  #chenhy,20240717,新增买断式逆回购筛选条件
+    </select>
+
+    <select id="selectH800InterestDetailDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H800ID.BOND_CODE as bondCode,
+            H800ID.BOND_NAME as bondName,
+            H800ID.RETURN_DAY as returnDay,
+            IF(H800ID.PRICE = 0, null, H800ID.PRICE) as price,
+            IF(H800ID.AMOUNT = 0, null, H800ID.AMOUNT) as amount,
+            IF(H800ID.QUANTITY = 0, null, H800ID.QUANTITY) as quantity,
+            IF(H800ID.REDUCE_AMT = 0, null, H800ID.REDUCE_AMT) as reduceAmt
+        FROM
+            wp_h800_interest_test H800IT
+        INNER JOIN wp_h800_intest_detail H800ID ON H800ID.HEAD_ID = H800IT.HEAD_ID AND H800ID.ACCOUNT_NUM = H800IT.ACCOUNT_NUM AND H800ID.`STATUS` = 'Y'
+        WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+    </select>
+
+    <select id="selectH800InterestDetailSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H800ID.PRICE) = 0, null, SUM(H800ID.PRICE)) as price,
+            IF(SUM(H800ID.AMOUNT) = 0, null, SUM(H800ID.AMOUNT)) as amount,
+            IF(SUM(H800ID.QUANTITY) = 0, null, SUM(H800ID.QUANTITY)) as quantity,
+            IF(SUM(H800ID.REDUCE_AMT) = 0, null, SUM(H800ID.REDUCE_AMT)) as reduceAmt
+        FROM
+            wp_h800_interest_test H800IT
+        INNER JOIN wp_h800_intest_detail H800ID ON H800ID.HEAD_ID = H800IT.HEAD_ID AND H800ID.ACCOUNT_NUM = H800IT.ACCOUNT_NUM AND H800ID.`STATUS` = 'Y'
+        WHERE 
+            1 = 1
+        AND H800IT.STATUS = 'Y'
+        AND H800IT.FUND_ID = #{fundId}
+        AND H800IT.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectH800IntRiskPeriodData" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT DISTINCT
+		    H800EP.INT_RISK_PERIOD AS intRiskPeriod 
+		FROM
+		    wp_h800_exposure_period H800EP
+		WHERE 
+            1 = 1
+        AND H800EP.STATUS = 'Y'
+        AND H800EP.FUND_ID = #{fundId}
+        AND H800EP.PERIOD = #{period}
+    </select>
+
+    <select id="selectHNoteAData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    HN.PAR_VALUE_LAST AS parValueLast,
+		    HN.MKT_VALUE AS mktValue,
+		    HN.VALUATION_PRICE_TOTAL AS valuationPriceTotal,
+		    HN.SI_END_BAL AS siEndBal 
+		FROM
+		    wp_h_note HN
+		WHERE 
+            1 = 1
+        AND HN.STATUS = 'Y'
+        AND HN.FUND_ID = #{fundId}
+        AND HN.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectH10000TFAData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000T.ITEM AS item,
+		    H10000T.SUB_ITEM AS subItem,
+            IF(H10000T.COST = 0, null, IFNULL(H10000T.COST, 0) + IFNULL(H10000T.INTEREST_AR, 0)) AS bookValue, <!-- 20220712新增bookValue -->
+		    IF(H10000T.COST = 0, null, H10000T.COST) AS cost,
+            IF(H10000T.INTEREST_AR= 0, null, H10000T.INTEREST_AR) AS interestAR, <!-- 20220616新增INTEREST_AR -->
+		    IF(H10000T.MKT_VALUE = 0, null, H10000T.MKT_VALUE) AS mktValue,
+		    IF(H10000T.APPRECIATION = 0, null, H10000T.APPRECIATION) AS appreciation,
+		    IF(H10000T.DIVIATON = 0, null, H10000T.DIVIATON) AS diviaton,
+            IF(H10000T.COST_LAST = 0, null, IFNULL(H10000T.COST_LAST, 0) + IFNULL(H10000T.INTEREST_AR_LAST, 0)) AS bookValueLast, <!-- 20220712新增bookValue -->
+		    IF(H10000T.COST_LAST = 0, null, H10000T.COST_LAST) AS costLast,
+            IF(H10000T.INTEREST_AR_LAST = 0, null, H10000T.INTEREST_AR_LAST) AS interestARLast, <!-- 20220616新增INTEREST_AR -->
+		    IF(H10000T.MKT_VALUE_LAST = 0, null, H10000T.MKT_VALUE_LAST) AS mktValueLast,
+		    IF(H10000T.APPRECIATION_LAST = 0, null, H10000T.APPRECIATION_LAST) AS appreciationLast,
+		    IF(H10000T.DIVIATON_EY_LAST = 0, null, H10000T.DIVIATON_EY_LAST) AS diviatonEyLast 
+		FROM
+		    wp_h10000_tfa H10000T
+		WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        AND H10000T.ITEM = '债券'
+    </select>
+
+    <select id="selectH10000TFABondSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000T.COST) = 0, null, SUM(H10000T.COST)) AS cost,
+            IF(SUM(H10000T.COST) = 0, null, SUM(IFNULL(H10000T.COST, 0)) + SUM(IFNULL(H10000T.INTEREST_AR, 0))) AS bookValue, <!-- 20220712新增bookValue -->
+            IF(SUM(H10000T.INTEREST_AR) = 0, null, SUM(H10000T.INTEREST_AR)) AS interestAR, <!-- 20220616新增INTEREST_AR -->
+            IF(SUM(H10000T.MKT_VALUE) = 0, null, SUM(H10000T.MKT_VALUE)) AS mktValue,
+            IF(SUM(H10000T.APPRECIATION) = 0, null, SUM(H10000T.APPRECIATION)) AS appreciation,
+            IF(SUM(H10000T.DIVIATON) = 0, null, SUM(H10000T.DIVIATON)) AS diviaton,
+            IF(SUM(H10000T.COST_LAST) = 0, null, SUM(H10000T.COST_LAST)) AS costLast,
+            IF(SUM(H10000T.COST_LAST) = 0, null, SUM(IFNULL(H10000T.COST_LAST, 0)) + SUM(IFNULL(H10000T.INTEREST_AR_LAST, 0))) AS bookValueLast, <!-- 20220712新增bookValue -->
+            IF(SUM(H10000T.INTEREST_AR_LAST) = 0, null, SUM(H10000T.INTEREST_AR_LAST)) AS interestARLast, <!-- 20220616新增INTEREST_AR -->
+            IF(SUM(H10000T.MKT_VALUE_LAST) = 0, null, SUM(H10000T.MKT_VALUE_LAST)) AS mktValueLast,
+            IF(SUM(H10000T.APPRECIATION_LAST) = 0, null, SUM(H10000T.APPRECIATION_LAST)) AS appreciationLast,
+            IF(SUM(H10000T.DIVIATON_EY_LAST) = 0, null, SUM(H10000T.DIVIATON_EY_LAST)) AS diviatonEyLast 
+        FROM
+            wp_h10000_tfa H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        AND H10000T.ITEM = '债券'
+        LIMIT 1
+    </select>
+
+    <select id="selectH10000TFANotBondDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H10000T.ITEM AS item,
+            H10000T.SUB_ITEM AS subItem,
+            IF(H10000T.COST = 0, null, H10000T.COST) AS cost,
+            IF(H10000T.COST = 0, null, IFNULL(H10000T.COST, 0) + IFNULL(H10000T.INTEREST_AR, 0)) AS bookValue, <!-- 20220712新增bookValue -->
+            IF(H10000T.INTEREST_AR= 0, null, H10000T.INTEREST_AR) AS interestAR, <!-- 20220616新增INTEREST_AR -->
+            IF(H10000T.MKT_VALUE = 0, null, H10000T.MKT_VALUE) AS mktValue,
+            IF(H10000T.APPRECIATION = 0, null, H10000T.APPRECIATION) AS appreciation,
+            IF(H10000T.DIVIATON = 0, null, H10000T.DIVIATON) AS diviaton,
+            IF(H10000T.COST_LAST = 0, null, H10000T.COST_LAST) AS costLast,
+            IF(H10000T.COST_LAST = 0, null, IFNULL(H10000T.COST_LAST, 0) + IFNULL(H10000T.INTEREST_AR_LAST, 0)) AS bookValueLast, <!-- 20220712新增bookValue -->
+            IF(H10000T.INTEREST_AR_LAST = 0, null, H10000T.INTEREST_AR_LAST) AS interestARLast, <!-- 20220616新增INTEREST_AR -->
+            IF(H10000T.MKT_VALUE_LAST = 0, null, H10000T.MKT_VALUE_LAST) AS mktValueLast,
+            IF(H10000T.APPRECIATION_LAST = 0, null, H10000T.APPRECIATION_LAST) AS appreciationLast,
+            IF(H10000T.DIVIATON_EY_LAST = 0, null, H10000T.DIVIATON_EY_LAST) AS diviatonEyLast 
+        FROM
+            wp_h10000_tfa H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        AND H10000T.ITEM != '债券'
+    </select>
+
+    <select id="selectH10000TFASumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000T.COST) = 0, null, SUM(H10000T.COST)) AS cost,
+            IF(SUM(H10000T.COST) = 0, null, SUM(IFNULL(H10000T.COST, 0)) + SUM(IFNULL(H10000T.INTEREST_AR, 0))) AS bookValue, <!-- 20220712新增bookValue -->
+            IF(SUM(H10000T.INTEREST_AR) = 0, null, SUM(H10000T.INTEREST_AR)) AS interestAR, <!-- 20220616新增INTEREST_AR -->
+            IF(SUM(H10000T.MKT_VALUE) = 0, null, SUM(H10000T.MKT_VALUE)) AS mktValue,
+            IF(SUM(H10000T.APPRECIATION) = 0, null, SUM(H10000T.APPRECIATION)) AS appreciation,
+            IF(SUM(H10000T.DIVIATON) = 0, null, SUM(H10000T.DIVIATON)) AS diviaton,
+            IF(SUM(H10000T.COST_LAST) = 0, null, SUM(H10000T.COST_LAST)) AS costLast,
+            IF(SUM(H10000T.COST_LAST) = 0, null, SUM(IFNULL(H10000T.COST_LAST, 0)) + SUM(IFNULL(H10000T.INTEREST_AR_LAST, 0))) AS bookValueLast, <!-- 20220712新增bookValue -->
+            IF(SUM(H10000T.INTEREST_AR_LAST) = 0, null, SUM(H10000T.INTEREST_AR_LAST)) AS interestARLast, <!-- 20220616新增INTEREST_AR -->
+            IF(SUM(H10000T.MKT_VALUE_LAST) = 0, null, SUM(H10000T.MKT_VALUE_LAST)) AS mktValueLast,
+            IF(SUM(H10000T.APPRECIATION_LAST) = 0, null, SUM(H10000T.APPRECIATION_LAST)) AS appreciationLast,
+            IF(SUM(H10000T.DIVIATON_EY_LAST) = 0, null, SUM(H10000T.DIVIATON_EY_LAST)) AS diviatonEyLast 
+        FROM
+            wp_h10000_tfa H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="checkIfH10000TFAHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+            SUM(IFNULL(H10000T.COST, 0)) + SUM(IFNULL(H10000T.COST_LAST, 0))
+        FROM
+            wp_h10000_tfa H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+    </select>
+
+    
+    <!-- 20220615新增MAC BOND -->
+    <select id="selectH10000MACData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000T.ITEM AS item,
+		    H10000T.SUB_ITEM AS subItem,
+            IF(H10000T.COST = 0, null, IFNULL(H10000T.COST, 0) + IFNULL(H10000T.INTEREST_AR, 0)) AS bookValue, <!-- 20220712新增bookValue -->
+		    IF(H10000T.COST = 0, null, H10000T.COST) AS cost,
+            IF(H10000T.INTEREST_ADJ = 0, null, H10000T.INTEREST_ADJ) AS interestADJ,
+		    IF(H10000T.INTEREST_AR = 0, null, H10000T.INTEREST_AR) AS interestAR,
+		    IF(H10000T.IMPAIRMENT = 0, null, H10000T.IMPAIRMENT) AS impairment,
+		    IF(H10000T.APPRECIATION = 0, null, H10000T.APPRECIATION) AS appreciation,
+            IF(H10000T.COST_LAST = 0, null, IFNULL(H10000T.COST_LAST, 0) + IFNULL(H10000T.INTEREST_AR_LAST, 0)) AS bookValueLast, <!-- 20220712新增bookValue -->
+		    IF(H10000T.COST_LAST = 0, null, H10000T.COST_LAST) AS costLast,
+		    IF(H10000T.INTEREST_ADJ_LAST = 0, null, H10000T.INTEREST_ADJ_LAST) AS interestADJLast,
+		    IF(H10000T.INTEREST_AR_LAST = 0, null, H10000T.INTEREST_AR_LAST) AS interestARLast,
+		    IF(H10000T.IMPAIRMENT_LAST = 0, null, H10000T.IMPAIRMENT_LAST) AS impairmentLast,
+            IF(H10000T.APPRECIATION_LAST = 0, null, H10000T.APPRECIATION_LAST) AS appreciationLast 
+        FROM
+            wp_h10000_mac_bond H10000T
+		WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        AND H10000T.ITEM = '债券'
+    </select>
+
+    
+    <select id="selectH10000MacBondSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        IF(SUM(H10000T.COST) = 0,  null, IFNULL(H10000T.COST, 0) + IFNULL(H10000T.INTEREST_AR, 0)) AS bookValue, <!-- 20220712新增bookValue -->
+            IF(SUM(H10000T.COST) = 0, null, SUM(H10000T.COST)) AS cost,
+            IF(SUM(H10000T.INTEREST_ADJ) = 0, null, SUM(H10000T.INTEREST_ADJ)) AS interestADJ,
+            IF(SUM(H10000T.INTEREST_AR) = 0, null, SUM(H10000T.INTEREST_AR)) AS interestAR,
+            IF(SUM(H10000T.IMPAIRMENT) = 0, null, SUM(H10000T.IMPAIRMENT)) AS impairment,
+            IF(SUM(H10000T.APPRECIATION) = 0, null, SUM(H10000T.APPRECIATION)) AS appreciation,
+            IF(SUM(H10000T.COST_LAST) = 0,  null, IFNULL(H10000T.COST_LAST, 0) + IFNULL(H10000T.INTEREST_AR_LAST, 0)) AS bookValueLast, <!-- 20220712新增bookValue -->
+            IF(SUM(H10000T.COST_LAST) = 0, null, SUM(H10000T.COST_LAST)) AS costLast,
+            IF(SUM(H10000T.INTEREST_ADJ_LAST) = 0, null, SUM(H10000T.INTEREST_ADJ_LAST)) AS interestADJLast,
+            IF(SUM(H10000T.INTEREST_AR_LAST) = 0, null, SUM(H10000T.INTEREST_AR_LAST)) AS interestARLast,
+            IF(SUM(H10000T.IMPAIRMENT_LAST) = 0, null, SUM(H10000T.IMPAIRMENT_LAST)) AS impairmentLast,
+            IF(SUM(H10000T.APPRECIATION_LAST) = 0, null, SUM(H10000T.APPRECIATION_LAST)) AS appreciationLast 
+        FROM
+            wp_h10000_mac_bond H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        AND H10000T.ITEM = '债券'
+        LIMIT 1
+    </select>
+
+    <select id="selectH10000MacABSDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000T.ITEM AS item,
+		    H10000T.SUB_ITEM AS subItem,
+            IF(H10000T.COST = 0, null, IFNULL(H10000T.COST, 0) + IFNULL(H10000T.INTEREST_AR, 0)) AS bookValue, <!-- 20220712新增bookValue -->
+		    IF(H10000T.COST = 0, null, H10000T.COST) AS cost,
+            IF(H10000T.INTEREST_ADJ = 0, null, H10000T.INTEREST_ADJ) AS interestADJ,
+		    IF(H10000T.INTEREST_AR = 0, null, H10000T.INTEREST_AR) AS interestAR,
+		    IF(H10000T.IMPAIRMENT = 0, null, H10000T.IMPAIRMENT) AS impairment,
+		    IF(H10000T.APPRECIATION = 0, null, H10000T.APPRECIATION) AS appreciation,
+            IF(H10000T.COST_LAST = 0, null, IFNULL(H10000T.COST_LAST, 0) + IFNULL(H10000T.INTEREST_AR_LAST, 0)) AS bookValueLast, <!-- 20220712新增bookValue -->
+		    IF(H10000T.COST_LAST = 0, null, H10000T.COST_LAST) AS costLast,
+		    IF(H10000T.INTEREST_ADJ_LAST = 0, null, H10000T.INTEREST_ADJ_LAST) AS interestADJLast,
+		    IF(H10000T.INTEREST_AR_LAST = 0, null, H10000T.INTEREST_AR_LAST) AS interestARLast,
+		    IF(H10000T.IMPAIRMENT_LAST = 0, null, H10000T.IMPAIRMENT_LAST) AS impairmentLast,
+            IF(H10000T.APPRECIATION_LAST = 0, null, H10000T.APPRECIATION_LAST) AS appreciationLast 
+        FROM
+            wp_h10000_mac_bond H10000T
+		WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        AND H10000T.ITEM != '债券'
+    </select>
+
+    <select id="selectH10000MacSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        IF(SUM(H10000T.COST) = 0, null, IFNULL(H10000T.COST, 0) + IFNULL(H10000T.INTEREST_AR, 0)) AS bookValue, <!-- 20220712新增bookValue -->
+            IF(SUM(H10000T.COST) = 0, null, SUM(H10000T.COST)) AS cost,
+            IF(SUM(H10000T.INTEREST_ADJ) = 0, null, SUM(H10000T.INTEREST_ADJ)) AS interestADJ,
+            IF(SUM(H10000T.INTEREST_AR) = 0, null, SUM(H10000T.INTEREST_AR)) AS interestAR,
+            IF(SUM(H10000T.IMPAIRMENT) = 0, null, SUM(H10000T.IMPAIRMENT)) AS impairment,
+            IF(SUM(H10000T.APPRECIATION) = 0, null, SUM(H10000T.APPRECIATION)) AS appreciation,
+            IF(SUM(H10000T.COST_LAST) = 0, null, IFNULL(H10000T.COST_LAST, 0) + IFNULL(H10000T.INTEREST_AR_LAST, 0)) AS bookValueLast, <!-- 20220712新增bookValue -->
+            IF(SUM(H10000T.COST_LAST) = 0, null, SUM(H10000T.COST_LAST)) AS costLast,
+            IF(SUM(H10000T.INTEREST_ADJ_LAST) = 0, null, SUM(H10000T.INTEREST_ADJ_LAST)) AS interestADJLast,
+            IF(SUM(H10000T.INTEREST_AR_LAST) = 0, null, SUM(H10000T.INTEREST_AR_LAST)) AS interestARLast,
+            IF(SUM(H10000T.IMPAIRMENT_LAST) = 0, null, SUM(H10000T.IMPAIRMENT_LAST)) AS impairmentLast,
+            IF(SUM(H10000T.APPRECIATION_LAST) = 0, null, SUM(H10000T.APPRECIATION_LAST)) AS appreciationLast 
+        FROM
+            wp_h10000_mac_bond H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="checkIfH10000MACHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+            SUM(IFNULL(H10000T.COST, 0)) + SUM(IFNULL(H10000T.COST_LAST, 0))
+        FROM
+            wp_h10000_mac_bond H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+    </select>
+    <!-- 20220615新增MAC BOND -->
+
+    
+    <!-- 20220620新增MAC BAD -->
+	<!-- 20221206修改,chenhy,解决报告金额为0无法输出"-"的问题 -->
+    <select id="selectH10000MACBad" parameterType="java.util.Map" resultType="java.util.Map">
+        
+        SELECT H10000.ITEM AS item,
+            IF(H10000.ONE = 0, null, H10000.ONE) AS one,
+            IF(H10000.TWO = 0,null, H10000.TWO) AS two,
+            IF(H10000.THREE = 0,null, H10000.THREE) AS three,
+            IF(H10000.TOTAL = 0,null, H10000.TOTAL) AS total 
+        FROM wp_h10000_mac_bad H10000
+        WHERE 
+            1 = 1
+        AND H10000.STATUS = 'Y'
+        AND H10000.FUND_ID = #{fundId}
+        AND H10000.PERIOD = #{period}
+    </select>
+    <!-- 20220620新增MAC BAD -->
+
+    <!-- 20220715新增MACBAD -->
+    <select id="checkIfH10000MACBadHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+            SUM(IFNULL(H10000T.total, 0))
+        FROM
+        wp_h10000_mac_bad H10000T
+        WHERE 
+            1 = 1
+        AND H10000T.STATUS = 'Y'
+        AND H10000T.FUND_ID = #{fundId}
+        AND H10000T.PERIOD = #{period}
+    </select>
+    <!-- 20220715新增MACBAD -->
+
+    <!-- 2018-12-18 偏离度合计改为直接由Excel公式计算,废弃此处代码 -->
+    <!--<select id="selectH10000TFADiviatonSumData" parameterType="java.util.Map" resultType="java.lang.Object">
+	    SELECT
+		    H500MD.DIVIATON_CLIENT AS diviatonClinet
+		FROM
+		    wp_h500_mmf_diviaton H500MD 
+		WHERE
+		  1 = 1
+	    AND H500MD.FUND_ID = #{fundId}
+	    AND H500MD.PERIOD = #{period}
+	    LIMIT 1
+    </select>-->
+
+    <select id="selectH10000DerivativeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+            H10000D.SEQ AS seq,
+		    H10000D.ITEM AS item,
+		    IF(H10000D.AMOUNT = 0, null, H10000D.AMOUNT) AS amount,
+		    IF(H10000D.ASSET = 0, null, H10000D.ASSET) AS asset,
+		    IF(H10000D.LIABILITIES = 0, null, H10000D.LIABILITIES) AS liabilities,
+		    IF(H10000D.AMOUNT_LAST = 0, null, H10000D.AMOUNT_LAST) AS amountLast,
+		    IF(H10000D.ASSET_LAST = 0, null, H10000D.ASSET_LAST) AS assetLast,
+		    IF(H10000D.LIABILITIES_LAST = 0, null, H10000D.LIABILITIES_LAST) AS liabilitiesLast,
+		    IF(H10000D.ITEM = '其他衍生工具' AND ((H10000D.AMOUNT is not null and H10000D.AMOUNT != 0) OR (H10000D.ASSET is not null and H10000D.ASSET != 0) OR (H10000D.LIABILITIES is not null and H10000D.LIABILITIES != 0)), 'Y', 'N') AS remarkFlag
+		FROM
+		    wp_h10000_derivative H10000D
+		WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+        ORDER BY H10000D.SEQ
+    </select>
+
+    <!-- 衍生金融资产/负债新增注释文字段数据 -->
+    <!-- chenhy,20240222,新增衍生金融资产/负债表下注释 -->
+    <select id = "selectH10000DerivativeNote" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+            WDN.DESCRIPTION AS description
+        FROM 
+            sys_fund_info sfi,wp_h10000_derivative_note wdn
+        WHERE 
+            1 = 1
+        AND sfi.FUND_ID = wdn.FUND_ID
+        AND wdn.fund_id = #{fundId}
+        AND wdn.PERIOD = #{period}
+        AND sfi.ACTIVE = 'Y'
+    </select>
+
+    <select id="selectH10000InterestDerivativeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+            H10000D.SEQ AS seq,
+		    H10000D.ITEM AS item,
+		    IF(H10000D.AMOUNT = 0, null, H10000D.AMOUNT) AS amount,
+		    IF(H10000D.ASSET = 0, null, H10000D.ASSET) AS asset,
+		    IF(H10000D.LIABILITIES = 0, null, H10000D.LIABILITIES) AS liabilities,
+		    IF(H10000D.AMOUNT_LAST = 0, null, H10000D.AMOUNT_LAST) AS amountLast,
+		    IF(H10000D.ASSET_LAST = 0, null, H10000D.ASSET_LAST) AS assetLast,
+		    IF(H10000D.LIABILITIES_LAST = 0, null, H10000D.LIABILITIES_LAST) AS liabilitiesLast,
+		    IF(H10000D.ITEM = '其他衍生工具' AND ((H10000D.AMOUNT is not null and H10000D.AMOUNT != 0) OR (H10000D.ASSET is not null and H10000D.ASSET != 0) OR (H10000D.LIABILITIES is not null and H10000D.LIABILITIES != 0)), 'Y', 'N') AS remarkFlag
+		FROM
+		    wp_h10000_derivative H10000D
+		WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+        AND H10000D.SEQ like '1__'
+        ORDER BY H10000D.SEQ
+    </select>
+
+    <select id="selectH10000CurrencyDerivativeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+            H10000D.SEQ AS seq,
+		    H10000D.ITEM AS item,
+		    IF(H10000D.AMOUNT = 0, null, H10000D.AMOUNT) AS amount,
+		    IF(H10000D.ASSET = 0, null, H10000D.ASSET) AS asset,
+		    IF(H10000D.LIABILITIES = 0, null, H10000D.LIABILITIES) AS liabilities,
+		    IF(H10000D.AMOUNT_LAST = 0, null, H10000D.AMOUNT_LAST) AS amountLast,
+		    IF(H10000D.ASSET_LAST = 0, null, H10000D.ASSET_LAST) AS assetLast,
+		    IF(H10000D.LIABILITIES_LAST = 0, null, H10000D.LIABILITIES_LAST) AS liabilitiesLast,
+		    IF(H10000D.ITEM = '其他衍生工具' AND ((H10000D.AMOUNT is not null and H10000D.AMOUNT != 0) OR (H10000D.ASSET is not null and H10000D.ASSET != 0) OR (H10000D.LIABILITIES is not null and H10000D.LIABILITIES != 0)), 'Y', 'N') AS remarkFlag
+		FROM
+		    wp_h10000_derivative H10000D
+		WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+        AND H10000D.SEQ like '2__'
+        ORDER BY H10000D.SEQ
+    </select>
+
+    <select id="selectH10000EquityDerivativeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+            H10000D.SEQ AS seq,
+		    H10000D.ITEM AS item,
+		    IF(H10000D.AMOUNT = 0, null, H10000D.AMOUNT) AS amount,
+		    IF(H10000D.ASSET = 0, null, H10000D.ASSET) AS asset,
+		    IF(H10000D.LIABILITIES = 0, null, H10000D.LIABILITIES) AS liabilities,
+		    IF(H10000D.AMOUNT_LAST = 0, null, H10000D.AMOUNT_LAST) AS amountLast,
+		    IF(H10000D.ASSET_LAST = 0, null, H10000D.ASSET_LAST) AS assetLast,
+		    IF(H10000D.LIABILITIES_LAST = 0, null, H10000D.LIABILITIES_LAST) AS liabilitiesLast,
+		    IF(H10000D.ITEM = '其他衍生工具' AND ((H10000D.AMOUNT is not null and H10000D.AMOUNT != 0) OR (H10000D.ASSET is not null and H10000D.ASSET != 0) OR (H10000D.LIABILITIES is not null and H10000D.LIABILITIES != 0)), 'Y', 'N') AS remarkFlag
+		FROM
+		    wp_h10000_derivative H10000D
+		WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+        AND H10000D.SEQ like '3__'
+        ORDER BY H10000D.SEQ
+    </select>
+
+    <select id="selectH10000OtherDerivativeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+            H10000D.SEQ AS seq,
+		    H10000D.ITEM AS item,
+		    IF(H10000D.AMOUNT = 0, null, H10000D.AMOUNT) AS amount,
+		    IF(H10000D.ASSET = 0, null, H10000D.ASSET) AS asset,
+		    IF(H10000D.LIABILITIES = 0, null, H10000D.LIABILITIES) AS liabilities,
+		    IF(H10000D.AMOUNT_LAST = 0, null, H10000D.AMOUNT_LAST) AS amountLast,
+		    IF(H10000D.ASSET_LAST = 0, null, H10000D.ASSET_LAST) AS assetLast,
+		    IF(H10000D.LIABILITIES_LAST = 0, null, H10000D.LIABILITIES_LAST) AS liabilitiesLast,
+		    IF(H10000D.ITEM = '其他衍生工具' AND ((H10000D.AMOUNT is not null and H10000D.AMOUNT != 0) OR (H10000D.ASSET is not null and H10000D.ASSET != 0) OR (H10000D.LIABILITIES is not null and H10000D.LIABILITIES != 0)), 'Y', 'N') AS remarkFlag
+		FROM
+		    wp_h10000_derivative H10000D
+		WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+        AND H10000D.SEQ like '4__'
+        ORDER BY H10000D.SEQ
+    </select>
+
+    <select id="selectH10000DerivativeSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000D.AMOUNT) = 0, null, SUM(H10000D.AMOUNT)) AS amount,
+            IF(SUM(H10000D.ASSET) = 0, null, SUM(H10000D.ASSET)) AS asset,
+            IF(SUM(H10000D.LIABILITIES) = 0, null, SUM(H10000D.LIABILITIES)) AS liabilities,
+            IF(SUM(H10000D.AMOUNT_LAST) = 0, null, SUM(H10000D.AMOUNT_LAST)) AS amountLast,
+            IF(SUM(H10000D.ASSET_LAST) = 0, null, SUM(H10000D.ASSET_LAST)) AS assetLast,
+            IF(SUM(H10000D.LIABILITIES_LAST) = 0, null, SUM(H10000D.LIABILITIES_LAST)) AS liabilitiesLast
+        FROM
+            wp_h10000_derivative H10000D
+        WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectH10000DerivativeSumData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000D.AMOUNT) = 0, null, SUM(H10000D.AMOUNT)) AS amount,
+            IF(SUM(H10000D.ASSET) = 0, null, SUM(H10000D.ASSET)) AS asset,
+            IF(SUM(H10000D.LIABILITIES) = 0, null, SUM(H10000D.LIABILITIES)) AS liabilities,
+            IF(SUM(H10000D.AMOUNT_LAST) = 0, null, SUM(H10000D.AMOUNT_LAST)) AS amountLast,
+            IF(SUM(H10000D.ASSET_LAST) = 0, null, SUM(H10000D.ASSET_LAST)) AS assetLast,
+            IF(SUM(H10000D.LIABILITIES_LAST) = 0, null, SUM(H10000D.LIABILITIES_LAST)) AS liabilitiesLast
+        FROM
+            wp_h10000_derivative H10000D
+        WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+        AND H10000D.ITEM IN ('利率衍生工具','货币衍生工具','权益衍生工具','其他衍生工具')
+        LIMIT 1
+    </select>
+
+    <select id="checkIfH10000DerivativeHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+            SUM(IFNULL(H10000D.AMOUNT, 0)) + SUM(IFNULL(H10000D.AMOUNT_LAST, 0))
+        FROM
+            wp_h10000_derivative H10000D
+        WHERE 
+            1 = 1
+        AND H10000D.STATUS = 'Y'
+        AND H10000D.FUND_ID = #{fundId}
+        AND H10000D.PERIOD = #{period}
+    </select>
+
+    <select id="selectH10000FuturesData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+            H10000F.ITEM AS item,
+            H10000F.CODE AS code,
+            H10000F.NAME AS name,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.QUANTITY) AS quantity,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.COST) AS cost,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.MKT_VALUE) AS mktValue,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.APPRECIATION) as appreciation
+		FROM
+		    wp_h10000_futures H10000F
+		WHERE 
+            1 = 1
+        AND H10000F.STATUS = 'Y'
+        AND H10000F.FUND_ID = #{fundId}
+        AND H10000F.PERIOD = #{period}
+        AND H10000F.ITEM LIKE '%期货%'
+    </select>
+
+    <select id="selectH10000FuturesSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.QUANTITY)) AS quantity,
+		    IF(SUM(H10000F.COST) = 0, null, SUM(H10000F.COST)) AS cost,
+		    IF(SUM(H10000F.MKT_VALUE) = 0, null, SUM(H10000F.MKT_VALUE)) AS mktValue,
+		    IF(SUM(H10000F.APPRECIATION) = 0, null, SUM(H10000F.APPRECIATION)) as appreciation
+        FROM
+            wp_h10000_futures H10000F
+        WHERE 
+            1 = 1
+        AND H10000F.STATUS = 'Y'
+        AND H10000F.FUND_ID = #{fundId}
+        AND H10000F.PERIOD = #{period}
+        AND H10000F.ITEM LIKE '%期货%'
+        LIMIT 1
+    </select>
+
+    <select id="checkIfH10000FuturesHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+        IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.QUANTITY))
+        FROM
+            wp_h10000_futures H10000F
+        WHERE 
+            1 = 1
+        AND H10000F.STATUS = 'Y'
+        AND H10000F.FUND_ID = #{fundId}
+        AND H10000F.PERIOD = #{period}
+        AND H10000F.ITEM LIKE '%期货%'
+    </select>
+
+    <select id="selectH10000FuturesGoldData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+            H10000F.ITEM AS item,
+            H10000F.CODE AS code,
+            H10000F.NAME AS name,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.QUANTITY) AS quantity,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.COST) AS cost,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.MKT_VALUE) AS mktValue,
+		    IF(H10000F.QUANTITY = 0, null, H10000F.APPRECIATION) as appreciation
+		FROM
+		    wp_h10000_futures H10000F
+		WHERE 
+            1 = 1
+        AND H10000F.STATUS = 'Y'
+        AND H10000F.FUND_ID = #{fundId}
+        AND H10000F.PERIOD = #{period}
+        AND H10000F.ITEM LIKE '%黄金%'
+    </select>
+
+    <select id="selectH10000FuturesGoldSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.QUANTITY)) AS quantity,
+		    IF(SUM(H10000F.COST) = 0, null, SUM(H10000F.COST)) AS cost,
+		    IF(SUM(H10000F.MKT_VALUE) = 0, null, SUM(H10000F.MKT_VALUE)) AS mktValue,
+		    IF(SUM(H10000F.APPRECIATION) = 0, null, SUM(H10000F.APPRECIATION)) as appreciation
+        FROM
+            wp_h10000_futures H10000F
+        WHERE 
+            1 = 1
+        AND H10000F.STATUS = 'Y'
+        AND H10000F.FUND_ID = #{fundId}
+        AND H10000F.PERIOD = #{period}
+        AND H10000F.ITEM LIKE '%黄金%'
+        LIMIT 1
+    </select>
+    
+    <select id="checkIfH10000FuturesGoldHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+        IF(SUM(H10000F.QUANTITY) = 0, null, SUM(H10000F.QUANTITY))
+        FROM
+            wp_h10000_futures H10000F
+        WHERE 
+            1 = 1
+        AND H10000F.STATUS = 'Y'
+        AND H10000F.FUND_ID = #{fundId}
+        AND H10000F.PERIOD = #{period}
+        AND H10000F.ITEM LIKE '%黄金%'
+    </select>
+
+    <select id="selectH10000RmcfsData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000R.ITEM AS item,
+		    IF(H10000R.BAL_CURRENT = 0, null, H10000R.BAL_CURRENT) AS balCurrent,
+		    IF(H10000R.BUY_OUT_CURRENT = 0, null, H10000R.BUY_OUT_CURRENT) AS buyOutCurrent,
+		    IF(H10000R.BAL_LAST = 0, null, H10000R.BAL_LAST) AS balLast,
+		    IF(H10000R.BUY_OUT_LAST = 0, null, H10000R.BUY_OUT_LAST) AS buyOutLast
+		FROM
+		    wp_h10000_rmcfs H10000R
+		WHERE 
+            1 = 1
+        AND H10000R.STATUS = 'Y'
+        AND H10000R.FUND_ID = #{fundId}
+        AND H10000R.PERIOD = #{period}
+    </select>
+
+    <select id="selectH10000RmcfsSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H10000R.BAL_CURRENT) = 0, null, SUM(H10000R.BAL_CURRENT)) AS balCurrent,
+            IF(SUM(H10000R.BUY_OUT_CURRENT) = 0, null, SUM(H10000R.BUY_OUT_CURRENT)) AS buyOutCurrent,
+            IF(SUM(H10000R.BAL_LAST) = 0, null, SUM(H10000R.BAL_LAST)) AS balLast,
+            IF(SUM(H10000R.BUY_OUT_LAST) = 0, null, SUM(H10000R.BUY_OUT_LAST)) AS buyOutLast
+        FROM
+            wp_h10000_rmcfs H10000R
+        WHERE 
+            1 = 1
+        AND H10000R.STATUS = 'Y'
+        AND H10000R.FUND_ID = #{fundId}
+        AND H10000R.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="checkIfH10000RmcfsHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+            SUM(IFNULL(H10000R.BAL_CURRENT, 0)) + SUM(IFNULL(H10000R.BAL_LAST, 0))
+        FROM
+            wp_h10000_rmcfs H10000R
+        WHERE 
+            1 = 1
+        AND H10000R.STATUS = 'Y'
+        AND H10000R.FUND_ID = #{fundId}
+        AND H10000R.PERIOD = #{period}
+    </select>
+
+    <select id="selectH10000InterestDetailData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H800ID.ACCOUNT_DES AS accountDes,
+		    H800ID.BOND_CODE AS bondCode,
+		    H800ID.BOND_NAME AS bondName,
+		    H800ID.RETURN_DAY AS returnDay,
+		    H800ID.PRICE AS price,
+		    H800ID.QUANTITY AS quantity,
+		    H800ID.AMOUNT AS amount,
+		    H800ID.REDUCE_AMT AS reduceAmt 
+		FROM
+		    wp_h800_intest_detail H800ID
+		WHERE 
+            1 = 1
+		AND H800ID.STATUS = 'Y'
+        AND H800ID.FUND_ID = #{fundId}
+        AND H800ID.PERIOD = #{period}
+    </select>
+
+    <select id="selectH10000FairValuesData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H10000FV.SORT as sort,
+		    H10000FV.EY_ACCOUNT_NUM AS eyAccountNum,
+		    H10000FV.ITEM AS item,
+		    IF(H10000FV.AMOUNT_CURRENT = 0, null, H10000FV.AMOUNT_CURRENT) AS amountCurrent,
+		    IF(H10000FV.AMOUNT_LAST = 0, null, H10000FV.AMOUNT_LAST) AS amountLast 
+		FROM
+		    wp_u900 H10000FV
+        WHERE 
+            1 = 1
+		AND H10000FV.STATUS = 'Y'
+        AND H10000FV.FUND_ID = #{fundId}
+        AND H10000FV.PERIOD = #{period}
+        ORDER BY
+            H10000FV.SORT
+    </select>
+
+    <select id="selectH10000FairValuesSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(IF(H10000FV.ITEM LIKE '%.%',H10000FV.AMOUNT_CURRENT,-H10000FV.AMOUNT_CURRENT)) = 0, null, SUM(IF(H10000FV.ITEM LIKE '%.%',H10000FV.AMOUNT_CURRENT,-H10000FV.AMOUNT_CURRENT))) AS amountCurrent,
+            IF(SUM(IF(H10000FV.ITEM LIKE '%.%',H10000FV.AMOUNT_LAST,-H10000FV.AMOUNT_LAST)) = 0, null, SUM(IF(H10000FV.ITEM LIKE '%.%',H10000FV.AMOUNT_LAST,-H10000FV.AMOUNT_LAST))) AS amountLast 
+        FROM
+            wp_u900 H10000FV
+        WHERE 
+            1 = 1
+        AND H10000FV.STATUS = 'Y'
+        AND H10000FV.ITEM IN ('1.交易性金融资产', '2.衍生工具', '3.其他','减：应税金融商品公允价值变动产生的预估增值税')
+        AND H10000FV.FUND_ID = #{fundId}
+        AND H10000FV.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="checkIfH10000FairValuesHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(ABS(IFNULL(H10000FV.AMOUNT_CURRENT, 0))) + SUM(ABS(IFNULL(H10000FV.AMOUNT_LAST, 0)))
+        FROM
+            wp_u900 H10000FV
+        WHERE 
+            1 = 1
+        AND H10000FV.STATUS = 'Y'
+        AND H10000FV.FUND_ID = #{fundId}
+        AND H10000FV.PERIOD = #{period}
+    </select>
+
+    <select id="selectH10000ThreeLevelData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IF(H10000TL.LEVEL1 = 0, null, H10000TL.LEVEL1) as level1,
+		    IF(H10000TL.LEVEL2 = 0, null, H10000TL.LEVEL2) as level2,
+		    IF(H10000TL.LEVEL3 = 0, null, H10000TL.LEVEL3) as level3,
+            IFNULL(H10000TL.LEVEL1, 0) + IFNULL(H10000TL.LEVEL2, 0) + IFNULL(H10000TL.LEVEL3, 0) as total <!-- 20220628,新增 三层次合计 -->
+		FROM
+		    wp_h10000_three_level H10000TL
+		WHERE
+		    1 = 1
+		and H10000TL.`STATUS` = 'Y'
+		and H10000TL.FUND_ID = #{fundId}
+		and H10000TL.PERIOD = #{period}
+		LIMIT 1
+    </select>
+
+    <select id="selectH11000AdditianData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000A.TYPE AS type,
+		    H11000A.`CODE` AS `code`,
+		    H11000A.`NAME` AS `name`,
+		    DATE_FORMAT( H11000A.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
+		    DATE_FORMAT( H11000A.LIFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS liftingDate,
+		    H11000A.RESTRICT_TYPE AS restrictType,
+		    H11000A.SUBSCRIBE_PRICE AS subscribePrice,
+		    H11000A.UNIT_PRICE AS unitPrice,
+		    H11000A.QUANTITY AS quantity,
+		    H11000A.TOTAL_COST AS totalCost,
+		    H11000A.MKT_VALUE_CLIENT AS mktValueClient,
+            H11000A.LIMIT_LEN AS lenLimt,<!--  irene 20220629新增受限期 -->
+		    IF(H11000A.RESTRICT_TYPE LIKE '%转增%' OR H11000A.RESTRICT_TYPE LIKE '%分红%', '注', null) remark
+		FROM
+		    wp_h11000_additian H11000A
+		WHERE 
+            1 = 1
+        AND H11000A.STATUS = 'Y'
+        AND H11000A.FUND_ID = #{fundId}
+        AND H11000A.PERIOD = #{period}
+        ORDER BY
+            H11000A.`CODE`
+    </select>
+
+    <!--  yury, 20200831, H11000拆分流通受限股票和债券 -->
+    <select id="selectH11000AdditianDataStock" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000A.TYPE AS type,
+		    H11000A.`CODE` AS `code`,
+		    H11000A.`NAME` AS `name`,
+		    DATE_FORMAT( H11000A.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
+		    DATE_FORMAT( H11000A.LIFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS liftingDate,
+		    H11000A.RESTRICT_TYPE AS restrictType,
+		    H11000A.SUBSCRIBE_PRICE AS subscribePrice,
+		    H11000A.UNIT_PRICE AS unitPrice,
+		    H11000A.QUANTITY AS quantity,
+		    H11000A.TOTAL_COST AS totalCost,
+		    H11000A.MKT_VALUE_CLIENT AS mktValueClient,
+            H11000A.LIMIT_LEN AS lenLimt,<!--  irene 20220629新增受限期 -->
+		    IF(H11000A.RESTRICT_TYPE LIKE '%转增%' OR H11000A.RESTRICT_TYPE LIKE '%分红%', '注', null) remark
+		FROM
+		    wp_h11000_additian H11000A
+		WHERE
+            1 = 1
+        AND H11000A.STATUS = 'Y'
+        AND H11000A.FUND_ID = #{fundId}
+        AND H11000A.PERIOD = #{period}
+        AND H11000A.TYPE = '股票'
+        ORDER BY
+            H11000A.`CODE`
+    </select>
+
+    <!--  yury, 20200831, H11000拆分流通受限股票和债券 -->
+    <select id="selectH11000AdditianDataBond" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000A.TYPE AS type,
+		    H11000A.`CODE` AS `code`,
+		    H11000A.`NAME` AS `name`,
+		    DATE_FORMAT( H11000A.SUBSCRIBE_DATE, '%Y-%m-%dT00:00:00.000' ) AS subscribeDate,
+		    DATE_FORMAT( H11000A.LIFTING_DATE, '%Y-%m-%dT00:00:00.000' ) AS liftingDate,
+		    H11000A.RESTRICT_TYPE AS restrictType,
+		    H11000A.SUBSCRIBE_PRICE AS subscribePrice,
+		    H11000A.UNIT_PRICE AS unitPrice,
+		    H11000A.QUANTITY AS quantity,
+		    H11000A.TOTAL_COST AS totalCost,
+		    H11000A.MKT_VALUE_CLIENT AS mktValueClient,
+            H11000A.LIMIT_LEN AS lenLimt,<!--  irene 20220629新增受限期 -->
+		    IF(H11000A.RESTRICT_TYPE LIKE '%转增%' OR H11000A.RESTRICT_TYPE LIKE '%分红%', '注', null) remark
+		FROM
+		    wp_h11000_additian H11000A
+		WHERE
+            1 = 1
+        AND H11000A.STATUS = 'Y'
+        AND H11000A.FUND_ID = #{fundId}
+        AND H11000A.PERIOD = #{period}
+        AND H11000A.TYPE = '债券'
+        ORDER BY
+            H11000A.`CODE`
+    </select>
+
+    <!--  chenhy, 20220622, 增加第三层次公允价值及变动情况 -->
+    <select id="selectH10000ThreeLevelChangeData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H10000TLC.TYPE AS TYPE,
+            H10000TLC.SORT AS SORT,
+            H10000TLC.ITEM AS ITEM,
+            IF(H10000TLC.AMOUNT = 0, null, H10000TLC.AMOUNT) as AMOUNT,
+            IF(H10000TLC.AMOUNT_LAST = 0, null, H10000TLC.AMOUNT_LAST) as AMOUNT_LAST
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE
+            1 = 1
+        and H10000TLC.`STATUS` = 'Y'
+        and H10000TLC.FUND_ID = #{fundId}
+        and H10000TLC.PERIOD = #{period}
+    </select>
+	
+	<select id="selectH10000ThreeLevelChangeSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(H10000TLC.AMOUNT = 0, null, H10000TLC.AMOUNT) as AMOUNT,
+		    IF(H10000TLC.AMOUNT_LAST = 0, null, H10000TLC.AMOUNT_LAST) as AMOUNT_LAST
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE 
+            1 = 1
+        and H10000TLC.`STATUS` = 'Y'
+		and H10000TLC.FUND_ID = #{fundId}
+		and H10000TLC.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="checkIfH10000ThreeLevelChangeHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(IFNULL(H10000TLC.AMOUNT, 0)) + SUM(IFNULL(H10000TLC.AMOUNT_LAST, 0))
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE 
+            1 = 1
+        AND H10000TLC.STATUS = 'Y'
+        AND H10000TLC.FUND_ID = #{fundId}
+        AND H10000TLC.PERIOD = #{period}
+    </select>
+
+    <!--  chenhy, 20230921, 使用重要不可观察输入值的第三层次公允价值计量的情况——范围/加权平均值  -->
+    <select id="selecteylomdthreeLevelWeightValues" parameterType="java.util.Map" resultType="java.lang.String">
+       SELECT
+            CASE WHEN COUNT(*) = COUNT(el.ANN_VOL) THEN
+						(CASE WHEN COUNT(el.ANN_VOL) = 1 THEN CAST(MAX(el.ANN_VOL) AS CHAR)
+							  WHEN COUNT(el.ANN_VOL) = 0 THEN '数据缺失'
+						  ELSE concat(CAST(MIN(el.ANN_VOL) AS CHAR),'-',CAST(MAX(el.ANN_VOL)  AS CHAR))
+                        END)
+                 ELSE 
+						(CASE WHEN COUNT(el.ANN_VOL) = 1 THEN concat(MAX(el.ANN_VOL),'，数据缺失')
+						      WHEN COUNT(el.ANN_VOL) = 0 THEN '数据缺失'
+							  ELSE concat(CAST(MIN(el.ANN_VOL) AS CHAR),'-',CAST(MAX(el.ANN_VOL)  AS CHAR),'，数据缺失')
+						END)
+				END AS weightedAvg
+        FROM
+            ey_lomd el,sys_fund_info sfi
+        WHERE
+            1 = 1
+        AND sfi.FUND_ID = #{fundId}
+        AND sfi.FIRM_CODE = el.FIRM_CODE
+	AND el.TRX_CODE in (select distinct STOCK_CODE from ey_stock_limit where fund_id = #{fundId} and period = #{period})
+        LIMIT 1
+    </select>
+    <!--  chenhy, 20231012, 使用重要不可观察输入值的第三层次公允价值计量的情况——范围/加权平均值上年数  -->
+    <select id="selecteylomdthreeLevelWeightValuesLast" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+            whti.UNOBSERVABLE_INPUTS_SCOPE
+        FROM
+            wp_h10000_val_tech_init whti
+        WHERE
+            1 = 1
+         AND whti.FUND_ID = #{fundId}
+         AND whti.PERIOD = #{period}
+    </select>
+    <!--  chenhy, 20231012, 不以公允价值计量的金融工具的相关说明  -->
+    <select id="selectfiNotMeasureWithFv" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+            wfnmwi.NOTE
+        FROM
+            wp_fi_not_meaure_with_fv_init wfnmwi
+        WHERE
+            1 = 1
+         AND wfnmwi.FUND_ID = #{fundId}
+         AND wfnmwi.PERIOD = #{period}
+    
+    </select>
+    <!--  irene, 20220627, 增加第三层次公允价值-->
+    <select id="checkIfH10000ThreeLevelChangeHasDataForWP" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            H10000TLC.TYPE AS TYPE,
+            SUM(IFNULL(H10000TLC.AMOUNT , 0))+SUM(IFNULL(H10000TLC.AMOUNT_LAST , 0)) as AMOUNT
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE
+            1 = 1
+        and H10000TLC.`STATUS` = 'Y'
+        and H10000TLC.FUND_ID = #{fundId}
+        and H10000TLC.PERIOD = #{period}
+        GROUP BY H10000TLC.TYPE
+    </select>
+    <select id="selectH10000ThreeLevelChangeBondData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H10000TLC.TYPE AS TYPE,
+            H10000TLC.SORT AS SORT,
+            H10000TLC.ITEM AS ITEM,
+            IF(H10000TLC.AMOUNT = 0, null, H10000TLC.AMOUNT) as AMOUNT,
+            IF(H10000TLC.AMOUNT_LAST = 0, null, H10000TLC.AMOUNT_LAST) as AMOUNTLAST
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE
+            1 = 1
+        and H10000TLC.`STATUS` = 'Y'
+        and H10000TLC.TYPE = 'BOND'
+        and H10000TLC.FUND_ID = #{fundId}
+        and H10000TLC.PERIOD = #{period}
+        ORDER BY H10000TLC.SORT
+    </select>
+    <select id="selectH10000ThreeLevelChangeStockData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H10000TLC.TYPE AS TYPE,
+            H10000TLC.SORT AS SORT,
+            H10000TLC.ITEM AS ITEM,
+            IF(H10000TLC.AMOUNT = 0, null, H10000TLC.AMOUNT) as AMOUNT,
+            IF(H10000TLC.AMOUNT_LAST = 0, null, H10000TLC.AMOUNT_LAST) as AMOUNTLAST
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE
+            1 = 1
+        and H10000TLC.`STATUS` = 'Y'
+        and H10000TLC.TYPE = 'STOCK'
+        and H10000TLC.FUND_ID = #{fundId}
+        and H10000TLC.PERIOD = #{period}
+        ORDER BY H10000TLC.SORT
+    </select>
+    <select id="selectH10000ThreeLevelChangeRepoData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT                
+            H10000TLC.TYPE AS TYPE,
+            H10000TLC.SORT AS SORT,
+            H10000TLC.ITEM AS ITEM,
+            IF(H10000TLC.AMOUNT = 0, null, H10000TLC.AMOUNT) as AMOUNT,
+            IF(H10000TLC.AMOUNT_LAST = 0, null, H10000TLC.AMOUNT_LAST) as AMOUNTLAST
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE
+            1 = 1
+        and H10000TLC.`STATUS` = 'Y'
+        and H10000TLC.TYPE = 'REPO'
+        and H10000TLC.FUND_ID = #{fundId}
+        and H10000TLC.PERIOD = #{period}
+        ORDER BY H10000TLC.SORT
+    </select>
+    <select id="selectH10000ThreeLevelChangeWarrantData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H10000TLC.TYPE AS TYPE,
+            H10000TLC.SORT AS SORT,
+            H10000TLC.ITEM AS ITEM,
+            IF(H10000TLC.AMOUNT = 0, null, H10000TLC.AMOUNT) as AMOUNT,
+            IF(H10000TLC.AMOUNT_LAST = 0, null, H10000TLC.AMOUNT_LAST) as AMOUNTLAST
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE
+            1 = 1
+        and H10000TLC.`STATUS` = 'Y'
+        and H10000TLC.TYPE = 'WARRANT'
+        and H10000TLC.FUND_ID = #{fundId}
+        and H10000TLC.PERIOD = #{period}
+        ORDER BY H10000TLC.SORT
+    </select>
+    <select id="selectH10000ThreeLevelChangeFundData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H10000TLC.TYPE AS TYPE,
+            H10000TLC.SORT AS SORT,
+            H10000TLC.ITEM AS ITEM,
+            IF(H10000TLC.AMOUNT = 0, null, H10000TLC.AMOUNT) as AMOUNT,
+            IF(H10000TLC.AMOUNT_LAST = 0, null, H10000TLC.AMOUNT_LAST) as AMOUNTLAST
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE
+            1 = 1
+        and H10000TLC.`STATUS` = 'Y'
+        and H10000TLC.TYPE = 'FUND'
+        and H10000TLC.FUND_ID = #{fundId}
+        and H10000TLC.PERIOD = #{period}
+        ORDER BY H10000TLC.SORT
+    </select>
+    <select id="selectH10000ThreeLevelChangeTotalData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H10000TLC.TYPE AS TYPE,
+            H10000TLC.SORT AS SORT,
+            H10000TLC.ITEM AS ITEM,            
+            IF(H10000TLC.AMOUNT = 0, null, H10000TLC.AMOUNT) as AMOUNT,
+            IF(H10000TLC.AMOUNT_LAST = 0, null, H10000TLC.AMOUNT_LAST) as AMOUNTLAST
+        FROM
+            wp_h10000_three_level_change H10000TLC
+        WHERE
+            1 = 1
+        and H10000TLC.`STATUS` = 'Y'
+        and H10000TLC.TYPE = 'TOTAL'
+        and H10000TLC.FUND_ID = #{fundId}
+        and H10000TLC.PERIOD = #{period}
+        ORDER BY H10000TLC.SORT
+    </select>
+    <!--  irene, 20220627, 增加第三层次公允价值 -->
+
+    <select id="selectH11000AdditianDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            SFI.FIRM_CODE AS firm_code,
+            H11000A.TYPE AS type,
+            H11000A.`CODE` AS `code`,
+            H11000A.`NAME` AS `name`,
+            H11000A.SUBSCRIBE_DATE AS subscribeDate,
+            H11000A.LIFTING_DATE AS liftingDate,
+            if( SFI.FIRM_CODE = 'YHA' and H11000A.RESTRICT_TYPE = '新股限售','新股流通受限',H11000A.RESTRICT_TYPE)AS restrictType,
+			H11000A.LIMIT_LEN AS lenLimt,
+            IF(H11000A.SUBSCRIBE_PRICE = 0, null, H11000A.SUBSCRIBE_PRICE) AS subscribePrice,
+            IF(H11000A.UNIT_PRICE = 0, null, H11000A.UNIT_PRICE) AS unitPrice,
+            IF(H11000A.QUANTITY = 0, null, H11000A.QUANTITY) AS quantity,
+            IF(H11000A.TOTAL_COST = 0, null, H11000A.TOTAL_COST) AS totalCost,
+            IF(H11000A.MKT_VALUE_CLIENT = 0, null, H11000A.MKT_VALUE_CLIENT) AS mktValueClient,
+            IF(H11000A.RESTRICT_TYPE LIKE '%转增%' OR H11000A.RESTRICT_TYPE LIKE '%分红%', '注', null) remark
+        FROM
+            wp_h11000_additian H11000A, sys_fund_info SFI
+        WHERE 
+            1 = 1
+        AND SFI.FUND_ID = H11000A.FUND_ID
+        AND H11000A.STATUS = 'Y'
+        AND H11000A.FUND_ID = #{fundId}
+        AND H11000A.PERIOD = #{period}
+        ORDER BY
+           CASE WHEN SFI.FIRM_CODE = 'BS' THEN  H11000A.`MKT_VALUE_CLIENT` END DESC,
+           CASE WHEN SFI.FIRM_CODE &lt;&gt; 'BS' THEN H11000A.`CODE`  END ASC
+    </select>
+    
+    <select id="selectH11000AdditianSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            SUM(IFNULL(H11000A.MKT_VALUE_CLIENT, 0)) AS mktValueClient
+        FROM
+            wp_h11000_additian H11000A
+        WHERE 
+            1 = 1
+        AND H11000A.STATUS = 'Y'
+        AND H11000A.FUND_ID = #{fundId}
+        AND H11000A.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+
+    <select id="selectH11000SuspensionData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000S.STOCK_CODE AS stockCode,
+		    H11000S.STOCK_NAME AS stockName,
+		    DATE_FORMAT(H11000S.SUSPENSION_DATE, '%Y-%m-%dT00:00:00.000') AS suspensionDate,
+		    H11000S.SUSPENSION_INFO AS suspensionInfo,
+		    H11000S.UNIT_PRICE AS unitPrice,
+		    DATE_FORMAT(H11000S.RESUMPTION_DATE, '%Y-%m-%dT00:00:00.000') AS resumptionDate,
+		    H11000S.RESMPATION_OPEN_PRICE AS resmpationOpenPrice,
+		    H11000S.QUANTITY AS quantity,
+		    H11000S.TOTAL_COST AS totalCost,
+		    H11000S.MKT_VALUE_CLIENT AS mktValueClient 
+		FROM
+		    wp_h11000_suspension H11000S
+        WHERE 
+            1 = 1
+		AND H11000S.STATUS = 'Y'
+        AND H11000S.FUND_ID = #{fundId}
+        AND H11000S.PERIOD = #{period}
+        ORDER BY
+            H11000S.STOCK_CODE
+    </select>
+
+    <select id="selectH11000SuspensionDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H11000S.STOCK_CODE AS stockCode,
+            H11000S.STOCK_NAME AS stockName,
+            H11000S.SUSPENSION_DATE AS suspensionDate,
+            H11000S.SUSPENSION_INFO AS suspensionInfo,
+            IF(H11000S.UNIT_PRICE = 0, null, H11000S.UNIT_PRICE) AS unitPrice,
+            H11000S.RESUMPTION_DATE AS resumptionDate,
+            IF(H11000S.RESMPATION_OPEN_PRICE = 0, null, H11000S.RESMPATION_OPEN_PRICE) AS resmpationOpenPrice,
+            IF(H11000S.QUANTITY = 0, null, H11000S.QUANTITY) AS quantity,
+            IF(H11000S.TOTAL_COST = 0, null, H11000S.TOTAL_COST) AS totalCost,
+            IF(H11000S.MKT_VALUE_CLIENT = 0, null, H11000S.MKT_VALUE_CLIENT) AS mktValueClient 
+        FROM
+            wp_h11000_suspension H11000S
+        WHERE 
+            1 = 1
+        AND H11000S.STATUS = 'Y'
+        AND H11000S.FUND_ID = #{fundId}
+        AND H11000S.PERIOD = #{period}
+        ORDER BY
+            H11000S.STOCK_CODE
+    </select>
+
+    <select id="selectH11000SaleInData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    H11000SI.BOND_CODE AS bondCode,
+		    H11000SI.BOND_NAME AS bondName,
+		    DATE_FORMAT( H11000SI.RETURN_DAY, '%Y-%m-%dT00:00:00.000' ) AS returnDay,
+		    H11000SI.PRICE AS price,
+		    H11000SI.QUANTITY AS quantity,
+		    H11000SI.AMOUNT AS amount 
+		FROM
+		    wp_h11000_sale_in H11000SI
+        WHERE 
+            1 = 1
+		AND H11000SI.STATUS = 'Y'
+        AND H11000SI.FUND_ID = #{fundId}
+        AND H11000SI.PERIOD = #{period}
+        ORDER BY 
+            H11000SI.BOND_CODE
+    </select>
+
+    <!-- yury, 20200618, 修改排序逻辑 -->
+    <!-- chenhy20240624, 202040624, 删除排序逻辑，排序逻辑移至存储过程 -->
+    <select id="selectH11000SaleInDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            H11000SI.BOND_CODE AS bondCode,
+            H11000SI.BOND_NAME AS bondName,
+            H11000SI.RETURN_DAY AS returnDay,
+            IF(H11000SI.PRICE = 0, null, H11000SI.PRICE) AS price,
+            IF(H11000SI.QUANTITY = 0, null, H11000SI.QUANTITY) AS quantity,
+            IF(H11000SI.AMOUNT = 0, null, H11000SI.AMOUNT) AS amount 
+        FROM
+            wp_h11000_sale_in H11000SI
+        WHERE 
+            1 = 1
+        AND H11000SI.STATUS = 'Y'
+        AND H11000SI.FUND_ID = #{fundId}
+        AND H11000SI.PERIOD = #{period}
+    </select>
+
+    <select id="selectH11000SaleInSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(H11000SI.QUANTITY) = 0, null, SUM(H11000SI.QUANTITY)) AS quantity,
+            IF(SUM(H11000SI.AMOUNT) = 0, null, SUM(H11000SI.AMOUNT)) AS amount 
+        FROM
+            wp_h11000_sale_in H11000SI
+        WHERE 
+            1 = 1
+        AND H11000SI.STATUS = 'Y'
+        AND H11000SI.FUND_ID = #{fundId}
+        AND H11000SI.PERIOD = #{period}
+        LIMIT 1
+    </select>
+
+    <select id="selectH11000NoteData" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT
+		    P600T.DUE_ACCOUNT_DAY AS dueAccountDay 
+		FROM
+		    wp_p600_test P600T 
+		WHERE
+		    1 = 1 
+	    AND P600T.`STATUS` = 'Y' 
+	    AND P600T.BUY_OUT_BOND = 'Note 1' 
+        AND P600T.FUND_ID = #{fundId}
+        AND P600T.PERIOD = #{period}
+        ORDER BY P600T.DUE_ACCOUNT_DAY
+    </select>
+
+
+    <!-- Irene, 20210802, 新增转融通 -->
+    <select id="selectIRefinancingData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IREFINANCING.CONTRACT_NUM AS ContractNum,
+            IREFINANCING.BOND_CODE AS BondCode,
+            IREFINANCING.BOND_NAME AS BondName,
+            IREFINANCING.TRX_DATE AS TransactionDate,
+            DATE_FORMAT( IREFINANCING.DUE_DATE, '%Y-%m-%dT00:00:00.000' ) AS DueDate,
+            IREFINANCING.UNIT_PRICE AS UnitPrice,
+            IREFINANCING.QUANTITY AS Quantity,
+            IREFINANCING.VAL_VALUE AS ValValue
+		FROM
+		    ey_i_refinancing IREFINANCING 
+		WHERE
+		    1 = 1 
+        AND IREFINANCING.FUND_ID = #{fundId}
+        AND IREFINANCING.PERIOD = #{period}
+        ORDER BY IREFINANCING.BOND_CODE,IREFINANCING.TRX_DATE
+    </select>
+
+    <!-- cailei, 20211018, 新增节假日 -->
+    <select id="selecttrxcalendarData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            DATE_FORMAT( st.TRX_DATE, '%Y-%m-%dT00:00:00.000' ) AS TRX_DATE,
+            st.COMMENTS AS COMMENTS
+        FROM
+            sys_trxcalendar st 
+        WHERE
+            1 = 1 
+        AND st.COMMENTS is not null
+        ORDER BY st.TRX_DATE
+    </select>
+
+    <!-- cailei, 20210104, 新增汇率 -->
+    <select id="selectrateData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT 
+	        s.EXCHANGE_RATE as rate
+        FROM
+            sys_currency_exchange_rate s
+        WHERE
+            s.PERIOD = #{period}
+
+            AND s.CURRENCY_CODE = 'HKD'
+            AND S.`STATUS` = 'Y'
+            AND IFNULL(#{period},STR_TO_DATE('2000-01-01','%Y-%m-%d')) >= s.TRX_DATE 
+            AND (IFNULL(s.FUND_ID ,'')= IFNULL(#{fundId} ,'')  OR IFNULL(s.FUND_ID ,'') = '')
+        ORDER BY S.FIRM_CODE DESC,S.FUND_ID DESC,S.TRX_DATE DESC
+        LIMIT 1
+    </select>
+
+</mapper>

@@ -28,6 +28,7 @@
 							
 						<!-- 检索  -->
 						<form action="button/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -49,7 +50,7 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:35px;">
-									<label class="pos-rel"><input type="checkbox" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
+									<label class="pos-rel"><input type="checkbox" autocomplete="off" class="ace" id="zcheckbox" /><span class="lbl"></span></label>
 									</th>
 									<th class="center" style="width:50px;">序号</th>
 									<th class="center">名称</th>
@@ -67,7 +68,7 @@
 									<c:forEach items="${varList}" var="var" varStatus="vs">
 										<tr>
 											<td class='center'>
-												<label class="pos-rel"><input type='checkbox' name='ids' value="${var.BUTTON_ID}" class="ace" /><span class="lbl"></span></label>
+												<label class="pos-rel"><input type='checkbox' autocomplete="off" name='ids' value="${var.BUTTON_ID}" class="ace" /><span class="lbl"></span></label>
 											</td>
 											<td class='center' style="width: 30px;">${vs.index+1}</td>
 											<td class='center'>${var.NAME}</td>
@@ -206,7 +207,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>button/goAdd.do';
+			 diag.URL = '<%=path%>/button/goAdd.do';
 			 diag.Width = 450;
 			 diag.Height = 358;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -242,7 +243,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>button/goEdit.do?BUTTON_ID='+Id;
+			 diag.URL = '<%=path%>/button/goEdit.do?BUTTON_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 358;
 			 diag.CancelEvent = function(){ //关闭事件

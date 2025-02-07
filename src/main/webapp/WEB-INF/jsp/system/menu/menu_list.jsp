@@ -226,7 +226,7 @@
 		   	 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑图标";
-			 diag.URL = '<%=basePath%>menu/toEditicon.do?MENU_ID='+MENU_ID;
+			 diag.URL = '<%=path%>/menu/toEditicon.do?MENU_ID='+MENU_ID;
 			 diag.Width = 800;
 			 diag.Height = 380;
 			 diag.CancelEvent = function(){ //关闭事件

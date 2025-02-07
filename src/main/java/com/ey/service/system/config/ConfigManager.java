@@ -54,5 +54,13 @@ public interface ConfigManager{
 	 */
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception;
 	
+	/**
+	 * 根据代码获取配置值
+	 * @param configCode
+	 * @return
+	 * @throws Exception
+	 */
+	public String findByCode(String configCode) throws Exception;
+	
 }
 

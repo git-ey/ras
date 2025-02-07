@@ -28,26 +28,27 @@
 					<div class="col-xs-12">
 					
 					<form action="acctmapping/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="ACCTMAPPING_ID" id="ACCTMAPPING_ID" value="${pd.ACCTMAPPING_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:80px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="255" placeholder="唯一性标识,如F600001#01" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="255" placeholder="唯一性标识,如F600001#01" title="基金ID" style="width:98%;"/></td>
 							    <td style="width:80px;text-align: right;padding-top: 13px;">科目代码:</td>
-								<td><input type="text" name="ACCOUNT_NUM" id="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM}" maxlength="255" placeholder="这里输入科目代码" title="科目代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ACCOUNT_NUM" id="ACCOUNT_NUM" value="${pd.ACCOUNT_NUM}" maxlength="255" placeholder="这里输入科目代码" title="科目代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:80px;text-align: right;padding-top: 13px;">科目名称:</td>
-								<td><input type="text" name="ACCOUNT_DESCRIPTION" id="ACCOUNT_DESCRIPTION" value="${pd.ACCOUNT_DESCRIPTION}" maxlength="255" placeholder="这里输入科目名称" title="科目名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ACCOUNT_DESCRIPTION" id="ACCOUNT_DESCRIPTION" value="${pd.ACCOUNT_DESCRIPTION}" maxlength="255" placeholder="这里输入科目名称" title="科目名称" style="width:98%;"/></td>
 								<td style="width:80px;text-align: right;padding-top: 13px;">几级科目:</td>
-								<td><input type="number" name="LEVEL" id="LEVEL" value="${pd.LEVEL}" maxlength="32" placeholder="这里输入几级科目" title="几级科目" style="width:98%;"/></td>							
+								<td><input type="number" autocomplete="off" name="LEVEL" id="LEVEL" value="${pd.LEVEL}" maxlength="32" placeholder="这里输入几级科目" title="几级科目" style="width:98%;"/></td>							
 							</tr>
 							<tr>
 								<td style="width:80px;text-align: right;padding-top: 13px;">币种:</td>
-								<td><input type="text" name="CURRENCY" id="CURRENCY" value="${pd.CURRENCY}" maxlength="255" placeholder="默认CNY，外币科目采用外币代码" title="币种" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CURRENCY" id="CURRENCY" value="${pd.CURRENCY}" maxlength="255" placeholder="默认CNY，外币科目采用外币代码" title="币种" style="width:98%;"/></td>
 								<td style="width:80px;text-align: right;padding-top: 13px;">科目属性:</td>
-								<td><input type="text" name="TYPE" id="TYPE" value="${pd.TYPE}" maxlength="255" placeholder="标识科目属性" title="科目属性" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="TYPE" id="TYPE" value="${pd.TYPE}" maxlength="255" placeholder="标识科目属性" title="科目属性" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:80px;text-align: right;padding-top: 13px;">记账科目:</td>
@@ -58,25 +59,25 @@
 								    </select>
 								</td>
 								<td style="width:80px;text-align: right;padding-top: 13px;">EY科目ID:</td>
-								<td><input type="text" name="EY_ACCOUNT_NUM" id="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM}" maxlength="255" placeholder="EY标准一级科目代码" title="EY科目ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="EY_ACCOUNT_NUM" id="EY_ACCOUNT_NUM" value="${pd.EY_ACCOUNT_NUM}" maxlength="255" placeholder="EY标准一级科目代码" title="EY科目ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:80px;text-align: right;padding-top: 13px;">属性1:</td>
-								<td><input type="text" name="ATTR1" id="ATTR1" value="${pd.ATTR1}" maxlength="255" placeholder="这里输入属性1" title="属性1" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ATTR1" id="ATTR1" value="${pd.ATTR1}" maxlength="255" placeholder="这里输入属性1" title="属性1" style="width:98%;"/></td>
 								<td style="width:80px;text-align: right;padding-top: 13px;">属性2:</td>
-								<td><input type="text" name="ATTR2" id="ATTR2" value="${pd.ATTR2}" maxlength="255" placeholder="这里输入属性2" title="属性2" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ATTR2" id="ATTR2" value="${pd.ATTR2}" maxlength="255" placeholder="这里输入属性2" title="属性2" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:80px;text-align: right;padding-top: 13px;">属性3:</td>
-								<td><input type="text" name="ATTR3" id="ATTR3" value="${pd.ATTR3}" maxlength="255" placeholder="这里输入属性3" title="属性3" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ATTR3" id="ATTR3" value="${pd.ATTR3}" maxlength="255" placeholder="这里输入属性3" title="属性3" style="width:98%;"/></td>
 								<td style="width:80px;text-align: right;padding-top: 13px;">属性4:</td>
-								<td><input type="text" name="ATTR4" id="ATTR4" value="${pd.ATTR4}" maxlength="255" placeholder="这里输入属性4" title="属性4" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ATTR4" id="ATTR4" value="${pd.ATTR4}" maxlength="255" placeholder="这里输入属性4" title="属性4" style="width:98%;"/></td>
 							</tr>
 							<tr>
 							    <td style="width:80px;text-align: right;padding-top: 13px;">属性5:</td>
-								<td><input type="text" name="ATTR5" id="ATTR5" value="${pd.ATTR5}" maxlength="255" placeholder="这里输入属性5" title="属性5" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ATTR5" id="ATTR5" value="${pd.ATTR5}" maxlength="255" placeholder="这里输入属性5" title="属性5" style="width:98%;"/></td>
 							    <td style="width:80px;text-align: right;padding-top: 13px;">属性6:</td>
-								<td><input type="text" name="ATTR6" id="ATTR6" value="${pd.ATTR6}" maxlength="255" placeholder="这里输入属性6" title="属性6" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ATTR6" id="ATTR6" value="${pd.ATTR6}" maxlength="255" placeholder="这里输入属性6" title="属性6" style="width:98%;"/></td>
 							</tr>
 							<tr>
 							    <td style="width:80px;text-align: right;padding-top: 13px;">是否启用:</td>

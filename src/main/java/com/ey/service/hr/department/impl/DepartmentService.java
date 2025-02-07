@@ -27,7 +27,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Override
+    public void save(PageData pd)throws Exception{
 		dao.save("DepartmentMapper.save", pd);
 	}
 	
@@ -35,7 +36,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
+	@Override
+    public void delete(PageData pd)throws Exception{
 		dao.delete("DepartmentMapper.delete", pd);
 	}
 	
@@ -43,7 +45,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void edit(PageData pd)throws Exception{
+	@Override
+    public void edit(PageData pd)throws Exception{
 		dao.update("DepartmentMapper.edit", pd);
 	}
 	
@@ -51,7 +54,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @param page
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("DepartmentMapper.datalistPage", page);
 	}
@@ -60,7 +64,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("DepartmentMapper.findById", pd);
 	}
 	
@@ -68,7 +73,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findByBianma(PageData pd)throws Exception{
+	@Override
+    public PageData findByBianma(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("DepartmentMapper.findByBianma", pd);
 	}
 	
@@ -78,7 +84,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<Department> listSubDepartmentByParentId(String parentId) throws Exception {
 		return (List<Department>) dao.findForList("DepartmentMapper.listSubDepartmentByParentId", parentId);
 	}
@@ -89,7 +96,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Department> listAllDepartment(String parentId) throws Exception {
+	@Override
+    public List<Department> listAllDepartment(String parentId) throws Exception {
 		List<Department> departmentList = this.listSubDepartmentByParentId(parentId);
 		for(Department depar : departmentList){
 			depar.setTreeurl("department/list.do?DEPARTMENT_ID="+depar.getDEPARTMENT_ID());
@@ -106,7 +114,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public List<PageData> listAllDepartmentToSelect(String parentId,List<PageData> zdepartmentPdList) throws Exception {
+	@Override
+    public List<PageData> listAllDepartmentToSelect(String parentId,List<PageData> zdepartmentPdList) throws Exception {
 		List<PageData>[] arrayDep = this.listAllbyPd(parentId,zdepartmentPdList);
 		List<PageData> departmentPdList = arrayDep[1];
 		for(PageData pd : departmentPdList){
@@ -144,7 +153,8 @@ public class DepartmentService implements DepartmentManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public String getDEPARTMENT_IDS(String DEPARTMENT_ID) throws Exception {
+	@Override
+    public String getDEPARTMENT_IDS(String DEPARTMENT_ID) throws Exception {
 		DEPARTMENT_ID = Tools.notEmpty(DEPARTMENT_ID)?DEPARTMENT_ID:"0";
 		List<PageData> zdepartmentPdList = new ArrayList<PageData>();
 		zdepartmentPdList = this.listAllDepartmentToSelect(DEPARTMENT_ID,zdepartmentPdList);

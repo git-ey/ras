@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="termline/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="TERMHEAD_ID" id="TERMHEAD_ID" value="${pd.TERMHEAD_ID}"/>
 						<div style="overflow-x: scroll; scrolling: auto;width: 100%;">
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
@@ -43,8 +44,8 @@
 									<th class="center">排序号</th>
 									<th class="center">账龄期限名称</th>
 									<th class="center">披露名称</th>
-									<th class="center">天数从</th>
-									<th class="center">天数至</th>
+									<th class="center">月数从</th>
+									<th class="center">月数至</th>
 									<th class="center">说明</th>
 									<th class="center">操作</th>
 								</tr>
@@ -63,8 +64,8 @@
 											<td class='center'>${var.SORT}</td>
 											<td class='center'>${var.PERIOD_NAME}</td>
 											<td class='center'>${var.REVEAL_NAME}</td>
-											<td class='center'>${var.DAYS_FROM}</td>
-											<td class='center'>${var.DAYS_TO}</td>
+											<td class='center'>${var.MONTH_FROM}</td>
+											<td class='center'>${var.MONTH_TO}</td>
 											<td class='center'>${var.DESCRIPTION}</td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
@@ -239,7 +240,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>termline/goAdd.do?TERMHEAD_ID=${pd.TERMHEAD_ID}';
+			 diag.URL = '<%=path%>/termline/goAdd.do?TERMHEAD_ID=${pd.TERMHEAD_ID}';
 			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -273,7 +274,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>termline/goEdit.do?TERMLINE_ID='+Id;
+			 diag.URL = '<%=path%>/termline/goEdit.do?TERMLINE_ID='+Id;
 			 diag.Width = 500;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口

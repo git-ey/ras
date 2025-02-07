@@ -1,47 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop
 						http://www.springframework.org/schema/aop/spring-aop.xsd
-						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context
 						http://www.springframework.org/schema/context/spring-context.xsd
-						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx.xsd">
-	
+
 	<!-- 启用注解 -->
 	<context:annotation-config />
-	
+
 	<!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
 	<context:component-scan base-package="com.ey">
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
-	
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
 	<!-- 读取参数配置 -->
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
-		<property name="locations">  
-			<list>  
-                 <value>/WEB-INF/classes/dbconfig.properties</value>
-            </list>  
-        </property>  
-	</bean> 
-	
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/classes/config.properties</value>
+			</list>
+		</property>
+	</bean>
+
 	<!-- 线程池 -->
-    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-        <!-- 核心线程数 -->
-        <property name="corePoolSize" value="2"/>
-        <!-- 最大线程数 -->
-        <property name="maxPoolSize" value="100"/>
-        <!-- 队列最大长度 -->
-        <property name="queueCapacity" value="1000"/>
-        <!-- 线程池维护线程所允许的空闲时间，默认为60s -->
-        <property name="keepAliveSeconds" value="120"/>
-    </bean>
-   
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 核心线程数 -->
+		<property name="corePoolSize" value="2" />
+		<!-- 最大线程数 -->
+		<property name="maxPoolSize" value="100" />
+		<!-- 队列最大长度 -->
+		<property name="queueCapacity" value="1000" />
+		<!-- 线程池维护线程所允许的空闲时间，默认为60s -->
+		<property name="keepAliveSeconds" value="120" />
+	</bean>
+
+	<!-- 队列池 -->
+	<bean id="taskQueueExecutor"
+		  class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 核心线程数 -->
+		<property name="corePoolSize" value="2" />
+		<!-- 最大线程数 -->
+		<property name="maxPoolSize" value="2" />
+		<!-- 队列最大长度 -->
+		<property name="queueCapacity" value="1000" />
+		<!-- 线程池维护线程所允许的空闲时间，默认为60s -->
+		<property name="keepAliveSeconds" value="120" />
+	</bean>
+
+	<bean id="ldapContextSource" class="com.ey.service.system.ldap.SSLLdapContextSource">
+		<property name="url" value="${ldapUrl}" />
+		<property name="userDn" value="${ldapUserDn}" />
+		<property name="password" value="${ldapPassword}" />
+		<property name="base" value="${ldapBase}" />
+		<property name="pooled" value="false" />
+		<property name="referral" value="throw" />
+	</bean>
+
+	<bean id="systemConfig" class="com.ey.service.system.config.impl.SystemConfig">
+	   <property name="ldapFlag" value="${ldapFlag}" />
+	   <property name="serverPort" value="${serverPort}" />
+	   <property name="serverAddr" value="${serverAddr}" />
+	</bean>
+
 </beans>

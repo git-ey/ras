@@ -13,6 +13,7 @@ public class ImportConfig extends BaseModel{
     
 	private String importTempCode; // 导入模版代码
 	private String importTempName; // 导入模板名称
+	private Integer sheetNo; // 读取的起始Sheet 起始为0
 	private Integer startRowNo; // 读取的起始行 起始为0
 	private ImportFileType importFileType; // 导入文件类型
 	private String tableName; // 导入目标表
@@ -45,6 +46,14 @@ public class ImportConfig extends BaseModel{
 
 	public void setImportFileType(ImportFileType importFileType) {
 		this.importFileType = importFileType;
+	}
+
+	public Integer getSheetNo() {
+		return sheetNo;
+	}
+
+	public void setSheetNo(Integer sheetNo) {
+		this.sheetNo = sheetNo;
 	}
 
 	public Integer getStartRowNo() {

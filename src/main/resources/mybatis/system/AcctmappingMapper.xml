@@ -184,4 +184,11 @@
             t.STATUS = REPLACE(t.STATUS,'''','')
 	</update>
 	
+    <!-- 批量删除-->
+	<update id="deleteBatch" parameterType="pd">
+	    DELETE FROM sys_acctmapping 
+	     WHERE LENGTH(ACCOUNT_NUM) >= 14 
+	       AND ACCOUNT_NUM regexp '^(1102|1103|1104|1204)'
+	</update>
+	
 </mapper>

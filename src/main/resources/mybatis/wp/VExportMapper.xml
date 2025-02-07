@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="VExportMapper">
+
+    <select id="selectV200CreditRiskRating" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            V2CRR.INVEST_TYPE as invest_type,
+            V2CRR.DURATION as duration,
+            V2CRR.RATING as rating,
+            V2CRR.AMOUNT_LAST as amount_last,
+            V2CRR.AMOUNT_CURRENT as amount
+        FROM
+            wp_v200_credit_risk_rating V2CRR
+        WHERE
+            1 = 1 
+        AND V2CRR.FUND_ID = #{fundId}
+        AND V2CRR.PERIOD = #{period}
+    </select>
+
+    <select id="selectV200CreditRiskNote" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            V2CRN.INVEST_TYPE as invest_type,
+            V2CRN.DURATION as duration,
+            V2CRN.NOTE as note
+        FROM
+            WP_V200_CREDIT_RISK_NOTE V2CRN
+        WHERE
+            1 = 1 
+        AND V2CRN.FUND_ID = #{fundId}
+        AND V2CRN.PERIOD = #{period}
+    </select>
+
+    <select id="selectV300Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            V300.TYPE as type,
+            V300.INT_RISK_PERIOD as intRiskPeriod,
+            IF(V300.AMOUNT = 0, null, V300.AMOUNT) as amount,
+            IF(V300.AMOUNT_LAST_CNY = 0, null, V300.AMOUNT_LAST_CNY) as amountLast,
+            V300.SORT as sort
+        FROM
+            wp_v300 V300 
+        WHERE
+            1 = 1 
+        AND V300.STATUS = 'Y'
+        AND V300.FUND_ID = #{fundId}
+        AND V300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectV300IntRiskPeriodData" parameterType="java.util.Map" resultType="java.lang.String"> 
+        SELECT DISTINCT
+            V300.INT_RISK_PERIOD as intRiskPeriod
+        FROM
+            wp_v300 V300 
+        WHERE
+            1 = 1 
+        AND V300.STATUS = 'Y'
+        AND V300.FUND_ID = #{fundId}
+        AND V300.PERIOD = #{period}
+        ORDER BY
+            V300.SORT
+    </select>
+    
+
+    <!-- irene20230904新增 应交税费/应付税费 -->
+    <select id="selectV300IntRiskTaxPayableNameData" parameterType="java.util.Map" resultType="java.lang.String"> 
+        select 
+            ifnull(ifnull(a.pbc,a.rep),'应交税费') as TaxPayableItem 
+        from
+            (select 
+                (select 
+                    trim(dbs.LIAB_ITEM) 
+                from 
+                    ds_balance_sheet_init dbs,ds_import_file dif 
+                where 
+                    dif.IMPORT_FILE_ID = dbs.IMPORT_FILE_ID 
+                    AND dbs.LIAB_ITEM like '应%税费%' 
+                    AND dif.NAME_SEG_2 = #{fundId} 
+                    AND dif.NAME_SEG_4= CONCAT(SUBSTR(#{period}, 1, 4) - 1,'1231') limit 1) as rep,
+                (select 
+                    trim(dbs.LIAB_ITEM) 
+                from 
+                    ds_balance_sheet dbs,ds_import_file	dif 
+                where 
+                    dif.IMPORT_FILE_ID = dbs.IMPORT_FILE_ID 
+                    AND dbs.LIAB_ITEM like '应%税费%' 
+                    AND dif.NAME_SEG_2 = #{fundId} 
+                    AND dif.NAME_SEG_4= #{period} limit 1) as pbc) a
+    </select>
+
+    <select id="selectV400FundInfoData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IFNULL(sfi.INT_SEN_METHOD,'久期法') as intSenMethod,
+            IFNULL(sfi.PRI_SEN_METHOD,'Beta法') as priSenMethod
+        FROM
+            sys_fund_info sfi 
+        WHERE
+            1 = 1
+        AND sfi.FUND_ID = #{fundId}
+        AND sfi.ACTIVE = 'Y'
+        LIMIT 1
+    </select>
+    
+    <select id="selectV400HypothesisData" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+            CONCAT( sh.HYPOTHESIS_NUM, '. ', sh.DESCRIPTION ) AS description 
+        FROM
+            sys_hypothesis sh 
+        WHERE
+            1 = 1 
+        AND sh.FUND_ID = #{fundId}
+        AND sh.ACTIVE = 'Y' 
+        AND sh.HYPOTHESIS_TPYE = '利率'
+        ORDER BY sh.HYPOTHESIS_NUM
+    </select>
+    
+    <select id="selectV400HypothesisDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            sh.HYPOTHESIS_NUM as hypothesisNum,
+            sh.DESCRIPTION AS description 
+        FROM
+            sys_hypothesis sh 
+        WHERE
+            1 = 1 
+        AND sh.FUND_ID = #{fundId}
+        AND sh.ACTIVE = 'Y' 
+        AND sh.HYPOTHESIS_TPYE = '利率'
+        ORDER BY sh.HYPOTHESIS_NUM
+    </select>
+    
+    <select id="selectV400LineData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            V400L.TRX_CODE as trxCode,
+            V400L.SHORT_NAME as shortName,
+            V400L.MKT_VALUE as mktValue,
+            V400L.CAL_RESULT as calResult
+        FROM wp_v400_line V400L
+        WHERE
+             1 = 1
+        AND V400L.`STATUS` = 'Y'
+        AND V400L.FUND_ID = #{fundId}
+        AND V400L.PERIOD = #{period}
+    </select>
+    
+    <select id="selectV400TestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            V400T.SORT as sort,
+            V400T.VAR_DESC as varDesc,
+            IF(V400T.INFL_LAST = 0, null, V400T.INFL_LAST) as inflLast,
+            IF(V400T.TOTAL_MKT_VALUE = 0, null, V400T.TOTAL_MKT_VALUE) as totalMktValue,
+            IF(V400T.SEN_ASSET_EXCL = 0, null, V400T.SEN_ASSET_EXCL) as senAssetExcl,
+            IF(V400T.VAR_FLEX = 0, null, V400T.VAR_FLEX) as varFlex,
+            IF(V400T.INFL_CURRENT_CLIENT = 0, null, V400T.INFL_CURRENT_CLIENT) as inflCurrentClient
+        FROM
+            wp_v400_test V400T
+        WHERE
+            1 = 1
+        AND V400T.STATUS = 'Y'
+        AND V400T.FUND_ID = #{fundId}
+        AND V400T.PERIOD = #{period}
+        ORDER BY V400T.SORT
+        LIMIT 0,2 
+    </select>
+    
+    <select id="selectV500InvestData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            V500IV.ITEM as item,
+            V500IV.MKT_VALUE as mktValue,
+            V500IV.PRI_SEN_ASSET as priSenAsset
+        FROM
+            wp_v500_invest_view V500IV
+        WHERE
+            1 = 1
+        AND V500IV.FUND_ID = #{fundId}
+        AND V500IV.PERIOD = #{period}
+        ORDER BY
+            V500IV.SORT    
+    </select>
+    
+    <select id="selectV500riskExposureData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            V500REV.ITEM as item,
+            IF(V500REV.AMOUNT_CURRENT = 0, null,  V500REV.AMOUNT_CURRENT) as amountCurrent,
+            IF(V500REV.AMOUNT_LAST = 0, null,  V500REV.AMOUNT_LAST) as amountLast,
+            IF(V500REV.NET_VALUE_CURRENT = 0, null, V500REV.NET_VALUE_CURRENT) as netValueCurrent,
+            IF(V500REV.RATIO_LAST = 0, null,  V500REV.RATIO_LAST) as ratioLast,
+            IF(V500REV.RATIO_CURRENT = 0, null,  V500REV.RATIO_CURRENT) as ratioCurrent
+        FROM
+            wp_v500_risk_exposure_view V500REV
+        WHERE
+            1 = 1
+        AND V500REV.STATUS = 'Y'
+        AND V500REV.FUND_ID = #{fundId}
+        AND V500REV.PERIOD = #{period}
+    </select>
+    
+    <!--chenhy,20240625,修改合计数比例计算方式-->
+    <select id="selectV500riskExposureSumData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IF(SUM(V500REV.NET_VALUE_CURRENT) = 0, null, SUM(V500REV.NET_VALUE_CURRENT)) as netValue,
+            IF(SUM(V500REV.AMOUNT_CURRENT) = 0, null, SUM(V500REV.AMOUNT_CURRENT)) as amountCurrent,
+            IF(SUM(V500REV.AMOUNT_LAST) = 0, null, SUM(V500REV.AMOUNT_LAST)) as amountLast,
+            IF(SUM(V500REV.AMOUNT_LAST) = 0, null, SUM(V500REV.AMOUNT_LAST))/NET_VALUE_LAST as ratioLast,
+            IF(SUM(V500REV.AMOUNT_CURRENT) = 0, null, SUM(V500REV.AMOUNT_CURRENT))/NET_VALUE_CURRENT as ratioCurrent
+        FROM
+            wp_v500_risk_exposure_view V500REV
+        where
+            1 = 1
+        and V500REV.STATUS = 'Y'
+        and V500REV.FUND_ID = #{fundId}
+        and V500REV.PERIOD = #{period}
+        and if(FIRM_CODE = 'JS',V500REV.SORT != '30','1= 1')
+        LIMIT 1
+    </select>
+
+    <select id="selectV500HypothesisData" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+            CONCAT( sh.HYPOTHESIS_NUM, '. ', sh.DESCRIPTION ) AS description 
+        FROM
+            sys_hypothesis sh 
+        WHERE
+            1 = 1 
+        AND sh.FUND_ID = #{fundId}
+        AND sh.ACTIVE = 'Y' 
+        AND sh.HYPOTHESIS_TPYE = '其他价格'
+        ORDER BY sh.HYPOTHESIS_NUM
+    </select>
+    
+    <select id="selectV500HypothesisDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+       SELECT
+            sh.HYPOTHESIS_NUM as hypothesisNum,
+            sh.DESCRIPTION AS description 
+        FROM
+            sys_hypothesis sh 
+        WHERE
+            1 = 1 
+        AND sh.FUND_ID = #{fundId}
+        AND sh.ACTIVE = 'Y' 
+        AND sh.HYPOTHESIS_TPYE = '其他价格'
+        ORDER BY sh.HYPOTHESIS_NUM
+    </select>
+    
+    <select id="selectV500TestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            V500T.SORT as sort,
+            V500T.VAR_DESC as varDesc,
+            IF(V500T.INFL_LAST = 0, null, V500T.INFL_LAST) as inflLast,
+            IF(V500T.VAR_FLEX = 0, null, V500T.VAR_FLEX) as varFlex,
+            IF(V500T.INFL_CURRENT_CLIENT = 0, null, V500T.INFL_CURRENT_CLIENT) as inflCurrentClient
+        FROM
+            wp_v500_test V500T
+        WHERE
+            1 = 1
+        AND V500T.STATUS = 'Y'
+        AND V500T.FUND_ID = #{fundId}
+        AND V500T.PERIOD = #{period}
+        ORDER BY V500T.SORT
+        LIMIT 0,2
+    </select>
+    
+    <select id="selectV500DetailSlopeData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            DATE_FORMAT(V500LS.TRX_DATE,'%Y-%m-%d') AS trxDate,
+            V500LS.UNIT_NET_VALUE AS unitNetValue,
+            V500LS.DIVIDEND AS dividend,
+            V500LS.CAL_RESULT AS calResult
+        FROM
+            wp_v500_line_slope V500LS
+        WHERE
+            1 = 1
+        AND V500LS.`STATUS` = 'Y'
+        AND V500LS.FUND_ID = #{fundId}
+        AND V500LS.PERIOD = #{period}
+        ORDER BY V500LS.SEQ
+    </select>
+    
+    <select id="selectV500DetailBetaData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            V500L.TRX_CODE AS trxCode,
+            V500L.SHORT_NAME AS shortName,
+            V500L.MKT_VALUE AS mktValue,
+            V500L.CAL_RESULT AS calResult
+        FROM
+            wp_v500_line V500L
+        WHERE
+            1 = 1
+        AND V500L.`STATUS` = 'Y'
+        AND V500L.FUND_ID = #{fundId}
+        AND V500L.PERIOD = #{period}
+    </select>
+
+    <!-- yury，20200909，新增外汇风险敞口及敏感性分析 -->
+    <select id="selectV600ExposureData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            seq as seq,
+            item as item,
+            AMOUNT_HK as amount_hk,
+            AMOUNT_OTHER as amount_other,
+            AMOUNT_SUM as amount_sum
+        FROM wp_v600_risk_exposure
+        where 1 = 1
+        and FUND_ID = #{fundId}
+        and PERIOD = #{period}
+        order by seq;
+    </select>
+
+    <!-- yury，20201119，v600新增敏感性风险变量导入 -->
+    <select id="selectV600Test" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            SORT as seq,
+            INFL_FACTOR as infl_factor,
+            BASE_AMOUNT as base_amount,
+            BASE_AMOUNT_LAST as base_amount_last,
+            INFL_WORDS as infl_words,
+            INFL_AMOUNT as infl_amount,
+            INFL_AMOUNT_LAST as infl_amount_last
+        FROM wp_v600_test
+        where 1 = 1
+        and FUND_ID = #{fundId}
+        and PERIOD = #{period}
+        order by seq;
+    </select>
+
+    <select id="selectV600HypothesisDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+       SELECT
+            sh.HYPOTHESIS_NUM as hypothesisNum,
+            sh.DESCRIPTION AS description
+        FROM
+            sys_hypothesis sh
+        WHERE
+            1 = 1
+        AND sh.FUND_ID = #{fundId}
+        AND sh.ACTIVE = 'Y'
+        AND sh.HYPOTHESIS_TPYE = '外汇'
+        ORDER BY sh.HYPOTHESIS_NUM
+    </select>
+
+    <!--chenhy,20240308,建信专户，外汇风险文字部分金额-->
+    <select id="selectForeignRiskAmount" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT 
+            SUM(ev.MKT_VALUE_ENTERED) *0.05
+        FROM 
+            ey_valuation ev
+        WHERE 
+            1 = 1
+        AND ev.fund_id = #{fundId}
+        AND ev.period = #{period} 
+        AND ev.ATTR5 = '港股通'
+        AND ev.EY_ACCOUNT_NUM = '1102'
+        AND ev.ENTERABLE = 'Y'
+        LIMIT 1
+    </select>
+
+    <!--chenhy,20240308,建信专户，判断其他价格风险文字部分是否输出-->
+    <select id="selectV600OtherPriceSumData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT 
+            detail.mkv AS dMkv,
+            total.mkv tMkv,
+            IF(detail.mkv/total.mkv &gt;= 0.3,'Y','N') flag,
+            total.mkv*0.05 mkValue,
+            detail.mkvLast AS dMkvLast,
+            total.mkvLast tMkvLast,
+            IF(detail.mkvLast/total.mkvLast &gt;= 0.3,'Y','N') flagLast,
+            total.mkvLast*0.05 mkValueLast
+        FROM
+            (SELECT SUM(IFNULL(MV.mkv,0)) mkv,SUM(IFNULL(MV.mkvLast,0)) mkvLast FROM 
+            (select sum(IFNULL(MKT_VALUE,0)) mkv,sum(IFNULL(MKT_VALUE_LAST,0)) mkvLast from wp_h10000_tfa where fund_id = #{fundId} and period = #{period} and ITEM = '股票'
+            UNION ALL
+            select SUM(IFNULL(ev.MKT_VALUE_ENTERED,0)) mkv,0 from ey_valuation ev 
+            left join ey_fund_info efi
+            on ev.ATTR3 = efi.FUND_CODE
+            AND ev.PERIOD = efi.PERIOD
+            WHERE 
+            ev.fund_id = #{fundId} 
+            AND ev.period = #{period}
+            AND ev.EY_ACCOUNT_NUM = '1105'
+            AND ev.ENTERABLE = 'Y'
+            AND efi.SFC_TYPE IN ('股票型基金','混合型基金','REITs')
+            UNION ALL
+            select 0,SUM(IFNULL(ev.MKT_VALUE_ENTERED,0)) mkv from ey_valuation ev 
+            left join ey_fund_info efi
+            on ev.ATTR3 = efi.FUND_CODE
+            AND ev.PERIOD = efi.PERIOD
+            WHERE 
+            ev.fund_id = #{fundId} 
+            AND ev.period = concat(left(#{period},4),'1231')
+            AND ev.EY_ACCOUNT_NUM = '1105'
+            AND ev.ENTERABLE = 'Y'
+            AND efi.SFC_TYPE IN ('股票型基金','混合型基金','REITs')
+            ) MV) detail, 
+            (select sum(IFNULL(MKT_VALUE,0)) mkv,sum(IFNULL(MKT_VALUE_LAST,0)) mkvLast from wp_h10000_tfa where fund_id = #{fundId} and period = #{period}) total
+        LIMIT 1
+    </select>
+</mapper>

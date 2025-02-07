@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="IExportMapper">
+  
+    <select id="selectIFundRelatedPartyData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IR.RP_NAME AS partyFullName,
+		    IR.RELATIONSHIP AS relationship,
+			IR.RP_NAME_ABBR AS rpNameAbbr,
+			IR.TRX_STATUS AS trxSatus,
+			IR.SORT AS sort
+		FROM
+		    wp_i_related IR 
+		WHERE
+		    1 = 1 
+		    AND IR.FUND_ID = #{fundId}
+			AND IR.PERIOD = #{period}
+		    AND IR.STATUS = 'Y'
+		ORDER BY IR.SORT
+    </select>
+    
+    <select id="selectIRpData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IRP.RP_NAME AS rpName,
+		    IRP.RP_NAME_ABBR AS rpNameAbbr,
+		    IRP.RELATIONSHIP AS relationship,
+		    IRP.SORT AS sort
+		FROM
+		    wp_i_rp IRP 
+		WHERE
+		    1 = 1 
+		AND IRP.STATUS = 'Y'
+        AND IRP.FUND_ID = #{fundId}
+        AND IRP.PERIOD = #{period}
+        ORDER BY
+            IRP.SORT
+    </select>
+    
+    <select id="selectITransactionData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IT.PARTY_SHORT_NAME AS partyShortName,
+		    IF(IT.AMOUNT_CURRENT = 0, null, IT.AMOUNT_CURRENT) AS amountCurrent,
+		    IF(IT.RATE_CURRENT = 0, null, IT.RATE_CURRENT) AS rateCurrent,
+		    IF(IT.AMOUNT_LAST = 0, null, IT.AMOUNT_LAST) AS amountLast,
+		    IF(IT.RATE_LAST = 0, null, IT.RATE_LAST) AS rateLast 
+		FROM
+		    wp_i_transaction IT 
+		WHERE
+		    1 = 1 
+		AND IT.STATUS = 'Y'
+        AND IT.FUND_ID = #{fundId}
+        AND IT.PERIOD = #{period}
+        AND IT.TYPE = #{type}
+        ORDER BY
+            IT.SORT
+    </select>
+
+	<!--chenhy,20240621,新增小FOF的判断-->
+	<select id="selectITransactionFundCountData" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+		    COUNT(*)
+		FROM
+		   EY_BALANCE eb where eb.fund_id = #{fundId}
+           and eb.PERIOD = #{period}
+           and eb.EY_ACCOUNT_NUM = '1105'
+           and (eb.BEGIN_BALANCE_CNY != 0 or eb.DR_AMOUNT_CNY != 0 or eb.CR_AMOUNT_CNY != 0 or eb.END_BALANCE_CNY != 0)
+		   and eb.ENTERABLE = 'Y'
+    </select>
+
+    
+    <select id="selectN500RelatedData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    N500R.RELEATED_PARTY AS relatedParty,
+		    IF(N500R.COMMISSION = 0, null, N500R.COMMISSION) AS commission,
+		    IF(N500R.PROPORTION_TOTAL = 0, null, N500R.PROPORTION_TOTAL) AS proportionTotal,
+		    IF(N500R.END_BALANCE = 0, null, N500R.END_BALANCE) AS endBalance,
+		    IF(N500R.PROPORTION_BALANCE = 0, null, N500R.PROPORTION_BALANCE) AS proportionBalance 
+		FROM
+		    wp_n500_related N500R
+		WHERE
+		    1 = 1 
+		AND N500R.STATUS = 'Y'
+        AND N500R.FUND_ID = #{fundId}
+        AND N500R.PERIOD = #{period}
+    </select>
+    
+    <select id="checkIfN500RelatedHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(IFNULL(N500R.commission, 0)) + SUM(IFNULL(N500R.end_balance, 0)) 
+        FROM
+            wp_n500_related N500R
+        WHERE
+            1 = 1 
+        AND N500R.STATUS = 'Y'
+        AND N500R.FUND_ID = #{fundId}
+        AND N500R.PERIOD = #{period}
+    </select>
+    
+    <select id="selectIManageFeeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			IMF.SORT AS sort,
+		    IMF.TPYE AS tpye,
+		    IMF.ITEM AS item,
+		    IF(IMF.AMOUNT_CURRENT = 0, null, IMF.AMOUNT_CURRENT) AS amountCurrent,
+		    IF(IMF.AMOUNT_LAST = 0, null, IMF.AMOUNT_LAST) AS amountLast 
+		FROM
+		    wp_i_mge_fee IMF
+		WHERE
+		    1 = 1
+		AND IMF.STATUS = 'Y'
+        AND IMF.FUND_ID = #{fundId}
+        AND IMF.PERIOD = #{period}
+        ORDER BY
+            IMF.SORT
+    </select>
+    
+    <select id="selectISalesFeeData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    ISF.`LEVEL` AS `level`,
+		    ISF.PARTY_SHORT_NAME AS partyShortName,
+		    IF(ISF.SALES_COMMISION_AMT = 0, null, ISF.SALES_COMMISION_AMT) AS salesCommisionAmt,
+		    IF(ISF.SALES_COMMISION_BAL = 0, null, ISF.SALES_COMMISION_BAL) AS salesCommisionBal,
+		    IF(ISF.SALES_COMMISION_AMT_LAST = 0, null, ISF.SALES_COMMISION_AMT_LAST) AS salesCommisionAmtLast,
+		    IF(ISF.SALES_COMMISION_BAL_LAST = 0, null, ISF.SALES_COMMISION_BAL_LAST) AS salesCommisionBalLast 
+		FROM
+		    wp_i_sales_fee ISF
+		WHERE
+            1 = 1 
+        AND ISF.STATUS = 'Y'
+        AND ISF.FUND_ID = #{fundId}
+        AND ISF.PERIOD = #{period}
+        ORDER BY
+            ISF.SORT,
+            IF(ISF.`LEVEL` = '母基金', '0', ISF.`LEVEL`)
+    </select>
+    
+    <select id="selectISalesFeeSumDataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            ISF.`LEVEL` AS `level`,
+            IF(SUM(ISF.SALES_COMMISION_AMT) = 0, null, SUM(ISF.SALES_COMMISION_AMT)) AS salesCommisionAmt,
+            IF(SUM(ISF.SALES_COMMISION_BAL) = 0, null, SUM(ISF.SALES_COMMISION_BAL)) AS salesCommisionBal,
+            IF(SUM(ISF.SALES_COMMISION_AMT_LAST) = 0, null, SUM(ISF.SALES_COMMISION_AMT_LAST)) AS salesCommisionAmtLast,
+            IF(SUM(ISF.SALES_COMMISION_BAL_LAST) = 0, null, SUM(ISF.SALES_COMMISION_BAL_LAST)) AS salesCommisionBalLast 
+        FROM
+            wp_i_sales_fee ISF 
+        WHERE
+            1 = 1 
+        AND ISF.STATUS = 'Y'
+        AND ISF.FUND_ID = #{fundId}
+        AND ISF.PERIOD = #{period}
+        GROUP BY
+		    ISF.`LEVEL`
+		ORDER BY
+		    IF(ISF.`LEVEL` = '母基金', '0', ISF.`LEVEL`)
+    </select>
+    
+    <select id="selectIBankThxData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IBT.PARTY_SHORT_NAME AS partyShortName,
+		    IF(IBT.BUY_BOND_AMT_RP = 0, null, IBT.BUY_BOND_AMT_RP) AS buyBondAmtRp,
+		    IF(IBT.SELL_BOND_AMT_RP = 0, null, IBT.SELL_BOND_AMT_RP) AS sellBondAmtRp,
+		    IF(IBT.ANTI_REPO_AMT_RP = 0, null, IBT.ANTI_REPO_AMT_RP) AS antiRepoAmtRp,
+		    IF(IBT.ANTI_REPO_INT_RP = 0, null, IBT.ANTI_REPO_INT_RP) AS antiRepoIntRp,
+		    IF(IBT.SELL_REPO_AMT_RP = 0, null, IBT.SELL_REPO_AMT_RP) AS sellRepoAmtRp,
+		    IF(IBT.SELL_REPO_INT_RP = 0, null, IBT.SELL_REPO_INT_RP) AS sellRepoIntRp,
+		    IF(IBT.BUY_BOND_AMT_LAST = 0, null, IBT.BUY_BOND_AMT_LAST) AS buyBondAmtLast,
+		    IF(IBT.SELL_BOND_AMT_LAST = 0, null, IBT.SELL_BOND_AMT_LAST) AS sellBondAmtLast,
+		    IF(IBT.ANTI_REPO_AMT_LAST = 0, null, IBT.ANTI_REPO_AMT_LAST) AS antiRepoAmtLast,
+		    IF(IBT.ANTI_REPO_INT_LAST = 0, null, IBT.ANTI_REPO_INT_LAST) AS antiRepoIntLast,
+		    IF(IBT.SELL_REPO_AMT_LAST = 0, null, IBT.SELL_REPO_AMT_LAST) AS sellRepoAmtLast,
+		    IF(IBT.SELL_REPO_INT_LAST = 0, null, IBT.SELL_REPO_INT_LAST) AS sellRepoIntLast 
+		FROM
+		    wp_i_bank_thx IBT 
+		WHERE
+		    1 = 1 
+		AND IBT.STATUS = 'Y'
+        AND IBT.FUND_ID = #{fundId}
+        AND IBT.PERIOD = #{period}
+        ORDER BY
+            IBT.SORT
+    </select>
+    
+    <select id="selectIMgerHoldFundData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+		    IMHF.`LEVEL` AS `level`,
+		    IMHF.SORT AS sort,
+		    IMHF.ITEM AS item,
+		    IF(IMHF.AMOUNT = 0, null, IMHF.AMOUNT) AS amount,
+		    IF(IMHF.AMOUNT_LAST = 0, null, IMHF.AMOUNT_LAST) AS amountLast 
+		FROM
+		    wp_i_mger_hold_fund IMHF 
+		WHERE
+		    1 = 1  
+		AND IMHF.ITEM IS NOT NULL
+		AND IMHF.ITEM != ''
+		AND IMHF.STATUS = 'Y'
+		AND IMHF.FUND_ID = #{fundId}
+		AND IMHF.PERIOD = #{period}
+		ORDER BY
+		    IMHF.SORT,
+		    IF(IMHF.`LEVEL` = '母基金', '0', IMHF.`LEVEL`)
+    </select>
+    
+    <select id="checkIfIMgerHoldFundHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(IFNULL(IMHF.AMOUNT, 0)) + SUM(IFNULL(IMHF.AMOUNT_LAST, 0))
+        FROM
+            wp_i_mger_hold_fund IMHF 
+        WHERE
+            1 = 1  
+        AND IMHF.STATUS = 'Y'
+        AND IMHF.SORT != 70
+        AND IMHF.FUND_ID = #{fundId}
+        AND IMHF.PERIOD = #{period}
+    </select>
+
+	<select id="checkIfIMgerHoldFundHasDataForReportByLevel" parameterType="java.util.Map" resultType="java.lang.Double"> 
+        SELECT
+            SUM(IFNULL(IMHF.AMOUNT, 0)) + SUM(IFNULL(IMHF.AMOUNT_LAST, 0))
+        FROM
+            wp_i_mger_hold_fund IMHF 
+        WHERE
+            1 = 1  
+        AND IMHF.STATUS = 'Y'
+        AND IMHF.SORT != 70
+        AND IMHF.FUND_ID = #{fundId}
+        AND IMHF.PERIOD = #{period}
+		AND IMHF.LEVEL = #{level}
+    </select>
+    
+    <select id="selectIUnmgerHoldFundData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IUHF.`LEVEL` AS `level`,
+		    IUHF.PARTY_SHORT_NAME AS partyShortName,
+		    IF(IUHF.`SHARE` = 0, null, IUHF.`SHARE`) AS `share`,
+		    IF(IUHF.RATE = 0, null, IUHF.RATE) AS rate,
+		    IF(IUHF.SHARE_LAST = 0, null, IUHF.SHARE_LAST) AS shareLast,
+		    IF(IUHF.RATE_LAST = 0, null, IUHF.RATE_LAST) AS rateLast 
+		FROM
+		    wp_i_unmger_hold_fund IUHF 
+		WHERE
+		    1 = 1 
+		AND IUHF.STATUS = 'Y'
+		#AND IFNULL(IUHF.PARTY_SHORT_NAME,'') != '' 
+        AND IUHF.FUND_ID = #{fundId}
+        AND IUHF.PERIOD = #{period}
+        ORDER BY
+            IUHF.SORT,
+            IF(IUHF.`LEVEL` = '母基金', '0', IUHF.`LEVEL`)
+    </select>
+    
+    <select id="selectIBankData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IB.PARTY_SHORT_NAME AS partyShortName,
+		    IF(IB.BANK_BAL_CURRENT = 0, null, IB.BANK_BAL_CURRENT) AS bankBalCurrent,
+		    IF(IB.INTEREST_INCOME_CURRENT = 0, null, IB.INTEREST_INCOME_CURRENT) AS interestIncomeCurrent,
+		    IF(IB.BANK_BAL_LAST = 0, null, IB.BANK_BAL_LAST) AS bankBalLast,
+		    IF(IB.INTEREST_INCOME_LAST = 0, null, IB.INTEREST_INCOME_LAST) AS interestIncomeLast 
+		FROM
+		    wp_i_bank IB 
+		WHERE
+		    1 = 1 
+		AND IB.STATUS = 'Y'
+        AND IB.FUND_ID = #{fundId}
+        AND IB.PERIOD = #{period}
+        ORDER BY
+            IB.SORT
+    </select>
+    
+    <select id="selectIUnderWriteData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+		    IU.PARTY_SHORT_NAME AS partyShortName,
+		    IU.STOCK_CODE AS stockCode,
+		    IU.STOCK_NAME AS stockName,
+		    IU.DISTIBUTION AS distibution,
+		    IF(IU.QUANTITY = 0, null, IU.QUANTITY) AS quantity,
+		    IF(IU.AMOUNT = 0, null, IU.AMOUNT) AS amount 
+		FROM
+		    wp_i_underwrite IU 
+		WHERE
+		    1 = 1 
+		AND IU.STATUS = 'Y'
+        AND IU.FUND_ID = #{fundId}
+        AND IU.PERIOD = #{period}
+        ORDER BY
+            IU.SORT
+    </select>
+
+	<select id="selectI300Data" parameterType="java.util.Map" resultType = "java.util.Map">
+		SELECT
+			I300.SORT AS sort,
+			I300.PARTY_SHORT_NAME AS partyShortName,
+			I300.AMOUNT AS amount,
+			I300.INTEREST_SOURCE AS interestSource
+		FROM
+			wp_i300 I300
+		WHERE
+			1 = 1
+		AND I300. STATUS = 'Y'
+		AND I300.FUND_ID = #{fundId}
+		AND I300.PERIOD = #{period}
+		ORDER BY
+			I300.SORT
+	</select>
+
+	<select id="selectIothernoteData" parameterType="java.util.Map" resultType = "java.util.Map">
+		SELECT
+		Iothernote.DESCRIPTION AS description
+		FROM
+			wp_i_other_note Iothernote
+		WHERE
+			1 = 1
+		AND Iothernote.status  = 'Y'
+		AND Iothernote.FUND_ID = #{fundId}
+		AND Iothernote.PERIOD = #{period}
+		ORDER BY
+			Iothernote.type,Iothernote.seq
+	</select>
+
+	<select id="selectIotherData" parameterType="java.util.Map" resultType = "java.util.Map">
+		select 
+		Iother.STOCK_TYPE as STOCK_TYPE,
+		Iother.STOCK_CODE as STOCK_CODE,
+		Iother.STOCK_NAME as STOCK_NAME,
+		Iother.DR_AMOUNT_CNY as DR_AMOUNT_CNY,
+		Iother.CR_AMOUNT_CNY as CR_AMOUNT_CNY,
+		Iother.END_BALANCE_CNY as END_BALANCE_CNY,
+		Iother.END_BALANCE_UNITS as END_BALANCE_UNITS,
+		Iother.SCALE as SCALE
+		from 
+			wp_i_other Iother
+		WHERE
+			1 = 1
+		AND Iother.status  = 'Y'
+		AND Iother.FUND_ID = #{fundId}
+		AND Iother.PERIOD = #{period}
+		ORDER BY
+			Iother.account_num
+	</select>
+
+</mapper>

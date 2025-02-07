@@ -88,10 +88,11 @@ public interface ImportManager{
 
 	/**
 	 * 查询文件名存在条数
-	 * @param pathFiles
+	 * @param sheetNo Sheet页
+	 * @param pathFile 文件名
 	 * @return
 	 */
-	public Long findFileCount(String pathFile) throws Exception;
+	public Long findFileCount(String pathFile, Integer sheetNo) throws Exception;
 	
 	/**
 	 * 执行存储过程

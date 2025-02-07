@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="termhead/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -53,12 +54,14 @@
 							<thead>
 								<tr>
 									<th class="center" style="width:5%">序号</th>
-									<th class="center" style="width:15%;">账龄代码</th>
-									<th class="center" style="width:15%;">账龄类型</th>
-									<th class="center" style="width:20%;">账龄名称</th>
-									<th class="center" style="width:20%;">说明</th>
-									<th class="center" style="width:10%;">是否启用</th>
-									<th class="center" style="width:15%;">操作</th>
+									<th class="center" style="width:10%;">账龄代码</th>
+									<th class="center" style="width:10%;">账龄类型</th>
+									<th class="center" style="width:16%;">账龄名称</th>
+									<th class="center" style="width:15%;">计算方法</th>
+									<th class="center" style="width:18%;">同一日期归属上期</th>
+									<th class="center" style="width:10%;">说明</th>
+									<th class="center" style="width:8%;">是否启用</th>
+									<th class="center" style="width:8%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -73,6 +76,13 @@
 											<td class='center'>${var.TERMHEAD_ID}</td>
 											<td class='center'>${var.TERM_TYPE}</td>
 											<td class='center'>${var.NAME}</td>
+											<td class='center'>${var.METHOD}</td>
+											<td class='center'>
+											<c:choose>  
+                                               <c:when test="${var.PREV_RANGE == 'Y' }"> 是 </c:when>
+                                               <c:when test="${var.PREV_RANGE == 'N' }"> 否 </c:when>  
+                                            </c:choose>
+											</td>
 											<td class='center'>${var.DESCRIPTION}</td>
 											<td class='center'>
 											<c:choose>  
@@ -248,7 +258,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>termhead/goAdd.do';
+			 diag.URL = '<%=path%>/termhead/goAdd.do';
 			 diag.Width = 600;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -301,7 +311,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>termhead/goEdit.do?TERMHEAD_ID='+Id;
+			 diag.URL = '<%=path%>/termhead/goEdit.do?TERMHEAD_ID='+Id;
 			 diag.Width = 800;
 			 diag.Height = 600;
 			 diag.Modal = true;				//有无遮罩窗口

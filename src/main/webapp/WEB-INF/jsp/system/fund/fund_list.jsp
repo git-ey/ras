@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="fund/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -53,7 +54,9 @@
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
 								</c:if>
 								<c:if test="${QX.FromExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="ace-icon fa fa-cloud-upload bigger-110 nav-search-icon blue"></i></a></td></c:if>
+								<!-- 
 								<c:if test="${QX.toExcel == 1 }"><td style="vertical-align:top;padding-left:2px;"><a class="btn btn-light btn-xs" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td></c:if>
+							    -->
 							</tr>
 						</table>
 						<!-- 检索  -->
@@ -61,14 +64,15 @@
 						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
-									<th class="center" style="width:9%;">基金</th>
+									<th class="center" style="width:10%;">基金</th>
 									<th class="center" style="width:8%;">基金代码</th>
-									<th class="center" style="width:9%;">管理公司</th>
-									<th class="center" style="width:22%;">基金简称</th>
-									<th class="center" style="width:30%;" colspan="4">附属信息</th>
-									<th class="center" style="width:8%;">分级</th>
-									<th class="center" style="width:7%;">启用</th>
-									<th class="center" style="width:7%;">操作</th>
+									<th class="center" style="width:8%;">管理公司</th>
+									<th class="center" style="width:25%;">基金简称</th>
+									<th class="center" style="width:10%;">合同生效日</th>
+									<th class="center" style="width:10%;">基金终止日</th>
+									<th class="center" style="width:10%;">分级</th>
+									<th class="center" style="width:8%;">启用</th>
+									<th class="center" style="width:10%;">操作</th>
 								</tr>
 							</thead>
 													
@@ -83,10 +87,8 @@
 											<td class='center'>${var.FUND_CODE}</td>
 											<td class='center'>${var.COMPANY_SHORT_NAME}</td>
 											<td class='center'>${var.SHORT_NAME}</td>
-											<td class='center'><a class="btn btn-mini btn-success" onclick="related('${var.FUND_ID}');">关联方</a></td>
-											<td class='center'><a class="btn btn-mini btn-success" onclick="signoff('${var.FUND_ID}');">签字人</a></td>
-											<td class='center'><a class="btn btn-mini btn-success" onclick="structured('${var.FUND_ID}');">分级信息</a></td>
-											<td class='center'><a class="btn btn-mini btn-success" onclick="trxrule('${var.FUND_ID}');">申赎规则</a></td>
+											<td class='center'>${var.DATE_FROM}</td>
+											<td class='center'>${var.DATE_TO}</td>
 											<td class='center'>
 											<c:choose>  
                                                <c:when test="${var.STRUCTURED == 'T' }">T-真分级</c:when> 
@@ -261,99 +263,15 @@
 				});
 			});
 		});
-		
-		//关联方
-		function related(Id){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="关联方";
-			 diag.URL = '<%=basePath%>fund/relatedparty/list.do?FUND_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 500;
-			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮 
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 tosearch();
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-		
-		//签字人
-		function signoff(Id){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="签字人";
-			 diag.URL = '<%=basePath%>fund/signoff/list.do?FUND_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 500;
-			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮 
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 tosearch();
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-
-		//分级
-		function structured(Id){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="分级";
-			 diag.URL = '<%=basePath%>fund/structured/list.do?FUND_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 500;
-			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮 
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 tosearch();
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-		
-		// 申赎款划款规则
-		function trxrule(Id){
-			 top.jzts();
-			 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="申赎款划款规则";
-			 diag.URL = '<%=basePath%>fund/trxrule/list.do?FUND_ID='+Id;
-			 diag.Width = 800;
-			 diag.Height = 500;
-			 diag.Modal = true;				//有无遮罩窗口
-			 diag. ShowMaxButton = true;	//最大化按钮
-		     diag.ShowMinButton = true;		//最小化按钮 
-			 diag.CancelEvent = function(){ //关闭事件
-				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					 tosearch();
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
-		
+	
 		//新增
 		function add(){
 			 top.jzts();
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>fund/goAdd.do';
-			 diag.Width = 1000;
+			 diag.URL = '<%=path%>/fund/goAdd.do';
+			 diag.Width = 1200;
 			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -383,7 +301,7 @@
 						}else if("false" == data.result){
 							top.hangge();
 							bootbox.dialog({
-								message: "<span class='bigger-110'>删除失败,请先删除明细数据!</span>",
+								message: "<span class='bigger-110'>删除失败,请先删除基金分级信息表、基金关联方信息表和签字人信息表中该基金信息!</span>",
 								buttons: 			
 								{
 									"button" :
@@ -405,8 +323,8 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>fund/goEdit.do?FUND_ID='+Id;
-			 diag.Width = 1000;
+			 diag.URL = '<%=path%>/fund/goEdit.do?FUND_ID='+Id;
+			 diag.Width = 1200;
 			 diag.Height = 550;
 			 diag.Modal = true;				//有无遮罩窗口
 			 diag. ShowMaxButton = true;	//最大化按钮
@@ -426,7 +344,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="EXCEL导入到数据库";
-			 diag.URL = '<%=basePath%>fund/goUploadExcel.do';
+			 diag.URL = '<%=path%>/fund/goUploadExcel.do';
 			 diag.Width = 450;
 			 diag.Height = 260;
 			 diag.CancelEvent = function(){ //关闭事件

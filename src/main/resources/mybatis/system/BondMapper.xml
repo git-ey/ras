@@ -16,7 +16,8 @@
 		FULL_NAME,	
 		BOND_TYPE,	
 		MARKET,	
-		MARKET_TYPE
+		MARKET_TYPE,
+		BONDINFO_ID
 	</sql>
 	
 	<!-- 字段值 -->
@@ -28,7 +29,8 @@
 		#{FULL_NAME},	
 		#{BOND_TYPE},	
 		#{MARKET},	
-		#{MARKET_TYPE}
+		#{MARKET_TYPE},
+		#{BONDINFO_ID}
 	</sql>
 	
 	<!-- 新增-->
@@ -47,7 +49,7 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BOND_CODE = #{BOND_CODE}
+			BONDINFO_ID = #{BONDINFO_ID}
 	</delete>
 	
 	<!-- 修改 -->
@@ -64,7 +66,7 @@
 			MARKET = #{MARKET},
 			MARKET_TYPE = #{MARKET_TYPE}
 		where 
-		BOND_CODE = #{BOND_CODE}
+		BONDINFO_ID = #{BONDINFO_ID}
 	</update>
 	
 	<!-- 通过ID获取数据 -->
@@ -74,7 +76,7 @@
 		from 
 		<include refid="tableName"></include>
 		where 
-			BOND_CODE = #{BOND_CODE}
+			BONDINFO_ID = #{BONDINFO_ID}
 	</select>
 	
 	<!-- 列表 -->
@@ -113,9 +115,32 @@
 		delete from
 		<include refid="tableName"></include>
 		where 
-			BOND_CODE in
+			BONDINFO_ID in
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.PERIOD},	
+		#{pd.DATA_SOURCE},	
+		#{pd.BOND_CODE},	
+		#{pd.SHORT_NAME},	
+		#{pd.FULL_NAME},	
+		#{pd.BOND_TYPE},	
+		#{pd.MARKET},	
+		#{pd.MARKET_TYPE},
+		#{pd.BONDINFO_ID}
+         )
+         </foreach >
+	</insert>
+	
 </mapper>

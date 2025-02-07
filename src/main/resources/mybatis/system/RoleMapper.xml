@@ -49,6 +49,17 @@
 		ORDER BY ROLE_ID
 	</select>
 	
+	<!-- 列出所有的角色 -->
+	<select id="listAllRoles" resultMap="roleResultMap">
+		select
+		<include refid="Field"></include>
+		from
+		<include refid="tableName"></include>
+		where
+			PARENT_ID != 0
+		ORDER BY ROLE_ID
+	</select>
+	
 	<!-- 通过id查找 -->
 	<select id="findObjectById" parameterType="pd" resultType="pd">
 		select  

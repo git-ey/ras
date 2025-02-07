@@ -33,6 +33,7 @@
 						
 						<!-- 检索  -->
 						<form action="user/listUsers.do" method="post" name="userForm" id="userForm">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -74,7 +75,7 @@
 									<th class="center">用户名</th>
 									<th class="center">姓名</th>
 									<th class="center">角色</th>
-									<th class="center"><i class="ace-icon fa fa-envelope-o"></i>邮箱</th>
+									<!-- <th class="center"><i class="ace-icon fa fa-envelope-o"></i>邮箱</th>  -->
 									<th class="center"><i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>最近登录</th>
 									<th class="center">上次登录IP</th>
 									<th class="center">操作</th>
@@ -99,7 +100,7 @@
 											<td class="center"><a onclick="viewUser('${user.USERNAME}')" style="cursor:pointer;">${user.USERNAME }</a></td>
 											<td class="center">${user.NAME }</td>
 											<td class="center">${user.ROLE_NAME }</td>
-											<td class="center">${user.EMAIL}</td>
+											<!-- <td class="center">${user.EMAIL}</td> -->
 											<td class="center">${user.LAST_LOGIN}</td>
 											<td class="center">${user.IP}</td>
 											<td class="center">
@@ -169,9 +170,9 @@
 					<table style="width:100%;">
 						<tr>
 							<td style="vertical-align:top;">
-								<c:if test="${QX.add == 1 }">
+								<!-- <c:if test="${QX.add == 1 }">
 								<a class="btn btn-mini btn-success" onclick="add();">新增</a>
-								</c:if>
+								</c:if> -->
 								<c:if test="${QX.del == 1 }">
 								<a title="批量删除" class="btn btn-mini btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" ><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
 								</c:if>
@@ -229,7 +230,7 @@ function delUser(userId,msg){
 	bootbox.confirm("确定要删除["+msg+"]吗?", function(result) {
 		if(result) {
 			top.jzts();
-			var url = "<%=basePath%>user/deleteU.do?USER_ID="+userId+"&tm="+new Date().getTime();
+			var url = "<%=path%>/user/deleteU.do?USER_ID="+userId+"&tm="+new Date().getTime();
 			$.get(url,function(data){
 				nextPage(${page.currentPage});
 			});
@@ -243,7 +244,7 @@ function add(){
 	 var diag = new top.Dialog();
 	 diag.Drag=true;
 	 diag.Title ="新增";
-	 diag.URL = '<%=basePath%>user/goAddU.do';
+	 diag.URL = '<%=path%>/user/goAddU.do';
 	 diag.Width = 469;
 	 diag.Height = 510;
 	 diag.CancelEvent = function(){ //关闭事件
@@ -266,7 +267,7 @@ function editUser(user_id){
 	 var diag = new top.Dialog();
 	 diag.Drag=true;
 	 diag.Title ="资料";
-	 diag.URL = '<%=basePath%>user/goEditU.do?USER_ID='+user_id;
+	 diag.URL = '<%=path%>/user/goEditU.do?USER_ID='+user_id;
 	 diag.Width = 469;
 	 diag.Height = 510;
 	 diag.CancelEvent = function(){ //关闭事件
@@ -321,7 +322,7 @@ function makeAll(msg){
 					top.jzts();
 					$.ajax({
 						type: "POST",
-						url: '<%=basePath%>user/deleteAllU.do?tm='+new Date().getTime(),
+						url: '<%=path%>/user/deleteAllU.do?tm='+new Date().getTime(),
 				    	data: {USER_IDS:str},
 						dataType:'json',
 						//beforeSend: validateData,
@@ -387,7 +388,7 @@ function toExcel(){
 	var lastLoginStart = $("#lastLoginStart").val();
 	var lastLoginEnd = $("#lastLoginEnd").val();
 	var ROLE_ID = $("#role_id").val();
-	window.location.href='<%=basePath%>user/excel.do?keywords='+keywords+'&lastLoginStart='+lastLoginStart+'&lastLoginEnd='+lastLoginEnd+'&ROLE_ID='+ROLE_ID;
+	window.location.href='<%=path%>/user/excel.do?keywords='+keywords+'&lastLoginStart='+lastLoginStart+'&lastLoginEnd='+lastLoginEnd+'&ROLE_ID='+ROLE_ID;
 }
 
 //打开上传excel页面
@@ -396,7 +397,7 @@ function fromExcel(){
 	 var diag = new top.Dialog();
 	 diag.Drag=true;
 	 diag.Title ="EXCEL 导入到数据库";
-	 diag.URL = '<%=basePath%>user/goUploadExcel.do';
+	 diag.URL = '<%=path%>/user/goUploadExcel.do';
 	 diag.Width = 300;
 	 diag.Height = 150;
 	 diag.CancelEvent = function(){ //关闭事件
@@ -427,7 +428,7 @@ function viewUser(USERNAME){
 	 var diag = new top.Dialog();
 	 diag.Drag=true;
 	 diag.Title ="资料";
-	 diag.URL = '<%=basePath%>user/view.do?USERNAME='+USERNAME;
+	 diag.URL = '<%=path%>/user/view.do?USERNAME='+USERNAME;
 	 diag.Width = 469;
 	 diag.Height = 380;
 	 diag.CancelEvent = function(){ //关闭事件

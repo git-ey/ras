@@ -28,6 +28,7 @@
 					<div class="col-xs-12">
 					
 					<form action="trxcalendar/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="TRXCALENDAR_ID" id="TRXCALENDAR_ID" value="${pd.TRXCALENDAR_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
@@ -46,7 +47,7 @@
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">备注:</td>
-								<td><input type="text" name="COMMENTS" id="COMMENTS" value="${pd.COMMENTS}" maxlength="255" placeholder="这里输入备注" title="备注" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="COMMENTS" id="COMMENTS" value="${pd.COMMENTS}" maxlength="255" placeholder="这里输入备注" title="备注" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">

@@ -1,6 +1,8 @@
 package com.ey.service.system.user.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -10,7 +12,9 @@ import com.ey.dao.DaoSupport;
 import com.ey.entity.Page;
 import com.ey.entity.system.User;
 import com.ey.service.system.user.UserManager;
+import com.ey.util.AppUtil;
 import com.ey.util.PageData;
+import com.ey.util.UuidUtil;
 
 
 /** 
@@ -27,7 +31,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData getUserByNameAndPwd(PageData pd)throws Exception{
+	@Override
+    public PageData getUserByNameAndPwd(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.getUserInfo", pd);
 	}
 	
@@ -35,7 +40,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void updateLastLogin(PageData pd)throws Exception{
+	@Override
+    public void updateLastLogin(PageData pd)throws Exception{
 		dao.update("UserMapper.updateLastLogin", pd);
 	}
 	
@@ -44,7 +50,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public User getUserAndRoleById(String USER_ID) throws Exception {
+	@Override
+    public User getUserAndRoleById(String USER_ID) throws Exception {
 		return (User) dao.findForObject("UserMapper.getUserAndRoleById", USER_ID);
 	}
 	
@@ -53,7 +60,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findByUsername(PageData pd)throws Exception{
+	@Override
+    public PageData findByUsername(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.findByUsername", pd);
 	}
 	
@@ -62,7 +70,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAllUserByRoldId(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("UserMapper.listAllUserByRoldId", pd);
 		
@@ -72,7 +81,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void saveIP(PageData pd)throws Exception{
+	@Override
+    public void saveIP(PageData pd)throws Exception{
 		dao.update("UserMapper.saveIP", pd);
 	}
 	
@@ -81,7 +91,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listUsers(Page page)throws Exception{
 		return (List<PageData>) dao.findForList("UserMapper.userlistPage", page);
 	}
@@ -91,7 +102,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listUsersBystaff(Page page)throws Exception{
 		return (List<PageData>) dao.findForList("UserMapper.userBystafflistPage", page);
 	}
@@ -101,7 +113,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findByUE(PageData pd)throws Exception{
+	@Override
+    public PageData findByUE(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.findByUE", pd);
 	}
 	
@@ -110,7 +123,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findByUN(PageData pd)throws Exception{
+	@Override
+    public PageData findByUN(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.findByUN", pd);
 	}
 	
@@ -119,7 +133,8 @@ public class UserService implements UserManager{
 	 * @return
 	 * @throws Exception
 	 */
-	public PageData findById(PageData pd)throws Exception{
+	@Override
+    public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.findById", pd);
 	}
 	
@@ -127,7 +142,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void saveU(PageData pd)throws Exception{
+	@Override
+    public void saveU(PageData pd)throws Exception{
 		dao.save("UserMapper.saveU", pd);
 	}
 	 
@@ -135,7 +151,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void editU(PageData pd)throws Exception{
+	@Override
+    public void editU(PageData pd)throws Exception{
 		dao.update("UserMapper.editU", pd);
 	}
 	
@@ -143,7 +160,8 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void deleteU(PageData pd)throws Exception{
+	@Override
+    public void deleteU(PageData pd)throws Exception{
 		dao.delete("UserMapper.deleteU", pd);
 	}
 	
@@ -151,7 +169,8 @@ public class UserService implements UserManager{
 	 * @param USER_IDS
 	 * @throws Exception
 	 */
-	public void deleteAllU(String[] USER_IDS)throws Exception{
+	@Override
+    public void deleteAllU(String[] USER_IDS)throws Exception{
 		dao.delete("UserMapper.deleteAllU", USER_IDS);
 	}
 	
@@ -159,7 +178,8 @@ public class UserService implements UserManager{
 	 * @param USER_IDS
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public List<PageData> listAllUser(PageData pd)throws Exception{
 		return (List<PageData>) dao.findForList("UserMapper.listAllUser", pd);
 	}
@@ -168,8 +188,45 @@ public class UserService implements UserManager{
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData getUserCount(String value)throws Exception{
+	@Override
+    public PageData getUserCount(String value)throws Exception{
 		return (PageData)dao.findForObject("UserMapper.getUserCount", value);
+	}
+
+	@Override
+	public void updateUser(PageData pd) throws Exception {
+		dao.update("UserMapper.updateUser", pd);
+	}
+
+	/**批量新增
+	 * @param pds
+	 * @throws Exception
+	 */
+	@Override
+    public void saveBatch(List<Map> maps) throws Exception {
+		int idx = 1;
+		List<PageData> pds = new ArrayList<PageData>();
+		for (Map<String, Object> map : maps) {
+			PageData pd = new PageData();
+			pd.put("USER_ID", UuidUtil.get32UUID());
+			pd.put("USERNAME", map.get("USERNAME"));
+			pd.put("BZ", map.get("BZ"));
+			pd.put("EMAIL", map.get("EMAIL"));
+			pd.put("ROLE_ID", map.get("ROLE_ID"));
+			pds.add(pd);
+			if (idx % AppUtil.BATCH_INSERT_COUNT == 0) {
+				// 批量插入
+				dao.save("UserMapper.saveBatch", pds);
+				// 清空集合
+				pds.clear();
+			}
+			idx++;
+		}
+		// 处理最后剩余数量
+		if (pds.size() > 0) {
+			// 批量插入
+			dao.save("UserMapper.saveBatch", pds);
+		}
 	}
 	
 }

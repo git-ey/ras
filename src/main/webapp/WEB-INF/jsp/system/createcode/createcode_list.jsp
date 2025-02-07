@@ -31,6 +31,7 @@
 							
 						<!-- 检索  -->
 						<form action="createCode/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;width:100%">
 							<tr>
 								<td style="width:10%">
@@ -220,7 +221,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="代码生成器";
-			 diag.URL = '<%=basePath%>createCode/goProductCode.do?CREATECODE_ID='+CREATECODE_ID;
+			 diag.URL = '<%=path%>/createCode/goProductCode.do?CREATECODE_ID='+CREATECODE_ID;
 			 diag.Width = 800;
 			 diag.Height = 500;
 			 diag.Modal = true;				//有无遮罩窗口

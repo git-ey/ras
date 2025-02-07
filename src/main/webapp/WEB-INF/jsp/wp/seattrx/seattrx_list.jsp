@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="seattrx/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -52,7 +53,7 @@
 								</td>
 								<td style="padding-left:2px;text-align:right;width:10%;">基金代码:</td>
 								<td style="vertical-align:top;padding-left:2px;width:10%;">
-								    <input type="text" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }" placeholder="这里输入基金代码"/>
+								    <input type="text" autocomplete="off" class="nav-search-input" name="FUND_ID" value="${pd.FUND_ID }" placeholder="这里输入基金代码"/>
 								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
@@ -287,7 +288,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>seattrx/goAdd.do';
+			 diag.URL = '<%=path%>/seattrx/goAdd.do';
 			 diag.Width = 600;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -325,7 +326,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>seattrx/goEdit.do?SEATTRX_ID='+Id;
+			 diag.URL = '<%=path%>/seattrx/goEdit.do?SEATTRX_ID='+Id;
 			 diag.Width = 600;
 			 diag.Height = 400;
 			 diag.Modal = true;				//有无遮罩窗口

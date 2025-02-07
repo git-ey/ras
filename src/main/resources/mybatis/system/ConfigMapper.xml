@@ -11,7 +11,8 @@
 	<sql id="Field">
 		CONFIG_ID,	
 		CONFIG_CODE,	
-		CONFIG_VALUE,	
+		CONFIG_VALUE,
+		DESCRIPTION,
 		ENABLED_FLAG,
 		CREATED_BY,	
 		LAST_UPDATED_BY
@@ -21,7 +22,8 @@
 	<sql id="FieldValue">
 		#{CONFIG_ID},	
 		#{CONFIG_CODE},	
-		#{CONFIG_VALUE},	
+		#{CONFIG_VALUE},
+		#{DESCRIPTION},
 		#{ENABLED_FLAG},	
 		#{CREATED_BY},	
 		#{LAST_UPDATED_BY}
@@ -53,8 +55,8 @@
 		set 
 			CONFIG_CODE = #{CONFIG_CODE},
 			CONFIG_VALUE = #{CONFIG_VALUE},
-			ENABLED_FLAG = #{ENABLED_FLAG},
-		CONFIG_ID = CONFIG_ID
+			DESCRIPTION = #{DESCRIPTION},
+			ENABLED_FLAG = #{ENABLED_FLAG}
 		where 
 		CONFIG_ID = #{CONFIG_ID}
 	</update>
@@ -106,4 +108,16 @@
                  #{item}
 		</foreach>
 	</delete>
+	
+	<!-- 通过CODE获取数据 -->
+	<select id="findByCode" parameterType="String" resultType="String">
+		select 
+		 CONFIG_VALUE
+		from 
+		<include refid="tableName"></include>
+		where 
+			CONFIG_CODE = #{CONFIG_CODE}
+		limit 1
+	</select>
+	
 </mapper>

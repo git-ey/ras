@@ -28,28 +28,29 @@
 					<div class="col-xs-12">
 					
 					<form action="mgrcompany/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="MGRCOMPANY_ID" id="MGRCOMPANY_ID" value="${pd.MGRCOMPANY_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">公司代码:</td>
-								<td><input type="text" name="COMPANY_CODE" id="COMPANY_CODE" value="${pd.COMPANY_CODE}" maxlength="30" placeholder="这里输入公司代码" title="公司代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="COMPANY_CODE" id="COMPANY_CODE" value="${pd.COMPANY_CODE}" maxlength="30" placeholder="这里输入公司代码" title="公司代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">公司简称:</td>
-								<td><input type="text" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="60" placeholder="这里输入公司简称" title="公司简称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="SHORT_NAME" id="SHORT_NAME" value="${pd.SHORT_NAME}" maxlength="60" placeholder="这里输入公司简称" title="公司简称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">公司全称:</td>
-								<td><input type="text" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="240" placeholder="这里输入公司全称" title="公司全称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FULL_NAME" id="FULL_NAME" value="${pd.FULL_NAME}" maxlength="240" placeholder="这里输入公司全称" title="公司全称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">原名:</td>
-								<td><input type="text" name="ORIGINAL_NAME" id="ORIGINAL_NAME" value="${pd.ORIGINAL_NAME}" maxlength="240" placeholder="这里输入原名" title="原名" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ORIGINAL_NAME" id="ORIGINAL_NAME" value="${pd.ORIGINAL_NAME}" maxlength="240" placeholder="这里输入原名" title="原名" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">地址:</td>
-								<td><input type="text" name="ADDRESS" id="ADDRESS" value="${pd.ADDRESS}" maxlength="240" placeholder="这里输入地址" title="地址" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="ADDRESS" id="ADDRESS" value="${pd.ADDRESS}" maxlength="240" placeholder="这里输入地址" title="地址" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">状态:</td>

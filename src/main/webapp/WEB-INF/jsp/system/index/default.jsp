@@ -36,7 +36,7 @@ setTimeout("top.hangge()",500);
 								</button>
 								<i class="ace-icon fa fa-check green"></i>
 								欢迎使用 &nbsp;&nbsp;
-								<strong class="green"> &nbsp;EY底稿报告辅助系统</strong>
+								<strong class="green"> &nbsp;EY HIVE</strong>
 							</div>	
 						</div>
 						<!-- /.col -->

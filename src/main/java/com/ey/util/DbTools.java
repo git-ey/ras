@@ -170,8 +170,8 @@ public class DbTools{
 	 */
 	public static Connection getCon(String dbtype,String dbusername,String dbpassword,String dburl,String databaseName) throws SQLException, ClassNotFoundException{
 		if("mysql".equals(dbtype)){
-			Class.forName("com.mysql.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://"+dburl+"/"+databaseName+"?user="+dbusername+"&password="+dbpassword);
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			return DriverManager.getConnection("jdbc:mysql://"+dburl+"/"+databaseName+"?user="+dbusername+"&password="+dbpassword+"&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&noAccessToProcedureBodies=true&serverTimezone=UTC");
 		}else if("oracle".equals(dbtype)){
 			Class.forName("oracle.jdbc.driver.OracleDriver"); 
 			return DriverManager.getConnection("jdbc:oracle:thin:@"+dburl+":"+databaseName, dbusername, dbpassword);
@@ -495,10 +495,10 @@ public class DbTools{
 	 * @throws SQLException
 	 */
 	public static List<String> getFieldLsit(Connection conn, String table) throws SQLException{
-		PreparedStatement pstmt = (PreparedStatement) conn.prepareStatement(table);
+		PreparedStatement pstmt = conn.prepareStatement(table);
 		pstmt.execute();  									//这点特别要注意:如果是Oracle而对于mysql可以不用加.
 		List<String> columnList = new ArrayList<String>();	//存放字段
-		ResultSetMetaData rsmd = (ResultSetMetaData) pstmt.getMetaData();
+		ResultSetMetaData rsmd = pstmt.getMetaData();
 		 for (int i = 1; i < rsmd.getColumnCount() + 1; i++) {
 			 columnList.add(rsmd.getColumnName(i));			//把字段名放list里
           }
@@ -512,10 +512,10 @@ public class DbTools{
 	 * @throws SQLException
 	 */
 	public static List<Map<String,String>> getFieldParameterLsit(Connection conn, String table) throws SQLException{
-		PreparedStatement pstmt = (PreparedStatement) conn.prepareStatement("select * from " + table);
+		PreparedStatement pstmt = conn.prepareStatement("select * from " + table);
 		pstmt.execute();  															//这点特别要注意:如果是Oracle而对于mysql可以不用加.
 		List<Map<String,String>> columnList = new ArrayList<Map<String,String>>();	//存放字段
-		ResultSetMetaData rsmd = (ResultSetMetaData) pstmt.getMetaData();
+		ResultSetMetaData rsmd = pstmt.getMetaData();
 		 for (int i = 1; i < rsmd.getColumnCount() + 1; i++) {
 			 Map<String,String> fmap = new HashMap<String,String>();
 			 fmap.put("fieldNanme", rsmd.getColumnName(i));							//字段名称
@@ -532,7 +532,7 @@ public class DbTools{
 	 * @throws IOException
 	 */
 	public static Properties getPprVue() {
-		InputStream inputStream = DbTools.class.getClassLoader().getResourceAsStream("dbconfig.properties");
+		InputStream inputStream = DbTools.class.getClassLoader().getResourceAsStream("config.properties");
 		Properties p = new Properties();
 		try {
 			p.load(inputStream);

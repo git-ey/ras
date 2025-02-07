@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="log/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -62,6 +63,7 @@
 									<th class="center">用户名</th>
 									<th class="center">事件</th>
 									<th class="center">操作时间</th>
+									<th class="center">IP</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -80,6 +82,7 @@
 											<td class='center' style="width: 200px;">${var.USERNAME}</td>
 											<td class='center'>${var.CONTENT}</td>
 											<td class='center' style="width: 150px;">${var.CZTIME}</td>
+											<td class='center' style="width: 150px;">${var.IP}</td>
 											<td class="center" style="width: 50px;">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>
@@ -234,7 +237,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>log/goAdd.do';
+			 diag.URL = '<%=path%>/log/goAdd.do';
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -273,7 +276,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>log/goEdit.do?LOG_ID='+Id;
+			 diag.URL = '<%=path%>/log/goEdit.do?LOG_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口

@@ -41,12 +41,17 @@
 	    IMPORT_FILE_ID,	
 		IMPORT_ID,
 		IMPORT_FILE_NAME,
+		SHEET_NO,
 		NAME_SEG_1,
 		NAME_SEG_2,
 		NAME_SEG_3,
 		NAME_SEG_4,
 		NAME_SEG_5,
 		NAME_SEG_6,
+		NAME_SEG_7,
+		NAME_SEG_8,
+		NAME_SEG_9,
+		NAME_SEG_10,
 		TABLE_NAME,
 		CNT,
 		MESSAGE
@@ -57,12 +62,17 @@
 		#{IMPORT_FILE_ID},
 		#{IMPORT_ID},
 		#{IMPORT_FILE_NAME},
+		#{SHEET_NO},
 	    #{NAME_SEG_1},
 		#{NAME_SEG_2},
 		#{NAME_SEG_3},
 		#{NAME_SEG_4},
 		#{NAME_SEG_5},
 		#{NAME_SEG_6},
+		#{NAME_SEG_7},
+		#{NAME_SEG_8},
+		#{NAME_SEG_9},
+		#{NAME_SEG_10},
 		#{TABLE_NAME},
 		#{CNT},
 		#{MESSAGE}
@@ -206,13 +216,19 @@
 	</delete>
 	
 	<!-- 查询文件名存在条数 -->
-	<select id="findFileCount" parameterType="list" resultType="Long">
+	<select id="findFileCount" parameterType="pd" resultType="Long">
 		select
 		  count(*)
 		from 
 		<include refid="fileTableName"></include>
-		where
-		  IMPORT_FILE_NAME = #{pathFile, jdbcType=VARCHAR}
+		where 1=1
+		<if test="NAME_SEG_6 != '4001明细账'">
+          and substring_index(import_file_name,"_",6)= substring_index(#{IMPORT_FILE_NAME},"_",6)
+		</if>
+		<if test="NAME_SEG_6 == '4001明细账'">
+          and substring_index(import_file_name,"_",7)= substring_index(#{IMPORT_FILE_NAME},"_",7)
+		</if>
+		  and SHEET_NO = #{SHEET_NO}
           and MESSAGE IS NULL
 	</select>
 	
@@ -227,8 +243,8 @@
 	</insert>
 	
 	<!-- 执行导入后的存储过程 -->
-	<select id="callableProcedure" statementType="CALLABLE" parameterType="pd">
+	<update id="callableProcedure" statementType="CALLABLE" parameterType="pd">
       <![CDATA[call ${PROCEDURE_NAME}(#{IMPORTFILEID,mode=IN,jdbcType=VARCHAR},#{RESULT,mode=OUT,jdbcType=VARCHAR},#{MESSAGE,mode=OUT,jdbcType=VARCHAR});]]>
-	</select>
+	</update>
 	
 </mapper>

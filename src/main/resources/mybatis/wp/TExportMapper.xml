@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TExportMapper">
+
+    <select id="selectTData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T.EY_ACCOUNT_NUM as accountNum,
+            T.AMOUNT_CURRENT as amountCurrent,
+            T.AMOUNT_ADJ_CR as crAmountAdj,
+            T.AMOUNT_ADJ_DR as drAmountAdj,
+            T.AMOUNT_AUDIT_LAST as amountAuditLast
+        FROM
+            wp_t T
+        where 
+            1 = 1
+        and T.STATUS = 'Y'
+        and T.FUND_ID = #{fundId}
+        and T.PERIOD = #{period}
+    </select>
+    
+    <select id="selectExtraFundInfo" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            sfi.FIRM_CODE as firmCode,
+            sm.SHORT_NAME as shortName,  <!--chenhy,20240621,新增公司全称-->
+            IFNULL(sfi.FUND_TYPE,'基金') as fundType,
+            IFNULL(sfi.DATE_FROM,'2000-01-01') as dateFrom,
+            IFNULL(sfi.STRUCTURED,'N') as structured,
+            IFNULL(sfi.MF,'N') as mf,
+            IFNULL(sfi.AC,'N') as ac,
+            IFNULL(sfi.ETF,'N') as etf,
+            IFNULL(sfi.COMPOUND,'单利') as compound,
+            IFNULL(sfi.NAV_ROUND, 4) as navRound,
+            sfi.ROR_BASELINE as rorBaseline,
+            sfi.ROR as ror,
+            sfi.LEVERAGE as leverage,
+            IFNULL(sfi.LOF,'N') as lof,
+            'N' as interestSensitivity,
+            IFNULL(sfi.dealer_seperate,'N') as dealerSeperate,
+            IFNULL(sfi.LEVEL_SHARE,'N') as levelShare,
+            IFNULL(sfi.ETF_CONNECTION,'N') as etfConnection,
+            IFNULL(sfi.FOF,'N') as fof,
+            IF(IFNULL(sfi.DATE_FROM,'2000-01-01')>=concat(left(#{period},4),'-11-01'),'Y','N') as newFlag,
+            IF(IFNULL(sfi.DATE_FROM,'2000-01-01')>=concat(left(#{period},4)-1,'-11-01'),'Y','N') as twoYearFlag,
+            SM.FUTURE_MATTERS_DISCLOSURE_MODE AS fmdm, <!--  yury,20200908,新增日后事项文字段-->
+            (select SFRP.PARTY_FULL_NAME 
+                from sys_fund_related_party SFRP 
+                where SFRP.FUND_ID = SFI.FUND_ID 
+                AND SFRP.RELATIONSHIP like '%产品管理人%' 
+                LIMIT 1) AS ManagerFullName,
+            (select SFRP.PARTY_SHORT_NAME_1 
+                from sys_fund_related_party SFRP 
+                where SFRP.FUND_ID = SFI.FUND_ID 
+                AND SFRP.RELATIONSHIP like '%产品托管人%' 
+                LIMIT 1) AS TrusteesFullName
+        FROM
+            SYS_FUND_INFO sfi,
+            SYS_MGRCOMPANY SM
+        WHERE
+            1 = 1
+        AND SFI.FIRM_CODE = SM.COMPANY_CODE
+        AND sfi.ACTIVE = 'Y'
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+    
+    <select id="selectFundDateInfo" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            IFNULL(sfi.FUND_TYPE,'基金') as fundType, <!--chenhy,20240223,新增基金和产品区分-->
+            IFNULL(sfi.DATE_FROM, SYSDATE()) as dateFrom,
+            sfi.DATE_TO as dateTo,
+            sfi.DATE_TRANSFORM as dateTransform
+        FROM
+            SYS_FUND_INFO sfi
+        WHERE
+            1 = 1
+        AND sfi.ACTIVE = 'Y'
+        AND sfi.FUND_ID = #{fundId}
+        LIMIT 1
+    </select>
+    
+    <select id="selectT300MainData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T300.`LEVEL` as `level`,
+            T300.BEGIN_BALANCE_CNY as beginBalance,
+            T300.DR_AMOUNT_CNY as drAmount,
+            T300.CR_AMOUNT_CNY as crAmount,
+            T300.BEGIN_UNITS as beginUnits,
+            T300.DR_UNITS as drUnits,
+            T300.CR_UNITS as crUnits
+        FROM
+            wp_t300 T300
+        where 
+            1 = 1
+        and T300.STATUS = 'Y'
+        and T300.FUND_ID = #{fundId}
+        and T300.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT300NoteData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T300N.NOTE as note,
+            T300N.ITEM1 as item1,
+            T300N.ITEM2 as item2,
+            T300N.ITEM3 as item3,
+            T300N.ITEM4 as item4,
+            T300N.ITEM5 as item5,
+            T300N.ITEM6 as item6,
+            T300N.ITEM7 as item7,
+            T300N.ITEM8 as item8,
+            T300N.ITEM9 as item9,
+            T300N.ITEM10 as item10
+        FROM
+            wp_t300_drcr_note T300N
+        where 
+            1 = 1
+        and T300N.STATUS = 'Y'
+        and T300N.FUND_ID = #{fundId}
+        and T300N.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT300RaiseData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            sfri.`LEVEL` AS `level`,
+            sfri.AMOUNT AS amount,
+            sfri.UNITS AS units 
+        FROM
+            sys_fund_raise_info sfri 
+        WHERE
+            1 = 1 
+            AND sfri.FUND_ID = #{fundId}
+            AND sfri.ACTIVE = 'Y'
+    </select>
+    
+    <select id="selectT300AdjData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T300A.SORT as sort,
+            T300A.`LEVEL` as `level`,
+            T300A.ITEM as item,
+            T300A.UNITS as units,
+            T300A.AMOUNT as amount,
+            T300A.REFERENCE as reference,
+            IF( T300A.ITEM = '本期末' OR T300A.ITEM LIKE '%折算前', 'Y', 'N' ) AS sumFlag 
+        FROM
+            wp_t300_adj T300A 
+        WHERE
+            1 = 1
+        and T300A.STATUS = 'Y'
+        and T300A.FUND_ID = #{fundId}
+        and T300A.PERIOD = #{period}
+        ORDER BY T300A.SORT
+    </select>
+    
+    <select id="selectT310Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T310.`LEVEL` as `level`,
+            T310.SEQ as seq,
+            IFNULL(DATE_FORMAT(T310.BONUS_DATE,'%Y-%m-%d'),'2000-01-01') as bonusDate,
+            IFNULL(DATE_FORMAT(T310.REGISTRATION_DATE,'%Y-%m-%d'),'2000-01-01') as registrationDate,
+            IFNULL(DATE_FORMAT(T310.LISTED_DIVIDEND_DATE,'%Y-%m-%d'),'2000-01-01') as listedDividendDate,
+            IFNULL(DATE_FORMAT(T310.UNLISTED_DIVIDEND_DATE,'%Y-%m-%d'),'2000-01-01') as unlistedDividendDate,
+            T310.BONUS as bonus,
+            T310.FUND_BEFORE_ALT as fundBeforeAlt,
+            T310.PROFIT_CLIENT as profitClent,
+            T310.FUND_AFTER_INVEST as fundAfterInvest,
+            T310.PL_UNREALIZED as plUnrealized,
+            T310.PL_REALIZED as plRealized,
+            T310.REINVEST_AMOUNT as reinvestAmount,
+            T310.CASH as cash
+        FROM
+            wp_t310 T310
+        WHERE
+            1 = 1
+        and T310.STATUS = 'Y'
+        and T310.FUND_ID = #{fundId}
+        and T310.PERIOD = #{period}
+        ORDER BY T310.SEQ
+    </select>
+    
+    <select id="selectT310DataForReport" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T310.`LEVEL` as `level`,
+            T310.SEQ as seq,
+            T310.REGISTRATION_DATE as registrationDate,
+            T310.LISTED_DIVIDEND_DATE as listedDividendDate,
+            T310.UNLISTED_DIVIDEND_DATE as unlistedDividendDate,
+            IF(T310.BONUS = 0, null, T310.BONUS) as bonus,
+            IF(T310.CASH = 0, null, T310.CASH) as cash,
+            IF(T310.REINVEST_AMOUNT = 0, null, T310.REINVEST_AMOUNT) as reinvestAmount,
+            IF(T310.PROFIT_CLIENT = 0, null, T310.PROFIT_CLIENT) as profitEy
+        FROM
+            wp_t310 T310
+        WHERE
+            1 = 1
+        and T310.STATUS = 'Y'
+        and T310.FUND_ID = #{fundId}
+        and T310.PERIOD = #{period}
+        ORDER BY T310.SEQ
+    </select>
+    
+    <select id="checkIfT310DataHasDataForReport" parameterType="java.util.Map" resultType="java.lang.Double">
+        SELECT
+            IFNULL(( 
+                SELECT 
+                    SUM( IFNULL( T310.BONUS, 0 ) ) 
+                FROM 
+                    wp_t310 T310 
+                WHERE
+                    1 = 1
+                AND T310.STATUS = 'Y'
+                AND T310.FUND_ID = #{fundId}
+                AND T310.PERIOD = #{period}
+            ), 0) + IFNULL(( 
+                SELECT 
+                    SUM( IFNULL( N800D.ITEM4, 0 ) ) 
+                FROM 
+                    wp_n800_dis N800D
+                WHERE 
+                    1 = 1
+                AND N800D.STATUS = 'Y'
+                AND N800D.FUND_ID = #{fundId}
+                AND N800D.PERIOD = #{period}
+            ), 0) as sumCheck
+        FROM
+            DUAL
+    </select>
+    
+    <select id="selectT400Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T400.`LEVEL` as `level`,
+            T400.TYPE as type,
+            T400.ATTR1 as attr1,
+            T400.ATTR2 as attr2,
+            T400.ATTR3 as attr3,
+            T400.ATTR4 as attr4,
+            T400.ATTR5 as attr5,
+            T400.ATTR6 as attr6,
+            T400.ATTR7 as attr7,
+            T400.ATTR8 as attr8,
+            T400.ATTR9 as attr9,
+            T400.ATTR10 as attr10,
+            T400.ATTR11 as attr11,
+            T400.ATTR12 as attr12,
+            T400.ATTR13 as attr13,
+            T400.ATTR14 as attr14
+        FROM
+            wp_t400 T400 
+        WHERE
+            1 = 1
+        and T400.STATUS = 'Y'
+        and T400.FUND_ID = #{fundId}
+        and T400.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT500MainData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            T500.TYPE AS type,
+            IF(T500.ATTR1 = 0, null, T500.ATTR1) AS attr1,
+            IF(T500.ATTR2 = 0, null, T500.ATTR2) AS attr2,
+            IF(T500.ATTR3 = 0, null, T500.ATTR3) AS attr3,
+            IF(T500.ATTR4 = 0, null, T500.ATTR4) AS attr4,
+            IF(T500.ATTR5 = 0, null, T500.ATTR5) AS attr5,
+            IF(T500.ATTR6 = 0, null, T500.ATTR6) AS attr6,
+            IF(T500.ATTR7 = 0, null, T500.ATTR7) AS attr7,
+            IF(T500.ATTR11 = 0, null, T500.ATTR11) AS attr11,
+            IF(T500.ATTR12 = 0, null, T500.ATTR12) AS attr12
+        FROM
+            wp_t500 T500 
+        WHERE
+            1 = 1
+        and T500.STATUS = 'Y'
+        and T500.FUND_ID = #{fundId}
+        and T500.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT500NTestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            T500N.`LEVEL` AS `level`,
+            T500N.COLLECTION_FUND AS collectionFund,
+            T500N.UNDIS_PROFIT AS undisProfit,
+            T500N.OWNER_EQUITY AS ownerEquity,
+            T500N.UNITS AS units,
+            T500N.NAV_CLIENT AS navClient 
+        FROM
+            wp_t500_ntest T500N 
+        WHERE
+            1 = 1
+        and T500N.STATUS = 'Y'
+        and T500N.FUND_ID = #{fundId}
+        and T500N.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT500FTestData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            T500F.ITEM as item,
+            T500F.DATE_TYPE as dateType,
+            IFNULL(DATE_FORMAT(T500F.DATE_FROM,'%Y-%m-%d'),'2000-01-01') as dateFrom,
+            T500F.UNITS as units,
+            T500F.NAV_CLIENT as navClient,
+            sfsf.SHORT_NAME as levelName
+        FROM
+            wp_t500_ftest T500F 
+        LEFT JOIN sys_fund_structured_f sfsf ON sfsf.FUND_ID = T500F.FUND_ID AND sfsf.FTYPE = T500F.ITEM AND sfsf.`ACTIVE` = 'Y'
+        WHERE
+            1 = 1
+        and T500F.STATUS = 'Y'
+        and T500F.FUND_ID = #{fundId}
+        and T500F.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT10000DataForReport" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            T10000.ITEM as item,
+            T10000.`LEVEL` as `level`,
+            IF(T10000.UNITS = 0, null, T10000.UNITS) as units,
+            IF(T10000.AMOUNT = 0, null, T10000.AMOUNT) as amount
+        FROM
+            wp_t10000 T10000 
+        WHERE
+            1 = 1
+        and T10000.STATUS = 'Y'
+        and T10000.FUND_ID = #{fundId}
+        and T10000.PERIOD = #{period}
+        ORDER BY
+            T10000.SORT
+    </select>
+
+    <!-- chenhy,2024-06-21,查询是否为新增分级 -->
+    <select id="selectNewLevelData" parameterType="java.util.Map" resultType="java.util.Map"> 
+	    SELECT
+		    sfs.SHORT_NAME AS shortName,
+            sfs.`LEVEL` AS level,
+            date_format(sfs.EFFECTIVE_DATE, '%Y年%c月%e日') effectiveDate
+		FROM
+		    sys_fund_info sfi,sys_fund_structured sfs 
+		WHERE
+		    1 = 1
+	    AND sfs.ACTIVE = 'Y' 
+        AND sfi.FUND_ID = sfs.FUND_ID
+	    AND sfs.FUND_ID = #{fundId}
+	    AND sfs.`LEVEL` = #{level}
+		AND YEAR(sfs.EFFECTIVE_DATE) = LEFT(#{period},4)
+		AND IFNULL(sfs.EFFECTIVE_DATE,sfi.DATE_FROM) > sfi.DATE_FROM
+    </select>
+    
+    <select id="selectT11000P4104Data" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            T110004.`LEVEL` as `level`,
+            T110004.TYPE as type,
+            IF(T110004.ATTR1 = 0, null, T110004.ATTR1) as attr1,
+            IF(T110004.ATTR2 = 0, null, T110004.ATTR2) as attr2,
+            IF(T110004.ATTR3 = 0, null, T110004.ATTR3) as attr3,
+            IF(T110004.ATTR4 = 0, null, T110004.ATTR4) as attr4,
+            IF(T110004.ATTR5 = 0, null, T110004.ATTR5) as attr5,
+            IF(T110004.ATTR6 = 0, null, T110004.ATTR6) as attr6,
+            IF(T110004.ATTR7 = 0, null, T110004.ATTR7) as attr7
+        FROM
+            wp_t11000_4104 T110004
+        WHERE
+            1 = 1
+        and T110004.STATUS = 'Y'
+        and T110004.FUND_ID = #{fundId}
+        and T110004.PERIOD = #{period}
+    </select>
+
+    <!-- 实收基金注释文字段数据 -->
+    <!-- yury,20200907,新增实收基金下注释 -->
+    <select id = "selectT10000Note" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        WTN.DESCRIPTION AS description
+        FROM SYS_FUND_INFO SFI, WP_T10000_NOTE WTN
+        WHERE SFI.FUND_ID = WTN.FUND_ID
+        AND WTN.fund_id = #{fundId}
+        AND WTN.PERIOD = #{period}
+        AND SFI.ACTIVE = 'Y'
+        ORDER BY WTN.SEQ;
+    </select>
+
+    <select id="selectT11000ProfitDistData" parameterType="java.util.Map" resultType="java.util.Map"> 
+        SELECT
+            N800D.`LEVEL` as `level`,
+            N800D.ITEM1 as attr1,
+            N800D.ITEM2 as attr2,
+            N800D.ITEM3 as attr3
+        FROM
+            wp_n800_dis N800D 
+        WHERE
+            1 = 1
+        and N800D.STATUS = 'Y'
+        and N800D.FUND_ID = #{fundId}
+        and N800D.PERIOD = #{period}
+    </select>
+    
+    <select id="selectT11000MainData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            T11000.`LEVEL` AS `level`,
+            T11000.SEQ AS seq,
+            DATE_FORMAT(T11000.REGISTRATION_DATE,'%Y-%m-%d') as registrationDate,
+            DATE_FORMAT(T11000.LISTED_DIVIDEND_DATE,'%Y-%m-%d') as listedDividendDate,
+            DATE_FORMAT(T11000.UNLISTED_DIVIDEND_DATE,'%Y-%m-%d') as unlistedDividendDate,
+            IF(T11000.BONUS_UNIT = 0, null, T11000.BONUS_UNIT) AS bonusUnit,
+            IF(T11000.CASH_AMOUNT = 0, null, T11000.CASH_AMOUNT) AS cashAmount,
+            IF(T11000.REINVEST_AMOUNT = 0, null, T11000.REINVEST_AMOUNT) AS reinvestAmount,
+            IF(T11000.TOTAL_AMOUNT = 0, null, T11000.TOTAL_AMOUNT) AS totalAmount,
+            T11000.REFERENCE AS reference 
+        FROM
+            wp_t11000 T11000
+        WHERE
+            1 = 1
+        AND T11000.STATUS = 'Y'
+        AND T11000.FUND_ID = #{fundId}
+        AND T11000.PERIOD = #{period}
+        ORDER BY T11000.SEQ
+    </select>
+    
+    <select id="selectT11000MainCountDataForReport" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+            count(0)
+        FROM
+            wp_t11000 T11000
+        WHERE
+            1 = 1
+        AND T11000.STATUS = 'Y'
+        AND T11000.FUND_ID = #{fundId}
+        AND T11000.PERIOD = #{period}
+        <if test="level != null and level != '' and level != 'null'">
+            AND T11000.`LEVEL` = #{level}
+        </if>
+    </select>
+    
+    <!-- 日后事项披露文字时的文字段数据 -->
+    <!-- yury,20200907,新增日后事项文字段 -->
+    <select id="selectT11000Words" parameterType="java.util.Map" resultType="java.util.Map">
+        select
+            wtw.description as description
+        from
+            wp_t11000_words wtw,
+            sys_fund_info sfi
+        where sfi.fund_id = wtw.fund_id
+        and sfi.fund_id = #{fundId}
+        and wtw.period = #{period}
+        and sfi.active = 'Y'
+        order by seq;
+    </select>
+
+    
+    
+</mapper>

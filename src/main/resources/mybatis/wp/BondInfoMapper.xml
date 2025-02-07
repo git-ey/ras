@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BondInfoMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		EY_BOND_INFO
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		FIRM_CODE,	
+		PERIOD,	
+		BOND_CODE,	
+		BOND_NAME,	
+		FULL_NAME,	
+		MARKET,	
+		BOND_TYPE,	
+		SUSPENSION,	
+		SUSPENSION_INFO,	
+		PAR_VALUE_ISSUE,	
+		PAR_VALUE_LAST,	
+		COUPON_RATE,	
+		ISSUE_PRICE,	
+		DATE_FROM,	
+		DATE_TO,	
+		DATE_PAY,	
+		INTEREST_MODE,	
+		PAYMENT_METHOD,	
+		PAYMENT_TIMES_YEAR,	
+		INTEREST_PAY_METHOD,
+		INTEREST_RULE_TYPE,
+		PAY_DATE_YEAR,	
+		PAY_DATE_LAST,	
+		PAY_DATE_NEXT,	
+		BOND_RATING,	
+		BOND_RATING_ORG,	
+		BOND_RATING_DATE,	
+		ENTITY_RATING,	
+		ENTITY_RATING_ORG,	
+		ENTITY_RATING_DATE,	
+		TAX_FREE,	
+		TAX_RATE,	
+		SPECIAL_CLAUSE,	
+		EARLY_EXERCISE,	
+		YEAR_N,	
+		INTEREST_RATE_OPTION,	
+		SELL_BACK,	
+		REDEMPTION,	
+		BONDINFO_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{FIRM_CODE},	
+		#{PERIOD},	
+		#{BOND_CODE},	
+		#{BOND_NAME},	
+		#{FULL_NAME},	
+		#{MARKET},	
+		#{BOND_TYPE},	
+		#{SUSPENSION},	
+		#{SUSPENSION_INFO},	
+		#{PAR_VALUE_ISSUE},	
+		#{PAR_VALUE_LAST},	
+		#{COUPON_RATE},	
+		#{ISSUE_PRICE},	
+		#{DATE_FROM},	
+		#{DATE_TO},	
+		#{DATE_PAY},	
+		#{INTEREST_MODE},	
+		#{PAYMENT_METHOD},	
+		#{PAYMENT_TIMES_YEAR},	
+		#{INTEREST_PAY_METHOD},
+		#{INTEREST_RULE_TYPE},	
+		#{PAY_DATE_YEAR},	
+		#{PAY_DATE_LAST},	
+		#{PAY_DATE_NEXT},	
+		#{BOND_RATING},	
+		#{BOND_RATING_ORG},	
+		#{BOND_RATING_DATE},	
+		#{ENTITY_RATING},	
+		#{ENTITY_RATING_ORG},	
+		#{ENTITY_RATING_DATE},	
+		#{TAX_FREE},	
+		#{TAX_RATE},	
+		#{SPECIAL_CLAUSE},	
+		#{EARLY_EXERCISE},	
+		#{YEAR_N},	
+		#{INTEREST_RATE_OPTION},	
+		#{SELL_BACK},	
+		#{REDEMPTION},	
+		#{BONDINFO_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			BONDINFO_ID = #{BONDINFO_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			FIRM_CODE = #{FIRM_CODE},
+			PERIOD = #{PERIOD},
+			BOND_CODE = #{BOND_CODE},
+			BOND_NAME = #{BOND_NAME},
+			FULL_NAME = #{FULL_NAME},
+			MARKET = #{MARKET},
+			BOND_TYPE = #{BOND_TYPE},
+			SUSPENSION = #{SUSPENSION},
+			SUSPENSION_INFO = #{SUSPENSION_INFO},
+			<if test="PAR_VALUE_ISSUE != null and PAR_VALUE_ISSUE != ''">
+			PAR_VALUE_ISSUE = #{PAR_VALUE_ISSUE},
+			</if>
+			<if test="PAR_VALUE_LAST != null and PAR_VALUE_LAST != ''">
+			PAR_VALUE_LAST = #{PAR_VALUE_LAST},
+			</if>
+			<if test="COUPON_RATE != null and COUPON_RATE != ''">
+			COUPON_RATE = #{COUPON_RATE},
+			</if>
+			<if test="ISSUE_PRICE != null and ISSUE_PRICE != ''">
+			ISSUE_PRICE = #{ISSUE_PRICE},
+			</if>
+			DATE_FROM = #{DATE_FROM},
+			DATE_TO = #{DATE_TO},
+			DATE_PAY = #{DATE_PAY},
+			INTEREST_MODE = #{INTEREST_MODE},
+			PAYMENT_METHOD = #{PAYMENT_METHOD},
+			PAYMENT_TIMES_YEAR = #{PAYMENT_TIMES_YEAR},
+			INTEREST_PAY_METHOD = #{INTEREST_PAY_METHOD},
+			PAY_DATE_YEAR = #{PAY_DATE_YEAR},
+			PAY_DATE_LAST = #{PAY_DATE_LAST},
+			PAY_DATE_NEXT = #{PAY_DATE_NEXT},
+			BOND_RATING = #{BOND_RATING},
+			BOND_RATING_ORG = #{BOND_RATING_ORG},
+			BOND_RATING_DATE = #{BOND_RATING_DATE},
+			ENTITY_RATING = #{ENTITY_RATING},
+			ENTITY_RATING_ORG = #{ENTITY_RATING_ORG},
+			ENTITY_RATING_DATE = #{ENTITY_RATING_DATE},
+			TAX_FREE = #{TAX_FREE},
+			TAX_RATE = #{TAX_RATE},
+			SPECIAL_CLAUSE = #{SPECIAL_CLAUSE},
+			EARLY_EXERCISE = #{EARLY_EXERCISE},
+			YEAR_N = #{YEAR_N},
+			INTEREST_RATE_OPTION = #{INTEREST_RATE_OPTION},
+			SELL_BACK = #{SELL_BACK},
+			REDEMPTION = #{REDEMPTION},
+		BONDINFO_ID = BONDINFO_ID
+		where 
+		BONDINFO_ID = #{BONDINFO_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			BONDINFO_ID = #{BONDINFO_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				    <!-- 根据需求自己加检索条件 -->
+					PERIOD LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					BOND_CODE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				     or 
+					BOND_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+    </select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			BONDINFO_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        <include refid="Field"></include>
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+		#{pd.FIRM_CODE},	
+		#{pd.PERIOD},	
+		#{pd.BOND_CODE},	
+		#{pd.BOND_NAME},	
+		#{pd.FULL_NAME},	
+		#{pd.MARKET},	
+		#{pd.BOND_TYPE},	
+		#{pd.SUSPENSION},	
+		#{pd.SUSPENSION_INFO},	
+		#{pd.PAR_VALUE_ISSUE},	
+		#{pd.PAR_VALUE_LAST},	
+		#{pd.COUPON_RATE},	
+		#{pd.ISSUE_PRICE},	
+		#{pd.DATE_FROM},	
+		#{pd.DATE_TO},	
+		#{pd.DATE_PAY},	
+		#{pd.INTEREST_MODE},	
+		#{pd.PAYMENT_METHOD},	
+		#{pd.PAYMENT_TIMES_YEAR},	
+		#{pd.INTEREST_PAY_METHOD},
+		#{pd.INTEREST_RULE_TYPE},
+		#{pd.PAY_DATE_YEAR},	
+		#{pd.PAY_DATE_LAST},	
+		#{pd.PAY_DATE_NEXT},	
+		#{pd.BOND_RATING},	
+		#{pd.BOND_RATING_ORG},	
+		#{pd.BOND_RATING_DATE},	
+		#{pd.ENTITY_RATING},	
+		#{pd.ENTITY_RATING_ORG},	
+		#{pd.ENTITY_RATING_DATE},	
+		#{pd.TAX_FREE},	
+		#{pd.TAX_RATE},	
+		#{pd.SPECIAL_CLAUSE},	
+		#{pd.EARLY_EXERCISE},	
+		#{pd.YEAR_N},	
+		#{pd.INTEREST_RATE_OPTION},	
+		#{pd.SELL_BACK},	
+		#{pd.REDEMPTION},	
+		#{pd.BONDINFO_ID}
+         )
+         </foreach >
+	</insert>
+	
+</mapper>

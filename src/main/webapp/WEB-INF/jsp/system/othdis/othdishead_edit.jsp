@@ -28,18 +28,18 @@
 					<div class="col-xs-12">
 					
 					<form action="othdishead/${msg }.do" name="Form" id="Form" method="post">
-						<input type="hidden" name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}"/>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">披露口径代码:</td>
-								<td><input type="text" name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}" maxlength="60" placeholder="这里输入披露口径代码" title="披露口径代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" <c:if test="${pd.OTHDISHEAD_ID != null}">readonly</c:if> name="OTHDISHEAD_ID" id="OTHDISHEAD_ID" value="${pd.OTHDISHEAD_ID}" maxlength="60" placeholder="这里输入披露口径代码" title="披露口径代码" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">披露口径名称:</td>
-								<td><input type="text" name="DISCLOSURE_NAME" id="DISCLOSURE_NAME" value="${pd.DISCLOSURE_NAME}" maxlength="240" placeholder="这里输入披露口径名称" title="披露口径名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DISCLOSURE_NAME" id="DISCLOSURE_NAME" value="${pd.DISCLOSURE_NAME}" maxlength="240" placeholder="这里输入披露口径名称" title="披露口径名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="480" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 								<td style="width:100px;text-align: right;padding-top: 13px;">是否启用:</td>
 							    <td>
 								    <select class="chosen-select form-control" name="ACTIVE" id="ACTIVE" data-placeholder="请选择" style="width:49%;">

@@ -28,6 +28,7 @@ import com.ey.service.system.loger.LogerManager;
 import com.ey.service.system.mgrcompany.MgrcompanyManager;
 import com.ey.service.system.othdis.OthdisHeadManager;
 import com.ey.service.system.term.TermHeadManager;
+import com.ey.service.system.urowset.URowSetManager;
 import com.ey.util.AppUtil;
 import com.ey.util.Const;
 import com.ey.util.FileDownload;
@@ -57,6 +58,8 @@ public class FundController extends BaseController {
 	private TermHeadManager termheadService;
 	@Resource(name="othdisheadService")
 	private OthdisHeadManager othdisheadService;
+	@Resource(name="urowsetService")
+	private URowSetManager urowsetService;
 	
 	/**保存
 	 * @param
@@ -69,7 +72,6 @@ public class FundController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("FUND_ID", this.get32UUID());	//主键
 		fundService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
@@ -148,7 +150,19 @@ public class FundController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
+		pd = fundService.findById(pd);
 		mv.setViewName("system/fund/fund_edit");
+		List<PageData> companyList = mgrcompanyService.listAll(pd);
+		// 期间账龄信息
+		List<PageData> termList = termheadService.listAll(pd);
+		// 其他负债批量口径
+		List<PageData> othdisList = othdisheadService.listAll(pd);
+		// U底稿行集
+		List<PageData> uRowSetList = urowsetService.listURowSet(pd);
+		mv.addObject("companyList", companyList);
+		mv.addObject("othdisList", othdisList);
+		mv.addObject("termList",termList);
+		mv.addObject("uRowSetList",uRowSetList);
 		mv.addObject("msg", "save");
 		mv.addObject("pd", pd);
 		return mv;
@@ -167,12 +181,15 @@ public class FundController extends BaseController {
 		List<PageData> companyList = mgrcompanyService.listAll(pd);
 		mv.setViewName("system/fund/fund_edit");
 		// 期间账龄信息
-		List<PageData>	termList = termheadService.listAll(pd);
+		List<PageData> termList = termheadService.listAll(pd);
 		// 其他负债批量口径
-		List<PageData>	othdisList = othdisheadService.listAll(pd);
+		List<PageData> othdisList = othdisheadService.listAll(pd);
+		// U底稿行集
+		List<PageData> uRowSetList = urowsetService.listURowSet(pd);
 		mv.addObject("companyList", companyList);
 		mv.addObject("othdisList", othdisList);
 		mv.addObject("termList",termList);
+		mv.addObject("uRowSetList",uRowSetList);
 		mv.addObject("msg", "edit");
 		mv.addObject("pd", pd);
 		return mv;
@@ -221,7 +238,7 @@ public class FundController extends BaseController {
 	 */
 	@RequestMapping(value="/downExcel")
 	public void downExcel(HttpServletResponse response) throws Exception{
-		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Fund_Info.xlsx", "Fund_Info.xlsx");
+		FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Fund_Control.xlsx", "Fund_Control.xlsx");
 	}
 	
 	/**
@@ -275,6 +292,7 @@ public class FundController extends BaseController {
 		titles.add("沪港");	//12
 		titles.add("QD");	//13
 		titles.add("货基");	//14
+		titles.add("摊余成本");
 		titles.add("指数");	//15
 		titles.add("LOF");	//16
 		titles.add("ETF");	//17
@@ -292,7 +310,7 @@ public class FundController extends BaseController {
 		List<PageData> varList = new ArrayList<PageData>();
 		for(int i=0;i<varOList.size();i++){
 			PageData vpd = new PageData();
-			vpd.put("var1", varOList.get(i).getString("FUND_CODE"));	    //1
+			vpd.put("var1", varOList.get(i).getString("FUND_ID"));	    //1
 			vpd.put("var2", varOList.get(i).getString("FIRM_CODE"));	    //2
 			vpd.put("var3", varOList.get(i).getString("SHORT_NAME"));	    //3
 			vpd.put("var4", varOList.get(i).getString("FULL_NAME"));	    //4
@@ -306,6 +324,7 @@ public class FundController extends BaseController {
 			vpd.put("var12", varOList.get(i).getString("SHHK"));	    //12
 			vpd.put("var13", varOList.get(i).getString("QD"));	    //13
 			vpd.put("var14", varOList.get(i).getString("MF"));	    //14
+			vpd.put("var14", varOList.get(i).getString("AC"));
 			vpd.put("var15", varOList.get(i).getString("IDX"));	    //15
 			vpd.put("var16", varOList.get(i).getString("LOF"));	    //16
 			vpd.put("var17", varOList.get(i).getString("ETF"));	    //17

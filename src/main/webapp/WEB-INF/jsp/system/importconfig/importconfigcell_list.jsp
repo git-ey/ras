@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="importconfigcell/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="IMPORTCONFIG_ID" id="IMPORTCONFIG_ID" value="${pd.IMPORTCONFIG_ID}"/>
 						<table style="margin-top:5px;">
 							<tr>
@@ -261,7 +262,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>importconfigcell/goAdd.do?IMPORTCONFIG_ID=${pd.IMPORTCONFIG_ID}';
+			 diag.URL = '<%=path%>/importconfigcell/goAdd.do?IMPORTCONFIG_ID=${pd.IMPORTCONFIG_ID}';
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -295,7 +296,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>importconfigcell/goEdit.do?IMPORTCONFIGCELL_ID='+Id;
+			 diag.URL = '<%=path%>/importconfigcell/goEdit.do?IMPORTCONFIGCELL_ID='+Id;
 			 diag.Width = 450;
 			 diag.Height = 355;
 			 diag.Modal = true;				//有无遮罩窗口

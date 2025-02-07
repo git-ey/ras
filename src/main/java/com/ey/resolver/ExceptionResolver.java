@@ -12,7 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public class ExceptionResolver implements HandlerExceptionResolver{
 
-	public ModelAndView resolveException(HttpServletRequest request,
+	@Override
+    public ModelAndView resolveException(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex) {
 		System.out.println("==============异常开始=============");
 		ex.printStackTrace();

@@ -11,7 +11,9 @@
 	<sql id="Field">
 		TERMHEAD_ID,	
 		TERM_TYPE,	
-		NAME,	
+		NAME,
+		METHOD,
+		PREV_RANGE,
 		DESCRIPTION,	
 		ACTIVE
 	</sql>
@@ -19,8 +21,10 @@
 	<!-- 字段值 -->
 	<sql id="FieldValue">
 		#{TERMHEAD_ID},	
-		#{TERM_TYPE},	
-		#{NAME},	
+		#{TERM_TYPE},
+		#{NAME},
+		#{METHOD},
+		#{PREV_RANGE},
 		#{DESCRIPTION},	
 		#{ACTIVE}
 	</sql>
@@ -51,6 +55,8 @@
 		set 
 			TERM_TYPE = #{TERM_TYPE},
 			NAME = #{NAME},
+			METHOD = #{METHOD},
+			PREV_RANGE = #{PREV_RANGE},
 			DESCRIPTION = #{DESCRIPTION},
 			ACTIVE = #{ACTIVE}
 		where 
@@ -83,7 +89,6 @@
 					TERM_TYPE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 					 or 
 					NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				
 				)
 		</if>
 	</select>

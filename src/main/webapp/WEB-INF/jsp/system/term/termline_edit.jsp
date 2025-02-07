@@ -28,33 +28,34 @@
 					<div class="col-xs-12">
 					
 					<form action="termline/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="TERMLINE_ID" id="TERMLINE_ID" value="${pd.TERMLINE_ID}"/>
 						<input type="hidden" name="TERMHEAD_ID" id="TERMHEAD_ID" value="${pd.TERMHEAD_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">顺序:</td>
-								<td><input type="number" name="SORT" id="SORT" value="${pd.SORT}" maxlength="32" placeholder="这里输入顺序" title="顺序" style="width:98%;"/></td>
+								<td><input type="number" autocomplete="off" name="SORT" id="SORT" value="${pd.SORT}" maxlength="32" placeholder="这里输入顺序" title="顺序" style="width:49%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">账龄期限名称:</td>
-								<td><input type="text" name="PERIOD_NAME" id="PERIOD_NAME" value="${pd.PERIOD_NAME}" maxlength="60" placeholder="这里输入账龄期限名称" title="账龄期限名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PERIOD_NAME" id="PERIOD_NAME" value="${pd.PERIOD_NAME}" maxlength="60" placeholder="这里输入账龄期限名称" title="账龄期限名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">披露名称:</td>
-								<td><input type="text" name="REVEAL_NAME" id="REVEAL_NAME" value="${pd.REVEAL_NAME}" maxlength="120" placeholder="这里输入披露名称" title="披露名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="REVEAL_NAME" id="REVEAL_NAME" value="${pd.REVEAL_NAME}" maxlength="120" placeholder="这里输入披露名称" title="披露名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">天数从:</td>
-								<td><input type="number" name="DAYS_FROM" id="DAYS_FROM" value="${pd.DAYS_FROM}" maxlength="32" placeholder="均为>" title="天数从" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">月数从:</td>
+								<td><input type="number" autocomplete="off" name="MONTH_FROM" id="MONTH_FROM" value="${pd.MONTH_FROM}" maxlength="32" placeholder="均为>" title="月数从" style="width:98%;"/></td>
 							</tr>
 							<tr>
-								<td style="width:100px;text-align: right;padding-top: 13px;">天数至:</td>
-								<td><input type="number" name="DAYS_TO" id="DAYS_TO" value="${pd.DAYS_TO}" maxlength="32" placeholder="均为<=" title="天数至" style="width:98%;"/></td>
+								<td style="width:100px;text-align: right;padding-top: 13px;">月数至:</td>
+								<td><input type="number" autocomplete="off" name="MONTH_TO" id="MONTH_TO" value="${pd.MONTH_TO}" maxlength="32" placeholder="均为<=" title="月数至" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">说明:</td>
-								<td><input type="text" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="140" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="DESCRIPTION" id="DESCRIPTION" value="${pd.DESCRIPTION}" maxlength="140" placeholder="这里输入说明" title="说明" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="text-align: center;" colspan="10">
@@ -121,24 +122,24 @@
 				$("#REVEAL_NAME").focus();
 			return false;
 			}
-			if($("#DAYS_FROM").val()==""){
-				$("#DAYS_FROM").tips({
+			if($("#MONTH_FROM").val()==""){
+				$("#MONTH_FROM").tips({
 					side:3,
-		            msg:'请输入天数从',
+		            msg:'请输入月数从',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#DAYS_FROM").focus();
+				$("#MONTH_FROM").focus();
 			return false;
 			}
-			if($("#DAYS_TO").val()==""){
-				$("#DAYS_TO").tips({
+			if($("#MONTH_TO").val()==""){
+				$("#MONTH_TO").tips({
 					side:3,
-		            msg:'请输入天数至',
+		            msg:'请输入月数至',
 		            bg:'#AE81FF',
 		            time:2
 		        });
-				$("#DAYS_TO").focus();
+				$("#MONTH_TO").focus();
 			return false;
 			}
 			$("#Form").submit();

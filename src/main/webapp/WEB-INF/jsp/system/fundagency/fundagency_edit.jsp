@@ -28,20 +28,21 @@
 					<div class="col-xs-12">
 					
 					<form action="fundagency/${msg }.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="FUNDAGENCY_ID" id="FUNDAGENCY_ID" value="${pd.FUNDAGENCY_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">基金ID:</td>
-								<td><input type="text" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="FUND_ID" id="FUND_ID" value="${pd.FUND_ID}" maxlength="60" placeholder="这里输入基金ID" title="基金ID" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">报表券商名称:</td>
-								<td><input type="text" name="AGENT_NAME_REP" id="AGENT_NAME_REP" value="${pd.AGENT_NAME_REP}" maxlength="120" placeholder="这里输入报表券商名称" title="报表券商名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="AGENT_NAME_REP" id="AGENT_NAME_REP" value="${pd.AGENT_NAME_REP}" maxlength="120" placeholder="这里输入报表券商名称" title="报表券商名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">标准券商名称:</td>
-								<td><input type="text" name="AGENT_NAME_STD" id="AGENT_NAME_STD" value="${pd.AGENT_NAME_STD}" maxlength="120" placeholder="这里输入标准券商名称" title="标准券商名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="AGENT_NAME_STD" id="AGENT_NAME_STD" value="${pd.AGENT_NAME_STD}" maxlength="120" placeholder="这里输入标准券商名称" title="标准券商名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:100px;text-align: right;padding-top: 13px;">关联方:</td>

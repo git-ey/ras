@@ -32,6 +32,7 @@
 							
 						<!-- 检索  -->
 						<form action="importconfig/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -41,6 +42,16 @@
 											<i class="ace-icon fa fa-search nav-search-icon"></i>
 										</span>
 									</div>
+								</td>
+								<td style="padding-left:2px;text-align:right;width:100px;">模版类型:</td>
+								<td style="vertical-align:top;padding-left:2px;width:150px;">
+								 	<select class="chosen-select form-control" name="TEMP_TYPE_CODE" id="TEMP_TYPE_CODE" data-placeholder="请选择" style="width:49%;">
+								    <option value=""></option>
+								    <option value="HS" <c:if test="${pd.TEMP_TYPE_CODE == 'HS'}">selected</c:if>>恒生</option>
+								    <option value="JSZ" <c:if test="${pd.TEMP_TYPE_CODE == 'JSZ'}">selected</c:if>>金手指</option>
+								    <option value="SG" <c:if test="${pd.TEMP_TYPE_CODE == 'SG'}">selected</c:if>>手工</option>
+								    <option value="JM" <c:if test="${pd.TEMP_TYPE_CODE == 'JM'}">selected</c:if>>界面</option>
+								    </select>
 								</td>
 								<c:if test="${QX.cha == 1 }">
 								<td style="vertical-align:top;padding-left:2px"><a class="btn btn-light btn-xs" onclick="tosearch();"  title="检索"><i id="nav-search-icon" class="ace-icon fa fa-search bigger-110 nav-search-icon blue"></i></a></td>
@@ -258,7 +269,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>importconfig/goAdd.do';
+			 diag.URL = '<%=path%>/importconfig/goAdd.do';
 			 diag.Width = 1000;
 			 diag.Height = 350;
 			 diag.Modal = true;				//有无遮罩窗口
@@ -311,7 +322,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>importconfig/goEdit.do?IMPORTCONFIG_ID='+Id;
+			 diag.URL = '<%=path%>/importconfig/goEdit.do?IMPORTCONFIG_ID='+Id;
 			 diag.Width = 1000;
 			 diag.Height = 600;
 			 diag.Modal = true;				//有无遮罩窗口

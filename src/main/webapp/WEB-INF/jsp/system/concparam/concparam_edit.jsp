@@ -28,21 +28,22 @@
 					<div class="col-xs-12">
 					
 					<form action="concparam/${msg}.do" name="Form" id="Form" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="CONC_PARAM_ID" id="CONC_PARAM_ID" value="${pd.CONC_PARAM_ID}"/>
 						<input type="hidden" name="CONC_ID" id="CONC_ID" value="${pd.CONC_ID}"/>
 						<div id="zhongxin" style="padding-top: 13px;">
 						<table id="table_report" class="table table-striped table-bordered table-hover">
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">序号:</td>
-								<td><input type="number" name="SEQ" id="SEQ" value="${pd.SEQ}" maxlength="60" title="序号" style="width:49%;"/></td>
+								<td><input type="number" autocomplete="off" name="SEQ" id="SEQ" value="${pd.SEQ}" maxlength="60" title="序号" style="width:49%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">参数代码:</td>
-								<td><input type="text" name="PARAM_CODE" id="PARAM_CODE" value="${pd.PARAM_CODE}" maxlength="60" title="参数代码" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PARAM_CODE" id="PARAM_CODE" value="${pd.PARAM_CODE}" maxlength="60" title="参数代码" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">参数名称:</td>
-								<td><input type="text" name="PARAM_NAME" id="PARAM_NAME" value="${pd.PARAM_NAME}" maxlength="120"  title="参数名称" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="PARAM_NAME" id="PARAM_NAME" value="${pd.PARAM_NAME}" maxlength="120"  title="参数名称" style="width:98%;"/></td>
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">参数类型:</td>
@@ -55,7 +56,7 @@
 							</tr>
 							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">参数值:</td>
-								<td><input type="text" name="CONC_VALUE" id="CONC_VALUE" value="${pd.CONC_VALUE}" maxlength="255"  title="参数值" style="width:98%;"/></td>
+								<td><input type="text" autocomplete="off" name="CONC_VALUE" id="CONC_VALUE" value="${pd.CONC_VALUE}" maxlength="255"  title="参数值" style="width:98%;"/></td>
 							</tr>
 							<tr>
 							    <td style="width:75px;text-align: right;padding-top: 13px;">允许为空:</td>

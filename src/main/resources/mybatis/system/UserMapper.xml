@@ -166,7 +166,7 @@
 		from <include refid="tableName"></include> u, <include refid="roleTableName"></include> r 
 		where u.ROLE_ID = r.ROLE_ID 
 		and u.USERNAME != 'admin'
-		and r.PARENT_ID = '1'
+		<!-- and r.PARENT_ID = '1'  -->
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
@@ -209,7 +209,7 @@
 		from <include refid="tableName"></include> u, <include refid="roleTableName"></include> r 
 		where u.ROLE_ID = r.ROLE_ID 
 		and u.USERNAME != 'admin'
-		and r.PARENT_ID = '1'
+		<!-- and r.PARENT_ID = '1'  -->
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
@@ -298,6 +298,17 @@
 				USER_ID = #{USER_ID}
 	</update>
 	
+	<!-- 修改 -->
+	<update id="updateUser" parameterType="pd" >
+		update  <include refid="tableName"></include>
+			set USERNAME = #{USERNAME}
+			<if test="PASSWORD != null and PASSWORD != ''">
+				,PASSWORD = #{PASSWORD}
+			</if>
+			where 
+				USERNAME = #{USERNAME}
+	</update>
+	
 	<!-- 删除用户 -->
 	<delete id="deleteU" parameterType="pd" flushCache="false">
 		delete from <include refid="tableName"></include>
@@ -335,7 +346,7 @@
 		from <include refid="tableName"></include> u, <include refid="roleTableName"></include> r 
 		where u.ROLE_ID = r.ROLE_ID 
 		and u.USERNAME != 'admin'
-		and r.PARENT_ID = '1'
+		<!-- and r.PARENT_ID = '1' -->
 		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
 			and
 				(
@@ -369,4 +380,26 @@
 		from 
 		<include refid="tableName"></include>
 	</select>
+
+	<!-- 批量新增-->
+	<insert id="saveBatch" parameterType="java.util.List">
+		insert into 
+	        <include refid="tableName"></include>
+		(
+	        USER_ID,
+			USERNAME,
+			BZ,
+			EMAIL,
+			ROLE_ID
+		) values 
+		<foreach collection ="list" item="pd" index= "index" separator =",">
+         (
+        #{pd.USER_ID},
+		#{pd.USERNAME},
+		#{pd.BZ},
+		#{pd.EMAIL},
+		#{pd.ROLE_ID}
+         )
+         </foreach >
+	</insert>
 </mapper>

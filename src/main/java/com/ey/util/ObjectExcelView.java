@@ -12,6 +12,8 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 import com.ey.util.PageData;
@@ -38,10 +40,10 @@ public class ObjectExcelView extends AbstractExcelView{
 		List<String> titles = (List<String>) model.get("titles");
 		int len = titles.size();
 		HSSFCellStyle headerStyle = workbook.createCellStyle(); //标题样式
-		headerStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		headerStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+		headerStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		headerStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
 		HSSFFont headerFont = workbook.createFont();	//标题字体
-		headerFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+		headerFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
 		headerFont.setFontHeightInPoints((short)11);
 		headerStyle.setFont(headerFont);
 		short width = 20,height=25*20;
@@ -55,7 +57,7 @@ public class ObjectExcelView extends AbstractExcelView{
 		sheet.getRow(0).setHeight(height);
 		
 		HSSFCellStyle contentStyle = workbook.createCellStyle(); //内容样式
-		contentStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		contentStyle.setAlignment(CellStyle.ALIGN_CENTER);
 		List<PageData> varList = (List<PageData>) model.get("varList");
 		int varCount = varList.size();
 		for(int i=0; i<varCount; i++){

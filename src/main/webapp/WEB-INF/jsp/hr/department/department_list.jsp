@@ -29,6 +29,7 @@
 							
 						<!-- 检索  -->
 						<form action="department/list.do" method="post" name="Form" id="Form">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<table style="margin-top:5px;">
 							<tr>
 								<td>
@@ -204,7 +205,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>department/goAdd.do?DEPARTMENT_ID='+DEPARTMENT_ID;
+			 diag.URL = '<%=path%>/department/goAdd.do?DEPARTMENT_ID='+DEPARTMENT_ID;
 			 diag.Width = 700;
 			 diag.Height = 550;
 			 diag.CancelEvent = function(){ //关闭事件
@@ -250,7 +251,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="编辑";
-			 diag.URL = '<%=basePath%>department/goEdit.do?DEPARTMENT_ID='+Id;
+			 diag.URL = '<%=path%>/department/goEdit.do?DEPARTMENT_ID='+Id;
 			 diag.Width = 700;
 			 diag.Height = 550;
 			 diag.CancelEvent = function(){ //关闭事件

@@ -12,8 +12,8 @@
 		SORT,	
 		PERIOD_NAME,	
 		REVEAL_NAME,	
-		DAYS_FROM,	
-		DAYS_TO,	
+		MONTH_FROM,	
+		MONTH_TO,	
 		DESCRIPTION,	
 		TERMLINE_ID,
 		TERMHEAD_ID
@@ -24,8 +24,8 @@
 		#{SORT},	
 		#{PERIOD_NAME},	
 		#{REVEAL_NAME},	
-		#{DAYS_FROM},	
-		#{DAYS_TO},	
+		#{MONTH_FROM},	
+		#{MONTH_TO},	
 		#{DESCRIPTION},	
 		#{TERMLINE_ID},
 		#{TERMHEAD_ID}
@@ -58,8 +58,8 @@
 			SORT = #{SORT},
 			PERIOD_NAME = #{PERIOD_NAME},
 			REVEAL_NAME = #{REVEAL_NAME},
-			DAYS_FROM = #{DAYS_FROM},
-			DAYS_TO = #{DAYS_TO},
+			MONTH_FROM = #{MONTH_FROM},
+			MONTH_TO = #{MONTH_TO},
 			DESCRIPTION = #{DESCRIPTION}
 		where 
 		TERMLINE_ID = #{TERMLINE_ID}
@@ -86,11 +86,11 @@
 		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
 			and
 				(
-				<!--	根据需求自己加检索条件
-					字段1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				<!-- 根据需求自己加检索条件 -->
+					PERIOD_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
 					 or 
-					字段2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
-				-->
+					REVEAL_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				
 				)
 		</if>
 		order by SORT ASC
