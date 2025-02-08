@@ -29,7 +29,7 @@
 				<div class="page-content">
 					<div class="row">
 						<div class="col-xs-12">
-
+							
 						<!-- 检索  -->
 						<form action="concruning/list.do" method="post" name="Form" id="Form">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -67,7 +67,7 @@
 							</tr>
 						</table>
 						<!-- 检索  -->
-						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">
+						<table id="simple-table" class="table table-striped table-bordered table-hover" style="margin-top:5px;">	
 							<thead>
 								<tr>
 									<th class="center" style="width:12%;">运行编号</th>
@@ -81,9 +81,9 @@
 									<th class="center" style="width:4%;">日志</th>
 								</tr>
 							</thead>
-
+													
 							<tbody>
-							<!-- 开始循环 -->
+							<!-- 开始循环 -->	
 							<c:choose>
 								<c:when test="${not empty varList}">
 									<c:if test="${QX.cha == 1 }">
@@ -95,19 +95,19 @@
 											<td class='center'>${var.END_DATETIME}</td>
 											<td class='center'>${var.RUN_PARAM}</td>
 											<td class='center'>
-											<c:choose>
+											<c:choose>  
                                                <c:when test="${var.RESULT == 'R' }">
                                                  <font color="#7B7B7B"><b>运行中</b></font>
+                                               </c:when>  
+                                               <c:when test="${var.RESULT == 'P' }">
+                                                 <font color="#C6A300"><b>等待中</b></font>
                                                </c:when>
-												<c:when test="${var.RESULT == 'P' }">
-													<font color="#C6A300"><b>等待中</b></font>
-												</c:when>
                                                <c:when test="${var.RESULT == 'S' }">
                                                  <font color="#00A600"><b>成功</b></font>
-                                               </c:when>
+                                               </c:when> 
                                                <c:when test="${var.RESULT == 'W' }">
                                                   <font color="#C6A300"><b>警告</b></font>
-                                               </c:when>
+                                               </c:when> 
                                                <c:when test="${var.RESULT == 'E' }">
                                                   <font color="#FF0000"><b>错误</b></font>
                                                </c:when>
@@ -117,7 +117,7 @@
 											<td class='center'>${var.OPERATOR}</td>
 											<td class='center'><a class="btn btn-light btn-xs" onclick="toExcel('${var.CONCRUNING_ID}');" title="导出日志"><i id="nav-search-icon" class="ace-icon fa fa-download bigger-110 nav-search-icon blue"></i></a></td>
 										</tr>
-
+									
 									</c:forEach>
 									</c:if>
 									<c:if test="${QX.cha == 0 }">
@@ -142,7 +142,7 @@
 						</table>
 						</div>
 						</form>
-
+					
 						</div>
 						<!-- /.col -->
 					</div>
@@ -180,16 +180,16 @@
 			$("#Form").submit();
 		}
 		$(function() {
-
+		
 			//日期框
 			$('.date-picker').datepicker({
 				autoclose: true,
 				todayHighlight: true
 			});
-
+			
 			//下拉框
 			if(!ace.vars['touch']) {
-				$('.chosen-select').chosen({allow_single_deselect:true});
+				$('.chosen-select').chosen({allow_single_deselect:true}); 
 				$(window)
 				.off('resize.chosen')
 				.on('resize.chosen', function() {
@@ -212,8 +212,8 @@
 					 else $('#form-field-select-4').removeClass('tag-input-style');
 				});
 			}
-
-
+			
+			
 			//复选框全选控制
 			var active_class = 'active';
 			$('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
@@ -225,7 +225,7 @@
 				});
 			});
 		});
-
+		
 		//新增
 		function add(){
 			 top.jzts();
@@ -250,12 +250,12 @@
 			 };
 			 diag.show();
 		}
-
+		
 		//导出excel日志
 		function toExcel(Id){
 			window.location.href='<%=basePath%>concruning/excel.do?CONCRUNING_ID='+Id;
 		}
-
+		
 	</script>
 
 

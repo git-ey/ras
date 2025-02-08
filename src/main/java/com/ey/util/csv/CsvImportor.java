@@ -31,7 +31,7 @@ import com.opencsv.CSVReaderBuilder;
 public class CsvImportor extends FileImportor {
 
 	private ImportConfig configuration;
-	ExecutorService executor = Executors.newFixedThreadPool(3);// 使用固定大小的线程池
+
 	public CsvImportor(ImportConfig configuration) {
 		this.configuration = configuration;
 	}
