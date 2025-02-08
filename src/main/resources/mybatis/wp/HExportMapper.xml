@@ -1327,6 +1327,7 @@
             1 = 1
          AND whti.FUND_ID = #{fundId}
          AND whti.PERIOD = #{period}
+			LIMIT 1
     </select>
     <!--  chenhy, 20231012, 不以公允价值计量的金融工具的相关说明  -->
     <select id="selectfiNotMeasureWithFv" parameterType="java.util.Map" resultType="java.lang.String">

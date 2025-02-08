@@ -114,35 +114,31 @@ public class ImportDataWroker implements Callable<Boolean> {
 					// 初始化导入条数
 					Long cnt = 1L;
 					int[] nameSection = null;
-					// 校验文件是否已导入
-					if (!checkFileExsit(pathFile.getName(), configuration.getSheetNo())) {
-						// 获取文件名解析段
-						nameSection = this.getFileNameSeg(configuration.getNameSection());
-						if (configuration.getImportFileType() == ImportConfig.ImportFileType.EXCEL) {
-							// 解析并导入Excel文件
-							try {
+					try {
+						// 校验文件是否已导入
+						if (!checkFileExsit(pathFile.getName(), configuration.getSheetNo())) {
+							// 获取文件名解析段
+							nameSection = this.getFileNameSeg(configuration.getNameSection());
+							if (configuration.getImportFileType() == ImportConfig.ImportFileType.EXCEL) {
+								// 解析并导入Excel文件
 								cnt = this.insertExcelFile(pathFile, configuration, importFileId);
-							} catch (Exception e) {
-								importMessage = com.ey.util.StringUtil.getStringByLength(e.getMessage(), 480);
-							}
-						} else if (configuration.getImportFileType() == ImportConfig.ImportFileType.CSV) {
-							// 解析并导入CSV文件
-							try {
+							} else if (configuration.getImportFileType() == ImportConfig.ImportFileType.CSV) {
+								// 解析并导入CSV文件
 								//清洗数据和存储
 								cnt = this.insertCsvFile(pathFile, configuration, importFileId);
-							} catch (Exception e) {
-								importMessage = com.ey.util.StringUtil.getStringByLength(e.getMessage(), 480);
 							}
+						} else {
+							importMessage = "文件已存在,不能重复导入";
 						}
-					} else {
-						importMessage = "文件已存在,不能重复导入";
+					} catch (Exception e) {
+						importMessage = StringUtil.getStringByLength(e.getMessage(), 480);
 					}
 					// 回写导入文件信息表
 					try {
 						this.saveImportFile(importFileId, importId, pathFile.getName(), configuration.getSheetNo(), nameSection,
 								configuration.getFileNameDelimiter(), configuration.getTableName(), importMessage, cnt);
 					} catch (Exception e) {
-						throw new Exception("回写导入文件信息表失败:" + com.ey.util.StringUtil.getStringByLength(e.getMessage(), 480));
+						throw new Exception("回写导入文件信息表失败:" + StringUtil.getStringByLength(e.getMessage(), 480));
 					}
 					// 文件正常导入后，执行存储过程
 					if (StringUtils.isBlank(importMessage) && StringUtils.isNotBlank(configuration.getCallable())) {
@@ -150,7 +146,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 						try {
 							rsult = this.callProcedure(configuration.getCallable(), importFileId);
 						} catch (Exception ex) {
-							importMessage = "执行存储过程失败:" + com.ey.util.StringUtil.getStringByLength(ex.getMessage(), 240);
+							importMessage = "执行存储过程失败:" + StringUtil.getStringByLength(ex.getMessage(), 240);
 						}
 						if (!rsult.equals("S") || StringUtils.isNotBlank(importMessage)) {
 							PageData pd = new PageData();
@@ -178,11 +174,15 @@ public class ImportDataWroker implements Callable<Boolean> {
 	 * @throws Exception
 	 */
 	private Boolean checkFileExsit(String pathFile,Integer sheetNo) throws Exception {
-		Long filrCnt = importService.findFileCount(pathFile,sheetNo);
-		if (filrCnt > 0) {
-			return Boolean.TRUE;
+		try{
+			Long filrCnt = importService.findFileCount(pathFile,sheetNo);
+			if (filrCnt > 0) {
+				return Boolean.TRUE;
+			}
+			return Boolean.FALSE;
+		}catch (Exception e){
+			throw new Exception(pathFile+"文件命名异常"+e.getMessage());
 		}
-		return Boolean.FALSE;
 	}
 
 	/**
@@ -297,7 +297,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 				} catch (Exception e) {
 					e.printStackTrace();
 					logger.error(e.getMessage());
-					throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
+					throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + StringUtil.getStringByLength(e.getMessage(),480));
 				}
 				// 重新初始化
 				sbv = new StringBuilder();
@@ -312,7 +312,7 @@ public class ImportDataWroker implements Callable<Boolean> {
 				this.saveImportFileData(configuration.getTableName(), sbf.toString(),tableValue.substring(0, tableValue.length() - 1));
 			} catch (Exception e) {
 				logger.error(e.getMessage(),e);
-				throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + com.ey.util.StringUtil.getStringByLength(e.getMessage(),480));
+				throw new Exception("插入数据表失败:" + configuration.getTableName() + "," + StringUtil.getStringByLength(e.getMessage(),480));
 			}
 		}
 		return cnt;
