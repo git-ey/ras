@@ -26,7 +26,7 @@
 			<div class="page-content">
 				<div class="row">
 					<div class="col-xs-12">
-
+					
 					<form action="workpaper/${msg }.do" name="Form" id="Form" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" name="WORKPAPER_ID" id="WORKPAPER_ID" value="${pd.WORKPAPER_ID}"/>
@@ -58,7 +58,7 @@
 								<td style="width:100px;text-align: right;padding-top: 13px;">导出路径:</td>
 								<td><input type="text" autocomplete="off" name="OUTBOND_PATH" id="OUTBOND_PATH" value="${outbondPath}" maxlength="480" title="导出路径" style="width:98%;"/></td>
 							</tr>
-							<tr>
+							<tr>	
 								<td style="width:100px;text-align: right;padding-top: 13px;">底稿类型:</td>
 								<td>
 								    <select class="chosen-select form-control" name="WP_TYPE" id="WP_TYPE" data-placeholder="请选择" style="width:49%;">
@@ -77,16 +77,6 @@
 										<option value="SA" <c:if test="${pd.WP_TYPE == 'SA'}">selected</c:if>>SA</option>
 										<option value="全部底稿" <c:if test="${pd.WP_TYPE == '全部底稿'}">selected</c:if>>全部底稿</option>
 								    </select>
-								</td>
-								<td style="width:100px;text-align: right;padding-top: 13px;">特殊底稿:</td>
-								<td>
-									<%--<select class="chosen-select form-control" name="WP_TYPE_C" id="WP_TYPE_C" data-placeholder="请选择" style="width:49%;">--%>
-										<%--<option value="" <c:if test="${pd.WP_TYPE_C == ''}">selected</c:if>></option>--%>
-										<%--<option value="BJ" <c:if test="${pd.WP_TYPE_C == 'BJ'}">selected</c:if>>特殊底稿</option>--%>
-									<%--</select>--%>
-										<label>
-											<input type="checkbox" name="WP_TYPE_C" id="WP_TYPE_C_BJ" value="BJ" ${pd.WP_TYPE_C == 'BJ' ? 'checked' : ''}>
-										</label>
 								</td>
 							</tr>
 							<tr>
@@ -148,13 +138,13 @@
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();
 		}
-
+		
 		$(function() {
 			//日期框
 			$('.date-picker').datepicker({autoclose: true,todayHighlight: true});
 			//下拉框
 			if(!ace.vars['touch']) {
-				$('.chosen-select').chosen({allow_single_deselect:true});
+				$('.chosen-select').chosen({allow_single_deselect:true}); 
 				$(window)
 				.off('resize.chosen')
 				.on('resize.chosen', function() {

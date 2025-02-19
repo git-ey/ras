@@ -23,60 +23,60 @@ import com.ey.util.fileexport.FreeMarkerUtils;
  */
 @Service("cExportService")
 public class CExportService extends BaseExportService implements CExportManager{
-
+    
     /**
      * 生成文件内容
      * @author Dai Zong 2017年10月17日
-     *
+     * 
      * @param fundId
      * @param periodStr
      * @param fundInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo, String templatePath) throws Exception {
+    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
-
+        
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
-
+        
         dataMap.put("period", period);
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("fundInfo", fundInfo);
-
+        
         dataMap.put("C", this.getCData(fundId, periodStr));
         dataMap.put("C300", this.getC300Data(fundId, periodStr));
         dataMap.put("C400", this.getC400Data(fundId, periodStr));
         dataMap.put("C310", this.getC310Data(fundId, periodStr));
         dataMap.put("C10000", this.getC10000Data(fundId, periodStr));
-
-        return FreeMarkerUtils.processTemplateToString(dataMap, templatePath, Constants.EXPORT_TEMPLATE_FILE_NAME_C);
+        
+        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_C);
     }
 
     @Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr, String templatePath) throws Exception {
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_C, fundInfo), xmlStr);
         return true;
     }
-
+    
     @Override
-    public boolean doExport(String folederName, String fileName, String fundId, String periodStr, String templatePath) throws Exception {
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), xmlStr);
         return true;
     }
-
+	
     /**
      * 处理sheet页C的数据
      * @author Dai Zong 2017年8月27日
-     *
+     * 
      * @param fundId
      * @param periodStr
      * @return
@@ -85,18 +85,18 @@ public class CExportService extends BaseExportService implements CExportManager{
     private Map<String,Object> getCData(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-
+        
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> resMapList = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectCData", queryMap);
         if(resMapList == null) {
             resMapList = new ArrayList<>();
         }
-
+        
         for(Map<String, Object> resMap : resMapList) {
             if(resMap == null || resMap.get("accountNum") == null) {continue;}
             result.put("KM" + (String) resMap.get("accountNum"), resMap);
         }
-
+        
         if(result.get("KM1002") == null) {
             result.put("KM1002", new HashMap<>());
         }
@@ -106,14 +106,14 @@ public class CExportService extends BaseExportService implements CExportManager{
         if(result.get("KM1031") == null) {
             result.put("KM1031", new HashMap<>());
         }
-
+        
         return result;
     }
-
+    
     /**
      * 处理sheet页C300的数据
      * @author Dai Zong 2017年8月27日
-     *
+     * 
      * @param fundId
      * @param periodStr
      * @return
@@ -124,10 +124,10 @@ public class CExportService extends BaseExportService implements CExportManager{
     private Map<String,Object> getC300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-
+        
         Map<String, Object> mainMap = new HashMap<String,Object>();
         Map<String, Object> intRiskPeriodMap = new HashMap<String,Object>();
-
+        
         //========process dataMap for main view begin========
         List<Map<String,Object>> demandDepositsList = new ArrayList<>();//one part of KM1002
         List<Map<String,Object>> timeDepositsList = new ArrayList<>();// another part of KM1002
@@ -142,7 +142,7 @@ public class CExportService extends BaseExportService implements CExportManager{
         int KM1031ListCount = 0;
         int otherDepositsListCount = 0;
         int futuresKM1021ListCount = 0;
-
+        
         List<Map<String,Object>> mainData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC300MainData", queryMap);
         if(CollectionUtils.isEmpty(mainData)) {
             mainData = new ArrayList<Map<String,Object>>();
@@ -181,7 +181,7 @@ public class CExportService extends BaseExportService implements CExportManager{
         if(ttyqDepositsList.size() == 0) {ttyqDepositsList.add(new HashMap<String,Object>());}
         if(KM1021List.size() == 0) {KM1021List.add(new HashMap<String,Object>());}
         if(KM1031List.size() == 0) {KM1031List.add(new HashMap<String,Object>());}
-        // calculate count
+        // calculate count 
         demandDepositsListCount = demandDepositsList.size();
         timeDepositsListCount = timeDepositsList.size();
         otherDepositsListCount = otherDepositsList.size();
@@ -204,21 +204,21 @@ public class CExportService extends BaseExportService implements CExportManager{
         Map<String,Object> futuresKM1021Map = new HashMap<>();
         futuresKM1021Map.put("list", futuresKM1021List);
         futuresKM1021Map.put("count", futuresKM1021ListCount);
-
+        
         Map<String,Object> KM1021Map = new HashMap<>();
         KM1021Map.put("list", KM1021List);
         KM1021Map.put("count", KM1021ListCount);
-
+        
         Map<String,Object> KM1031Map = new HashMap<>();
         KM1031Map.put("list", KM1031List);
         KM1031Map.put("count", KM1031ListCount);
-
+        
         mainMap.put("futuresKM1021", futuresKM1021Map);
         mainMap.put("KM1002", KM1002Map);
         mainMap.put("KM1021", KM1021Map);
         mainMap.put("KM1031", KM1031Map);
         //========process dataMap for main view end========
-
+        
         //========process dataMap for related view begin========
         Map<String,Object> RelatedData = new HashMap<>();
         List<Map<String,Object>> RelatedMetaData = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC300RelatedData", queryMap);
@@ -249,7 +249,7 @@ public class CExportService extends BaseExportService implements CExportManager{
         int TYYQDepositCount = TYYQDepositsList.size(); //chenhy,20240624,新增同业约期存款
         int RKM1021Count = RKM1021List.size();
         int RKM1031Count = RKM1031List.size();
-
+        
         RelatedData.put("demandDepositsList", RdemandDepositsList);
         RelatedData.put("demandDepositsCount", RdemandDepositsCount);
         RelatedData.put("timeDepositsList", RTimeDepositsList);
@@ -263,7 +263,7 @@ public class CExportService extends BaseExportService implements CExportManager{
         RelatedData.put("KM1031", RKM1031List);
         RelatedData.put("KM1031Count", RKM1031Count);
         //========process dataMap for related view end========
-
+        
         //========process dataMap for intRistPeriod view begin========
         List<String> intRistPeriods = (List<String>)this.dao.findForList("CExportMapper.selectC300IntRiskPeriods", queryMap);
         List<Map<String,Object>> timeDepositsDataList = (List<Map<String,Object>>)this.dao.findForList("CExportMapper.selectC300IntRiskTimeDepositsData", queryMap);
@@ -271,11 +271,11 @@ public class CExportService extends BaseExportService implements CExportManager{
         intRistPeriods = intRistPeriods==null?new ArrayList<String>():intRistPeriods;
         timeDepositsDataList = timeDepositsDataList==null?new ArrayList<Map<String,Object>>():timeDepositsDataList;
         Map<String,Object> temp = new HashMap<>();
-
+        
         //对于定期存款取C400数据，按【FUND_ID】【PERIOD】【PERIOD_LEFT】字段汇总【AMOUNT】写入对应的利率风险敞口，不计息类型默认为0
         temp.put("intRiskPeriod", "不计息");
         temp.put("amount", 0D);
-
+        
         timeDepositsDataList.add(temp);
         int noInterestColIndex = intRistPeriods.size() - 1;
         //find no-interest col's index
@@ -294,30 +294,30 @@ public class CExportService extends BaseExportService implements CExportManager{
                     timeDepositsData.add(amount);
                     hitFlag = true;
                     break;
-                }
+                } 
             }
             if(!hitFlag) {
                 timeDepositsData.add(0D);
             }
         }
-
+        
         intRiskPeriodMap.put("intRistPeriods", intRistPeriods);
         intRiskPeriodMap.put("noInterestColIndex", noInterestColIndex);
         intRiskPeriodMap.put("timeDepositsData", timeDepositsData);
         intRiskPeriodMap.put("intRistPeriodsCount", intRistPeriods.size());
         intRiskPeriodMap.put("timeDepositsCount", timeDepositsData.size());
         //========process dataMap for intRistPeriod view end========
-
+        
         result.put("main", mainMap);
         result.put("related", RelatedData);
         result.put("intRiskPeriod", intRiskPeriodMap);
         return result;
     }
-
+    
     /**
      * 处理sheet页C310的数据
      * @author chenhy 20231207
-     *
+     * 
      * @param fundId
      * @param periodStr
      * @return
@@ -357,7 +357,7 @@ public class CExportService extends BaseExportService implements CExportManager{
     /**
      * 处理sheet页C400的数据
      * @author Dai Zong 2017年8月30日
-     *
+     * 
      * @param fundId
      * @param periodStr
      * @return
@@ -367,7 +367,7 @@ public class CExportService extends BaseExportService implements CExportManager{
     private Map<String,Object> getC400Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String,Object> result = new HashMap<>();
-
+        
         Map<String,Object> mainData = new HashMap<>();
         Map<String,Object> bankData = new HashMap<>();
         Map<String,Object> termData = new HashMap<>();
@@ -408,12 +408,12 @@ public class CExportService extends BaseExportService implements CExportManager{
         result.put("groupByTerm", termData);
         return result;
     }
-
+    
     @SuppressWarnings("unchecked")
     private Map<String,Object> getC10000Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String,Object> result = new HashMap<>();
-
+        
         Map<String,Object> demandDeposits = new HashMap<>();
         Map<String,Object> timeDeposits = new HashMap<>();
         Map<String,Object> other = new HashMap<>();
