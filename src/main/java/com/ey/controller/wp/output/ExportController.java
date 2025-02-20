@@ -192,6 +192,7 @@ public class ExportController extends BaseController {
 		String fundId = pd.getString("FUND_ID");
 		String periodStr = pd.getString("PEROID");
 		periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
 		this.cExportService.doExport(request, response, fundId, periodStr, templatePath);
 	}
@@ -208,6 +209,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.gExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -224,6 +226,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.nExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -240,6 +243,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.pExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -256,6 +260,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.eExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -272,6 +277,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.uExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -288,6 +294,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.vExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -304,6 +311,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.tExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -320,6 +328,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         String firmCode = pd.getString("FIRM_CODE");
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         if(StringUtils.isEmpty(periodStr) || (StringUtils.isEmpty(fundId) && StringUtils.isEmpty(firmCode))) {
             throw new IllegalArgumentException("期间不能为空,基金ID和公司代码至少一个不能为空");
@@ -349,6 +358,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.hExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -365,6 +375,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.iExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -381,6 +392,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         this.oExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
@@ -397,7 +409,7 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         String firmCode = pd.getString("FIRM_CODE");
-
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         if(StringUtils.isEmpty(periodStr) || (StringUtils.isEmpty(fundId) && StringUtils.isEmpty(firmCode))) {
             throw new IllegalArgumentException("期间不能为空,基金ID和公司代码至少一个不能为空");
@@ -422,6 +434,7 @@ public class ExportController extends BaseController {
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
         pd.put("PEROID", periodStr);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 
         PageData fundInfos = (PageData)this.dao.findForObject("WorkPaperMapper.selectFundInfos", pd);
 

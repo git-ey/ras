@@ -10,11 +10,21 @@ public interface Constants {
     /**
      * 导出模板位置
      */
-    static final String EXPORT_TEMPLATE_FOLDER_PATH = "/export_template";
+//    static final String EXPORT_TEMPLATE_FOLDER_PATH = "/export_template";
+
+    public static String getExportPath(String path, String wpPathC) {
+        if ("BJ".equals(wpPathC)) {
+            return path + "TS/";
+        } else {
+            return path;
+        }
+    }
+
+
     /**
      * 报告组件位置
      */
-    static final String REPORT_TEMPLATES_FOLDER_PATH = EXPORT_TEMPLATE_FOLDER_PATH + "/report_parts";
+//    static final String REPORT_TEMPLATES_FOLDER_PATH = EXPORT_TEMPLATE_FOLDER_PATH + "/report_parts";
     /**
      * 模板名称--Report
      */

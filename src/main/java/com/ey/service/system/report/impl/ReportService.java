@@ -414,7 +414,8 @@ public class ReportService implements ReportManager {
 
         // 报告导出模板根路径
         String reportTempRootPath = configService.findByCode(REP_TEMP_PATH);
-        String templatePath =configService.findByCode(Constants.WP_TEMAP_PATH);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
+
         // 报告导出路径
         String reportOutBoundPath = pd.getString("OUTBOND_PATH");
         String reportOutBoundTempPath = reportOutBoundPath;
@@ -568,7 +569,7 @@ public class ReportService implements ReportManager {
 
         // 报告导出模板根路径
         String reportTempRootPath = configService.findByCode(REP_TEMP_PATH);
-        String templatePath =configService.findByCode(Constants.WP_TEMAP_PATH);
+        String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
         // 根据配置代码获取信息
         PageData p1 = dictionariesManager.findByCode("P1_FSO_SH");
         PageData p2 = dictionariesManager.findByCode("P2_FSO_TY");
@@ -633,6 +634,7 @@ public class ReportService implements ReportManager {
         exportParam.put("partName", partName);
         exportParam.put("reportTempRootPath", reportTempRootPath);
         exportParam.put("REPTYPE", repType.toString()); // 20200507,yury
+
         // 开始导出
         this.reportExportService.doExport(request, response, exportParam, templatePath);
     }

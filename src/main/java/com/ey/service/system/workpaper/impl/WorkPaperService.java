@@ -101,6 +101,7 @@ public class WorkPaperService implements WorkPaperManager{
     public static final String PD_FIELD_OFLAG = "OFLAG";
 
     private static final String PD_FIELD_WP_TYPE = "WP_TYPE";
+	private static final String PD_FIELD_WP_TYPE_C = "WP_TYPE_C";
     private static final String PD_FIELD_FUND_ID = "FUND_ID";
     private static final String PD_FIELD_FIRM_CODE = "FIRM_CODE";
 
@@ -173,11 +174,12 @@ public class WorkPaperService implements WorkPaperManager{
 //	    pd = {
 //	        "FIRM_CODE": "FG",
 //	        "WP_TYPE": "C",
+//	        "WP_TYPE_C": "BJ",
 //	        "PERIOD": "20161231",
 //	        "OUTBOND_PATH": "D:\\wp\\",
 //	        "FUND_ID": "F100066-01"
 //	    }
-		String templatePath =configService.findByCode(Constants.WP_TEMAP_PATH);
+		String templatePath = Constants.getExportPath(configService.findByCode(Constants.WP_TEMAP_PATH),pd.getString("WP_TYPE_C"));
 	    String exportPath = pd.getString("OUTBOND_PATH");
 	    String tempExportPath = exportPath;
 	    int exportPathLength = exportPath.length();
