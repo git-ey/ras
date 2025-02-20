@@ -37,26 +37,26 @@ public class HExportService extends BaseExportService implements HExportManager{
     /**
      * 生成文件内容
      * @author Dai Zong 2017年10月17日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @param fundInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
+    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo, String templatePath) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
-        
+
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
-        
+
         dataMap.put("period", period);
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("fundInfo", fundInfo);
         dataMap.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
-        
+
         dataMap.put("H", this.getHData(fundId, periodStr));
         dataMap.put("H300", this.getH300Data(fundId, periodStr));
         dataMap.put("H400", this.getH400Data(fundId, periodStr));
@@ -64,32 +64,32 @@ public class HExportService extends BaseExportService implements HExportManager{
         dataMap.put("H800", this.getH800Data(fundId, periodStr));
         dataMap.put("H10000", this.getH10000Data(fundId, periodStr));
         dataMap.put("H11000", this.getH11000Data(fundId, periodStr));
-        
-        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H);
+
+        return FreeMarkerUtils.processTemplateToStrUseAbsPath(dataMap, templatePath, Constants.EXPORT_TEMPLATE_FILE_NAME_H);
     }
-    
+
 	@Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr, String templatePath) throws Exception {
 	    Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_H, fundInfo), xmlStr);
         return true;
     }
-	
+
 	@Override
-    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr, String templatePath) throws Exception {
 	    Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-	    String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+	    String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), xmlStr);
         return true;
     }
-	
+
 	/**
      * 获取基金额外属性
      * @author Dai Zong 2017年12月2日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -97,13 +97,13 @@ public class HExportService extends BaseExportService implements HExportManager{
      */
     private Map<String,Object> getExtraFundInfo(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectExtraFundInfo", queryMap);
         if(fundInfo == null) {
             fundInfo = new HashMap<>();
         }
-        
+
         Integer startYear = 2000, startMonth = 01, startDay = 01;
         if(fundInfo.get("dateFrom") != null) {
             String[] splits = String.valueOf(fundInfo.get("dateFrom")).split("-");
@@ -122,17 +122,17 @@ public class HExportService extends BaseExportService implements HExportManager{
                 ex.printStackTrace();
             }
         }
-        
+
         fundInfo.put("startYear", startYear);
         fundInfo.put("startMonth", startMonth);
         fundInfo.put("startDay", startDay);
         return fundInfo;
     }
-	
+
 	/**
      * 处理sheet页H的数据
      * @author Dai Zong 2017年12月11日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -141,7 +141,7 @@ public class HExportService extends BaseExportService implements HExportManager{
     private Map<String,Object> getHData(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectHData", queryMap);
         if(metaDataList == null) {
@@ -154,7 +154,7 @@ public class HExportService extends BaseExportService implements HExportManager{
             Map<String,Object> map = (Map<String,Object>)item;
             return String.valueOf(map.get("type"));
         })));
-        
+
         Map<String, List<Map<String, Object>>> temp = null;
         temp = groups.get("股票投资")==null ? new HashMap<>() : groups.get("股票投资");
         Map<String,Object> attr1 = CollectionUtils.isEmpty(temp.get("COST")) ? new HashMap<>() : temp.get("COST").get(0);
@@ -221,11 +221,11 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("attr27", attr27);
         return result;
     }
-    
+
     /**
      * 处理sheet页H300的数据
      * @author Dai Zong 2017年12月12日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -234,7 +234,7 @@ public class HExportService extends BaseExportService implements HExportManager{
     private Map<String,Object> getH300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        
+
         //========process dataMap for main view begin========
         Map<String, Object> main = new HashMap<>();
         @SuppressWarnings("unchecked")
@@ -290,7 +290,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         //========process dataMap for main view end========
         //========process dataMap for interestRatePeriods view begin========
         Map<String,Object> interestRatePeriod = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<String> periodMetaDataList = (List<String>)this.dao.findForList("HExportMapper.selectH300InterestRatePeriodsData", queryMap);
         if(periodMetaDataList == null) {
@@ -304,7 +304,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         Map<String,Object> H400 = new HashMap<>();
         Map<String,Object> H500 = new HashMap<>();
         Map<String,Object> MacH500 = new HashMap<>();
-        
+
         queryMap.put("related", "Y");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H400MetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH400MainData", queryMap);
@@ -323,7 +323,7 @@ public class HExportService extends BaseExportService implements HExportManager{
             H500MetaDataList = new ArrayList<>();
         }
         queryMap.remove("related");
-        
+
         H400.put("list", H400MetaDataList);
         H400.put("count", H400MetaDataList.size());
         H500.put("list", H500MetaDataList);
@@ -334,17 +334,17 @@ public class HExportService extends BaseExportService implements HExportManager{
         related.put("H500", H500);
         related.put("MacH500", MacH500);
         //========process dataMap for related view end========
-        
+
         result.put("main", main);
         result.put("interestRatePeriod", interestRatePeriod);
         result.put("related", related);
         return result;
     }
-    
+
     /**
      * 处理sheet页H400的数据
      * @author Dai Zong 2017年12月13日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -353,7 +353,7 @@ public class HExportService extends BaseExportService implements HExportManager{
     private Map<String,Object> getH400Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        
+
         Map<String, Object> main = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH400MainData", queryMap);
@@ -364,7 +364,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         main.put("count", mainMetaDataList.size());
         main.put("noteFlag", mainMetaDataList.stream().filter(item -> {return "期货".equals(item.get("type"));}).count()==0 ? "N" : "Y");
         result.put("main", main);
-        
+
         // 20221014irene新增摊余成本债基
         Map<String, Object> macMain = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
@@ -375,22 +375,22 @@ public class HExportService extends BaseExportService implements HExportManager{
         macMain.put("list", MacmainMetaDataList);
         macMain.put("count", MacmainMetaDataList.size());
         result.put("macMain", macMain);
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH400OptionData", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页H500的数据
      * @author Dai Zong 2017年12月13日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -399,7 +399,7 @@ public class HExportService extends BaseExportService implements HExportManager{
     private Map<String,Object> getH500Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        
+
         Map<String, Object> main = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> mainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH500MainData", queryMap);
@@ -441,13 +441,13 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         interestRatePeriod.put("list", periodMetaDataList);
         interestRatePeriod.put("count", periodMetaDataList.size());
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> diviatonMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH500DiviatonData", queryMap);
         if(diviatonMetaData == null) {
             diviatonMetaData = new HashMap<>();
         }
-        
+
         Map<String, Object> lastQueryMap = this.createBaseQueryMap(fundId, this.getLastPeriodStr(periodStr));
         @SuppressWarnings("unchecked")
         Map<String,Object> lastDiviatonMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH500DiviatonData", lastQueryMap);
@@ -455,12 +455,12 @@ public class HExportService extends BaseExportService implements HExportManager{
         	lastDiviatonMetaData = new HashMap<>();
         }
         diviatonMetaData.put("lastDiviatonEy", lastDiviatonMetaData.get("diviatonEy"));
-        
+
         result.put("diviaton", diviatonMetaData);
         result.put("interestRatePeriod", interestRatePeriod);
         return result;
     }
-    
+
     /**
      * 根据本期的PeriodStr获取上期的PeriodStr
      * @param periodStr 本期PeriodStr
@@ -469,11 +469,11 @@ public class HExportService extends BaseExportService implements HExportManager{
     private String getLastPeriodStr(String periodStr) {
     	return String.valueOf(Integer.parseInt(periodStr.substring(0, 4)) - 1) + periodStr.substring(4);
     }
-    
+
     /**
      * 处理sheet页H800的数据
      * @author Dai Zong 2017年12月14日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -482,7 +482,7 @@ public class HExportService extends BaseExportService implements HExportManager{
     private Map<String,Object> getH800Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        
+
         //========process dataMap for main view begin========
         Map<String, Object> main = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
@@ -493,7 +493,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         main.put("list", mainMetaDataList);
         main.put("count", mainMetaDataList.size());
         //========process dataMap for main view end========
-        
+
         //========process dataMap for H800 view begin========
         Map<String, Object> TMPL = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
@@ -548,7 +548,7 @@ public class HExportService extends BaseExportService implements HExportManager{
             intestSummaryMetaData = new HashMap<>();
         }
         //========process dataMap for intestSummary view end========
-        
+
         //========process dataMap for interestDetail view begin========
         Map<String, Object> interestDetail = new HashMap<String,Object>();
         List<Map<String, Object>> headLists = new ArrayList<>();
@@ -576,7 +576,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         interestDetail.put("heads", headLists);
         interestDetail.put("headsCount", headLists.size());
         //========process dataMap for interestDetail view end========
-        
+
         //========process dataMap for intRiskPeriod view begin========
         Map<String, Object> intRiskPeriod = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
@@ -587,7 +587,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         intRiskPeriod.put("list", intRiskPeriodMetaDataList);
         intRiskPeriod.put("count", intRiskPeriodMetaDataList.size());
         //========process dataMap for intRiskPeriod view end========
-        
+
         result.put("main", main);
         result.put("interestTest", interestTest);
         result.put("intestSummary", intestSummaryMetaData);
@@ -600,11 +600,11 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("TMPL", TMPL);
         return result;
     }
-    
+
     /**
      * 处理sheet页H10000的数据
      * @author Dai Zong 2017年12月15日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -612,13 +612,13 @@ public class HExportService extends BaseExportService implements HExportManager{
      */
     private Map<String,Object> getH10000Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        Map<String, Object> lastQueryMap = new HashMap<String,Object>(); 
+        Map<String, Object> lastQueryMap = new HashMap<String,Object>();
         queryMap.forEach((k,v) -> {
             lastQueryMap.put(k, v);
         });
         lastQueryMap.put("period", (Integer.parseInt(String.valueOf(lastQueryMap.get("period")).substring(0, 4)) - 1) + "1231");
         Map<String, Object> result = new HashMap<String,Object>();
-		
+
         //========process dataMap for note view begin========
         @SuppressWarnings("unchecked")
         Map<String,Object> noteMetaData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectHNoteAData", queryMap);
@@ -626,7 +626,7 @@ public class HExportService extends BaseExportService implements HExportManager{
             noteMetaData = new HashMap<>();
         }
         //========process dataMap for note view end========
-        
+
         //========process dataMap for TFA view begin========
         Map<String, Object> TFA = new HashMap<String,Object>();
         Map<String, Object> exchange = new HashMap<String,Object>();
@@ -645,20 +645,20 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         TFA.put("exchange", exchange);
         TFA.put("bank", bank);
-        
+
         Object dataSumCheckForWP = this.dao.findForObject("HExportMapper.checkIfH10000TFAHasDataForReport", queryMap);
         TFA.put("dataSumCheck", dataSumCheckForWP == null ? 0d : dataSumCheckForWP);
-        
+
 //        2018-12-18 偏离度合计改为直接由Excel公式计算,废弃此处代码
 //        Object diviatonEyCurrent = this.dao.findForObject("HExportMapper.selectH10000TFADiviatonSumData", queryMap);
 //        Object diviatonEyLast = this.dao.findForObject("HExportMapper.selectH10000TFADiviatonSumData", lastQueryMap);
 //        TFA.put("diviatonEyCurrent", diviatonEyCurrent);
 //        TFA.put("diviatonEyLast", diviatonEyLast);
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000NotBondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000TFANotBondDataForReport", queryMap);
         if(H10000NotBondDataList == null) {
-            H10000NotBondDataList = new ArrayList<>(); 
+            H10000NotBondDataList = new ArrayList<>();
         }
         Map<String,Object> assetBackedSecuritiesInvestment = new HashMap<>();
         for(Map<String,Object> map : H10000NotBondDataList) {
@@ -668,7 +668,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         TFA.put("assetBackedSecuritiesInvestment", assetBackedSecuritiesInvestment);
         //========process dataMap for TFA view end========
-        
+
         //========process dataMap for derivative view begin========
         Map<String, Object> derivative = new HashMap<String,Object>();
         Map<String, Object> item1 = new HashMap<String,Object>();
@@ -691,7 +691,7 @@ public class HExportService extends BaseExportService implements HExportManager{
                 item4 = map;
             }
         }
-        
+
         //chenhy,20231221,修改衍生工具取数逻辑
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> interestList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000InterestDerivativeData", queryMap);
@@ -723,7 +723,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         derivative.put("equityCount", equityList.size());
         derivative.put("otherCount", otherList.size());
         //========process dataMap for derivative view end========
-        
+
         //========process dataMap for futures view begin========
         Map<String, Object> futures = new HashMap<String,Object>();
         item1 = new HashMap<String,Object>();
@@ -736,7 +736,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         futures.put("list", futuresMetaDataList);
         futures.put("count", futuresMetaDataList.size());
-        
+
         for(Map<String,Object> map : futuresMetaDataList) {
             if("股指期货合约".equals(map.get("item"))) {
                 item1 = map;
@@ -750,12 +750,12 @@ public class HExportService extends BaseExportService implements HExportManager{
         futures.put("item2", item2);
         futures.put("item3", item3);
         //========process dataMap for futures view end========
-        
+
         //========process dataMap for rmcfs view begin========
 		//---chenhy,20220902,判断新老基金----
 		Map<String, Object> note = new HashMap<>();
         String note3Flag = "N";
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> fundDateInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectFundDateInfo", queryMap);
         // chenhy,20240223,新增基金和产品的区分
@@ -764,7 +764,7 @@ public class HExportService extends BaseExportService implements HExportManager{
             note3Flag = "Y";
         }
 		result.put("note3Flag", note3Flag);
-		
+
         Map<String, Object> rmcfs = new HashMap<String,Object>();
         item1 = new HashMap<String,Object>();
         item2 = new HashMap<String,Object>();
@@ -786,12 +786,12 @@ public class HExportService extends BaseExportService implements HExportManager{
 		Object rmcfsdataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000RmcfsHasDataForReport", queryMap);
         rmcfs.put("rmcfsdataSumCheck", rmcfsdataSumCheck == null ? 0d : rmcfsdataSumCheck);
         //========process dataMap for rmcfs view end========
-        
+
         //========process dataMap for interestDetail view begin========
         Map<String, Object> interestDetail = new HashMap<String,Object>();
         Map<String, Object> current = new HashMap<String,Object>();
         Map<String, Object> last = new HashMap<String,Object>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> currentInterestDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000InterestDetailData", queryMap);
         if(currentInterestDetailMetaDataList == null) {
@@ -799,13 +799,13 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         current.put("list", currentInterestDetailMetaDataList);
         current.put("count", currentInterestDetailMetaDataList.size());
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> lastInterestDetailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000InterestDetailData", lastQueryMap);
         if(lastInterestDetailMetaDataList == null) {
             lastInterestDetailMetaDataList = new ArrayList<>();
         }
-        
+
         SimpleDateFormat sdfin = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdfout = new SimpleDateFormat("yyyy年MM月dd日");
         String returnDays = currentInterestDetailMetaDataList.stream().map(item -> {
@@ -819,36 +819,36 @@ public class HExportService extends BaseExportService implements HExportManager{
                 return StringUtils.EMPTY;
             }
         }).distinct().collect(Collectors.joining("、"));
-        
+
         last.put("list", lastInterestDetailMetaDataList);
         last.put("count", lastInterestDetailMetaDataList.size());
-        
+
         interestDetail.put("current", current);
         interestDetail.put("last", last);
         interestDetail.put("returnDays", returnDays);
         //========process dataMap for interestDetail view end========
-        
+
         //========process dataMap for threeLevel view begin========
-        //========20220629新增========        
+        //========20220629新增========
         Map<String,Object> H10000 = new HashMap<>();
         Map<String,Object> threeLevel = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000ThreeLevelCurrentData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000ThreeLevelData", queryMap);
         if(H10000ThreeLevelCurrentData == null) {
-            H10000ThreeLevelCurrentData = new HashMap<>(); 
+            H10000ThreeLevelCurrentData = new HashMap<>();
         }
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000ThreeLevelLastData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000ThreeLevelData", lastQueryMap);
         if(H10000ThreeLevelLastData == null) {
-            H10000ThreeLevelLastData = new HashMap<>(); 
+            H10000ThreeLevelLastData = new HashMap<>();
         }
         threeLevel.put("current", H10000ThreeLevelCurrentData);
         threeLevel.put("last", H10000ThreeLevelLastData);
-        
+
         //========process dataMap for threeLevel view end========
 
-        //--------------------↓H10000.three_level_measurement_of_unobservable_input_values↓-------------------- 
+        //--------------------↓H10000.three_level_measurement_of_unobservable_input_values↓--------------------
         Map<String, Object> threeLevelMeasure0fUnobservableInput = new HashMap<>();
 
         Object weightedAvg = this.dao.findForObject("HExportMapper.selecteylomdthreeLevelWeightValues", queryMap);
@@ -858,8 +858,8 @@ public class HExportService extends BaseExportService implements HExportManager{
         threeLevelMeasure0fUnobservableInput.put("weightedAvgLast", weightedAvgLast);
 
 
-        //--------------------↑H10000.three_level_measurement_of_unobservable_input_values↑--------------------  
-        
+        //--------------------↑H10000.three_level_measurement_of_unobservable_input_values↑--------------------
+
         //=======20220620新增MAC========
         //========process dataMap for MAC view begin========
         Map<String, Object> MAC = new HashMap<String,Object>();
@@ -879,12 +879,12 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         MAC.put("exchange", macexchange);
         MAC.put("bank", macbank);
-        
-        
+
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000MACNotBondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000MacABSDataForReport", queryMap);
         if(H10000MACNotBondDataList == null) {
-            H10000MACNotBondDataList = new ArrayList<>(); 
+            H10000MACNotBondDataList = new ArrayList<>();
         }
         Map<String,Object> ABS = new HashMap<>();
         Map<String,Object> other = new HashMap<>();
@@ -907,7 +907,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> MacBadDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000MACBad", queryMap);
         if(MacBadDataList == null) {
-            MacBadDataList = new ArrayList<>(); 
+            MacBadDataList = new ArrayList<>();
         }
         Map<String,Object> temp = new HashMap<>();
         for(Map<String,Object> map : MacBadDataList) {
@@ -920,11 +920,11 @@ public class HExportService extends BaseExportService implements HExportManager{
         MACBad.put("item5", temp.get("本期转回")==null?new HashMap<String,Object>():temp.get("本期转回"));
         MACBad.put("item6", temp.get("其他变动")==null?new HashMap<String,Object>():temp.get("其他变动"));
         MACBad.put("item7", temp.get("期末余额")==null?new HashMap<String,Object>():temp.get("期末余额"));
-        
+
         //========process dataMap for MACBad view end========
-        
+
         //========process dataMap for threelevelchange view begin========
-        //========20220629新增========        
+        //========20220629新增========
         Map<String, Object> threelevelchange = new HashMap<>();
         Map<String,Object> BOND = new HashMap<>();
         Map<String,Object> STOCK = new HashMap<>();
@@ -947,13 +947,13 @@ public class HExportService extends BaseExportService implements HExportManager{
         List<Map<String,Object>> H10000ThreeLevelChangeDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeData", queryMap);
         if(H10000ThreeLevelChangeDataList == null) {
             H10000ThreeLevelChangeDataList = new ArrayList<>();
-        }     
+        }
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> H10000ThreeLevelChangeDataTypeHasDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.checkIfH10000ThreeLevelChangeHasDataForWP", queryMap);
         if(H10000ThreeLevelChangeDataTypeHasDataList == null) {
             H10000ThreeLevelChangeDataTypeHasDataList = new ArrayList<>();
-        }       
-        //20220628 irenewu修改  
+        }
+        //20220628 irenewu修改
         for(Map<String,Object> map : H10000ThreeLevelChangeDataTypeHasDataList) {
             if("BOND".equals(map.get("TYPE"))) {
                 item1 = map;
@@ -976,9 +976,9 @@ public class HExportService extends BaseExportService implements HExportManager{
         FUND.put("sum", item5);
         TOTAL.put("sum", item6);
 
-        
-        //20220628 irenewu修改  
-        
+
+        //20220628 irenewu修改
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -993,7 +993,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         List<Map<String,Object>> H10000ThreeLevelChangeBondDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeBondData", queryMap);
         if(H10000ThreeLevelChangeBondDataList == null) {
             H10000ThreeLevelChangeBondDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeBondDataList) {
             if("1".equals(map.get("SORT")) || "期初余额".equals(map.get("ITEM"))) {
                 item1 = map;
@@ -1027,7 +1027,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         BOND.put("item8",item8);
         BOND.put("item9",item9);
         BOND.put("item10",item10);
-        
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -1042,7 +1042,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         List<Map<String,Object>> H10000ThreeLevelChangeStockDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeStockData", queryMap);
         if(H10000ThreeLevelChangeStockDataList == null) {
             H10000ThreeLevelChangeStockDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeStockDataList) {
             if("1".equals(map.get("SORT")) || "期初余额".equals(map.get("ITEM"))) {
                 item1 = map;
@@ -1076,7 +1076,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         STOCK.put("item8",item8);
         STOCK.put("item9",item9);
         STOCK.put("item10",item10);
-        
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -1091,7 +1091,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         List<Map<String,Object>> H10000ThreeLevelChangeRepoDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeRepoData", queryMap);
         if(H10000ThreeLevelChangeRepoDataList == null) {
             H10000ThreeLevelChangeRepoDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeRepoDataList) {
             if("1".equals(map.get("SORT")) || "期初余额".equals(map.get("ITEM"))) {
                 item1 = map;
@@ -1125,7 +1125,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         REPO.put("item8",item8);
         REPO.put("item9",item9);
         REPO.put("item10",item10);
-        
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -1140,7 +1140,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         List<Map<String,Object>> H10000ThreeLevelChangeWarrantDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeWarrantData", queryMap);
         if(H10000ThreeLevelChangeWarrantDataList == null) {
             H10000ThreeLevelChangeWarrantDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeWarrantDataList) {
             if("1".equals(map.get("SORT")) || "期初余额".equals(map.get("ITEM"))) {
                 item1 = map;
@@ -1174,7 +1174,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         WARRANT.put("item8",item8);
         WARRANT.put("item9",item9);
         WARRANT.put("item10",item10);
-        
+
         item1 = new HashMap<>();
         item2 = new HashMap<>();
         item3 = new HashMap<>();
@@ -1189,7 +1189,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         List<Map<String,Object>> H10000ThreeLevelChangeFundDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeFundData", queryMap);
         if(H10000ThreeLevelChangeFundDataList == null) {
             H10000ThreeLevelChangeFundDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeFundDataList) {
             if("1".equals(map.get("SORT")) || "期初余额".equals(map.get("ITEM"))) {
                 item1 = map;
@@ -1238,7 +1238,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         List<Map<String,Object>> H10000ThreeLevelChangeTotalDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectH10000ThreeLevelChangeTotalData", queryMap);
         if(H10000ThreeLevelChangeTotalDataList == null) {
             H10000ThreeLevelChangeTotalDataList = new ArrayList<>();
-        }     
+        }
         for(Map<String,Object> map : H10000ThreeLevelChangeTotalDataList) {
             if("1".equals(map.get("SORT")) || "期初余额".equals(map.get("ITEM"))) {
                 item1 = map;
@@ -1276,9 +1276,9 @@ public class HExportService extends BaseExportService implements HExportManager{
         @SuppressWarnings("unchecked")
         Map<String,Object> H10000ThreeLevelChangeSumData = (Map<String,Object>)this.dao.findForObject("HExportMapper.selectH10000ThreeLevelChangeSumDataForReport", queryMap);
         if(H10000ThreeLevelChangeSumData == null) {
-            H10000ThreeLevelChangeSumData = new HashMap<>(); 
+            H10000ThreeLevelChangeSumData = new HashMap<>();
         }
-        
+
         threelevelchange.put("list", H10000ThreeLevelChangeDataList);
         threelevelchange.put("count", H10000ThreeLevelChangeDataList.size());
         threelevelchange.put("sum", H10000ThreeLevelChangeSumData);
@@ -1291,8 +1291,8 @@ public class HExportService extends BaseExportService implements HExportManager{
         Object dataSumCheck = this.dao.findForObject("HExportMapper.checkIfH10000ThreeLevelChangeHasDataForReport", queryMap);
         threelevelchange.put("dataSumCheck", dataSumCheck == null ? 0d : dataSumCheck);
         //========process dataMap for threeLevelchange view end========
-        
-        
+
+
         result.put("note", noteMetaData);
         result.put("TFA", TFA);
         result.put("derivative", derivative);
@@ -1300,17 +1300,17 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("rmcfs", rmcfs);
         result.put("interestDetail", interestDetail);
         result.put("MAC", MAC);  //20220620新增mac债权投资
-        result.put("MACBad", MACBad);  //20220620新增mac债权投资  
+        result.put("MACBad", MACBad);  //20220620新增mac债权投资
         result.put("threeLevel", threeLevel);//20220629新增三层次
-        result.put("threelevelchange", threelevelchange);//20220629新增三层次变动 
+        result.put("threelevelchange", threelevelchange);//20220629新增三层次变动
         result.put("threeLevelMeasure0fUnobservableInput", threeLevelMeasure0fUnobservableInput);//20240227 新增
         return result;
     }
-    
+
     /**
      * 处理sheet页H11000的数据
      * @author Dai Zong 2017年12月16日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -1320,7 +1320,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
         Map<String, Object> lastQueryMap = this.createBaseQueryMap(fundId, this.getLastPeriodStr(periodStr));
-        
+
         //========process dataMap for addition view begin========
         // Map<String, Object> additian = new HashMap<String,Object>();
         // @SuppressWarnings("unchecked")
@@ -1330,7 +1330,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         // }
         // additian.put("list", additianMetaDataList);
         // additian.put("count", additianMetaDataList.size());
-        
+
         // yury, 20200831, H11000拆分流通受限股票和债券
         Map<String, Object> additian = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
@@ -1348,9 +1348,9 @@ public class HExportService extends BaseExportService implements HExportManager{
         }
         additian.put("bondlist", additianMetaDataBondList);
         additian.put("bondcount", additianMetaDataBondList.size());
-        
+
         //========process dataMap for addition view end========
-        
+
         //========process dataMap for suspension view begin========
         Map<String, Object> suspension = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
@@ -1361,7 +1361,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         suspension.put("list", suspensionMetaDataList);
         suspension.put("count", suspensionMetaDataList.size());
         //========process dataMap for suspension view end========
-        
+
         //========process dataMap for saleIn view begin========
         Map<String, Object> saleIn = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
@@ -1372,7 +1372,7 @@ public class HExportService extends BaseExportService implements HExportManager{
         saleIn.put("list", saleInMetaDataList);
         saleIn.put("count", saleInMetaDataList.size());
         //========process dataMap for saleIn view end========
-        
+
         //========process dataMap for noteDates view begin========
         @SuppressWarnings("unchecked")
         List<String> noteDataList = (List<String>)this.dao.findForList("HExportMapper.selectH11000NoteData", queryMap);
@@ -1396,13 +1396,13 @@ public class HExportService extends BaseExportService implements HExportManager{
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> IRefinancingDataList = (List<Map<String,Object>>)this.dao.findForList("HExportMapper.selectIRefinancingData", queryMap);
         if(IRefinancingDataList == null) {
-            IRefinancingDataList = new ArrayList<>(); 
+            IRefinancingDataList = new ArrayList<>();
         }
-        
+
         IRefinancingData.put("list", IRefinancingDataList);
         IRefinancingData.put("Count", IRefinancingDataList.size());
         //--------------------selectIRefinancingData↑--------------------
-    
+
         result.put("additian", additian);
         result.put("suspension", suspension);
         result.put("saleIn", saleIn);
@@ -1410,5 +1410,5 @@ public class HExportService extends BaseExportService implements HExportManager{
         result.put("IRefinancingData", IRefinancingData);
         return result;
     }
-    
+
 }

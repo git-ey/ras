@@ -36,7 +36,7 @@ import com.google.common.collect.Maps;
 
 /**
  * 说明： 报告导出 创建人：andychen 创建时间：2017-12-05
- * 
+ *
  * @version
  */
 @Service("reportService")
@@ -63,7 +63,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 新增
-     * 
+     *
      * @param pd
      * @throws Exception
      */
@@ -74,7 +74,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 删除
-     * 
+     *
      * @param pd
      * @throws Exception
      */
@@ -85,7 +85,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 修改
-     * 
+     *
      * @param pd
      * @throws Exception
      */
@@ -96,7 +96,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 列表
-     * 
+     *
      * @param page
      * @throws Exception
      */
@@ -108,7 +108,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 列表(全部)
-     * 
+     *
      * @param pd
      * @throws Exception
      */
@@ -120,7 +120,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 通过id获取数据
-     * 
+     *
      * @param pd
      * @throws Exception
      */
@@ -131,7 +131,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 批量删除
-     * 
+     *
      * @param ArrayDATA_IDS
      * @throws Exception
      */
@@ -142,7 +142,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 列表段落模板
-     * 
+     *
      * @param paragraphCode
      * @throws Exception
      */
@@ -154,7 +154,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 列表段落模板(全部)
-     * 
+     *
      * @param pd
      * @throws Exception
      */
@@ -166,7 +166,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 根据报告导出参数获取基金
-     * 
+     *
      * @param pd
      * @return
      * @throws Exception
@@ -179,7 +179,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 获取日期年月日
-     * 
+     *
      * @param date
      * @return
      */
@@ -194,7 +194,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 获取报告日期信息
-     * 
+     *
      * @param period
      *            期间
      * @param dateFrom
@@ -202,7 +202,7 @@ public class ReportService implements ReportManager {
      * @param dateTransform
      * @param
      * @return
-     * 
+     *
      * 汇总：
      * CURRENT_BS_DATE       ：资产负债表日，格式：20201231，String类型
      * CURRENT_YEAR          ：资产负债表日的年，格式：2020，String类型
@@ -252,7 +252,7 @@ public class ReportService implements ReportManager {
         infoMap.put("CURRENT_YEAR_NUM", Integer.parseInt(year));
 
 
-        if ("产品".equals(fundType)){ 
+        if ("产品".equals(fundType)){
             // 本期起始日来源&&本期起始日文本
             if (DateUtils.truncatedCompareTo(dateFrom, yearFirstDate, Calendar.DATE) >= 0) {
                 if (dateTransform != null && DateUtils.truncatedEquals(dateFrom, dateTransform, Calendar.DATE)) {
@@ -267,7 +267,7 @@ public class ReportService implements ReportManager {
                 infoMap.put("CURRENT_INIT_TEXT", "资产负债表日");
             }
 
-        } else { 
+        } else {
             // 本期起始日来源&&本期起始日文本
             if (DateUtils.truncatedCompareTo(dateFrom, yearFirstDate, Calendar.DATE) >= 0) {
                 if (dateTransform != null && DateUtils.truncatedEquals(dateFrom, dateTransform, Calendar.DATE)) {
@@ -340,7 +340,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 获取上一期报告日期信息
-     * 
+     *
      * @param period
      *            当前期间
      * @param dateFrom
@@ -398,7 +398,7 @@ public class ReportService implements ReportManager {
 
     /**
      * 运行报告导出程序
-     * 
+     *
      * @param pd
      */
     public void exportReport(PageData pd) throws Exception {
@@ -414,7 +414,7 @@ public class ReportService implements ReportManager {
 
         // 报告导出模板根路径
         String reportTempRootPath = configService.findByCode(REP_TEMP_PATH);
-
+        String templatePath =configService.findByCode(Constants.WP_TEMAP_PATH);
         // 报告导出路径
         String reportOutBoundPath = pd.getString("OUTBOND_PATH");
         String reportOutBoundTempPath = reportOutBoundPath;
@@ -449,7 +449,7 @@ public class ReportService implements ReportManager {
                 // chenhy,20240223,新增基金和产品的区分
                 dateMap = this.getDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"),
                         (Date) pfund.get("DATE_TRANSFORM"),(String) pfund.get("FUND_TYPE"));
-                dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"), 
+                dateMapLast = this.getLastDateInfo(period, (Date) pfund.get("DATE_FROM"), (Date) pfund.get("DATE_TO"),
                         (Date) pfund.get("DATE_TRANSFORM"), (String) pfund.get("FUND_TYPE"));
 
                 // 日期DEBUG程序
@@ -515,7 +515,7 @@ public class ReportService implements ReportManager {
                 exportParam.put("REPTYPE", reptype); // 20200507,yury
                 // 开始导出
                 try {
-                    this.reportExportService.doExport(reportOutBoundTempPath, Constants.EXPORT_AIM_FILE_NAME_REPORT, exportParam);
+                    this.reportExportService.doExport(reportOutBoundTempPath, Constants.EXPORT_AIM_FILE_NAME_REPORT, exportParam, templatePath);
                 } catch (Exception ex) {
                     logger.error("报告导出异常: " + exportParam.toString(), ex);
                     errorMsg += (ex.getMessage() + '\n');
@@ -531,8 +531,8 @@ public class ReportService implements ReportManager {
             /* vbs创建文件夹时不能自动创建父级,因此手工创建一个父级目录 */
             FileExportUtils.createDir(reportOutBoundPath + File.separatorChar + firmCode);
             VbsUtil.callScript(
-                            Scripts.WORKPAPER_AND_REPORT_CONVERTER, 
-                            reportOutBoundTempPath + File.separatorChar + firmCode, 
+                            Scripts.WORKPAPER_AND_REPORT_CONVERTER,
+                            reportOutBoundTempPath + File.separatorChar + firmCode,
                             reportOutBoundPath + File.separatorChar + firmCode
                         );
             // ↑ daigaokuo@hotmail.com 2019-03-18 ↑
@@ -546,7 +546,7 @@ public class ReportService implements ReportManager {
     /**
      * 导出单个报告到HttpResponse
      * @author Dai Zong 2018年3月13日
-     * 
+     *
      * @param request
      * @param response
      * @param pd
@@ -568,7 +568,7 @@ public class ReportService implements ReportManager {
 
         // 报告导出模板根路径
         String reportTempRootPath = configService.findByCode(REP_TEMP_PATH);
-
+        String templatePath =configService.findByCode(Constants.WP_TEMAP_PATH);
         // 根据配置代码获取信息
         PageData p1 = dictionariesManager.findByCode("P1_FSO_SH");
         PageData p2 = dictionariesManager.findByCode("P2_FSO_TY");
@@ -634,7 +634,7 @@ public class ReportService implements ReportManager {
         exportParam.put("reportTempRootPath", reportTempRootPath);
         exportParam.put("REPTYPE", repType.toString()); // 20200507,yury
         // 开始导出
-        this.reportExportService.doExport(request, response, exportParam);
+        this.reportExportService.doExport(request, response, exportParam, templatePath);
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.ey.service.system.config.ConfigManager;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ import com.ey.util.VbsUtil.Scripts;
 import com.ey.util.fileexport.Constants;
 import com.ey.util.fileexport.FileExportUtils;
 
-/** 
+/**
  * 说明： 底稿导出工作台
  * 创建人：andychen
  * 创建时间：2018-01-01
@@ -43,7 +44,7 @@ public class WorkPaperService implements WorkPaperManager{
 
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
-	
+
 	// 底稿C
     @Resource(name = "cExportService")
     private CExportManager cExportService;
@@ -83,7 +84,9 @@ public class WorkPaperService implements WorkPaperManager{
     // 底稿O
     @Resource(name = "saExportService")
     private SAExportManager saExportService;
-    
+	@Resource(name = "configService")
+	private ConfigManager configService;
+
     //FLAG字段名，导出用
     public static final String PD_FIELD_CFLAG = "CFLAG";
     public static final String PD_FIELD_EFLAG = "EFLAG";
@@ -96,13 +99,13 @@ public class WorkPaperService implements WorkPaperManager{
     public static final String PD_FIELD_VFLAG = "VFLAG";
     public static final String PD_FIELD_IFLAG = "IFLAG";
     public static final String PD_FIELD_OFLAG = "OFLAG";
-    
+
     private static final String PD_FIELD_WP_TYPE = "WP_TYPE";
     private static final String PD_FIELD_FUND_ID = "FUND_ID";
     private static final String PD_FIELD_FIRM_CODE = "FIRM_CODE";
-    
+
     private final Logger logger = Logger.getLogger(WorkPaperService.class);
-	
+
 	/**新增
 	 * @param pd
 	 * @throws Exception
@@ -110,7 +113,7 @@ public class WorkPaperService implements WorkPaperManager{
 	public void save(PageData pd)throws Exception{
 		dao.save("WorkPaperMapper.save", pd);
 	}
-	
+
 	/**删除
 	 * @param pd
 	 * @throws Exception
@@ -118,7 +121,7 @@ public class WorkPaperService implements WorkPaperManager{
 	public void delete(PageData pd)throws Exception{
 		dao.delete("WorkPaperMapper.delete", pd);
 	}
-	
+
 	/**修改
 	 * @param pd
 	 * @throws Exception
@@ -126,7 +129,7 @@ public class WorkPaperService implements WorkPaperManager{
 	public void edit(PageData pd)throws Exception{
 		dao.update("WorkPaperMapper.edit", pd);
 	}
-	
+
 	/**列表
 	 * @param page
 	 * @throws Exception
@@ -135,7 +138,7 @@ public class WorkPaperService implements WorkPaperManager{
 	public List<PageData> list(Page page)throws Exception{
 		return (List<PageData>)dao.findForList("WorkPaperMapper.datalistPage", page);
 	}
-	
+
 	/**列表(全部)
 	 * @param pd
 	 * @throws Exception
@@ -144,7 +147,7 @@ public class WorkPaperService implements WorkPaperManager{
 	public List<PageData> listAll(PageData pd)throws Exception{
 		return (List<PageData>)dao.findForList("WorkPaperMapper.listAll", pd);
 	}
-	
+
 	/**通过id获取数据
 	 * @param pd
 	 * @throws Exception
@@ -152,7 +155,7 @@ public class WorkPaperService implements WorkPaperManager{
 	public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("WorkPaperMapper.findById", pd);
 	}
-	
+
 	/**批量删除
 	 * @param ArrayDATA_IDS
 	 * @throws Exception
@@ -160,10 +163,10 @@ public class WorkPaperService implements WorkPaperManager{
 	public void deleteAll(String[] ArrayDATA_IDS)throws Exception{
 		dao.delete("WorkPaperMapper.deleteAll", ArrayDATA_IDS);
 	}
-	
+
 	/**
 	 * 运行底稿导出程序
-	 * 
+	 *
 	 * @param pd
 	 */
 	public void exportWorkPaper(PageData pd) throws Exception {
@@ -174,6 +177,7 @@ public class WorkPaperService implements WorkPaperManager{
 //	        "OUTBOND_PATH": "D:\\wp\\",
 //	        "FUND_ID": "F100066-01"
 //	    }
+		String templatePath =configService.findByCode(Constants.WP_TEMAP_PATH);
 	    String exportPath = pd.getString("OUTBOND_PATH");
 	    String tempExportPath = exportPath;
 	    int exportPathLength = exportPath.length();
@@ -188,7 +192,7 @@ public class WorkPaperService implements WorkPaperManager{
 	        String errorMsg = StringUtils.EMPTY;
 	        for(PageData fundInfo : fundInfos) {
 	            try {
-	                this.exportOneFundWorkPaper(fundInfo, tempExportPath, periodStr, pd.getString(PD_FIELD_WP_TYPE));
+	                this.exportOneFundWorkPaper(fundInfo, tempExportPath, periodStr, pd.getString(PD_FIELD_WP_TYPE), templatePath);
 	            }catch (Exception ex) {
 	                logger.error("底稿导出异常: " + fundInfo.getString("FUND_ID") + " " + fundInfo.getString("PERIOD"), ex);
 	                errorMsg += (ex.getMessage() + '\n');
@@ -200,7 +204,7 @@ public class WorkPaperService implements WorkPaperManager{
 	                // [IMP] 最终输出文件夹路径中添加firm code
 		            String hSumExportPath = tempExportPath + (periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE) + File.separatorChar + "H_SUM" + File.separatorChar);
 		            // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
-		            this.hSumExportService.doExport(hSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr);
+		            this.hSumExportService.doExport(hSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_H_SUM, pd.getString("FIRM_CODE"), periodStr, templatePath);
 	        	}
 	        }catch (Exception ex) {
 	            logger.error("H汇总底稿导出异常: " + pd.getString("FIRM_CODE") + " " + periodStr, ex);
@@ -212,7 +216,7 @@ public class WorkPaperService implements WorkPaperManager{
 	                // [IMP] 最终输出文件夹路径中添加firm code
 	                String saSumExportPath = tempExportPath + (periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE) + File.separatorChar + "SA" + File.separatorChar);
 	                // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
-                    this.saExportService.doExport(saSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_SA, pd.getString("FIRM_CODE"), periodStr);
+                    this.saExportService.doExport(saSumExportPath, (Object)Constants.EXPORT_AIM_FILE_NAME_SA, pd.getString("FIRM_CODE"), periodStr, templatePath);
                 }
 	        }catch (Exception ex) {
                 logger.error("SA汇总底稿导出异常: " + pd.getString("FIRM_CODE") + " " + periodStr, ex);
@@ -227,8 +231,8 @@ public class WorkPaperService implements WorkPaperManager{
 	        /* vbs创建文件夹时不能自动创建父级,因此手工创建一个父级目录 */
 	        FileExportUtils.createDir(exportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE));
 	        VbsUtil.callScript(
-	                        Scripts.WORKPAPER_AND_REPORT_CONVERTER, 
-	                        tempExportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE), 
+	                        Scripts.WORKPAPER_AND_REPORT_CONVERTER,
+	                        tempExportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE),
 	                        exportPath + periodStr + File.separatorChar + pd.getString(PD_FIELD_FIRM_CODE)
                         );
 	        // ↑ daigaokuo@hotmail.com 2019-03-18 ↑
@@ -237,18 +241,18 @@ public class WorkPaperService implements WorkPaperManager{
 	    // 设置消息
         pd.put("RESULT", "S");
 	}
-	
+
 	/**
 	 * 导出一个基金下所有可输出的底稿
 	 * @author Dai Zong 2018年1月2日
-	 * 
+	 *
 	 * @param pd 从DataexportMapper中查询出的运行参数
 	 * @param exportPath 导出路径
 	 * @param periodStr 日期字符串
 	 * @param wpType 指定导出类型
 	 * @throws Exception
 	 */
-	private void exportOneFundWorkPaper(PageData pd, String exportPath, String periodStr, String wpType) throws Exception {
+	private void exportOneFundWorkPaper(PageData pd, String exportPath, String periodStr, String wpType, String templatePath) throws Exception {
         final String fundId = pd.getString(PD_FIELD_FUND_ID);
         final String firmCode = pd.getString(PD_FIELD_FIRM_CODE);
         exportPath += (periodStr + File.separatorChar) ;
@@ -257,47 +261,47 @@ public class WorkPaperService implements WorkPaperManager{
         final String folderName = exportPath + firmCode + File.separatorChar + fundId;
         // ↑ daigaokuo@hotmail.com 2019-02-13 ↑
         if (this.getExportFlag(pd, PD_FIELD_CFLAG) && ("全部底稿".equals(wpType) || "C".equals(wpType))) {
-            this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr);
+            this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_GFLAG) && ("全部底稿".equals(wpType) || "G".equals(wpType))) {
-            this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, periodStr);
+            this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_NFLAG) && ("全部底稿".equals(wpType) || "N".equals(wpType))) {
-            this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, periodStr);
+            this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_PFLAG) && ("全部底稿".equals(wpType) || "P".equals(wpType))) {
-            this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, periodStr);
+            this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_EFLAG) && ("全部底稿".equals(wpType) || "E".equals(wpType))) {
-            this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr);
+            this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_UFLAG) && ("全部底稿".equals(wpType) || "U".equals(wpType))) {
-            this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
+            this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_VFLAG) && ("全部底稿".equals(wpType) || "V".equals(wpType))) {
-            this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr);
+            this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_TFLAG) && ("全部底稿".equals(wpType) || "T".equals(wpType))) {
-            this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);
+            this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_HFLAG) && ("全部底稿".equals(wpType) || "H".equals(wpType))) {
-            this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);
+            this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_IFLAG) && ("全部底稿".equals(wpType) || "I".equals(wpType))) {
-            this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);
+            this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(pd, PD_FIELD_OFLAG) && ("全部底稿".equals(wpType) || "O".equals(wpType))) {
-            this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);
+            this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr, templatePath);
         }
         // if (this.getExportFlag(pd, PD_FIELD_OFLAG) && (StringUtils.isEmpty(wpType) || "O".equals(wpType))) {
         //     this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);
         // }
 	}
-	
+
 	/**
 	 * 从pd中获取是否应该输出该底稿
 	 * @author Dai Zong 2018年1月2日
-	 * 
+	 *
 	 * @param pd
 	 * @param flagFeild
 	 * @return
@@ -313,6 +317,6 @@ public class WorkPaperService implements WorkPaperManager{
 	        return Integer.parseInt(String.valueOf(obj)) > 0 ? true : false;
 	    }
 	}
-	
+
 }
 

@@ -30,29 +30,29 @@ public class UExportService extends BaseExportService implements UExportManager 
 
     @Resource(name = "reportService")
     private ReportManager reportService;
-   
+
     /**
      * 生成文件内容
      * @author Dai Zong 2017年11月1日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @param fundInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
+    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo, String templatePath) throws Exception {
         Map<String, Object> dataMap = new HashMap<>();
-        
+
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
-        
+
         dataMap.put("period", period);
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("fundInfo", fundInfo);
-        
+
         dataMap.put("U", this.getUData(fundId, periodStr));
         dataMap.put("U300", this.getU300Data(fundId, periodStr));
         dataMap.put("U320", this.getU320Data(fundId, periodStr));
@@ -65,31 +65,31 @@ public class UExportService extends BaseExportService implements UExportManager 
         dataMap.put("U1000", this.getU1000Data(fundId, periodStr));
         dataMap.put("U10000", this.getU10000Data(fundId, periodStr));
 
-        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_U);
+        return FreeMarkerUtils.processTemplateToStrUseAbsPath(dataMap, templatePath, Constants.EXPORT_TEMPLATE_FILE_NAME_U);
     }
 
     @Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr, String templatePath) throws Exception {
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_U, fundInfo), xmlStr);
         return true;
     }
 
     @Override
-    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr, String templatePath) throws Exception {
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), xmlStr);
         return true;
     }
-    
+
     /**
      * 处理sheet页U的数据
      * @author Dai Zong 2017年11月2日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -98,13 +98,13 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getUData(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> UMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectUData", queryMap);
         if(UMetaDataList == null) {
-            UMetaDataList = new ArrayList<>(); 
+            UMetaDataList = new ArrayList<>();
         }
-        
+
         Map<String,Object> M6011 = new HashMap<>();
         M6011.put("S1", new HashMap<>());
         M6011.put("S2", new HashMap<>());
@@ -112,7 +112,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         M6011.put("S4", new HashMap<>());
         M6011.put("S45", new HashMap<>()); // yury,20200901,U Lead新增证券出借业务
         M6011.put("S5", new HashMap<>());
-        
+
         Map<String,Object> M6111 = new HashMap<>();
         M6111.put("S1", new HashMap<>());
         M6111.put("S2", new HashMap<>());
@@ -122,7 +122,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         M6111.put("S6", new HashMap<>());
         M6111.put("S7", new HashMap<>());
         M6111.put("S8", new HashMap<>()); // linnea,20220920,U I9新增
-        
+
         result.put("KM6101", new HashMap<>());
         result.put("KM6302", new HashMap<>());
         result.put("KM6403", new HashMap<>());
@@ -195,7 +195,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         //         }else if("债券利息收入".equals(map.get("item"))) {
         //             M6011.put("S2", map);
         //         }else if("资产支持证券利息收入".equals(map.get("item"))) {
-        //             M6011.put("S3", map);                
+        //             M6011.put("S3", map);
         //         }else if("买入返售金融资产收入".equals(map.get("item"))) {
         //             M6011.put("S4", map);
         //         }else if("其他利息收入".equals(map.get("item"))) {
@@ -221,17 +221,17 @@ public class UExportService extends BaseExportService implements UExportManager 
         //         result.put("KM" + map.get("accountNum"), map);
         //     }
         }
-        
+
         result.put("KM6011", M6011);
         result.put("KM6111", M6111);
-        
+
         return result;
     }
-    
+
     /**
      * 处理sheet页U300的数据
      * @author Dai Zong 2017年11月4日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -240,12 +240,12 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getU300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         Map<String, Object> main = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U300MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU300MainData", queryMap);
         if(U300MainMetaDataList == null) {
-            U300MainMetaDataList = new ArrayList<>(); 
+            U300MainMetaDataList = new ArrayList<>();
         }
         Map<String,Object> temp = new HashMap<>();
         // for(Map<String,Object> map : U300MainMetaDataList) {
@@ -264,7 +264,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         // main.put("S11", temp.get("买入返售金融资产收入")==null?new HashMap<>():temp.get("买入返售金融资产收入"));
         // main.put("S12", temp.get("其他利息收入")==null?new HashMap<>():temp.get("其他利息收入"));
         // main.put("S13", temp.get("其他投资收益")==null?new HashMap<>():temp.get("其他投资收益"));// linnea,20220920,U I9新增
-        
+
         // linnea,20220920,U I9新增
         main.put("S1", new HashMap<>());
         main.put("S2", new HashMap<>());
@@ -283,7 +283,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         main.put("S11", new HashMap<>());
         main.put("S12", new HashMap<>());
         main.put("S13", new HashMap<>());
-        
+
         for(Map<String,Object> map : U300MainMetaDataList) {
             switch ((String)map.get("item")){
                 case "股票投资收益":
@@ -345,7 +345,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> C410DataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectC410Data", queryMap);
         if(C410DataList == null) {
-            C410DataList = new ArrayList<>(); 
+            C410DataList = new ArrayList<>();
         }
         C410.put("list", C410DataList);
         C410.put("count", C410DataList.size());
@@ -355,7 +355,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U300DividendMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU300DividendData", queryMap);
         if(U300DividendMetaDataList == null) {
-            U300DividendMetaDataList = new ArrayList<>(); 
+            U300DividendMetaDataList = new ArrayList<>();
         }
         temp = new HashMap<>();
         for(Map<String,Object> map : U300DividendMetaDataList) {
@@ -364,12 +364,12 @@ public class UExportService extends BaseExportService implements UExportManager 
         dividend.put("S1", temp.get("股票")==null?new HashMap<>():temp.get("股票"));
         dividend.put("S15", temp.get("证券出借")==null?new HashMap<>():temp.get("证券出借")); // yury,20200911,U300新增证券出借业务
         dividend.put("S2", temp.get("基金")==null?new HashMap<>():temp.get("基金"));
-        
+
         Map<String, Object> interest = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U300InterestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU300InterestData", queryMap);
         if(U300InterestMetaDataList == null) {
-            U300InterestMetaDataList = new ArrayList<>(); 
+            U300InterestMetaDataList = new ArrayList<>();
         }
 
         interest.put("S2", new HashMap<>());
@@ -382,18 +382,18 @@ public class UExportService extends BaseExportService implements UExportManager 
         interest.put("S3", temp.get("其他存款利息收入")==null?new HashMap<>():temp.get("其他存款利息收入"));
         interest.put("S4", temp.get("结算备付金利息收入")==null?new HashMap<>():temp.get("结算备付金利息收入"));
         interest.put("S5", temp.get("其他")==null?new HashMap<>():temp.get("其他"));
-        
+
         result.put("main", main);
         result.put("C410", C410);
         result.put("dividend", dividend);
         result.put("interest", interest);
         return result;
     }
-    
+
     /**
      * 处理sheet页U320的数据
      * @author Dai Zong 2017年11月7日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -402,15 +402,15 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getU320Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         String finSys = (String)this.dao.findForObject("UExportMapper.selectFinSys", queryMap);
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U320MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU320Data", queryMap);
         if(U320MetaDataList == null) {
-            U320MetaDataList = new ArrayList<>(); 
+            U320MetaDataList = new ArrayList<>();
         }
-        
+
         result.put("finSys", finSys);
         result.put("list", U320MetaDataList);
         result.put("count", U320MetaDataList.size());
@@ -420,7 +420,7 @@ public class UExportService extends BaseExportService implements UExportManager 
     /**
      * 处理sheet页U400的数据
      * @author Dai Zong 2017年11月4日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -429,13 +429,13 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getU400Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U400MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU400Data", queryMap);
         if(U400MetaDataList == null) {
-            U400MetaDataList = new ArrayList<>(); 
+            U400MetaDataList = new ArrayList<>();
         }
-        
+
         Map<String,Object> temp = new HashMap<>();
         for(Map<String,Object> map : U400MetaDataList) {
             temp.put(String.valueOf(map.get("item")), map);
@@ -445,14 +445,14 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("S3", temp.get("印花税返还收入")==null?new HashMap<>():temp.get("印花税返还收入"));
         result.put("S5", temp.get("销售服务费返还")==null?new HashMap<>():temp.get("销售服务费返还"));
         result.put("S4", temp.get("其他")==null?new HashMap<>():temp.get("其他"));
-        
+
         return result;
     }
-    
+
     /**
      * 处理sheet页U500的数据
      * @author Dai Zong 2017年11月4日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -461,11 +461,11 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getU500Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         Map<String, Object> main = new HashMap<>();
         Map<String, Object> KM6111 = new HashMap<>();
         Map<String, Object> KM6411 = new HashMap<>();
-        
+
         KM6111.put("S1", new HashMap<>());
         KM6111.put("S2", new HashMap<>());
         KM6111.put("S3", new HashMap<>());
@@ -478,9 +478,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U500MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU500MainData", queryMap);
         if(U500MainMetaDataList == null) {
-            U500MainMetaDataList = new ArrayList<>(); 
+            U500MainMetaDataList = new ArrayList<>();
         }
-        
+
         for(Map<String,Object> map : U500MainMetaDataList) {
             if("6111".equals(map.get("accountNum"))){
                 switch ((String)map.get("subType")){
@@ -511,21 +511,21 @@ public class UExportService extends BaseExportService implements UExportManager 
                 }
             }
         }
-            
+
         main.put("KM6111", KM6111);
         main.put("KM6411", KM6411);
-        
+
         Map<String, Object> trxFee = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U500TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU500TrxFeeData", queryMap);
         if(U500TrxFeeMetaDataList == null) {
-            U500TrxFeeMetaDataList = new ArrayList<>(); 
+            U500TrxFeeMetaDataList = new ArrayList<>();
         }
         Map<String,Object> temp = new HashMap<>();
         for(Map<String,Object> map : U500TrxFeeMetaDataList) {
             temp.put(String.valueOf(map.get("market")), map);
         }
-        
+
         trxFee.put("SH", temp.get("上交所") ==null?new HashMap<>():temp.get("上交所"));
         trxFee.put("SZ", temp.get("深交所") ==null?new HashMap<>():temp.get("深交所"));
         // trxFee.put("SH", temp.get("上海证券交易所") ==null?new HashMap<>():temp.get("上海证券交易所"));
@@ -533,7 +533,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         // yury，20201112，U500交易费用测试或新股配售修改
         trxFee.put("SHH", temp.get("沪港通") ==null?new HashMap<>():temp.get("沪港通"));
         trxFee.put("SZH", temp.get("深港通") ==null?new HashMap<>():temp.get("深港通"));
-        
+
         // chenhy，20231206，修改U330为浮动行
         List<Map<String,Object>> U500TrxFeeMetaDataSHList = new ArrayList<>();
         List<Map<String,Object>> U500TrxFeeMetaDataSZList = new ArrayList<>();
@@ -544,7 +544,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         int U500TrxFeeMetaDataSZListCount = 0;
         int U500TrxFeeMetaDataBJListCount = 0;
         int U500TrxFeeMetaDataHKListCount = 0;
-        
+
         for(Map<String,Object> map : U500TrxFeeMetaDataList) {
             if("上交所".equals(map.get("market"))) {
                 U500TrxFeeMetaDataSHList.add(map);
@@ -556,7 +556,7 @@ public class UExportService extends BaseExportService implements UExportManager 
                 U500TrxFeeMetaDataHKList.add(map);
             }
         }
-		
+
         U500TrxFeeMetaDataSHListCount = U500TrxFeeMetaDataSHList.size();
         U500TrxFeeMetaDataSZListCount = U500TrxFeeMetaDataSZList.size();
         U500TrxFeeMetaDataBJListCount = U500TrxFeeMetaDataBJList.size();
@@ -585,7 +585,7 @@ public class UExportService extends BaseExportService implements UExportManager 
             test.put("commission", U500TestMetaDataList.get(0).get("commission"));
             test.put("perClient", U500TestMetaDataList.get(0).get("perClient"));
         }
-        
+
         // yury,20201112,U500交易费用测试或新股配售修改
         Map<String, Object> iposubscribe = new HashMap<>();
         iposubscribe.put("iposubscribeamount", 0);
@@ -603,11 +603,11 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("test", test);
         return result;
     }
-    
+
     /**
      * 处理sheet页U600的数据
      * @author Dai Zong 2017年11月4日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -616,39 +616,39 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getU600Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         List<Object> list = new ArrayList<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U600MetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU600Data", queryMap);
         if(U600MetaDataList == null) {
-            U600MetaDataList = new ArrayList<>(); 
+            U600MetaDataList = new ArrayList<>();
         }
-        
+
         Map<String,Object> temp = new HashMap<>();
         for(Map<String,Object> map : U600MetaDataList) {
             temp.put(String.valueOf(map.get("item")), map);
         }
-        
+
         result.put("S1", temp.get("审计费用")==null?new HashMap<>():temp.get("审计费用"));
         result.put("S2", temp.get("信息披露费")==null?new HashMap<>():temp.get("信息披露费"));
-        
+
         temp.remove("审计费用");
         temp.remove("信息披露费");
-        
+
         temp.forEach((k,v) -> {
             list.add(v);
         });
-        
+
         result.put("list", list);
         result.put("count", list.size());
-        
+
         String testFlag = "N";
         if(temp.get("指数使用费") != null) {
             testFlag = "Y";
         }
         result.put("testFlag", testFlag);
-        
+
 //        result.put("S3", temp.get("上市年费")==null?new HashMap<>():temp.get("上市年费"));
 //        result.put("S4", temp.get("分红手续费")==null?new HashMap<>():temp.get("分红手续费"));
 //        result.put("S5", temp.get("指数使用费")==null?new HashMap<>():temp.get("指数使用费"));
@@ -660,11 +660,11 @@ public class UExportService extends BaseExportService implements UExportManager 
 
         return result;
     }
-    
+
     /**
      * 处理sheet页U600Test的数据
      * @author Dai Zong 2017年11月24日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -673,29 +673,29 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getU600TestData(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> U600TestDetailData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU600TestData", queryMap);
         if(U600TestDetailData == null) {
             U600TestDetailData = new HashMap<>();
         }
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> fundIndexfeeRate = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU600IndexFeeRateData", queryMap);
         if(fundIndexfeeRate == null) {
             fundIndexfeeRate = new HashMap<>();
         }
-        
+
         result.put("detail", U600TestDetailData);
         result.put("fundIndexfeeRate", fundIndexfeeRate);
-        
+
         return result;
     }
-    
+
     /**
      * 处理sheet页U800的数据
      * @author Dai Zong 2018年12月23日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -704,20 +704,20 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getU800Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         Map<String, Object> CJFFJ = new HashMap<>(); // 城建费附加
         Map<String, Object> JYFJ = new HashMap<>(); // 教育附加
         Map<String, Object> DFJYFJ = new HashMap<>(); // 地方教育附加
         Map<String, Object> CJFFJ_WSX = new HashMap<>(); // 城建费附加_未实现
         Map<String, Object> JYFJ_WSX = new HashMap<>(); // 教育附加_未实现
         Map<String, Object> DFJYFJ_WSX = new HashMap<>(); // 地方教育附加_未实现
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U800Data = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU800Data", queryMap);
         if(U800Data == null) {
         	U800Data = Collections.emptyList();
         }
-        
+
         for(Map<String,Object> item : U800Data) {
         	if("城建费附加".equals(item.get("itemName"))) {
         		CJFFJ = item;
@@ -733,21 +733,21 @@ public class UExportService extends BaseExportService implements UExportManager 
         		DFJYFJ_WSX = item;
         	}
         }
-        
+
         result.put("CJFFJ", CJFFJ);
         result.put("JYFJ", JYFJ);
         result.put("DFJYFJ", DFJYFJ);
         result.put("CJFFJ_WSX", CJFFJ_WSX);
         result.put("JYFJ_WSX", JYFJ_WSX);
         result.put("DFJYFJ_WSX", DFJYFJ_WSX);
-        
+
         return result;
     }
-    
+
     /**
      * 处理sheet页U900的数据
      * @author Dai Zong 2018年12月23日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -756,7 +756,7 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getU900Data(String fundId, String periodStr) throws Exception{
     	Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
     	Map<String, Object> result = new HashMap<>();
-    	
+
     	Map<String, Object> I1010 = new HashMap<>();// ——股票投资
     	Map<String, Object> I1020 = new HashMap<>();// ——债券投资
     	Map<String, Object> I1030 = new HashMap<>();// ——资产支持证券投资
@@ -770,13 +770,13 @@ public class UExportService extends BaseExportService implements UExportManager 
     	// since 2019-01-26
     	// author dai zong
     	List<Map<String,Object>> I20List = new ArrayList<>();
-    	
+
     	@SuppressWarnings("unchecked")
     	List<Map<String,Object>> U900Data = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU900Data", queryMap);
     	if(U900Data == null) {
     		U900Data = Collections.emptyList();
     	}
-    	
+
     	for(Map<String,Object> item : U900Data) {
     	    Object itemName = item.get("item");
     		if("——股票投资".equals(itemName)) {
@@ -804,7 +804,7 @@ public class UExportService extends BaseExportService implements UExportManager 
     		    I20List.add(item);
     		}
     	}
-    	
+
     	result.put("I1010", I1010);
     	result.put("I1020", I1020);
     	result.put("I1030", I1030);
@@ -816,14 +816,14 @@ public class UExportService extends BaseExportService implements UExportManager 
     	result.put("I3010", I3010);
     	result.put("I20List", I20List);
     	result.put("I20ListCount", I20List.size());
-    	
+
     	return result;
     }
-    
+
      /**
      * 处理sheet页U1000的数据
      * @author linnea 2022年09月23日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -832,12 +832,12 @@ public class UExportService extends BaseExportService implements UExportManager 
     private Map<String,Object> getU1000Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         Map<String, Object> main = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U1000MainMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU1000MainData", queryMap);
         if(U1000MainMetaDataList == null) {
-            U1000MainMetaDataList = new ArrayList<>(); 
+            U1000MainMetaDataList = new ArrayList<>();
         }
         Map<String,Object> temp = new HashMap<>();
         for(Map<String,Object> map : U1000MainMetaDataList) {
@@ -855,7 +855,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U1000TestDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU1000TestData", queryMap);
         if(U1000TestDataList == null) {
-            U1000TestDataList = new ArrayList<>(); 
+            U1000TestDataList = new ArrayList<>();
         }
         temp = new HashMap<>();
         for(Map<String,Object> map : U1000TestDataList) {
@@ -868,7 +868,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         U1000Test.put("S5", temp.get("应收清算款")==null?new HashMap<>():temp.get("应收清算款"));
         U1000Test.put("S6", temp.get("买入返售金融资产")==null?new HashMap<>():temp.get("买入返售金融资产"));
         U1000Test.put("S7", temp.get("债权投资")==null?new HashMap<>():temp.get("债权投资"));
-        
+
         result.put("U1000Test", U1000Test);
         result.put("main", main);
         return result;
@@ -877,7 +877,7 @@ public class UExportService extends BaseExportService implements UExportManager 
     /**
      * 处理sheet页U10000的数据
      * @author Dai Zong 2017年11月5日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -890,7 +890,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         Map<String,Object> fundControl = (Map<String,Object>)this.dao.findForObject("ReportMapper.selectFundControlData", queryMap);
         if(fundControl == null) {
-            fundControl = new HashMap<>(); 
+            fundControl = new HashMap<>();
         }
         result.put("fundControl", fundControl);
 
@@ -900,7 +900,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         if("Y".equals(ETF_MAP.get("ETF")) || "Y".equals(ETF_MAP.get("ETF_CONNECTION"))) {
             ETF = "Y";
         }
-        
+
         result.put("ETF", ETF);
 
         @SuppressWarnings("unchecked")
@@ -909,27 +909,27 @@ public class UExportService extends BaseExportService implements UExportManager 
         if("Y".equals(FOF_MAP.get("FOF")) || "Y".equals(FOF_MAP.get("FOF_CONNECTION"))) {
             FOF = "Y";
         }
-        
+
         result.put("FOF", FOF);
-		
+
         @SuppressWarnings("unchecked")
         Map<String, Object> AC_MAP = (Map<String, Object>)this.dao.findForObject("FundMapper.selectACFlag", queryMap);
         String AC = "N";
         if("Y".equals(AC_MAP.get("AC"))) {
             AC = "Y";
         }
-        
+
         result.put("AC", AC);
-		
+
         @SuppressWarnings("unchecked")
         Map<String, Object> MF_MAP = (Map<String, Object>)this.dao.findForObject("FundMapper.selectMFFlag", queryMap);
         String MF = "N";
         if("Y".equals(MF_MAP.get("MF"))) {
             MF = "Y";
         }
-        
+
         result.put("MF", MF);
-        
+
         Map<String, Object> interest = new HashMap<>();
         interest.put("S1", new HashMap<>());
         interest.put("S2", new HashMap<>());
@@ -939,7 +939,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000InterestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000InterestData", queryMap);
         if(U10000InterestMetaDataList == null) {
-            U10000InterestMetaDataList = new ArrayList<>(); 
+            U10000InterestMetaDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : U10000InterestMetaDataList) {
             if("活期存款利息收入".equals(map.get("item"))) {
@@ -955,8 +955,8 @@ public class UExportService extends BaseExportService implements UExportManager 
             }
         }
         result.put("interest", interest);
-        
-        
+
+
         // Map<String, Object> stocks = new HashMap<>();
         Map<String, Object> STOCKS = new HashMap<>();
         Map<String, Object> STOCKS_BS = new HashMap<>();
@@ -1001,13 +1001,13 @@ public class UExportService extends BaseExportService implements UExportManager 
         // @SuppressWarnings("unchecked")
         // List<Map<String,Object>> U10000StocksMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         // if(U10000StocksMetaDataList == null) {
-        //     U10000StocksMetaDataList = new ArrayList<>(); 
+        //     U10000StocksMetaDataList = new ArrayList<>();
         // }
         queryMap.put("type", "STOCKS_BS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksBsDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000StocksBsDataList == null) {
-            U10000StocksBsDataList = new ArrayList<>(); 
+            U10000StocksBsDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000StocksBsDataList) {
@@ -1025,7 +1025,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksSummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryMap);
         if(U10000StocksSummaryMetaDataList == null) {
-            U10000StocksSummaryMetaDataList = new ArrayList<>(); 
+            U10000StocksSummaryMetaDataList = new ArrayList<>();
         }
 
         if(U10000StocksSummaryMetaDataList.size() != 0) {
@@ -1048,15 +1048,15 @@ public class UExportService extends BaseExportService implements UExportManager 
                     }
             }
         }
-        
+
         // U10000StocksMetaDataList.addAll(U10000StocksSummaryMetaDataList);
 
-        
+
         queryMap.put("type", "STOCKS_R");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksRDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000StocksRDataList == null) {
-            U10000StocksRDataList = new ArrayList<>(); 
+            U10000StocksRDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : U10000StocksRDataList) {
             if ("赎回基金份额对价总额".equals(map.get("item")) && "STOCKS_R".equals(map.get("type"))) {
@@ -1087,7 +1087,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksPDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000StocksPDataList == null) {
-            U10000StocksPDataList = new ArrayList<>(); 
+            U10000StocksPDataList = new ArrayList<>();
         }
 
         List<Map<String,Object>> StocksPList = new ArrayList<>();
@@ -1126,7 +1126,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000StocksLDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000StocksLDataList == null) {
-            U10000StocksLDataList = new ArrayList<>(); 
+            U10000StocksLDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000StocksLDataList) {
@@ -1236,7 +1236,7 @@ public class UExportService extends BaseExportService implements UExportManager 
             controlNum = 0;
         }
         StockRControl = controlNum + 9 + 6;
-        
+
         if (StockRFlag == "Y" && U10000StocksRDataList.size() != 0){
             controlNum = controlNum + 11;
         } else if (StockRFlag == "Y" && U10000StocksRDataList.size() == 0){
@@ -1287,7 +1287,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("StockRControl", StockRControl);
         result.put("StockPControl", StockPControl);
         result.put("StockLControl", StockLControl);
-        
+
         Map<String, Object> fund = new HashMap<>();
         fund.put("S1", new HashMap<>());
         fund.put("S2", new HashMap<>());
@@ -1297,7 +1297,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000FundMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000FundMetaDataList == null) {
-            U10000FundMetaDataList = new ArrayList<>(); 
+            U10000FundMetaDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000FundMetaDataList) {
@@ -1336,7 +1336,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("fundBTCount", fundBTCount);
         result.put("fundNum", U10000FundMetaDataList.size());
         result.put("fund", fund);
-        
+
         Map<String, Object> BOND = new HashMap<>();
         Map<String, Object> BOND_BS = new HashMap<>();
         Map<String, Object> BOND_R = new HashMap<>();
@@ -1371,12 +1371,12 @@ public class UExportService extends BaseExportService implements UExportManager 
             TitleCount = TitleCount + 1;
             BondBTCount = TitleCount;
         }
-        
+
         queryMap.put("type", "BOND_BS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondBsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000BondBsMetaDataList == null) {
-            U10000BondBsMetaDataList = new ArrayList<>(); 
+            U10000BondBsMetaDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000BondBsMetaDataList) {
@@ -1409,7 +1409,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondSummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryMap);
         if(U10000BondSummaryMetaDataList == null) {
-            U10000BondSummaryMetaDataList = new ArrayList<>(); 
+            U10000BondSummaryMetaDataList = new ArrayList<>();
         }
         // U10000BondMetaDataList.addAll(U10000BondSummaryMetaDataList);
 
@@ -1451,7 +1451,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondRMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000BondRMetaDataList == null) {
-            U10000BondRMetaDataList = new ArrayList<>(); 
+            U10000BondRMetaDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000BondRMetaDataList) {
@@ -1486,9 +1486,9 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000BondPMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000BondPMetaDataList == null) {
-            U10000BondPMetaDataList = new ArrayList<>(); 
+            U10000BondPMetaDataList = new ArrayList<>();
         }
-        
+
         List<Map<String,Object>> BondPList = new ArrayList<>();
         for(Map<String,Object> map : U10000BondPMetaDataList) {
             //S1--S3
@@ -1608,7 +1608,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("BondPListCount", BondPList.size());
         result.put("BondRControl", BondRControl);
         result.put("BondPControl", BondPControl);
-        
+
         Map<String, Object> ABS = new HashMap<>();
         Map<String, Object> ABS_BS = new HashMap<>();
         Map<String, Object> ABS_R = new HashMap<>();
@@ -1618,22 +1618,22 @@ public class UExportService extends BaseExportService implements UExportManager 
         ABS.put("S2", new HashMap<>());
         ABS.put("S3", new HashMap<>());
         ABS_BS.put("S4", new HashMap<>());   // chenhy, 20220704, U10000新增7.4.7.17.2交易费用
-        ABS_BS.put("S5", new HashMap<>()); 
-        ABS_BS.put("S6", new HashMap<>()); 
-        ABS_BS.put("S65", new HashMap<>()); 
-        ABS_R.put("S7", new HashMap<>()); 
-        ABS_R.put("S8", new HashMap<>()); 
-        ABS_R.put("S9", new HashMap<>()); 
-        ABS_R.put("S10", new HashMap<>()); 
-        ABS_R.put("S105", new HashMap<>()); 
-        ABS_P.put("S11", new HashMap<>()); 
-        ABS_P.put("S12", new HashMap<>()); 
+        ABS_BS.put("S5", new HashMap<>());
+        ABS_BS.put("S6", new HashMap<>());
+        ABS_BS.put("S65", new HashMap<>());
+        ABS_R.put("S7", new HashMap<>());
+        ABS_R.put("S8", new HashMap<>());
+        ABS_R.put("S9", new HashMap<>());
+        ABS_R.put("S10", new HashMap<>());
+        ABS_R.put("S105", new HashMap<>());
+        ABS_P.put("S11", new HashMap<>());
+        ABS_P.put("S12", new HashMap<>());
         ABS_P.put("S13", new HashMap<>());
         ABS_P.put("S14", new HashMap<>());
         ABS_P.put("S145", new HashMap<>());
 
         // 判断大标题是否需要输出标记
-        String AbsBTFlag = "N";     
+        String AbsBTFlag = "N";
         int AbsBTCount = TitleCount;
         if("N".equals(fundControl.get("ABSAll")) && "N".equals(fundControl.get("ABSBS")) && "N".equals(fundControl.get("ABSR")) && "N".equals(fundControl.get("ABSP"))) {
             AbsBTFlag = "N";
@@ -1642,12 +1642,12 @@ public class UExportService extends BaseExportService implements UExportManager 
             TitleCount = TitleCount + 1;
             AbsBTCount = TitleCount;
         }
-        
+
         queryMap.put("type", "ABS_BS");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000AbsBsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000AbsBsMetaDataList == null) {
-            U10000AbsBsMetaDataList = new ArrayList<>(); 
+            U10000AbsBsMetaDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000AbsBsMetaDataList) {
@@ -1679,7 +1679,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000AbsSummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryMap);
         if(U10000AbsSummaryMetaDataList == null) {
-            U10000AbsSummaryMetaDataList = new ArrayList<>(); 
+            U10000AbsSummaryMetaDataList = new ArrayList<>();
         }
         // U10000AbsMetaDataList.addAll(U10000AbsSummaryMetaDataList);
 
@@ -1721,7 +1721,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000AbsRMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000AbsRMetaDataList == null) {
-            U10000AbsRMetaDataList = new ArrayList<>(); 
+            U10000AbsRMetaDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000AbsRMetaDataList) {
@@ -1755,7 +1755,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000AbsPMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000AbsPMetaDataList == null) {
-            U10000AbsPMetaDataList = new ArrayList<>(); 
+            U10000AbsPMetaDataList = new ArrayList<>();
         }
 
         List<Map<String,Object>> ABS15List = new ArrayList<>();
@@ -1878,7 +1878,7 @@ public class UExportService extends BaseExportService implements UExportManager 
     	result.put("ABS15ListCount", ABS15List.size());
         result.put("AbsRControl", AbsRControl);
         result.put("AbsPControl", AbsPControl);
-        
+
         Map<String, Object> GOLD = new HashMap<>();
         Map<String, Object> GOLD_BS = new HashMap<>();
         Map<String, Object> GOLD_R = new HashMap<>();
@@ -1898,7 +1898,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         GOLD_P.put("S10", new HashMap<>());
         GOLD_P.put("S11", new HashMap<>());
         GOLD_P.put("S12", new HashMap<>());
-        
+
         // 判断大标题是否需要输出标记
         String GoldBTFlag = "N";
         int GoldBTCount = TitleCount;
@@ -1914,7 +1914,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldBsMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000GoldBsMetaDataList == null) {
-            U10000GoldBsMetaDataList = new ArrayList<>(); 
+            U10000GoldBsMetaDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000GoldBsMetaDataList) {
@@ -1946,10 +1946,10 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldSummaryMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportSummaryData", queryMap);
         if(U10000GoldSummaryMetaDataList == null) {
-            U10000GoldSummaryMetaDataList = new ArrayList<>(); 
+            U10000GoldSummaryMetaDataList = new ArrayList<>();
         }
         // U10000GoldMetaDataList.addAll(U10000GoldSummaryMetaDataList);
-        
+
         if(U10000GoldSummaryMetaDataList.size() != 0) {
             @SuppressWarnings("unchecked")
             Map<String,Object> U10000GoldSummarySumData = (Map<String,Object>)this.dao.findForObject("UExportMapper.selectU10000ImportSummarySumDataForReport", queryMap);
@@ -1986,7 +1986,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldRMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000GoldRMetaDataList == null) {
-            U10000GoldRMetaDataList = new ArrayList<>(); 
+            U10000GoldRMetaDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000GoldRMetaDataList) {
@@ -2018,7 +2018,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000GoldPMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000GoldPMetaDataList == null) {
-            U10000GoldPMetaDataList = new ArrayList<>(); 
+            U10000GoldPMetaDataList = new ArrayList<>();
         }
 
         List<Map<String,Object>> GoldPList = new ArrayList<>();
@@ -2138,7 +2138,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("GoldPListCount", GoldPList.size());
         result.put("GoldRControl", GoldRControl);
         result.put("GoldPControl", GoldPControl);
-        
+
         Map<String, Object> di = new HashMap<>();
         di.put("S1", new HashMap<>());
         di.put("S2", new HashMap<>());
@@ -2147,13 +2147,13 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000DiWarrantMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000DiWarrantMetaDataList == null) {
-            U10000DiWarrantMetaDataList = new ArrayList<>(); 
+            U10000DiWarrantMetaDataList = new ArrayList<>();
         }
         queryMap.put("type", "DI_OTHER");
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000DiOtherMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000ImportData", queryMap);
         if(U10000DiOtherMetaDataList == null) {
-            U10000DiOtherMetaDataList = new ArrayList<>(); 
+            U10000DiOtherMetaDataList = new ArrayList<>();
         }
         List<Map<String,Object>> U10000DiMetaDataList = new ArrayList<>();
         U10000DiMetaDataList.addAll(U10000DiWarrantMetaDataList);
@@ -2180,10 +2180,10 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("diCount", diCount);
         result.put("di_count", U10000DiMetaDataList.size());
         result.put("di", di);
-        
+
         result.put("di_other_list", U10000DiOtherMetaDataList);
         result.put("di_other_count", U10000DiOtherMetaDataList.size());
-        
+
         Map<String, Object> dividend = new HashMap<>();
         dividend.put("S1", new HashMap<>());
         dividend.put("S15", new HashMap<>()); // yury，20200915，U10000股利收益新增证券出借业务
@@ -2191,7 +2191,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000DividendMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000DividendData", queryMap);
         if(U10000DividendMetaDataList == null) {
-            U10000DividendMetaDataList = new ArrayList<>(); 
+            U10000DividendMetaDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : U10000DividendMetaDataList) {
             if("10".equals(String.valueOf(map.get("sort")))) {
@@ -2203,12 +2203,12 @@ public class UExportService extends BaseExportService implements UExportManager 
             }
         }
         result.put("dividend", dividend);
-		
+
 		// -----------chenhy，20220704，U10000新增信用减值损失--------------
 		   //---chenhy,20220902,判断新老基金----
 		Map<String, Object> note = new HashMap<>();
         String note3Flag = "N";
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> fundDateInfo = (Map<String,Object>)this.dao.findForObject("TExportMapper.selectFundDateInfo", queryMap);
         // chenhy,20240223,新增基金和产品的区分
@@ -2227,7 +2227,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000CreditMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000CreditData", queryMap);
         if(U10000CreditMetaDataList == null) {
-            U10000CreditMetaDataList = new ArrayList<>(); 
+            U10000CreditMetaDataList = new ArrayList<>();
         }
 
         for(Map<String,Object> map : U10000CreditMetaDataList) {
@@ -2245,7 +2245,7 @@ public class UExportService extends BaseExportService implements UExportManager 
 		}
         credit.put("count", U10000CreditMetaDataList.size());
         result.put("credit", credit);
-        
+
         Map<String, Object> other_r = new HashMap<>();
         other_r.put("S1", new HashMap<>());
         other_r.put("S2", new HashMap<>());
@@ -2253,7 +2253,7 @@ public class UExportService extends BaseExportService implements UExportManager 
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000OtherRMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherRData", queryMap);
         if(U10000OtherRMetaDataList == null) {
-            U10000OtherRMetaDataList = new ArrayList<>(); 
+            U10000OtherRMetaDataList = new ArrayList<>();
         }
         for(Map<String,Object> map : U10000OtherRMetaDataList) {
             if("基金赎回费收入".equals(map.get("item"))) {
@@ -2267,14 +2267,14 @@ public class UExportService extends BaseExportService implements UExportManager 
         other_r.put("otherRL", otherRL);
         other_r.put("otherRL_count", otherRL.size());
         result.put("other_r", other_r);
-        
+
         Map<String, Object> trxFee = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000TrxFeeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000TrxFeeData", queryMap);
         if(U10000TrxFeeMetaDataList == null) {
-            U10000TrxFeeMetaDataList = new ArrayList<>(); 
+            U10000TrxFeeMetaDataList = new ArrayList<>();
         }
-        
+
         int item30Index = -1;
         for(int i=0 ; i<U10000TrxFeeMetaDataList.size() ; i++) {
         	if("30".equals(String.valueOf(U10000TrxFeeMetaDataList.get(i).get("sort")))) {
@@ -2282,19 +2282,19 @@ public class UExportService extends BaseExportService implements UExportManager 
         		break;
         	}
         }
-        
+
         trxFee.put("list", U10000TrxFeeMetaDataList);
         trxFee.put("count", U10000TrxFeeMetaDataList.size());
         trxFee.put("item30Index", item30Index);
         result.put("trxFee", trxFee);
-        
+
 		Map<String, Object> other_c = new HashMap<>();
         List<Map<String,Object>> otherCL = new ArrayList<>();
 		other_c.put("S1", new HashMap<>());
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> U10000OtherCMetaDataList = (List<Map<String,Object>>)this.dao.findForList("UExportMapper.selectU10000OtherCData", queryMap);
         if(U10000OtherCMetaDataList == null) {
-            U10000OtherCMetaDataList = new ArrayList<>(); 
+            U10000OtherCMetaDataList = new ArrayList<>();
         }
 		for(Map<String,Object> map : U10000OtherCMetaDataList) {
             if("其他费用".equals(map.get("item"))) {
@@ -2309,5 +2309,5 @@ public class UExportService extends BaseExportService implements UExportManager 
         result.put("other_c", other_c);
         return result;
     }
-    
+
 }

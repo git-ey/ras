@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ey.service.system.config.ConfigManager;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -50,13 +51,13 @@ import com.ey.util.fileexport.FileExportUtils;
 @Controller
 @RequestMapping(value = "/wpExport")
 public class ExportController extends BaseController {
-    
+
     /**
      * dao
      */
     @Resource(name = "daoSupport")
     protected DaoSupport dao;
-    
+
 	// 报告Report
     @Resource(name = "reportService")
     private ReportService reportService;
@@ -100,16 +101,31 @@ public class ExportController extends BaseController {
     @Resource(name = "saExportService")
     private SAExportManager saExportService;
 
+    @Resource(name = "configService")
+    private ConfigManager configService;
+
+
+
+    String templatePath;
+
+    ExportController(){
+        try {
+            templatePath =configService.findByCode(Constants.WP_TEMAP_PATH);
+        }catch (Exception e){
+            templatePath = PathUtil.getClasspath();
+        }
+    }
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
 	}
-	
+
 	/**
 	 * 数据校验，如periodStr位数不足8位则补齐
 	 * @author Dai Zong 2017年10月17日
-	 * 
+	 *
 	 * @param fundId 基金ID
 	 * @param periodStr 期间字符串
 	 * @return 处理过的期间字符串
@@ -125,7 +141,7 @@ public class ExportController extends BaseController {
 	    }
 	    return periodStr;
 	}
-	
+
 	@RequestMapping(value = "/test")
 	@ResponseBody
 	public void test() {
@@ -146,10 +162,10 @@ public class ExportController extends BaseController {
 	    }).start();
 	    return;
 	}
-	
+
 	/**
      * 导出Word报告
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -160,13 +176,13 @@ public class ExportController extends BaseController {
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
         pd.put("PERIOD", periodStr);
-        
+
         this.reportService.exportReport(request, response, pd);
     }
 
 	/**
 	 * 底稿导出--C
-	 * 
+	 *
 	 * @param
 	 * @throws Exception
 	 */
@@ -176,13 +192,13 @@ public class ExportController extends BaseController {
 		String fundId = pd.getString("FUND_ID");
 		String periodStr = pd.getString("PEROID");
 		periodStr = this.dataCheck(fundId, periodStr);
-        
-		this.cExportService.doExport(request, response, fundId, periodStr);
+
+		this.cExportService.doExport(request, response, fundId, periodStr, templatePath);
 	}
-	
+
 	/**
      * 底稿导出--G
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -192,13 +208,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.gExportService.doExport(request, response, fundId, periodStr);
+
+        this.gExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--N
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -208,13 +224,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.nExportService.doExport(request, response, fundId, periodStr);
+
+        this.nExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--P
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -224,13 +240,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.pExportService.doExport(request, response, fundId, periodStr);
+
+        this.pExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--E
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -240,13 +256,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.eExportService.doExport(request, response, fundId, periodStr);
+
+        this.eExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--U
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -256,13 +272,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.uExportService.doExport(request, response, fundId, periodStr);
+
+        this.uExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--V
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -272,13 +288,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.vExportService.doExport(request, response, fundId, periodStr);
+
+        this.vExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--T
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -288,13 +304,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.tExportService.doExport(request, response, fundId, periodStr);
+
+        this.tExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--HSUM
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -313,17 +329,17 @@ public class ExportController extends BaseController {
         }else if(periodStr.length() < 8) {
             periodStr = periodStr + (String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "1231").substring(periodStr.length(), 8);
         }
-        
+
         if(StringUtils.isNotEmpty(fundId)) {
-            this.hSumExportService.doExport(request, response, fundId, periodStr);
+            this.hSumExportService.doExport(request, response, fundId, periodStr, templatePath);
         }else{
-            this.hSumExportService.doExport(firmCode, periodStr, request, response);
+            this.hSumExportService.doExport(firmCode, periodStr, request, response, templatePath);
         }
     }
-    
+
     /**
      * 底稿导出--H
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -333,13 +349,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.hExportService.doExport(request, response, fundId, periodStr);
+
+        this.hExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--I
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -349,13 +365,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.iExportService.doExport(request, response, fundId, periodStr);
+
+        this.iExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--O
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -365,13 +381,13 @@ public class ExportController extends BaseController {
         String fundId = pd.getString("FUND_ID");
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
-        
-        this.oExportService.doExport(request, response, fundId, periodStr);
+
+        this.oExportService.doExport(request, response, fundId, periodStr, templatePath);
     }
-    
+
     /**
      * 底稿导出--SA
-     * 
+     *
      * @param
      * @throws Exception
      */
@@ -382,6 +398,7 @@ public class ExportController extends BaseController {
         String periodStr = pd.getString("PEROID");
         String firmCode = pd.getString("FIRM_CODE");
 
+
         if(StringUtils.isEmpty(periodStr) || (StringUtils.isEmpty(fundId) && StringUtils.isEmpty(firmCode))) {
             throw new IllegalArgumentException("期间不能为空,基金ID和公司代码至少一个不能为空");
         }
@@ -390,14 +407,14 @@ public class ExportController extends BaseController {
         }else if(periodStr.length() < 8) {
             periodStr = periodStr + (String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "1231").substring(periodStr.length(), 8);
         }
-        
+
         if(StringUtils.isNotEmpty(fundId)) {
-            this.saExportService.doExport(request, response, fundId, periodStr);
+            this.saExportService.doExport(request, response, fundId, periodStr, templatePath);
         }else{
-            this.saExportService.doExport(firmCode, periodStr, request, response);
+            this.saExportService.doExport(firmCode, periodStr, request, response, templatePath);
         }
     }
-    
+
     @RequestMapping(value = "/download")
     public void downLoadOneFund(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageData pd = this.getPageData();
@@ -405,66 +422,66 @@ public class ExportController extends BaseController {
         String periodStr = pd.getString("PEROID");
         periodStr = this.dataCheck(fundId, periodStr);
         pd.put("PEROID", periodStr);
-        
+
         PageData fundInfos = (PageData)this.dao.findForObject("WorkPaperMapper.selectFundInfos", pd);
-        
+
         final String fileIdentifier = fundId + "_" + periodStr;
         final String resourcePath = PathUtil.getWebResourcePath(request);
         final String folderName = resourcePath + fileIdentifier + "_" + String.valueOf(new Date().getTime());
-        
+
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_CFLAG)) {
-            this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr);
+            this.cExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_C, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_GFLAG)) {
-            this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, periodStr);
+            this.gExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_G, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_NFLAG)) {
-            this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, periodStr);
+            this.nExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_N, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_PFLAG)) {
-            this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, periodStr);
+            this.pExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_P, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_EFLAG)) {
-            this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr);
+            this.eExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_E, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_UFLAG)) {
-            this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr);
+            this.uExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_U, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_VFLAG)) {
-            this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr);
+            this.vExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_V, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_TFLAG)) {
-            this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr);
+            this.tExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_T, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_HFLAG)) {
-            this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr);
+            this.hExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_H, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_IFLAG)) {
-            this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr);
+            this.iExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_I, fundId, periodStr, templatePath);
         }
         if (this.getExportFlag(fundInfos, WorkPaperService.PD_FIELD_OFLAG)) {
-            this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr);
+            this.oExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_O, fundId, periodStr, templatePath);
         }
 //        this.reportExportService.doExport(folderName, Constants.EXPORT_AIM_FILE_NAME_REPORT, pd);
-        
+
         FileExportUtils.createDir(folderName);
         final String zipFileName = fileIdentifier + ".zip";
         final String zipFileFullName = resourcePath + zipFileName;
         FileZip.zip(folderName, zipFileFullName);
-        
+
         FileExportUtils.writeFileToHttpResponse(request, response, zipFileName, new File(zipFileFullName));
-        
+
         DelAllFile.delFolder(folderName);
         File zipFile = new File(zipFileFullName);
         if(zipFile.exists() && zipFile.isFile()) {
             zipFile.delete();
         }
     }
-    
+
     /**
      * 从pd中获取是否应该输出该底稿
      * @author Dai Zong 2018年1月2日
-     * 
+     *
      * @param pd
      * @param flagFeild
      * @return
@@ -480,5 +497,5 @@ public class ExportController extends BaseController {
             return Integer.parseInt(String.valueOf(obj)) > 0 ? true : false;
         }
     }
-    
+
 }

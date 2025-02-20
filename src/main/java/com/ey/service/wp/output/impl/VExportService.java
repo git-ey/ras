@@ -26,61 +26,61 @@ import com.ey.util.fileexport.FreeMarkerUtils;
  */
 @Service("vExportService")
 public class VExportService extends BaseExportService implements VExportManager{
-    
+
     /**
      * 生成文件内容
      * @author Dai Zong 2017年10月17日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @param fundInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo) throws Exception {
+    private String generateFileContent(String fundId, String periodStr, Map<String, String> fundInfo, String templatePath) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
-        
+
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
-        
+
         dataMap.put("period", period);
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("fundInfo", fundInfo);
         dataMap.put("extraFundInfo", this.getExtraFundInfo(fundId, periodStr));
-        
+
         dataMap.put("V300", this.getV300Data(fundId, periodStr));
         dataMap.put("V400", this.getV400Data(fundId, periodStr));
         dataMap.put("V500", this.getV500Data(fundId, periodStr));
         dataMap.put("V600", this.getV600Data(fundId, periodStr));
 
-        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_V);
+        return FreeMarkerUtils.processTemplateToStrUseAbsPath(dataMap, templatePath, Constants.EXPORT_TEMPLATE_FILE_NAME_V);
     }
 
     @Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr, String templatePath) throws Exception {
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_V, fundInfo), xmlStr);
         return true;
     }
 
     @Override
-    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr, String templatePath) throws Exception {
         Map<String, String> fundInfo = this.selectFundInfo(fundId);
         fundInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo);
+        String xmlStr = this.generateFileContent(fundId, periodStr, fundInfo, templatePath);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(fileName, fundInfo), xmlStr);
         return true;
     }
-    
-    
+
+
 	/**
      * 获取基金额外属性
      * @author Dai Zong 2017年12月2日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -88,13 +88,13 @@ public class VExportService extends BaseExportService implements VExportManager{
      */
     private Map<String,Object> getExtraFundInfo(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> fundInfo = (Map<String,Object>)this.dao.findForObject("PExportMapper.selectExtraFundInfo", queryMap);
         if(fundInfo == null) {
             fundInfo = new HashMap<>();
         }
-        
+
         Integer startYear = 2000, startMonth = 01, startDay = 01;
         if(fundInfo.get("dateFrom") != null) {
             String[] splits = String.valueOf(fundInfo.get("dateFrom")).split("-");
@@ -113,7 +113,7 @@ public class VExportService extends BaseExportService implements VExportManager{
                 ex.printStackTrace();
             }
         }
-        
+
         fundInfo.put("startYear", startYear);
         fundInfo.put("startMonth", startMonth);
         fundInfo.put("startDay", startDay);
@@ -123,7 +123,7 @@ public class VExportService extends BaseExportService implements VExportManager{
     /**
      * 处理sheet页V300的数据
      * @author Dai Zong 2017年11月27日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -132,13 +132,13 @@ public class VExportService extends BaseExportService implements VExportManager{
     private Map<String,Object> getV300Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        
+
         @SuppressWarnings("unchecked")
         List<String> V300IntRistPeriodsDataList = (List<String>)this.dao.findForList("VExportMapper.selectV300IntRiskPeriodData", queryMap);
         if(V300IntRistPeriodsDataList == null) {
-            V300IntRistPeriodsDataList = new ArrayList<>(); 
+            V300IntRistPeriodsDataList = new ArrayList<>();
         }
-        
+
         // -----------------irene20230904新增 应交税费/应付税费-----------------------
         @SuppressWarnings("unchecked")
         List<String> V300TaxPayableNameDataList = (List<String>) this.dao
@@ -151,9 +151,9 @@ public class VExportService extends BaseExportService implements VExportManager{
         for(int i=0 ; i<V300IntRistPeriodsDataList.size(); i++) {
             emptyList.add(0);
         }
-        
+
         Map<String, Object> detail = new HashMap<String,Object>();
-        
+
         Map<String, Object> attr1 = new HashMap<String, Object>();
         attr1.put("list", emptyList);
         attr1.put("count", 0);
@@ -247,17 +247,17 @@ public class VExportService extends BaseExportService implements VExportManager{
         Map<String, Object> attr31 = new HashMap<String, Object>();
         attr31.put("list", emptyList);
         attr31.put("count", 0);
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V300MetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV300Data", queryMap);
         if(V300MetaDataList == null) {
-            V300MetaDataList = new ArrayList<>(); 
+            V300MetaDataList = new ArrayList<>();
         }
-        
+
         Map<String, List<Map<String, Object>>> groups = V300MetaDataList.parallelStream().collect(Collectors.groupingBy(item -> {
             return String.valueOf(item.get("type"));
         }));
-        
+
         final List<String> V300IntRistPeriodsDataListFinal = V300IntRistPeriodsDataList;
         groups.forEach((type,list) -> {
             Map<String,Map<String,Object>> tempMap = new HashMap<>();
@@ -403,7 +403,7 @@ public class VExportService extends BaseExportService implements VExportManager{
                     break;
             }
         });
-        
+
         detail.put("attr1", attr1);
         detail.put("attr2", attr2);
         detail.put("attr3", attr3);
@@ -435,19 +435,19 @@ public class VExportService extends BaseExportService implements VExportManager{
         detail.put("attr29", attr29);
         detail.put("attr30", attr30);
         detail.put("attr31", attr31);
-        
+
         result.put("intRistPeriods", V300IntRistPeriodsDataList);
         result.put("intRistPeriodsCount", V300IntRistPeriodsDataList.size());
         result.put("detail", detail);
         result.put("TaxPayableName", V300TaxPayableNameDataList);
-        
+
         return result;
     }
-    
+
     /**
      * 处理sheet页V400的数据
      * @author Dai Zong 2017年11月28日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -456,25 +456,25 @@ public class VExportService extends BaseExportService implements VExportManager{
     private Map<String,Object> getV400Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        
+
         Map<String,Object> fundInfo = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         Map<String,Object> V400FundInfoMetaData = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV400FundInfoData", queryMap);
         if(V400FundInfoMetaData != null) {
             fundInfo = V400FundInfoMetaData;
         }
-        
+
         @SuppressWarnings("unchecked")
         List<String> V400HypothesisDataList = (List<String>)this.dao.findForList("VExportMapper.selectV400HypothesisData", queryMap);
         if(V400HypothesisDataList == null) {
-            V400HypothesisDataList = new ArrayList<>(); 
+            V400HypothesisDataList = new ArrayList<>();
         }
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V400ListMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400LineData", queryMap);
         if(V400ListMetaDataList == null) {
-            V400ListMetaDataList = new ArrayList<>(); 
+            V400ListMetaDataList = new ArrayList<>();
         }
         ObjectMapper objectMapper = new ObjectMapper();
         for(Map<String,Object> map : V400ListMetaDataList) {
@@ -510,7 +510,7 @@ public class VExportService extends BaseExportService implements VExportManager{
                 map.remove("calResult");
             }
         }
-        
+
         Map<String, Object> oneJson = new HashMap<>();
         if(V400ListMetaDataList.size() > 0) {
             oneJson = V400ListMetaDataList.get(0);
@@ -521,19 +521,19 @@ public class VExportService extends BaseExportService implements VExportManager{
             oneJson.put("convexityList", empty);
             oneJson.put("convexityCount", 0);
         }
-        
+
         Map<String,Object> V400TestData = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V400TestMetaData = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV400TestData", queryMap);
         if(V400TestMetaData == null) {
-            V400TestMetaData = new ArrayList<>(); 
+            V400TestMetaData = new ArrayList<>();
         }
         while(V400TestMetaData.size() < 2) {
             V400TestMetaData.add(new HashMap<>());
         }
         V400TestData.put("first", V400TestMetaData.get(0));
         V400TestData.put("second", V400TestMetaData.get(1));
-        
+
         result.put("fundInfo", fundInfo);
         result.put("hypothesis", V400HypothesisDataList);
         result.put("hypothesisCount", V400HypothesisDataList.size());
@@ -541,14 +541,14 @@ public class VExportService extends BaseExportService implements VExportManager{
         result.put("lineCount", V400ListMetaDataList.size());
         result.put("oneJson", oneJson);
         result.put("test", V400TestData);
-        
+
         return result;
     }
-    
+
     /**
      * 处理sheet页V500的数据
      * @author Dai Zong 2017年11月29日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -557,22 +557,22 @@ public class VExportService extends BaseExportService implements VExportManager{
     private Map<String,Object> getV500Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        
+
         Map<String, Object> invest = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500InvestMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500InvestData", queryMap);
         if(V500InvestMetaDataList == null) {
-            V500InvestMetaDataList = new ArrayList<>(); 
+            V500InvestMetaDataList = new ArrayList<>();
         }
         invest.put("list", V500InvestMetaDataList);
         invest.put("count", V500InvestMetaDataList.size());
-        
+
         Map<String, Object> riskExposure = new HashMap<String,Object>();
         Double netValue = 0D;
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500riskExposureMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500riskExposureData", queryMap);
         if(CollectionUtils.isEmpty(V500riskExposureMetaDataList)) {
-            V500riskExposureMetaDataList = new ArrayList<>(); 
+            V500riskExposureMetaDataList = new ArrayList<>();
         }else {
             if(V500riskExposureMetaDataList.get(0) != null && V500riskExposureMetaDataList.get(0).get("netValueCurrent") != null) {
                 netValue = Double.parseDouble(String.valueOf(V500riskExposureMetaDataList.get(0).get("netValueCurrent")));
@@ -581,21 +581,21 @@ public class VExportService extends BaseExportService implements VExportManager{
         riskExposure.put("list", V500riskExposureMetaDataList);
         riskExposure.put("count", V500riskExposureMetaDataList.size());
         riskExposure.put("netValue", netValue);
-        
+
         @SuppressWarnings("unchecked")
         List<String> V500HypothesisDataList = (List<String>)this.dao.findForList("VExportMapper.selectV500HypothesisData", queryMap);
         if(V500HypothesisDataList == null) {
-            V500HypothesisDataList = new ArrayList<>(); 
+            V500HypothesisDataList = new ArrayList<>();
         }
-        
+
         ObjectMapper objectMapper = new ObjectMapper();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500DetailSlopeMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500DetailSlopeData", queryMap);
         if(V500DetailSlopeMetaDataList == null) {
-            V500DetailSlopeMetaDataList = new ArrayList<>(); 
+            V500DetailSlopeMetaDataList = new ArrayList<>();
         }
-        
+
         for(Map<String,Object> map : V500DetailSlopeMetaDataList) {
             String json = (String) map.get("calResult");
             if(json == null || json.length() == 0) {
@@ -638,7 +638,7 @@ public class VExportService extends BaseExportService implements VExportManager{
                 map.remove("calResult");
             }
         }
-        
+
         Map<String, Object> slopeOneJson = new HashMap<>();
         if(V500DetailSlopeMetaDataList.size() > 0) {
             slopeOneJson = V500DetailSlopeMetaDataList.get(0);
@@ -651,13 +651,13 @@ public class VExportService extends BaseExportService implements VExportManager{
             slopeOneJson.put("floatList", empty);
             slopeOneJson.put("floatCount", 0);
         }
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500DetailBetaMetaDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500DetailBetaData", queryMap);
         if(V500DetailBetaMetaDataList == null) {
-            V500DetailBetaMetaDataList = new ArrayList<>(); 
+            V500DetailBetaMetaDataList = new ArrayList<>();
         }
-        
+
         for(Map<String,Object> map : V500DetailBetaMetaDataList) {
             String json = (String) map.get("calResult");
             if(json == null || json.length() == 0) {
@@ -682,7 +682,7 @@ public class VExportService extends BaseExportService implements VExportManager{
                 map.remove("calResult");
             }
         }
-        
+
         Map<String, Object> betaOneJson = new HashMap<>();
         if(V500DetailBetaMetaDataList.size() > 0) {
             betaOneJson = V500DetailBetaMetaDataList.get(0);
@@ -691,23 +691,23 @@ public class VExportService extends BaseExportService implements VExportManager{
             betaOneJson.put("betaList", empty);
             betaOneJson.put("betaCount", 0);
         }
-        
+
         Map<String,Object> V500TestData = new HashMap<>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V500TestMetaData = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV500TestData", queryMap);
         if(V500TestMetaData == null) {
-            V500TestMetaData = new ArrayList<>(); 
+            V500TestMetaData = new ArrayList<>();
         }
         while(V500TestMetaData.size() < 2) {
             V500TestMetaData.add(new HashMap<>());
         }
         V500TestData.put("first", V500TestMetaData.get(0));
         V500TestData.put("second", V500TestMetaData.get(1));
-        
+
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, Integer.parseInt(periodStr.substring(0, 4)));
         int dayOfYear = calendar.getActualMaximum(Calendar.DAY_OF_YEAR);
-        
+
         result.put("invest", invest);
         result.put("riskExposure", riskExposure);
         result.put("hypothesis", V500HypothesisDataList);
@@ -723,11 +723,11 @@ public class VExportService extends BaseExportService implements VExportManager{
         return result;
     }
 
-    
+
     /**
      * 处理sheet页V600的数据
      * @author irenewu 2022年11月03日
-     * 
+     *
      * @param fundId
      * @param periodStr
      * @return
@@ -736,41 +736,41 @@ public class VExportService extends BaseExportService implements VExportManager{
     private Map<String,Object> getV600Data(String fundId, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(fundId, periodStr);
         Map<String, Object> result = new HashMap<String,Object>();
-        Map<String, Object> lastQueryMap = new HashMap<String,Object>(); 
+        Map<String, Object> lastQueryMap = new HashMap<String,Object>();
         queryMap.forEach((k,v) -> {
             lastQueryMap.put(k, v);
         });
         lastQueryMap.put("period", (Integer.parseInt(String.valueOf(lastQueryMap.get("period")).substring(0, 4)) - 1) + "1231");
-                
+
         Map<String, Object> exposure = new HashMap<String,Object>();
         Map<String, Object> current = new HashMap<String,Object>();
         Map<String, Object> last = new HashMap<String,Object>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V600ExposureDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600ExposureData", queryMap);
         if(V600ExposureDataList == null) {
-            V600ExposureDataList = new ArrayList<>(); 
+            V600ExposureDataList = new ArrayList<>();
         }
         current.put("list", V600ExposureDataList);
         current.put("count", V600ExposureDataList.size());
-        
+
         exposure.put("current", current);
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> LastV600ExposureDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600ExposureData", lastQueryMap);
         if(LastV600ExposureDataList == null) {
-            LastV600ExposureDataList = new ArrayList<>(); 
+            LastV600ExposureDataList = new ArrayList<>();
         }
         last.put("list", LastV600ExposureDataList);
         last.put("count", LastV600ExposureDataList.size());
-        
+
         exposure.put("last", last);
-        
+
         Map<String, Object> test = new HashMap<String,Object>();
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> V600TestDataList = (List<Map<String,Object>>)this.dao.findForList("VExportMapper.selectV600Test", queryMap);
         if(V600TestDataList == null) {
-            V600TestDataList = new ArrayList<>(); 
+            V600TestDataList = new ArrayList<>();
         }
         test.put("list", V600TestDataList);
         test.put("count", V600TestDataList.size());
@@ -780,14 +780,14 @@ public class VExportService extends BaseExportService implements VExportManager{
         @SuppressWarnings("unchecked")
         Map<String,Object> V600OtherPriceSumData = (Map<String,Object>)this.dao.findForObject("VExportMapper.selectV600OtherPriceSumData", queryMap);
         if(V600OtherPriceSumData == null) {
-            V600OtherPriceSumData = new HashMap<>(); 
+            V600OtherPriceSumData = new HashMap<>();
         }
         delta.put("otherPriceSumData",V600OtherPriceSumData);
 
         result.put("exposure", exposure);
         result.put("test", test);
         result.put("delta", delta);
-        
+
         return result;
     }
 

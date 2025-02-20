@@ -26,31 +26,31 @@ import com.ey.util.fileexport.FreeMarkerUtils;
  */
 @Service("hSumExportService")
 public class HSumExportService extends BaseExportService implements HSumExportManager{
-    
+
     private static ThreadLocal<SimpleDateFormat> localSimpleDateFormat = new ThreadLocal<SimpleDateFormat>();
 
     /**
      * 生成文件内容
      * @author Dai Zong 2017年12月6日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @param companyInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String firmCode, String periodStr, Map<String, String> companyInfo) throws Exception {
+    private String generateFileContent(String firmCode, String periodStr, Map<String, String> companyInfo, String templatePath) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
-        
+
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
-        
+
         dataMap.put("period", period);
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("companyInfo", companyInfo);
-        
+
         dataMap.put("H00", this.getH00Data(firmCode, periodStr));
         dataMap.put("H10", this.getH10Data(firmCode, periodStr));
         dataMap.put("H11", this.getH11Data(firmCode, periodStr));
@@ -63,14 +63,14 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         dataMap.put("H32", this.getH32Data(firmCode, periodStr));
         dataMap.put("H40", this.getH40Data(firmCode, periodStr));
         dataMap.put("H50", this.getH50Data(firmCode, periodStr));
-        
-        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_H_SUM);
+
+        return FreeMarkerUtils.processTemplateToStrUseAbsPath(dataMap, templatePath, Constants.EXPORT_TEMPLATE_FILE_NAME_H_SUM);
     }
-    
+
     /**
      * 获取小于指定日期的最近的闰日
      * @author Dai Zong 2017年12月8日
-     * 
+     *
      * @param date 指定日期
      * @return 最近的闰日[以yyyy-MM-dd表示]
      */
@@ -84,7 +84,7 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         calendar.set(year, 1, 29, 0, 0, 0);
         return year + "-02-29";
     }
-    
+
     @Override
     protected Map<String, Object> createBaseQueryMap(String firmCode, String periodStr) {
         Map<String, Object> res = new HashMap<String,Object>();
@@ -92,11 +92,11 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         res.put("period", periodStr);
         return res;
     }
-    
+
     /**
      * 根据公司Code获取公司信息
      * @author Dai Zong 2017年12月6日
-     * 
+     *
      * @param firmCode 公司Code
      * @return 公司信息
      * @throws Exception 公司Code无效
@@ -115,47 +115,47 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         });
         return res;
     }
-    
+
 	@Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr, String templatePath) throws Exception {
 	    /**
 	     * 如果输入了fundInfo,则根据fundInfo反查到FirmCode之后处理。
 	     */
 	    Map<String, String> fundInfo = this.selectFundInfo(fundId);
-        return this.doExport(fundInfo.get("firmCode"), periodStr, request, response);
+        return this.doExport(fundInfo.get("firmCode"), periodStr, request, response, templatePath);
     }
-	
+
 	@Override
-    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr, String templatePath) throws Exception {
 	    /**
          * 如果输入了fundInfo,则根据fundInfo反查到FirmCode之后处理。
          */
 	    Map<String, String> fundInfo = this.selectFundInfo(fundId);
-        return this.doExport(folederName, fileName, fundInfo.get("firmCode"), periodStr);
+        return this.doExport(folederName, fileName, fundInfo.get("firmCode"), periodStr, templatePath);
     }
 
     @Override
-    public boolean doExport(String firmCode, String periodStr, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public boolean doExport(String firmCode, String periodStr, HttpServletRequest request, HttpServletResponse response, String templatePath) throws Exception {
         Map<String, String> companyInfo = this.selectCompanyInfo(firmCode);
         companyInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(firmCode, periodStr, companyInfo);
+        String xmlStr = this.generateFileContent(firmCode, periodStr, companyInfo, templatePath);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_H_SUM, companyInfo), xmlStr);
         return true;
     }
 
     @Override
-    public boolean doExport(String folederName, Object fileName, String firmCode, String periodStr) throws Exception {
+    public boolean doExport(String folederName, Object fileName, String firmCode, String periodStr, String templatePath) throws Exception {
         Map<String, String> companyInfo = this.selectCompanyInfo(firmCode);
         companyInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(firmCode, periodStr, companyInfo);
+        String xmlStr = this.generateFileContent(firmCode, periodStr, companyInfo, templatePath);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(String.valueOf(fileName), companyInfo), xmlStr);
         return true;
     }
-    
+
     /**
      * 处理sheet页H00的数据
      * @author irene 20231205
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -164,22 +164,22 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH00Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH00Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页H10的数据
      * @author Dai Zong 2017年12月06日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -188,22 +188,22 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH10Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH10Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页H11的数据
      * @author Dai Zong 2017年12月08日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -211,7 +211,7 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
      */
     private Map<String,Object> getH11Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> result = new HashMap<>();
-        
+
         //查询头
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         @SuppressWarnings("unchecked")
@@ -219,7 +219,7 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
         if(headMetaDataList == null) {
             headMetaDataList = new ArrayList<>();
         }
-        
+
         Integer offset = 0;
         Integer preLineCout = 0;
         for(Map<String,Object> headMap : headMetaDataList) {
@@ -242,7 +242,7 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
             for(Map<String,Object> lineMap : lineMetaDataList) {
                 Map<String,Object> details = new HashMap<>();
                 List<Map<String,Object>> detailList = new ArrayList<>();
-                
+
                 queryMap.put("valuationDate", lineMap.get("valuationDate"));
                 @SuppressWarnings("unchecked")
                 List<Map<String,Object>> detailMetaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH11TestData", queryMap);
@@ -263,7 +263,7 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
                 details.put("list", detailList);
                 details.put("count", detailList.size());
                 lineMap.put("details", details);
-                
+
             }
             lines.put("list", lineMetaDataList);
             lines.put("count", lineMetaDataList.size());
@@ -276,16 +276,16 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
             headMap.put("lines", lines);
             headMap.put("titles", titles);
         }
-        
+
         result.put("list", headMetaDataList);
         result.put("count", headMetaDataList.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页H12的数据
      * @author Dai Zong 2017年12月07日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -294,22 +294,22 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH12Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH12Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页H20的数据
      * @author Dai Zong 2017年12月07日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -318,22 +318,22 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH20Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH20Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页H21的数据
      * @author Dai Zong 2017年12月07日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -342,22 +342,22 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH21Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH21Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页H22的数据
      * @author Irene20231205
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -366,22 +366,22 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH22Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH22Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页H30的数据
      * @author Dai Zong 2017年12月08日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -390,35 +390,35 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH30Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH30Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
-        SimpleDateFormat sdf = localSimpleDateFormat.get();  
-        if (sdf == null) {  
-            sdf = new SimpleDateFormat("yyyyMMdd");  
-            localSimpleDateFormat.set(sdf);  
-        }  
+
+        SimpleDateFormat sdf = localSimpleDateFormat.get();
+        if (sdf == null) {
+            sdf = new SimpleDateFormat("yyyyMMdd");
+            localSimpleDateFormat.set(sdf);
+        }
         String recentLeap = null;
         try {
             recentLeap = this.getRecentLeap(sdf.parse(periodStr))+"T00:00:00.000";
         }catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         result.put("recentLeap", recentLeap);
         return result;
     }
-    
+
     /**
      * 处理sheet页H31的数据
      * @author Dai Zong 2017年12月08日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -427,25 +427,25 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH31Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH31Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
-        SimpleDateFormat sdf = localSimpleDateFormat.get();  
-        if (sdf == null) {  
-            sdf = new SimpleDateFormat("yyyyMMdd");  
-            localSimpleDateFormat.set(sdf);  
-        }  
+
+        SimpleDateFormat sdf = localSimpleDateFormat.get();
+        if (sdf == null) {
+            sdf = new SimpleDateFormat("yyyyMMdd");
+            localSimpleDateFormat.set(sdf);
+        }
         String recentLeap = null;
         try {
             recentLeap = this.getRecentLeap(sdf.parse(periodStr))+"T00:00:00.000";
         }catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         result.put("recentLeap", recentLeap);
@@ -454,7 +454,7 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     /**
      * 处理sheet页H32的数据
      * @author IRENE 20231205
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -463,35 +463,35 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH32Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH32Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
-        SimpleDateFormat sdf = localSimpleDateFormat.get();  
-        if (sdf == null) {  
-            sdf = new SimpleDateFormat("yyyyMMdd");  
-            localSimpleDateFormat.set(sdf);  
-        }  
+
+        SimpleDateFormat sdf = localSimpleDateFormat.get();
+        if (sdf == null) {
+            sdf = new SimpleDateFormat("yyyyMMdd");
+            localSimpleDateFormat.set(sdf);
+        }
         String recentLeap = null;
         try {
             recentLeap = this.getRecentLeap(sdf.parse(periodStr))+"T00:00:00.000";
         }catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         result.put("recentLeap", recentLeap);
         return result;
     }
-    
+
     /**
      * 处理sheet页H40的数据
      * @author Dai Zong 2017年12月08日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -500,22 +500,22 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH40Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH40Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         return result;
     }
-    
+
     /**
      * 处理sheet页H50的数据
      * @author Dai Zong 2017年12月08日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @return
@@ -524,16 +524,16 @@ public class HSumExportService extends BaseExportService implements HSumExportMa
     private Map<String,Object> getH50Data(String firmCode, String periodStr) throws Exception{
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         Map<String, Object> result = new HashMap<>();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String,Object>> metaDataList = (List<Map<String,Object>>)this.dao.findForList("HSumExportMapper.selectH50Data", queryMap);
         if(metaDataList == null) {
             metaDataList = new ArrayList<>();
         }
-        
+
         result.put("list", metaDataList);
         result.put("count", metaDataList.size());
         return result;
     }
-    
+
 }

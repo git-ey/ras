@@ -5,6 +5,8 @@ package com.ey.util.fileexport;
  * @author Dai Zong
  */
 public interface Constants {
+
+    static final  String WP_TEMAP_PATH = "WP_TEMAP_PATH";
     /**
      * 导出模板位置
      */
@@ -33,7 +35,7 @@ public interface Constants {
     /**
      * 模板名称--G
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_G = "G.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_G = "G.ftl";
     /**
      * 底稿名称--G
      */
@@ -41,7 +43,7 @@ public interface Constants {
     /**
      * 模板名称--N
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_N = "N.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_N = "N.ftl";
     /**
      * 底稿名称--N
      */
@@ -49,7 +51,7 @@ public interface Constants {
     /**
      * 模板名称--P
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_P = "P.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_P = "P.ftl";
     /**
      * 底稿名称--P
      */
@@ -57,7 +59,7 @@ public interface Constants {
     /**
      * 模板名称--E
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_E = "E.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_E = "E.ftl";
     /**
      * 底稿名称--E
      */
@@ -65,7 +67,7 @@ public interface Constants {
     /**
      * 模板名称--U
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_U = "U.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_U = "U.ftl";
     /**
      * 底稿名称--U
      */
@@ -73,7 +75,7 @@ public interface Constants {
     /**
      * 模板名称--V
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_V = "V.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_V = "V.ftl";
     /**
      * 底稿名称--V
      */
@@ -81,7 +83,7 @@ public interface Constants {
     /**
      * 模板名称--T
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_T = "T.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_T = "T.ftl";
     /**
      * 底稿名称--T
      */
@@ -89,7 +91,7 @@ public interface Constants {
     /**
      * 模板名称--H_SUM
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_H_SUM = "H_SUM.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_H_SUM = "H_SUM.ftl";
     /**
      * 底稿名称--H_SUM
      */
@@ -97,7 +99,7 @@ public interface Constants {
     /**
      * 模板名称--H
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_H = "H.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_H = "H.ftl";
     /**
      * 底稿名称--H
      */
@@ -105,7 +107,7 @@ public interface Constants {
     /**
      * 模板名称--I
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_I = "I.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_I = "I.ftl";
     /**
      * 底稿名称--I
      */
@@ -113,7 +115,7 @@ public interface Constants {
     /**
      * 模板名称--O
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_O = "O.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_O = "O.ftl";
     /**
      * 底稿名称--O
      */
@@ -121,7 +123,7 @@ public interface Constants {
     /**
      * 模板名称--SA
      */
-    static final String EXPORT_TEMPLATE_FILE_NAME_SA = "SA.ftl"; 
+    static final String EXPORT_TEMPLATE_FILE_NAME_SA = "SA.ftl";
     /**
      * 底稿名称--SA
      */

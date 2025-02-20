@@ -23,39 +23,39 @@ import com.ey.util.fileexport.FreeMarkerUtils;
  */
 @Service("saExportService")
 public class SAExportService extends BaseExportService implements SAExportManager{
-    
+
 //    private static ThreadLocal<SimpleDateFormat> localSimpleDateFormat = new ThreadLocal<SimpleDateFormat>();
 
     /**
      * 生成文件内容
      * @author Dai Zong 2017年12月6日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @param companyInfo
      * @return
      * @throws Exception
      */
-    private String generateFileContent(String firmCode, String periodStr, Map<String, String> companyInfo) throws Exception {
+    private String generateFileContent(String firmCode, String periodStr, Map<String, String> companyInfo, String templatePath) throws Exception {
         Map<String, Object> dataMap = new HashMap<String, Object>();
 
         Long period = Long.parseLong(periodStr.substring(0, 4));
         Long month = Long.parseLong(periodStr.substring(4, 6));
         Long day = Long.parseLong(periodStr.substring(6, 8));
-        
+
         dataMap.put("period", period);
         dataMap.put("month", month);
         dataMap.put("day", day);
         dataMap.put("companyInfo", companyInfo);
-        
+
         Map<String, Object> queryMap = this.createBaseQueryMap(firmCode, periodStr);
         List<Map<String,Object>> lraSummaryDataList = (List<Map<String,Object>>)this.dao.findForList("SAExportMapper.selectLRASummaryData", queryMap);
         if(lraSummaryDataList == null) {
-            lraSummaryDataList = new ArrayList<>(); 
+            lraSummaryDataList = new ArrayList<>();
         }
         dataMap.put("lraSummaryDataList", lraSummaryDataList);
         dataMap.put("lraSummaryDataCount", lraSummaryDataList.size());
-        
+
         queryMap.put("item", "递延所得税资产");
         @SuppressWarnings("unchecked")
         Map<String, Object> DYSDSZCList= (Map<String, Object>)this.dao.findForObject("SAExportMapper.selectSASummaryData", queryMap);
@@ -90,11 +90,11 @@ public class SAExportService extends BaseExportService implements SAExportManage
         fundInfos = this.generateDetailData(firmCode, periodStr, fundInfos);
         dataMap.put("fundInfos", fundInfos);
         dataMap.put("fundInfosCount", fundInfos.size());
-        
-        
-        return FreeMarkerUtils.processTemplateToString(dataMap, Constants.EXPORT_TEMPLATE_FOLDER_PATH, Constants.EXPORT_TEMPLATE_FILE_NAME_SA);
+
+
+        return FreeMarkerUtils.processTemplateToStrUseAbsPath(dataMap, templatePath, Constants.EXPORT_TEMPLATE_FILE_NAME_SA);
     }
-    
+
     @Override
     protected Map<String, Object> createBaseQueryMap(String firmCode, String periodStr) {
         Map<String, Object> res = new HashMap<String,Object>();
@@ -102,11 +102,11 @@ public class SAExportService extends BaseExportService implements SAExportManage
         res.put("period", periodStr);
         return res;
     }
-    
+
     /**
      * 根据公司Code获取公司信息
      * @author Dai Zong 2017年12月6日
-     * 
+     *
      * @param firmCode 公司Code
      * @return 公司信息
      * @throws Exception 公司Code无效
@@ -125,47 +125,47 @@ public class SAExportService extends BaseExportService implements SAExportManage
         });
         return res;
     }
-    
+
 	@Override
-    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr) throws Exception {
+    public boolean doExport(HttpServletRequest request, HttpServletResponse response, String fundId, String periodStr, String templatePath) throws Exception {
 	    /**
 	     * 如果输入了fundInfo,则根据fundInfo反查到FirmCode之后处理。
 	     */
 	    Map<String, String> fundInfo = this.selectFundInfo(fundId);
-        return this.doExport(fundInfo.get("firmCode"), periodStr, request, response);
+        return this.doExport(fundInfo.get("firmCode"), periodStr, request, response, templatePath);
     }
-	
+
 	@Override
-    public boolean doExport(String folederName, String fileName, String fundId, String periodStr) throws Exception {
+    public boolean doExport(String folederName, String fileName, String fundId, String periodStr, String templatePath) throws Exception {
 	    /**
          * 如果输入了fundInfo,则根据fundInfo反查到FirmCode之后处理。
          */
 	    Map<String, String> fundInfo = this.selectFundInfo(fundId);
-        return this.doExport(folederName, fileName, fundInfo.get("firmCode"), periodStr);
+        return this.doExport(folederName, fileName, fundInfo.get("firmCode"), periodStr, templatePath);
     }
 
     @Override
-    public boolean doExport(String firmCode, String periodStr, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public boolean doExport(String firmCode, String periodStr, HttpServletRequest request, HttpServletResponse response, String templatePath) throws Exception {
         Map<String, String> companyInfo = this.selectCompanyInfo(firmCode);
         companyInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(firmCode, periodStr, companyInfo);
+        String xmlStr = this.generateFileContent(firmCode, periodStr, companyInfo, templatePath);
         FileExportUtils.writeFileToHttpResponse(request, response, FreeMarkerUtils.simpleReplace(Constants.EXPORT_AIM_FILE_NAME_SA, companyInfo), xmlStr);
         return true;
     }
 
     @Override
-    public boolean doExport(String folederName, Object fileName, String firmCode, String periodStr) throws Exception {
+    public boolean doExport(String folederName, Object fileName, String firmCode, String periodStr, String templatePath) throws Exception {
         Map<String, String> companyInfo = this.selectCompanyInfo(firmCode);
         companyInfo.put("periodStr", periodStr);
-        String xmlStr = this.generateFileContent(firmCode, periodStr, companyInfo);
+        String xmlStr = this.generateFileContent(firmCode, periodStr, companyInfo, templatePath);
         FileExportUtils.writeFileToDisk(folederName, FreeMarkerUtils.simpleReplace(String.valueOf(fileName), companyInfo), xmlStr);
         return true;
     }
-    
+
     /**
      * 生成Detail的数据
      * @author Dai Zong 2018年11月11日
-     * 
+     *
      * @param firmCode
      * @param periodStr
      * @param fundInfos 旗下基金信息列表
@@ -210,5 +210,5 @@ public class SAExportService extends BaseExportService implements SAExportManage
         }
         return fundInfos;
     }
-    
+
 }
